@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  
+  --color-brand-bg: #FCFCFB;
+  --color-brand-dark: #111111;
+  --color-brand-muted: #555555;
+  --color-brand-border: #E8E8E6;
+  --color-brand-cream: #FAF9F6;
+  --color-brand-accent: #2563EB;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #FCFCFB;
+  --foreground: #111111;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom styles for editorial layout */
+.border-grid-h {
+  border-top: 1px solid var(--color-brand-border);
+  border-bottom: 1px solid var(--color-brand-border);
+}
+
+.border-grid-r {
+  border-right: 1px solid var(--color-brand-border);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FCFCFB;
+}
+::-webkit-scrollbar-thumb {
+  background: #E8E8E6;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D5D5D2;
+}
+
+/* Lenis scroll styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Navbar dropdown scrollbar (webkit) */
+.navbar-dropdown-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.navbar-dropdown-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.navbar-dropdown-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+.navbar-dropdown-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

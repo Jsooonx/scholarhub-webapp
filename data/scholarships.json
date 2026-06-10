@@ -1,0 +1,3557 @@
+{
+  "provider_groups": [
+    "DAAD",
+    "MEXT",
+    "TURKIYE",
+    "CHEVENING",
+    "AUSTRALIA_AWARDS",
+    "GKS",
+    "SINGAPORE",
+    "EIFFEL",
+    "CANADA"
+  ],
+  "provider_summaries": [
+    {
+      "provider_group": "DAAD",
+      "file_count": 1,
+      "scholarship_count": 19
+    },
+    {
+      "provider_group": "MEXT",
+      "file_count": 6,
+      "scholarship_count": 6
+    },
+    {
+      "provider_group": "TURKIYE",
+      "file_count": 8,
+      "scholarship_count": 17
+    },
+    {
+      "provider_group": "CHEVENING",
+      "file_count": 25,
+      "scholarship_count": 3
+    },
+    {
+      "provider_group": "AUSTRALIA_AWARDS",
+      "file_count": 30,
+      "scholarship_count": 5
+    },
+    {
+      "provider_group": "GKS",
+      "file_count": 6,
+      "scholarship_count": 3
+    },
+    {
+      "provider_group": "SINGAPORE",
+      "file_count": 4,
+      "scholarship_count": 4
+    },
+    {
+      "provider_group": "EIFFEL",
+      "file_count": 20,
+      "scholarship_count": 2
+    },
+    {
+      "provider_group": "CANADA",
+      "file_count": 2,
+      "scholarship_count": 2
+    }
+  ],
+  "scholarship_count": 61,
+  "scholarships": [
+    {
+      "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Bachelor",
+        "Master"
+      ],
+      "fields": [
+        "Any subject area",
+        "German language",
+        "Area studies",
+        "Special language / terminology courses"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 1
+      },
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Scholarship paid directly by the course organizers on the first day of the course"
+      ],
+      "amounts": [],
+      "target_group": "Students in Bachelor's and Master's degree programmes in any subject area with an intermediate level of German. Bachelor students must have completed at least two academic years at the start of the scholarship period.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/de/21148-stipendiendatenbank/?origin=5&status=1&subjectGrps=&daad=&q=&page=1&detail=50035295#voraussetzungen",
+      "description": "Attendance of language and area studies courses as well as special language and terminology courses at German universities during the summer.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Study scholarships for STEM disciplines",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Mathematics",
+        "Computer science",
+        "Natural sciences",
+        "Engineering"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Developing countries",
+          "Emerging countries"
+        ],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses",
+        "Language course"
+      ],
+      "amounts": [],
+      "target_group": "High-achieving students from developing and emerging countries who would like to complete a Master's degree in STEM subjects at a German university.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?origin=5&status=3&subjectGrps=&daad=&q=&page=1&detail=57742130#voraussetzungen",
+      "description": "Scholarship for young academics and future professionals from developing and emerging countries to earn a Master's degree in Germany in STEM fields.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Study Scholarships - Postgraduate Studies in the Field of Architecture",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Architecture",
+        "Interior Design",
+        "Monument Conservation",
+        "Building in Existing Contexts",
+        "Reconditioning of Old Buildings",
+        "Urban Planning",
+        "Urban Development",
+        "Landscape Architecture",
+        "Landscape Planning"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses"
+      ],
+      "amounts": [],
+      "target_group": "Applicants with a first university degree in architecture-related fields by the time they commence their scholarship-supported study programme.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=3&origin=5&subjectGrps=&daad=&intention=&q=&page=2&detail=57135744",
+      "description": "Scholarship to continue education in Germany with a postgraduate or continuing course of study in architecture.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Study Scholarships - Postgraduate Studies in the Field of the Performing Arts",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Performing Arts"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses"
+      ],
+      "amounts": [],
+      "target_group": "Applicants with a first university degree in the field of the Performing Arts.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=3&origin=5&subjectGrps=&daad=&intention=&q=&page=2&detail=50109971",
+      "description": "Scholarship to continue education in Germany with a postgraduate or continuing course of study in Performing Arts.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Scholarship for Development-Related Postgraduate Courses (EPOS)",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 36
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": true,
+        "professional_experience_years": 2,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses"
+      ],
+      "amounts": [],
+      "target_group": "Graduates with at least two years' professional experience.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=3&origin=190&subjectGrps=F&daad=&intention=&q=&page=1&detail=50076777",
+      "description": "Individual scholarships exclusively for postgraduate courses in Germany listed on the list of development-related postgraduate courses with application deadlines.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Helmut-Schmidt-Programme - Master's Scholarships for Public Policy and Good Governance (PPGG)",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Social sciences",
+        "Political sciences",
+        "Law",
+        "Economics",
+        "Public Policy",
+        "Good Governance"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses"
+      ],
+      "amounts": [],
+      "target_group": "Graduates in the field of social sciences, political sciences, law and economics.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=50026397",
+      "description": "Scholarships awarded for selected Master's courses in public policy and good governance.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "DAAD-ACEH Scholarship of Excellence",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Aceh"
+        ],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurance",
+        "Travel allowance",
+        "Language course"
+      ],
+      "amounts": [],
+      "target_group": "Young and qualified Acehnese from all disciplines.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=50747186",
+      "description": "Fully funded scholarship for Master and Doctoral degree study in Germany, exclusively for qualified applicants from the Aceh province of Indonesia.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Study Scholarships - Postgraduate Studies in the Fields of Fine Art, Design, Visual Communication and Film",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Fine Art",
+        "Design",
+        "Visual Communication",
+        "Film",
+        "Arts"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Travel allowance",
+        "One-off study allowance",
+        "Payments towards health, accident and personal liability insurance cover"
+      ],
+      "amounts": [],
+      "target_group": "Applicants with a first university degree in the field of arts.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=3&origin=5&subjectGrps=&daad=&intention=&q=&page=2&detail=57135742",
+      "description": "Scholarship for postgraduate or complementary study in Fine Art, Design, Visual Communication and Film in Germany.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Study Scholarships - Postgraduate Studies in the Field of Music",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Music"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Travel allowance",
+        "One-off study allowance",
+        "Payments towards health, accident and personal liability insurance cover"
+      ],
+      "amounts": [],
+      "target_group": "Applicants with a first university degree in the field of Music.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=3&origin=5&subjectGrps=&daad=&intention=&q=&page=2&detail=57135743",
+      "description": "Scholarship for postgraduate or continuing study in Music in Germany.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "In-Country/In-Region Scholarship at SEARCA Food Science",
+      "provider": "DAAD",
+      "country": null,
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "Food Science",
+        "Food Science and Technology",
+        "Nutritional, Domestic and Food Sciences"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": null,
+        "max": null
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Tuition fee",
+        "Monthly allowance",
+        "Study and research allowance",
+        "Printing allowance",
+        "Travel allowance for In-Region scholarship only"
+      ],
+      "amounts": [],
+      "target_group": "Students in Southeast Asia applying for Food Science programs at SEARCA member institutions.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=in-country&page=1&detail=57757718",
+      "description": "In-Country/In-Region scholarships at SEARCA for Food Science fields at partner institutions including UPLB, UPM, and UGM.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "In-Country/In-Region Scholarship at SEARCA Natural Resource Management",
+      "provider": "DAAD",
+      "country": null,
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "Environmental Science",
+        "Sustainable Land Use and Natural Resource Management",
+        "Natural Resources and Environmental Sciences",
+        "Environmental Biotechnology",
+        "Environmental Engineering",
+        "Environmental System and Modeling",
+        "Planning and Management of Coastal Area and Watershed",
+        "Geography"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": null,
+        "max": null
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly allowance",
+        "Study and research allowance",
+        "Printing allowance",
+        "Travel allowance for In-Region scholarship only"
+      ],
+      "amounts": [],
+      "target_group": "Students in Southeast Asia applying for Natural Resource Management programs at SEARCA member institutions.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=in-country&page=2&detail=57757719",
+      "description": "In-Country/In-Region scholarships at SEARCA for Natural Resource Management and Environmental Science fields.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "In-Country/In-Region Scholarship at Universitas Gadjah Mada (UGM)",
+      "provider": "DAAD",
+      "country": "Indonesia",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Geological Engineering"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": null,
+        "max": null
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly allowance",
+        "Study and research allowance",
+        "Printing allowance",
+        "Travel allowance for In-Region scholarship only"
+      ],
+      "amounts": [],
+      "target_group": "Students applying for the Master Program in Geological Engineering at Universitas Gadjah Mada.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=&origin=&subjectGrps=&daad=&intention=&q=in-country&page=2&detail=57730543",
+      "description": "In-Country/In-Region scholarship at UGM for the Master Program in Geological Engineering.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "In-Country/In-Region Scholarship at Asian Institute of Technology (AIT) GDS/NRM",
+      "provider": "DAAD",
+      "country": "Thailand",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Gender and Development Studies",
+        "Natural Resources Management"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": null,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Cambodia",
+          "Indonesia",
+          "Lao",
+          "Myanmar",
+          "Malaysia",
+          "Philippines",
+          "East Timor",
+          "Thailand",
+          "Vietnam"
+        ],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly allowance",
+        "Study and research allowance",
+        "Printing allowance",
+        "Travel allowance for In-Region scholarship only"
+      ],
+      "amounts": [],
+      "target_group": "Graduates from Cambodia, Indonesia, Lao, Myanmar, Malaysia, Philippines, East Timor, Thailand or Vietnam with a first academic degree who want to pursue Master's courses at the Asian Institute of Technology.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/de/21148-stipendiendatenbank/?status=&origin=&subjectGrps=&daad=&intention=&q=in-country&page=1&lang=de&sd=1&detail=57730537&page=1",
+      "description": "Scholarship supporting studies in Gender and Development Studies or Natural Resources Management at the Asian Institute of Technology in Thailand.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Research Grants - Doctoral Programme in Germany",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": null,
+        "max": 48
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses",
+        "Language course"
+      ],
+      "amounts": [],
+      "target_group": "Applicants with above-average qualifications who completed their Master's degree.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=3&origin=5&subjectGrps=&daad=&intention=&q=research%20grants&page=1&detail=57135739",
+      "description": "Scholarship to complete a full doctoral degree at a German university, open to all disciplines.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Research Grants - Bi-nationally Supervised Doctoral Degrees",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 7,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses",
+        "Language course"
+      ],
+      "amounts": [],
+      "target_group": "Doctoral candidates pursuing a doctorate with bi-national supervision (sandwich model) or the Cotutelle procedure.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?status=3&origin=5&subjectGrps=&daad=&intention=&q=research%20grants&page=1&detail=57507783",
+      "description": "Programme for a bi-national doctoral degree split between a home university and a university in Germany.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Research Grants in Germany",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 2,
+        "max": 12
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Insurances",
+        "Travel expenses",
+        "Language course"
+      ],
+      "amounts": [],
+      "target_group": "Doctoral students currently working on a PhD outside Germany or postdocs who completed their PhD within the last 4 years.",
+      "official_url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?detail=57742121",
+      "description": "Research grant to carry out a research project in Germany during a doctorate or in the early postdoc phase.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "DLR-DAAD Research Fellowships in the fields of Space, Aeronautics, Energy and Transportation Research",
+      "provider": "DLR and DAAD",
+      "country": "Germany",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "Space",
+        "Aeronautics",
+        "Energy",
+        "Transportation Research"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 36
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly installment",
+        "Flat-rate travel allowance",
+        "Health insurance",
+        "Family allowances"
+      ],
+      "amounts": [],
+      "target_group": "Foreign doctoral and postdoctoral students as well as senior scientists from the fields of Aeronautics, Space, Transportation, and Energy.",
+      "official_url": "https://www.daad.de/en/studying-in-germany/scholarships/daad-funding-programmes/dlr/",
+      "description": "Research fellowship implemented by the German Aerospace Center (DLR) and DAAD for doctoral students, postdoctoral students and senior scientists.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Study Visits for Academics - Artists and Architects (Short visit)",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [],
+      "fields": [
+        "Architecture",
+        "Fine Art",
+        "Film",
+        "Design",
+        "Visual Communication",
+        "Performing Arts",
+        "Music"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 3
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Monthly scholarship rate",
+        "Travel expenses",
+        "Insurance"
+      ],
+      "amounts": [],
+      "target_group": "University teachers from Architecture, Fine Art, Film, Design/Visual Communication, Performing Arts and Music.",
+      "official_url": null,
+      "description": "Study visits at a German university for artistic cooperation, designed for academic staff in arts disciplines.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Postdoctoral Researchers International Mobility Experience (P.R.I.M.E.)",
+      "provider": "DAAD",
+      "country": "Germany",
+      "degree_levels": [],
+      "fields": [],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 18,
+        "max": 18
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": []
+      },
+      "benefits": [
+        "Temporary funded position at a German university",
+        "12 months of research abroad",
+        "6 months reintegration phase in Germany"
+      ],
+      "amounts": [],
+      "target_group": "Postdoctoral researchers of all nationalities.",
+      "official_url": null,
+      "description": "Programme supporting international mobility of postdoctoral researchers through temporary positions at German universities in place of conventional scholarships.",
+      "source": "daad.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_period": [],
+      "application_process": [],
+      "important_dates": [],
+      "deadline": null,
+      "program_type": null
+    },
+    {
+      "name": "Beasiswa MEXT Program Undergraduate (Gakubu) 2027",
+      "provider": "MEXT / Monbukagakusho",
+      "country": "Japan",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "program_type": "Undergraduate scholarship",
+      "fields": [
+        "IPS-A: Law, Politics, Pedagogy, Sociology, Literature, History, Japanese language",
+        "IPS-B: Economics, Business Administration",
+        "IPA-A: Mathematics, Physics, Chemistry, Electrical Engineering, Information Engineering, Mechanical Engineering, Civil Engineering, Architecture, Chemical Engineering, Biotechnology",
+        "IPA-B: Agriculture, Pharmacy, Biology, Veterinary Medicine, Fisheries, Nursing",
+        "IPA-C: Medicine, Dentistry"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 60,
+        "max": 84
+      },
+      "deadline": "Berkas harus tiba paling lambat 19 April 2026 pukul 23.59 WIB",
+      "application_period": [
+        "1 April 2026 – 19 April 2026"
+      ],
+      "important_dates": [
+        "● Masa Pendaftaran : 1 April 2026 – 19 April 2026",
+        "● Pengumuman Hasil Seleksi Dokumen : 12 Juni 2026",
+        "● Ujian Tulis : Juni/Juli 2026*",
+        "● Pengumuman Hasil Ujian Tulis : Juli/Agustus 2026*",
+        "● Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pengumuman Hasil Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pengumuman Final dari MEXT : Februari 2027",
+        "● Berangkat ke Jepang : April 2027"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Lulusan SMA/SMK dan sederajat (semua jurusan untuk IPS, jurusan IPA untuk IPA-A/B/C)",
+          "Usia maksimal 24 tahun pada 1 April 2027 (lahir minimal 2 April 2002)",
+          "Nilai kelas XI semester 1 s/d kelas XII semester 1 minimal 85 untuk Matematika dan B. Inggris",
+          "Pelamar IPS dengan nilai di bawah 85 dapat mendaftar dengan JLPT minimal N3, J-Test D-E (500 poin), NAT-Test level 3, atau EJU minimal 240 poin",
+          "Pelamar IPA tidak dapat mendaftar jika salah satu nilai kurang dari 85",
+          "EJU/TKA/UTBK/SAT memberikan poin tambahan jika ada"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage (including preparatory school)",
+        "Monthly living allowance of approx. ¥117,000",
+        "Round-trip airfare (Indonesia ↔ Japan)",
+        "Student visa fee waiver",
+        "No bond / service obligation"
+      ],
+      "amounts": [
+        "¥117,000/month"
+      ],
+      "target_group": "Graduates of SMA/SMK (all tracks) from Indonesia wishing to study at Japanese national universities at undergraduate level.",
+      "official_url": "https://www.id.emb-japan.go.jp/itpr_id/sch_gakubu.html",
+      "description": "Japanese government scholarship for Indonesian SMA/SMK graduates to study at Japanese national universities, covering all expenses including a 1-year preparatory school for language and subject preparation.",
+      "application_process": [
+        "Online registration at https://daftar.beasiswamext.com/",
+        "Receive and print the exam number confirmation email",
+        "Prepare and submit required documents to the Embassy of Japan in Jakarta by the deadline",
+        "Attend written exam (Math, English, Japanese, Science/Social Studies depending on track)",
+        "Attend interview at the Embassy of Japan in Jakarta",
+        "Pass secondary screening at MEXT in Tokyo"
+      ],
+      "source": "undergraduate_gakubu.md",
+      "source_file": "data/raw/mext/undergraduate_gakubu.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Beasiswa MEXT Program College of Technology (KOSEN) 2027",
+      "provider": "MEXT / Monbukagakusho",
+      "country": "Japan",
+      "degree_levels": [
+        "College of Technology"
+      ],
+      "program_type": "Pre-undergraduate technical/vocational scholarship",
+      "fields": [
+        "Physics track: Mechanical Engineering, Electrical & Electronic Engineering, Information/Communication/Network Engineering, Architecture, Civil Engineering, Maritime Engineering, Other Fields",
+        "Chemistry track: Materials Engineering, Other Fields"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 54
+      },
+      "deadline": "Berkas harus tiba paling lambat 10 Mei 2026 pukul 23.59 WIB",
+      "application_period": [
+        "20 April 2026 – 10 Mei 2026"
+      ],
+      "important_dates": [
+        "● Masa Pendaftaran : 20 April 2026 – 10 Mei 2026",
+        "● Pengumuman Hasil Seleksi Dokumen : 12 Juni 2026",
+        "● Ujian Tulis : Juni/Juli 2026*",
+        "● Pengumuman Hasil Ujian Tulis : Juli/Agustus 2026*",
+        "● Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pengumuman Hasil Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pengumuman Hasil Secondary Screening dari MEXT : Februari 2027",
+        "● Berangkat ke Jepang : Awal April 2027"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Lulusan SMA/SMK dan sederajat jurusan IPA",
+          "Usia maksimal 24 tahun pada 1 April 2027 (lahir minimal 2 April 2002)",
+          "Nilai semester 4 dan 5 minimal 80 untuk Matematika dan B. Inggris",
+          "Jika salah satu nilai di bawah 80, tidak dapat mendaftar",
+          "EJU/TKA/UTBK/SAT memberikan poin tambahan jika ada"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage (including preparatory school)",
+        "Monthly living allowance of approx. ¥117,000",
+        "Round-trip airfare (Indonesia ↔ Japan)",
+        "Student visa fee waiver",
+        "No bond / service obligation"
+      ],
+      "amounts": [
+        "¥117,000/month"
+      ],
+      "target_group": "Indonesian SMA/SMK IPA graduates wishing to study at National Institutes of Technology (KOSEN) in Japan.",
+      "official_url": "https://www.id.emb-japan.go.jp/itpr_id/sch_kosen.html",
+      "description": "Japanese government scholarship for Indonesian science-track SMA/SMK graduates to study engineering at National Institutes of Technology (KOSEN), with possibility to advance to undergraduate year 3 after graduation.",
+      "application_process": [
+        "Online registration at https://daftar.beasiswamext.com/",
+        "Receive and print the exam number confirmation email",
+        "Prepare and submit required documents to the Embassy of Japan in Jakarta by 10 Mei 2026",
+        "Attend written exam (Math, Physics/Chemistry, English, Japanese)",
+        "Attend interview at the Embassy of Japan in Jakarta",
+        "Pass secondary screening at MEXT in Tokyo"
+      ],
+      "source": "collegeoftechnology_kosen.md",
+      "source_file": "data/raw/mext/collegeoftechnology_kosen.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Beasiswa MEXT Program Research Students (S2/S3) 2027",
+      "provider": "MEXT / Monbukagakusho",
+      "country": "Japan",
+      "degree_levels": [
+        "Master",
+        "PhD",
+        "Research"
+      ],
+      "program_type": "Graduate research scholarship",
+      "fields": [],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 18,
+        "max": 24
+      },
+      "deadline": "Berkas harus tiba paling lambat 22 April 2026 pukul 23.59 WIB",
+      "application_period": [
+        "1 April 2026 – 22 April 2026"
+      ],
+      "important_dates": [
+        "● Masa Pendaftaran : 1 April 2026 – 22 April 2026",
+        "● Pengumuman Hasil Seleksi Dokumen : 8 Juni 2026",
+        "● Ujian Tulis : Juni/Juli 2026*",
+        "● Pengumuman Hasil Ujian Tulis : Juli/Agustus 2026*",
+        "● Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pengumuman Hasil Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pencarian LoA (Letter of Acceptance) : Agustus 2026*",
+        "● Pengumuman secondary screening dari MEXT : paling lambat Maret 2027*",
+        "● Berangkat ke Jepang (musim semi) : April 2027",
+        "● Berangkat ke Jepang (musim gugur) : September–Oktober 2027"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Usia maksimal 34 tahun pada 1 April 2027 (lahir minimal 2 April 1992)",
+          "Lulusan D4/S1/S2",
+          "Memilih bidang studi yang berada pada rumpun ilmu yang sama dengan pendidikan sebelumnya",
+          "IPK minimal 3.2",
+          "Salah satu sertifikat bahasa: TOEFL-iBT min. 72, IELTS min. 5.5, TOEIC L&R min. 785, TOEIC S&W min. 310, atau JLPT min. N2",
+          "Sehat jasmani dan rohani"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage",
+        "Monthly living allowance of approx. ¥143,000 (research student) / ¥144,000 (Master) / ¥145,000 (PhD)",
+        "Round-trip airfare (Indonesia ↔ Japan)",
+        "Student visa fee waiver",
+        "Assistance with accommodation",
+        "No bond / service obligation"
+      ],
+      "amounts": [
+        "¥143,000/month (research student)",
+        "¥144,000/month (Master)",
+        "¥145,000/month (PhD)"
+      ],
+      "target_group": "Indonesian D4/S1/S2 graduates who wish to conduct research at Japanese graduate schools, with possibility to advance to Master or PhD programs.",
+      "official_url": "https://www.id.emb-japan.go.jp/itpr_id/sch_rs.html",
+      "description": "Japanese government scholarship for Indonesian graduates to study as research students (non-degree) at Japanese graduate schools, with the pathway to advance to a Master or PhD program upon passing the university entrance exam.",
+      "application_process": [
+        "Online registration at https://daftar.beasiswamext.com/",
+        "Prepare 3 sets of required documents including Application Form, Research Plan, transcripts, recommendations",
+        "Submit documents to the Embassy of Japan in Jakarta by 22 April 2026",
+        "Attend written exam (English and Japanese)",
+        "Attend interview at the Embassy of Japan in Jakarta",
+        "Obtain Letter of Acceptance (LoA) from Japanese university",
+        "Pass secondary screening at MEXT in Tokyo"
+      ],
+      "source": "research_student.md",
+      "source_file": "data/raw/mext/research_student.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Beasiswa MEXT Program Japanese Studies (Non-Degree) 2026",
+      "provider": "MEXT / Monbukagakusho",
+      "country": "Japan",
+      "degree_levels": [
+        "Non-Degree"
+      ],
+      "program_type": "Non-degree Japanese language and culture scholarship",
+      "fields": [
+        "Japanese language",
+        "Japanese literature",
+        "Japanese culture",
+        "Japanese education"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "Berkas harus tiba paling lambat 22 Januari 2026 pukul 23.59",
+      "application_period": [
+        "24 Desember 2025 – 22 Januari 2026"
+      ],
+      "important_dates": [
+        "● Masa Pendaftaran : 24 Desember 2025 – 22 Januari 2026",
+        "● Pengumuman Hasil Seleksi Dokumen : 6 Februari 2026",
+        "● Seleksi Ujian Tulis : Pertengahan Februari 2026",
+        "● Pengumuman Hasil Ujian Tulis : Akhir Februari 2026",
+        "● Seleksi Wawancara : Awal Maret 2026*",
+        "● Pengumuman Hasil Seleksi Wawancara : Awal Maret 2026*",
+        "● Secondary Screening : Maret – Juli/Pertengahan Agustus 2026*",
+        "● Pengumuman Hasil Akhir dari MEXT : Juli–Pertengahan Agustus 2026*",
+        "● Berangkat ke Jepang : September/Oktober 2026*"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Mahasiswa aktif minimal semester 3 jenjang S1/D4 jurusan sastra/pendidikan/budaya/bahasa Jepang",
+          "Usia maksimal 29 tahun pada 1 April 2026 (lahir antara 2 April 1996 – 1 April 2008)",
+          "Menguasai bahasa Jepang",
+          "Direkomendasikan oleh institusi tempat berkuliah",
+          "Belum akan mengikuti sidang skripsi selama proses seleksi",
+          "Wajib kembali ke Indonesia dan melanjutkan kuliah setelah program selesai"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage",
+        "Monthly living allowance of approx. ¥117,000",
+        "Round-trip airfare (Indonesia ↔ Japan, 1 time)",
+        "Student visa fee waiver",
+        "No bond / service obligation",
+        "Certificate of completion upon finishing the program"
+      ],
+      "amounts": [
+        "¥117,000/month"
+      ],
+      "target_group": "Active Indonesian S1/D4 students in Japanese language, literature, culture, or education programs (minimum semester 3).",
+      "official_url": "https://www.id.emb-japan.go.jp/itpr_id/sch_js.html",
+      "description": "Non-degree scholarship for Indonesian university students majoring in Japanese language or culture to study for 1 year at a Japanese university, deepening language and cultural knowledge.",
+      "application_process": [
+        "Online registration at https://daftar.beasiswamext.com/",
+        "Prepare documents: application form, placement preference form, transcripts, student ID letter, recommendation from department head",
+        "Documents submitted collectively by the recommending institution (not individually)",
+        "Submit to the Embassy of Japan in Jakarta by 22 January 2026",
+        "Attend written Japanese language exam",
+        "Attend interview at the Embassy of Japan in Jakarta",
+        "Pass secondary screening at MEXT in Tokyo"
+      ],
+      "source": "japanesestudies.md",
+      "source_file": "data/raw/mext/japanesestudies.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Beasiswa MEXT Program Senshu (Specialized Training College) 2027",
+      "provider": "MEXT / Monbukagakusho",
+      "country": "Japan",
+      "degree_levels": [
+        "Vocational / Diploma"
+      ],
+      "program_type": "Vocational/Diploma scholarship",
+      "fields": [
+        "Vocational and technical programs (see annex for full list)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "Berkas harus tiba paling lambat 10 Mei 2026 pukul 23.59 WIB",
+      "application_period": [
+        "20 April 2026 – 10 Mei 2026"
+      ],
+      "important_dates": [
+        "● Masa Pendaftaran : 20 April 2026 – 10 Mei 2026",
+        "● Pengumuman Hasil Seleksi Dokumen : 12 Juni 2026*",
+        "● Ujian Tulis : Juni/Juli 2026*",
+        "● Pengumuman Hasil Ujian Tulis : Juli/Agustus 2026*",
+        "● Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pengumuman Hasil Ujian Wawancara : Juli/Agustus 2026*",
+        "● Pengumuman Hasil Secondary Screening dari MEXT : Februari 2027",
+        "● Berangkat ke Jepang : Awal April 2027"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Lulusan SMA/SMK dan sederajat (semua jurusan)",
+          "Usia maksimal 24 tahun pada 1 April 2027 (lahir minimal 2 April 2002)",
+          "Nilai semester 4 dan 5 minimal 80 untuk Matematika dan B. Inggris",
+          "Jika nilai di bawah 80, dapat mendaftar dengan JLPT minimal N4, J-Test D-E (350 poin), NAT-Test level 4, atau EJU minimal 240 poin",
+          "EJU/TKA/UTBK/SAT memberikan poin tambahan jika ada"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage (including preparatory school)",
+        "Monthly living allowance of approx. ¥117,000",
+        "Round-trip airfare (Indonesia ↔ Japan)",
+        "Student visa fee waiver",
+        "No bond / service obligation"
+      ],
+      "amounts": [
+        "¥117,000/month"
+      ],
+      "target_group": "Indonesian SMA/SMK graduates (all tracks) wishing to study at Specialized Training Colleges (Senshu Gakko) in Japan.",
+      "official_url": "https://www.id.emb-japan.go.jp/itpr_id/sch_senshu.html",
+      "description": "Japanese government scholarship for Indonesian SMA/SMK graduates to study at Specialized Training Colleges (vocational diploma level) in Japan, with possibility to advance to undergraduate year 3 after graduation.",
+      "application_process": [
+        "Online registration at https://daftar.beasiswamext.com/",
+        "Receive and print the exam number confirmation email",
+        "Prepare and submit required documents to the Embassy of Japan in Jakarta by 10 Mei 2026",
+        "Attend written exam (Math, English, Japanese)",
+        "Attend interview at the Embassy of Japan in Jakarta",
+        "Pass secondary screening at MEXT in Tokyo"
+      ],
+      "source": "specializedtrainingcollege_senshu.md",
+      "source_file": "data/raw/mext/specializedtrainingcollege_senshu.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Beasiswa MEXT Program Teacher Training (Non-Degree) 2026",
+      "provider": "MEXT / Monbukagakusho",
+      "country": "Japan",
+      "degree_levels": [
+        "Non-Degree"
+      ],
+      "program_type": "Non-degree teacher training scholarship",
+      "fields": [
+        "Education",
+        "Teaching methodology",
+        "Curriculum development"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 18,
+        "max": 18
+      },
+      "deadline": "Berkas harus tiba paling lambat 22 Januari 2026 pukul 23.59 WIB",
+      "application_period": [
+        "24 Desember 2025 – 22 Januari 2026"
+      ],
+      "important_dates": [
+        "● Masa Pendaftaran : 24 Desember 2025 – 22 Januari 2026",
+        "● Pengumuman Hasil Seleksi Dokumen : 6 Februari 2026",
+        "● Seleksi Tulis : Pertengahan Februari 2026",
+        "● Pengumuman Ujian Tulis : Akhir Februari 2026",
+        "● Seleksi Wawancara : Awal Maret 2026*",
+        "● Pengumuman Hasil Seleksi Wawancara : Awal Maret 2026*",
+        "● Secondary Screening : Maret – Juli/Pertengahan Agustus 2026*",
+        "● Pengumuman Hasil Akhir dari MEXT : Juli–Pertengahan Agustus 2026*",
+        "● Berangkat ke Jepang : September/Oktober 2026*"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 5,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Usia maksimal 34 tahun pada 1 April 2026 (lahir minimal 2 April 1991)",
+          "Lulusan minimal D4/S1",
+          "Guru aktif di sekolah/lembaga pendidikan formal (TK, SD, SMP, SMA/K, SLB)",
+          "Pengalaman mengajar minimal 5 tahun (akumulatif) per 1 Oktober 2026",
+          "Sehat jasmani dan rohani",
+          "Menguasai bahasa Inggris atau bahasa Jepang",
+          "Wajib kembali ke Indonesia dan melanjutkan karir sebagai guru setelah program selesai"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage",
+        "Monthly living allowance of approx. ¥143,000",
+        "Round-trip airfare (Indonesia ↔ Japan)",
+        "Student visa fee waiver",
+        "No bond / service obligation",
+        "Includes 6-month Japanese language training"
+      ],
+      "amounts": [
+        "¥143,000/month"
+      ],
+      "target_group": "Active Indonesian teachers (TK–SMA/SMK/SLB) with at least 5 years of teaching experience, holding minimum D4/S1 degree.",
+      "official_url": "https://www.id.emb-japan.go.jp/itpr_id/sch_tt.html",
+      "description": "Non-degree scholarship for Indonesian teachers to improve their teaching quality at Japanese universities over 18 months, including 6 months of Japanese language training followed by 12 months of specialized teacher training.",
+      "application_process": [
+        "Online registration at https://daftar.beasiswamext.com/",
+        "Prepare 3 sets of required documents including Application Form, Research Plan, transcripts, certificate of active teaching, recommendation from school principal",
+        "Submit documents to the Embassy of Japan in Jakarta by 22 January 2026",
+        "Attend written exam (Japanese and English)",
+        "Attend interview at the Embassy of Japan in Jakarta",
+        "Pass secondary screening at MEXT in Tokyo"
+      ],
+      "source": "teacher_training.md",
+      "source_file": "data/raw/mext/teacher_training.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Türkiye Burslari Associate Degree Scholarship (TVET)",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Associate Degree"
+      ],
+      "fields": [
+        "Technical and Vocational Education and Training"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Under 21 years of age",
+          "Minimum academic achievement: 70%",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fee",
+        "Turkish language course (1 year)",
+        "Accommodation",
+        "Health insurance",
+        "Once-off flight ticket (at start and at graduation)"
+      ],
+      "amounts": [
+        "4,500 TL/month"
+      ],
+      "application_period": [
+        "January 10 – February 20 (annual)"
+      ],
+      "deadline": "February 20 (annual)",
+      "target_group": "International students seeking 2-year associate degree programs in technical and vocational fields at Turkish universities.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
+      "description": "Two-year fully funded associate degree scholarship at Turkish universities in technical and vocational fields, open to international students annually.",
+      "source": "fulltimeprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Burslari Bachelor's Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "fields": [
+        "Engineering",
+        "Social Sciences",
+        "Health Sciences",
+        "Basic Sciences"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Under 21 years of age",
+          "Minimum academic achievement: 70% (90% for Health Sciences)",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fee",
+        "Turkish language course (1 year)",
+        "Accommodation",
+        "Health insurance",
+        "Once-off flight ticket (at start and at graduation)"
+      ],
+      "amounts": [
+        "4,500 TL/month"
+      ],
+      "application_period": [
+        "January 10 – February 20 (annual)"
+      ],
+      "deadline": "February 20 (annual)",
+      "target_group": "International students seeking undergraduate study at prestigious Turkish universities across multiple disciplines.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
+      "description": "Fully funded bachelor's degree scholarship at Turkish universities, covering all major fields including engineering, social sciences, health sciences, and basic sciences.",
+      "source": "fulltimeprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Burslari Graduate Scholarship Program (Master's)",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Master's"
+      ],
+      "fields": [
+        "Social Sciences",
+        "Humanities",
+        "Natural Sciences",
+        "Engineering"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Under 30 years of age",
+          "Minimum academic achievement: 75%",
+          "Not a Turkish citizen",
+          "No health sciences programs available"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fee",
+        "Turkish language course (1 year)",
+        "Accommodation",
+        "Health insurance",
+        "Once-off flight ticket (at start and at graduation)"
+      ],
+      "amounts": [
+        "6,500 TL/month"
+      ],
+      "application_period": [
+        "January 10 – February 20 (annual)"
+      ],
+      "deadline": "February 20 (annual)",
+      "target_group": "International graduates seeking Master's degree programs at Turkish universities in social sciences, humanities, natural sciences, and engineering.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
+      "description": "Fully funded Master's degree scholarship at prestigious Turkish universities. Note: health sciences are not covered under this program.",
+      "source": "fulltimeprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Burslari Graduate Scholarship Program (PhD)",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "Social Sciences",
+        "Humanities",
+        "Natural Sciences",
+        "Engineering"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Under 35 years of age",
+          "Minimum academic achievement: 75%",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fee",
+        "Turkish language course (1 year)",
+        "Accommodation",
+        "Health insurance",
+        "Once-off flight ticket (at start and at graduation)"
+      ],
+      "amounts": [
+        "9,000 TL/month"
+      ],
+      "application_period": [
+        "January 10 – February 20 (annual)"
+      ],
+      "deadline": "February 20 (annual)",
+      "target_group": "International graduates seeking PhD study at prestigious Turkish universities.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
+      "description": "Fully funded PhD scholarship at Turkish universities in social sciences, humanities, natural sciences, and engineering.",
+      "source": "fulltimeprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Burslari Art Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's",
+        "PhD"
+      ],
+      "fields": [
+        "Music",
+        "Performing Arts",
+        "Fine Arts",
+        "Instrument Education",
+        "Voice Training",
+        "Music Technology",
+        "Musicology",
+        "Photography and Video",
+        "Painting",
+        "Visual Communication Design"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Under 21 (Bachelor), 30 (Master), 35 (PhD) years of age",
+          "Audition or portfolio may be required",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fee",
+        "Turkish language course (1 year)",
+        "Accommodation",
+        "Health insurance",
+        "Once-off flight ticket (at start and at graduation)"
+      ],
+      "amounts": [
+        "4,500 TL/month (Bachelor)",
+        "6,500 TL/month (Master)",
+        "9,000 TL/month (PhD)"
+      ],
+      "application_period": [
+        "January 10 – February 20 (annual)"
+      ],
+      "deadline": "February 20 (annual)",
+      "target_group": "International students in music, performing arts, and fine arts at undergraduate, graduate, and PhD levels.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
+      "description": "Fully funded arts scholarship at Ankara Music and Fine Arts University, Ankara Hacı Bayram Veli University, and İstanbul Technical University, covering music, performing arts, and fine arts at all degree levels.",
+      "source": "fulltimeprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Burslari Merit Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Outstanding GPA required",
+          "High scores in international language and academic exams",
+          "Not a Turkish citizen",
+          "Must meet all regular Türkiye Scholarships eligibility criteria"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fee",
+        "Turkish language course (1 year)",
+        "Accommodation",
+        "Health insurance",
+        "Once-off flight ticket (at start and at graduation)"
+      ],
+      "amounts": [
+        "9,000 TL/month (Bachelor - double regular)",
+        "13,000 TL/month (Master - double regular)",
+        "18,000 TL/month (PhD - double regular)"
+      ],
+      "application_period": [
+        "January 10 – February 20 (annual)"
+      ],
+      "deadline": "February 20 (annual)",
+      "target_group": "Exceptionally high-achieving international students across all disciplines who meet the merit criteria.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
+      "description": "Merit-based scholarship for outstanding international students offering double the regular monthly stipend, awarded to applicants with excellent GPA and high international exam scores.",
+      "source": "fulltimeprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Burslari Success Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Currently enrolled at a Turkish university",
+          "Outstanding academic performance (high GPA)",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend only (accommodation and other expenses not covered)"
+      ],
+      "amounts": [
+        "3,500 TL/month (Undergraduate)",
+        "5,000 TL/month (Master)",
+        "6,500 TL/month (PhD)"
+      ],
+      "application_period": [
+        "October–November (annual)"
+      ],
+      "deadline": "November (annual)",
+      "target_group": "International students already enrolled at Turkish universities who have demonstrated outstanding academic achievement.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/shorttermprograms",
+      "description": "One-year merit-based stipend for international students already enrolled at Turkish universities who have shown outstanding academic performance.",
+      "source": "shorttermprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Burslari Research Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "PhD",
+        "Postdoctoral"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 3,
+        "max": 12
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "PhD holder or PhD candidate at dissertation stage",
+          "Under 50 years of age",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend only"
+      ],
+      "amounts": [
+        "25,000 TL/month"
+      ],
+      "application_period": [
+        "January–March (Period 1)",
+        "April–June (Period 2)",
+        "July–September (Period 3)",
+        "October–December (Period 4)"
+      ],
+      "deadline": "Rolling quarterly applications",
+      "target_group": "International PhD holders and PhD candidates at the dissertation stage who wish to collaborate with Turkish academics.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/shorttermprograms",
+      "description": "Quarterly research scholarship program for international PhD holders and candidates to collaborate with Turkish academics at Turkish universities, covering only monthly stipend.",
+      "source": "shorttermprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "KATİP - Turkish Communication Program for Public Officials and Academics",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Non-Degree"
+      ],
+      "fields": [
+        "Turkish language",
+        "Turkish culture"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 8,
+        "max": 8
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Foreign public officials, diplomats, academics, or researchers",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Accommodation",
+        "Round-trip airfare"
+      ],
+      "amounts": [
+        "20,000 TL/month"
+      ],
+      "application_period": [
+        "Check official website"
+      ],
+      "deadline": null,
+      "target_group": "Foreign public officials, diplomats, academics, and researchers who want to learn Turkish and explore Türkiye.",
+      "official_url": "https://katip.ytb.gov.tr/",
+      "description": "An 8-month Turkish language and culture program for foreign public officials, diplomats, and academics, fully covering accommodation, stipend, and flights.",
+      "source": "shorttermprograms.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "DAFI Scholarship Program (Türkiye Scholarships / UNHCR)",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Syrian students under UNHCR protection in Turkey",
+          "Meet UNHCR DAFI eligibility criteria"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fees",
+        "Health insurance"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check UNHCR/YTB official channels"
+      ],
+      "deadline": null,
+      "target_group": "Syrian students under UNHCR refugee protection in Turkey seeking higher education.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "UNHCR DAFI-funded scholarship providing higher education opportunities to Syrian students under refugee protection in Turkey, implemented by YTB.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "SPARK Scholarship Program (Türkiye Scholarships / SPARK)",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Syrian students under temporary protection",
+          "Funded under EU Facility for Refugees in Turkey (FRIT)"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fees",
+        "Health insurance",
+        "Turkish language education"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check SPARK/YTB official channels"
+      ],
+      "deadline": null,
+      "target_group": "Syrian students under temporary protection seeking higher education scholarships.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "EU-funded scholarship by SPARK and YTB providing fully covered higher education to Syrian students under temporary protection in Turkey.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "YTB–IsDB Joint Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines (see program website for eligible departments)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Citizens of IsDB member states or Muslim communities worldwide",
+          "Excellent academic and co-curricular performance",
+          "Associate/Bachelor degree recipients must repay loan after graduation and employment"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Accommodation",
+        "Tuition fees",
+        "Health insurance",
+        "Turkish language course (1 year)",
+        "Round-trip flight ticket (once)"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check YTB/IsDB official channels"
+      ],
+      "deadline": null,
+      "target_group": "High-performing students from IsDB member states and Muslim communities worldwide, at all degree levels.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "Joint scholarship between YTB and the Islamic Development Bank providing fully funded higher education in Turkey to students from IsDB member states, with a loan-repayment condition for associate and bachelor recipients.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Yemeni Pioneers Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's"
+      ],
+      "fields": [
+        "Areas of need for Yemen's development"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Yemeni citizens",
+          "Strong academic performance",
+          "Leadership potential"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend",
+        "Tuition fees",
+        "Health insurance",
+        "Turkish language education",
+        "Flight tickets"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check YTB official channels"
+      ],
+      "deadline": null,
+      "target_group": "Yemeni students with leadership potential studying in fields that contribute to Yemen's future development.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "Scholarship for Yemeni students at Turkish universities, created to develop future leaders in fields relevant to Yemen's development and stability.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "WIPO Scholarship - Intellectual Property Law (Ankara University)",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Master's"
+      ],
+      "fields": [
+        "Intellectual Property Law"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 6,
+        "max": 6
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Limited to 5 students per year",
+          "Selected through WIPO/TÜRKPATENT criteria",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Funded by TÜRKPATENT under Türkiye Scholarships scope",
+        "Tuition fee",
+        "Monthly stipend"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check WIPO/TÜRKPATENT official channels"
+      ],
+      "deadline": null,
+      "target_group": "5 international students per year studying Intellectual Property Law at Ankara University under WIPO cooperation.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "Joint WIPO–TÜRKPATENT–YTB scholarship for 5 international students per year to study in the Intellectual Property Law Post Graduate Program (without thesis) at Ankara University.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Higher Education Support Program (Türkiye Scholarships / UNHCR)",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": null,
+        "max": null
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Syrian students currently enrolled at Turkish universities",
+          "Funded through UNHCR cooperation"
+        ]
+      },
+      "benefits": [
+        "Academic counseling and support from assigned academics",
+        "Pocket money support (twice per year)",
+        "Access to online education platform"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check UNHCR/YTB official channels"
+      ],
+      "deadline": null,
+      "target_group": "Syrian students already enrolled at Turkish universities who need academic and financial support.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "UNHCR-partnered support program for Syrian university students in Turkey providing counseling, pocket money, and online learning resources.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Scholarships – Baykar Technology Joint Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's"
+      ],
+      "fields": [
+        "Aviation",
+        "Technology",
+        "Space",
+        "Mechanical Engineering",
+        "Electronics Engineering",
+        "Computer Engineering",
+        "Materials Engineering",
+        "Mechatronics Engineering",
+        "Industrial Engineering",
+        "Business Administration",
+        "Economics",
+        "International Relations",
+        "Electrical Engineering",
+        "Aeronautical Engineering",
+        "Social Sciences",
+        "Health Sciences"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Students from developing countries",
+          "Strong interest in aviation, technology, and space fields",
+          "Not a Turkish citizen"
+        ]
+      },
+      "benefits": [
+        "Monthly pocket money",
+        "Accommodation",
+        "Round-trip flight tickets"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check YTB/Baykar official channels"
+      ],
+      "deadline": null,
+      "target_group": "Students from developing countries interested in aviation, technology, space, and related engineering disciplines.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "Joint scholarship between Türkiye Scholarships and Baykar Technology for 300 students from developing countries in aviation, technology, space, and related fields at Turkish universities.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Türkiye Scholarships – NAMA Foundation Joint Scholarship Program",
+      "provider": "Türkiye Scholarships / YTB",
+      "country": "Turkey",
+      "degree_levels": [
+        "Bachelor",
+        "Master's",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 60
+      },
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Citizens of Indonesia, Tanzania, Kenya, Kyrgyzstan, Yemen, or Malaysia",
+          "Outstanding academic performance",
+          "Leadership potential and commitment to strengthening bilateral cooperation"
+        ]
+      },
+      "benefits": [
+        "Accommodation",
+        "Monthly stipend",
+        "Health insurance",
+        "Tuition fee",
+        "Round-trip flight ticket (once)",
+        "Turkish language course (1 year)"
+      ],
+      "amounts": [],
+      "application_period": [
+        "Check YTB/NAMA Foundation official channels"
+      ],
+      "deadline": null,
+      "country_restrictions": [
+        "Indonesia",
+        "Tanzania",
+        "Kenya",
+        "Kyrgyzstan",
+        "Yemen",
+        "Malaysia"
+      ],
+      "target_group": "Outstanding students and researchers from Indonesia, Tanzania, Kenya, Kyrgyzstan, Yemen, and Malaysia.",
+      "official_url": "https://www.turkiyeburslari.gov.tr/partneredprograms",
+      "description": "Joint fully funded scholarship by YTB and NAMA Foundation for outstanding students from 6 countries to study at prestigious Turkish universities, building a network of future leaders.",
+      "source": "partneredprograms_joint.md",
+      "confidence_score": 0.95,
+      "source_file": null,
+      "application_process": [],
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Chevening Scholarship (Indonesia)",
+      "provider": "Chevening / UK Government",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Master's"
+      ],
+      "fields": [
+        "All disciplines - one-year taught master's programs at UK universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "7 October 2025 at 12:00 UTC (applications for 2026–27 intake)",
+      "application_period": [
+        "5 August 2025 – 7 October 2025"
+      ],
+      "important_dates": [
+        "Applications open: 5 August 2025 at 12:00 UTC",
+        "Applications close: 7 October 2025 at 12:00 UTC",
+        "Reading committee assessments: Mid-October 2025 to January 2026",
+        "Shortlisted for interviews: Mid-February 2026",
+        "Interviews at British Embassy Jakarta: March–April 2026",
+        "Results announced: Mid-June 2026",
+        "University unconditional offer deadline: 9 July 2026 at 17:00 BST",
+        "Studies begin in UK: September/October 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 2,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Must be a citizen of a Chevening-eligible country (Indonesia is eligible)",
+          "Must commit to returning to Indonesia for at least 2 years after scholarship ends",
+          "At least 2,800 hours of work experience after graduating from undergraduate degree (~2 years full-time)",
+          "Must have completed undergraduate degree at least 2 years before application deadline",
+          "Must apply to 3 different eligible UK university courses",
+          "Must receive unconditional offer from at least one course by 9 July 2026",
+          "Must have graduated after October 2021 (minimum) to meet work experience window",
+          "Not eligible if holding British or dual British citizenship",
+          "Not eligible if previously studied in UK on UK government-funded scholarship"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees at UK university",
+        "Monthly living allowance (approx. £1,150/month in London, £977/month elsewhere)",
+        "Return economy airfare (Indonesia to UK)",
+        "Arrival allowance",
+        "Homeward departure allowance",
+        "Access to Chevening global alumni network",
+        "Exclusive Chevening events and networking opportunities"
+      ],
+      "amounts": [
+        "~£1,150/month (London)",
+        "~£977/month (outside London)"
+      ],
+      "target_group": "Exceptional future leaders from Indonesia with at least 2 years of work experience and a strong undergraduate degree, committed to positive change in their field.",
+      "official_url": "https://www.chevening.org/scholarship/indonesia",
+      "description": "UK Government's prestigious international scholarship offering Indonesian future leaders a fully funded one-year master's degree at a UK university, with access to an exclusive global network of alumni and decision-makers.",
+      "application_process": [
+        "Check eligibility at chevening.org/eligibility",
+        "Apply online at chevening.org/apply during application window (Aug–Oct)",
+        "Select 3 eligible UK university courses",
+        "Complete essays on leadership, networking, studying in UK, and career plan",
+        "Provide 2 professional references",
+        "If shortlisted: attend interview at the British Embassy in Jakarta (March–April)",
+        "Upload required documents before interview",
+        "If successful: secure unconditional UK university offer by 9 July deadline"
+      ],
+      "source": "01_scholarship_indonesia.md",
+      "source_file": "data/raw/chevening/01_scholarship_indonesia.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Chevening ASEAN Scholarship",
+      "provider": "Chevening / UK Government",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Master's"
+      ],
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "7 October 2025 at 12:00 UTC",
+      "application_period": [
+        "5 August 2025 – 7 October 2025"
+      ],
+      "important_dates": [
+        "Same timeline as standard Chevening Scholarship",
+        "Opt-in during standard Chevening application process"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 2,
+        "country_restrictions": [
+          "Indonesia",
+          "Brunei",
+          "Cambodia",
+          "Laos",
+          "Malaysia",
+          "Myanmar",
+          "Philippines",
+          "Singapore",
+          "Thailand",
+          "Timor-Leste",
+          "Vietnam"
+        ],
+        "raw_items": [
+          "Must meet all standard Chevening Scholarship eligibility criteria",
+          "Must be a citizen of an ASEAN member state or Timor-Leste",
+          "Opt in during the standard Chevening application by ticking the ASEAN box",
+          "Highest-ranking applicant(s) from each participating country will be considered",
+          "Opting in does not affect chances for standard Chevening Scholarship"
+        ]
+      },
+      "benefits": [
+        "All standard Chevening Scholarship benefits",
+        "Welcome event at the Foreign, Commonwealth and Development Office (FCDO)",
+        "Priority invitations to South East Asia Policy Network and ASEAN events",
+        "Post-graduation ASEAN Chevening Conference",
+        "Access to Chevening Alumni Programme Fund for regional projects",
+        "Additional UK-ASEAN networking opportunities"
+      ],
+      "amounts": [
+        "~£1,150/month (London)",
+        "~£977/month (outside London)"
+      ],
+      "target_group": "Outstanding emerging leaders from ASEAN member states or Timor-Leste applying for a one-year master's in the UK, seeking enhanced regional networking and ASEAN-focused opportunities.",
+      "official_url": "https://www.chevening.org/asean-chevening-scholarship",
+      "description": "An enhanced Chevening Scholarship for applicants from ASEAN countries (including Indonesia) offering all standard benefits plus exclusive ASEAN networking events, an FCDO welcome, and post-graduation regional conferences.",
+      "application_process": [
+        "Apply for the standard Chevening Scholarship at chevening.org/apply",
+        "During the application, tick the box to be considered for the ASEAN Scholarship",
+        "Same process and timeline as standard Chevening Scholarship",
+        "No separate application required - opt-in does not affect standard Chevening chances"
+      ],
+      "source": "17_asean-chevening-scholarship.md",
+      "source_file": "data/raw/chevening/17_asean-chevening-scholarship.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Chevening Fellowships",
+      "provider": "Chevening / UK Government",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Non-Degree",
+        "Professional Development"
+      ],
+      "fields": [
+        "All disciplines relevant to UK international strategic priorities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 6
+      },
+      "deadline": null,
+      "application_period": [
+        "Varies by fellowship programme - check chevening.org/fellowships"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Mid-career professional in a position of influence",
+          "Cannot take a full year out of work (fellowships are shorter than scholarships)",
+          "Must be from a Chevening-eligible country",
+          "Specific requirements vary by individual fellowship programme",
+          "Usually have completed some higher education already"
+        ]
+      },
+      "benefits": [
+        "Tailored short courses, research, or professional placements at UK institutions",
+        "Dynamic training and professional development in the UK",
+        "Access to UK academic and professional networks",
+        "Support for public diplomacy and soft power initiatives",
+        "Fellowship alumni network access"
+      ],
+      "amounts": [],
+      "target_group": "Mid-career professionals already in positions of leadership and influence who want to develop their expertise through short UK-based programmes without taking a full year off work.",
+      "official_url": "https://www.chevening.org/fellowships",
+      "description": "Short-term professional development fellowships at UK institutions for mid-career leaders and influencers worldwide, offering tailored courses, research opportunities, and professional placements aligned with UK strategic priorities.",
+      "application_process": [
+        "Browse available fellowship programmes at chevening.org/fellowships/find-a-programme",
+        "Check specific eligibility and application requirements for each programme",
+        "Apply through the relevant British Embassy or via the Chevening online system",
+        "Timelines vary by individual fellowship programme"
+      ],
+      "source": "07_fellowships.md",
+      "source_file": "data/raw/chevening/07_fellowships.md",
+      "confidence_score": 0.95,
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Australia Awards Scholarships - PhD & Masters (Indonesia)",
+      "provider": "Australia Awards / Australian Government (DFAT)",
+      "country": "Australia",
+      "degree_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "fields": [
+        "Infrastructure (transport, water, energy)",
+        "Agriculture, Fisheries & Forestry",
+        "Education",
+        "Health",
+        "Governance & Rule of Law",
+        "Economic Policy",
+        "Environment & Climate Change",
+        "Gender Equality, Disability & Social Inclusion (GEDSI)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "30 April 2026 at 11.00 WIB (for 2027 intake)",
+      "application_period": [
+        "Applications open early 2026 – close 30 April 2026"
+      ],
+      "important_dates": [
+        "Application opening: early 2026",
+        "Application closing: 30 April 2026 at 11.00 WIB",
+        "Long-listing: May–July 2026",
+        "Interviews: August–September 2026",
+        "Final results: October 2026",
+        "Pre-Departure Training in Indonesia: early 2027",
+        "Commencement of study in Australia: 2027"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen",
+          "Not currently studying outside Indonesia or living outside Indonesia",
+          "Not holding a permanent residency of Australia or any other country",
+          "Meet the academic and English language requirements of the intended Australian university",
+          "Demonstrate potential to contribute to Indonesia's development",
+          "Apply for a field of study relevant to Indonesia's development priorities",
+          "Commit to returning to Indonesia after completing study",
+          "Priority given to applicants from equity target groups: people with disability, women from disadvantaged backgrounds, applicants from equity target provinces"
+        ]
+      },
+      "benefits": [
+        "Pre-Departure Training (including English for Academic Purposes) in Indonesia",
+        "Domestic return airfare to Pre-Departure Training centre",
+        "In-Indonesia stipend during Pre-Departure Training",
+        "Medical examination and x-ray costs for student visa",
+        "DFAT Student Visa and Student Dependant Visa",
+        "Outward economy airfare (Indonesia to Australia)",
+        "Overseas Student Health Cover (OSHC)",
+        "Establishment allowance upon arrival in Australia",
+        "Fortnightly contribution to living expenses (CLE)",
+        "Introductory Academic Program (IAP) 4–6 weeks",
+        "Full tuition fees (Masters or PhD)",
+        "Supplementary academic support if needed",
+        "Fieldwork allowance (for research components)",
+        "Annual reunion airfare (after first year, excludes final year)",
+        "Homeward economy airfare on completion",
+        "Professional development and networking activities"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian citizens with strong academic and professional backgrounds who demonstrate leadership potential and commitment to contributing to Indonesia's development.",
+      "official_url": "https://www.australiaawardsindonesia.org/content/325/12/about-phd-and-masters-awards?sub=true",
+      "description": "Prestigious fully funded scholarship offered by the Australian Government to Indonesian citizens for postgraduate study (Masters or PhD) at Australian universities, with comprehensive support including pre-departure training, living expenses, and professional development.",
+      "application_process": [
+        "Apply online at australiaawardsindonesia.org/id/2027Intake",
+        "Upload all required supporting documents in the Cognito application form",
+        "Submit before 30 April 2026 at 11.00 WIB",
+        "Long-listing based on documents",
+        "Attend interview if shortlisted (August–September)",
+        "Receive results in October",
+        "Attend Pre-Departure Training in Indonesia if successful"
+      ],
+      "source": "05_content_325_12_about-phd-and-masters-awards.md",
+      "source_file": "data/raw/australia-awards/05_content_325_12_about-phd-and-masters-awards.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Australia Awards Garuda Scholarships",
+      "provider": "Australia Awards / Australian Government (DFAT)",
+      "country": "Australia",
+      "degree_levels": [
+        "Master's"
+      ],
+      "fields": [
+        "Science, Technology, Engineering & Mathematics (STEM)",
+        "Education",
+        "Teacher training and development"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "31 May 2026 at 11.00 WIB (for 2027 intake)",
+      "application_period": [
+        "1 February 2026 – 31 May 2026"
+      ],
+      "important_dates": [
+        "Application opening: 1 February 2026",
+        "Application closing: 31 May 2026 at 11.00 WIB",
+        "Study commences in Australia: 2027"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen",
+          "Principals and teachers at 12 designated Sekolah Garuda Transformasi (SGT) schools",
+          "OR teachers completing Teacher Profession Certification (PPG) committed to Sekolah Garuda Baru (SGB) placement",
+          "SGB applicants must be based in: East Nusa Tenggara (NTT), Bangka Belitung, North Kalimantan, or Southeast Sulawesi",
+          "People with disability and women from disadvantaged backgrounds are strongly encouraged to apply",
+          "Apply online at beasiswa.kemdiktisaintek.go.id"
+        ]
+      },
+      "benefits": [
+        "Pre-Departure Training (including English for Academic Purposes) in Indonesia",
+        "Domestic return airfare to Pre-Departure Training centre",
+        "In-Indonesia stipend during Pre-Departure Training",
+        "Medical examination and x-ray costs for student visa",
+        "DFAT Student Visa and Student Dependant Visa",
+        "Outward economy airfare (Indonesia to Australia)",
+        "Overseas Student Health Cover (OSHC)",
+        "Establishment allowance upon arrival in Australia",
+        "Fortnightly contribution to living expenses (CLE)",
+        "Introductory Academic Program (IAP) 4–6 weeks",
+        "Full tuition fees (Masters or PhD)",
+        "Supplementary academic support if needed",
+        "Fieldwork allowance (for research components)",
+        "Annual reunion airfare (after first year, excludes final year)",
+        "Homeward economy airfare on completion",
+        "Professional development and networking activities"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian educators (principals and teachers) at designated Garuda Schools, supporting President Prabowo's Sekolah Garuda initiative for world-class secondary education.",
+      "official_url": "https://www.australiaawardsindonesia.org/content/1000344/12/australia-awards-garuda-scholarships?sub=true",
+      "description": "New Australia Awards scholarship targeting Indonesian educators at Garuda Schools to pursue master's degrees in Australia, directly supporting the Sekolah Garuda national initiative for STEM excellence.",
+      "application_process": [
+        "Apply online at beasiswa.kemdiktisaintek.go.id",
+        "Upload all required supporting documents",
+        "Submit before 31 May 2026 at 11.00 WIB",
+        "For disability assistance: contact aas-garuda@australiaawardsindonesia.org"
+      ],
+      "source": "13_content_1000344_12_australia-awards-garuda-scholarships.md",
+      "source_file": "data/raw/australia-awards/13_content_1000344_12_australia-awards-garuda-scholarships.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "LPDP–Australia Awards Scholarships",
+      "provider": "Australia Awards / LPDP (Joint Indonesia–Australia)",
+      "country": "Australia",
+      "degree_levels": [
+        "Master's"
+      ],
+      "fields": [
+        "Food Security",
+        "Energy",
+        "Digitalisation (AI and Semiconductors)",
+        "Health",
+        "Downstreaming and Industrialisation",
+        "Maritime",
+        "Advanced Materials and Manufacturing"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": "4 May 2026 (for 2027 intake)",
+      "application_period": [
+        "2 April 2026 – 4 May 2026"
+      ],
+      "important_dates": [
+        "Application opening: 2 April 2026",
+        "Application closing: 4 May 2026",
+        "Study commences in Australia: 2027"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen",
+          "Must be eligible for LPDP scholarship (check LPDP requirements)",
+          "High-achieving future leader with strong academic record",
+          "Demonstrate potential to contribute to Indonesia's long-term development",
+          "People with disability and residents of target areas with academic excellence encouraged to apply",
+          "LPDP and Australia Awards committed to gender equality"
+        ]
+      },
+      "benefits": [
+        "English language training and academic support prior to study in Australia",
+        "Professional development, networking and enrichment activities",
+        "Full tuition fees",
+        "Living allowance in Australia",
+        "LPDP scholarship benefits (see LPDP website for full details)",
+        "Pre and post-study support"
+      ],
+      "amounts": [],
+      "target_group": "High-achieving Indonesian future leaders in strategic development fields, jointly selected by LPDP and Australia Awards.",
+      "official_url": "https://www.australiaawardsindonesia.org/content/1000276/12/lpdp-australia-awards-scholarships?sub=true",
+      "description": "Joint Indonesia–Australia scholarship announced by both presidents in 2023, offering Indonesian high-achievers a fully funded master's degree in Australia in strategic fields including food security, energy, digitalisation, health, and advanced manufacturing.",
+      "application_process": [
+        "Apply via LPDP integrated system at beasiswalpdp-terintegrasi.kemenkeu.go.id",
+        "Check LPDP Australia Awards page at lpdp.kemenkeu.go.id for full requirements",
+        "Submit before 4 May 2026",
+        "Assessment by both LPDP and Australia Awards panels"
+      ],
+      "source": "15_content_1000276_12_lpdp-australia-awards-scholarships.md",
+      "source_file": "data/raw/australia-awards/15_content_1000276_12_lpdp-australia-awards-scholarships.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Australia Awards Split-Site Masters Program (Indonesia)",
+      "provider": "Australia Awards / Australian Government (DFAT)",
+      "country": "Australia",
+      "degree_levels": [
+        "Master's"
+      ],
+      "fields": [
+        "Fields aligned with Indonesia–Australia bilateral development priorities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": null,
+      "application_period": [
+        "Check australiaawardsindonesia.org for current intake"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen",
+          "Must be enrolled or accepted at a participating Indonesian university",
+          "12 months study at Indonesian university + 12 months at Australian university",
+          "Both degrees must be in the same or related field of study",
+          "Demonstrate potential for leadership and development impact"
+        ]
+      },
+      "benefits": [
+        "Tuition fees at both Indonesian and Australian universities",
+        "Living expenses during Australian component",
+        "Return airfare to Australia",
+        "Introductory Academic Program in Australia",
+        "Pre-Departure Training support",
+        "Two master's degrees upon completion",
+        "Professional development activities"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian professionals seeking dual master's degrees through a split study model (12 months Indonesia + 12 months Australia).",
+      "official_url": "https://www.australiaawardsindonesia.org/content/177/825/about-the-program?sub=true",
+      "description": "Unique Australia Awards program awarding two master's degrees - one from an Indonesian and one from an Australian university - through a 24-month split study arrangement, strengthening people-to-people links between both countries.",
+      "application_process": [
+        "Check current availability and partner universities at australiaawardsindonesia.org",
+        "Apply through your Indonesian university's partnership with Australia Awards",
+        "Follow standard Australia Awards application requirements"
+      ],
+      "source": "17_content_177_825_about-the-program.md",
+      "source_file": "data/raw/australia-awards/17_content_177_825_about-the-program.md",
+      "confidence_score": 0.95,
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "Australia Awards Short Courses (Indonesia)",
+      "provider": "Australia Awards / Australian Government (DFAT)",
+      "country": "Australia",
+      "degree_levels": [
+        "Non-Degree",
+        "Professional Development"
+      ],
+      "fields": [
+        "Economic policy and trade",
+        "Agriculture, fisheries and forestry",
+        "Education sector development",
+        "Public health and health systems",
+        "Governance and public administration",
+        "Gender equality and social inclusion",
+        "Environment and climate change"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 1
+      },
+      "deadline": null,
+      "application_period": [
+        "Up to 12 courses per year - check australiaawardsindonesia.org for current offerings"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen",
+          "Mid-career professional or senior official",
+          "Working in an organisation relevant to the course topic",
+          "Nominated by their organisation",
+          "Able to commit to the full pre-course and post-course workshop schedule",
+          "Able to deliver an Award Project post-course"
+        ]
+      },
+      "benefits": [
+        "Pre-course and post-course workshops in Indonesia (domestic airfare included)",
+        "Accommodation and stipend in Indonesia and Australia",
+        "International return airfare to Australia",
+        "Full tuition fees for the short course",
+        "Australian visa and health insurance",
+        "Personal mentoring for Award Project",
+        "Networking opportunities with Australian professionals and alumni"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian mid-career professionals and senior officials who cannot be released for long-term study but want targeted professional development in Australia.",
+      "official_url": "https://www.australiaawardsindonesia.org/content/56/13/about-short-courses?sub=true",
+      "description": "Two-to-three week professional development courses in Australia for Indonesian mid-career professionals and senior officials, complementing the long-term Australia Awards Scholarships with targeted, responsive, sector-specific training.",
+      "application_process": [
+        "Check current short course offerings at australiaawardsindonesia.org",
+        "Courses are typically offered through organisational nomination",
+        "Each course has specific eligibility - check individual course requirements",
+        "Up to 12 courses (~300 participants) offered per year"
+      ],
+      "source": "18_content_56_13_about-short-courses.md",
+      "source_file": "data/raw/australia-awards/18_content_56_13_about-short-courses.md",
+      "confidence_score": 0.95,
+      "important_dates": [],
+      "program_type": null
+    },
+    {
+      "name": "GKS Undergraduate Scholarship (Global Korea Scholarship - Bachelor's)",
+      "provider": "Korean Government / NIIED",
+      "country": "South Korea",
+      "degree_levels": [
+        "Bachelor",
+        "Associate Degree"
+      ],
+      "program_type": "Government-invited degree scholarship",
+      "fields": [
+        "Humanities",
+        "Social Studies",
+        "Natural Sciences",
+        "Arts",
+        "Physical Education",
+        "Engineering (UIC/Specialization track)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 60,
+        "max": 84
+      },
+      "deadline": "December (results announced) - applications September–October annually",
+      "application_period": [
+        "September – October (annually)"
+      ],
+      "important_dates": [
+        "Announcement: September (NIIED)",
+        "Application submission to Korean Embassy or university: September–October",
+        "Review (Embassy → NIIED → University): October–December",
+        "Final results: December",
+        "Studies begin: following March"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Applicant and both parents must hold non-Korean citizenship",
+          "Under 25 years of age as of applicable year",
+          "High school graduate or associate degree graduate",
+          "Cumulative GPA of 80% or higher in the most recent educational program",
+          "Not have received a Korean Government scholarship previously",
+          "Two application tracks: Embassy Track (through Korean Embassy) or University Track (direct to GKS universities)",
+          "Embassy Track: apply to up to 3 universities (must include at least 1 Type B university)"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage (paid directly to university)",
+        "Monthly living allowance (KRW 900,000 for undergraduate/language training; KRW 1,000,000 for graduate)",
+        "Round-trip economy airfare (one-time)",
+        "Korean language training fee (1 year, if required)",
+        "Medical insurance (basic coverage)",
+        "Settlement allowance: KRW 200,000 (one-time on arrival)",
+        "Completion allowance: KRW 100,000 (one-time on program completion)",
+        "Research allowance: KRW 210,000–240,000/semester (graduate students)"
+      ],
+      "amounts": [
+        "KRW 900,000/month"
+      ],
+      "target_group": "Outstanding international high school or associate degree graduates seeking full degree study in South Korea at undergraduate or associate level.",
+      "official_url": "https://www.studyinkorea.go.kr",
+      "description": "Korean government flagship scholarship for international undergraduate students, providing approximately 500 scholarships annually across 80+ Korean universities, covering all study and living costs including Korean language training.",
+      "application_process": [
+        "Monitor NIIED announcements at studyinkorea.go.kr from August–September",
+        "Choose between Embassy Track (apply via Korean Embassy in Jakarta) or University Track (apply directly to GKS-designated university)",
+        "Embassy Track: apply online at studyinkorea.go.kr and submit documents to Korean Embassy in Jakarta",
+        "University Track (UIC): apply directly to the university",
+        "Embassy reviews and recommends to NIIED",
+        "NIIED makes final selection",
+        "Contact: gksniied@korea.kr"
+      ],
+      "source": "02_ko_plan_scholarship-do.md",
+      "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "GKS Graduate Scholarship (Global Korea Scholarship - Master's & PhD)",
+      "provider": "Korean Government / NIIED",
+      "country": "South Korea",
+      "degree_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "program_type": "Government-invited degree scholarship",
+      "fields": [
+        "Humanities",
+        "Social Sciences",
+        "Natural Sciences",
+        "Engineering",
+        "Arts",
+        "R&D (Science and Engineering - University Track specialization)",
+        "Global Network (Humanities/Social Sciences, lectures in English - University Track specialization)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "June (results announced) - applications February–March annually",
+      "application_period": [
+        "February – March (annually)"
+      ],
+      "important_dates": [
+        "Announcement: February (NIIED)",
+        "Application submission to Korean Embassy or university: February–March",
+        "Review (Embassy → NIIED → University): April–June",
+        "Final results: June",
+        "Korean language training: September",
+        "Studies begin: March (following year) for Embassy Track"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Applicant and both parents must hold non-Korean citizenship",
+          "Under 40 years of age",
+          "Must have graduated a bachelor's or master's degree",
+          "Cumulative GPA of at least 80% from most recent academic program",
+          "Not have received a Korean Government scholarship previously",
+          "Two tracks: Embassy Track (General, Overseas Korean, R-GKS) or University Track (General, R-GKS, Research, R&D, Global Network)",
+          "Embassy Track: up to 3 universities (must include at least 1 Type B)",
+          "University Track R&D: science and engineering departments (25 universities)",
+          "University Track Global Network: humanities/social sciences, English-medium, Master's only, no Korean language training required"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage (paid directly to university)",
+        "Monthly living allowance (KRW 900,000 for undergraduate/language training; KRW 1,000,000 for graduate)",
+        "Round-trip economy airfare (one-time)",
+        "Korean language training fee (1 year, if required)",
+        "Medical insurance (basic coverage)",
+        "Settlement allowance: KRW 200,000 (one-time on arrival)",
+        "Completion allowance: KRW 100,000 (one-time on program completion)",
+        "Research allowance: KRW 210,000–240,000/semester (graduate students)",
+        "Research allowance: KRW 240,000/semester (Master's) or KRW 210,000/semester (PhD - first semester rate)"
+      ],
+      "amounts": [
+        "KRW 1,000,000/month"
+      ],
+      "target_group": "Outstanding international graduates (bachelor's or master's) seeking fully funded graduate study (Master's or PhD) in South Korea.",
+      "official_url": "https://www.studyinkorea.go.kr",
+      "description": "Korean government scholarship for approximately 2,000 international graduate students annually, covering all tuition and living costs for Master's (2 years) and PhD (3 years) study at leading Korean universities, with optional Korean language training.",
+      "application_process": [
+        "Monitor NIIED announcements at studyinkorea.go.kr from January",
+        "Choose between Embassy Track (apply via Korean Embassy in Jakarta, online at studyinkorea.go.kr) or University Track (apply directly to GKS-designated university)",
+        "Prepare application documents: application form, personal statement, study plan, transcripts, diploma, language certificate, 2 recommendation letters, medical certificate",
+        "Embassy Track deadline: typically February–March",
+        "Embassy reviews → NIIED → University review",
+        "Final results announced in June",
+        "Korean language training begins September (if required)",
+        "Contact: gksniied@korea.kr"
+      ],
+      "source": "02_ko_plan_scholarship-do.md",
+      "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "GKS Exchange Students Program (Global Korea Scholarship)",
+      "provider": "Korean Government / NIIED",
+      "country": "South Korea",
+      "degree_levels": [
+        "Exchange / Non-Degree"
+      ],
+      "program_type": "Exchange scholarship",
+      "fields": [
+        "All disciplines - must be enrolled at a university with NIIED exchange agreement"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 4,
+        "max": 4
+      },
+      "deadline": "Set by NIIED-designated universities - check with home university",
+      "application_period": [
+        "Check with your Indonesian university exchange office"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Undergraduate or graduate student of foreign nationality",
+          "Enrolled at an overseas university that has an exchange agreement with a NIIED-affiliated Korean university",
+          "Must be in a degree exchange program (language-course-only students excluded)",
+          "Overall academic performance of 80% or above at home university",
+          "Have not previously received a Korean government scholarship",
+          "Not currently studying in Korea",
+          "Cannot apply to more than one Korean university at the same time",
+          "Scholarship extension (second semester) not permitted after completing one semester"
+        ]
+      },
+      "benefits": [
+        "Monthly living allowance: KRW 630,000/month",
+        "Round-trip economy airfare"
+      ],
+      "amounts": [
+        "KRW 630,000/month"
+      ],
+      "target_group": "International undergraduate and graduate students enrolled at universities with NIIED-Korea exchange agreements, seeking one semester of study in South Korea.",
+      "official_url": "https://www.studyinkorea.go.kr",
+      "description": "One-semester (4-month) exchange scholarship supporting approximately 500 international students annually to study at Korean universities through NIIED-designated exchange partnerships, covering monthly living expenses and airfare.",
+      "application_process": [
+        "Check if your Indonesian university has an exchange agreement with a NIIED-designated Korean university",
+        "Apply through your university's international exchange office",
+        "NIIED selects and funds exchange students recommended by the partner universities",
+        "Check the list of eligible universities at studyinkorea.go.kr"
+      ],
+      "source": "02_ko_plan_scholarship-do.md",
+      "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
+      "confidence_score": 0.95,
+      "important_dates": []
+    },
+    {
+      "name": "Singapore International Graduate Award (SINGA)",
+      "provider": "Singapore A*STAR / NTU / NUS / SUTD / SMU",
+      "country": "Singapore",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "International PhD scholarship",
+      "fields": [
+        "Biomedical Sciences",
+        "Physical Sciences",
+        "Engineering",
+        "Computing",
+        "Data Science"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "January 1 (annual, for August intake); June 1 (for January intake)",
+      "application_period": [
+        "Intake 1 (January start): applications open June, close September",
+        "Intake 2 (August start): applications open October, close January"
+      ],
+      "important_dates": [
+        "January intake: application closes ~September annually",
+        "August intake: application closes ~January annually",
+        "Interviews: rolling, 3–6 months after application",
+        "Bond-free scholarship with no service obligation"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to all nationalities (international applicants)",
+          "Bachelor's or Master's degree in Science or Engineering",
+          "Strong academic record",
+          "Keen interest in research",
+          "Non-Singaporeans who are not Singapore Permanent Residents will have a 3-year service commitment in Singapore-based companies upon graduation",
+          "PhD studies conducted at A*STAR research institutes, NTU, NUS, SUTD, SMU, or SIT",
+          "Research in Biomedical Sciences, Physical Sciences, or Engineering"
+        ]
+      },
+      "benefits": [
+        "Full PhD tuition fees",
+        "Monthly stipend of S$2,800 (during candidature), increased to S$3,200 after qualifying exam",
+        "One-time S$1,000 settling-in allowance",
+        "One-time return economy airfare to Singapore",
+        "Annual travel allowance for conference attendance"
+      ],
+      "amounts": [
+        "S$2,800/month (pre-qualifying exam)",
+        "S$3,200/month (post-qualifying exam)"
+      ],
+      "target_group": "International graduates with a strong academic record and keen interest in research, seeking a PhD in science and engineering at Singapore's top universities and research institutes.",
+      "official_url": "https://www.a-star.edu.sg/scholarships/home/scholarships/ags--scholarship",
+      "description": "The Singapore International Graduate Award (SINGA) is a prestigious bond-free PhD scholarship jointly offered by A*STAR, NTU, NUS, SUTD, SMU, and SIT for international students to pursue doctoral research in Singapore in Biomedical Sciences, Physical Sciences, and Engineering.",
+      "application_process": [
+        "Apply online at singa.a-star.edu.sg",
+        "Select preferred research area and supervisors",
+        "Submit academic transcripts, research proposal, and references",
+        "Shortlisted candidates will be invited for interview (online or in-person)",
+        "Successful applicants receive admission offer from host university"
+      ],
+      "source": "01_astar_scholarships_home.md",
+      "source_file": "data/raw/singa/01_astar_scholarships_home.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "A*STAR Graduate Scholarship (AGS)",
+      "provider": "Singapore A*STAR",
+      "country": "Singapore",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Government-funded PhD scholarship",
+      "fields": [
+        "STEM",
+        "Semiconductor",
+        "Quantum Computing",
+        "Computing",
+        "Engineering",
+        "Science"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "15 February and 1 August (annual, two intakes)",
+      "application_period": [
+        "Intake 1: closes 15 February",
+        "Intake 2: closes 1 August"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to all nationalities",
+          "Non-Singaporeans who are not Singapore Permanent Residents will have a 3-year service commitment in Singapore-based companies",
+          "Strong academic record in Science or Engineering",
+          "Four tracks available: STEM, Semiconductor, Quantum, Computing",
+          "PhD studies at a Singapore autonomous university (NUS, NTU, SUTD, SMU, SIT)"
+        ]
+      },
+      "benefits": [
+        "Full PhD tuition fees (up to 4 years)",
+        "Competitive monthly stipend",
+        "Research allowance",
+        "Exposure to A*STAR's world-class research ecosystem"
+      ],
+      "amounts": [],
+      "target_group": "Outstanding graduates seeking to pursue PhD studies in science and engineering with research conducted at A*STAR in Singapore.",
+      "official_url": "https://www.a-star.edu.sg/scholarships/home/scholarships/ags--scholarship",
+      "description": "The A*STAR Graduate Scholarship funds up to four years of PhD or EngD studies at a Singapore autonomous university, with four specialisation tracks: STEM, Semiconductor, Quantum, and Computing, aligned with Singapore's strategic research priorities.",
+      "application_process": [
+        "Apply online at a-star.edu.sg/scholarships",
+        "Select preferred research track and institute",
+        "Submit academic transcripts and references",
+        "Interview by A*STAR panel",
+        "Receive scholarship and university admission offer"
+      ],
+      "source": "01_astar_scholarships_home.md",
+      "source_file": "data/raw/singa/01_astar_scholarships_home.md",
+      "confidence_score": 0.95,
+      "important_dates": []
+    },
+    {
+      "name": "ASEAN Undergraduate Scholarship - NUS",
+      "provider": "National University of Singapore (NUS)",
+      "country": "Singapore",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "program_type": "University-level undergraduate scholarship",
+      "fields": [
+        "All disciplines (limited availability for Dentistry, Law, Medicine)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 60
+      },
+      "deadline": "Via NUS undergraduate admission application (typically closes March annually)",
+      "application_period": [
+        "October – March (via NUS undergraduate admissions)"
+      ],
+      "important_dates": [
+        "Apply through NUS undergraduate admissions (no separate scholarship application)",
+        "Selection interviews: January–July",
+        "Scholarship results announced: by mid-July",
+        "MOE Tuition Grant bond: 3 years with a Singapore-registered company post-graduation"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Brunei",
+          "Cambodia",
+          "Indonesia",
+          "Lao PDR",
+          "Malaysia",
+          "Myanmar",
+          "Philippines",
+          "Thailand",
+          "Timor-Leste",
+          "Vietnam"
+        ],
+        "raw_items": [
+          "Citizen of an ASEAN member country (excluding Singapore)",
+          "Outstanding high school results",
+          "Strong leadership qualities and potential",
+          "Good co-curricular activities record",
+          "Applying for admission to a full-time undergraduate degree programme at NUS",
+          "Transfer applicants are not eligible",
+          "Minimum GPA of 3.50/5.00 per semester to maintain scholarship",
+          "Cannot concurrently hold other scholarships without prior NUS approval",
+          "MOE Tuition Grant bond: 3 years with Singapore-registered company after graduation",
+          "Students in Dentistry and Medicine must serve 5–6 year bond with Singapore Ministry of Health"
+        ]
+      },
+      "benefits": [
+        "100% coverage of subsidised undergraduate tuition fees (after MOE Tuition Grant)",
+        "S$5,800 annual living allowance",
+        "S$1,750 one-time computer allowance upon enrolment",
+        "S$3,000 annual accommodation allowance"
+      ],
+      "amounts": [
+        "S$5,800/year (living allowance)",
+        "S$3,000/year (accommodation allowance)",
+        "S$1,750 one-time (computer allowance)"
+      ],
+      "target_group": "Outstanding freshmen from ASEAN member countries (excluding Singapore) seeking a fully funded undergraduate degree at NUS.",
+      "official_url": "https://www.nus.edu.sg/oam/scholarships/scholarships-for-freshmen-singapore-permanent-residents/asean-undergraduate-scholarship",
+      "description": "The NUS ASEAN Undergraduate Scholarship provides full tuition, living, accommodation, and computer allowances to outstanding freshmen from ASEAN countries, automatically considered through the NUS undergraduate admissions process.",
+      "application_process": [
+        "Apply for NUS undergraduate admission at apply.nus.edu.sg",
+        "All eligible ASEAN applicants are automatically considered - no separate application required",
+        "Shortlisted candidates invited for scholarship interview (January–July)",
+        "Scholarship outcomes announced by mid-July",
+        "Accept MOE Tuition Grant as part of scholarship conditions"
+      ],
+      "source": "01_nus_asean_ug.md",
+      "source_file": "data/raw/asean-sg/01_nus_asean_ug.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "ASEAN Undergraduate Scholarship - NTU",
+      "provider": "Nanyang Technological University (NTU)",
+      "country": "Singapore",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "program_type": "University-level undergraduate scholarship",
+      "fields": [
+        "All disciplines offered at NTU"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 48
+      },
+      "deadline": "Via NTU undergraduate admission application (typically closes March annually)",
+      "application_period": [
+        "October – March (via NTU undergraduate admissions)"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Brunei",
+          "Cambodia",
+          "Indonesia",
+          "Lao PDR",
+          "Malaysia",
+          "Myanmar",
+          "Philippines",
+          "Thailand",
+          "Timor-Leste",
+          "Vietnam"
+        ],
+        "raw_items": [
+          "Citizen of an ASEAN member country (excluding Singapore)",
+          "Outstanding Singapore-Cambridge GCE A Level results or equivalent",
+          "Strong leadership qualities and potential",
+          "MOE Tuition Grant bond: 3 years with Singapore-registered company after graduation",
+          "Good academic performance required to maintain scholarship each year"
+        ]
+      },
+      "benefits": [
+        "Full coverage of subsidised tuition fees (after MOE Tuition Grant)",
+        "S$5,800 annual living allowance",
+        "S$3,000 annual accommodation allowance",
+        "S$1,750 one-time computer allowance"
+      ],
+      "amounts": [
+        "S$5,800/year (living allowance)",
+        "S$3,000/year (accommodation allowance)",
+        "S$1,750 one-time (computer allowance)"
+      ],
+      "target_group": "Outstanding freshmen from ASEAN member countries seeking a fully funded undergraduate degree at NTU Singapore.",
+      "official_url": "https://www.ntu.edu.sg/admissions/undergraduate/scholarships/asean-scholarship",
+      "description": "The NTU ASEAN Undergraduate Scholarship covers full tuition and provides generous living and accommodation allowances for outstanding ASEAN freshmen, tenable for the normal programme duration subject to good academic standing.",
+      "application_process": [
+        "Apply for NTU undergraduate admission at admissions.ntu.edu.sg",
+        "Eligible ASEAN applicants are considered through the admissions process",
+        "Scholarship interview may be required for shortlisted candidates",
+        "Accept MOE Tuition Grant as part of scholarship conditions"
+      ],
+      "source": "02_ntu_asean_ug.md",
+      "source_file": "data/raw/asean-sg/02_ntu_asean_ug.md",
+      "confidence_score": 0.95,
+      "important_dates": []
+    },
+    {
+      "name": "France Excellence Eiffel Scholarship - Master's Level",
+      "provider": "France Excellence Eiffel / French Ministry for Europe and Foreign Affairs",
+      "country": "France",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Government excellence scholarship - Master's",
+      "fields": [
+        "Law",
+        "Economics",
+        "Management",
+        "Political Sciences",
+        "Engineering",
+        "Exact Sciences",
+        "Information and Communication Sciences and Technologies"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 36
+      },
+      "deadline": "January 8 (annual, applications received by Campus France)",
+      "application_period": [
+        "October 1 – January 8 (annual - institutions submit on behalf of students)"
+      ],
+      "important_dates": [
+        "Call for applications opens: October 1, 2025",
+        "Deadline for Campus France to receive applications: January 8, 2026",
+        "Results published: from March 30, 2026",
+        "Studies begin: September–November of award year",
+        "Note: ONLY French higher education institutions can submit applications - students cannot apply directly"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Not a French citizen or dual French national",
+          "Not currently studying in France at time of Master's application",
+          "Maximum age 29 at the time of the selection committee (Master's level)",
+          "Application MUST be submitted by a French higher education institution - students cannot apply directly",
+          "Priority areas: Law/Economics/Management/Political Science and Engineering/Exact Sciences/Information Sciences",
+          "Must demonstrate outstanding academic achievement",
+          "Scholarship covers predefined number of months for the approved program",
+          "Duration: up to 12 months (M2), 24 months (M1), 36 months (engineering degree)",
+          "Optional 1-month language course extension possible"
+        ]
+      },
+      "benefits": [
+        "Monthly living allowance of €1,200 (from January 2026)",
+        "Full tuition fees (for national diplomas at public institutions)",
+        "Round-trip economy airfare (up to 50% reimbursement of Ministry-set maximum rate)",
+        "Health insurance (until French national scheme takes effect)",
+        "Option of CROUS student dormitory housing or private housing arranged by Campus France",
+        "Weekend cultural outings and recreational activities",
+        "Access to Eiffel Alumni network via France Alumni website"
+      ],
+      "amounts": [
+        "€1,200/month"
+      ],
+      "target_group": "Outstanding international students (non-French) selected by French higher education institutions for master's programmes in priority fields, particularly future leaders in public and private sectors.",
+      "official_url": "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",
+      "description": "The France Excellence Eiffel Master's Scholarship is awarded by the French Ministry of Foreign Affairs through Campus France to top international students nominated by French universities, covering living expenses, tuition, airfare, and health insurance for 1–3 year master's programmes.",
+      "application_process": [
+        "Identify a French higher education institution offering your desired master's program",
+        "Apply to and be admitted by the French institution",
+        "Ask the institution to nominate you for an Eiffel scholarship (institutions submit applications to Campus France)",
+        "French institutions handle all Eiffel applications - individual/direct applications NOT accepted",
+        "Campus France selects scholars; results announced from March 30",
+        "Contact: candidatures.eiffel@campusfrance.org"
+      ],
+      "source": "01_en_eiffel-scholarship-program-of-excellence.md",
+      "source_file": "data/raw/eiffel/01_en_eiffel-scholarship-program-of-excellence.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "France Excellence Eiffel Scholarship - PhD Level",
+      "provider": "France Excellence Eiffel / French Ministry for Europe and Foreign Affairs",
+      "country": "France",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Government excellence scholarship - Doctoral",
+      "fields": [
+        "All doctoral research fields",
+        "Priority: Science, Technology, Engineering, Economics, Law, Political Science"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 36
+      },
+      "deadline": "January 8 (annual, applications received by Campus France)",
+      "application_period": [
+        "October 1 – January 8 (annual - institutions submit on behalf of candidates)"
+      ],
+      "important_dates": [
+        "Call for applications opens: October 1, 2025",
+        "Deadline for Campus France to receive applications: January 8, 2026",
+        "Results published: from March 30, 2026",
+        "Studies begin: September 1 of award year (non-negotiable start date)",
+        "Note: ONLY French higher education institutions can submit applications"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Not a French citizen or dual French national",
+          "Maximum age 35 at the time of the 2026 bid campaign (PhD level)",
+          "Application MUST be submitted by a French higher education institution",
+          "36-month scholarships only for new candidates enrolling in first year of doctoral program",
+          "New candidates = not already studying in France or enrolled in a French institution",
+          "Shorter PhD scholarships (12 or 18 months) may be split into multiple stays of minimum 6 months each",
+          "Doctoral program must be ongoing at the French institution"
+        ]
+      },
+      "benefits": [
+        "Monthly living allowance of €2,000 (from January 2026)",
+        "Full tuition fees (for national diplomas at public institutions)",
+        "Round-trip economy airfare (up to 50% reimbursement of Ministry-set maximum rate)",
+        "Health insurance (until French national scheme takes effect)",
+        "Option of CROUS student dormitory housing",
+        "Access to Eiffel Alumni network"
+      ],
+      "amounts": [
+        "€2,000/month"
+      ],
+      "target_group": "International doctoral researchers (non-French) who are new candidates for a French doctoral program, nominated by French higher education institutions, with priority for those coming from abroad rather than already residing in France.",
+      "official_url": "https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence",
+      "description": "The France Excellence Eiffel PhD Scholarship offers €2,000/month for 12, 18, or 36 months to outstanding international doctoral researchers newly enrolling at French institutions, covering living expenses, tuition, airfare, and health insurance.",
+      "application_process": [
+        "Identify a French higher education institution and doctoral supervisor",
+        "Be admitted to a doctoral program at a French institution",
+        "Ask the institution to nominate you for an Eiffel scholarship",
+        "French institutions handle all applications to Campus France - direct applications NOT accepted",
+        "Campus France selects scholars; results announced from March 30",
+        "Contact: candidatures.eiffel@campusfrance.org"
+      ],
+      "source": "01_en_eiffel-scholarship-program-of-excellence.md",
+      "source_file": "data/raw/eiffel/01_en_eiffel-scholarship-program-of-excellence.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Canada Graduate Research Scholarship - Doctoral (CGRS-D)",
+      "provider": "Government of Canada / CIHR / NSERC / SSHRC",
+      "country": "Canada",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Tri-agency doctoral scholarship (part of CRTAS)",
+      "fields": [
+        "Health Sciences (CIHR)",
+        "Natural Sciences and Engineering (NSERC)",
+        "Social Sciences and Humanities (SSHRC)",
+        "Interdisciplinary and multidisciplinary research"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "October 17 (direct to agency); institutions set earlier internal deadlines",
+      "application_period": [
+        "Year-round - agency deadline October 17; institution deadlines vary"
+      ],
+      "important_dates": [
+        "Agency deadline: October 17 annually",
+        "Results announced: April 30",
+        "Award value: $40,000/year for 3 years (total $120,000)",
+        "Can be held at Canadian or international institutions (20% of awards available abroad)",
+        "Up to 15% of awards available to international applicants",
+        "Vanier CGS discontinued March 2025 - replaced by CGRS-D"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Must be enrolled in or applying to a doctoral program (predominantly research-oriented)",
+          "Must have completed no more than 36 months of full-time equivalent doctoral study by December 31 of application year",
+          "International applicants: must be enrolled at an eligible Canadian institution by the application deadline",
+          "Up to 15% of awards available to international applicants",
+          "International applicants can only apply through a Canadian institution (not directly to agency)",
+          "Cannot have previously received a doctoral-level scholarship from CIHR, NSERC, or SSHRC (including old Vanier)",
+          "Can apply maximum 3 times",
+          "Selection criteria: Research Potential (50%) + Relevant Experience and Achievements (50%)",
+          "Apply to the agency matching your research field: CIHR (health), NSERC (science/engineering), SSHRC (social sciences/humanities)"
+        ]
+      },
+      "benefits": [
+        "CAD $40,000 per year (non-taxable scholarship)",
+        "Duration: 36 months (3 years)",
+        "Can be held at Canadian institutions or international institutions (Canadian citizens/PRs only for international hold)",
+        "Supplement funding may be available for priority research areas",
+        "Travel supplements may be available via CRTAS-RTS"
+      ],
+      "amounts": [
+        "CAD $40,000/year"
+      ],
+      "target_group": "Outstanding Canadian and international doctoral students in health sciences, natural sciences, engineering, social sciences, and humanities, seeking funding for their PhD research at Canadian universities.",
+      "official_url": "https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-doctoral-program",
+      "description": "The Canada Graduate Research Scholarship - Doctoral (CGRS-D) is Canada's premier doctoral scholarship, providing $40,000/year for 3 years to outstanding PhD researchers. It replaced the Vanier Canada Graduate Scholarships in March 2025 as part of the harmonized Canada Research Training Awards Suite (CRTAS). International students enrolled at Canadian institutions may apply.",
+      "application_process": [
+        "Determine your research field agency: CIHR (health), NSERC (science/engineering), SSHRC (social sciences/humanities)",
+        "International applicants must apply through their Canadian institution (NOT directly to agency)",
+        "Contact your faculty of graduate studies for institutional deadline (well before October 17)",
+        "Submit application through the relevant agency online portal (CIHR: ResearchNET, NSERC/SSHRC: online systems)",
+        "Applications reviewed by institution, then forwarded to agency review committee",
+        "Results announced: April 30",
+        "Contacts: CIHR: support-soutien@cihr-irsc.gc.ca | NSERC: nsercscholarships-boursesCRSNG@NSERC-CRSNG.GC.CA | SSHRC: fellowships@sshrc-crsh.gc.ca"
+      ],
+      "source": "01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
+      "source_file": "data/raw/canada/01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Canada Impact+ Research Training Awards - Doctoral",
+      "provider": "Government of Canada / CIHR / NSERC / SSHRC",
+      "country": "Canada",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Tri-agency doctoral scholarship - impact-focused (part of CRTAS)",
+      "fields": [
+        "All research disciplines aligned with Canada's priority areas"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "Check agency websites for current deadlines",
+      "application_period": [
+        "Check CIHR, NSERC, SSHRC websites for current intake"
+      ],
+      "important_dates": [
+        "Award value: $40,000/year for 3 years",
+        "600 doctoral scholarships available annually",
+        "Launched as part of the 2024 Budget harmonization of CRTAS programs"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Must be enrolled in a doctoral program at an eligible Canadian institution",
+          "Demonstrate research excellence and potential for impact",
+          "Aligned with Canada's priority research areas",
+          "International applicants: check current agency guidelines for eligibility"
+        ]
+      },
+      "benefits": [
+        "CAD $40,000 per year (doctoral scholarship)",
+        "Duration: 36 months",
+        "Support for high-impact doctoral research aligned with national priorities"
+      ],
+      "amounts": [
+        "CAD $40,000/year"
+      ],
+      "target_group": "Outstanding doctoral researchers pursuing high-impact work aligned with Canada's strategic research priorities, as part of the 2025 CRTAS harmonization.",
+      "official_url": "https://nserc-crsng.canada.ca/en/news/launch-new-canada-impact-research-training-awards",
+      "description": "The Canada Impact+ Research Training Awards - Doctoral provides $40,000/year for 3 years to outstanding PhD students pursuing research with significant societal impact, as part of Canada's 2025 CRTAS program suite that replaced the Vanier Canada Graduate Scholarships.",
+      "application_process": [
+        "Check current program details at nserc-crsng.canada.ca",
+        "Apply through the relevant tri-agency portal (CIHR, NSERC, or SSHRC)",
+        "Contact your institution's graduate studies office for guidance"
+      ],
+      "source": "01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
+      "source_file": "data/raw/canada/01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
+      "confidence_score": 0.95
+    }
+  ]
+}
