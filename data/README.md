@@ -1,31 +1,34 @@
 # ScholarHub - Data Directory
 
-Semua data beasiswa tersimpan di sini.
+All scholarship data is stored here.
 
 ## Files
 
-| File | Deskripsi |
+| File | Description |
 |---|---|
-| `scholarships.json` | **Output utama** - dibaca oleh aplikasi. Jangan edit manual. |
-| `DATA_GUIDE.md` | Panduan lengkap update data dan tambah provider baru. |
+| `scholarships.json` | **Main output** - read by the application. Do not edit manually. |
+| `DATA_GUIDE.md` | Complete guide for updating data and adding new providers. |
 
 ## Folders
 
-| Folder | Deskripsi |
+| Folder | Description |
 |---|---|
-| `raw/daad/` | Raw crawl hasil dari daad-indonesia.org |
-| `raw/mext/` | Raw crawl hasil dari id.emb-japan.go.jp (6 program) |
-| `raw/turkiyeburslari/` | Raw crawl hasil dari turkiyeburslari.gov.tr |
-| `raw/chevening/` | Raw crawl hasil dari chevening.org |
-| `raw/australia-awards/` | Raw crawl hasil dari australiaawardsindonesia.org |
-| `raw/gks/` | Raw crawl hasil dari studyinkorea.go.kr dan NIIED |
+| `raw/daad/` | Raw crawl from daad-indonesia.org |
+| `raw/mext/` | Raw crawl from id.emb-japan.go.jp (6 programs) |
+| `raw/turkiyeburslari/` | Raw crawl from turkiyeburslari.gov.tr |
+| `raw/chevening/` | Raw crawl from chevening.org |
+| `raw/australia-awards/` | Raw crawl from australiaawardsindonesia.org |
+| `raw/gks/` | Raw crawl from studyinkorea.go.kr and NIIED |
+| `raw/singa/` | Raw crawl from NUS, NTU, A*STAR scholarship pages |
+| `raw/eiffel/` | Raw crawl from campusfrance.org, sciencespo.fr, ens-lyon.fr, paris-saclay.fr |
+| `raw/canada/` | Raw crawl from nserc.canada.ca and future.utoronto.ca |
 
-## Cara update data
+## How to update data
 
-Lihat `DATA_GUIDE.md` untuk panduan lengkap.
+See `DATA_GUIDE.md` for the complete guide.
 
-Singkatnya:
-1. Update raw `.md` files di `raw/<provider>/`
+Quick summary:
+1. Update raw `.md` files in `raw/<provider>/`
 2. Update `../scripts/reextract.js`
-3. Jalankan `node scripts/reextract.js`
+3. Run `node scripts/reextract.js`
 4. Build: `npx next build`
