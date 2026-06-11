@@ -58,7 +58,7 @@ export async function generateMetadata({
       siteName: 'ScholarHub',
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: s.name,
       description: desc,
     },
@@ -447,9 +447,21 @@ export default async function ScholarshipDetailPage({
 
                   {group === 'canada' && (
                     <div className="text-xs text-brand-dark space-y-1">
-                      <p><span className="font-medium">Agency deadline: </span>October 17 annually</p>
-                      <p><span className="font-medium">Results announced: </span>April 30</p>
-                      <p className="text-brand-muted pt-1">International students must apply through their Canadian institution. Institution deadlines are typically earlier than October 17.</p>
+                      {s.provider.toLowerCase().includes('university of toronto') ? (
+                        <>
+                          <p><span className="font-medium">School nomination deadline: </span>October 10</p>
+                          <p><span className="font-medium">U of T admissions deadline: </span>October 17 (via OUAC)</p>
+                          <p><span className="font-medium">Student scholarship application: </span>November 7</p>
+                          <p><span className="font-medium">Recipients notified: </span>Starting end of January</p>
+                          <p className="text-brand-muted pt-1">Must be nominated by your current secondary school. Schools can only nominate one student per year.</p>
+                        </>
+                      ) : (
+                        <>
+                          <p><span className="font-medium">Agency deadline: </span>October 17 annually</p>
+                          <p><span className="font-medium">Results announced: </span>April 30</p>
+                          <p className="text-brand-muted pt-1">International students must apply through their Canadian institution. Institution deadlines are typically earlier than October 17.</p>
+                        </>
+                      )}
                     </div>
                   )}
 

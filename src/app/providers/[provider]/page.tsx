@@ -21,6 +21,17 @@ export async function generateMetadata({
   return {
     title: `${meta.name} Scholarships - ScholarHub`,
     description: meta.description,
+    openGraph: {
+      title: `${meta.name} Scholarships - ScholarHub`,
+      description: meta.description,
+      type: 'website',
+      siteName: 'ScholarHub',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${meta.name} Scholarships - ScholarHub`,
+      description: meta.description,
+    },
   };
 }
 

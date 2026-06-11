@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { allScholarships } from '@/lib/scholarships';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://scholarhub.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://scholarhub.jsooonx.my.id';
 
 const PROVIDERS = [
   'daad',

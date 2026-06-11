@@ -16,15 +16,35 @@ const lora = Lora({
   display: "swap",
 });
 
+const BASE_URL = 'https://scholarhub.jsooonx.my.id';
+
 export const metadata: Metadata = {
-  title: "ScholarHub - Find Your Scholarship",
-  description: "Your go-to destination for discovering scholarships worldwide. Browse DAAD, MEXT, Türkiye Burslari, and more - all in one place.",
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: 'ScholarHub - Find Your Scholarship',
+    template: '%s - ScholarHub',
+  },
+  description: 'Your go-to destination for discovering scholarships worldwide. Browse DAAD, MEXT, Türkiye Burslari, Chevening, and more - all in one place.',
   openGraph: {
     siteName: 'ScholarHub',
     type: 'website',
+    url: BASE_URL,
+    title: 'ScholarHub - Find Your Scholarship',
+    description: 'Your go-to destination for discovering scholarships worldwide. Browse DAAD, MEXT, Türkiye Burslari, Chevening, and more - all in one place.',
+    images: [{ url: '/images/og-image.png', width: 1200, height: 630, alt: 'ScholarHub' }],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
+    title: 'ScholarHub - Find Your Scholarship',
+    description: 'Your go-to destination for discovering scholarships worldwide.',
+    images: ['/images/og-image.png'],
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
