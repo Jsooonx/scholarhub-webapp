@@ -1,5 +1,5 @@
 /**
- * ScholarHub Crawler — Auto-discover mode
+ * ScholarHub Crawler - Auto-discover mode
  *
  * Crawls a scholarship provider website starting from a root URL.
  * Follows internal links that match a relevance filter, converts
@@ -33,7 +33,7 @@ const DEFAULTS = {
   maxDepth: 3,
   maxPages: 50,
   delayMs: 800,
-  // Path segments that indicate a relevant page — customise per provider
+  // Path segments that indicate a relevant page - customise per provider
   relevantKeywords: [
     'scholarship', 'scholarships',
     'eligibility', 'eligible',
@@ -162,7 +162,7 @@ function htmlToMarkdown(html, pageUrl) {
   const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
   const title = titleMatch ? titleMatch[1].trim() : pageUrl;
 
-  // Extract main content — prefer <main>, <article>, or <body>
+  // Extract main content - prefer <main>, <article>, or <body>
   let content = html;
   const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
   const articleMatch = html.match(/<article[^>]*>([\s\S]*?)<\/article>/i);
@@ -254,13 +254,13 @@ async function crawl(rootUrl, providerName, opts) {
       });
 
       if (!res.ok) {
-        console.log(`   ⚠ HTTP ${res.status} — skipping`);
+        console.log(`   ⚠ HTTP ${res.status} - skipping`);
         continue;
       }
 
       const contentType = res.headers.get('content-type') || '';
       if (!contentType.includes('text/html')) {
-        console.log(`   ⚠ Non-HTML content type — skipping`);
+        console.log(`   ⚠ Non-HTML content type - skipping`);
         continue;
       }
 
@@ -274,7 +274,7 @@ async function crawl(rootUrl, providerName, opts) {
     const { title, markdown } = htmlToMarkdown(html, url);
 
     if (markdown.length < 100) {
-      console.log(`   ⚠ Content too short (${markdown.length} chars) — skipping`);
+      console.log(`   ⚠ Content too short (${markdown.length} chars) - skipping`);
     } else {
       const filename = urlToFilename(url, pageIndex++);
       const fileContent = `---\nurl: "${url}"\ntitle: "${title.replace(/"/g, '\\"')}"\ncrawled: "${new Date().toISOString().split('T')[0]}"\n---\n\n${markdown}\n`;

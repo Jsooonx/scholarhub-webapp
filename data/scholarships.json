@@ -43,21 +43,21 @@
     },
     {
       "provider_group": "SINGAPORE",
-      "file_count": 4,
-      "scholarship_count": 4
+      "file_count": 7,
+      "scholarship_count": 7
     },
     {
       "provider_group": "EIFFEL",
-      "file_count": 20,
-      "scholarship_count": 2
+      "file_count": 23,
+      "scholarship_count": 5
     },
     {
       "provider_group": "CANADA",
-      "file_count": 2,
-      "scholarship_count": 2
+      "file_count": 3,
+      "scholarship_count": 3
     }
   ],
-  "scholarship_count": 61,
+  "scholarship_count": 68,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -3277,6 +3277,227 @@
       "important_dates": []
     },
     {
+      "name": "NUS International Undergraduate Scholarship (NUS IUS)",
+      "provider": "National University of Singapore (NUS)",
+      "country": "Singapore",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "program_type": "University-level undergraduate scholarship - all international students",
+      "fields": [
+        "All disciplines offered at NUS (limited availability for Dentistry, Law, Medicine)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 60
+      },
+      "deadline": "Via NUS undergraduate admission application (typically closes February–March annually)",
+      "application_period": [
+        "October – March (via NUS undergraduate admissions - no separate application)"
+      ],
+      "important_dates": [
+        "Apply through NUS undergraduate admissions - all eligible international applicants automatically considered",
+        "Selection interviews: January – July",
+        "Scholarship outcomes announced: by mid-July",
+        "MOE Tuition Grant bond: 3 years with a Singapore-registered company post-graduation",
+        "Dentistry/Medicine bond: 5–6 years with Singapore Ministry of Health"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Citizens of all countries except Singapore",
+          "Strong leadership qualities and potential",
+          "Outstanding co-curricular activities record",
+          "Outstanding high school results",
+          "Applying for admission to a full-time undergraduate degree at NUS",
+          "Transfer applicants (local or overseas) are NOT eligible",
+          "Must maintain GPA of at least 3.50/5.00 per semester (or top 80% for Dentistry, Law, Medicine)",
+          "Cannot concurrently hold other scholarships without prior NUS approval",
+          "MOE Tuition Grant bond required: 3 years with Singapore-registered company after graduation",
+          "Dentistry/Medicine recipients: 5–6 year bond with Singapore Ministry of Health"
+        ]
+      },
+      "benefits": [
+        "100% coverage of subsidised undergraduate tuition fees (after MOE Tuition Grant)",
+        "S$5,800 annual living allowance",
+        "S$1,750 one-time computer allowance upon enrolment",
+        "S$5,000 annual accommodation allowance"
+      ],
+      "amounts": [
+        "S$5,800/year (living allowance)",
+        "S$5,000/year (accommodation allowance)",
+        "S$1,750 one-time (computer allowance)"
+      ],
+      "target_group": "Exceptional international students from all countries (except Singapore) with outstanding academic achievements, leadership qualities, and co-curricular records, seeking a fully funded undergraduate degree at NUS.",
+      "official_url": "https://www.nus.edu.sg/oam/scholarships/scholarships-for-freshmen-(international-students)/nus-international-undergraduate-scholarship",
+      "description": "The NUS International Undergraduate Scholarship (NUS IUS) supports exceptional international freshmen from any country (except Singapore) with full tuition coverage, generous living and accommodation allowances, and a one-time computer allowance. Candidates are automatically considered when applying for NUS undergraduate admission - no separate application needed.",
+      "application_process": [
+        "Apply for NUS undergraduate admission at apply.nus.edu.sg",
+        "All eligible international applicants are automatically considered - no separate scholarship application",
+        "Shortlisted candidates invited for selection interview (January–July)",
+        "Scholarship outcomes announced by mid-July",
+        "Accept MOE Tuition Grant as part of scholarship conditions",
+        "Contact: NUS Office of Admissions, faq.nus.edu.sg"
+      ],
+      "source": "10_nus_international_undergraduate_scholarship.md",
+      "source_file": "data/raw/singa/10_nus_international_undergraduate_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Dr Goh Keng Swee (GKS) Scholarship",
+      "provider": "Association of Banks in Singapore (ABS) / National University of Singapore (NUS)",
+      "country": "Singapore",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "program_type": "Private sector scholarship - Asia Pacific students at NUS",
+      "fields": [
+        "All disciplines offered at NUS"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 48
+      },
+      "deadline": "NUS application closes 23 February (for 2026 intake); scholarship nominations by June",
+      "application_period": [
+        "Apply via NUS admissions; scholarship consideration via NUS nomination process"
+      ],
+      "important_dates": [
+        "NUS undergraduate application for international qualifications closes: 23 February 2026",
+        "Shortlisted applicants notified for scholarship interview: by June 2026",
+        "Virtual scholarship interviews: May–June 2026",
+        "From 2026: scholarship exclusively administered through NUS",
+        "3–4 scholarships awarded annually"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Brunei",
+          "Cambodia",
+          "China",
+          "Hong Kong SAR",
+          "India",
+          "Indonesia",
+          "Japan",
+          "Korea",
+          "Laos",
+          "Malaysia",
+          "Myanmar",
+          "Philippines",
+          "Taiwan",
+          "Thailand",
+          "Vietnam"
+        ],
+        "raw_items": [
+          "Citizen or passport holder of one of 15 Asia Pacific economies: Brunei, Cambodia, China, Hong Kong SAR, India, Indonesia, Japan, Korea, Laos, Malaysia, Myanmar, Philippines, Taiwan, Thailand, Vietnam",
+          "Singapore citizens and PRs are NOT eligible",
+          "Must have interest in pursuing undergraduate studies at NUS and meet NUS admission criteria for AY2026/2027",
+          "Not already studying at NUS",
+          "Strong leadership qualities and good academic and co-curricular activities (CCA) achievements",
+          "Does not require pursuing a career in banking and finance after graduation",
+          "Bond: 3 years with a Singapore-registered company OR a Singapore-based company in home country approved by the Dr GKS Scholarship Fund"
+        ]
+      },
+      "benefits": [
+        "Tuition fees (based on subsidised rates under MOE Tuition Grant)",
+        "Other compulsory fees",
+        "Airfare to Singapore and return to home country upon graduation",
+        "Annual living allowance",
+        "Hostel allowance",
+        "One-off settling-in allowance upon arrival in Singapore"
+      ],
+      "amounts": [
+        "Full tuition + living allowance + hostel + airfare (annual)"
+      ],
+      "target_group": "Outstanding students from 15 Asia Pacific economies (including Indonesia) seeking a fully funded undergraduate degree at NUS, with strong academic achievement and leadership qualities.",
+      "official_url": "https://www.nus.edu.sg/oam/scholarships/scholarships-for-freshmen-(international-students)/the-association-of-banks-in-singapore---goh-keng-swee-scholarship",
+      "description": "The Dr Goh Keng Swee (GKS) Scholarship is a prestigious private sector scholarship administered by the Association of Banks in Singapore (ABS), awarded to 3–4 outstanding students annually from 15 Asia Pacific economies to pursue undergraduate studies at NUS. From 2026, the scholarship is exclusively administered through NUS. A 3-year bond is required after graduation.",
+      "application_process": [
+        "Apply for NUS undergraduate admission at nus.edu.sg/oam",
+        "Register interest in the Dr GKS Scholarship when submitting the NUS application",
+        "Outstanding applicants may be nominated by NUS for the scholarship",
+        "Shortlisted applicants notified by June; virtual interviews conducted May–June",
+        "Contact: GKS_Scholarships@abs.org.sg"
+      ],
+      "source": "11_dr_goh_keng_swee_scholarship.md",
+      "source_file": "data/raw/singa/11_dr_goh_keng_swee_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Nanyang President's Graduate Scholarship (NPGS)",
+      "provider": "Nanyang Technological University (NTU)",
+      "country": "Singapore",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Flagship PhD scholarship - NTU",
+      "fields": [
+        "All research disciplines offered at NTU"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "October – November annually (check NTU website for exact date)",
+      "application_period": [
+        "August – November (via NTU graduate admissions portal)"
+      ],
+      "important_dates": [
+        "Applications typically open: August–September",
+        "Application deadline: October–November (check ntu.edu.sg/admissions/graduate)",
+        "Interview period: December–February",
+        "Award notification: February–March",
+        "Studies begin: August (following academic year)",
+        "Approximately 10–15 NPGS awards given annually"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to all nationalities - no nationality restriction",
+          "Honours (Highest Distinction) or equivalent at Bachelor's level, OR exceptional Master's degree",
+          "Outstanding academic record with demonstrated research potential",
+          "Final-year undergraduates may also apply if on track to graduate with Honours (Highest Distinction)",
+          "Must provide official documentation confirming graduation track if not yet graduated",
+          "PhD studies conducted full-time at NTU",
+          "No separate NPGS application - indicate interest in NTU scholarship when applying for PhD admission"
+        ]
+      },
+      "benefits": [
+        "Full PhD tuition fees (up to 4 years)",
+        "Annual living allowance of S$66,000 (approximately S$5,500/month)",
+        "Research allowance",
+        "Conference travel allowance",
+        "Access to NTU research facilities and supervisors"
+      ],
+      "amounts": [
+        "S$66,000/year living allowance (~S$5,500/month)"
+      ],
+      "target_group": "Outstanding graduates of all nationalities with exceptional academic records, seeking to pursue a full-time PhD at NTU in any research discipline.",
+      "official_url": "https://ntu.edu.sg/admissions/graduate/financialmatters/scholarships/npgs",
+      "description": "The Nanyang President's Graduate Scholarship (NPGS) is NTU's most prestigious PhD scholarship, open to all nationalities, designed to attract outstanding graduates to pursue doctoral research at NTU. It provides full tuition and a generous living allowance of S$66,000/year. No separate application - candidates are considered through the NTU PhD admissions process.",
+      "application_process": [
+        "Apply for PhD admission at NTU via the graduate admissions portal (ntu.edu.sg/admissions/graduate)",
+        "Indicate interest in the \"NTU Scholarship\" in your application - no separate NPGS application",
+        "All complete PhD applications are assessed holistically by the School",
+        "Shortlisted NPGS candidates will be invited for interview",
+        "Contact: NTU Graduate Admissions Office (admissions-grad@ntu.edu.sg)"
+      ],
+      "source": "12_ntu_nanyang_presidents_graduate_scholarship.md",
+      "source_file": "data/raw/singa/12_ntu_nanyang_presidents_graduate_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
       "name": "France Excellence Eiffel Scholarship - Master's Level",
       "provider": "France Excellence Eiffel / French Ministry for Europe and Foreign Affairs",
       "country": "France",
@@ -3423,6 +3644,215 @@
       "confidence_score": 0.95
     },
     {
+      "name": "Université Paris-Saclay International Master's Scholarships (IDEX)",
+      "provider": "Université Paris-Saclay / French Government (Investissements d'Avenir)",
+      "country": "France",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Government-funded university international scholarship - Master's",
+      "fields": [
+        "All Master's programmes at Paris-Saclay institutions: AgroParisTech, CentraleSupélec, ENS Paris-Saclay, INSTN-CEA, Institut d'Optique Graduate School (IOGS), Université Évry Paris-Saclay, Université Paris-Saclay, UVSQ",
+        "Strong focus on STEM and research-oriented programmes"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 24
+      },
+      "deadline": "Around May annually (check universite-paris-saclay.fr for exact date; 2025 deadline was May 5)",
+      "application_period": [
+        "January – May (after admission to a Paris-Saclay Master's programme)"
+      ],
+      "important_dates": [
+        "2025-2026 application deadline: May 5, 2025",
+        "Scholarship is awarded for AY starting September",
+        "Payment: monthly from September to June (10 consecutive months)",
+        "Travel expenses reimbursed upon arrival in France after registration",
+        "Scholarship amount: €10,000/year (€1,000/month for 10 months)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Must be admitted to a Master's programme at Université Paris-Saclay delivered by eligible institutions (AgroParisTech, CentraleSupélec, ENS Paris-Saclay, INSTN-CEA, IOGS, Univ. Évry Paris-Saclay, Univ. Paris-Saclay, UVSQ)",
+          "International student studying in France for the FIRST TIME",
+          "Age 30 or younger during the year of selection",
+          "Students of foreign nationality living in France less than 1 year (previously in non-degree training or internship) may still be eligible",
+          "Students of foreign nationality in France for less than 1 year for language classes may still be eligible",
+          "Students who studied in France under a mobility programme (e.g. Erasmus) that did NOT lead to a French degree may still be eligible",
+          "Selected students receive an email invitation to apply - no proactive application required",
+          "Must provide two referees (director of studies, professor, or internship coordinator)"
+        ]
+      },
+      "benefits": [
+        "€10,000 per year (€1,000/month for 10 months, September–June)",
+        "Up to €1,000 additional travel and visa expenses (depending on country of origin)",
+        "Scholarship paid upon arrival in France and after registration in admitted programme"
+      ],
+      "amounts": [
+        "€10,000/year (€1,000/month)",
+        "Up to €1,000 travel/visa supplement"
+      ],
+      "target_group": "High-achieving international students admitted to Master's programmes at Université Paris-Saclay (one of the world's top research universities), especially those intending to pursue doctoral studies.",
+      "official_url": "https://www.universite-paris-saclay.fr/en/admission/bourses-et-aides-financieres/international-masters-scholarships-program-idex",
+      "description": "The Université Paris-Saclay International Master's Scholarships (IDEX) provide €10,000/year to outstanding international students admitted for the first time to Master's programmes at Paris-Saclay and its partner institutions. Selection is based on academic level, personal project, and for M2 students, motivation to pursue a PhD.",
+      "application_process": [
+        "Apply and gain admission to a Master's programme at one of the eligible Paris-Saclay institutions",
+        "If selected for scholarship consideration, you will receive an email invitation with a link to the online application form",
+        "Complete the online scholarship application and provide contact details of two referees",
+        "Both referees will receive an email link to submit their recommendations",
+        "Application is complete only when both referee forms are submitted",
+        "For more information: universite-paris-saclay.fr/en/admission/bourses-et-aides-financieres/international-masters-scholarships-program-idex"
+      ],
+      "source": "21_paris_saclay_international_masters_scholarships.md",
+      "source_file": "data/raw/eiffel/21_paris_saclay_international_masters_scholarships.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Sciences Po Émile Boutmy Scholarship",
+      "provider": "Sciences Po Paris",
+      "country": "France",
+      "degree_levels": [
+        "Bachelor",
+        "Master's"
+      ],
+      "program_type": "University excellence scholarship - non-EU international students",
+      "fields": [
+        "Political Science",
+        "International Affairs",
+        "Economics",
+        "Law",
+        "Sociology",
+        "History",
+        "Urban Studies",
+        "Communication",
+        "All programmes offered at Sciences Po Paris"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 60
+      },
+      "deadline": "Varies by programme; check Sciences Po admissions for exact deadline (Boutmy committee decisions made throughout year, final notifications by mid-June)",
+      "application_period": [
+        "Indicate scholarship interest in Sciences Po application - deadlines align with admissions rounds"
+      ],
+      "important_dates": [
+        "Apply simultaneously with Sciences Po admissions application",
+        "Indicate Boutmy scholarship interest in \"Financial Information\" section of application form",
+        "Boutmy committees meet several times per year",
+        "All nominees notified by mid-June at latest",
+        "Waiting list candidates notified by late July",
+        "2026-27: Bachelor's - full exemption OR €9,500 exemption; Master's - €18,500 exemption"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "First-time applicant to Sciences Po (not a current student)",
+          "From a non-European Union state",
+          "Household does not file taxes within the European Union",
+          "Admitted to a Sciences Po Undergraduate (Bachelor's) or Master's programme",
+          "Award is based on academic merit; between equally outstanding candidates, financial need is the tiebreaker",
+          "Non-EU passport holders only - EU citizens or dual EU nationals not eligible"
+        ]
+      },
+      "benefits": [
+        "Bachelor's level (2026-27): full tuition exemption OR €9,500 partial tuition exemption",
+        "Master's level (2026-27): €18,500 tuition exemption",
+        "Scholarship renews annually subject to good academic standing"
+      ],
+      "amounts": [
+        "Bachelor's: up to full tuition exemption (~€14,700/year)",
+        "Master's: €18,500 tuition exemption"
+      ],
+      "target_group": "Outstanding non-EU international students admitted to Sciences Po's Bachelor's or Master's programmes, selected based on academic merit and (as a tiebreaker) financial need.",
+      "official_url": "https://www.sciencespo.fr/students/en/fees-funding/bursaries-financial-aid/emile-boutmy-scholarship",
+      "description": "The Émile Boutmy Scholarship at Sciences Po Paris provides tuition reductions to outstanding non-EU international students admitted to Bachelor's or Master's programmes. Named after Sciences Po's founder, it covers up to full tuition for bachelor's students and €18,500 for master's students. Students apply directly through their Sciences Po admissions application.",
+      "application_process": [
+        "Apply to Sciences Po Bachelor's or Master's programme at sciencespo.fr/admissions",
+        "In the \"Financial Information\" section of the application form, indicate your wish to be considered for the Boutmy scholarship",
+        "Provide required financial and academic documents by the specific deadline",
+        "Boutmy committees meet several times per year and assess applications",
+        "All scholarship decisions communicated by mid-June at the latest",
+        "Contact: Sciences Po Admissions Office - sciencespo.fr/admissions"
+      ],
+      "source": "22_sciences_po_emile_boutmy_scholarship.md",
+      "source_file": "data/raw/eiffel/22_sciences_po_emile_boutmy_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "ENS de Lyon Ampère Excellence Scholarships",
+      "provider": "École Normale Supérieure de Lyon (ENS de Lyon)",
+      "country": "France",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "University excellence scholarship - international Master's students",
+      "fields": [
+        "All Master's programmes at ENS de Lyon",
+        "STEM (Exact Sciences)",
+        "Arts",
+        "Humanities",
+        "Social Sciences"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 20
+      },
+      "deadline": "Check ens-lyon.fr/en/studies/admissions/application-masters-degrees-and-scholarships for current deadline",
+      "application_period": [
+        "January – April (apply simultaneously with ENS de Lyon Master's admission)"
+      ],
+      "important_dates": [
+        "Scholarship awarded for 1 academic year (renewable for 2nd year under conditions)",
+        "Amount: €1,000/month for 10 months per year",
+        "Can supplement other scholarships up to a maximum of €1,000/month total",
+        "Separate from GRADUATE+ Scholarship (also €1,000/month for 10 months, SFRI-funded)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Must be a foreign national",
+          "Must be applying to a Master's programme at ENS de Lyon (M1 or M2)",
+          "For M1 candidates: must have obtained a Licence (equivalent to 180 ECTS / Bachelor's degree)",
+          "Outstanding academic record required",
+          "Open to all disciplines: STEM, Arts, Humanities, Social Sciences",
+          "Renewable for 2nd year subject to selection by head of Master's programme and passing M1"
+        ]
+      },
+      "benefits": [
+        "€1,000 per month for one academic year (10 months)",
+        "Renewable for a second year under conditions",
+        "Can supplement other scholarships up to €1,000/month maximum combined"
+      ],
+      "amounts": [
+        "€1,000/month (10 months/year)"
+      ],
+      "target_group": "Outstanding international (non-French) students seeking Master's degrees at ENS de Lyon in any discipline, from sciences and engineering to arts, humanities, and social sciences.",
+      "official_url": "https://www.ens-lyon.fr/en/studies/student-information/grants-and-scholarships",
+      "description": "The ENS de Lyon Ampère Excellence Scholarships provide €1,000/month for one academic year to outstanding international students enrolled in any of ENS de Lyon's Master's programmes. ENS de Lyon is one of France's most prestigious grandes écoles, known for excellence in research across sciences, humanities, and the arts.",
+      "application_process": [
+        "Apply to a Master's programme at ENS de Lyon via the admissions portal",
+        "Simultaneously apply for the Ampère Scholarship following the process outlined at ens-lyon.fr/en/studies/admissions/application-masters-degrees-and-scholarships",
+        "Submit required academic documents and scholarship application by the deadline",
+        "Scholarship renewal in 2nd year requires selection by Master's programme head and passing M1",
+        "Contact: international@ens-lyon.fr"
+      ],
+      "source": "23_ens_lyon_ampere_excellence_scholarship.md",
+      "source_file": "data/raw/eiffel/23_ens_lyon_ampere_excellence_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
       "name": "Canada Graduate Research Scholarship - Doctoral (CGRS-D)",
       "provider": "Government of Canada / CIHR / NSERC / SSHRC",
       "country": "Canada",
@@ -3551,6 +3981,79 @@
       ],
       "source": "01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
       "source_file": "data/raw/canada/01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Lester B. Pearson International Student Scholarships - University of Toronto",
+      "provider": "University of Toronto",
+      "country": "Canada",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "program_type": "Full-ride undergraduate scholarship",
+      "fields": [
+        "All disciplines offered at University of Toronto"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "November 7 (student application); school nomination deadline October 10",
+      "application_period": [
+        "July 1 – November 7 (school nomination July–October; student application October–November)"
+      ],
+      "important_dates": [
+        "School nomination period opens: July 1",
+        "School nomination deadline: October 10",
+        "U of T admissions application deadline: October 17 (via OUAC)",
+        "Student Pearson scholarship application deadline: November 7",
+        "Scholarship recipients notified: starting end of January",
+        "All nominees notified: by April",
+        "Studies begin: September of award year",
+        "Each year approximately 37 Pearson Scholars are selected"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Must be an international student (non-Canadian, requiring a study permit)",
+          "Must be in final year of senior secondary school in the application year, OR have graduated no earlier than June of the previous year",
+          "Must begin studies at University of Toronto in September of the award year",
+          "Students already attending post-secondary studies are NOT eligible",
+          "Must be nominated by your current secondary school (one nomination per school per year)",
+          "Schools must be verified by U of T; new schools can apply to join the program",
+          "Must apply to at least one undergraduate program at U of T by October 17",
+          "Use of generative AI (e.g. ChatGPT) in scholarship application is prohibited and results in disqualification"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees for four years",
+        "Books allowance for four years",
+        "Incidental fees for four years",
+        "Full residence support for four years",
+        "Access to Pearson Program Office enrichment and support programs"
+      ],
+      "amounts": [
+        "Full tuition + books + incidental fees + full residence (4 years)"
+      ],
+      "target_group": "Outstanding international secondary school students worldwide who demonstrate exceptional academic achievement, creativity, and leadership potential, nominated by their school to study at the University of Toronto.",
+      "official_url": "https://future.utoronto.ca/pearson",
+      "description": "The Lester B. Pearson International Student Scholarships are the University of Toronto's most prestigious award for international students, covering full tuition, books, incidental fees and residence for four years. Approximately 37 scholars are selected annually from nominations submitted by secondary schools worldwide.",
+      "application_process": [
+        "Ask your guidance counsellor or principal if your school is eligible to nominate a student",
+        "If school is not yet verified, they can apply to join the program at apply.adm.utoronto.ca/register/pearson-participate",
+        "School nominates one student via the secure nomination form (deadline: October 10)",
+        "Apply to at least one undergraduate program at U of T via OUAC by October 17",
+        "After nomination, receive a private link to the Pearson Scholarship application form",
+        "Submit scholarship application and all required documentation by November 7",
+        "Await results: recipients notified starting end of January; all nominees notified by April",
+        "Contact: apply.adm.utoronto.ca/register/pearson-inquiry"
+      ],
+      "source": "05_lester_pearson_scholarship.md",
+      "source_file": "data/raw/canada/05_lester_pearson_scholarship.md",
       "confidence_score": 0.95
     }
   ]

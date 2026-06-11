@@ -59,7 +59,8 @@ export function providerGroup(provider: string): string {
   if (p.includes('niied') || p.includes('korean government') || p.includes('gks')) return 'gks';
   if (p.includes('a*star') || p.includes('astar') || p.includes('nus') || p.includes('ntu') || p.includes('singa') || p.includes('nanyang') || p.includes('national university of singapore')) return 'singapore';
   if (p.includes('eiffel') || p.includes('campus france') || p.includes('french ministry')) return 'eiffel';
-  if (p.includes('canada') || p.includes('cihr') || p.includes('nserc') || p.includes('sshrc') || p.includes('crtas') || p.includes('cgrs')) return 'canada';
+  if (p.includes('paris-saclay') || p.includes('paris saclay') || p.includes('sciences po') || p.includes('ens de lyon') || p.includes('ens lyon')) return 'eiffel';
+  if (p.includes('canada') || p.includes('cihr') || p.includes('nserc') || p.includes('sshrc') || p.includes('crtas') || p.includes('cgrs') || p.includes('university of toronto')) return 'canada';
   if (p.includes('eiffel')) return 'eiffel';
   if (p.includes('singa')) return 'singa';
   if (p.includes('vanier')) return 'vanier';
@@ -345,10 +346,29 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'rolling', label: 'Two intakes - Jan & Aug' };
   }
 
-  // ── Eiffel: Oct 1 – Jan 8 ────────────────────────────────────────────────
+  // ── Eiffel: Oct 1 – Jan 8 (core Eiffel); Paris-Saclay ~May; others rolling ────
   if (group === 'eiffel') {
     const now6 = new Date();
     const year6 = now6.getFullYear();
+
+    // Paris-Saclay: ~May annually
+    if (s.provider.toLowerCase().includes('paris-saclay') || s.provider.toLowerCase().includes('paris saclay')) {
+      const close = new Date(year6, 4, 5); // May 5 approx
+      const diff = Math.ceil((close.getTime() - now6.getTime()) / 86_400_000);
+      const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      if (now6 <= close) {
+        if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: close };
+        return { type: 'open', label: `Open · closes ~${fmt}`, daysLeft: diff, deadline: close };
+      }
+      return { type: 'closed', label: `Closed · next cycle ~Jan ${year6 + 1}`, deadline: new Date(year6 + 1, 0, 1) };
+    }
+
+    // Sciences Po Boutmy / ENS Lyon Ampère: rolling admissions-based
+    if (s.provider.toLowerCase().includes('sciences po') || s.provider.toLowerCase().includes('ens de lyon') || s.provider.toLowerCase().includes('ens lyon')) {
+      return { type: 'rolling', label: 'Via admissions process' };
+    }
+
+    // Core Eiffel: Oct 1 – Jan 8
     const open = new Date(year6, 9, 1);   // Oct 1
     const close = new Date(year6, 0, 8) > now6
       ? new Date(year6, 0, 8)             // Jan 8 this year
@@ -362,10 +382,24 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'closed', label: `Closed · next cycle Oct ${year6}`, deadline: open };
   }
 
-  // ── Canada CRTAS: agency deadline Oct 17, results Apr 30 ─────────────────
+  // ── Canada CRTAS: agency deadline Oct 17; Pearson: Nov 7 ────────────────
   if (group === 'canada') {
     const now7 = new Date();
     const year7 = now7.getFullYear();
+
+    // Lester B. Pearson: student application deadline Nov 7
+    if (s.provider.toLowerCase().includes('university of toronto')) {
+      const close = new Date(year7, 10, 7); // Nov 7
+      const diff = Math.ceil((close.getTime() - now7.getTime()) / 86_400_000);
+      const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      if (now7 <= close) {
+        if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: close };
+        return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: close };
+      }
+      return { type: 'closed', label: `Closed · next cycle ~Jul ${year7 + 1}`, deadline: new Date(year7 + 1, 6, 1) };
+    }
+
+    // CGRS-D and Impact+: agency deadline Oct 17
     const close = new Date(year7, 9, 17); // Oct 17
     const diff = Math.ceil((close.getTime() - now7.getTime()) / 86_400_000);
     const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
