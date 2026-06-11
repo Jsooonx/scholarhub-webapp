@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Mail } from 'lucide-react';
 
 export default function Footer() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -53,6 +53,14 @@ export default function Footer() {
               </a>
               <a href="#" className="text-brand-muted hover:text-brand-dark transition-colors" aria-label="LinkedIn">
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              </a>
+              <a
+                href="mailto:hello@scholarhub.jsooonx.my.id"
+                className="text-brand-muted hover:text-brand-dark transition-colors"
+                aria-label="Email us"
+                title="Send us feedback or a scholarship suggestion"
+              >
+                <Mail className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -113,7 +121,15 @@ export default function Footer() {
             
             <ul className="space-y-2.5 mt-3">
               <li><Link href="/about" className="text-[11px] text-brand-muted hover:text-brand-dark transition-colors">About ScholarHub</Link></li>
-              <li><Link href="/about" className="text-[11px] text-brand-muted hover:text-brand-dark transition-colors">Contact</Link></li>
+              <li>
+                <a
+                  href="mailto:hello@scholarhub.jsooonx.my.id"
+                  className="text-[11px] text-brand-muted hover:text-brand-dark transition-colors inline-flex items-center gap-1"
+                >
+                  <Mail className="h-3 w-3" />
+                  Contact / Feedback
+                </a>
+              </li>
             </ul>
           </div>
 
