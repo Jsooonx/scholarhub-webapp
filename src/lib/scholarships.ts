@@ -611,9 +611,6 @@ export interface UniversityLogo {
   logo: string;
 }
 
-/**
- * Extracts and returns logos of universities matched in the scholarship title, provider, or description.
- */
 export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
   const text = `${s.name} ${s.provider} ${s.description ?? ''}`.toLowerCase();
   const list: UniversityLogo[] = [];
@@ -653,6 +650,47 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       list.push({ name: univ.name, logo: univ.logo });
     }
   });
+
+  // 2. If no specific university is mentioned (Universal/National Scholarship),
+  // return top universities in that country as default/representative options.
+  if (list.length === 0) {
+    const country = s.country ? s.country.toLowerCase() : '';
+    const group = providerGroup(s.provider);
+
+    if (country === 'germany' || group === 'daad') {
+      list.push(
+        { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png' },
+        { name: 'LMU Munich', logo: '/images/logos/LMU.png' },
+        { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' }
+      );
+    } else if (country === 'japan' || group === 'mext') {
+      list.push(
+        { name: 'University of Tokyo', logo: '/images/logos/UofTokyo.png' },
+        { name: 'Kyoto University', logo: '/images/logos/KyotoU.png' }
+      );
+    } else if (country === 'turkey' || group === 'turkiye') {
+      list.push(
+        { name: 'Istanbul Technical University (ITU)', logo: '/images/logos/ITU.png' },
+        { name: 'Middle East Technical University (METU)', logo: '/images/logos/METU.png' }
+      );
+    } else if (country === 'canada' || group === 'canada') {
+      list.push(
+        { name: 'University of Toronto', logo: '/images/logos/UofT.png' },
+        { name: 'McGill University', logo: '/images/logos/McGill.png' },
+        { name: 'University of British Columbia (UBC)', logo: '/images/logos/UBC.png' }
+      );
+    } else if (country === 'france' || group === 'eiffel') {
+      list.push(
+        { name: 'Institut Polytechnique de Paris', logo: '/images/logos/InstitutPolytechniqueDeParis.png' },
+        { name: 'Paris Sciences et Lettres University (PSL)', logo: '/images/logos/PSLU.png' }
+      );
+    } else if (country === 'singapore' || group === 'singapore') {
+      list.push(
+        { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png' },
+        { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png' }
+      );
+    }
+  }
 
   return list;
 }

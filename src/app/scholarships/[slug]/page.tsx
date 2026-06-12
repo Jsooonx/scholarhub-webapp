@@ -202,7 +202,11 @@ export default async function ScholarshipDetailPage({
                 {/* Partner Universities Section */}
                 {partnerLogos.length > 0 && (
                   <div className="mt-6">
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-brand-muted mb-3">Participating Universities</p>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-brand-muted mb-3">
+                      {s.name.toLowerCase().includes('university') || s.name.toLowerCase().includes('universitas') || s.provider.toLowerCase().includes('university') || s.provider.toLowerCase().includes('universitas')
+                        ? 'Host University'
+                        : 'Popular Participating Universities'}
+                    </p>
                     <div className="flex flex-wrap gap-3">
                       {partnerLogos.map((univ) => (
                         <div key={univ.name} className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-brand-border shadow-[0_2px_4px_rgba(0,0,0,0.02)]" title={univ.name}>
