@@ -64,7 +64,7 @@ export default function Navbar() {
     <div className="sticky top-0 z-50 w-full pointer-events-none h-20 sm:h-24 flex items-start justify-center pt-3 sm:pt-4 overflow-visible">
       <motion.div
         ref={islandRef}
-        layout
+        layout="size"
         style={{ borderRadius: 28 }}
         transition={{
           layout: { type: 'tween', ease: [0.4, 0, 0.2, 1], duration: 0.45 },
