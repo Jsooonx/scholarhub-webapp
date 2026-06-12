@@ -144,7 +144,7 @@ export default function AboutPage() {
                     <p className="text-xs text-brand-muted">Send us a message - we review all feedback and update data regularly.</p>
                   </div>
                   <a
-                    href="mailto:hello@scholarhub.jsooonx.my.id"
+                    href="mailto:jsnxbusiness@gmail.com"
                     className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-amber-300 bg-white text-sm font-semibold rounded-full text-amber-700 hover:bg-amber-50 transition-colors flex-shrink-0"
                   >
                     <Mail className="h-4 w-4" />
