@@ -529,23 +529,55 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/logos/UofT.png';
   if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/logos/McGill.png';
   if (name.includes('british columbia') || hasWord('ubc')) return '/images/logos/UBC.png';
+  if (name.includes('mcmaster') || provider.includes('mcmaster')) return '/images/logos/McMaster.png';
+  if (name.includes('waterloo') || provider.includes('waterloo')) return '/images/logos/Waterloo.png';
   
   if (name.includes('national university of singapore') || provider.includes('national university of singapore') || hasWord('nus')) return '/images/logos/NUS.png';
   if (name.includes('nanyang') || provider.includes('nanyang') || hasWord('ntu')) return '/images/logos/NTU.png';
+  if (hasWord('smu') || name.includes('singapore management university')) return '/images/logos/SMU.png';
+  if (hasWord('sutd') || name.includes('singapore university of technology and design')) return '/images/logos/SUTD.png';
   if (name.includes('asean undergraduate') && !hasWord('nus') && !hasWord('ntu')) return '/images/logos/ASEAN_Undergraduate_Scholarship.png';
 
   if (name.includes('kyoto') || provider.includes('kyoto')) return '/images/logos/KyotoU.png';
   if (name.includes('tokyo') || provider.includes('tokyo') || hasWord('uoftokyo')) return '/images/logos/UofTokyo.png';
+  if (name.includes('osaka') || provider.includes('osaka')) return '/images/logos/Osaka.png';
+  if (name.includes('tohoku') || provider.includes('tohoku')) return '/images/logos/Tohoku.png';
+  if (name.includes('tokyo institute of technology') || name.includes('tokyo tech')) return '/images/logos/TokyoTech.png';
 
   if (name.includes('heidelberg') || provider.includes('heidelberg')) return '/images/logos/HeidelbergU.png';
   if (hasWord('lmu') || name.includes('ludwig-maximilians')) return '/images/logos/LMU.png';
   if (name.includes('technical university of munich') || hasWord('tum') || name.includes('münchen') || provider.includes('tum')) return '/images/logos/TUM.png';
+  if (name.includes('freie universität berlin') || hasWord('fu berlin') || name.includes('freie universitat')) return '/images/logos/FUBerlin.png';
+  if (hasWord('kit') || name.includes('karlsruhe institute of technology') || name.includes('karlsruher institut')) return '/images/logos/KIT.png';
 
-  if (name.includes('paris-saclay') || provider.includes('paris-saclay') || hasWord('psl') || provider.includes('psl')) return '/images/logos/PSLU.png';
+  if (name.includes('paris-saclay') || provider.includes('paris-saclay')) return '/images/logos/ParisSaclay.png';
+  if (hasWord('psl') || provider.includes('psl') || name.includes('paris sciences')) return '/images/logos/PSLU.png';
   if (name.includes('polytechnique de paris') || provider.includes('polytechnique de paris')) return '/images/logos/InstitutPolytechniqueDeParis.png';
+  if (name.includes('sorbonne') || provider.includes('sorbonne')) return '/images/logos/Sorbonne.png';
 
   if (name.includes('middle east technical') || hasWord('metu') || provider.includes('metu')) return '/images/logos/METU.png';
   if (name.includes('istanbul technical') || (hasWord('itu') && s.country === 'Turkey')) return '/images/logos/ITU.png';
+  if (name.includes('bogazici') || name.includes('boğaziçi')) return '/images/logos/Bogazici.png';
+  if (name.includes('hacettepe')) return '/images/logos/Hacettepe.png';
+  if (name.includes('koc university') || name.includes('koç')) return '/images/logos/Koc.png';
+
+  if (name.includes('oxford') || provider.includes('oxford')) return '/images/logos/Oxford.png';
+  if (name.includes('cambridge') || provider.includes('cambridge')) return '/images/logos/Cambridge.png';
+  if (name.includes('imperial college') || provider.includes('imperial college')) return '/images/logos/ImperialCollegeLondon.png';
+  if (name.includes('edinburgh') || provider.includes('edinburgh')) return '/images/logos/Edinburgh.png';
+  if (hasWord('ucl') || name.includes('university college london')) return '/images/logos/UCL.png';
+
+  if (name.includes('melbourne') || provider.includes('melbourne')) return '/images/logos/Melbourne.png';
+  if (name.includes('sydney') || provider.includes('sydney')) return '/images/logos/Sydney.png';
+  if (hasWord('anu') || name.includes('australian national university')) return '/images/logos/ANU.png';
+  if (name.includes('monash') || provider.includes('monash')) return '/images/logos/Monash_AUS.png';
+  if (hasWord('unsw') || name.includes('new south wales')) return '/images/logos/UNSW.png';
+
+  if (hasWord('snu') || name.includes('seoul national')) return '/images/logos/SNU.png';
+  if (hasWord('kaist') || name.includes('korea advanced institute of science')) return '/images/logos/KAIST.png';
+  if (name.includes('yonsei') || provider.includes('yonsei')) return '/images/logos/Yonsei.png';
+  if (name.includes('korea university')) return '/images/logos/KoreaU.png';
+  if (hasWord('postech') || name.includes('pohang university')) return '/images/logos/POSTECH.png';
 
   // 2. Fallback to Group Logos
   const group = providerGroup(s.provider);
@@ -572,22 +604,54 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/universities/CA_UofT.png';
   if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/universities/CA_McGill.png';
   if (name.includes('british columbia') || hasWord('ubc')) return '/images/universities/CA_UBC.png';
+  if (name.includes('mcmaster') || provider.includes('mcmaster')) return '/images/universities/CA_McMaster.png';
+  if (name.includes('waterloo') || provider.includes('waterloo')) return '/images/universities/CA_Waterloo.png';
 
   if (name.includes('national university of singapore') || provider.includes('national university of singapore') || hasWord('nus')) return '/images/universities/SG_NUS.png';
   if (name.includes('nanyang') || provider.includes('nanyang') || hasWord('ntu')) return '/images/universities/SG_NTU.png';
+  if (hasWord('smu') || name.includes('singapore management university')) return '/images/universities/SG_SMU.png';
+  if (hasWord('sutd') || name.includes('singapore university of technology and design')) return '/images/universities/SG_SUTD.png';
 
   if (name.includes('kyoto') || provider.includes('kyoto')) return '/images/universities/JP_KyotoU.png';
   if (name.includes('tokyo') || provider.includes('tokyo') || hasWord('uoftokyo')) return '/images/universities/JP_UofTokyo.png';
+  if (name.includes('osaka') || provider.includes('osaka')) return '/images/universities/JP_Osaka.png';
+  if (name.includes('tohoku') || provider.includes('tohoku')) return '/images/universities/JP_Tohoku.png';
+  if (name.includes('tokyo institute of technology') || name.includes('tokyo tech')) return '/images/universities/JP_TokyoTech.png';
 
   if (name.includes('heidelberg') || provider.includes('heidelberg')) return '/images/universities/GE_HeidelbergU.png';
   if (hasWord('lmu') || name.includes('ludwig-maximilians')) return '/images/universities/GE_LMU.png';
   if (name.includes('technical university of munich') || hasWord('tum') || name.includes('münchen') || provider.includes('tum')) return '/images/universities/GE_TUM.png';
+  if (name.includes('freie universität berlin') || hasWord('fu berlin') || name.includes('freie universitat')) return '/images/universities/GE_FUBerlin.png';
+  if (hasWord('kit') || name.includes('karlsruhe institute of technology') || name.includes('karlsruher institut')) return '/images/universities/GE_KIT.png';
 
-  if (name.includes('paris-saclay') || provider.includes('paris-saclay') || hasWord('psl') || provider.includes('psl')) return '/images/universities/FR_PSLU.png';
+  if (name.includes('paris-saclay') || provider.includes('paris-saclay')) return '/images/universities/FR_ParisSaclay.png';
+  if (hasWord('psl') || provider.includes('psl') || name.includes('paris sciences')) return '/images/universities/FR_PSLU.png';
   if (name.includes('polytechnique de paris') || provider.includes('polytechnique de paris')) return '/images/universities/FR_InstitutPolytechniqueDeParis.png';
+  if (name.includes('sorbonne') || provider.includes('sorbonne')) return '/images/universities/FR_Sorbonne.png';
 
   if (name.includes('middle east technical') || hasWord('metu') || provider.includes('metu')) return '/images/universities/TU_METU.png';
   if (name.includes('istanbul technical') || (hasWord('itu') && s.country === 'Turkey')) return '/images/universities/TU_ITU.png';
+  if (name.includes('bogazici') || name.includes('boğaziçi')) return '/images/universities/TU_Bogazici.png';
+  if (name.includes('hacettepe')) return '/images/universities/TU_Hacettepe.png';
+  if (name.includes('koc university') || name.includes('koç')) return '/images/universities/TU_Koc.png';
+
+  if (name.includes('oxford') || provider.includes('oxford')) return '/images/universities/UK_Oxford.png';
+  if (name.includes('cambridge') || provider.includes('cambridge')) return '/images/universities/UK_Cambridge.png';
+  if (name.includes('imperial college') || provider.includes('imperial college')) return '/images/universities/UK_ImperialCollegeLondon.png';
+  if (name.includes('edinburgh') || provider.includes('edinburgh')) return '/images/universities/UK_Edinburgh.png';
+  if (hasWord('ucl') || name.includes('university college london')) return '/images/universities/UK_UCL.png';
+
+  if (name.includes('melbourne') || provider.includes('melbourne')) return '/images/universities/AUS_Melbourne.png';
+  if (name.includes('sydney') || provider.includes('sydney')) return '/images/universities/AUS_Sydney.png';
+  if (hasWord('anu') || name.includes('australian national university')) return '/images/universities/AUS_ANU.png';
+  if (name.includes('monash') || provider.includes('monash')) return '/images/universities/AUS_Monash.png';
+  if (hasWord('unsw') || name.includes('new south wales')) return '/images/universities/AUS_UNSW.png';
+
+  if (hasWord('snu') || name.includes('seoul national')) return '/images/universities/KOR_SNU.png';
+  if (hasWord('kaist') || name.includes('korea advanced institute of science')) return '/images/universities/KOR_KAIST.png';
+  if (name.includes('yonsei') || provider.includes('yonsei')) return '/images/universities/KOR_Yonsei.png';
+  if (name.includes('korea university')) return '/images/universities/KOR_KoreaU.png';
+  if (hasWord('postech') || name.includes('pohang university')) return '/images/universities/KOR_POSTECH.png';
 
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
@@ -597,11 +661,9 @@ export function getScholarshipImage(s: Scholarship): string {
   if (group === 'eiffel') return '/images/universities/FR_PSLU.png';
   if (group === 'singapore') return '/images/universities/SG_NUS.png';
   if (group === 'canada') return '/images/universities/CA_UofT.png';
-
-  // Unsplash URLs for other groups
-  if (group === 'chevening') return 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80';
-  if (group === 'australia-awards') return 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=700&q=80';
-  if (group === 'gks') return 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=700&q=80';
+  if (group === 'chevening') return '/images/universities/UK_Oxford.png';
+  if (group === 'australia-awards') return '/images/universities/AUS_Sydney.png';
+  if (group === 'gks') return '/images/universities/KOR_SNU.png';
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
 }
@@ -618,18 +680,55 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
   const universities = [
     { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png', keywords: ['nus', 'national university of singapore'] },
     { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png', keywords: ['ntu', 'nanyang'] },
+    { name: 'Singapore Management University (SMU)', logo: '/images/logos/SMU.png', keywords: ['smu', 'singapore management'] },
+    { name: 'Singapore University of Technology and Design (SUTD)', logo: '/images/logos/SUTD.png', keywords: ['sutd', 'singapore university of technology and design'] },
+    
     { name: 'University of Toronto', logo: '/images/logos/UofT.png', keywords: ['uoft', 'university of toronto', 'toronto'] },
     { name: 'McGill University', logo: '/images/logos/McGill.png', keywords: ['mcgill'] },
     { name: 'University of British Columbia (UBC)', logo: '/images/logos/UBC.png', keywords: ['ubc', 'british columbia'] },
+    { name: 'McMaster University', logo: '/images/logos/McMaster.png', keywords: ['mcmaster'] },
+    { name: 'University of Waterloo', logo: '/images/logos/Waterloo.png', keywords: ['waterloo'] },
+
     { name: 'Kyoto University', logo: '/images/logos/KyotoU.png', keywords: ['kyoto'] },
     { name: 'University of Tokyo', logo: '/images/logos/UofTokyo.png', keywords: ['tokyo', 'uoftokyo'] },
+    { name: 'Osaka University', logo: '/images/logos/Osaka.png', keywords: ['osaka'] },
+    { name: 'Tohoku University', logo: '/images/logos/Tohoku.png', keywords: ['tohoku'] },
+    { name: 'Tokyo Institute of Technology', logo: '/images/logos/TokyoTech.png', keywords: ['tokyo institute of technology', 'tokyo tech'] },
+
     { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png', keywords: ['heidelberg'] },
     { name: 'LMU Munich', logo: '/images/logos/LMU.png', keywords: ['lmu', 'ludwig-maximilians'] },
     { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png', keywords: ['tum', 'munich', 'münchen'] },
+    { name: 'Freie Universität Berlin', logo: '/images/logos/FUBerlin.png', keywords: ['freie universität berlin', 'freie universitat berlin', 'fu berlin'] },
+    { name: 'Karlsruhe Institute of Technology (KIT)', logo: '/images/logos/KIT.png', keywords: ['kit', 'karlsruhe institute'] },
+
     { name: 'Paris Sciences et Lettres University (PSL)', logo: '/images/logos/PSLU.png', keywords: ['psl', 'paris sciences', 'saclay'] },
     { name: 'Institut Polytechnique de Paris', logo: '/images/logos/InstitutPolytechniqueDeParis.png', keywords: ['polytechnique de paris', 'polytechnic institute of paris'] },
+    { name: 'Sorbonne University', logo: '/images/logos/Sorbonne.png', keywords: ['sorbonne'] },
+    { name: 'Université Paris-Saclay', logo: '/images/logos/ParisSaclay.png', keywords: ['paris-saclay', 'paris saclay'] },
+
     { name: 'Middle East Technical University (METU)', logo: '/images/logos/METU.png', keywords: ['metu', 'middle east technical'] },
     { name: 'Istanbul Technical University (ITU)', logo: '/images/logos/ITU.png', keywords: ['itu', 'istanbul technical'] },
+    { name: 'Boğaziçi University', logo: '/images/logos/Bogazici.png', keywords: ['bogazici', 'boğaziçi'] },
+    { name: 'Hacettepe University', logo: '/images/logos/Hacettepe.png', keywords: ['hacettepe'] },
+    { name: 'Koç University', logo: '/images/logos/Koc.png', keywords: ['koc university', 'koç university'] },
+
+    { name: 'University of Oxford', logo: '/images/logos/Oxford.png', keywords: ['oxford'] },
+    { name: 'University of Cambridge', logo: '/images/logos/Cambridge.png', keywords: ['cambridge'] },
+    { name: 'Imperial College London', logo: '/images/logos/ImperialCollegeLondon.png', keywords: ['imperial college', 'imperial college london'] },
+    { name: 'University of Edinburgh', logo: '/images/logos/Edinburgh.png', keywords: ['edinburgh'] },
+    { name: 'University College London (UCL)', logo: '/images/logos/UCL.png', keywords: ['ucl', 'university college london'] },
+
+    { name: 'University of Melbourne', logo: '/images/logos/Melbourne.png', keywords: ['melbourne'] },
+    { name: 'University of Sydney', logo: '/images/logos/Sydney.png', keywords: ['sydney'] },
+    { name: 'Australian National University (ANU)', logo: '/images/logos/ANU.png', keywords: ['anu', 'australian national university'] },
+    { name: 'Monash University', logo: '/images/logos/Monash_AUS.png', keywords: ['monash'] },
+    { name: 'UNSW Sydney', logo: '/images/logos/UNSW.png', keywords: ['unsw', 'new south wales'] },
+
+    { name: 'Seoul National University (SNU)', logo: '/images/logos/SNU.png', keywords: ['snu', 'seoul national university'] },
+    { name: 'KAIST', logo: '/images/logos/KAIST.png', keywords: ['kaist', 'korea advanced institute of science'] },
+    { name: 'Yonsei University', logo: '/images/logos/Yonsei.png', keywords: ['yonsei'] },
+    { name: 'Korea University', logo: '/images/logos/KoreaU.png', keywords: ['korea university'] },
+    { name: 'Pohang University of Science and Technology (POSTECH)', logo: '/images/logos/POSTECH.png', keywords: ['postech', 'pohang university'] },
   ];
 
   universities.forEach((univ) => {
@@ -639,7 +738,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
           text.includes('itu ') || text.includes('itu/') || text.includes('itu,') || text.includes(' itu')
         );
       }
-      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl'].includes(kw)) {
+      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
@@ -661,33 +760,71 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       list.push(
         { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png' },
         { name: 'LMU Munich', logo: '/images/logos/LMU.png' },
-        { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' }
+        { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' },
+        { name: 'Freie Universität Berlin', logo: '/images/logos/FUBerlin.png' },
+        { name: 'Karlsruhe Institute of Technology (KIT)', logo: '/images/logos/KIT.png' }
       );
     } else if (country === 'japan' || group === 'mext') {
       list.push(
         { name: 'University of Tokyo', logo: '/images/logos/UofTokyo.png' },
-        { name: 'Kyoto University', logo: '/images/logos/KyotoU.png' }
+        { name: 'Kyoto University', logo: '/images/logos/KyotoU.png' },
+        { name: 'Osaka University', logo: '/images/logos/Osaka.png' },
+        { name: 'Tohoku University', logo: '/images/logos/Tohoku.png' },
+        { name: 'Tokyo Institute of Technology', logo: '/images/logos/TokyoTech.png' }
       );
     } else if (country === 'turkey' || group === 'turkiye') {
       list.push(
         { name: 'Istanbul Technical University (ITU)', logo: '/images/logos/ITU.png' },
-        { name: 'Middle East Technical University (METU)', logo: '/images/logos/METU.png' }
+        { name: 'Middle East Technical University (METU)', logo: '/images/logos/METU.png' },
+        { name: 'Boğaziçi University', logo: '/images/logos/Bogazici.png' },
+        { name: 'Hacettepe University', logo: '/images/logos/Hacettepe.png' },
+        { name: 'Koç University', logo: '/images/logos/Koc.png' }
       );
     } else if (country === 'canada' || group === 'canada') {
       list.push(
         { name: 'University of Toronto', logo: '/images/logos/UofT.png' },
         { name: 'McGill University', logo: '/images/logos/McGill.png' },
-        { name: 'University of British Columbia (UBC)', logo: '/images/logos/UBC.png' }
+        { name: 'University of British Columbia (UBC)', logo: '/images/logos/UBC.png' },
+        { name: 'McMaster University', logo: '/images/logos/McMaster.png' },
+        { name: 'University of Waterloo', logo: '/images/logos/Waterloo.png' }
       );
     } else if (country === 'france' || group === 'eiffel') {
       list.push(
         { name: 'Institut Polytechnique de Paris', logo: '/images/logos/InstitutPolytechniqueDeParis.png' },
-        { name: 'Paris Sciences et Lettres University (PSL)', logo: '/images/logos/PSLU.png' }
+        { name: 'Paris Sciences et Lettres University (PSL)', logo: '/images/logos/PSLU.png' },
+        { name: 'Sorbonne University', logo: '/images/logos/Sorbonne.png' },
+        { name: 'Université Paris-Saclay', logo: '/images/logos/ParisSaclay.png' }
       );
     } else if (country === 'singapore' || group === 'singapore') {
       list.push(
         { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png' },
-        { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png' }
+        { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png' },
+        { name: 'Singapore Management University (SMU)', logo: '/images/logos/SMU.png' },
+        { name: 'Singapore University of Technology and Design (SUTD)', logo: '/images/logos/SUTD.png' }
+      );
+    } else if (country === 'united kingdom' || group === 'chevening') {
+      list.push(
+        { name: 'University of Oxford', logo: '/images/logos/Oxford.png' },
+        { name: 'University of Cambridge', logo: '/images/logos/Cambridge.png' },
+        { name: 'Imperial College London', logo: '/images/logos/ImperialCollegeLondon.png' },
+        { name: 'University of Edinburgh', logo: '/images/logos/Edinburgh.png' },
+        { name: 'University College London (UCL)', logo: '/images/logos/UCL.png' }
+      );
+    } else if (country === 'australia' || group === 'australia-awards') {
+      list.push(
+        { name: 'University of Melbourne', logo: '/images/logos/Melbourne.png' },
+        { name: 'University of Sydney', logo: '/images/logos/Sydney.png' },
+        { name: 'Australian National University (ANU)', logo: '/images/logos/ANU.png' },
+        { name: 'Monash University', logo: '/images/logos/Monash_AUS.png' },
+        { name: 'UNSW Sydney', logo: '/images/logos/UNSW.png' }
+      );
+    } else if (country === 'south korea' || country === 'korea' || group === 'gks') {
+      list.push(
+        { name: 'Seoul National University (SNU)', logo: '/images/logos/SNU.png' },
+        { name: 'KAIST', logo: '/images/logos/KAIST.png' },
+        { name: 'Yonsei University', logo: '/images/logos/Yonsei.png' },
+        { name: 'Korea University', logo: '/images/logos/KoreaU.png' },
+        { name: 'Pohang University of Science and Technology (POSTECH)', logo: '/images/logos/POSTECH.png' }
       );
     }
   }
