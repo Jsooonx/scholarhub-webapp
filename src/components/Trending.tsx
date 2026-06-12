@@ -1,24 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { allScholarships, providerGroup } from '@/lib/scholarships';
+import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
 
 const flagMap: Record<string, string> = {
   daad: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
   chevening: '🇬🇧', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
-};
-
-const PROVIDER_IMAGES: Record<string, string> = {
-  daad: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=700&q=80',
-  mext: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80',
-  turkiye: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=700&q=80',
-  chevening: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80',
-  'australia-awards': 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=700&q=80',
-  gks: 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=700&q=80',
-  eiffel: '/images/universities/france_paris.png',
-  singapore: '/images/universities/singapore_nus.png',
-  canada: '/images/universities/canada_toronto.png',
 };
 
 const PROVIDER_LABELS: Record<string, string> = {
@@ -51,7 +39,6 @@ function ProviderCard({ group }: { group: string }) {
   const list = byGroup[group] ?? [];
   const flag = flagMap[group] ?? '🌍';
   const label = PROVIDER_LABELS[group] ?? group;
-  const img = PROVIDER_IMAGES[group] ?? '';
   const featured = list[0];
   const rest = list.slice(1, 3);
 
@@ -74,7 +61,7 @@ function ProviderCard({ group }: { group: string }) {
           <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-brand-border mb-3">
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-              style={{ backgroundImage: `url('${img}')` }}
+              style={{ backgroundImage: `url('${getScholarshipImage(featured)}')` }}
             />
             <span className="absolute top-3 left-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-brand-cream text-brand-dark border border-brand-border shadow-sm z-10">
               {featured.degree_levels[0] ?? 'Various'}
@@ -93,7 +80,7 @@ function ProviderCard({ group }: { group: string }) {
           <Link key={s.slug} href={`/scholarships/${s.slug}`} className="flex gap-3 group cursor-pointer">
             <div
               className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-cover bg-center border border-brand-border"
-              style={{ backgroundImage: `url('${img}')` }}
+              style={{ backgroundImage: `url('${getScholarshipImage(s)}')` }}
             />
             <div className="flex flex-col justify-center min-w-0">
               <h4 className="text-[11px] font-semibold text-brand-dark line-clamp-2 leading-snug group-hover:underline">

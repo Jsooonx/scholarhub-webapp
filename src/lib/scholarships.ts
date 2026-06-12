@@ -512,3 +512,148 @@ export const providerMeta: Record<
     website: 'https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-doctoral-program',
   },
 };
+
+/**
+ * Resolves a specific university or provider logo if available, falling back to group-level logos.
+ */
+export function getScholarshipLogo(s: Scholarship): string | null {
+  const name = s.name.toLowerCase();
+  const provider = s.provider.toLowerCase();
+
+  const hasWord = (word: string) => {
+    const regex = new RegExp(`\\b${word}\\b`, 'i');
+    return regex.test(name) || regex.test(provider);
+  };
+
+  // 1. Specific University / Provider Logos
+  if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/logos/UofT.png';
+  if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/logos/McGill.png';
+  if (name.includes('british columbia') || hasWord('ubc')) return '/images/logos/UBC.png';
+  
+  if (name.includes('national university of singapore') || provider.includes('national university of singapore') || hasWord('nus')) return '/images/logos/NUS.png';
+  if (name.includes('nanyang') || provider.includes('nanyang') || hasWord('ntu')) return '/images/logos/NTU.png';
+  if (name.includes('asean undergraduate') && !hasWord('nus') && !hasWord('ntu')) return '/images/logos/ASEAN_Undergraduate_Scholarship.png';
+
+  if (name.includes('kyoto') || provider.includes('kyoto')) return '/images/logos/KyotoU.png';
+  if (name.includes('tokyo') || provider.includes('tokyo') || hasWord('uoftokyo')) return '/images/logos/UofTokyo.png';
+
+  if (name.includes('heidelberg') || provider.includes('heidelberg')) return '/images/logos/HeidelbergU.png';
+  if (hasWord('lmu') || name.includes('ludwig-maximilians')) return '/images/logos/LMU.png';
+  if (name.includes('technical university of munich') || hasWord('tum') || name.includes('münchen') || provider.includes('tum')) return '/images/logos/TUM.png';
+
+  if (name.includes('paris-saclay') || provider.includes('paris-saclay') || hasWord('psl') || provider.includes('psl')) return '/images/logos/PSLU.png';
+  if (name.includes('polytechnique de paris') || provider.includes('polytechnique de paris')) return '/images/logos/InstitutPolytechniqueDeParis.png';
+
+  if (name.includes('middle east technical') || hasWord('metu') || provider.includes('metu')) return '/images/logos/METU.png';
+  if (name.includes('istanbul technical') || (hasWord('itu') && s.country === 'Turkey')) return '/images/logos/ITU.png';
+
+  // 2. Fallback to Group Logos
+  const group = providerGroup(s.provider);
+  if (group === 'daad') return '/images/logos/daad.svg';
+  if (group === 'mext') return '/images/logos/mext.svg';
+  if (group === 'turkiye') return '/images/logos/turkiye.png';
+
+  return null;
+}
+
+/**
+ * Resolves a specific university image if available, falling back to country/group default images.
+ */
+export function getScholarshipImage(s: Scholarship): string {
+  const name = s.name.toLowerCase();
+  const provider = s.provider.toLowerCase();
+
+  const hasWord = (word: string) => {
+    const regex = new RegExp(`\\b${word}\\b`, 'i');
+    return regex.test(name) || regex.test(provider);
+  };
+
+  // 1. Specific University Images
+  if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/universities/CA_UofT.png';
+  if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/universities/CA_McGill.png';
+  if (name.includes('british columbia') || hasWord('ubc')) return '/images/universities/CA_UBC.png';
+
+  if (name.includes('national university of singapore') || provider.includes('national university of singapore') || hasWord('nus')) return '/images/universities/SG_NUS.png';
+  if (name.includes('nanyang') || provider.includes('nanyang') || hasWord('ntu')) return '/images/universities/SG_NTU.png';
+
+  if (name.includes('kyoto') || provider.includes('kyoto')) return '/images/universities/JP_KyotoU.png';
+  if (name.includes('tokyo') || provider.includes('tokyo') || hasWord('uoftokyo')) return '/images/universities/JP_UofTokyo.png';
+
+  if (name.includes('heidelberg') || provider.includes('heidelberg')) return '/images/universities/GE_HeidelbergU.png';
+  if (hasWord('lmu') || name.includes('ludwig-maximilians')) return '/images/universities/GE_LMU.png';
+  if (name.includes('technical university of munich') || hasWord('tum') || name.includes('münchen') || provider.includes('tum')) return '/images/universities/GE_TUM.png';
+
+  if (name.includes('paris-saclay') || provider.includes('paris-saclay') || hasWord('psl') || provider.includes('psl')) return '/images/universities/FR_PSLU.png';
+  if (name.includes('polytechnique de paris') || provider.includes('polytechnique de paris')) return '/images/universities/FR_InstitutPolytechniqueDeParis.png';
+
+  if (name.includes('middle east technical') || hasWord('metu') || provider.includes('metu')) return '/images/universities/TU_METU.png';
+  if (name.includes('istanbul technical') || (hasWord('itu') && s.country === 'Turkey')) return '/images/universities/TU_ITU.png';
+
+  // 2. Fallback to Country/Group Images
+  const group = providerGroup(s.provider);
+  if (group === 'daad') return '/images/universities/GE_HeidelbergU.png';
+  if (group === 'mext') return '/images/universities/JP_UofTokyo.png';
+  if (group === 'turkiye') return '/images/universities/TU_METU.png';
+  if (group === 'eiffel') return '/images/universities/FR_PSLU.png';
+  if (group === 'singapore') return '/images/universities/SG_NUS.png';
+  if (group === 'canada') return '/images/universities/CA_UofT.png';
+
+  // Unsplash URLs for other groups
+  if (group === 'chevening') return 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80';
+  if (group === 'australia-awards') return 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=700&q=80';
+  if (group === 'gks') return 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=700&q=80';
+
+  return '/images/editorial/stem.jpg'; // ultimate fallback
+}
+
+export interface UniversityLogo {
+  name: string;
+  logo: string;
+}
+
+/**
+ * Extracts and returns logos of universities matched in the scholarship title, provider, or description.
+ */
+export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
+  const text = `${s.name} ${s.provider} ${s.description ?? ''}`.toLowerCase();
+  const list: UniversityLogo[] = [];
+
+  const universities = [
+    { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png', keywords: ['nus', 'national university of singapore'] },
+    { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png', keywords: ['ntu', 'nanyang'] },
+    { name: 'University of Toronto', logo: '/images/logos/UofT.png', keywords: ['uoft', 'university of toronto', 'toronto'] },
+    { name: 'McGill University', logo: '/images/logos/McGill.png', keywords: ['mcgill'] },
+    { name: 'University of British Columbia (UBC)', logo: '/images/logos/UBC.png', keywords: ['ubc', 'british columbia'] },
+    { name: 'Kyoto University', logo: '/images/logos/KyotoU.png', keywords: ['kyoto'] },
+    { name: 'University of Tokyo', logo: '/images/logos/UofTokyo.png', keywords: ['tokyo', 'uoftokyo'] },
+    { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png', keywords: ['heidelberg'] },
+    { name: 'LMU Munich', logo: '/images/logos/LMU.png', keywords: ['lmu', 'ludwig-maximilians'] },
+    { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png', keywords: ['tum', 'munich', 'münchen'] },
+    { name: 'Paris Sciences et Lettres University (PSL)', logo: '/images/logos/PSLU.png', keywords: ['psl', 'paris sciences', 'saclay'] },
+    { name: 'Institut Polytechnique de Paris', logo: '/images/logos/InstitutPolytechniqueDeParis.png', keywords: ['polytechnique de paris', 'polytechnic institute of paris'] },
+    { name: 'Middle East Technical University (METU)', logo: '/images/logos/METU.png', keywords: ['metu', 'middle east technical'] },
+    { name: 'Istanbul Technical University (ITU)', logo: '/images/logos/ITU.png', keywords: ['itu', 'istanbul technical'] },
+  ];
+
+  universities.forEach((univ) => {
+    const matched = univ.keywords.some((kw) => {
+      if (kw === 'itu') {
+        return s.country === 'Turkey' && (
+          text.includes('itu ') || text.includes('itu/') || text.includes('itu,') || text.includes(' itu')
+        );
+      }
+      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl'].includes(kw)) {
+        const regex = new RegExp(`\\b${kw}\\b`, 'i');
+        return regex.test(text);
+      }
+      return text.includes(kw);
+    });
+
+    if (matched) {
+      list.push({ name: univ.name, logo: univ.logo });
+    }
+  });
+
+  return list;
+}
+

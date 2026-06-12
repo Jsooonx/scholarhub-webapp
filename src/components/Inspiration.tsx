@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const levelCards = [
@@ -9,6 +10,7 @@ const levelCards = [
     badge: 'Bachelor',
     title: 'Undergraduate scholarships for your first degree abroad',
     count: '4 scholarships',
+    href: '/scholarships?level=bachelor',
   },
   {
     id: 2,
@@ -16,6 +18,7 @@ const levelCards = [
     badge: 'Master',
     title: 'Postgraduate scholarships for Master\'s degree programs',
     count: '20+ scholarships',
+    href: '/scholarships?level=master',
   },
 ];
 
@@ -44,7 +47,7 @@ export default function Inspiration() {
           {/* Left / Middle: Two Level Cards (9 cols) */}
           <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
             {levelCards.map((card) => (
-              <div key={card.id} className="group cursor-pointer flex flex-col">
+              <Link key={card.id} href={card.href} className="group cursor-pointer flex flex-col">
                 <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-brand-border mb-4">
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
@@ -62,13 +65,13 @@ export default function Inspiration() {
                     <p className="text-[10px] text-white/70 mt-1.5 font-medium">{card.count}</p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
           {/* Right Column: PhD & Research CTA (3 cols) */}
           <div className="lg:col-span-3">
-            <div className="flex flex-col group cursor-pointer border border-brand-border rounded-2xl overflow-hidden h-full bg-brand-cream">
+            <Link href="/scholarships?level=phd" className="flex flex-col group cursor-pointer border border-brand-border rounded-2xl overflow-hidden h-full bg-brand-cream">
               <div
                 className="h-40 bg-cover bg-center border-b border-brand-border"
                 style={{
@@ -81,19 +84,18 @@ export default function Inspiration() {
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-dark" />
                     <span className="text-[10px] font-bold uppercase tracking-wider text-brand-muted">Research</span>
                   </div>
-                  <h3 className="font-serif text-sm font-semibold text-brand-dark mb-4 leading-relaxed">
+                  <h3 className="font-serif text-sm font-semibold text-brand-dark mb-4 leading-relaxed group-hover:underline">
                     PhD & postdoctoral grants - push the boundaries of your research career.
                   </h3>
                 </div>
 
-                <a
-                  href="#"
+                <span
                   className="w-full inline-flex items-center justify-center px-4 py-2.5 border border-transparent text-xs font-semibold rounded-full text-white bg-brand-dark hover:opacity-95 transition-opacity"
                 >
                   Explore PhD grants
-                </a>
+                </span>
               </div>
-            </div>
+            </Link>
           </div>
 
         </div>

@@ -12,6 +12,8 @@ import {
   providerGroup,
   cleanDescription,
   getDeadlineStatus,
+  getScholarshipLogo,
+  getMatchedUniversityLogos,
   type Scholarship,
 } from '@/lib/scholarships';
 import {
@@ -73,12 +75,6 @@ const flagMap: Record<string, string> = {
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
 };
 
-const providerLogos: Record<string, string> = {
-  daad: '/images/logos/daad.svg',
-  mext: '/images/logos/mext.svg',
-  turkiye: '/images/logos/turkiye.png',
-};
-
 function durationLabel(d: Scholarship['duration_months']) {
   if (!d.min && !d.max) return null;
   if (d.min === d.max) return `${d.min} months`;
@@ -128,6 +124,7 @@ export default async function ScholarshipDetailPage({
   const flag = flagMap[group] ?? '🌍';
   const dur = durationLabel(s.duration_months);
   const status = getDeadlineStatus(s);
+  const partnerLogos = getMatchedUniversityLogos(s);
 
   // Related: same provider, excluding this one
   const related = allScholarships
@@ -158,8 +155,8 @@ export default async function ScholarshipDetailPage({
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
-                    {providerLogos[group] ? (
-                      <img src={providerLogos[group]} alt={s.provider} className="w-full h-full object-contain" />
+                    {getScholarshipLogo(s) ? (
+                      <img src={getScholarshipLogo(s)!} alt={s.provider} className="w-full h-full object-contain" />
                     ) : (
                       <span className="text-xl" role="img" aria-label={s.country ?? s.provider}>{flag}</span>
                     )}
@@ -197,9 +194,24 @@ export default async function ScholarshipDetailPage({
                 </div>
 
                 {s.description && (
-                  <p className="text-sm text-brand-muted leading-relaxed max-w-2xl">
+                  <p className="text-sm text-brand-muted leading-relaxed max-w-2xl font-serif leading-relaxed italic border-l-2 border-brand-accent/30 pl-4 py-1">
                     {cleanDescription(s.description)}
                   </p>
+                )}
+
+                {/* Partner Universities Section */}
+                {partnerLogos.length > 0 && (
+                  <div className="mt-6">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-brand-muted mb-3">Participating Universities</p>
+                    <div className="flex flex-wrap gap-3">
+                      {partnerLogos.map((univ) => (
+                        <div key={univ.name} className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-brand-border shadow-[0_2px_4px_rgba(0,0,0,0.02)]" title={univ.name}>
+                          <img src={univ.logo} alt={univ.name} className="h-8 w-auto object-contain max-w-[120px]" />
+                          <span className="text-xs font-bold text-brand-dark">{univ.name.split(' (')[0]}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 )}
               </div>
 
@@ -533,8 +545,8 @@ export default async function ScholarshipDetailPage({
                 <p className="text-[10px] font-bold uppercase tracking-wider text-brand-muted mb-3">Provider</p>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
-                    {providerLogos[group] ? (
-                      <img src={providerLogos[group]} alt={s.provider} className="w-full h-full object-contain" />
+                    {getScholarshipLogo(s) ? (
+                      <img src={getScholarshipLogo(s)!} alt={s.provider} className="w-full h-full object-contain" />
                     ) : (
                       <span className="text-xl">{flag}</span>
                     )}

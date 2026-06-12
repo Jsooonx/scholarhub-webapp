@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { providerGroup, getDeadlineStatus, type Scholarship } from '@/lib/scholarships';
+import { providerGroup, getDeadlineStatus, getScholarshipLogo, type Scholarship } from '@/lib/scholarships';
 import DeadlineStatus from '@/components/DeadlineStatus';
 import { Clock, MapPin, GraduationCap } from 'lucide-react';
 
@@ -13,12 +13,6 @@ const providerFlags: Record<string, string> = {
   eiffel: '🇫🇷',
   singapore: '🇸🇬',
   canada: '🇨🇦',
-};
-
-const providerLogos: Record<string, string> = {
-  daad: '/images/logos/daad.svg',
-  mext: '/images/logos/mext.svg',
-  turkiye: '/images/logos/turkiye.png',
 };
 
 const fundingColors: Record<string, string> = {
@@ -46,7 +40,7 @@ interface Props {
 export default function ScholarshipCard({ scholarship: s, variant = 'grid' }: Props) {
   const group = providerGroup(s.provider);
   const flag = providerFlags[group] ?? '🌍';
-  const logoUrl = providerLogos[group];
+  const logoUrl = getScholarshipLogo(s);
   const dur = durationLabel(s.duration_months);
   const status = getDeadlineStatus(s);
 

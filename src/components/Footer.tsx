@@ -9,9 +9,9 @@ export default function Footer() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const countryImages = [
-    '/images/universities/germany_heidelberg.jpg',
-    '/images/universities/japan_tokyo.jpg',
-    '/images/universities/turkey_istanbul.jpg',
+    '/images/universities/GE_HeidelbergU.png',
+    '/images/universities/JP_UofTokyo.png',
+    '/images/universities/TU_METU.png',
     '/images/editorial/stem.jpg',
   ];
 

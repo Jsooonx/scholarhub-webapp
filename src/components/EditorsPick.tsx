@@ -2,24 +2,12 @@
 
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import { allScholarships, providerGroup } from '@/lib/scholarships';
+import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
 
 const flagMap: Record<string, string> = {
   daad: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
   chevening: '🇬🇧', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦'
-};
-
-const CARD_IMAGES: Record<string, string> = {
-  daad: '/images/universities/study_germany.jpg',
-  mext: '/images/universities/study_japan.jpg',
-  turkiye: '/images/universities/turkey_istanbul.jpg',
-  chevening: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80',
-  'australia-awards': 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=700&q=80',
-  gks: 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=700&q=80',
-  eiffel: '/images/universities/france_paris.png',
-  singapore: '/images/universities/singapore_nus.png',
-  canada: '/images/universities/canada_toronto.png',
 };
 
 const FILTER_LINKS = [
@@ -71,7 +59,7 @@ export default function EditorsPick() {
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-brand-border mb-4">
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-                style={{ backgroundImage: `url('${CARD_IMAGES[mainGroup]}')` }}
+                style={{ backgroundImage: `url('${getScholarshipImage(mainScholarship)}')` }}
               />
               <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark text-white shadow-sm z-10">
                 {flagMap[mainGroup]} {mainScholarship.provider.split('/')[0].trim()}
@@ -108,7 +96,7 @@ export default function EditorsPick() {
                 >
                   <div
                     className="flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden bg-cover bg-center border border-brand-border"
-                    style={{ backgroundImage: `url('${CARD_IMAGES[g]}')` }}
+                    style={{ backgroundImage: `url('${getScholarshipImage(s)}')` }}
                   />
                   <div className="flex flex-col justify-center">
                     <span className="text-[9px] uppercase font-bold tracking-wider text-brand-muted mb-1">

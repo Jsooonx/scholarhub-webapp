@@ -2,24 +2,12 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { allScholarships, providerGroup } from '@/lib/scholarships';
+import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
 
 const flagMap: Record<string, string> = {
   daad: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
   chevening: '🇬🇧', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦'
-};
-
-const PROVIDER_IMAGES: Record<string, string> = {
-  daad: '/images/universities/germany_heidelberg.jpg',
-  mext: '/images/universities/japan_tokyo.jpg',
-  turkiye: '/images/universities/turkey_istanbul.jpg',
-  chevening: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=700&q=80',
-  'australia-awards': 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=700&q=80',
-  gks: 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=700&q=80',
-  eiffel: '/images/universities/france_paris.png',
-  singapore: '/images/universities/singapore_nus.png',
-  canada: '/images/universities/canada_toronto.png',
 };
 
 function cleanDescription(raw: string | null): string {
@@ -70,7 +58,7 @@ export default function LatestPosts() {
                     <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-brand-border">
                       <div
                         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-                        style={{ backgroundImage: `url('${PROVIDER_IMAGES[g]}')` }}
+                        style={{ backgroundImage: `url('${getScholarshipImage(s)}')` }}
                       />
                     </div>
                   </div>

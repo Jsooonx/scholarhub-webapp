@@ -58,7 +58,7 @@ export default function NewsletterFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="absolute w-20 h-28 rounded-xl overflow-hidden border-2 border-white shadow-lg bg-cover bg-center"
-            style={{ backgroundImage: `url('/images/universities/germany_heidelberg.jpg')` }}
+            style={{ backgroundImage: `url('/images/universities/GE_HeidelbergU.png')` }}
           />
           <motion.div
             initial={{ opacity: 0, rotate: 20, x: 50 }}
@@ -66,7 +66,7 @@ export default function NewsletterFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="absolute w-20 h-28 rounded-xl overflow-hidden border-2 border-white shadow-lg bg-cover bg-center"
-            style={{ backgroundImage: `url('/images/universities/turkey_istanbul.jpg')` }}
+            style={{ backgroundImage: `url('/images/universities/TU_METU.png')` }}
           />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -74,7 +74,7 @@ export default function NewsletterFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="absolute w-24 h-32 rounded-xl overflow-hidden border-2 border-white shadow-xl bg-cover bg-center z-10"
-            style={{ backgroundImage: `url('/images/universities/japan_tokyo.jpg')` }}
+            style={{ backgroundImage: `url('/images/universities/JP_UofTokyo.png')` }}
           />
         </div>
 
