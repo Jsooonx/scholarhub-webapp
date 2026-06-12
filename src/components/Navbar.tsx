@@ -64,10 +64,10 @@ export default function Navbar() {
     <div className="sticky top-0 z-50 w-full pointer-events-none h-20 sm:h-24 flex items-start justify-center pt-3 sm:pt-4 overflow-visible">
       <motion.div
         ref={islandRef}
-        layout="size"
-        style={{ borderRadius: 28 }}
+        layout
+        style={{ borderRadius: 28, originX: 0.5, originY: 0 }}
         transition={{
-          layout: { type: 'tween', ease: [0.4, 0, 0.2, 1], duration: 0.45 },
+          layout: { type: 'spring', stiffness: 300, damping: 35 },
         }}
         className={`relative pointer-events-auto bg-brand-dark/95 backdrop-blur-md border border-white/10 shadow-2xl text-white ${
           isExpanded
