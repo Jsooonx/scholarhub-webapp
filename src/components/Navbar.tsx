@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
 import { Menu, X, ChevronDown, Search, ArrowRight, Globe, GraduationCap, Info } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 type ExpandMode = 'search' | 'menu' | null;
 
@@ -57,42 +57,68 @@ export default function Navbar() {
   const [isProviderHovered, setIsProviderHovered] = useState(false);
 
   const router = useRouter();
+  const pathname = usePathname();
   const islandRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const mounted = useRef(false);
+  // Height/width only spring when the user actively toggles the panel.
+  // Mount, reload, navigation, and stray reflows always SNAP (no animation),
+  // which removes the race condition that caused the expand-flash on navigation.
+  const allowAnim = useRef(false);
 
   const isExpanded = expandMode !== null;
 
-  // Animated width + height — both spring together so the morph stays smooth.
-  // We animate real CSS size (never transform: scale) so corners never distort.
+  // Toggle helpers — flag that the next size change is user-driven (animate).
+  const openMode = (mode: ExpandMode) => { allowAnim.current = true; setExpandMode(mode); };
+  const close = () => { allowAnim.current = true; setExpandMode(null); };
+
+  // On route change: snap closed instantly with NO animation.
+  useEffect(() => {
+    allowAnim.current = false;
+    setExpandMode(null);
+    setSearchQuery('');
+    width.set(computeWidth(false));
+    if (contentRef.current) {
+      height.set(Math.min(contentRef.current.offsetHeight, maxHeightRef.current));
+    }
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Animated width + height. Both initialized to compact size so there is never
+  // a 0→compact jump on first paint.
   const width = useMotionValue(computeWidth(false));
-  const height = useMotionValue<number>(0);
+  const height = useMotionValue<number>(-1); // -1 = unmeasured sentinel
   const maxHeightRef = useRef(computeMaxHeight());
   const [scrollable, setScrollable] = useState(false);
 
-  // Spring the width to its target whenever the state changes.
+  // Measure compact height synchronously before first paint.
   useIsoLayoutEffect(() => {
-    const controls = animate(width, computeWidth(isExpanded), MORPH_SPRING);
-    return () => controls.stop();
+    if (contentRef.current && height.get() === -1) {
+      height.set(contentRef.current.offsetHeight);
+    }
+  }, []);
+
+  // Width: spring only when user-toggled, otherwise snap.
+  useIsoLayoutEffect(() => {
+    const target = computeWidth(isExpanded);
+    if (allowAnim.current) {
+      const controls = animate(width, target, MORPH_SPRING);
+      return () => controls.stop();
+    }
+    width.set(target);
   }, [isExpanded, width]);
 
-  // Keep height animating to the real measured content height, clamped to the
-  // viewport so the expanded panel never runs off-screen. When clamped, the
-  // body becomes internally scrollable. ResizeObserver catches every change.
+  // Height: track content size. Spring only when user-toggled; snap otherwise.
   useIsoLayoutEffect(() => {
     const el = contentRef.current;
     if (!el) return;
     const sync = () => {
       const natural = el.offsetHeight;
-      const max = maxHeightRef.current;
-      const clamped = Math.min(natural, max);
-      setScrollable(natural > max);
-      if (!mounted.current) {
-        height.set(clamped); // first paint: no animation
-        mounted.current = true;
-      } else {
+      const clamped = Math.min(natural, maxHeightRef.current);
+      setScrollable(natural > maxHeightRef.current);
+      if (allowAnim.current) {
         animate(height, clamped, MORPH_SPRING);
+      } else {
+        height.set(clamped);
       }
     };
     sync();
@@ -121,7 +147,7 @@ export default function Navbar() {
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (islandRef.current && !islandRef.current.contains(e.target as Node)) {
-        setExpandMode(null);
+        close();
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -131,7 +157,7 @@ export default function Navbar() {
   // Close on Escape
   useEffect(() => {
     function handleKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setExpandMode(null);
+      if (e.key === 'Escape') close();
     }
     document.addEventListener('keydown', handleKey);
     return () => document.removeEventListener('keydown', handleKey);
@@ -145,13 +171,11 @@ export default function Navbar() {
     }
   }, [expandMode]);
 
-  const close = () => setExpandMode(null);
-
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/scholarships?q=${encodeURIComponent(searchQuery.trim())}`);
-      setExpandMode(null);
+      close();
       setSearchQuery('');
     }
   };
@@ -242,7 +266,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
               {/* Slot A: search (compact/menu) ↔ menu (search) */}
               <button
-                onClick={() => setExpandMode(expandMode === 'search' ? 'menu' : 'search')}
+                onClick={() => openMode(expandMode === 'search' ? 'menu' : 'search')}
                 className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center hover:bg-white/10 rounded-full transition-colors text-white/85 hover:text-white cursor-pointer"
                 aria-label={expandMode === 'search' ? 'Open menu' : 'Search'}
               >
@@ -251,7 +275,7 @@ export default function Navbar() {
 
               {/* Slot B: menu (compact) ↔ close (expanded) */}
               <button
-                onClick={() => (isExpanded ? close() : setExpandMode('menu'))}
+                onClick={() => (isExpanded ? close() : openMode('menu'))}
                 className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center hover:bg-white/10 rounded-full transition-colors text-white/85 hover:text-white cursor-pointer"
                 aria-label={isExpanded ? 'Close' : 'Open menu'}
               >
@@ -283,7 +307,7 @@ export default function Navbar() {
                 </form>
                 <p className="mt-3 text-[11px] text-white/35 text-center">
                   Press Enter to search ·{' '}
-                  <button onClick={() => setExpandMode('menu')} className="underline underline-offset-2 hover:text-white/60 transition-colors cursor-pointer">
+                  <button onClick={() => openMode('menu')} className="underline underline-offset-2 hover:text-white/60 transition-colors cursor-pointer">
                     Browse all providers →
                   </button>
                 </p>

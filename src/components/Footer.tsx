@@ -71,7 +71,7 @@ export default function Footer() {
                 <Mail className="h-4 w-4" />
               </a>
               <a
-                href="https://github.com/jsooonx"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-muted hover:text-brand-dark transition-colors flex items-center justify-center"
@@ -187,7 +187,7 @@ export default function Footer() {
               &copy; 2026 ScholarHub. All rights reserved. Scholarship information is sourced from official providers.
             </p>
             <p className="text-[10px] text-brand-muted/80">
-              Made by <a href="https://github.com/jsooonx" target="_blank" rel="noopener noreferrer" className="hover:text-brand-dark underline decoration-brand-accent/30 hover:decoration-brand-accent transition-all font-medium">Jsooonx</a> to All the Students out there.
+              Made by <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-brand-dark underline decoration-brand-accent/30 hover:decoration-brand-accent transition-all font-medium">Jsooonx</a> to All the Students out there.
             </p>
           </div>
           <div className="flex space-x-6">
