@@ -157,7 +157,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-50 w-full pointer-events-none h-20 sm:h-24 flex items-start justify-center pt-3 sm:pt-4 overflow-visible">
+    <div className="sticky top-0 z-50 w-full pointer-events-none h-14 sm:h-16 flex items-start justify-center pt-2 sm:pt-3 overflow-visible">
       <motion.div
         ref={islandRef}
         data-lenis-prevent
