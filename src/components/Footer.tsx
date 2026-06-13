@@ -125,15 +125,19 @@ export default function Footer() {
                 <div className="py-1">
                   <Link href="/providers/daad" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇩🇪 DAAD - Germany</Link>
                   <Link href="/providers/mext" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇯🇵 MEXT - Japan</Link>
+                  <Link href="/providers/jasso" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇯🇵 JASSO - Japan</Link>
                   <Link href="/providers/turkiye" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇹🇷 Türkiye Burslari</Link>
                   <div className="my-1 border-t border-brand-border/40" />
                   <Link href="/providers/chevening" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Chevening - UK</Link>
                   <Link href="/providers/australia-awards" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇦🇺 Australia Awards</Link>
                   <Link href="/providers/gks" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇰🇷 GKS - South Korea</Link>
+                  <Link href="/providers/koica" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇰🇷 KOICA - South Korea</Link>
                   <div className="my-1 border-t border-brand-border/40" />
                   <Link href="/providers/eiffel" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇫🇷 Eiffel - France</Link>
-                  <Link href="/providers/singapore" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇸🇬 Singapore (NUS/NTU/A*STAR)</Link>
+                  <Link href="/providers/singapore" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇸🇬 Singapore (NUS/NTU)</Link>
+                  <Link href="/providers/astar" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇸🇬 A*STAR - Singapore</Link>
                   <Link href="/providers/canada" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇨🇦 Canada CRTAS</Link>
+                  <Link href="/providers/cpra" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇨🇦 Canada CPRA</Link>
                 </div>
               </div>
             </div>

@@ -61,6 +61,9 @@ export function providerGroup(provider: string): string {
   if (p.includes('eiffel') || p.includes('campus france') || p.includes('french ministry')) return 'eiffel';
   if (p.includes('paris-saclay') || p.includes('paris saclay') || p.includes('sciences po') || p.includes('ens de lyon') || p.includes('ens lyon')) return 'eiffel';
   if (p.includes('canada') || p.includes('cihr') || p.includes('nserc') || p.includes('sshrc') || p.includes('crtas') || p.includes('cgrs') || p.includes('university of toronto')) return 'canada';
+  if (p.includes('jasso') || p.includes('japan student services')) return 'jasso';
+  if (p.includes('koica') || p.includes('korea international cooperation')) return 'koica';
+  if (p.includes('cpra') || p.includes('postdoctoral research award')) return 'cpra';
   if (p.includes('eiffel')) return 'eiffel';
   if (p.includes('singa')) return 'singa';
   if (p.includes('vanier')) return 'vanier';
@@ -411,6 +414,40 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── DAAD: rolling ────────────────────────────────────────────────────────
+  // ── JASSO: rolling (applied through school, no fixed public deadline) ────
+  if (group === 'jasso') return { type: 'rolling', label: 'Via enrolled university' };
+
+  // ── KOICA: annual, ~July deadline ────────────────────────────────────────
+  if (group === 'koica') {
+    const nowK = new Date();
+    const yearK = nowK.getFullYear();
+    const close = new Date(yearK, 6, 31); // July 31 approx
+    const diff = Math.ceil((close.getTime() - nowK.getTime()) / 86_400_000);
+    const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowK <= close) {
+      if (diff <= 30) return { type: 'closing', label: `Closing ~${fmt}`, daysLeft: diff, deadline: close };
+      return { type: 'open', label: `Open · closes ~${fmt}`, daysLeft: diff, deadline: close };
+    }
+    return { type: 'closed', label: `Closed · next cycle ~${yearK + 1}`, deadline: new Date(yearK + 1, 6, 31) };
+  }
+
+  // ── CPRA: agency deadlines Sep 11–Oct 17 ─────────────────────────────────
+  if (group === 'cpra') {
+    const nowC = new Date();
+    const yearC = nowC.getFullYear();
+    const close = new Date(yearC, 9, 17); // Oct 17 (NSERC, latest deadline)
+    const diff = Math.ceil((close.getTime() - nowC.getTime()) / 86_400_000);
+    const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowC <= close) {
+      if (diff <= 30) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: close };
+      return { type: 'open', label: `Open · agency deadline ${fmt}`, daysLeft: diff, deadline: close };
+    }
+    return { type: 'closed', label: `Closed · next cycle ~Sep ${yearC + 1}`, deadline: new Date(yearC + 1, 8, 11) };
+  }
+
+  // ── A*STAR (astar group — AGS + AIF): rolling two intakes ────────────────
+  if (group === 'astar') return { type: 'rolling', label: 'Two intakes — Feb & Aug' };
+
   return getDaadStatus();
 }
 
@@ -510,6 +547,38 @@ export const providerMeta: Record<
     description:
       'The Canada Research Training Awards Suite (CRTAS), jointly administered by CIHR, NSERC, and SSHRC, is Canada\'s premier graduate research funding program. It replaced the Vanier CGS in 2025, providing $40,000/year doctoral scholarships. International students enrolled at Canadian institutions may apply.',
     website: 'https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-doctoral-program',
+  },
+  astar: {
+    name: 'A*STAR Graduate Academy',
+    flag: '🇸🇬',
+    country: 'Singapore',
+    description:
+      "A*STAR (Agency for Science, Technology and Research) is Singapore's lead public sector agency for research, innovation and enterprise. Its Graduate Academy offers the A*STAR Graduate Scholarship (AGS) for PhD studies and the A*STAR International Fellowship (AIF) for postdoctoral researchers, supporting Singapore's R&D ecosystem.",
+    website: 'https://www.a-star.edu.sg/scholarships',
+  },
+  jasso: {
+    name: 'JASSO — Japan Student Services Organization',
+    flag: '🇯🇵',
+    country: 'Japan',
+    description:
+      'JASSO (Japan Student Services Organization) provides two scholarship programs for international students in Japan: the Monbukagakusho Honors Scholarship (¥48,000/month) for privately-financed students with financial need, and the Student Exchange Support Program (¥80,000/month) for short-term exchange students under university agreements.',
+    website: 'https://www.jasso.or.jp/en/ryugaku/scholarship_j/index.html',
+  },
+  koica: {
+    name: 'KOICA Scholarship Program',
+    flag: '🇰🇷',
+    country: 'South Korea',
+    description:
+      "KOICA (Korea International Cooperation Agency) offers fully funded master's and doctoral scholarships to public sector professionals from developing countries. Programs span 15 specialised tracks at leading Korean universities including Yonsei, KDI School, and the University of Seoul, covering fields from AI and digital health to public policy and fisheries.",
+    website: 'https://www.koica.go.kr',
+  },
+  cpra: {
+    name: 'Canada Postdoctoral Research Award (CPRA)',
+    flag: '🇨🇦',
+    country: 'Canada',
+    description:
+      'The Canada Postdoctoral Research Award (CPRA) replaced the discontinued Banting Postdoctoral Fellowship, providing CAD $70,000/year for 2 years to outstanding postdoctoral researchers. Administered jointly by CIHR, NSERC, and SSHRC, up to 20% of awards are available to international applicants enrolled or conducting postdocs at Canadian institutions.',
+    website: 'https://www.nserc-crsng.gc.ca/Students-Etudiants/PD-NP/cpra-bprc_eng.asp',
   },
 };
 
@@ -657,13 +726,17 @@ export function getScholarshipImage(s: Scholarship): string {
   const group = providerGroup(s.provider);
   if (group === 'daad') return '/images/universities/GE_HeidelbergU.png';
   if (group === 'mext') return '/images/universities/JP_UofTokyo.png';
+  if (group === 'jasso') return '/images/universities/JP_UofTokyo.png';
   if (group === 'turkiye') return '/images/universities/TU_METU.png';
   if (group === 'eiffel') return '/images/universities/FR_PSLU.png';
   if (group === 'singapore') return '/images/universities/SG_NUS.png';
+  if (group === 'astar') return '/images/universities/SG_NUS.png';
   if (group === 'canada') return '/images/universities/CA_UofT.png';
+  if (group === 'cpra') return '/images/universities/CA_UofT.png';
   if (group === 'chevening') return '/images/universities/UK_Oxford.png';
   if (group === 'australia-awards') return '/images/universities/AUS_Sydney.png';
   if (group === 'gks') return '/images/universities/KOR_SNU.png';
+  if (group === 'koica') return '/images/universities/KOR_Yonsei.png';
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
 }

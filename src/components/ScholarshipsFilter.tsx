@@ -8,13 +8,17 @@ const PROVIDERS = [
   { value: 'all', label: 'All Providers' },
   { value: 'daad', label: '🇩🇪 DAAD' },
   { value: 'mext', label: '🇯🇵 MEXT' },
+  { value: 'jasso', label: '🇯🇵 JASSO' },
   { value: 'turkiye', label: '🇹🇷 Türkiye Burslari' },
   { value: 'chevening', label: '🇬🇧 Chevening' },
   { value: 'australia-awards', label: '🇦🇺 Australia Awards' },
   { value: 'gks', label: '🇰🇷 GKS Korea' },
-  { value: 'singapore', label: '🇸🇬 Singapore' },
+  { value: 'koica', label: '🇰🇷 KOICA' },
+  { value: 'singapore', label: '🇸🇬 Singapore (NUS/NTU)' },
+  { value: 'astar', label: '🇸🇬 A*STAR' },
   { value: 'eiffel', label: '🇫🇷 Eiffel (France)' },
   { value: 'canada', label: '🇨🇦 Canada CRTAS' },
+  { value: 'cpra', label: '🇨🇦 Canada CPRA' },
 ];
 
 const FUNDING = [
