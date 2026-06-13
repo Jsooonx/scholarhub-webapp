@@ -37,6 +37,13 @@ function computeWidth(isExpanded: boolean): number {
   return Math.min(vw * 0.9, cap);
 }
 
+// Max island height — half the viewport. Keeps the expanded panel compact;
+// any content beyond this scrolls internally.
+function computeMaxHeight(): number {
+  if (typeof window === 'undefined') return 9999;
+  return window.innerHeight * 0.5;
+}
+
 const fade = { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } };
 const fadeTransition = { duration: 0.18, ease: [0.4, 0, 0.2, 1] as const };
 
@@ -57,6 +64,8 @@ export default function Navbar() {
   // We animate real CSS size (never transform: scale) so corners never distort.
   const width = useMotionValue(computeWidth(false));
   const height = useMotionValue<number>(0);
+  const maxHeightRef = useRef(computeMaxHeight());
+  const [scrollable, setScrollable] = useState(false);
 
   // Spring the width to its target whenever the state changes.
   useIsoLayoutEffect(() => {
@@ -64,19 +73,22 @@ export default function Navbar() {
     return () => controls.stop();
   }, [isExpanded, width]);
 
-  // Keep height animating to the real measured content height. ResizeObserver
-  // catches every change (state swap, body crossfade, viewport reflow) so width
-  // and height always finish together — no instant height snap.
+  // Keep height animating to the real measured content height, clamped to the
+  // viewport so the expanded panel never runs off-screen. When clamped, the
+  // body becomes internally scrollable. ResizeObserver catches every change.
   useIsoLayoutEffect(() => {
     const el = contentRef.current;
     if (!el) return;
     const sync = () => {
-      const target = el.offsetHeight;
+      const natural = el.offsetHeight;
+      const max = maxHeightRef.current;
+      const clamped = Math.min(natural, max);
+      setScrollable(natural > max);
       if (!mounted.current) {
-        height.set(target); // first paint: no animation
+        height.set(clamped); // first paint: no animation
         mounted.current = true;
       } else {
-        animate(height, target, MORPH_SPRING);
+        animate(height, clamped, MORPH_SPRING);
       }
     };
     sync();
@@ -85,12 +97,21 @@ export default function Navbar() {
     return () => ro.disconnect();
   }, [height]);
 
-  // Snap to the right size on viewport resize (no animation needed).
+  // Recompute width + max height on viewport resize.
   useEffect(() => {
-    const onResize = () => width.set(computeWidth(isExpanded));
+    const onResize = () => {
+      maxHeightRef.current = computeMaxHeight();
+      width.set(computeWidth(isExpanded));
+      if (contentRef.current) {
+        const natural = contentRef.current.offsetHeight;
+        const clamped = Math.min(natural, maxHeightRef.current);
+        setScrollable(natural > maxHeightRef.current);
+        height.set(clamped);
+      }
+    };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, [isExpanded, width]);
+  }, [isExpanded, width, height]);
 
   // Close when clicking outside
   useEffect(() => {
@@ -140,9 +161,13 @@ export default function Navbar() {
           width,
           height,
           borderRadius: 28,
-          overflow: isExpanded ? 'hidden' : 'visible',
+          overflowX: 'visible',
+          overflowY: isExpanded ? (scrollable ? 'auto' : 'hidden') : 'visible',
+          overscrollBehavior: 'contain',
         }}
-        className="relative pointer-events-auto bg-black text-white shadow-[0_8px_40px_rgba(0,0,0,0.35)]"
+        className={`relative pointer-events-auto bg-black text-white shadow-[0_8px_40px_rgba(0,0,0,0.35)] ${
+          isExpanded ? 'navbar-dropdown-scroll' : ''
+        }`}
       >
         {/* Measured content is absolutely positioned so the container's animating
             height never constrains it — `contentRef` always reports the true
