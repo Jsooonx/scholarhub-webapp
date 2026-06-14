@@ -70,9 +70,11 @@ export async function generateMetadata({
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 const flagMap: Record<string, string> = {
-  daad: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'australia-awards': '🇦🇺', gks: '🇰🇷',
+  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
+  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
+  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
+  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
 };
 
 function durationLabel(d: Scholarship['duration_months']) {

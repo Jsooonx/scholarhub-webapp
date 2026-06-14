@@ -4,16 +4,23 @@ import Link from 'next/link';
 import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
 
 const flagMap: Record<string, string> = {
-  daad: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'australia-awards': '🇦🇺', gks: '🇰🇷',
+  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
+  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
+  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
+  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
 };
 
 const PROVIDER_LABELS: Record<string, string> = {
   daad: 'DAAD - Germany',
+  studienstiftung: 'Studienstiftung - Germany',
   mext: 'MEXT - Japan',
   turkiye: 'Türkiye Burslari',
   chevening: 'Chevening - UK',
+  'gates-cambridge': 'Gates Cambridge - UK',
+  clarendon: 'Clarendon Fund - Oxford',
+  rhodes: 'Rhodes Scholarship',
+  netherlands: 'Netherlands Scholarships',
   'australia-awards': 'Australia Awards',
   gks: 'GKS - South Korea',
   eiffel: 'Eiffel - France',
@@ -21,8 +28,13 @@ const PROVIDER_LABELS: Record<string, string> = {
   canada: 'Canada CRTAS',
 };
 
-// Build a featured list per provider: first 3 each for the 9 groups
-const PROVIDER_GROUPS = ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks', 'eiffel', 'singapore', 'canada'];
+// Build a featured list per provider
+const PROVIDER_GROUPS = [
+  'daad', 'mext', 'turkiye',
+  'chevening', 'australia-awards', 'gks',
+  'eiffel', 'singapore', 'canada',
+  'studienstiftung', 'netherlands', 'gates-cambridge',
+];
 
 const byGroup = Object.fromEntries(
   PROVIDER_GROUPS.map((g) => [
@@ -31,9 +43,10 @@ const byGroup = Object.fromEntries(
   ])
 );
 
-const topRow = ['daad', 'mext', 'turkiye'] as const;
+const topRow    = ['daad', 'mext', 'turkiye'] as const;
 const bottomRow = ['chevening', 'australia-awards', 'gks'] as const;
-const thirdRow = ['eiffel', 'singapore', 'canada'] as const;
+const thirdRow  = ['eiffel', 'singapore', 'canada'] as const;
+const fourthRow = ['studienstiftung', 'netherlands', 'gates-cambridge'] as const;
 
 function ProviderCard({ group }: { group: string }) {
   const list = byGroup[group] ?? [];
@@ -150,6 +163,21 @@ export default function Trending() {
         {/* Bottom row - 3 more providers */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {thirdRow.map((g, i) => (
+            <div
+              key={g}
+              className={i === 1 ? 'md:border-x md:border-brand-border md:px-8' : ''}
+            >
+              <ProviderCard group={g} />
+            </div>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-brand-border mb-10 mt-10" />
+
+        {/* 4th row - Europe new providers */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {fourthRow.map((g, i) => (
             <div
               key={g}
               className={i === 1 ? 'md:border-x md:border-brand-border md:px-8' : ''}

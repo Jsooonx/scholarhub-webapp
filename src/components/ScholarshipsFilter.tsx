@@ -46,13 +46,13 @@ const COUNTRIES = [
   { value: 'japan', label: '🇯🇵 Japan' },
   { value: 'turkey', label: '🇹🇷 Turkey' },
   { value: 'united kingdom', label: '🇬🇧 United Kingdom' },
+  { value: 'netherlands', label: '🇳🇱 Netherlands' },
   { value: 'australia', label: '🇦🇺 Australia' },
   { value: 'south korea', label: '🇰🇷 South Korea' },
-  { value: 'indonesia', label: '🇮🇩 Indonesia' },
-  { value: 'thailand', label: '🇹🇭 Thailand' },
   { value: 'france', label: '🇫🇷 France' },
   { value: 'singapore', label: '🇸🇬 Singapore' },
   { value: 'canada', label: '🇨🇦 Canada' },
+  { value: 'united states', label: '🇺🇸 United States' },
 ];
 
 const DEBOUNCE_MS = 350;

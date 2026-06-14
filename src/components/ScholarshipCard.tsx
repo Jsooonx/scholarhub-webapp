@@ -5,14 +5,23 @@ import { Clock, MapPin, GraduationCap } from 'lucide-react';
 
 const providerFlags: Record<string, string> = {
   daad: '🇩🇪',
+  studienstiftung: '🇩🇪',
   mext: '🇯🇵',
+  jasso: '🇯🇵',
   turkiye: '🇹🇷',
   chevening: '🇬🇧',
+  'gates-cambridge': '🇬🇧',
+  clarendon: '🇬🇧',
+  rhodes: '🇬🇧',
+  netherlands: '🇳🇱',
   'australia-awards': '🇦🇺',
   gks: '🇰🇷',
+  koica: '🇰🇷',
   eiffel: '🇫🇷',
   singapore: '🇸🇬',
+  astar: '🇸🇬',
   canada: '🇨🇦',
+  cpra: '🇨🇦',
 };
 
 const fundingColors: Record<string, string> = {

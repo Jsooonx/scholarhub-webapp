@@ -1,4 +1,4 @@
-import data from '../../data/scholarships.json';
+﻿import data from '../../data/scholarships.json';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -64,6 +64,11 @@ export function providerGroup(provider: string): string {
   if (p.includes('jasso') || p.includes('japan student services')) return 'jasso';
   if (p.includes('koica') || p.includes('korea international cooperation')) return 'koica';
   if (p.includes('cpra') || p.includes('postdoctoral research award')) return 'cpra';
+  if (p.includes('studienstiftung') || p.includes('german academic scholarship foundation')) return 'studienstiftung';
+  if (p.includes('nuffic') || p.includes('dutch ministry') || p.includes('justus') || p.includes('van effen') || p.includes('university of groningen') || p.includes('university of amsterdam') || p.includes('leiden university') || p.includes('maastricht university') || p.includes('radboud university') || p.includes('tu delft') || p.includes('delft university')) return 'netherlands';
+  if (p.includes('gates cambridge')) return 'gates-cambridge';
+  if (p.includes('clarendon') || p.includes('oxford university press')) return 'clarendon';
+  if (p.includes('rhodes trust') || p.includes('rhodes house')) return 'rhodes';
   if (p.includes('eiffel')) return 'eiffel';
   if (p.includes('singa')) return 'singa';
   if (p.includes('vanier')) return 'vanier';
@@ -445,8 +450,114 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'closed', label: `Closed · next cycle ~Sep ${yearC + 1}`, deadline: new Date(yearC + 1, 8, 11) };
   }
 
-  // ── A*STAR (astar group — AGS + AIF): rolling two intakes ────────────────
-  if (group === 'astar') return { type: 'rolling', label: 'Two intakes — Feb & Aug' };
+  // ── A*STAR (astar group - AGS + AIF): rolling two intakes ────────────────
+  if (group === 'astar') return { type: 'rolling', label: 'Two intakes - Feb & Aug' };
+
+  // ── Studienstiftung: nomination-based / special programme deadlines ──────
+  if (group === 'studienstiftung') {
+    const name = s.name.toLowerCase();
+    const nowS = new Date();
+    const yearS = nowS.getFullYear();
+    if (name.includes('erp')) {
+      const open = new Date(yearS, 6, 1);   // Jul 1
+      const close = new Date(yearS, 8, 20); // Sep 20
+      const diff = Math.ceil((close.getTime() - nowS.getTime()) / 86_400_000);
+      const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      if (nowS >= open && nowS <= close) {
+        if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: close };
+        return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: close };
+      }
+      if (nowS > close) return { type: 'closed', label: `Closed · opens Jul ${yearS + 1}`, deadline: new Date(yearS + 1, 6, 1) };
+      return { type: 'open', label: `Opens Jul 1 · closes ${fmt}`, daysLeft: diff, deadline: close };
+    }
+    if (name.includes('mccloy')) {
+      const open = new Date(yearS, 7, 1);   // Aug 1
+      const close = new Date(yearS, 10, 1); // Nov 1
+      const diff = Math.ceil((close.getTime() - nowS.getTime()) / 86_400_000);
+      const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      if (nowS >= open && nowS <= close) {
+        if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: close };
+        return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: close };
+      }
+      if (nowS > close) return { type: 'closed', label: `Closed · opens Aug ${yearS + 1}`, deadline: new Date(yearS + 1, 7, 1) };
+      return { type: 'open', label: `Opens Aug 1 · closes ${fmt}`, daysLeft: diff, deadline: close };
+    }
+    if (name.includes('leo baeck')) {
+      const close = new Date(yearS, 1, 1); // Feb 1
+      const target = nowS <= close ? close : new Date(yearS + 1, 1, 1);
+      const diff = Math.ceil((target.getTime() - nowS.getTime()) / 86_400_000);
+      const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    return { type: 'rolling', label: 'Rolling calls · nomination-based' };
+  }
+
+  // ── Netherlands: varies by scholarship ───────────────────────────────────
+  if (group === 'netherlands') {
+    const name = s.name.toLowerCase();
+    const nowNL = new Date();
+    const yearNL = nowNL.getFullYear();
+    if (name.includes('orange knowledge')) return { type: 'rolling', label: 'Rolling · check Nuffic portal' };
+    if (name.includes('orange tulip')) return { type: 'rolling', label: 'Varies per university' };
+    if (name.includes('holland scholarship')) {
+      const open = new Date(yearNL, 10, 1); // Nov 1
+      const close = new Date(yearNL + 1, 3, 1); // ~Apr 1
+      const diff = Math.ceil((close.getTime() - nowNL.getTime()) / 86_400_000);
+      if (nowNL >= open) {
+        if (diff <= 14) return { type: 'closing', label: `Closing ~Apr`, daysLeft: diff, deadline: close };
+        return { type: 'open', label: `Open · closes ~Apr`, daysLeft: diff, deadline: close };
+      }
+      return { type: 'open', label: `Opens Nov 1 · closes ~Apr`, daysLeft: diff, deadline: close };
+    }
+    const close = new Date(yearNL, 1, 1); // Feb 1
+    const target = nowNL <= close ? close : new Date(yearNL + 1, 1, 1);
+    const diff = Math.ceil((target.getTime() - nowNL.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (diff <= 14) return { type: 'closing', label: `Closing ~${fmt}`, daysLeft: diff, deadline: target };
+    return { type: 'open', label: `Open · closes ~${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Gates Cambridge: Sep open, ~Dec close ────────────────────────────────
+  if (group === 'gates-cambridge') {
+    const nowGC = new Date();
+    const yearGC = nowGC.getFullYear();
+    const open = new Date(yearGC, 8, 1);    // Sep 1
+    const close = new Date(yearGC, 11, 15); // ~Dec 15
+    const diff = Math.ceil((close.getTime() - nowGC.getTime()) / 86_400_000);
+    if (nowGC >= open && nowGC <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ~Dec`, daysLeft: diff, deadline: close };
+      return { type: 'open', label: `Open · closes ~Dec`, daysLeft: diff, deadline: close };
+    }
+    if (nowGC > close) return { type: 'closed', label: `Closed · opens Sep ${yearGC + 1}`, deadline: new Date(yearGC + 1, 8, 1) };
+    return { type: 'open', label: `Opens Sep · closes ~Dec`, daysLeft: diff, deadline: close };
+  }
+
+  // ── Clarendon: Oxford first deadline ~Dec ────────────────────────────────
+  if (group === 'clarendon') {
+    const nowCL = new Date();
+    const yearCL = nowCL.getFullYear();
+    const close = new Date(yearCL, 11, 1); // Dec 1
+    const target = nowCL <= close ? close : new Date(yearCL + 1, 11, 1);
+    const diff = Math.ceil((target.getTime() - nowCL.getTime()) / 86_400_000);
+    if (diff <= 14) return { type: 'closing', label: `First deadline ~Dec`, daysLeft: diff, deadline: target };
+    return { type: 'open', label: `Open · first deadline ~Dec`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Rhodes: Jun–Oct, country-specific ────────────────────────────────────
+  if (group === 'rhodes') {
+    const nowRH = new Date();
+    const yearRH = nowRH.getFullYear();
+    const open = new Date(yearRH, 5, 1);  // Jun 1
+    const close = new Date(yearRH, 9, 1); // ~Oct 1
+    const diff = Math.ceil((close.getTime() - nowRH.getTime()) / 86_400_000);
+    if (nowRH >= open && nowRH <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ~Oct`, daysLeft: diff, deadline: close };
+      return { type: 'open', label: `Open · closes ~Oct`, daysLeft: diff, deadline: close };
+    }
+    if (nowRH > close) return { type: 'closed', label: `Closed · opens Jun ${yearRH + 1}`, deadline: new Date(yearRH + 1, 5, 1) };
+    return { type: 'open', label: `Opens Jun · closes ~Oct`, daysLeft: diff, deadline: close };
+  }
 
   return getDaadStatus();
 }
@@ -557,7 +668,7 @@ export const providerMeta: Record<
     website: 'https://www.a-star.edu.sg/scholarships',
   },
   jasso: {
-    name: 'JASSO — Japan Student Services Organization',
+    name: 'JASSO - Japan Student Services Organization',
     flag: '🇯🇵',
     country: 'Japan',
     description:
@@ -579,6 +690,46 @@ export const providerMeta: Record<
     description:
       'The Canada Postdoctoral Research Award (CPRA) replaced the discontinued Banting Postdoctoral Fellowship, providing CAD $70,000/year for 2 years to outstanding postdoctoral researchers. Administered jointly by CIHR, NSERC, and SSHRC, up to 20% of awards are available to international applicants enrolled or conducting postdocs at Canadian institutions.',
     website: 'https://www.nserc-crsng.gc.ca/Students-Etudiants/PD-NP/cpra-bprc_eng.asp',
+  },
+  studienstiftung: {
+    name: 'Studienstiftung des deutschen Volkes',
+    flag: '🇩🇪',
+    country: 'Germany',
+    description:
+      "Germany's oldest, largest, and most prestigious scholarship foundation, supporting ~13,300 students and doctoral candidates annually across all disciplines at German universities. Admission is by nomination only. Also offers special programmes including the ERP Fellowship (USA) and McCloy Scholarship (Harvard Kennedy School).",
+    website: 'https://www.studienstiftung.de/en',
+  },
+  netherlands: {
+    name: 'Netherlands Scholarships',
+    flag: '🇳🇱',
+    country: 'Netherlands',
+    description:
+      'The Netherlands offers a range of scholarships for international students, from the government-backed Holland Scholarship (€5,000) and Orange Knowledge Programme (fully funded, for professionals) to university-specific excellence awards at TU Delft (€30,000/year), University of Amsterdam, Groningen, Leiden, Maastricht, and Radboud University.',
+    website: 'https://www.studyinholland.nl/scholarships',
+  },
+  'gates-cambridge': {
+    name: 'Gates Cambridge Scholarship',
+    flag: '🇬🇧',
+    country: 'United Kingdom',
+    description:
+      'Established in 2000 with a US$210m donation from the Gates Foundation, the Gates Cambridge Scholarship offers ~80 fully funded postgraduate scholarships per year to outstanding non-UK citizens studying at the University of Cambridge. Covers full tuition, maintenance (£22,050/year), airfare, and visa costs.',
+    website: 'https://www.gatescambridge.org',
+  },
+  clarendon: {
+    name: 'Clarendon Fund - University of Oxford',
+    flag: '🇬🇧',
+    country: 'United Kingdom',
+    description:
+      "One of Oxford's most prestigious graduate scholarship programmes, the Clarendon Fund awards 200+ fully funded scholarships annually to outstanding students of any nationality for postgraduate study at Oxford. No separate application - all Oxford graduate applicants are automatically considered.",
+    website: 'https://www.ox.ac.uk/clarendon',
+  },
+  rhodes: {
+    name: 'Rhodes Scholarship',
+    flag: '🇬🇧',
+    country: 'United Kingdom',
+    description:
+      "Established in 1903, the Rhodes Scholarship is one of the world's oldest and most prestigious international scholarships, funding postgraduate study at the University of Oxford. Open to exceptional young graduates from approximately 60 countries who demonstrate outstanding intellect, character, leadership, and commitment to service.",
+    website: 'https://www.rhodeshouse.ox.ac.uk/scholarships/',
   },
 };
 

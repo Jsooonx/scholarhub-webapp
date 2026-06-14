@@ -1,15 +1,22 @@
-'use client';
+﻿'use client';
 
+import { useRef } from 'react';
 import Link from 'next/link';
 import { allScholarships } from '@/lib/scholarships';
 
 const providers = [
   { flag: '🇩🇪', name: 'DAAD', country: 'Germany', href: '/providers/daad' },
+  { flag: '🇩🇪', name: 'Studienstiftung', country: 'Germany', href: '/providers/studienstiftung' },
   { flag: '🇯🇵', name: 'MEXT', country: 'Japan', href: '/providers/mext' },
   { flag: '🇹🇷', name: 'Türkiye Burslari', country: 'Turkey', href: '/providers/turkiye' },
   { flag: '🇬🇧', name: 'Chevening', country: 'United Kingdom', href: '/providers/chevening' },
+  { flag: '🇬🇧', name: 'Gates Cambridge', country: 'United Kingdom', href: '/providers/gates-cambridge' },
+  { flag: '🇬🇧', name: 'Clarendon', country: 'United Kingdom', href: '/providers/clarendon' },
+  { flag: '🇬🇧', name: 'Rhodes', country: 'United Kingdom', href: '/providers/rhodes' },
+  { flag: '🇳🇱', name: 'Netherlands', country: 'Netherlands', href: '/providers/netherlands' },
   { flag: '🇦🇺', name: 'Australia Awards', country: 'Australia', href: '/providers/australia-awards' },
   { flag: '🇰🇷', name: 'GKS Korea', country: 'South Korea', href: '/providers/gks' },
+  { flag: '🇰🇷', name: 'KOICA', country: 'South Korea', href: '/providers/koica' },
   { flag: '🇫🇷', name: 'Eiffel - France', country: 'France', href: '/providers/eiffel' },
   { flag: '🇸🇬', name: 'Singapore', country: 'Singapore', href: '/providers/singapore' },
   { flag: '🇨🇦', name: 'Canada CRTAS', country: 'Canada', href: '/providers/canada' },
@@ -17,6 +24,19 @@ const providers = [
 
 export default function AdBanner() {
   const total = allScholarships.length;
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
+    const el = scrollRef.current;
+    if (!el) return;
+    const atTop = el.scrollTop === 0;
+    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+    if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) return;
+    e.stopPropagation();
+    // Clamp to ~60px per tick so fast wheels don't jump the whole list
+    const step = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 60);
+    el.scrollBy({ top: step, behavior: 'smooth' });
+  }
 
   return (
     <section className="py-6 bg-brand-bg">
@@ -36,7 +56,7 @@ export default function AdBanner() {
               {total} Scholarships. One place.
             </h3>
             <p className="text-sm text-white/70 leading-relaxed mb-6">
-              From DAAD research grants to Chevening, Australia Awards, GKS Korea, MEXT, Eiffel France, Singapore (NUS/A*STAR), and Canada CRTAS - all curated, structured, and ready to browse.
+              From DAAD and Studienstiftung to Chevening, Gates Cambridge, Clarendon, Netherlands scholarships, Australia Awards, GKS Korea, MEXT, Eiffel France, Singapore (NUS/A*STAR), and more - all curated, structured, and ready to browse.
             </p>
             <Link
               href="/scholarships"
@@ -46,22 +66,33 @@ export default function AdBanner() {
             </Link>
           </div>
 
-          {/* Right: Provider Flags - 3 columns */}
+          {/* Right: Provider Flags - 3 columns, wheel-scrollable */}
           <div className="relative z-10 flex-1 w-full max-w-md lg:max-w-none flex items-center justify-center lg:justify-end">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-              {providers.map((p) => (
-                <Link
-                  key={p.name}
-                  href={p.href}
-                  className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2.5 hover:bg-white/15 transition-colors min-w-0"
-                >
-                  <span className="text-xl flex-shrink-0" role="img" aria-label={p.country}>{p.flag}</span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold text-white truncate">{p.name}</p>
-                    <p className="text-[10px] text-white/60 truncate">{p.country}</p>
-                  </div>
-                </Link>
-              ))}
+            <div
+              ref={scrollRef}
+              onWheel={handleWheel}
+              className="w-full overflow-y-auto pr-0.5"
+              style={{
+                maxHeight: '11.5rem',
+                scrollbarWidth: 'thin',
+                scrollbarColor: 'rgba(255,255,255,0.2) transparent',
+              }}
+            >
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                {providers.map((p) => (
+                  <Link
+                    key={p.href}
+                    href={p.href}
+                    className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2.5 hover:bg-white/15 transition-colors min-w-0"
+                  >
+                    <span className="text-xl flex-shrink-0" role="img" aria-label={p.country}>{p.flag}</span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold text-white truncate">{p.name}</p>
+                      <p className="text-[10px] text-white/60 truncate">{p.country}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 

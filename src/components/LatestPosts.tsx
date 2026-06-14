@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
 
 const flagMap: Record<string, string> = {
-  daad: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'australia-awards': '🇦🇺', gks: '🇰🇷',
-  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦'
+  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
+  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
+  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
+  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
+  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
 };
 
 function cleanDescription(raw: string | null): string {

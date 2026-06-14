@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
@@ -46,7 +46,7 @@ function computeWidth(isExpanded: boolean): number {
   return Math.min(vw * 0.9, cap);
 }
 
-// Max island height — half the viewport. Keeps the expanded panel compact;
+// Max island height - half the viewport. Keeps the expanded panel compact;
 // any content beyond this scrolls internally.
 function computeMaxHeight(): number {
   if (typeof window === 'undefined') return 9999;
@@ -73,7 +73,7 @@ export default function Navbar() {
 
   const isExpanded = expandMode !== null;
 
-  // Toggle helpers — flag that the next size change is user-driven (animate).
+  // Toggle helpers - flag that the next size change is user-driven (animate).
   const openMode = (mode: ExpandMode) => { allowAnim.current = true; setExpandMode(mode); };
   const close = () => { allowAnim.current = true; setExpandMode(null); };
 
@@ -203,14 +203,14 @@ export default function Navbar() {
         }`}
       >
         {/* Measured content is absolutely positioned so the container's animating
-            height never constrains it — `contentRef` always reports the true
+            height never constrains it - `contentRef` always reports the true
             natural height for the spring to chase. It's w-full so the header
             reflows continuously while `width` springs, making children slide. */}
         <motion.div ref={contentRef} style={{ width }} className="absolute top-0 left-0">
           <div className={isExpanded ? 'w-full p-6 sm:p-8' : 'w-full px-4 sm:px-6 py-2 sm:py-3'}>
           {/* ── HEADER ROW (persistent, slides into place) ── */}
           <div className="flex items-center justify-between w-full">
-            {/* Logo — constant size, no reflow */}
+            {/* Logo - constant size, no reflow */}
             <Link
               href="/"
               onClick={isExpanded ? close : undefined}
@@ -220,7 +220,7 @@ export default function Navbar() {
               <span>Scholar<span className="text-brand-accent">Hub</span></span>
             </Link>
 
-            {/* Center links — compact only (instant, hidden behind the morph) */}
+            {/* Center links - compact only (instant, hidden behind the morph) */}
             {!isExpanded && (
               <div className="hidden sm:flex items-center space-x-6 mx-4">
                 <Link href="/scholarships" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
@@ -267,7 +267,7 @@ export default function Navbar() {
               </div>
             )}
 
-            {/* Right controls — slide with layout; icons swap instantly (no in/out) */}
+            {/* Right controls - slide with layout; icons swap instantly (no in/out) */}
             <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
               {/* Slot A: search (compact/menu) ↔ menu (search) */}
               <button
@@ -369,7 +369,7 @@ export default function Navbar() {
                     <div>
                       <h6 className="text-[10px] font-bold uppercase tracking-wider text-white mb-1">ScholarHub Directory</h6>
                       <p className="text-[10px] text-white/60 leading-relaxed">
-                        Currently listing over 56+ international scholarships from 9 countries. Use the search field above to find specific programs.
+                        Currently listing 93+ international scholarships from 13+ countries. Use the search field above to find specific programs.
                       </p>
                     </div>
                   </div>

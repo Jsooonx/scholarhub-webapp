@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://scholarhub.jsooonx.my.id';
 
@@ -94,7 +94,7 @@ function buildEmailHtml({
               </p>
               <p style="margin:0; font-size:11px; color:#b8ad9e;">
                 You received this because you subscribed at <a href="${SITE_URL}" style="color:#818cf8; text-decoration:none;">${SITE_URL.replace('https://', '')}</a>.
-                To unsubscribe, reply with "unsubscribe" — we'll remove you manually.
+                To unsubscribe, reply with "unsubscribe" - we'll remove you manually.
               </p>
             </td>
           </tr>

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     const data = await res.json();
 
     if (!res.ok) {
-      // Contact already exists — treat as success
+      // Contact already exists - treat as success
       if (data?.name === 'validation_error' && data?.message?.includes('already exists')) {
         return NextResponse.json({ success: true, message: 'Already subscribed.' });
       }

@@ -37,9 +37,11 @@ const stats = [
 ];
 
 const flagMap: Record<string, string> = {
-  daad: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'australia-awards': '🇦🇺', gks: '🇰🇷',
-  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦'
+  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
+  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
+  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
+  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
+  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
 };
 
 export default function Hero() {
