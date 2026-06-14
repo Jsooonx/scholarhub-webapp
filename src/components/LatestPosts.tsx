@@ -14,11 +14,12 @@ const flagMap: Record<string, string> = {
 
 function cleanDescription(raw: string | null): string {
   if (!raw) return 'No description available.';
-  return raw
+  const cleaned = raw
     .replace(/^halaman\s+\S+[\s\S]*?#+\s*/i, '')
     .replace(/\n+/g, ' ')
-    .trim()
-    .slice(0, 220);
+    .trim();
+  if (cleaned.length <= 220) return cleaned;
+  return cleaned.slice(0, 220).replace(/\s+\S*$/, '') + '...';
 }
 
 // Show latest - one per provider group, cycling through to ensure variety

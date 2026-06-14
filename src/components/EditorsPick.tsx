@@ -23,11 +23,13 @@ const FILTER_LINKS = [
 
 function cleanDescription(raw: string | null): string {
   if (!raw) return '';
-  return raw
+  const cleaned = raw
     .replace(/^halaman\s+\S+[\s\S]*?#+\s*/i, '')
     .replace(/\n+/g, ' ')
-    .trim()
-    .slice(0, 200);
+    .trim();
+  if (cleaned.length <= 200) return cleaned;
+  // Trim to last complete word before 200 chars and add ellipsis
+  return cleaned.slice(0, 200).replace(/\s+\S*$/, '') + '...';
 }
 
 // Build the open-this-month list: scholarships with status open or closing,

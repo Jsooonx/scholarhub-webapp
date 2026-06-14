@@ -7,6 +7,18 @@ import { ChevronDown, Mail } from 'lucide-react';
 export default function Footer() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
+    const el = scrollRef.current;
+    if (!el) return;
+    const atTop = el.scrollTop === 0;
+    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+    if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) return;
+    e.stopPropagation();
+    const step = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 60);
+    el.scrollBy({ top: step, behavior: 'smooth' });
+  }
 
   const countryImages = [
     '/images/universities/GE_HeidelbergU.png',
@@ -115,20 +127,28 @@ export default function Footer() {
                 <ChevronDown className="ml-1 h-3.5 w-3.5" />
               </button>
               
-              {/* Dropdown Menu - opening upwards since it is in the footer */}
+              {/* Dropdown Menu - opens downward, max 5 items, wheel-scrollable */}
               <div
-                onClick={() => setIsDropdownOpen(false)}
-                className={`absolute bottom-full left-0 mb-2 w-56 rounded-md shadow-lg bg-white border border-brand-border ring-1 ring-black/5 transition-all duration-200 ease-in-out z-50 ${
+                className={`absolute top-full left-0 mt-1 w-56 rounded-md shadow-lg bg-white border border-brand-border ring-1 ring-black/5 transition-all duration-200 ease-in-out z-50 ${
                   isDropdownOpen ? 'opacity-100 visible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'
                 }`}
               >
-                <div className="py-1">
+                <div
+                  ref={scrollRef}
+                  onWheel={handleWheel}
+                  onClick={() => setIsDropdownOpen(false)}
+                  className="py-1 overflow-y-auto"
+                  style={{
+                    maxHeight: '10.5rem',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#E8E8E6 transparent',
+                  }}
+                >
                   <Link href="/providers/daad" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇩🇪 DAAD - Germany</Link>
                   <Link href="/providers/studienstiftung" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇩🇪 Studienstiftung - Germany</Link>
                   <Link href="/providers/mext" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇯🇵 MEXT - Japan</Link>
                   <Link href="/providers/jasso" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇯🇵 JASSO - Japan</Link>
                   <Link href="/providers/turkiye" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇹🇷 Türkiye Burslari</Link>
-                  <div className="my-1 border-t border-brand-border/40" />
                   <Link href="/providers/chevening" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Chevening - UK</Link>
                   <Link href="/providers/gates-cambridge" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Gates Cambridge - UK</Link>
                   <Link href="/providers/clarendon" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Clarendon - Oxford</Link>
@@ -137,7 +157,6 @@ export default function Footer() {
                   <Link href="/providers/australia-awards" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇦🇺 Australia Awards</Link>
                   <Link href="/providers/gks" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇰🇷 GKS - South Korea</Link>
                   <Link href="/providers/koica" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇰🇷 KOICA - South Korea</Link>
-                  <div className="my-1 border-t border-brand-border/40" />
                   <Link href="/providers/eiffel" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇫🇷 Eiffel - France</Link>
                   <Link href="/providers/singapore" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇸🇬 Singapore (NUS/NTU)</Link>
                   <Link href="/providers/canada" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇨🇦 Canada CRTAS</Link>
