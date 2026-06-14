@@ -13,6 +13,15 @@ const PROVIDERS = [
   'singapore',
   'eiffel',
   'canada',
+  'astar',
+  'jasso',
+  'koica',
+  'cpra',
+  'studienstiftung',
+  'netherlands',
+  'gates-cambridge',
+  'clarendon',
+  'rhodes',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

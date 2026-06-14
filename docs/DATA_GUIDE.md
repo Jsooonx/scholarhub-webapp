@@ -478,27 +478,38 @@ Check `getDeadlineStatus()` in `src/lib/scholarships.ts`. Each provider group ha
 | Provider | Raw Folder | # Scholarships | Notes |
 |---|---|---|---|
 | 🇩🇪 DAAD | `data/raw/daad/` | 19 | Crawled from `daad-indonesia.org` |
+| 🇩🇪 Studienstiftung | `data/raw/studienstiftung/` | 5 | 16 files crawled from `studienstiftung.de/en` — UG/Master, Doctoral, ERP, McCloy, Leo Baeck |
 | 🇯🇵 MEXT | `data/raw/mext/` | 6 | 6 separate files per program, crawled from Jakarta embassy site |
 | 🇹🇷 Turkiye Burslari | `data/raw/turkiyeburslari/` | 17 | 8 files from various portal pages |
 | 🇬🇧 Chevening | `data/raw/chevening/` | 3 | 25 files crawled from `chevening.org/scholarship/indonesia` |
+| 🇬🇧 Gates Cambridge | `data/raw/gates-cambridge/` | 1 | 9 files crawled from `gatescambridge.org` |
+| 🇬🇧 Clarendon Fund | `data/raw/clarendon/` | 1 | Manually compiled from `ox.ac.uk/clarendon` |
+| 🇬🇧 Rhodes Scholarship | `data/raw/rhodes/` | 1 | Manually compiled from `rhodeshouse.ox.ac.uk` |
+| 🇳🇱 Netherlands | `data/raw/netherlands/` | 9 | Manually compiled — Holland Scholarship, OKP, Orange Tulip, TU Delft, Groningen, UvA, Leiden, Maastricht, Radboud |
 | 🇦🇺 Australia Awards | `data/raw/australia-awards/` | 5 | 30 files from `australiaawardsindonesia.org` |
 | 🇰🇷 GKS Korea | `data/raw/gks/` | 3 | Partial crawl - SPA site. `02_ko_plan_scholarship-do.md` is the main source (30k chars) |
 | 🇸🇬 Singapore | `data/raw/singa/` | 7 | NUS, NTU, A*STAR scholarship pages |
 | 🇫🇷 France (Eiffel) | `data/raw/eiffel/` | 5 | Eiffel, Sciences Po, ENS Lyon, Paris-Saclay |
 | 🇨🇦 Canada | `data/raw/canada/` | 3 | CGRS-D, Canada Impact+, Lester B. Pearson |
+| 🇸🇬 A*STAR | *(script only)* | 3 | AGS PhD, AIF Postdoc, AGS-MNS |
+| 🇯🇵 JASSO | `data/raw/jasso/` | 2 | Honors Scholarship + Student Exchange Support |
+| 🇰🇷 KOICA | `data/raw/koica/` | 2 | Master's and Doctoral tracks |
+| 🇨🇦 CPRA | `data/raw/canada/` | 1 | Canada Postdoctoral Research Award |
 
 ### Recommended Annual Update Schedule
 
 | Month | Providers to Check |
 |---|---|
-| January | Turkiye Burslari (applications open Jan 10), GKS Graduate (apps Feb-Mar) |
-| February | GKS Graduate deadline, Chevening results, MEXT Teacher Training & Japanese Studies |
+| January | Turkiye Burslari (applications open Jan 10), GKS Graduate (apps Feb-Mar), Netherlands university scholarships (~Feb 1 deadline) |
+| February | GKS Graduate deadline, Chevening results, MEXT Teacher Training & Japanese Studies, **Leo Baeck Fellowship deadline (Feb 1)**, Netherlands uni scholarships deadline |
 | March | Australia Awards (applications open), LPDP-Australia Awards |
 | April | MEXT Gakubu, KOSEN, Research Student, Senshu (applications April-May) |
-| August | Chevening (applications open 5 Aug), GKS Undergraduate (Sept-Oct) |
-| October | Chevening deadline (7 Oct), GKS Undergraduate deadline |
-| November | Turkiye Burslari Success Scholarship |
-| December | GKS Undergraduate results |
+| July | **Studienstiftung ERP Fellowship opens (Jul 1 – Sep 20)**, KOICA deadline (~Jul) |
+| August | Chevening (applications open 5 Aug), GKS Undergraduate (Sept-Oct), **Studienstiftung McCloy opens (Aug 1 – Nov 1)** |
+| September | **Studienstiftung ERP closes (Sep 20)**, **Gates Cambridge opens (Sep)** |
+| October | Chevening deadline (7 Oct), GKS Undergraduate deadline, **CPRA deadlines (Sep 11–Oct 17)**, **Gates Cambridge intl deadline (~Dec)** |
+| November | Turkiye Burslari Success Scholarship, **Studienstiftung McCloy closes (Nov 1)** |
+| December | GKS Undergraduate results, **Gates Cambridge international deadline (~Dec 15)**, **Clarendon first Oxford deadline (~Dec 1)** |
 
 ---
 

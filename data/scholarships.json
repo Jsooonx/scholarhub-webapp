@@ -12,7 +12,12 @@
     "ASTAR",
     "JASSO",
     "KOICA",
-    "CPRA"
+    "CPRA",
+    "STUDIENSTIFTUNG",
+    "NETHERLANDS",
+    "GATES_CAMBRIDGE",
+    "CLARENDON",
+    "RHODES"
   ],
   "provider_summaries": [
     {
@@ -79,9 +84,34 @@
       "provider_group": "CPRA",
       "file_count": 1,
       "scholarship_count": 1
+    },
+    {
+      "provider_group": "STUDIENSTIFTUNG",
+      "file_count": 16,
+      "scholarship_count": 5
+    },
+    {
+      "provider_group": "NETHERLANDS",
+      "file_count": 9,
+      "scholarship_count": 9
+    },
+    {
+      "provider_group": "GATES_CAMBRIDGE",
+      "file_count": 9,
+      "scholarship_count": 1
+    },
+    {
+      "provider_group": "CLARENDON",
+      "file_count": 1,
+      "scholarship_count": 1
+    },
+    {
+      "provider_group": "RHODES",
+      "file_count": 1,
+      "scholarship_count": 1
     }
   ],
-  "scholarship_count": 76,
+  "scholarship_count": 93,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -4620,6 +4650,1135 @@
       ],
       "source": "06_cpra.md",
       "source_file": "data/raw/canada/06_cpra.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Studienstiftung des deutschen Volkes — Undergraduate & Master's Scholarship",
+      "provider": "Studienstiftung des deutschen Volkes / German Academic Scholarship Foundation",
+      "country": "Germany",
+      "degree_levels": [
+        "Bachelor",
+        "Master's"
+      ],
+      "program_type": "Merit-based full scholarship for enrolled students at German universities",
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 60
+      },
+      "deadline": "Nomination-based — no fixed open application; admitted via university nomination or self-nomination in first two semesters",
+      "application_period": [
+        "Applications via nomination only — contact your German university liaison professor (Vertrauensdozent)"
+      ],
+      "important_dates": [
+        "Nomination deadlines vary by nominating body (school, university, government)",
+        "Selection seminars held multiple times per year",
+        "German citizenship or permanent residence in Germany often required — international students studying at German universities may be eligible",
+        "Contact: info@studienstiftung.de"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Currently enrolled at an accredited German university or Fachhochschule",
+          "Outstanding academic achievement (top percentile)",
+          "Strong extra-curricular engagement and social commitment",
+          "Must be nominated by a liaison professor (Vertrauensdozent), school/university, or apply via self-nomination in first two semesters",
+          "All nationalities studying at German institutions may be eligible — confirm current rules with Studienstiftung",
+          "Must not be beyond the 3rd semester at time of first application"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend: €952 (study allowance) — reviewed annually",
+        "Book allowance: €300/year",
+        "Language course support",
+        "International study support (additional grants for semesters abroad)",
+        "Extensive non-material support: summer academies, seminars, networking events",
+        "Access to Studienstiftung academic programme (lectures, workshops, research groups)"
+      ],
+      "amounts": [
+        "€952/month (base rate)"
+      ],
+      "target_group": "Outstanding university students of all nationalities studying at accredited German higher education institutions, who demonstrate exceptional academic ability and a commitment to contributing to society.",
+      "official_url": "https://www.studienstiftung.de/en",
+      "description": "The Studienstiftung des deutschen Volkes is Germany's oldest, largest and most prestigious scholarship foundation, supporting around 13,300 students annually across all disciplines at German universities. Admission is exclusively by nomination. International students enrolled at German universities may be eligible.",
+      "application_process": [
+        "Identify a Vertrauensdozent (liaison professor) at your German university who can nominate you",
+        "OR self-nominate during your first or second semester via the Studienstiftung self-nomination portal",
+        "OR be nominated by your German school (Abitur route)",
+        "Submit nomination documents through the nominator — Studienstiftung contacts you for the next steps",
+        "Attend a two-day selection seminar",
+        "No direct application to Studienstiftung without a nomination"
+      ],
+      "source": "01_en.md",
+      "source_file": "data/raw/studienstiftung/01_en.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Studienstiftung des deutschen Volkes — Doctoral Scholarship",
+      "provider": "Studienstiftung des deutschen Volkes / German Academic Scholarship Foundation",
+      "country": "Germany",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Merit-based doctoral scholarship at German universities",
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "Rolling — calls open approximately 8 months before each selection meeting (Oct 1, Feb 1, Jun 1, Oct 1 of each year)",
+      "application_period": [
+        "October 1 call → selection in May",
+        "February 1 call → selection in September",
+        "June 1 call → selection in January"
+      ],
+      "important_dates": [
+        "Call opening dates 2026: October 1, 2026",
+        "Call opening dates 2027: February 1, June 1, October 1",
+        "Maximum 300 complete applications accepted per call — applications close when quota reached",
+        "Selection process: ~4–6 months from submission to decision",
+        "Applications submitted physically to: Studienstiftung des deutschen Volkes, Promotionsförderung, Ahrstraße 41, 53175 Bonn"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Doctoral candidate accepted at a German university (or German citizen doing PhD abroad)",
+          "All nationalities eligible — nationality is irrelevant",
+          "Last academic degree completed no more than 4 years before application",
+          "Scholarship must start within 6 months of funding approval",
+          "Must be in early-stage doctoral research — not near completion",
+          "Full-time doctoral research only (no part-time doctorate)",
+          "Cannot combine with other major doctoral funding body scholarships",
+          "Must have a well-developed research exposé",
+          "Outstanding academic grades in all prior degrees",
+          "Evidence of extra-curricular and societal commitment"
+        ]
+      },
+      "benefits": [
+        "Monthly basic stipend: €1,650 (reviewed annually)",
+        "Monthly research allowance: €100",
+        "Health insurance subsidy: up to €100/month if not covered by mandatory insurance",
+        "Family supplement if applicable",
+        "Conference and research trip travel allowances",
+        "Tuition fee subsidy up to €10,000/year for doctorates outside home country",
+        "Access to Studienstiftung academic programme (summer academies, workshops)",
+        "Liaison professor support"
+      ],
+      "amounts": [
+        "€1,650/month"
+      ],
+      "target_group": "Highly qualified doctoral candidates at German universities (all nationalities) with ambitious dissertation projects, excellent academic records, and strong societal engagement.",
+      "official_url": "https://www.studienstiftung.de/en/doctoral-scholarships/doctoral-scholarships",
+      "description": "The Studienstiftung doctoral scholarship supports ~350 new doctoral scholars per year across all disciplines at German universities. Open to all nationalities enrolled at German institutions. Rolling applications throughout the year with four selection meetings; calls are capped at 300 applications each.",
+      "application_process": [
+        "Wait for a call to open (Oct 1, Feb 1, Jun 1, or Oct 1)",
+        "Prepare application: cover sheet, applicant questionnaire, supervisor questionnaire, degree certificates, CV, and a detailed research exposé (max 20 pages)",
+        "Submit all documents as a single physical package (no double-sided prints, no binders) to the Bonn address",
+        "Also propose names of two academic reviewers for the review phase",
+        "Stage 1: preliminary review (~4 weeks)",
+        "Stage 2: written review by two external academics",
+        "Stage 3: selection board decision (meets 4x/year)",
+        "Contact: promotion@studienstiftung.de"
+      ],
+      "source": "03_application.md",
+      "source_file": "data/raw/studienstiftung/03_application.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Studienstiftung ERP Fellowship Programme",
+      "provider": "Studienstiftung des deutschen Volkes / German Academic Scholarship Foundation",
+      "country": "United States",
+      "degree_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "program_type": "Study/research stay at US universities — transatlantic programme",
+      "fields": [
+        "All disciplines except pure artistic studies (music, art, drama, film)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 24
+      },
+      "deadline": "September 20 annually (for the following academic year)",
+      "application_period": [
+        "July 1 – September 20 annually"
+      ],
+      "important_dates": [
+        "Applications for 2027/28 open: July 1, 2026",
+        "Application deadline: September 20, 2026",
+        "Pre-selection: after deadline",
+        "Selection seminar: late 2026",
+        "10–20 scholarships awarded per year",
+        "Not eligible: study at Harvard Kennedy School (covered by McCloy)",
+        "German citizenship NOT mandatory — international students may be eligible, see: https://www.studienstiftung.de/infos-fuer-studierende/voraussetzungen/"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Hold at least a Bachelor's degree by the application deadline",
+          "Last university degree (including doctorate) no more than 5 years old",
+          "Excellent academic grades",
+          "Interest in public service orientation (NGO, international organizations, ministries, think tanks)",
+          "NOT studying at Harvard Kennedy School (use McCloy instead)",
+          "Admission to a US university not required at time of application",
+          "Prior Studienstiftung membership not required",
+          "International applicants (non-German): check eligibility at studienstiftung.de/infos-fuer-studierende/voraussetzungen/"
+        ]
+      },
+      "benefits": [
+        "Monthly scholarship of USD 2,500",
+        "One-off start-up grant of USD 500",
+        "Travel grant of USD 1,000",
+        "Tuition fee grant up to USD 25,000 per academic year",
+        "Admission to Studienstiftung network and academic programmes",
+        "Membership in worldwide ERP alumni network",
+        "Kick-off event in Berlin",
+        "Annual US scholarship holder meeting"
+      ],
+      "amounts": [
+        "USD 2,500/month",
+        "up to USD 25,000/year tuition"
+      ],
+      "target_group": "Outstanding graduates from all disciplines (non-arts) seeking a 1–2 year Master's or PhD study/research stay at leading US universities, with an interest in public service, policy, or transatlantic engagement.",
+      "official_url": "https://www.studienstiftung.de/en/erp",
+      "description": "The ERP Fellowship Programme funds 10–20 exceptional graduates per year for Master's or PhD studies at top US universities (excluding HKS), with generous stipend and tuition support. Funded by Germany's post-Marshall Plan ERP assets and designed to strengthen transatlantic ties. International (non-German) applicants may be eligible.",
+      "application_process": [
+        "Download application form (German) from the Studienstiftung ERP page",
+        "Submit completed PDF application by email to erp@studienstiftung.de by September 20",
+        "Shortlisted applicants invited to a selection seminar",
+        "Apply separately and independently to US universities",
+        "Contact: erp@studienstiftung.de"
+      ],
+      "source": "09_en_erp.md",
+      "source_file": "data/raw/studienstiftung/09_en_erp.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Studienstiftung McCloy Scholarship Programme",
+      "provider": "Studienstiftung des deutschen Volkes / German Academic Scholarship Foundation",
+      "country": "United States",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "2-year Master's programme at Harvard Kennedy School",
+      "fields": [
+        "Public Policy",
+        "International Affairs",
+        "Public Administration",
+        "Economics",
+        "Government"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 21,
+        "max": 24
+      },
+      "deadline": "November 1 annually",
+      "application_period": [
+        "August 1 – November 1 annually"
+      ],
+      "important_dates": [
+        "Applications for 2027–2029 open: August 1, 2026",
+        "Application deadline: November 1, 2026",
+        "Pre-selection after deadline",
+        "Selection seminar: early 2027",
+        "Up to 6 scholarships awarded per year",
+        "Applicants must also apply directly to Harvard Kennedy School",
+        "International (non-German) applicants: check eligibility at studienstiftung.de"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to all disciplines",
+          "Must hold Bachelor's, Master's, Diplom, or state examination with grade \"good\" or above (law: \"fully satisfactory\")",
+          "Last university degree no more than 5 years old at application deadline (November 1)",
+          "Academic excellence, international experience, communication skills",
+          "Interest in practice-oriented solutions and public service",
+          "Admission to Harvard Kennedy School NOT required at time of application",
+          "Prior Studienstiftung membership not required",
+          "International applicants: check eligibility via studienstiftung.de"
+        ]
+      },
+      "benefits": [
+        "Monthly scholarship of USD 2,500 (for 21 months)",
+        "One-off start-up grant of USD 500",
+        "Travel grant of USD 1,000",
+        "Tuition fee reduction to €10,000 per academic year at HKS",
+        "Compulsory public-sector internship between first and second year (supported)",
+        "Access to Studienstiftung and Haniel Foundation networks",
+        "Access to global McCloy alumni network",
+        "Emergency fund support (if other scholarships unsuccessful)"
+      ],
+      "amounts": [
+        "USD 2,500/month",
+        "tuition reduced to €10,000/year at HKS"
+      ],
+      "target_group": "Exceptional graduates of all disciplines with strong academic records, international experience, and a commitment to public service who aspire to study at Harvard Kennedy School in a 2-year Master's programme.",
+      "official_url": "https://www.studienstiftung.de/en/mccloy",
+      "description": "The McCloy Scholarship Programme enables up to 6 outstanding graduates per year to pursue a 2-year master's degree at Harvard Kennedy School. Funded by HKS, Germany's ERP assets, the Haniel Foundation and others; launched in 1983. Applicants apply to Studienstiftung and Harvard Kennedy School simultaneously.",
+      "application_process": [
+        "Download application form (German) from the McCloy programme page",
+        "Submit completed PDF application by email by November 1",
+        "Apply simultaneously and independently to Harvard Kennedy School",
+        "Shortlisted applicants invited to a selection seminar",
+        "Contact: mccloy@studienstiftung.de"
+      ],
+      "source": "11_en_mccloy.md",
+      "source_file": "data/raw/studienstiftung/11_en_mccloy.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Studienstiftung Leo Baeck Fellowship",
+      "provider": "Studienstiftung des deutschen Volkes / Leo Baeck Institute London / Simon Dubnow Institute",
+      "country": "Germany",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "International fellowship for German-Jewish history and culture doctoral research",
+      "fields": [
+        "German-Jewish History",
+        "Jewish Culture and Literature",
+        "Philosophy",
+        "Cultural Studies",
+        "European Jewish History"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "February 1 annually",
+      "application_period": [
+        "Applications typically open in November – close February 1"
+      ],
+      "important_dates": [
+        "Application deadline 2026: February 1, 2026",
+        "Shortlisted candidates invited to video interviews: April/May",
+        "Fellowship runs: October 2026 – September 2027",
+        "Up to 10 fellows selected per year",
+        "Working languages: German and English"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to doctoral candidates of any nationality at any university worldwide",
+          "Must be enrolled in a formal doctoral programme at an accredited university",
+          "Excellent university degree(s)",
+          "Last degree not before February 2022 (for 2026 cycle)",
+          "Research project must focus on history and culture of German-speaking Jewry (any period, region, field)",
+          "Fellows remain at their home institution during the fellowship",
+          "Cannot combine with scholarships from third parties"
+        ]
+      },
+      "benefits": [
+        "Monthly living allowance: €1,650",
+        "Monthly research allowance: €100",
+        "Health insurance subsidy: up to €100/month",
+        "Travel and conference allowances",
+        "Additional living allowance for those doing doctorate outside home country",
+        "Tuition fee subsidy up to €10,000/year for non-home-country doctorates",
+        "Access to two joint workshops per year with international peers",
+        "Network access: Studienstiftung, Leo Baeck Institute London, Simon Dubnow Institute Leipzig"
+      ],
+      "amounts": [
+        "€1,650/month"
+      ],
+      "target_group": "Doctoral researchers of any nationality at any university worldwide whose dissertation focuses on German-Jewish history and culture — covering history, literature, philosophy, cultural studies from any period or region.",
+      "official_url": "https://www.studienstiftung.de/en/leo-baeck-fellowship",
+      "description": "The Leo Baeck Fellowship funds up to 10 international doctoral researchers annually for one year, supporting research into German-Jewish history and culture. Unique in being open to scholars at any university worldwide (not only German institutions). Run jointly by the Studienstiftung, Leo Baeck Institute London, and Leibniz-Institute Simon Dubnow Leipzig.",
+      "application_process": [
+        "Submit a single PDF via email to leobaeck@studienstiftung.de",
+        "Required documents: application form, cover letter (1 page), CV, degree certificates, research proposal (max 5 pages), research schedule, 2 letters of recommendation",
+        "Deadline: February 1",
+        "Shortlisted candidates invited to two video interviews (April/May)",
+        "Contact: Dr Peter Antes — leobaeck@studienstiftung.de"
+      ],
+      "source": "12_en_leo-baeck-fellowship.md",
+      "source_file": "data/raw/studienstiftung/12_en_leo-baeck-fellowship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Holland Scholarship (NL Scholarship)",
+      "provider": "Dutch Ministry of Education, Culture and Science / Dutch Universities",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Bachelor",
+        "Master's"
+      ],
+      "program_type": "Government-backed entry scholarship for non-EEA students",
+      "fields": [
+        "All disciplines"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "Varies by university — typically January to April (for September intake). Applications open November 1.",
+      "application_period": [
+        "November 1 – April (varies per university)"
+      ],
+      "important_dates": [
+        "Applications for 2026/27 intake open: November 1, 2025",
+        "Deadlines vary per participating university — check individual university pages",
+        "One-time payment in first year only"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Nationality outside the European Economic Area (EEA)",
+          "Applying for a bachelor's or master's at a participating Dutch university",
+          "Not previously studied in the Netherlands",
+          "Meet the individual university's additional requirements"
+        ]
+      },
+      "benefits": [
+        "€5,000 one-time payment in the first year of study"
+      ],
+      "amounts": [
+        "€5,000 (one-time, first year)"
+      ],
+      "target_group": "Non-EEA international students applying for the first time to a bachelor's or master's programme at a participating Dutch research university or university of applied sciences.",
+      "official_url": "https://www.studyinholland.nl/scholarships/holland-scholarship",
+      "description": "The Holland Scholarship is a €5,000 one-time award in the first year of study, jointly funded by the Dutch government and participating universities, available to non-EEA international students starting bachelor's or master's programmes in the Netherlands. Apply through the individual university.",
+      "application_process": [
+        "Apply for admission to a participating Dutch university",
+        "Check if your chosen university participates in the Holland Scholarship",
+        "Submit the Holland Scholarship application through the university portal (deadline varies by institution)",
+        "Applications open November 1 each year"
+      ],
+      "source": "01_holland_scholarship.md",
+      "source_file": "data/raw/netherlands/01_holland_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Orange Knowledge Programme (OKP)",
+      "provider": "Nuffic / Dutch Ministry of Foreign Affairs",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master's",
+        "Short Course"
+      ],
+      "program_type": "Government development scholarship for working professionals from developing countries",
+      "fields": [
+        "Water Management",
+        "Food and Nutrition Security",
+        "Sexual and Reproductive Health and Rights",
+        "Security and Rule of Law",
+        "All fields aligned with Dutch development priorities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 24
+      },
+      "deadline": "Varies by course and institution — typically October to February for following year intake",
+      "application_period": [
+        "Check Nuffic OKP portal for current cycle per institution"
+      ],
+      "important_dates": [
+        "Indonesia is an OKP eligible country",
+        "Short courses: 2 weeks to 12 months",
+        "Master's programmes: 12–24 months",
+        "Applications open approximately October each year",
+        "Check: https://www.nuffic.nl/en/subjects/orange-knowledge-programme"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Citizen and resident of an OKP-eligible country (Indonesia is eligible)",
+          "Currently employed — must be a working professional",
+          "Nominated or sponsored by employer or relevant organisation",
+          "Meet the specific requirements of the chosen course/programme at the Dutch institution",
+          "English language proficiency (IELTS or equivalent depending on institution)",
+          "Not intended for recent graduates without professional work experience"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee",
+        "Monthly living allowance",
+        "Round-trip international airfare",
+        "Visa and residence permit costs",
+        "Health insurance",
+        "Travel allowance within the Netherlands"
+      ],
+      "amounts": [],
+      "target_group": "Working professionals (employed) from OKP-eligible developing countries (including Indonesia) seeking a master's degree or short course at a Dutch higher education institution in a development-relevant field.",
+      "official_url": "https://www.nuffic.nl/en/subjects/orange-knowledge-programme",
+      "description": "The Orange Knowledge Programme (OKP) is a fully funded Dutch government scholarship for professionals from developing countries (including Indonesia) to pursue master's degrees or short courses at Dutch universities. Requires employer nomination and active employment. Covers all major costs including tuition, travel, living allowance, and health insurance.",
+      "application_process": [
+        "Check OKP eligibility for your country and chosen course on the Nuffic portal",
+        "Identify a Dutch institution offering your desired programme under OKP",
+        "Secure employer nomination or sponsorship documentation",
+        "Apply via the Nuffic OKP portal or directly through the Dutch institution",
+        "Submit required documents: employer nomination, transcripts, CV, English language certificate"
+      ],
+      "source": "02_orange_knowledge_programme.md",
+      "source_file": "data/raw/netherlands/02_orange_knowledge_programme.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Orange Tulip Scholarship (OTS)",
+      "provider": "Nuffic / Dutch Government / Participating Dutch Universities",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Bachelor",
+        "Master's"
+      ],
+      "program_type": "Country-specific scholarship for students from eligible countries including Indonesia",
+      "fields": [
+        "All disciplines (varies by university)"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 36
+      },
+      "deadline": "Varies by university — typically January to April",
+      "application_period": [
+        "Check individual Dutch university OTS pages for current cycle"
+      ],
+      "important_dates": [
+        "Indonesia is an OTS eligible country",
+        "Benefits vary per university: partial fee waiver to full scholarship",
+        "Apply through individual Dutch universities, not centrally through Nuffic"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia",
+          "Brazil",
+          "China",
+          "India",
+          "Mexico",
+          "Russia",
+          "South Africa",
+          "South Korea",
+          "Vietnam"
+        ],
+        "raw_items": [
+          "Citizen and resident of an OTS-eligible country (Indonesia is eligible)",
+          "Applying for a bachelor's or master's at a participating Dutch university",
+          "Does not hold Dutch nationality or permanent Dutch residence permit",
+          "Meets the individual university's academic admission requirements",
+          "Strong academic record"
+        ]
+      },
+      "benefits": [
+        "Varies per university: partial tuition fee waiver, full tuition waiver, or tuition + living allowance",
+        "Check each participating university's OTS page for exact benefit amount"
+      ],
+      "amounts": [],
+      "target_group": "Students from OTS-eligible countries (including Indonesia) applying for bachelor's or master's programmes at participating Dutch universities.",
+      "official_url": "https://www.studyinholland.nl/scholarships/highlighted-scholarships/orange-tulip-scholarship",
+      "description": "The Orange Tulip Scholarship is a joint initiative by the Dutch government and Dutch universities, offering country-specific scholarships to students from eligible nations including Indonesia. Benefits range from partial tuition waivers to full scholarships depending on the university. Apply through the individual university.",
+      "application_process": [
+        "Check the list of participating Dutch universities on the Nuffic OTS portal",
+        "Apply for admission at the chosen Dutch university",
+        "Submit OTS scholarship application through the university portal",
+        "Deadlines and requirements vary by university — confirm with each institution directly"
+      ],
+      "source": "03_orange_tulip_scholarship.md",
+      "source_file": "data/raw/netherlands/03_orange_tulip_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Justus & Louise van Effen Excellence Scholarship — TU Delft",
+      "provider": "Justus & Louise van Effen Foundation / TU Delft",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Full excellence scholarship for international MSc students at TU Delft",
+      "fields": [
+        "Architecture, Urbanism and Building Sciences",
+        "Civil Engineering and Geosciences",
+        "Electrical Engineering, Mathematics and Computer Science",
+        "Industrial Design Engineering",
+        "Mechanical, Maritime and Materials Engineering",
+        "Technology, Policy and Management",
+        "Applied Sciences"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": "December 1 annually (23:59 CET)",
+      "application_period": [
+        "September – December 1 (annually)"
+      ],
+      "important_dates": [
+        "Scholarship application deadline: December 1 (annually, 23:59 CET)",
+        "For MSc programmes starting the following September",
+        "Award value: €30,000 per year",
+        "Duration: full MSc programme (typically 2 years)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "International student (non-Dutch)",
+          "Applying for an MSc programme at TU Delft",
+          "Top academic performance (top of class)",
+          "Must meet TU Delft MSc admission requirements",
+          "Non-EEA students strongly encouraged (EEA students may also apply)"
+        ]
+      },
+      "benefits": [
+        "€30,000 per year (covers tuition fee + living expenses)",
+        "Full scholarship for entire MSc duration (typically 2 years)"
+      ],
+      "amounts": [
+        "€30,000/year"
+      ],
+      "target_group": "Outstanding international students applying for a Master of Science degree at TU Delft, with exceptional academic achievement in engineering, technology, design, or applied sciences.",
+      "official_url": "https://www.tudelft.nl/en/education/programmes/scholarships",
+      "description": "The Justus & Louise van Effen Excellence Scholarship provides €30,000/year to outstanding international MSc students at TU Delft, covering tuition and living costs for the full 2-year programme. One of the most generous university-specific scholarships in the Netherlands.",
+      "application_process": [
+        "Apply for MSc admission at TU Delft via the TU Delft application portal",
+        "In the application, indicate interest in the excellence scholarship",
+        "After receiving an admission offer, submit the van Effen scholarship application form by December 1",
+        "Selection based on academic excellence demonstrated in application materials"
+      ],
+      "source": "04_tu_delft_excellence.md",
+      "source_file": "data/raw/netherlands/04_tu_delft_excellence.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "University of Groningen Excellence Scholarship",
+      "provider": "University of Groningen (RUG)",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Full merit scholarship for outstanding non-EEA international students",
+      "fields": [
+        "All disciplines — one-year English-taught MSc programmes at RUG"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "December 1 (for February intake) / February 1 (for September intake)",
+      "application_period": [
+        "Check RUG scholarship page for programme-specific deadlines"
+      ],
+      "important_dates": [
+        "For September intake: apply by approximately February 1",
+        "For February intake: apply by approximately December 1",
+        "Award value: full tuition + €11,000/year living allowance"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Non-EEA nationality",
+          "Applying for a one-year English-taught Master's programme at University of Groningen",
+          "Excellent academic record (typically top 10% of undergraduate cohort)",
+          "Not a previous RUG degree holder"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver",
+        "€11,000/year living allowance",
+        "Total value approximately €22,000–€23,000 for one-year programme"
+      ],
+      "amounts": [
+        "€11,000/year living allowance + full tuition"
+      ],
+      "target_group": "Outstanding non-EEA international students in the top 10% of their undergraduate class applying for one-year English-taught Master's programmes at the University of Groningen.",
+      "official_url": "https://www.rug.nl/education/scholarships/university-of-groningen-scholarship",
+      "description": "The University of Groningen Excellence Scholarship covers full tuition plus a €11,000/year living allowance for outstanding non-EEA Master's students. One of the more comprehensive university scholarships available in the Netherlands for top international applicants.",
+      "application_process": [
+        "Apply for MSc admission via Studielink / RUG portal",
+        "Eligible candidates are automatically assessed or can apply directly for the scholarship",
+        "Submit required documents with the scholarship application",
+        "Selection based on academic excellence"
+      ],
+      "source": "05_groningen_excellence.md",
+      "source_file": "data/raw/netherlands/05_groningen_excellence.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Amsterdam Merit Scholarship (AMS) — University of Amsterdam",
+      "provider": "University of Amsterdam (UvA)",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Top merit scholarship for outstanding non-EEA Master's applicants",
+      "fields": [
+        "All disciplines — one-year English-taught Master's at UvA"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "February 1 (typical, for September intake) — check UvA scholarship finder for programme-specific deadlines",
+      "application_period": [
+        "Approximately November – February for September intake"
+      ],
+      "important_dates": [
+        "Deadlines are programme-specific — check UvA scholarship finder",
+        "Award: full tuition + €25,000/year living allowance",
+        "Total value approximately €37,000–€43,000 depending on programme tuition"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Non-EEA nationality",
+          "Applying for a one-year English-taught Master's programme at UvA",
+          "Outstanding academic record (top 10% of class)",
+          "Exceptional motivation and future potential"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee",
+        "€25,000 per year living allowance"
+      ],
+      "amounts": [
+        "€25,000/year living allowance + full tuition"
+      ],
+      "target_group": "Exceptional non-EEA international applicants in the top 10% of their class seeking a one-year Master's degree at the University of Amsterdam.",
+      "official_url": "https://www.uva.nl/en/education/master-s/scholarships-and-loans/amsterdam-merit-scholarship/amsterdam-merit-scholarship.html",
+      "description": "The Amsterdam Merit Scholarship (AMS) is UvA's flagship scholarship for outstanding non-EEA Master's students, providing full tuition plus a €25,000/year living allowance — one of the most generous full scholarships at a Dutch university.",
+      "application_process": [
+        "Apply for Master's admission via the UvA application portal",
+        "Submit AMS scholarship application (separate form, linked to admission application)",
+        "Provide transcripts, CV, and motivation letter",
+        "Shortlisted candidates may be invited for interview"
+      ],
+      "source": "06_amsterdam_merit_scholarship.md",
+      "source_file": "data/raw/netherlands/06_amsterdam_merit_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Leiden University Excellence Scholarship (LExS)",
+      "provider": "Leiden University",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Merit scholarship for outstanding non-EEA Master's students",
+      "fields": [
+        "All disciplines — English-taught Master's at Leiden University"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "February 1 (typical for September intake) — check Leiden scholarship page for programme-specific deadlines",
+      "application_period": [
+        "Approximately November – February for September intake"
+      ],
+      "important_dates": [
+        "Apply after receiving conditional or unconditional admission offer",
+        "Three scholarship tiers available",
+        "Does not include living allowance — tuition contribution only"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Non-EEA nationality",
+          "Applying for an English-taught Master's programme at Leiden University",
+          "Top 10% of current/most recent study programme",
+          "Excellent academic record"
+        ]
+      },
+      "benefits": [
+        "Tier 1: €10,000 tuition fee contribution",
+        "Tier 2: €15,000 tuition fee contribution",
+        "Tier 3: Full tuition fee minus home (EEA) rate",
+        "Tuition contribution only — no living allowance included"
+      ],
+      "amounts": [
+        "€10,000 / €15,000 / full tuition (minus EEA rate) — varies by tier"
+      ],
+      "target_group": "Non-EEA international students in the top 10% of their current study programme applying for English-taught Master's degrees at Leiden University.",
+      "official_url": "https://www.universiteitleiden.nl/en/education/scholarships/leiden-university-excellence-scholarship",
+      "description": "The Leiden University Excellence Scholarship (LExS) offers three tiers of tuition fee contributions (€10,000 / €15,000 / full tuition minus EEA rate) to outstanding non-EEA Master's students. No living allowance is included, but the scholarship significantly reduces the cost of studying at one of Europe's oldest and most prestigious universities.",
+      "application_process": [
+        "Apply for Master's admission at Leiden University",
+        "After receiving an admission offer, apply separately for LExS",
+        "Submit transcripts, letter of recommendation, and motivation statement",
+        "Deadline approximately February 1 — confirm with Leiden scholarship office"
+      ],
+      "source": "07_leiden_excellence.md",
+      "source_file": "data/raw/netherlands/07_leiden_excellence.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Maastricht University NL-High Potential Scholarship",
+      "provider": "Maastricht University",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Full scholarship for outstanding non-EEA Master's students",
+      "fields": [
+        "All disciplines — Master's programmes at Maastricht University"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "February 1 (typical, for September intake) — confirm on UM scholarship portal",
+      "application_period": [
+        "Check Maastricht University scholarship portal for current cycle"
+      ],
+      "important_dates": [
+        "Award covers full tuition + monthly living allowance for entire Master's duration",
+        "One of the only fully funded options for non-EEA students at UM"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Non-EEA nationality",
+          "Applying for a Master's programme at Maastricht University",
+          "Outstanding academic achievement (top 5% of undergraduate class)",
+          "Strong motivation and future leadership potential"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee",
+        "Monthly living allowance (amount varies — check UM website for current rate)",
+        "Full scholarship for entire Master's programme duration"
+      ],
+      "amounts": [],
+      "target_group": "Exceptional non-EEA international students in the top 5% of their undergraduate class seeking a Master's degree at Maastricht University.",
+      "official_url": "https://www.maastrichtuniversity.nl/support/before-you-arrive/scholarships-and-loans/maastricht-university-high-potential-scholarship",
+      "description": "The Maastricht University NL-High Potential Scholarship is one of the few fully funded scholarships in the Netherlands, covering tuition and living allowance for outstanding non-EEA Master's students. Highly competitive with a top 5% academic benchmark.",
+      "application_process": [
+        "Apply for Master's admission at Maastricht University",
+        "Submit scholarship application through the UM application portal",
+        "Provide academic transcripts, CV, motivation letter, and reference letters",
+        "Deadline: approximately February 1 (confirm on UM portal)"
+      ],
+      "source": "08_maastricht_high_potential.md",
+      "source_file": "data/raw/netherlands/08_maastricht_high_potential.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Radboud Scholarship Programme",
+      "provider": "Radboud University",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Full scholarship for excellent non-EEA Master's students",
+      "fields": [
+        "All disciplines — English-taught Master's at Radboud University"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "February 1 (typical, for September intake) — confirm on Radboud scholarship portal",
+      "application_period": [
+        "Check Radboud University scholarship portal for current cycle"
+      ],
+      "important_dates": [
+        "Covers tuition fee difference (non-EEA to EEA rate) + living allowance + health insurance",
+        "Check current living allowance rate on Radboud website"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Non-EEA nationality",
+          "Applying for an English-taught Master's programme at Radboud University",
+          "Excellent academic record",
+          "Must have graduated from a non-Dutch university"
+        ]
+      },
+      "benefits": [
+        "Tuition fee waived (reduced to EEA/home rate)",
+        "Monthly living allowance of approximately €750",
+        "Visa and residence permit costs",
+        "Health insurance contribution"
+      ],
+      "amounts": [
+        "~€750/month living allowance + tuition waiver"
+      ],
+      "target_group": "Excellent non-EEA international students applying for English-taught Master's programmes at Radboud University in Nijmegen.",
+      "official_url": "https://www.ru.nl/en/students/scholarships/radboud-scholarship-programme",
+      "description": "The Radboud Scholarship Programme provides outstanding non-EEA Master's students with full tuition coverage (reduced to EEA rate), a monthly living allowance of ~€750, visa costs, and health insurance support for study at Radboud University.",
+      "application_process": [
+        "Apply for Master's admission at Radboud University",
+        "Submit scholarship application via the Radboud application portal",
+        "Provide academic transcripts, CV, and motivation letter",
+        "Deadline: approximately February 1"
+      ],
+      "source": "09_radboud_scholarship.md",
+      "source_file": "data/raw/netherlands/09_radboud_scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Gates Cambridge Scholarship",
+      "provider": "Gates Cambridge Trust / University of Cambridge",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "program_type": "Full international postgraduate scholarship at the University of Cambridge",
+      "fields": [
+        "All disciplines available at the University of Cambridge"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 48
+      },
+      "deadline": "International round: December 2026 or early January 2027 (course-dependent). US round: October 2026.",
+      "application_period": [
+        "Applications open: September 2026",
+        "US round deadline: October 2026",
+        "International round deadline: December 2026 or early January 2027"
+      ],
+      "important_dates": [
+        "Applications open: September 2026 (date to be confirmed)",
+        "US citizens in USA deadline: October 2026",
+        "International round deadline: December 2026 or early January 2027 (course-specific)",
+        "International round results: by early March 2027",
+        "Scholarships offered: by early April 2027",
+        "Approximately 80 full scholarships awarded per year total; ~55 in international round",
+        "Note: Does NOT fund undergraduate degrees, MBA, EMBA, MFin, PGCE, or part-time degrees (except part-time PhD pilot)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Must be a citizen of any country outside the United Kingdom",
+          "Applying for a full-time PhD, MLitt, or one-year postgraduate course at the University of Cambridge",
+          "Part-time PhD pilot scheme also available",
+          "Outstanding academic achievement (nominated by Cambridge department as among most academically excellent applicants)",
+          "Strong reasons for course choice — PhD applicants must identify a potential supervisor and develop a research project",
+          "Demonstrated commitment to improving the lives of others",
+          "Evidence of leadership potential",
+          "Needs-blind process — financial circumstances not considered",
+          "Cannot fund: undergraduate degrees, MBA/EMBA, MFin, PGCE, MBBChir, part-time degrees (except PhD pilot), MASt"
+        ]
+      },
+      "benefits": [
+        "University Composition Fee (tuition) in full",
+        "Maintenance allowance: £22,050/year for single student (2025/26 rate)",
+        "One economy single airfare at start and end of course",
+        "Inbound visa costs + Immigration Health Surcharge",
+        "Academic development funding: up to £2,000 (discretionary)",
+        "Dependent children allowance: up to £12,184/year for one child (discretionary)",
+        "Fieldwork allowance (PhD, discretionary)",
+        "Maternity/paternity funding up to 6 months (discretionary)",
+        "Hardship funding for unforeseen difficulties (discretionary)"
+      ],
+      "amounts": [
+        "£22,050/year maintenance (2025/26)",
+        "full tuition fee"
+      ],
+      "target_group": "Outstanding non-UK citizens from any country pursuing postgraduate study at the University of Cambridge, who demonstrate academic excellence, leadership, and a commitment to improving the lives of others.",
+      "official_url": "https://www.gatescambridge.org",
+      "description": "The Gates Cambridge Scholarship is a full-cost postgraduate scholarship at the University of Cambridge, open to citizens of any country outside the UK. Established in 2000 with a US$210m donation from the Gates Foundation. Around 80 scholarships per year across all subjects; approximately 55 available in the international round.",
+      "application_process": [
+        "Apply for graduate admission to the University of Cambridge via the Cambridge applicant portal",
+        "Within the same application, indicate you wish to be considered for a Gates Cambridge Scholarship",
+        "PhD applicants must first identify and be in contact with a potential supervisor",
+        "Apply by the relevant Course Funding Deadline for your course (December or early January)",
+        "US citizens resident in USA must apply by the October deadline instead",
+        "Departmental ranking: December–February",
+        "Panel review and scholarships offered: March–April",
+        "Contact: info@gatescambridge.org"
+      ],
+      "source": "02_programme_the-scholarship.md",
+      "source_file": "data/raw/gates-cambridge/02_programme_the-scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Clarendon Fund Scholarship — University of Oxford",
+      "provider": "Clarendon Fund / University of Oxford Press",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "program_type": "Full Oxford graduate scholarship — automatic consideration for all graduate applicants",
+      "fields": [
+        "All disciplines available at the University of Oxford"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 9,
+        "max": 48
+      },
+      "deadline": "Apply by the Oxford course first deadline for maximum consideration — typically December or January each year",
+      "application_period": [
+        "Oxford graduate applications open: September each year",
+        "First deadline (recommended): December",
+        "Second deadline: January",
+        "Final deadline: March"
+      ],
+      "important_dates": [
+        "No separate Clarendon application form — Oxford graduate admission application IS the scholarship application",
+        "Apply by the first course deadline for best chance of Clarendon consideration",
+        "Over 200 new fully funded awards each year",
+        "In 2025/26 the programme celebrated its 25th intake",
+        "Some awards linked to specific colleges or departments"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to students of any nationality worldwide — no country restrictions",
+          "Must apply for graduate admission to the University of Oxford",
+          "Outstanding academic achievement and potential",
+          "Selection assessed through the standard Oxford graduate admissions process",
+          "Applying for a full-time postgraduate degree at Oxford (Master's or DPhil)"
+        ]
+      },
+      "benefits": [
+        "University and college fees in full",
+        "Living allowance approximately £19,000–£22,000 per year (2025/26)",
+        "Award for full course duration (1 year Master's or up to 3–4 years DPhil)"
+      ],
+      "amounts": [
+        "~£19,000–£22,000/year living allowance + full fees"
+      ],
+      "target_group": "Exceptional graduate students of any nationality applying for postgraduate degrees at the University of Oxford, across all disciplines.",
+      "official_url": "https://www.ox.ac.uk/clarendon",
+      "description": "The Clarendon Fund is one of Oxford's most prestigious graduate scholarship programmes, offering 200+ fully funded awards per year to outstanding students of any nationality. No separate application needed — all graduate applicants to Oxford are automatically considered. Apply early (first deadline) for best consideration.",
+      "application_process": [
+        "Apply for graduate admission at Oxford via the Oxford Graduate Admissions portal",
+        "No separate Clarendon application is required — the admission application is your scholarship application",
+        "Apply by the first course deadline (December) for the best chance of Clarendon consideration",
+        "Shortlisted applicants may be contacted for additional information by specific colleges or departments",
+        "Contact: graduate.admissions@ox.ac.uk"
+      ],
+      "source": "01_overview.md",
+      "source_file": "data/raw/clarendon/01_overview.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Rhodes Scholarship — University of Oxford",
+      "provider": "Rhodes Trust",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Master's",
+        "PhD"
+      ],
+      "program_type": "Prestigious international postgraduate scholarship at Oxford — country-specific constituencies",
+      "fields": [
+        "All disciplines available at the University of Oxford"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 21,
+        "max": 24
+      },
+      "deadline": "Varies by constituency — typically June–October each year. Check rhodeshouse.ox.ac.uk for Indonesia.",
+      "application_period": [
+        "Typically opens June–August; closes September–October each year (varies by constituency)"
+      ],
+      "important_dates": [
+        "Established: 1903 — oldest international scholarship programme",
+        "Available from approximately 60 countries",
+        "Check rhodeshouse.ox.ac.uk for Indonesia-specific constituency or Global application route",
+        "Age restriction typically 19–28 (varies by constituency)",
+        "Must apply separately to Oxford graduate admissions in addition to Rhodes"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Citizen of an eligible constituency country (verify Indonesia eligibility at rhodeshouse.ox.ac.uk)",
+          "Age typically 19–28 at time of application (varies by constituency)",
+          "Completed or near-completing an undergraduate degree",
+          "Outstanding academic record",
+          "Demonstrated leadership and commitment to community service",
+          "Strong character and integrity",
+          "Must also apply directly to Oxford graduate admissions (separate process)"
+        ]
+      },
+      "benefits": [
+        "University and college fees in full",
+        "Living allowance approximately £18,180/year (2025/26 rate)",
+        "Airfare to and from Oxford",
+        "Health insurance",
+        "Duration: typically 2 years (extensions possible)"
+      ],
+      "amounts": [
+        "~£18,180/year living allowance + full fees"
+      ],
+      "target_group": "Exceptional young graduates from eligible countries (ages 19–28) demonstrating outstanding intellect, leadership, character, and commitment to service, applying for postgraduate study at Oxford.",
+      "official_url": "https://www.rhodeshouse.ox.ac.uk/scholarships/",
+      "description": "The Rhodes Scholarship, established in 1903, is one of the world's oldest and most prestigious international scholarships. It funds postgraduate study at the University of Oxford for exceptional young leaders from approximately 60 countries. Selection emphasises intellect, character, leadership, and commitment to service. Applicants must check current eligibility for their country at rhodeshouse.ox.ac.uk.",
+      "application_process": [
+        "Check if Indonesia has an active Rhodes constituency at rhodeshouse.ox.ac.uk",
+        "If eligible, apply through the national selection process (written application + interviews)",
+        "Stage 1: written application to national/regional committee (opens June–August)",
+        "Stage 2: regional selection interview",
+        "Stage 3: national selection committee final interview",
+        "Apply separately to Oxford graduate admissions as well",
+        "Contact: Rhodes House, South Parks Road, Oxford OX1 3RG"
+      ],
+      "source": "01_overview.md",
+      "source_file": "data/raw/rhodes/01_overview.md",
       "confidence_score": 0.95
     }
   ]

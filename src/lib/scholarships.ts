@@ -648,6 +648,30 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('korea university')) return '/images/logos/KoreaU.png';
   if (hasWord('postech') || name.includes('pohang university')) return '/images/logos/POSTECH.png';
 
+  // Netherlands Universities
+  if (name.includes('tu delft') || provider.includes('tu delft') || provider.includes('delft university')) return '/images/logos/TUDelft.png';
+  if (name.includes('university of amsterdam') || provider.includes('university of amsterdam') || hasWord('uva')) return '/images/logos/UniversityofAmsterdam.png';
+  if (name.includes('leiden') || provider.includes('leiden')) return '/images/logos/LeidenU.png';
+  if (name.includes('groningen') || provider.includes('groningen') || hasWord('rug')) return '/images/logos/Groningen.png';
+  if (name.includes('maastricht') || provider.includes('maastricht')) return '/images/logos/Maastritcht.png';
+  if (name.includes('radboud') || provider.includes('radboud')) return '/images/logos/RadboundU.png';
+
+  // South Korea (KOICA/GKS partners)
+  if (name.includes('sungkyunkwan') || provider.includes('sungkyunkwan') || hasWord('skku')) return '/images/logos/SKKU.png';
+  if (name.includes('handong') || provider.includes('handong')) return '/images/logos/Handong.png';
+  if (name.includes('incheon') || provider.includes('incheon')) return '/images/logos/Incheon.png';
+  if (name.includes('kdi school') || provider.includes('kdi school') || hasWord('kdi')) return '/images/logos/KDI.png';
+  if (name.includes('kyungpook') || provider.includes('kyungpook')) return '/images/logos/Kyungpook.png';
+  if (name.includes('pukyong') || provider.includes('pukyong')) return '/images/logos/Pukyong.png';
+  if (name.includes('university of seoul') || provider.includes('university of seoul')) return '/images/logos/Seoul.png';
+
+  // Turkey & Others
+  if (name.includes('ankara university') || provider.includes('ankara university')) return '/images/logos/AnkaraU.png';
+  if (name.includes('bayram veli')) return '/images/logos/AnkaraHaciBayramVeliU.png';
+  if (name.includes('music and fine arts')) return '/images/logos/AnkaraMusicandFineArtsU.png';
+  if (name.includes('asian institute of technology') || hasWord('ait')) return '/images/logos/AIT.png';
+  if (name.includes('ens de lyon') || name.includes('ens lyon') || provider.includes('lyon') && (name.includes('normale') || provider.includes('normale'))) return '/images/logos/ENSdeLyon.png';
+
   // 2. Fallback to Group Logos
   const group = providerGroup(s.provider);
   if (group === 'daad') return '/images/logos/daad.svg';
@@ -721,6 +745,10 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('yonsei') || provider.includes('yonsei')) return '/images/universities/KOR_Yonsei.png';
   if (name.includes('korea university')) return '/images/universities/KOR_KoreaU.png';
   if (hasWord('postech') || name.includes('pohang university')) return '/images/universities/KOR_POSTECH.png';
+
+  // New specific background images
+  if (name.includes('tu delft') || provider.includes('tu delft') || provider.includes('delft university')) return '/images/universities/NL_TUDelft.png';
+  if (name.includes('university of amsterdam') || provider.includes('university of amsterdam') || hasWord('uva')) return '/images/universities/NL_UniversityofAmsterdam.png';
 
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
@@ -802,6 +830,30 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'Yonsei University', logo: '/images/logos/Yonsei.png', keywords: ['yonsei'] },
     { name: 'Korea University', logo: '/images/logos/KoreaU.png', keywords: ['korea university'] },
     { name: 'Pohang University of Science and Technology (POSTECH)', logo: '/images/logos/POSTECH.png', keywords: ['postech', 'pohang university'] },
+
+    // Netherlands Universities
+    { name: 'TU Delft', logo: '/images/logos/TUDelft.png', keywords: ['tu delft', 'delft university'] },
+    { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png', keywords: ['amsterdam', 'uva'] },
+    { name: 'Leiden University', logo: '/images/logos/LeidenU.png', keywords: ['leiden'] },
+    { name: 'University of Groningen', logo: '/images/logos/Groningen.png', keywords: ['groningen', 'rug'] },
+    { name: 'Maastricht University', logo: '/images/logos/Maastritcht.png', keywords: ['maastricht'] },
+    { name: 'Radboud University', logo: '/images/logos/RadboundU.png', keywords: ['radboud'] },
+
+    // South Korea (KOICA/GKS partners)
+    { name: 'Sungkyunkwan University (SKKU)', logo: '/images/logos/SKKU.png', keywords: ['sungkyunkwan', 'skku'] },
+    { name: 'KDI School of Public Policy and Management', logo: '/images/logos/KDI.png', keywords: ['kdi school', 'kdi'] },
+    { name: 'Handong Global University', logo: '/images/logos/Handong.png', keywords: ['handong'] },
+    { name: 'Incheon National University', logo: '/images/logos/Incheon.png', keywords: ['incheon'] },
+    { name: 'Kyungpook National University', logo: '/images/logos/Kyungpook.png', keywords: ['kyungpook'] },
+    { name: 'Pukyong National University', logo: '/images/logos/Pukyong.png', keywords: ['pukyong'] },
+    { name: 'University of Seoul', logo: '/images/logos/Seoul.png', keywords: ['university of seoul'] },
+
+    // Turkey & Others
+    { name: 'Asian Institute of Technology (AIT)', logo: '/images/logos/AIT.png', keywords: ['ait', 'asian institute of technology'] },
+    { name: 'Ankara University', logo: '/images/logos/AnkaraU.png', keywords: ['ankara university'] },
+    { name: 'Ankara Hacı Bayram Veli University', logo: '/images/logos/AnkaraHaciBayramVeliU.png', keywords: ['bayram veli'] },
+    { name: 'Ankara Music and Fine Arts University', logo: '/images/logos/AnkaraMusicandFineArtsU.png', keywords: ['music and fine arts'] },
+    { name: 'ENS de Lyon', logo: '/images/logos/ENSdeLyon.png', keywords: ['ens de lyon', 'ens lyon'] },
   ];
 
   universities.forEach((univ) => {
@@ -811,7 +863,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
           text.includes('itu ') || text.includes('itu/') || text.includes('itu,') || text.includes(' itu')
         );
       }
-      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl'].includes(kw)) {
+      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }

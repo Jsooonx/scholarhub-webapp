@@ -7,7 +7,7 @@ import ScholarshipCard from '@/components/ScholarshipCard';
 import { getScholarshipsByProvider, providerMeta } from '@/lib/scholarships';
 
 export async function generateStaticParams() {
-  return ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks', 'singapore', 'eiffel', 'canada', 'astar', 'jasso', 'koica', 'cpra'].map((provider) => ({ provider }));
+  return ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks', 'singapore', 'eiffel', 'canada', 'astar', 'jasso', 'koica', 'cpra', 'studienstiftung', 'netherlands', 'gates-cambridge', 'clarendon', 'rhodes'].map((provider) => ({ provider }));
 }
 
 export async function generateMetadata({

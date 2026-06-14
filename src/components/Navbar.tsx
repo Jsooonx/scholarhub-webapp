@@ -18,9 +18,14 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 
 const providers = [
   { name: 'DAAD', country: 'Germany', flag: '🇩🇪', slug: 'daad' },
+  { name: 'Studienstiftung', country: 'Germany', flag: '🇩🇪', slug: 'studienstiftung' },
   { name: 'MEXT', country: 'Japan', flag: '🇯🇵', slug: 'mext' },
   { name: 'Türkiye Burslari', country: 'Turkey', flag: '🇹🇷', slug: 'turkiye' },
   { name: 'Chevening', country: 'United Kingdom', flag: '🇬🇧', slug: 'chevening' },
+  { name: 'Gates Cambridge', country: 'United Kingdom', flag: '🇬🇧', slug: 'gates-cambridge' },
+  { name: 'Clarendon (Oxford)', country: 'United Kingdom', flag: '🇬🇧', slug: 'clarendon' },
+  { name: 'Rhodes (Oxford)', country: 'United Kingdom', flag: '🇬🇧', slug: 'rhodes' },
+  { name: 'Netherlands Scholarships', country: 'Netherlands', flag: '🇳🇱', slug: 'netherlands' },
   { name: 'Australia Awards', country: 'Australia', flag: '🇦🇺', slug: 'australia-awards' },
   { name: 'GKS', country: 'South Korea', flag: '🇰🇷', slug: 'gks' },
   { name: 'Singapore (NUS/NTU)', country: 'Singapore', flag: '🇸🇬', slug: 'singapore' },
