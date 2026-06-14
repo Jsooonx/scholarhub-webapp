@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
+import { allScholarships, providerGroup, getScholarshipImage, getDeadlineStatus } from '@/lib/scholarships';
 
 const flagMap: Record<string, string> = {
   daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
@@ -21,38 +21,69 @@ const FILTER_LINKS = [
   { name: 'Arts', image: '/images/editorial/arts.jpg', href: '/scholarships?q=arts' },
 ];
 
-// Pick the main (MEXT bachelor) and 4 side scholarships from real data
-const mextGroup = allScholarships.filter((s) => providerGroup(s.provider) === 'mext');
-const mainScholarship = mextGroup[0];
-
-// Side: 2 DAAD + 1 MEXT + 1 Turkiye
-const sideScholarships = [
-  allScholarships.filter((s) => providerGroup(s.provider) === 'daad')[0],
-  allScholarships.filter((s) => providerGroup(s.provider) === 'turkiye')[0],
-  allScholarships.filter((s) => providerGroup(s.provider) === 'daad')[1],
-  allScholarships.filter((s) => providerGroup(s.provider) === 'mext')[1] ?? mextGroup[0],
-].filter(Boolean);
-
 function cleanDescription(raw: string | null): string {
   if (!raw) return '';
   return raw
-    .replace(/^halaman\s+\S+[\s\S]*?#+\s*/i, '')  // strip MEXT header noise
+    .replace(/^halaman\s+\S+[\s\S]*?#+\s*/i, '')
     .replace(/\n+/g, ' ')
     .trim()
     .slice(0, 200);
 }
 
+// Build the open-this-month list: scholarships with status open or closing,
+// sorted so closing-soonest comes first, then open ones.
+function getOpenThisMonth() {
+  const scored = allScholarships
+    .map((s) => {
+      const status = getDeadlineStatus(s);
+      if (status.type === 'closing') return { s, priority: 0, days: status.daysLeft };
+      if (status.type === 'open') return { s, priority: 1, days: ('daysLeft' in status ? status.daysLeft : 999) };
+      return null;
+    })
+    .filter(Boolean) as { s: typeof allScholarships[0]; priority: number; days: number }[];
+
+  scored.sort((a, b) => a.priority - b.priority || a.days - b.days);
+  return scored.map((x) => x.s);
+}
+
+const openList = getOpenThisMonth();
+
+// Main featured = first open/closing scholarship
+// Fallback to MEXT if nothing is open (e.g. off-season)
+const mainScholarship = openList[0] ?? allScholarships.find((s) => providerGroup(s.provider) === 'mext')!;
+const sideScholarships = (openList.length > 1 ? openList.slice(1, 5) : [
+  allScholarships.filter((s) => providerGroup(s.provider) === 'daad')[0],
+  allScholarships.filter((s) => providerGroup(s.provider) === 'turkiye')[0],
+  allScholarships.filter((s) => providerGroup(s.provider) === 'daad')[1],
+  allScholarships.filter((s) => providerGroup(s.provider) === 'mext')[1],
+]).filter(Boolean);
+
+// Dynamic title: "Open in June 2026"
+const now = new Date();
+const monthLabel = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+const sectionTitle = openList.length > 0
+  ? `Open in ${monthLabel}`
+  : "Editor's pick";
+
 export default function EditorsPick() {
   if (!mainScholarship) return null;
   const mainGroup = providerGroup(mainScholarship.provider);
+  const mainStatus = getDeadlineStatus(mainScholarship);
 
   return (
     <section className="py-12 border-t border-brand-border bg-brand-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <h2 className="font-serif text-3xl font-bold tracking-tight text-brand-dark mb-8">
-          Editor&apos;s pick
-        </h2>
+        <div className="flex items-baseline justify-between mb-8">
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-brand-dark">
+            {sectionTitle}
+          </h2>
+          {openList.length > 0 && (
+            <span className="text-xs text-brand-muted">
+              {openList.length} scholarship{openList.length !== 1 ? 's' : ''} open now
+            </span>
+          )}
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
@@ -66,9 +97,21 @@ export default function EditorsPick() {
               <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark text-white shadow-sm z-10">
                 {flagMap[mainGroup]} {mainScholarship.provider.split('/')[0].trim()}
               </span>
-              <span className="absolute top-4 right-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-accent text-white shadow-sm z-10">
-                {mainScholarship.funding_type}
-              </span>
+              {/* Deadline badge */}
+              {(mainStatus.type === 'closing' || mainStatus.type === 'open') && (
+                <span className={`absolute top-4 right-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm z-10 ${
+                  mainStatus.type === 'closing'
+                    ? 'bg-red-500 text-white'
+                    : 'bg-brand-accent text-white'
+                }`}>
+                  {mainStatus.label}
+                </span>
+              )}
+              {mainStatus.type !== 'closing' && mainStatus.type !== 'open' && (
+                <span className="absolute top-4 right-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-accent text-white shadow-sm z-10">
+                  {mainScholarship.funding_type}
+                </span>
+              )}
             </div>
 
             <div className="flex items-center space-x-2 text-xs text-brand-muted mb-2 font-medium">
@@ -90,6 +133,7 @@ export default function EditorsPick() {
           <div className="lg:col-span-4 flex flex-col gap-6 lg:border-x lg:border-brand-border lg:px-6">
             {sideScholarships.map((s) => {
               const g = providerGroup(s.provider);
+              const st = getDeadlineStatus(s);
               return (
                 <Link
                   key={s.slug}
@@ -107,7 +151,13 @@ export default function EditorsPick() {
                     <h4 className="text-xs font-semibold text-brand-dark line-clamp-2 leading-snug group-hover:underline">
                       {s.name}
                     </h4>
-                    <p className="text-[10px] text-brand-accent font-medium mt-1">{s.funding_type}</p>
+                    <p className={`text-[10px] font-medium mt-1 ${
+                      st.type === 'closing' ? 'text-red-500' :
+                      st.type === 'open' ? 'text-brand-accent' :
+                      'text-brand-muted'
+                    }`}>
+                      {st.type === 'closing' || st.type === 'open' ? st.label : s.funding_type}
+                    </p>
                   </div>
                 </Link>
               );

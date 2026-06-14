@@ -4,7 +4,6 @@ import EditorsPick from "@/components/EditorsPick";
 import AdBanner from "@/components/AdBanner";
 import Trending from "@/components/Trending";
 import Inspiration from "@/components/Inspiration";
-import LatestPosts from "@/components/LatestPosts";
 import NewsletterFooter from "@/components/NewsletterFooter";
 import Footer from "@/components/Footer";
 
@@ -30,9 +29,6 @@ export default function Home() {
 
         {/* Inspiration Section */}
         <Inspiration />
-
-        {/* Latest Posts Row List */}
-        <LatestPosts />
 
         {/* Stacked Newsletter Sign-up */}
         <NewsletterFooter />
