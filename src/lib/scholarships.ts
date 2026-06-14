@@ -904,6 +904,7 @@ export function getScholarshipImage(s: Scholarship): string {
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
   if (group === 'daad') return '/images/universities/GE_HeidelbergU.png';
+  if (group === 'studienstiftung') return '/images/universities/GE_LMU.png';
   if (group === 'mext') return '/images/universities/JP_UofTokyo.png';
   if (group === 'jasso') return '/images/universities/JP_UofTokyo.png';
   if (group === 'turkiye') return '/images/universities/TU_METU.png';
@@ -913,6 +914,20 @@ export function getScholarshipImage(s: Scholarship): string {
   if (group === 'canada') return '/images/universities/CA_UofT.png';
   if (group === 'cpra') return '/images/universities/CA_UofT.png';
   if (group === 'chevening') return '/images/universities/UK_Oxford.png';
+  if (group === 'gates-cambridge') return '/images/universities/UK_Cambridge.png';
+  if (group === 'clarendon') return '/images/universities/UK_Oxford.png';
+  if (group === 'rhodes') return '/images/universities/UK_Oxford.png';
+  if (group === 'netherlands') {
+    // Rotate through different NL university images based on scholarship name
+    if (name.includes('groningen')) return '/images/universities/NL_TUDelft.png';
+    if (name.includes('leiden')) return '/images/universities/NL_UniversityofAmsterdam.png';
+    if (name.includes('maastricht')) return '/images/universities/NL_TUDelft.png';
+    if (name.includes('radboud')) return '/images/universities/NL_UniversityofAmsterdam.png';
+    if (name.includes('orange knowledge') || name.includes('okp')) return '/images/universities/NL_UniversityofAmsterdam.png';
+    if (name.includes('orange tulip') || name.includes('ots')) return '/images/universities/NL_TUDelft.png';
+    if (name.includes('holland') || name.includes('nl scholarship')) return '/images/universities/NL_UniversityofAmsterdam.png';
+    return '/images/universities/NL_TUDelft.png';
+  }
   if (group === 'australia-awards') return '/images/universities/AUS_Sydney.png';
   if (group === 'gks') return '/images/universities/KOR_SNU.png';
   if (group === 'koica') return '/images/universities/KOR_Yonsei.png';

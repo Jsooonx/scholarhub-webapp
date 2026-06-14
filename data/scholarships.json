@@ -98,7 +98,7 @@
     {
       "provider_group": "GATES_CAMBRIDGE",
       "file_count": 9,
-      "scholarship_count": 1
+      "scholarship_count": 2
     },
     {
       "provider_group": "CLARENDON",
@@ -111,7 +111,7 @@
       "scholarship_count": 1
     }
   ],
-  "scholarship_count": 93,
+  "scholarship_count": 94,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -5690,6 +5690,85 @@
         "US citizens resident in USA must apply by the October deadline instead",
         "Departmental ranking: December–February",
         "Panel review and scholarships offered: March–April",
+        "Contact: info@gatescambridge.org"
+      ],
+      "source": "02_programme_the-scholarship.md",
+      "source_file": "data/raw/gates-cambridge/02_programme_the-scholarship.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Gates Cambridge Scholarship - PhD",
+      "provider": "Gates Cambridge Trust / University of Cambridge",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Full international doctoral scholarship at the University of Cambridge",
+      "fields": [
+        "All disciplines available at the University of Cambridge"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 48
+      },
+      "deadline": "International round: December 2026 or early January 2027 (course-dependent). US round: October 2026.",
+      "application_period": [
+        "Applications open: September 2026",
+        "US round deadline: October 2026",
+        "International round deadline: December 2026 or early January 2027"
+      ],
+      "important_dates": [
+        "Applications open: September 2026 (date to be confirmed)",
+        "US citizens in USA deadline: October 2026",
+        "International round deadline: December 2026 or early January 2027 (course-specific)",
+        "International round results: by early March 2027",
+        "Scholarships offered: by early April 2027",
+        "Approximately two-thirds of the ~80 annual awards go to PhD applicants (~55 in international round)",
+        "PhD scholars funded for up to 4 years"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Must be a citizen of any country outside the United Kingdom",
+          "Applying for a full-time PhD at the University of Cambridge",
+          "Part-time PhD pilot scheme also available",
+          "Must identify and contact a potential Cambridge supervisor BEFORE applying - supervisor contact is required for the research proposal",
+          "Outstanding academic achievement (Cambridge department nominates only the most academically excellent applicants)",
+          "A commitment to improving the lives of others",
+          "Evidence of leadership potential",
+          "Needs-blind process - financial circumstances not considered",
+          "Cannot fund: undergraduate degrees, MBA/EMBA, MFin, PGCE, or part-time degrees (except PhD pilot)"
+        ]
+      },
+      "benefits": [
+        "University Composition Fee (tuition) in full",
+        "Maintenance allowance: £22,050/year for single student (2025/26 rate)",
+        "Funded for up to 4 years (full PhD duration)",
+        "One economy single airfare at start and end of course",
+        "Inbound visa costs + Immigration Health Surcharge",
+        "Academic development funding: up to £2,000 (discretionary)",
+        "Dependent children allowance: up to £12,184/year for one child (discretionary)",
+        "Fieldwork allowance (discretionary)",
+        "Maternity/paternity funding up to 6 months (discretionary)"
+      ],
+      "amounts": [
+        "£22,050/year maintenance (2025/26)",
+        "full tuition fee for up to 4 years"
+      ],
+      "target_group": "Outstanding non-UK citizens from any country pursuing PhD research at the University of Cambridge, who demonstrate academic excellence, leadership, and a commitment to improving the lives of others.",
+      "official_url": "https://www.gatescambridge.org",
+      "description": "The Gates Cambridge PhD Scholarship is a full-cost doctoral scholarship at the University of Cambridge, open to citizens of any country outside the UK. Around two-thirds of all Gates Cambridge awards go to PhD students. Funded for up to 4 years. PhD applicants must contact a potential supervisor and develop a research proposal before applying.",
+      "application_process": [
+        "Step 1: Identify a Cambridge academic department and potential supervisor - reach out before applying (supervisor contact required)",
+        "Step 2: Develop a research proposal in consultation with your potential supervisor",
+        "Step 3: Apply for PhD admission at Cambridge via the Cambridge applicant portal and indicate you wish to be considered for Gates Cambridge",
+        "Step 4: Apply by the Course Funding Deadline for your course (December or early January for international applicants)",
+        "US citizens resident in USA must apply by the October deadline",
+        "Departmental ranking: December-February; Panel review: late March; Scholarships offered: early April",
         "Contact: info@gatescambridge.org"
       ],
       "source": "02_programme_the-scholarship.md",
