@@ -20,7 +20,6 @@ const PROVIDERS = [
   { value: 'gks', label: '🇰🇷 GKS Korea' },
   { value: 'koica', label: '🇰🇷 KOICA' },
   { value: 'singapore', label: '🇸🇬 Singapore (NUS/NTU)' },
-  { value: 'astar', label: '🇸🇬 A*STAR' },
   { value: 'eiffel', label: '🇫🇷 Eiffel (France)' },
   { value: 'canada', label: '🇨🇦 Canada CRTAS' },
   { value: 'cpra', label: '🇨🇦 Canada CPRA' },

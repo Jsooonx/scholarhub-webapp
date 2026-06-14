@@ -13,7 +13,6 @@ const PROVIDERS = [
   'singapore',
   'eiffel',
   'canada',
-  'astar',
   'jasso',
   'koica',
   'cpra',

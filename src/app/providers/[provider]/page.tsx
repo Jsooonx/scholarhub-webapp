@@ -7,7 +7,8 @@ import ScholarshipCard from '@/components/ScholarshipCard';
 import { getScholarshipsByProvider, providerMeta } from '@/lib/scholarships';
 
 export async function generateStaticParams() {
-  return ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks', 'singapore', 'eiffel', 'canada', 'astar', 'jasso', 'koica', 'cpra', 'studienstiftung', 'netherlands', 'gates-cambridge', 'clarendon', 'rhodes'].map((provider) => ({ provider }));
+  // Exclude 'astar' — all A*STAR scholarships are grouped under 'singapore'
+  return ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks', 'singapore', 'eiffel', 'canada', 'jasso', 'koica', 'cpra', 'studienstiftung', 'netherlands', 'gates-cambridge', 'clarendon', 'rhodes'].map((provider) => ({ provider }));
 }
 
 export async function generateMetadata({
@@ -45,6 +46,7 @@ export default async function ProviderPage({
   if (!meta) notFound();
 
   const scholarships = getScholarshipsByProvider(provider);
+  if (scholarships.length === 0) notFound();
 
   // Group by degree level
   const byLevel: Record<string, typeof scholarships> = {};

@@ -60,10 +60,11 @@ export function providerGroup(provider: string): string {
   if (p.includes('a*star') || p.includes('astar') || p.includes('nus') || p.includes('ntu') || p.includes('singa') || p.includes('nanyang') || p.includes('national university of singapore')) return 'singapore';
   if (p.includes('eiffel') || p.includes('campus france') || p.includes('french ministry')) return 'eiffel';
   if (p.includes('paris-saclay') || p.includes('paris saclay') || p.includes('sciences po') || p.includes('ens de lyon') || p.includes('ens lyon')) return 'eiffel';
+  // cpra must come BEFORE canada — provider string contains 'cihr'/'nserc'/'sshrc' which also match canada
+  if (p.includes('cpra') || p.includes('postdoctoral research award') || (p.includes('government of canada') && (p.includes('cihr') || p.includes('nserc') || p.includes('sshrc')))) return 'cpra';
   if (p.includes('canada') || p.includes('cihr') || p.includes('nserc') || p.includes('sshrc') || p.includes('crtas') || p.includes('cgrs') || p.includes('university of toronto')) return 'canada';
   if (p.includes('jasso') || p.includes('japan student services')) return 'jasso';
   if (p.includes('koica') || p.includes('korea international cooperation')) return 'koica';
-  if (p.includes('cpra') || p.includes('postdoctoral research award')) return 'cpra';
   if (p.includes('studienstiftung') || p.includes('german academic scholarship foundation')) return 'studienstiftung';
   if (p.includes('nuffic') || p.includes('dutch ministry') || p.includes('justus') || p.includes('van effen') || p.includes('university of groningen') || p.includes('university of amsterdam') || p.includes('leiden university') || p.includes('maastricht university') || p.includes('radboud university') || p.includes('tu delft') || p.includes('delft university')) return 'netherlands';
   if (p.includes('gates cambridge')) return 'gates-cambridge';

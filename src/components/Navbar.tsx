@@ -29,7 +29,6 @@ const providers = [
   { name: 'Australia Awards', country: 'Australia', flag: '🇦🇺', slug: 'australia-awards' },
   { name: 'GKS', country: 'South Korea', flag: '🇰🇷', slug: 'gks' },
   { name: 'Singapore (NUS/NTU)', country: 'Singapore', flag: '🇸🇬', slug: 'singapore' },
-  { name: 'A*STAR', country: 'Singapore', flag: '🇸🇬', slug: 'astar' },
   { name: 'Eiffel Scholarship', country: 'France', flag: '🇫🇷', slug: 'eiffel' },
   { name: 'Canada CRTAS', country: 'Canada', flag: '🇨🇦', slug: 'canada' },
   { name: 'JASSO', country: 'Japan', flag: '🇯🇵', slug: 'jasso' },
