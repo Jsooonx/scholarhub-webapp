@@ -871,6 +871,11 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   // South Korea (KOICA/GKS partners)
   if (name.includes('sungkyunkwan') || provider.includes('sungkyunkwan') || hasWord('skku')) return '/images/logos/SKKU.png';
   if (name.includes('handong') || provider.includes('handong')) return '/images/logos/Handong.png';
+
+  // SEARCA partner universities
+  if (name.includes('uplb') || name.includes('los baños') || name.includes('los banos') || provider.includes('uplb')) return '/images/logos/UPLB.png';
+  if (name.includes('upm') || name.includes('putra malaysia') || provider.includes('upm')) return '/images/logos/UPM.png';
+  if (name.includes('ugm') || name.includes('gadjah mada') || provider.includes('gadjah mada')) return '/images/logos/UGM.png';
   if (name.includes('incheon') || provider.includes('incheon')) return '/images/logos/Incheon.png';
   if (name.includes('kdi school') || provider.includes('kdi school') || hasWord('kdi')) return '/images/logos/KDI.png';
   if (name.includes('kyungpook') || provider.includes('kyungpook')) return '/images/logos/Kyungpook.png';
@@ -964,6 +969,13 @@ export function getScholarshipImage(s: Scholarship): string {
   // New specific background images
   if (name.includes('tu delft') || provider.includes('tu delft') || provider.includes('delft university')) return '/images/universities/NL_TUDelft.png';
   if (name.includes('university of amsterdam') || provider.includes('university of amsterdam') || hasWord('uva')) return '/images/universities/NL_UniversityofAmsterdam.png';
+
+  // SEARCA partner universities
+  if (name.includes('uplb') || name.includes('los baños') || name.includes('los banos') || provider.includes('uplb')) return '/images/universities/PH_UPLB.png';
+  if (name.includes('upm') || name.includes('putra malaysia') || provider.includes('upm')) return '/images/universities/MY_UPM.png';
+  if (name.includes('ugm') || name.includes('gadjah mada') || provider.includes('gadjah mada')) return '/images/universities/ID_UGM.png';
+  // SEARCA scholarship itself — use UGM as representative
+  if (name.includes('searca')) return '/images/universities/ID_UGM.png';
 
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
@@ -1100,6 +1112,11 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'Ankara Hacı Bayram Veli University', logo: '/images/logos/AnkaraHaciBayramVeliU.png', keywords: ['bayram veli'] },
     { name: 'Ankara Music and Fine Arts University', logo: '/images/logos/AnkaraMusicandFineArtsU.png', keywords: ['music and fine arts'] },
     { name: 'ENS de Lyon', logo: '/images/logos/ENSdeLyon.png', keywords: ['ens de lyon', 'ens lyon'] },
+
+    // SEARCA partner universities (Philippines, Malaysia, Indonesia)
+    { name: 'University of the Philippines Los Baños (UPLB)', logo: '/images/logos/UPLB.png', keywords: ['uplb', 'los baños', 'los banos', 'university of the philippines los'] },
+    { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png', keywords: ['upm', 'universiti putra malaysia', 'putra malaysia'] },
+    { name: 'Universitas Gadjah Mada (UGM)', logo: '/images/logos/UGM.png', keywords: ['ugm', 'gadjah mada', 'universitas gadjah'] },
   ];
 
   universities.forEach((univ) => {
@@ -1121,8 +1138,10 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     }
   });
 
-  // 2. If no specific university is mentioned (Universal/National Scholarship),
-  // return top universities in that country as default/representative options.
+  // 2. Only show group fallback logos for umbrella/national scholarships
+  // that do NOT mention specific partner institutions in their description.
+  // If the scholarship text already names specific partner unis (e.g. "UPLB, UPM, UGM"),
+  // return empty so the section doesn't show misleading logos.
   if (list.length === 0) {
     const country = s.country ? s.country.toLowerCase() : '';
     const group = providerGroup(s.provider);
