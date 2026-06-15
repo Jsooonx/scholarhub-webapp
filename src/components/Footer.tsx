@@ -161,6 +161,9 @@ export default function Footer() {
                   <Link href="/providers/singapore" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇸🇬 Singapore (NUS/NTU)</Link>
                   <Link href="/providers/canada" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇨🇦 Canada CRTAS</Link>
                   <Link href="/providers/cpra" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇨🇦 Canada CPRA</Link>
+                  <Link href="/providers/fulbright" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇺🇸 Fulbright / AMINEF</Link>
+                  <Link href="/providers/belgium-vlir" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇧🇪 VLIR-UOS Belgium</Link>
+                  <Link href="/providers/erasmus-mundus" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇪🇺 Erasmus Mundus</Link>
                 </div>
               </div>
             </div>

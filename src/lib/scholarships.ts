@@ -70,6 +70,9 @@ export function providerGroup(provider: string): string {
   if (p.includes('gates cambridge')) return 'gates-cambridge';
   if (p.includes('clarendon') || p.includes('oxford university press')) return 'clarendon';
   if (p.includes('rhodes trust') || p.includes('rhodes house')) return 'rhodes';
+  if (p.includes('fulbright') || p.includes('aminef')) return 'fulbright';
+  if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian government') || p.includes('icp connect')) return 'belgium-vlir';
+  if (p.includes('erasmus mundus') || p.includes('erasmus+') || p.includes('european commission')) return 'erasmus-mundus';
   if (p.includes('eiffel')) return 'eiffel';
   if (p.includes('singa')) return 'singa';
   if (p.includes('vanier')) return 'vanier';
@@ -560,6 +563,39 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'open', label: `Opens Jun · closes ~Oct`, daysLeft: diff, deadline: close };
   }
 
+  // ── Fulbright: deadline Feb 15 ───────────────────────────────────────────
+  if (group === 'fulbright') {
+    const nowF = new Date();
+    const yearF = nowF.getFullYear();
+    const close = new Date(yearF, 1, 15); // Feb 15
+    const target = nowF <= close ? close : new Date(yearF + 1, 1, 15);
+    const diff = Math.ceil((target.getTime() - nowF.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (diff <= 0) return { type: 'closed', label: `Closed · next cycle ~Oct`, deadline: target };
+    if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+    return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── VLIR-UOS Belgium: programme-specific, typically Jan-Apr ─────────────
+  if (group === 'belgium-vlir') return { type: 'rolling', label: 'Varies per programme' };
+
+  // ── Erasmus Mundus: Oct-Jan typically ────────────────────────────────────
+  if (group === 'erasmus-mundus') {
+    const nowEM = new Date();
+    const yearEM = nowEM.getFullYear();
+    const open = new Date(yearEM, 9, 1);   // Oct 1
+    const close = new Date(yearEM, 0, 31) > nowEM
+      ? new Date(yearEM, 0, 31)
+      : new Date(yearEM + 1, 0, 31);
+    const diff = Math.ceil((close.getTime() - nowEM.getTime()) / 86_400_000);
+    const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowEM >= open || nowEM <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ~${fmt}`, daysLeft: diff, deadline: close };
+      return { type: 'open', label: `Open · closes ~Jan`, daysLeft: diff, deadline: close };
+    }
+    return { type: 'closed', label: `Closed · opens Oct ${yearEM}`, deadline: open };
+  }
+
   return getDaadStatus();
 }
 
@@ -732,6 +768,30 @@ export const providerMeta: Record<
       "Established in 1903, the Rhodes Scholarship is one of the world's oldest and most prestigious international scholarships, funding postgraduate study at the University of Oxford. Open to exceptional young graduates from approximately 60 countries who demonstrate outstanding intellect, character, leadership, and commitment to service.",
     website: 'https://www.rhodeshouse.ox.ac.uk/scholarships/',
   },
+  fulbright: {
+    name: 'Fulbright / AMINEF',
+    flag: '🇺🇸',
+    country: 'United States',
+    description:
+      'The Fulbright Program, administered in Indonesia by AMINEF (American Indonesian Exchange Foundation), is the US government\'s flagship international exchange program. It offers fully funded scholarships and fellowships for Indonesian citizens to study, research, or teach in the United States, including the Master\'s Degree Scholarship, PhD Scholarship, Hubert H. Humphrey Fellowship for mid-career professionals, and the FLTA teaching assistantship program.',
+    website: 'https://www.aminef.or.id',
+  },
+  'belgium-vlir': {
+    name: 'VLIR-UOS Belgium (ICP Connect)',
+    flag: '🇧🇪',
+    country: 'Belgium',
+    description:
+      'VLIR-UOS (Flemish Interuniversity Council - University Development Cooperation) offers fully funded ICP Connect Scholarships for students from 29 eligible developing countries including Indonesia to pursue accredited international programmes at Flemish universities and universities of applied sciences. Available at bachelor (3 years), initial master (2 years), and advanced master (1 year) levels across development-related fields.',
+    website: 'https://www.vliruos.be/get-funded/study-scholarships',
+  },
+  'erasmus-mundus': {
+    name: 'Erasmus Mundus Joint Master (EMJM)',
+    flag: '🇪🇺',
+    country: 'Belgium',
+    description:
+      'The Erasmus Mundus Joint Master (EMJM) is a prestigious EU-funded scholarship for a 1-2 year master\'s degree jointly delivered by at least 3 universities in at least 3 European countries. Open to students of any nationality worldwide including Indonesia. With 150+ programmes across all disciplines, full scholarships cover tuition, living allowance, travel, and insurance. Search programmes at eacea.ec.europa.eu.',
+    website: 'https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters',
+  },
 };
 
 /**
@@ -829,6 +889,9 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (group === 'daad') return '/images/logos/daad.svg';
   if (group === 'mext') return '/images/logos/mext.svg';
   if (group === 'turkiye') return '/images/logos/turkiye.png';
+  if (group === 'fulbright') return '/images/logos/Harvard.png';
+  if (group === 'belgium-vlir') return '/images/logos/KULeuven.png';
+  if (group === 'erasmus-mundus') return '/images/logos/Bologna.png';
 
   return null;
 }
@@ -932,6 +995,22 @@ export function getScholarshipImage(s: Scholarship): string {
   if (group === 'australia-awards') return '/images/universities/AUS_Sydney.png';
   if (group === 'gks') return '/images/universities/KOR_SNU.png';
   if (group === 'koica') return '/images/universities/KOR_Yonsei.png';
+  // Fulbright - rotate between top US placement universities
+  if (group === 'fulbright') {
+    const name = s.name.toLowerCase();
+    if (name.includes('humphrey')) return '/images/universities/US_Columbia.png';
+    if (name.includes('flta') || name.includes('teaching assistant')) return '/images/universities/US_Stanford.png';
+    return '/images/universities/US_Harvard.png';
+  }
+  // Belgium VLIR - rotate between top Flemish universities
+  if (group === 'belgium-vlir') {
+    const name = s.name.toLowerCase();
+    if (name.includes('advanced') || name.includes('1 year')) return '/images/universities/BEL_VUB.png';
+    if (name.includes('bachelor')) return '/images/universities/BEL_GhentU.png';
+    return '/images/universities/BEL_KULeuven.png';
+  }
+  // Erasmus Mundus - use Bologna as iconic EU university
+  if (group === 'erasmus-mundus') return '/images/universities/ITA_Bologna.png';
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
 }
@@ -1117,6 +1196,44 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Yonsei University', logo: '/images/logos/Yonsei.png' },
         { name: 'Korea University', logo: '/images/logos/KoreaU.png' },
         { name: 'Pohang University of Science and Technology (POSTECH)', logo: '/images/logos/POSTECH.png' }
+      );
+    } else if (country === 'netherlands' || group === 'netherlands') {
+      list.push(
+        { name: 'TU Delft', logo: '/images/logos/TUDelft.png' },
+        { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png' },
+        { name: 'Leiden University', logo: '/images/logos/LeidenU.png' },
+        { name: 'University of Groningen', logo: '/images/logos/Groningen.png' },
+        { name: 'Maastricht University', logo: '/images/logos/Maastritcht.png' }
+      );
+    } else if (group === 'gates-cambridge') {
+      list.push({ name: 'University of Cambridge', logo: '/images/logos/Cambridge.png' });
+    } else if (group === 'clarendon' || group === 'rhodes') {
+      list.push({ name: 'University of Oxford', logo: '/images/logos/Oxford.png' });
+    } else if (group === 'studienstiftung') {
+      list.push(
+        { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png' },
+        { name: 'LMU Munich', logo: '/images/logos/LMU.png' },
+        { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' },
+        { name: 'Freie Universität Berlin', logo: '/images/logos/FUBerlin.png' },
+        { name: 'Karlsruhe Institute of Technology (KIT)', logo: '/images/logos/KIT.png' }
+      );
+    } else if (group === 'fulbright') {
+      list.push(
+        { name: 'Harvard University', logo: '/images/logos/Harvard.png' },
+        { name: 'Columbia University', logo: '/images/logos/ColumbiaU.png' },
+        { name: 'Stanford University', logo: '/images/logos/Stanford.png' }
+      );
+    } else if (group === 'belgium-vlir') {
+      list.push(
+        { name: 'KU Leuven', logo: '/images/logos/KULeuven.png' },
+        { name: 'Ghent University', logo: '/images/logos/GhentU.png' },
+        { name: 'Vrije Universiteit Brussel (VUB)', logo: '/images/logos/VUB.png' }
+      );
+    } else if (group === 'erasmus-mundus') {
+      list.push(
+        { name: 'University of Bologna', logo: '/images/logos/Bologna.png' },
+        { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' },
+        { name: 'KU Leuven', logo: '/images/logos/KULeuven.png' }
       );
     }
   }

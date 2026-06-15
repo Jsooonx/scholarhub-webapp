@@ -10,6 +10,7 @@ const flagMap: Record<string, string> = {
   netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
   astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
+  fulbright: '🇺🇸', 'belgium-vlir': '🇧🇪', 'erasmus-mundus': '🇪🇺',
 };
 
 const FILTER_LINKS = [

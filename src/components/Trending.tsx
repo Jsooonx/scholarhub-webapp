@@ -11,6 +11,7 @@ const flagMap: Record<string, string> = {
   netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
   astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
+  fulbright: '🇺🇸', 'belgium-vlir': '🇧🇪', 'erasmus-mundus': '🇪🇺',
 };
 
 const PROVIDER_LABELS: Record<string, string> = {
@@ -27,7 +28,9 @@ const PROVIDER_LABELS: Record<string, string> = {
   gks: 'GKS - South Korea',
   eiffel: 'Eiffel - France',
   singapore: 'Singapore (NUS/NTU/A*STAR)',
-  canada: 'Canada CRTAS',
+  fulbright: 'Fulbright / AMINEF - USA',
+  'belgium-vlir': 'VLIR-UOS - Belgium',
+  'erasmus-mundus': 'Erasmus Mundus - EU',
   astar: 'A*STAR - Singapore',
   jasso: 'JASSO - Japan',
   koica: 'KOICA - South Korea',
@@ -36,7 +39,7 @@ const PROVIDER_LABELS: Record<string, string> = {
 
 // All provider groups — add new ones here as providers are added
 const ALL_PROVIDER_GROUPS = [
-  // Page 1 (9 providers, all have substantial scholarship counts)
+  // Page 1
   'daad', 'mext', 'turkiye',
   'chevening', 'australia-awards', 'gks',
   'eiffel', 'singapore', 'netherlands',
@@ -44,6 +47,8 @@ const ALL_PROVIDER_GROUPS = [
   'studienstiftung', 'gates-cambridge', 'canada',
   'clarendon', 'rhodes', 'jasso',
   'koica', 'cpra',
+  // Page 3 - new providers
+  'fulbright', 'belgium-vlir', 'erasmus-mundus',
 ];
 
 const byGroup = Object.fromEntries(

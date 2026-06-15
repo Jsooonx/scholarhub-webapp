@@ -20,6 +20,9 @@ const providers = [
   { flag: '🇫🇷', name: 'Eiffel - France', country: 'France', href: '/providers/eiffel' },
   { flag: '🇸🇬', name: 'Singapore', country: 'Singapore', href: '/providers/singapore' },
   { flag: '🇨🇦', name: 'Canada CRTAS', country: 'Canada', href: '/providers/canada' },
+  { flag: '🇺🇸', name: 'Fulbright', country: 'United States', href: '/providers/fulbright' },
+  { flag: '🇧🇪', name: 'VLIR-UOS', country: 'Belgium', href: '/providers/belgium-vlir' },
+  { flag: '🇪🇺', name: 'Erasmus Mundus', country: 'European Union', href: '/providers/erasmus-mundus' },
 ];
 
 export default function AdBanner() {

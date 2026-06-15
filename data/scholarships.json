@@ -17,7 +17,10 @@
     "NETHERLANDS",
     "GATES_CAMBRIDGE",
     "CLARENDON",
-    "RHODES"
+    "RHODES",
+    "FULBRIGHT",
+    "BELGIUM_VLIR",
+    "ERASMUS_MUNDUS"
   ],
   "provider_summaries": [
     {
@@ -109,9 +112,24 @@
       "provider_group": "RHODES",
       "file_count": 1,
       "scholarship_count": 1
+    },
+    {
+      "provider_group": "FULBRIGHT",
+      "file_count": 25,
+      "scholarship_count": 4
+    },
+    {
+      "provider_group": "BELGIUM_VLIR",
+      "file_count": 20,
+      "scholarship_count": 3
+    },
+    {
+      "provider_group": "ERASMUS_MUNDUS",
+      "file_count": 16,
+      "scholarship_count": 1
     }
   ],
-  "scholarship_count": 94,
+  "scholarship_count": 102,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -4368,7 +4386,7 @@
         "¥30,000/month (language school)"
       ],
       "target_group": "Privately-financed international students already enrolled at Japanese universities or graduate schools who have strong academic performance and financial need.",
-      "official_url": "https://www.studyinjapan.go.jp/en/planning/scholarships/jasso-scholarships/",
+      "official_url": "https://www.jasso.or.jp/en/ryugaku/scholarship_j/index.html",
       "description": "The JASSO Monbukagakusho Honors Scholarship provides a monthly stipend to privately-financed international students already studying in Japan who demonstrate academic excellence and financial need. Unlike MEXT, this is applied for after arriving in Japan through the student's school.",
       "application_process": [
         "Pre-arrival route (Reservation Program): when registering for the EJU exam, opt into the Reservation Program - outstanding EJU scorers are pre-selected as reservation holders",
@@ -4429,7 +4447,7 @@
         "¥80,000/month"
       ],
       "target_group": "International university students whose home institution has a student exchange agreement with a Japanese host university, participating in short-term academic exchange programs in Japan.",
-      "official_url": "https://www.studyinjapan.go.jp/en/planning/scholarships/jasso-scholarships/",
+      "official_url": "https://www.jasso.or.jp/en/ryugaku/scholarship_j/index.html",
       "description": "The JASSO Student Exchange Support Program funds international exchange students who come to Japan under bilateral university agreements, providing ¥80,000/month for up to 1 year to support short-term academic exchanges.",
       "application_process": [
         "Check if your Indonesian university has a student exchange agreement with a Japanese university",
@@ -5908,6 +5926,582 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/rhodes/01_overview.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Fulbright Master's Degree Scholarship",
+      "provider": "Fulbright / AMINEF",
+      "country": "United States",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Government exchange scholarship - Master's degree in the US",
+      "fields": [
+        "All disciplines except medicine related to patient care or clinical patient contact"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "February 15 annually",
+      "application_period": [
+        "Applications open around October - close February 15"
+      ],
+      "important_dates": [
+        "Application deadline: February 15 (annually)",
+        "Only shortlisted applicants will be notified and interviewed",
+        "Grant start: typically August/September of award year",
+        "Apply online at: https://stu.aminef.or.id/grantee/"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen, currently residing in Indonesia (not a US permanent resident)",
+          "Not currently studying, residing, or working outside of Indonesia",
+          "Hold a bachelor's degree (S1)",
+          "Minimum GPA of 3.0 on a 4.0 scale",
+          "Minimum TOEFL ITP 550 / TOEFL iBT 80 / IELTS 6.5 / Duolingo 125",
+          "Demonstrated leadership qualities and community service experience",
+          "Strong commitment to return to Indonesia after completing the scholarship",
+          "Must be willing to work at least 5 years before retirement after completion",
+          "Not currently receiving another scholarship",
+          "Not applying for US permanent residency",
+          "All disciplines eligible EXCEPT medicine related to patient care or clinical patient contact"
+        ]
+      },
+      "benefits": [
+        "Full tuition and fees at the US university",
+        "Monthly maintenance allowance",
+        "Round-trip international airfare",
+        "Health and accident insurance",
+        "Book and supplies allowance",
+        "Pre-academic English language training (if required)"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian citizens of any age with a bachelor's degree and strong academic and leadership potential who wish to pursue a master's degree at a US university in any field except clinical medicine.",
+      "official_url": "https://www.aminef.or.id/grants-for-indonesians/fulbright-programs/scholarship/fulbright-masters-degree-scholarship/",
+      "description": "The Fulbright Master's Degree Scholarship is administered by AMINEF (American Indonesian Exchange Foundation) for Indonesian citizens to pursue a 1-2 year master's degree at a US university. It is fully funded by the US government and covers tuition, living allowance, airfare, health insurance, and books. Deadline: February 15 annually. Apply at stu.aminef.or.id/grantee/",
+      "application_process": [
+        "Register and create an account at: https://stu.aminef.or.id/grantee/",
+        "Complete the online application form including: one-page study objective, one-page personal statement, bibliography of published work, and academic writing sample",
+        "Upload: TOEFL/IELTS/Duolingo score (less than 2 years old), 3 letters of reference, legalized academic transcript + diploma (Indonesian + English), KTP or passport, CV",
+        "Submit before February 15 - early submission recommended to avoid peak system usage",
+        "Only shortlisted applicants will be notified for interview",
+        "Technical questions: helpdesk@aminef.or.id | Program questions: infofulbright_ind@aminef.or.id"
+      ],
+      "source": "06_grants-for-indonesians_fulbright-programs_scholarship_fulbright-masters-degree-s.md",
+      "source_file": "data/raw/fulbright-usa/06_grants-for-indonesians_fulbright-programs_scholarship_fulbright-masters-degree-s.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Fulbright Doctoral Degree (PhD) Scholarship",
+      "provider": "Fulbright / AMINEF",
+      "country": "United States",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "Government exchange scholarship - Doctoral degree in the US",
+      "fields": [
+        "All disciplines except medicine related to patient care or clinical patient contact",
+        "Humanities",
+        "Arts",
+        "Social Sciences",
+        "STEM",
+        "Health (non-clinical)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "February 15 annually",
+      "application_period": [
+        "Applications open around October - close February 15"
+      ],
+      "important_dates": [
+        "Application deadline: February 15 (annually)",
+        "Note: DIKTI-funded parallel program for NIDN lecturers is currently ON HIATUS - prospective lecturer applicants should apply through this standard PhD scholarship",
+        "Grant start: typically August/September of award year",
+        "Apply online at: https://stu.aminef.or.id/grantee/"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen, currently residing in Indonesia",
+          "Hold a master's degree (S2)",
+          "Minimum GPA of 3.0 on a 4.0 scale",
+          "Minimum TOEFL ITP 575 / TOEFL iBT 90 / IELTS 7.0 / Duolingo 135",
+          "Intention to take up or return to an academic position upon completion",
+          "Preference given to applicants who plan to teach or do research at an Indonesian university or research institution",
+          "Demonstrated leadership qualities and community service experience",
+          "Strong commitment to return to Indonesia after completing the scholarship",
+          "Not currently receiving another scholarship",
+          "All disciplines eligible EXCEPT medicine related to patient care"
+        ]
+      },
+      "benefits": [
+        "Full tuition and fees at the US university",
+        "Monthly maintenance allowance",
+        "Round-trip international airfare",
+        "Health and accident insurance",
+        "Book and supplies allowance",
+        "Pre-academic English language training (if required)"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian citizens with a master's degree (S2) who wish to pursue a full doctoral degree at a US university, with preference for those intending to return to academic or research positions in Indonesia.",
+      "official_url": "https://www.aminef.or.id/grants-for-indonesians/fulbright-programs/scholarship/fulbright-doctoral-degree-phd-scholarship/",
+      "description": "The Fulbright PhD Scholarship provides 3 years of fully funded doctoral study at a US university for Indonesian citizens holding a master's degree. Administered by AMINEF, it covers tuition, living allowance, airfare, and health insurance. Preference is given to those planning academic careers in Indonesia. Note: the parallel DIKTI-Fulbright track for NIDN lecturers is currently on hiatus. Deadline: February 15.",
+      "application_process": [
+        "Register and create an account at: https://stu.aminef.or.id/grantee/",
+        "Complete the online application form including: one-page study objective, one-page personal statement, bibliography of published work, and academic writing sample",
+        "Upload: TOEFL/IELTS/Duolingo score (less than 2 years old), 3 letters of reference, legalized master's + bachelor's transcripts and diplomas (Indonesian + English), KTP or passport, CV",
+        "Submit before February 15",
+        "Only shortlisted applicants will be notified for interview",
+        "Program questions: infofulbright_ind@aminef.or.id"
+      ],
+      "source": "07_grants-for-indonesians_fulbright-programs_scholarship_fulbright-doctoral-degree-.md",
+      "source_file": "data/raw/fulbright-usa/07_grants-for-indonesians_fulbright-programs_scholarship_fulbright-doctoral-degree-.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Hubert H. Humphrey Fellowship Program",
+      "provider": "Fulbright / AMINEF",
+      "country": "United States",
+      "degree_levels": [
+        "Non-Degree",
+        "Fellowship"
+      ],
+      "program_type": "Non-degree professional development fellowship for mid-career professionals",
+      "fields": [
+        "Communications and Journalism",
+        "Law and Governance",
+        "Natural Resources Policy",
+        "Public and Economic Policy",
+        "Public Health Policy and Management",
+        "Technology Policy and Management"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 10,
+        "max": 10
+      },
+      "deadline": "February 15 annually (check AMINEF for current cycle)",
+      "application_period": [
+        "Applications typically open October - close February 15"
+      ],
+      "important_dates": [
+        "Application deadline: approximately February 15 annually",
+        "Fellowship period: August/September - following June (10 months)",
+        "Applicants needing extra English training may be required to arrive as early as April",
+        "Award is not renewable",
+        "Note: program does NOT result in a US degree - fellows receive a Certificate of Participation",
+        "Fellows are placed at US universities by IIE based on field - cannot request specific universities"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 5,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen, currently residing in Indonesia",
+          "Mid-career professional in a leadership position: policymaker, planner, administrator, manager, NGO leader, or journalist",
+          "Minimum 5 years of full-time professional experience beyond first university degree (prior to August of fellowship year)",
+          "Currently employed - must have employer support and agreement for leave of absence",
+          "Working in the public sector or non-profit/NGO sector",
+          "NOT for those wishing to earn a US degree - this is a non-degree professional enrichment program",
+          "NOT open to those who have attended US graduate school for 1 academic year or more",
+          "NOT open to those who have participated in US government-sponsored exchange within the last 3 years",
+          "Fields covered: Communications/Journalism, Law/Governance, Natural Resources Policy, Public/Economic Policy, Public Health Policy, Technology Policy"
+        ]
+      },
+      "benefits": [
+        "Monthly maintenance allowance",
+        "Book and supplies allowance",
+        "Tuition and fees (when applicable)",
+        "Round-trip international airfare to US host institution",
+        "Domestic travel to Washington DC for special seminar",
+        "Supplementary funds for professional activities (field trips, conferences)",
+        "Pre-program English language training (if required)"
+      ],
+      "amounts": [],
+      "target_group": "Mid-career Indonesian professionals with 5+ years of experience in the public or non-profit/NGO sector in fields related to policy, governance, journalism, public health, or natural resources, seeking professional development (not a degree) in the US.",
+      "official_url": "https://www.aminef.or.id/grants-for-indonesians/fulbright-programs/fellowships/hubert-h-humphrey-fellowship-program-mid-career-professionals/",
+      "description": "The Hubert H. Humphrey Fellowship Program provides 10-month non-degree professional development for mid-career Indonesian professionals in public policy, governance, journalism, public health, natural resources, and technology policy. Unlike Fulbright degree scholarships, this program does NOT lead to a US degree - fellows receive a Certificate of Participation and spend time in coursework, internships, field trips, and special projects. Minimum 5 years of professional experience required.",
+      "application_process": [
+        "Confirm eligibility: must be a mid-career professional with 5+ years of experience in an eligible field",
+        "Secure employer support and agreement for a leave of absence",
+        "Apply online at: https://stu.aminef.or.id/grantee/",
+        "Note: IIE places fellows at designated US universities based on field - you cannot request a specific university",
+        "Submit application before the February deadline",
+        "Program questions: infofulbright_ind@aminef.or.id"
+      ],
+      "source": "13_grants-for-indonesians_fulbright-programs_fellowships_hubert-h-humphrey-fellowsh.md",
+      "source_file": "data/raw/fulbright-usa/13_grants-for-indonesians_fulbright-programs_fellowships_hubert-h-humphrey-fellowsh.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Fulbright Foreign Language Teaching Assistant (FLTA) Program",
+      "provider": "Fulbright / AMINEF",
+      "country": "United States",
+      "degree_levels": [
+        "Non-Degree",
+        "Fellowship"
+      ],
+      "program_type": "Teaching assistantship and professional development exchange for young Indonesian language teachers",
+      "fields": [
+        "Indonesian Language Teaching",
+        "Education",
+        "Cultural Exchange"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 9,
+        "max": 9
+      },
+      "deadline": "February 15 annually (check AMINEF for current cycle)",
+      "application_period": [
+        "Applications typically open October - close February 15"
+      ],
+      "important_dates": [
+        "Application deadline: approximately February 15 annually",
+        "Program duration: 9 months (approximately September - June)",
+        "Fellows teach Indonesian language at a US university while taking up to 2 courses per semester",
+        "Note: non-degree program - no US degree awarded"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen, currently residing in Indonesia",
+          "Age 21-29 at time of application (check current cycle for exact age limit)",
+          "Hold a bachelor's degree (S1) or be in final year of undergraduate study",
+          "Minimum GPA of 3.0 on a 4.0 scale",
+          "Minimum TOEFL ITP 525 / TOEFL iBT 71 / IELTS 6.0 or equivalent",
+          "Experience in teaching or tutoring Indonesian language (formal or informal)",
+          "Strong interest in teaching Indonesian language and culture to Americans",
+          "Not previously participated in a Fulbright exchange program",
+          "Currently a student, recent graduate, or early-career professional"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend covering living expenses",
+        "Round-trip international airfare",
+        "Health and accident insurance",
+        "Enrollment in up to 2 US university courses per semester (at no cost)",
+        "Pre-departure orientation in the US"
+      ],
+      "amounts": [],
+      "target_group": "Young Indonesian language teachers or recent graduates (age ~21-29) who wish to teach Indonesian language at a US university for 9 months while taking university courses, as part of a cultural exchange program.",
+      "official_url": "https://www.aminef.or.id/grants-for-indonesians/fulbright-programs/foreign-language-teaching-assistant-flta-2/",
+      "description": "The Fulbright FLTA Program places young Indonesian teachers or recent graduates at US universities for 9 months to teach Indonesian language and culture while taking university courses. It is a non-degree program focused on professional development and cultural exchange. Participants must be age 21-29 and have experience in Indonesian language teaching.",
+      "application_process": [
+        "Confirm age eligibility (typically 21-29)",
+        "Apply online at: https://stu.aminef.or.id/grantee/",
+        "Prepare: academic transcripts, TOEFL/IELTS score, letters of reference, personal statement, CV",
+        "Submit before the February deadline",
+        "Program questions: infofulbright_ind@aminef.or.id"
+      ],
+      "source": "12_grants-for-indonesians_fulbright-programs_foreign-language-teaching-assistant-fl.md",
+      "source_file": "data/raw/fulbright-usa/12_grants-for-indonesians_fulbright-programs_foreign-language-teaching-assistant-fl.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "VLIR-UOS ICP Connect Scholarship - Initial Master's (2 years)",
+      "provider": "VLIR-UOS / Belgian Government",
+      "country": "Belgium",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Government development scholarship for accredited international master's programmes at Flemish universities",
+      "fields": [
+        "Agro- and Environmental Nematology",
+        "Rural Development (IMRD)",
+        "Aquaculture (IMAQUA)",
+        "Epidemiology",
+        "Food Technology",
+        "Marine and Lacustrine Science and Management",
+        "Statistics and Data Science",
+        "Sustainable Development",
+        "Transportation Sciences - Road Safety",
+        "Water Resources Engineering (WRE)",
+        "Nutrition and Food Systems",
+        "Sustainable Land Management",
+        "Tropical Biodiversity and Ecosystems (TROPIMUNDO)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": "Varies per programme - typically January to April. Check each programme page at vliruos.be.",
+      "application_period": [
+        "Typically November - April, varies per programme"
+      ],
+      "important_dates": [
+        "Indonesia is on the 29-country eligible list for ICP Connect scholarships",
+        "Apply through the specific programme's institution, NOT centrally through VLIR-UOS",
+        "Maximum age: 35 years old as of January 1 of the intake year",
+        "Cannot receive any other scholarship simultaneously",
+        "Cannot have previously received a Belgian government scholarship or studied at a Belgian institution",
+        "VLIR-UOS contacts selected candidates by email no later than mid-May",
+        "Scholarship covers FULL duration only (cannot apply for partial scholarship)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen currently residing in Indonesia (or one of the other 28 eligible countries)",
+          "Maximum age 35 as of January 1 of the intake year",
+          "Hold a bachelor's degree (or equivalent) meeting the specific programme's admission requirements",
+          "Strong motivation to contribute to sustainable development as an \"agent of change\" upon return",
+          "Preference for candidates employed in higher education, government, or civil society",
+          "Newly graduated or private sector applicants may also apply with strong motivation",
+          "Cannot hold another scholarship simultaneously",
+          "Cannot have previously received a Belgian government scholarship",
+          "Cannot have previously enrolled in a Belgian higher education institution before January 1 of the intake year",
+          "Apply through the specific programme institution - each has its own additional criteria and deadline"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees",
+        "Round-trip international airfare",
+        "Monthly living allowance (board and lodging)",
+        "Health and travel insurance"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian professionals or graduates (max age 35) with a strong commitment to sustainable development who wish to pursue a 2-year internationally accredited master's programme at a Flemish university in Belgium.",
+      "official_url": "https://www.vliruos.be/get-funded/study-scholarships",
+      "description": "VLIR-UOS ICP Connect Scholarships provide fully funded 2-year master's programmes at Flemish (Belgian) universities for students from 29 eligible developing countries including Indonesia. The scholarship covers tuition, airfare, living expenses, and insurance. Apply through the specific programme institution - each has its own deadline (typically Jan-Apr). Indonesia is on the eligible list. Candidates must be max age 35 and cannot hold another scholarship.",
+      "application_process": [
+        "Step 1: Go to vliruos.be/get-funded/study-scholarships and browse the 2-year master's programmes",
+        "Step 2: Check Indonesia is on the eligible country list for your chosen programme (vliruos.be/country-list-icp-scholarships)",
+        "Step 3: Visit the specific programme's page and institution website for exact deadline and application requirements",
+        "Step 4: Apply for both the programme AND the scholarship through the institution's application portal (indicate scholarship interest when applying)",
+        "Do NOT apply centrally through VLIR-UOS - each programme has its own process",
+        "Cannot apply for more than one ICP Connect programme per year"
+      ],
+      "source": "01_get-funded_study-scholarships.md",
+      "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "VLIR-UOS ICP Connect Scholarship - Advanced Master's (1 year)",
+      "provider": "VLIR-UOS / Belgian Government",
+      "country": "Belgium",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "Government development scholarship for 1-year advanced master's at Flemish universities",
+      "fields": [
+        "Human Settlements",
+        "Development Evaluation and Management",
+        "Governance and Development",
+        "Globalisation and Development",
+        "Cultural Anthropology and Development Studies (CADES)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "Varies per programme - typically January to April. Check each programme page at vliruos.be.",
+      "application_period": [
+        "Typically November - April, varies per programme"
+      ],
+      "important_dates": [
+        "Indonesia is on the 29-country eligible list",
+        "Maximum age for advanced master's: 45 years old as of January 1 of the intake year",
+        "Apply through the specific programme's institution",
+        "All same general VLIR-UOS ICP Connect rules apply (no other scholarship, no prior Belgian scholarship)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen currently residing in Indonesia",
+          "Maximum age 45 as of January 1 of the intake year (higher limit for advanced master's)",
+          "Hold a master's degree or equivalent meeting the programme's specific admission requirements",
+          "Strong motivation to contribute to sustainable development upon return to home country",
+          "Preference for candidates in higher education, government, or civil society",
+          "Cannot hold another scholarship simultaneously",
+          "Cannot have previously received a Belgian government scholarship"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees",
+        "Round-trip international airfare",
+        "Monthly living allowance (board and lodging)",
+        "Health and travel insurance"
+      ],
+      "amounts": [],
+      "target_group": "Indonesian professionals (max age 45) with a master's degree who wish to specialize further in development-related fields through a 1-year advanced master's programme at a Flemish university in Belgium.",
+      "official_url": "https://www.vliruos.be/get-funded/study-scholarships",
+      "description": "VLIR-UOS ICP Connect Advanced Master's Scholarships fund 1-year postgraduate specialization programmes at Flemish universities in Belgium for professionals from 29 eligible countries including Indonesia. The age limit for advanced master's is 45 (higher than the 35 limit for initial master's). Available programmes cover development, governance, anthropology, and human settlements.",
+      "application_process": [
+        "Step 1: Go to vliruos.be/get-funded/study-scholarships and browse 1-year advanced master's programmes",
+        "Step 2: Visit the specific programme page for deadline and requirements",
+        "Step 3: Apply through the institution's portal, indicating scholarship interest",
+        "Cannot apply for more than 1 ICP Connect programme per year"
+      ],
+      "source": "01_get-funded_study-scholarships.md",
+      "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "VLIR-UOS ICP Connect Scholarship - Professional Bachelor (3 years)",
+      "provider": "VLIR-UOS / Belgian Government",
+      "country": "Belgium",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "program_type": "Government development scholarship for 3-year professional bachelor programmes at Flemish universities of applied sciences",
+      "fields": [
+        "Applied Computer Science",
+        "Hotel Management"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "Varies per programme - typically January to April. Check each programme page at vliruos.be.",
+      "application_period": [
+        "Typically November - April, varies per programme"
+      ],
+      "important_dates": [
+        "Indonesia is on the 29-country eligible list",
+        "Age requirement: minimum 19 years old AND maximum 35 years old as of January 1 of the intake year",
+        "Apply through the specific programme institution (VIVES University of Applied Sciences)"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Indonesia"
+        ],
+        "raw_items": [
+          "Indonesian citizen currently residing in Indonesia",
+          "Minimum age 19 AND maximum age 35 as of January 1 of the intake year",
+          "Hold a secondary school diploma meeting the programme's admission requirements",
+          "Strong motivation to contribute to sustainable development",
+          "Cannot hold another scholarship simultaneously",
+          "Cannot have previously received a Belgian government scholarship"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees",
+        "Round-trip international airfare",
+        "Monthly living allowance (board and lodging)",
+        "Health and travel insurance"
+      ],
+      "amounts": [],
+      "target_group": "Young Indonesian students (age 19-35) who wish to pursue a 3-year professional bachelor degree in Applied Computer Science or Hotel Management at a Flemish university of applied sciences in Belgium.",
+      "official_url": "https://www.vliruos.be/get-funded/study-scholarships",
+      "description": "VLIR-UOS ICP Connect Professional Bachelor Scholarships fund 3-year bachelor programmes in Applied Computer Science and Hotel Management at Flemish universities of applied sciences in Belgium, for students from 29 eligible countries including Indonesia. Minimum age 19, maximum age 35.",
+      "application_process": [
+        "Check vliruos.be/get-funded/study-scholarships for the bachelor programmes",
+        "Visit the specific programme page (VIVES University of Applied Sciences) for deadline and requirements",
+        "Apply through the institution's portal, indicating scholarship interest"
+      ],
+      "source": "01_get-funded_study-scholarships.md",
+      "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Erasmus Mundus Joint Master (EMJM) Scholarship",
+      "provider": "European Commission / Erasmus+",
+      "country": "Belgium",
+      "degree_levels": [
+        "Master's"
+      ],
+      "program_type": "EU-funded full scholarship for joint master's degrees across multiple European universities",
+      "fields": [
+        "All disciplines - 150+ joint programmes available across STEM, humanities, social sciences, arts, business, law, and more",
+        "Search the full catalogue at: https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "Varies per programme - typically October to January for September intake. Check each programme's own website.",
+      "application_period": [
+        "Most programmes: October - January for September intake. Each programme has its own deadline."
+      ],
+      "important_dates": [
+        "Open to students from all countries worldwide including Indonesia",
+        "New batch of approved Erasmus Mundus programmes added annually",
+        "Each programme involves at least 3 universities in at least 3 different countries",
+        "Students study at multiple European universities (and sometimes non-European partner institutions)",
+        "Search programme catalogue: https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",
+        "Apply DIRECTLY to the programme consortium - NOT through the European Commission",
+        "Almost 50,000 students have participated since 2004"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to students of any nationality worldwide (no country restrictions - Indonesians fully eligible)",
+          "Must hold a bachelor's degree (or be in final year of bachelor's studies)",
+          "Must graduate before the master's programme starts",
+          "OR demonstrate a bachelor's equivalent level of learning officially recognised in the degree-awarding country",
+          "Must meet the specific academic and language requirements of the chosen programme",
+          "Full scholarship is competitive - awarded to the best-ranked applicants per programme",
+          "Can also apply without scholarship (self-funded) if not selected for a scholarship",
+          "Check each programme's catalogue page for specific additional requirements"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees covered for the entire programme duration",
+        "Monthly living allowance (amount varies by programme and country of study)",
+        "Travel and installation costs contribution",
+        "Visa costs contribution",
+        "Health insurance contribution"
+      ],
+      "amounts": [],
+      "target_group": "Outstanding international students from any country (including Indonesia) with a bachelor's degree who want to pursue a prestigious joint master's degree across multiple European universities, funded by the European Commission.",
+      "official_url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
+      "description": "The Erasmus Mundus Joint Master (EMJM) Scholarship is funded by the European Commission and covers full tuition, a living allowance, travel costs, and insurance for a 1-2 year master's degree jointly delivered by at least 3 universities in at least 3 European countries. Open to students from any country worldwide including Indonesia. With 150+ programmes across all disciplines, students can search the programme catalogue at eacea.ec.europa.eu. Apply directly to each programme - not through the EC. Deadlines are programme-specific, typically October-January.",
+      "application_process": [
+        "Step 1: Search the Erasmus Mundus catalogue at https://www.eacea.ec.europa.eu/scholarships/erasmus-mundus-catalogue_en",
+        "Step 2: Filter by field of study, duration, and intake year to find suitable programmes",
+        "Step 3: Visit the specific programme's website for entry requirements, scholarship details, and application deadline",
+        "Step 4: Apply directly to the programme consortium (NOT to the European Commission)",
+        "Most deadlines fall between October and January for September intake",
+        "Scholarship is competitive within each programme - not all applicants receive funding",
+        "You can also apply as a self-funded student if not selected for a scholarship",
+        "Resources: Erasmus Mundus Association (em-a.eu) offers advice and volunteer country representatives"
+      ],
+      "source": "01_opportunities_individuals_students_erasmus-mundus-joint-masters.md",
+      "source_file": "data/raw/erasmus-mundus/01_opportunities_individuals_students_erasmus-mundus-joint-masters.md",
       "confidence_score": 0.95
     }
   ]

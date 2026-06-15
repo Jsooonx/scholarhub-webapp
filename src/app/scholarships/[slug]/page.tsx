@@ -75,6 +75,7 @@ const flagMap: Record<string, string> = {
   netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
   eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
   astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
+  fulbright: '🇺🇸', 'belgium-vlir': '🇧🇪', 'erasmus-mundus': '🇪🇺',
 };
 
 function durationLabel(d: Scholarship['duration_months']) {

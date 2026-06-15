@@ -23,6 +23,9 @@ const PROVIDERS = [
   { value: 'eiffel', label: '🇫🇷 Eiffel (France)' },
   { value: 'canada', label: '🇨🇦 Canada CRTAS' },
   { value: 'cpra', label: '🇨🇦 Canada CPRA' },
+  { value: 'fulbright', label: '🇺🇸 Fulbright / AMINEF' },
+  { value: 'belgium-vlir', label: '🇧🇪 VLIR-UOS Belgium' },
+  { value: 'erasmus-mundus', label: '🇪🇺 Erasmus Mundus' },
 ];
 
 const FUNDING = [
@@ -52,6 +55,7 @@ const COUNTRIES = [
   { value: 'singapore', label: '🇸🇬 Singapore' },
   { value: 'canada', label: '🇨🇦 Canada' },
   { value: 'united states', label: '🇺🇸 United States' },
+  { value: 'belgium', label: '🇧🇪 Belgium' },
 ];
 
 const DEBOUNCE_MS = 350;

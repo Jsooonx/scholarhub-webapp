@@ -8,7 +8,7 @@ import { getScholarshipsByProvider, providerMeta } from '@/lib/scholarships';
 
 export async function generateStaticParams() {
   // Exclude 'astar' — all A*STAR scholarships are grouped under 'singapore'
-  return ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks', 'singapore', 'eiffel', 'canada', 'jasso', 'koica', 'cpra', 'studienstiftung', 'netherlands', 'gates-cambridge', 'clarendon', 'rhodes'].map((provider) => ({ provider }));
+  return ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks', 'singapore', 'eiffel', 'canada', 'jasso', 'koica', 'cpra', 'studienstiftung', 'netherlands', 'gates-cambridge', 'clarendon', 'rhodes', 'fulbright', 'belgium-vlir', 'erasmus-mundus'].map((provider) => ({ provider }));
 }
 
 export async function generateMetadata({

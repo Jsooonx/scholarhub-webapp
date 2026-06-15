@@ -21,6 +21,9 @@ const PROVIDERS = [
   'gates-cambridge',
   'clarendon',
   'rhodes',
+  'fulbright',
+  'belgium-vlir',
+  'erasmus-mundus',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
