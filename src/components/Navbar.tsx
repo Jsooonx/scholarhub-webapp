@@ -56,13 +56,20 @@ function computeMaxHeight(): number {
   return window.innerHeight * 0.5;
 }
 
-const fade = { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } };
-const fadeTransition = { duration: 0.18, ease: [0.4, 0, 0.2, 1] as const };
+const fade = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.12, ease: [0.4, 0, 0.2, 1] as const } },
+  // Exit instantly — prevents content from ghosting below the shrinking island
+  exit: { opacity: 0, transition: { duration: 0 } },
+};
+const fadeTransition = { duration: 0.12, ease: [0.4, 0, 0.2, 1] as const };
 
 export default function Navbar() {
   const [expandMode, setExpandMode] = useState<ExpandMode>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isProviderHovered, setIsProviderHovered] = useState(false);
+  const providerBtnRef = useRef<HTMLDivElement>(null);
+  const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
 
   const router = useRouter();
   const pathname = usePathname();
@@ -189,7 +196,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-50 w-full pointer-events-none h-14 sm:h-16 flex items-start justify-center pt-2 sm:pt-3 overflow-visible">
+    <div className="sticky top-0 z-50 w-full pointer-events-none h-14 sm:h-16 flex items-start justify-center pt-2 sm:pt-3">
       <motion.div
         ref={islandRef}
         data-lenis-prevent
@@ -197,8 +204,10 @@ export default function Navbar() {
           width,
           height,
           borderRadius: 28,
-          overflowX: 'visible',
-          overflowY: isExpanded ? (scrollable ? 'auto' : 'hidden') : 'visible',
+          // Collapsed: clip content so absolutley-positioned expanded menu
+          // doesn't bleed through as ghost text/flags below the island.
+          // Expanded: hidden (or auto if scrollable) to contain the panel.
+          overflow: isExpanded ? (scrollable ? 'auto' : 'hidden') : 'hidden',
           overscrollBehavior: 'contain',
         }}
         className={`relative pointer-events-auto bg-black text-white shadow-[0_8px_40px_rgba(0,0,0,0.35)] ${
@@ -231,8 +240,15 @@ export default function Navbar() {
                 </Link>
 
                 <div
+                  ref={providerBtnRef}
                   className="relative"
-                  onMouseEnter={() => setIsProviderHovered(true)}
+                  onMouseEnter={() => {
+                    if (providerBtnRef.current) {
+                      const r = providerBtnRef.current.getBoundingClientRect();
+                      setDropdownPos({ top: r.bottom + 8, left: r.left + r.width / 2 });
+                    }
+                    setIsProviderHovered(true);
+                  }}
                   onMouseLeave={() => setIsProviderHovered(false)}
                 >
                   <button className="flex items-center text-xs font-semibold text-white/80 hover:text-white transition-colors focus:outline-none cursor-pointer">
@@ -245,8 +261,8 @@ export default function Navbar() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 4 }}
                         transition={{ duration: 0.15, ease: 'easeOut' }}
-                        className="absolute left-1/2 -translate-x-1/2 mt-2 w-52 rounded-2xl bg-black shadow-[0_8px_32px_rgba(0,0,0,0.3)] p-2 z-50"
-                        style={{ top: '100%' }}
+                        className="fixed -translate-x-1/2 w-52 rounded-2xl bg-black shadow-[0_8px_32px_rgba(0,0,0,0.3)] p-2 z-[9999]"
+                        style={{ top: dropdownPos.top, left: dropdownPos.left }}
                       >
                         <div
                           data-lenis-prevent
@@ -293,6 +309,9 @@ export default function Navbar() {
           </div>
 
           {/* ── EXPANDED BODY ── */}
+          {/* visibility:hidden collapses rendering immediately on close,
+              preventing any ghost bleed while the height spring catches up. */}
+          <div style={{ visibility: isExpanded ? 'visible' : 'hidden' }}>
           <AnimatePresence initial={false} mode="wait">
             {expandMode === 'search' && (
               <motion.div
@@ -380,6 +399,7 @@ export default function Navbar() {
               </motion.div>
             )}
           </AnimatePresence>
+          </div>{/* end visibility wrapper */}
           </div>
         </motion.div>
       </motion.div>
