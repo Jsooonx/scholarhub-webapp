@@ -76,6 +76,10 @@ export function providerGroup(provider: string): string {
   if (p.includes('swedish institute') || p.includes('svenska institutet')) return 'sweden';
   if (p.includes('maeci') || p.includes('italian government') || p.includes('ministry of foreign affairs and international cooperation') || p.includes('invest your talent')) return 'italy';
   if (p.includes('china scholarship council') || p.includes('csc') && p.includes('chinese') || p.includes('mofcom') || p.includes('ministry of commerce') && p.includes('china')) return 'china-csc';
+  if (p.includes('stipendium hungaricum') || p.includes('tempus public foundation') || (p.includes('hungarian') && p.includes('government'))) return 'hungary';
+  if (p.includes('taiwan') || p.includes('teco') || p.includes('icdf') || p.includes('huayu') || p.includes('ministry of education') && p.includes('taiwan')) return 'taiwan';
+  if (p.includes('swiss government') || p.includes('sbfi') || p.includes('seri') || p.includes('swiss confederation')) return 'switzerland';
+  if (p.includes('manaaki') || p.includes('education new zealand') || p.includes('mfat') || p.includes('new zealand')) return 'new-zealand';
   if (p.includes('eiffel')) return 'eiffel';
   if (p.includes('singa')) return 'singa';
   if (p.includes('vanier')) return 'vanier';
@@ -649,6 +653,55 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'closed', label: `Closed · next cycle ~Mar ${target.getFullYear()}`, deadline: target };
   }
 
+  // ── Hungary (Stipendium Hungaricum): annual deadline ~Jan 15 ────────────
+  if (group === 'hungary') {
+    const nowH = new Date();
+    const yearH = nowH.getFullYear();
+    const close = new Date(yearH, 0, 15); // Jan 15
+    const target = nowH <= close ? close : new Date(yearH + 1, 0, 15);
+    const diff = Math.ceil((target.getTime() - nowH.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+    return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Taiwan (MOE/ICDF/Huayu): annual deadline ~Mar 31 ─────────────────
+  if (group === 'taiwan') {
+    const nowTW = new Date();
+    const yearTW = nowTW.getFullYear();
+    const close = new Date(yearTW, 2, 31); // Mar 31
+    const target = nowTW <= close ? close : new Date(yearTW + 1, 2, 31);
+    const diff = Math.ceil((target.getTime() - nowTW.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowTW <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    return { type: 'closed', label: `Closed · opens Feb ${target.getFullYear()}`, deadline: new Date(target.getFullYear(), 1, 1) };
+  }
+
+  // ── Switzerland (Swiss Govt Excellence): Aug–Dec, varies by country ───
+  if (group === 'switzerland') {
+    return { type: 'rolling', label: 'Aug–Dec (varies by country)' };
+  }
+
+  // ── New Zealand (Manaaki): Feb–Mar annually ──────────────────────────
+  if (group === 'new-zealand') {
+    const nowNZ = new Date();
+    const yearNZ = nowNZ.getFullYear();
+    const open = new Date(yearNZ, 1, 1);   // Feb 1
+    const close = new Date(yearNZ, 2, 31); // Mar 31
+    const target = nowNZ <= close ? close : new Date(yearNZ + 1, 2, 31);
+    const diff = Math.ceil((target.getTime() - nowNZ.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowNZ >= open && nowNZ <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    if (nowNZ > close) return { type: 'closed', label: `Closed · opens Feb ${target.getFullYear()}`, deadline: new Date(target.getFullYear(), 1, 1) };
+    return { type: 'open', label: `Opens Feb · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
   return getDaadStatus();
 }
 
@@ -749,14 +802,7 @@ export const providerMeta: Record<
       'The Canada Research Training Awards Suite (CRTAS), jointly administered by CIHR, NSERC, and SSHRC, is Canada\'s premier graduate research funding program. It replaced the Vanier CGS in 2025, providing $40,000/year doctoral scholarships. International students enrolled at Canadian institutions may apply.',
     website: 'https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-doctoral-program',
   },
-  astar: {
-    name: 'A*STAR Graduate Academy',
-    flag: '🇸🇬',
-    country: 'Singapore',
-    description:
-      "A*STAR (Agency for Science, Technology and Research) is Singapore's lead public sector agency for research, innovation and enterprise. Its Graduate Academy offers the A*STAR Graduate Scholarship (AGS) for PhD studies and the A*STAR International Fellowship (AIF) for postdoctoral researchers, supporting Singapore's R&D ecosystem.",
-    website: 'https://www.a-star.edu.sg/scholarships',
-  },
+
   jasso: {
     name: 'JASSO - Japan Student Services Organization',
     flag: '🇯🇵',
@@ -869,6 +915,38 @@ export const providerMeta: Record<
       'The Italian Ministry of Foreign Affairs and International Cooperation (MAECI) offers fully-funded scholarships for foreign students to study at Italian universities. Programmes include the general Italian Government Scholarship (open to many countries), Invest Your Talent in Italy (IYT) for 18 partner countries including Indonesia, and Special Projects scholarships for bilateral partnerships. Apply via the Study in Italy portal.',
     website: 'https://studyinitaly.esteri.it/',
   },
+  hungary: {
+    name: 'Stipendium Hungaricum',
+    flag: '🇭🇺',
+    country: 'Hungary',
+    description:
+      'The Stipendium Hungaricum Scholarship Programme, established by the Hungarian Government, offers fully funded scholarships for bachelor\'s, master\'s, and doctoral studies at Hungarian universities. Over 600 study programmes in English and other languages are available. Covers full tuition, monthly stipend, accommodation support, and medical insurance. Open to citizens of 70+ partner countries including Indonesia.',
+    website: 'https://stipendiumhungaricum.hu/',
+  },
+  taiwan: {
+    name: 'Taiwan Scholarships (MOE / ICDF)',
+    flag: '🇹🇼',
+    country: 'Taiwan',
+    description:
+      'Taiwan offers three main scholarship programmes: the MOE Taiwan Scholarship (tuition up to NTD 40K/semester + NTD 15–20K/month stipend for bachelor\'s to PhD), the TaiwanICDF Scholarship (fully funded master\'s and PhD with housing and airfare at 32 designated programmes), and the Huayu Enrichment Scholarship (NTD 25K/month for Mandarin language study). Over 150 Taiwan universities participate. Applied through local TECO offices.',
+    website: 'https://english.moe.gov.tw',
+  },
+  switzerland: {
+    name: 'Swiss Government Excellence Scholarships',
+    flag: '🇨🇭',
+    country: 'Switzerland',
+    description:
+      'The Swiss Government Excellence Scholarships, administered by SERI/SBFI, offer CHF 2,450/month for research stays (6–12 months), full PhD studies (up to 36 months), and art master\'s degrees (12–21 months) at Swiss universities and research institutes. Open to applicants from 180+ countries. Requires securing an academic supervisor at a Swiss institution. Applications submitted through Swiss embassies.',
+    website: 'https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships',
+  },
+  'new-zealand': {
+    name: 'Manaaki New Zealand Scholarships',
+    flag: '🇳🇿',
+    country: 'New Zealand',
+    description:
+      'Manaaki New Zealand Scholarships (formerly NZAS), funded by MFAT, are fully funded scholarships for citizens of eligible developing countries including Indonesia. They cover tuition, living allowance, airfare, insurance, and settling-in costs for undergraduate, master\'s, and PhD studies at New Zealand universities. Also available: vocational short-term training and English language training for officials (NZELTO).',
+    website: 'https://www.nzscholarships.govt.nz/',
+  },
 };
 
 /**
@@ -975,6 +1053,26 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('peking university') || provider.includes('peking university') || name.includes('peking') || provider.includes('peking')) return '/images/logos/Peking.png';
   if (name.includes('zhejiang') || provider.includes('zhejiang')) return '/images/logos/Zhejiang.png';
 
+  // Hungary Universities
+  if (name.includes('eötvös') || provider.includes('eötvös') || name.includes('elte') || provider.includes('elte')) return '/images/logos/ELTE.png';
+  if (name.includes('semmelweis') || provider.includes('semmelweis')) return '/images/logos/Semmelweis.png';
+  if (name.includes('szeged') || provider.includes('szeged') || hasWord('szte')) return '/images/logos/Szeged.png';
+
+  // Taiwan Universities
+  if (name.includes('national taiwan university') || (hasWord('ntu') && s.country === 'Taiwan')) return '/images/logos/NTU_Taiwan.png';
+  if (name.includes('tsing hua') || hasWord('nthu') || (name.includes('tsinghua') && s.country === 'Taiwan')) return '/images/logos/NTHU.png';
+  if (name.includes('chiao tung') || hasWord('nycu') || name.includes('yang ming chiao tung')) return '/images/logos/NYCU.png';
+
+  // Swiss Universities
+  if (name.includes('eth zürich') || name.includes('eth zurich') || name.includes('eidgenössische technische hochschule') || hasWord('eth') || hasWord('ethz')) return '/images/logos/ETH.png';
+  if (name.includes('epfl') || name.includes('école polytechnique fédérale de lausanne')) return '/images/logos/EPFL.png';
+  if (name.includes('university of zurich') || name.includes('universität zürich') || name.includes('university of zürich') || hasWord('uzh')) return '/images/logos/UZH.png';
+
+  // New Zealand Universities
+  if (name.includes('university of auckland') || name.includes('auckland university')) return '/images/logos/Auckland.png';
+  if (name.includes('university of otago') || name.includes('otago university')) return '/images/logos/Otago.png';
+  if (name.includes('victoria university of wellington') || name.includes('victoria university wellington') || hasWord('vuw')) return '/images/logos/VUW.png';
+
   // Sweden Universities
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/logos/KTH.png';
   if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/logos/LundU.png';
@@ -1010,6 +1108,11 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('british columbia') || hasWord('ubc')) return '/images/universities/CA_UBC.png';
   if (name.includes('mcmaster') || provider.includes('mcmaster')) return '/images/universities/CA_McMaster.png';
   if (name.includes('waterloo') || provider.includes('waterloo')) return '/images/universities/CA_Waterloo.png';
+
+  // A*STAR and SINGA specific rotations to prevent matching generic NUS/NTU checks on provider
+  if (name.includes('singa') || name.includes('singapore international graduate')) return '/images/universities/SG_SUTD.png';
+  if (name.includes('graduate scholarship') && (name.includes('astar') || name.includes('a*star'))) return '/images/universities/SG_NTU.png';
+  if (name.includes('fellowship') && (name.includes('astar') || name.includes('a*star'))) return '/images/universities/SG_SMU.png';
 
   if (name.includes('national university of singapore') || provider.includes('national university of singapore') || hasWord('nus')) return '/images/universities/SG_NUS.png';
   if (name.includes('nanyang') || provider.includes('nanyang') || hasWord('ntu')) return '/images/universities/SG_NTU.png';
@@ -1077,6 +1180,22 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('peking university') || provider.includes('peking university') || name.includes('peking') || provider.includes('peking')) return '/images/universities/CN_Peking.png';
   if (name.includes('zhejiang') || provider.includes('zhejiang')) return '/images/universities/CN_Zhejiang.png';
 
+  // Hungary Universities
+  if (name.includes('eötvös') || provider.includes('eötvös') || name.includes('elte') || provider.includes('elte')) return '/images/universities/HU_ELTE.png';
+  if (name.includes('semmelweis') || provider.includes('semmelweis')) return '/images/universities/HU_Semmelweis.png';
+
+  // Taiwan Universities
+  if (name.includes('national taiwan university') || (hasWord('ntu') && s.country === 'Taiwan')) return '/images/universities/TW_NTU.png';
+  if (name.includes('tsing hua') || hasWord('nthu') || (name.includes('tsinghua') && s.country === 'Taiwan')) return '/images/universities/TW_NTHU.png';
+
+  // Swiss Universities
+  if (name.includes('eth zürich') || name.includes('eth zurich') || name.includes('eidgenössische technische hochschule') || hasWord('eth') || hasWord('ethz')) return '/images/universities/CH_ETH.png';
+  if (name.includes('epfl') || name.includes('école polytechnique fédérale de lausanne')) return '/images/universities/CH_EPFL.png';
+
+  // New Zealand Universities
+  if (name.includes('university of auckland') || name.includes('auckland university')) return '/images/universities/NZ_Auckland.png';
+  if (name.includes('university of otago') || name.includes('otago university')) return '/images/universities/NZ_Otago.png';
+
   // Sweden Universities
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/universities/SWE_KTH.png';
   if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/universities/SWE_LundU.png';
@@ -1131,6 +1250,28 @@ export function getScholarshipImage(s: Scholarship): string {
   if (group === 'italy') return '/images/universities/ITA_Polimi.png';
   if (group === 'sweden') return '/images/universities/SWE_LundU.png';
   if (group === 'china-csc') return '/images/universities/CN_Tsinghua.png';
+  if (group === 'hungary') {
+    if (name.includes('doctoral') || name.includes('phd')) return '/images/universities/HU_Semmelweis.png';
+    return '/images/universities/HU_ELTE.png';
+  }
+  if (group === 'taiwan') {
+    if (name.includes('master') || name.includes('phd') || name.includes('graduate') || name.includes('icdf')) {
+      return '/images/universities/TW_NTHU.png';
+    }
+    return '/images/universities/TW_NTU.png';
+  }
+  if (group === 'switzerland') {
+    if (name.includes('research') || name.includes('postdoctoral')) {
+      return '/images/universities/CH_EPFL.png';
+    }
+    return '/images/universities/CH_ETH.png';
+  }
+  if (group === 'new-zealand') {
+    if (name.includes('postgraduate') || name.includes('phd') || name.includes('master') || name.includes('graduate')) {
+      return '/images/universities/NZ_Otago.png';
+    }
+    return '/images/universities/NZ_Auckland.png';
+  }
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
 }
@@ -1146,7 +1287,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
 
   const universities = [
     { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png', keywords: ['nus', 'national university of singapore'] },
-    { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png', keywords: ['ntu', 'nanyang'] },
+    { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png', keywords: ['ntu_sg', 'nanyang'] },
     { name: 'Singapore Management University (SMU)', logo: '/images/logos/SMU.png', keywords: ['smu', 'singapore management'] },
     { name: 'Singapore University of Technology and Design (SUTD)', logo: '/images/logos/SUTD.png', keywords: ['sutd', 'singapore university of technology and design'] },
     
@@ -1235,10 +1376,30 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'Peking University', logo: '/images/logos/Peking.png', keywords: ['peking'] },
     { name: 'Zhejiang University', logo: '/images/logos/Zhejiang.png', keywords: ['zhejiang'] },
 
+    // Hungary Universities
+    { name: 'Eötvös Loránd University (ELTE)', logo: '/images/logos/ELTE.png', keywords: ['elte', 'eötvös', 'eotvos'] },
+    { name: 'Semmelweis University', logo: '/images/logos/Semmelweis.png', keywords: ['semmelweis'] },
+    { name: 'University of Szeged', logo: '/images/logos/Szeged.png', keywords: ['szeged'] },
+
     // Sweden Universities
     { name: 'KTH Royal Institute of Technology', logo: '/images/logos/KTH.png', keywords: ['kth', 'royal institute of technology'] },
     { name: 'Lund University', logo: '/images/logos/LundU.png', keywords: ['lund', 'lunds universitet'] },
     { name: 'Uppsala University', logo: '/images/logos/UppsalaU.png', keywords: ['uppsala', 'uppsala universitet'] },
+
+    // Taiwan Universities
+    { name: 'National Taiwan University (NTU)', logo: '/images/logos/NTU_Taiwan.png', keywords: ['ntu_tw', 'national taiwan university'] },
+    { name: 'National Tsing Hua University (NTHU)', logo: '/images/logos/NTHU.png', keywords: ['nthu', 'national tsing hua university', 'tsing hua'] },
+    { name: 'National Yang Ming Chiao Tung University (NYCU)', logo: '/images/logos/NYCU.png', keywords: ['nycu', 'national yang ming chiao tung university', 'chiao tung'] },
+
+    // Swiss Universities
+    { name: 'ETH Zurich', logo: '/images/logos/ETH.png', keywords: ['eth', 'eth zurich', 'eth zürich', 'eidgenössische technische hochschule'] },
+    { name: 'EPFL', logo: '/images/logos/EPFL.png', keywords: ['epfl', 'école polytechnique fédérale de lausanne', 'polytechnique federale de lausanne'] },
+    { name: 'University of Zurich', logo: '/images/logos/UZH.png', keywords: ['uzh', 'university of zurich', 'university of zürich', 'universität zürich'] },
+
+    // New Zealand Universities
+    { name: 'University of Auckland', logo: '/images/logos/Auckland.png', keywords: ['auckland', 'university of auckland'] },
+    { name: 'University of Otago', logo: '/images/logos/Otago.png', keywords: ['otago', 'university of otago'] },
+    { name: 'Victoria University of Wellington', logo: '/images/logos/VUW.png', keywords: ['vuw', 'victoria university of wellington', 'victoria university wellington'] },
   ];
 
   universities.forEach((univ) => {
@@ -1248,7 +1409,15 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
           text.includes('itu ') || text.includes('itu/') || text.includes('itu,') || text.includes(' itu')
         );
       }
-      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth'].includes(kw)) {
+      if (kw === 'ntu_sg') {
+        const regex = new RegExp(`\\bntu\\b`, 'i');
+        return s.country === 'Singapore' && regex.test(text);
+      }
+      if (kw === 'ntu_tw') {
+        const regex = new RegExp(`\\bntu\\b`, 'i');
+        return s.country === 'Taiwan' && regex.test(text);
+      }
+      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
@@ -1393,6 +1562,30 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Tsinghua University', logo: '/images/logos/Tsinghua.png' },
         { name: 'Peking University', logo: '/images/logos/Peking.png' },
         { name: 'Zhejiang University', logo: '/images/logos/Zhejiang.png' }
+      );
+    } else if (country === 'hungary' || group === 'hungary') {
+      list.push(
+        { name: 'Eötvös Loránd University (ELTE)', logo: '/images/logos/ELTE.png' },
+        { name: 'Semmelweis University', logo: '/images/logos/Semmelweis.png' },
+        { name: 'University of Szeged', logo: '/images/logos/Szeged.png' }
+      );
+    } else if (group === 'taiwan') {
+      list.push(
+        { name: 'National Taiwan University (NTU)', logo: '/images/logos/NTU_Taiwan.png' },
+        { name: 'National Tsing Hua University (NTHU)', logo: '/images/logos/NTHU.png' },
+        { name: 'National Yang Ming Chiao Tung University (NYCU)', logo: '/images/logos/NYCU.png' }
+      );
+    } else if (group === 'switzerland') {
+      list.push(
+        { name: 'ETH Zurich', logo: '/images/logos/ETH.png' },
+        { name: 'EPFL', logo: '/images/logos/EPFL.png' },
+        { name: 'University of Zurich', logo: '/images/logos/UZH.png' }
+      );
+    } else if (group === 'new-zealand') {
+      list.push(
+        { name: 'University of Auckland', logo: '/images/logos/Auckland.png' },
+        { name: 'University of Otago', logo: '/images/logos/Otago.png' },
+        { name: 'Victoria University of Wellington', logo: '/images/logos/VUW.png' }
       );
     }
   }

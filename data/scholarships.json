@@ -23,7 +23,11 @@
     "ERASMUS_MUNDUS",
     "CHINA_CSC",
     "SWEDEN",
-    "ITALY"
+    "ITALY",
+    "HUNGARY",
+    "TAIWAN",
+    "SWITZERLAND",
+    "NEW_ZEALAND"
   ],
   "provider_summaries": [
     {
@@ -145,9 +149,29 @@
       "provider_group": "ITALY",
       "file_count": 15,
       "scholarship_count": 3
+    },
+    {
+      "provider_group": "HUNGARY",
+      "file_count": 30,
+      "scholarship_count": 3
+    },
+    {
+      "provider_group": "TAIWAN",
+      "file_count": 8,
+      "scholarship_count": 4
+    },
+    {
+      "provider_group": "SWITZERLAND",
+      "file_count": 3,
+      "scholarship_count": 3
+    },
+    {
+      "provider_group": "NEW_ZEALAND",
+      "file_count": 9,
+      "scholarship_count": 3
     }
   ],
-  "scholarship_count": 111,
+  "scholarship_count": 124,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -7232,6 +7256,894 @@
       "source": "09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
       "source_file": "data/raw/italy/09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
       "confidence_score": 0.95
+    },
+    {
+      "name": "Stipendium Hungaricum - Bachelor's / One-Tier Master's Scholarship",
+      "provider": "Tempus Public Foundation / Hungarian Government",
+      "country": "Hungary",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "fields": [
+        "All disciplines available at Hungarian universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "15 January 2026",
+      "application_period": [
+        "November 2025 – 15 January 2026"
+      ],
+      "important_dates": [
+        "Application opens: November 2025",
+        "Application deadline: 15 January 2026",
+        "Nomination by sending partner: February – March 2026",
+        "University entrance exams/interviews: March – May 2026",
+        "Results announced: July 2026",
+        "Arrival in Hungary: August – September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Must be citizen of a sending partner country (70+ countries including Indonesia)"
+        ],
+        "raw_items": [
+          "Citizen of a sending partner country with a bilateral agreement with Hungary",
+          "Indonesia is a sending partner country",
+          "Must be nominated by the sending partner (e.g. Ministry of Education or Hungarian Embassy)",
+          "High school diploma or equivalent",
+          "Meet the academic requirements of the chosen study programme",
+          "Must not hold Hungarian citizenship or dual citizenship with Hungary"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage",
+        "Monthly living allowance (approx. HUF 43,700/month for BA/BSc)",
+        "Dormitory placement or monthly accommodation contribution (HUF 40,000/month)",
+        "Medical insurance (TAJ card)",
+        "No tuition fees for the entire study period"
+      ],
+      "amounts": [
+        "BA/BSc: HUF 43,700/month (approx. €110) stipend",
+        "Accommodation: HUF 40,000/month (approx. €100) if no dormitory"
+      ],
+      "target_group": "Citizens from 70+ sending partner countries (including Indonesia) seeking fully funded undergraduate degrees at Hungarian universities. No tuition fees, plus monthly stipend and accommodation support.",
+      "official_url": "https://stipendiumhungaricum.hu/",
+      "description": "The Stipendium Hungaricum Scholarship Programme was established by the Hungarian Government to attract top international students. It covers full tuition, provides a monthly stipend, accommodation contribution, and medical insurance for bachelor's, master's, and doctoral studies at Hungarian universities. Indonesia is one of 70+ sending partner countries. Over 600 study programmes are available in English and other foreign languages.",
+      "application_process": [
+        "Step 1: Browse available study programmes at stipendiumhungaricum.hu/study-finder",
+        "Step 2: Contact your sending partner in Indonesia (Ministry of Education or Hungarian Embassy Jakarta) for nomination",
+        "Step 3: Register on the DreamApply online application system at apply.stipendiumhungaricum.hu",
+        "Step 4: Submit all required documents including motivation letter, academic transcripts, language certificate, medical certificate, and passport copy",
+        "Step 5: Upload a statement for application and any additional documents required by the specific university/programme",
+        "Step 6: Await nomination and university selection results (typically by July)",
+        "Step 7: If selected, complete visa and travel arrangements for arrival in Hungary by August–September"
+      ],
+      "source": "01_index.md",
+      "source_file": "data/raw/hungary/01_index.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Stipendium Hungaricum - Master's Scholarship",
+      "provider": "Tempus Public Foundation / Hungarian Government",
+      "country": "Hungary",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "All disciplines available at Hungarian universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 18,
+        "max": 24
+      },
+      "deadline": "15 January 2026",
+      "application_period": [
+        "November 2025 – 15 January 2026"
+      ],
+      "important_dates": [
+        "Application opens: November 2025",
+        "Application deadline: 15 January 2026",
+        "Nomination by sending partner: February – March 2026",
+        "University entrance exams/interviews: March – May 2026",
+        "Results announced: July 2026",
+        "Arrival in Hungary: August – September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Must be citizen of a sending partner country (70+ countries including Indonesia)"
+        ],
+        "raw_items": [
+          "Citizen of a sending partner country with a bilateral agreement with Hungary",
+          "Indonesia is a sending partner country",
+          "Must hold a bachelor's degree or equivalent",
+          "Must be nominated by the sending partner",
+          "Meet the academic and language requirements of the chosen master's programme",
+          "Must not hold Hungarian citizenship or dual citizenship with Hungary"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage",
+        "Monthly living allowance (approx. HUF 43,700/month for MA/MSc)",
+        "Dormitory placement or monthly accommodation contribution (HUF 40,000/month)",
+        "Medical insurance (TAJ card)"
+      ],
+      "amounts": [
+        "MA/MSc: HUF 43,700/month (approx. €110) stipend",
+        "Accommodation: HUF 40,000/month (approx. €100) if no dormitory"
+      ],
+      "target_group": "Citizens from 70+ sending partner countries (including Indonesia) seeking fully funded master's degrees at Hungarian universities.",
+      "official_url": "https://stipendiumhungaricum.hu/",
+      "description": "Master's-level scholarship under the Stipendium Hungaricum Programme. Fully funded by the Hungarian Government with tuition coverage, monthly stipend, accommodation support, and medical insurance. Available across all academic disciplines at leading Hungarian universities.",
+      "application_process": [
+        "Step 1: Browse available master's programmes at stipendiumhungaricum.hu/study-finder",
+        "Step 2: Contact your sending partner in Indonesia for nomination",
+        "Step 3: Register on DreamApply at apply.stipendiumhungaricum.hu",
+        "Step 4: Submit required documents including bachelor's degree certificate, transcripts, motivation letter, CV, language certificate, medical certificate, and passport copy",
+        "Step 5: Await nomination and university selection results",
+        "Step 7: Complete visa and travel arrangements if selected"
+      ],
+      "source": "02_apply.md",
+      "source_file": "data/raw/hungary/02_apply.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Stipendium Hungaricum - Doctoral (PhD) Scholarship",
+      "provider": "Tempus Public Foundation / Hungarian Government",
+      "country": "Hungary",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines available at Hungarian doctoral schools"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "15 January 2026",
+      "application_period": [
+        "November 2025 – 15 January 2026"
+      ],
+      "important_dates": [
+        "Application opens: November 2025",
+        "Application deadline: 15 January 2026",
+        "Nomination by sending partner: February – March 2026",
+        "University entrance exams/interviews: March – May 2026",
+        "Results announced: July 2026",
+        "Arrival in Hungary: August – September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Must be citizen of a sending partner country (70+ countries including Indonesia)"
+        ],
+        "raw_items": [
+          "Citizen of a sending partner country with a bilateral agreement with Hungary",
+          "Must hold a master's degree or equivalent",
+          "Must be nominated by the sending partner",
+          "Must have a research proposal and secure a doctoral school admission",
+          "Must not hold Hungarian citizenship or dual citizenship with Hungary"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage",
+        "Monthly living allowance (approx. HUF 140,000/month for PhD candidates, first 2 years; HUF 180,000/month for the second 2 years)",
+        "Dormitory placement or monthly accommodation contribution (HUF 40,000/month)",
+        "Medical insurance (TAJ card)"
+      ],
+      "amounts": [
+        "PhD first 2 years: HUF 140,000/month (approx. €360) stipend",
+        "PhD second 2 years: HUF 180,000/month (approx. €460) stipend",
+        "Accommodation: HUF 40,000/month (approx. €100) if no dormitory"
+      ],
+      "target_group": "Citizens from 70+ sending partner countries (including Indonesia) seeking fully funded doctoral studies at Hungarian universities.",
+      "official_url": "https://stipendiumhungaricum.hu/apply/",
+      "description": "Doctoral-level scholarship under the Stipendium Hungaricum Programme, fully funded for 4 years. Provides higher stipend than BA/MA levels, full tuition, accommodation support, and medical insurance. Available at all Hungarian doctoral schools across all academic disciplines.",
+      "application_process": [
+        "Step 1: Browse doctoral programmes at stipendiumhungaricum.hu/study-finder",
+        "Step 2: Contact your sending partner in Indonesia for nomination",
+        "Step 3: Prepare a detailed research proposal and secure a potential supervisor at a Hungarian university",
+        "Step 4: Register and apply via the DreamApply system at apply.stipendiumhungaricum.hu",
+        "Step 5: Submit all required documents including master's degree certificate, research proposal, CV, letters of recommendation, language certificate, and medical certificate",
+        "Step 6: Await university interview and selection results"
+      ],
+      "source": "02_apply.md",
+      "source_file": "data/raw/hungary/02_apply.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "MOE Taiwan Scholarship - Bachelor's Degree",
+      "provider": "Ministry of Education (MOE) Taiwan / TECO",
+      "country": "Taiwan",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "fields": [
+        "All disciplines at accredited Taiwan universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "31 March (annually)",
+      "application_period": [
+        "1 February – 31 March (annually)"
+      ],
+      "important_dates": [
+        "Application opens: 1 February each year",
+        "Application deadline: 31 March",
+        "Scholarship results announced: May – June",
+        "Admission letter submission deadline: 30 June",
+        "Studies commence: September",
+        "Maximum duration: 4 years (cumulative 5 years)"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Foreign nationals only (not ROC citizens, mainland China, Hong Kong, or Macau residents)"
+        ],
+        "raw_items": [
+          "Foreign national (non-ROC citizen)",
+          "Not a current student at a Taiwan university (unless graduating that year)",
+          "High school diploma or equivalent with good academic record",
+          "TOCFL Level 3 required for Chinese-taught programmes; not required for English-taught (but priority given)",
+          "Apply through local TECO (Taipei Economic and Cultural Office) or ROC overseas mission",
+          "Must separately apply for university admission and submit admission letter by 30 June"
+        ]
+      },
+      "benefits": [
+        "Tuition coverage up to NTD 40,000 per semester (university covers excess)",
+        "Monthly living stipend NTD 15,000/month for undergraduates",
+        "Health insurance (private first 6 months, NHI after)"
+      ],
+      "amounts": [
+        "Undergraduate stipend: NTD 15,000/month (approx. USD 470)",
+        "Tuition: up to NTD 40,000/semester covered"
+      ],
+      "target_group": "Foreign nationals seeking fully funded undergraduate degrees in Taiwan. Applied through local TECO offices. Over 150 Taiwan universities participate.",
+      "official_url": "https://english.moe.gov.tw/cp-24-16833-23C09-1.html",
+      "description": "The MOE Taiwan Scholarship covers tuition (up to NTD 40,000/semester) and provides a monthly living stipend for bachelor's degree students at any accredited Taiwan university. The scholarship and university admission are two completely separate processes — you must apply to both independently. TOCFL Level 3 is required for Chinese-taught programmes.",
+      "application_process": [
+        "Step 1: Research Taiwan universities and programmes at studyintaiwan.org",
+        "Step 2: Prepare documents: transcripts, study plan, language certificates, recommendation letters, health certificate",
+        "Step 3: Apply for the MOE scholarship through your local TECO office (Feb 1 – Mar 31)",
+        "Step 4: Simultaneously apply directly to Taiwan universities for admission",
+        "Step 5: Await scholarship results (May–June) and university admission decision separately",
+        "Step 6: Submit your university admission letter to TECO by 30 June (required to keep the scholarship)",
+        "Step 7: Arrive in Taiwan in September, register for ARC, activate insurance"
+      ],
+      "source": "05_wikipedia_overview.md",
+      "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "MOE Taiwan Scholarship - Master's / PhD Degree",
+      "provider": "Ministry of Education (MOE) Taiwan / TECO",
+      "country": "Taiwan",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines at accredited Taiwan universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "31 March (annually)",
+      "application_period": [
+        "1 February – 31 March (annually)"
+      ],
+      "important_dates": [
+        "Application opens: 1 February each year",
+        "Application deadline: 31 March",
+        "Scholarship results announced: May – June",
+        "Admission letter submission deadline: 30 June",
+        "Studies commence: September",
+        "Maximum duration: Master's 2 years, PhD 4 years (cumulative 5 years)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Foreign nationals only (not ROC citizens, mainland China, Hong Kong, or Macau residents)"
+        ],
+        "raw_items": [
+          "Foreign national (non-ROC citizen)",
+          "Not a current student at a Taiwan university (unless graduating that year)",
+          "Bachelor's degree (for Master's) or Master's degree (for PhD)",
+          "Good academic record (GPA 3.0+ recommended)",
+          "TOCFL Level 3 required for Chinese-taught programmes; optional for English-taught (priority given)",
+          "Apply through local TECO office",
+          "Must separately apply for university admission"
+        ]
+      },
+      "benefits": [
+        "Tuition coverage up to NTD 40,000 per semester (university covers excess)",
+        "Monthly living stipend NTD 20,000/month for graduate students",
+        "Health insurance (private first 6 months, NHI after)"
+      ],
+      "amounts": [
+        "Master's/PhD stipend: NTD 20,000/month (approx. USD 625)",
+        "Tuition: up to NTD 40,000/semester covered"
+      ],
+      "target_group": "Foreign nationals seeking graduate degrees in Taiwan with a monthly stipend and tuition support. Open to all fields of study.",
+      "official_url": "https://english.moe.gov.tw/cp-24-16833-23C09-1.html",
+      "description": "The MOE Taiwan Scholarship for graduate studies covers tuition (up to NTD 40,000/semester) and provides a monthly living stipend of NTD 20,000 for master's and PhD students at accredited Taiwan universities. Scholarships are renewable each year subject to maintaining minimum GPA (80/100 or approx. 3.5/4.5 for graduate students). TOCFL certification gives priority in selection.",
+      "application_process": [
+        "Step 1: Research Taiwan graduate programmes at studyintaiwan.org",
+        "Step 2: Prepare documents: transcripts, study plan, research proposal, language certificates, recommendation letters",
+        "Step 3: Apply for MOE scholarship through your local TECO office (Feb 1 – Mar 31)",
+        "Step 4: Simultaneously apply to Taiwan universities for admission (some have rolling admissions)",
+        "Step 5: Await results (May–June) and submit admission letter to TECO by 30 June",
+        "Step 6: Arrive in Taiwan in September for enrollment"
+      ],
+      "source": "05_wikipedia_overview.md",
+      "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "TaiwanICDF Higher Education Scholarship",
+      "provider": "International Cooperation and Development Fund (TaiwanICDF)",
+      "country": "Taiwan",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "Limited to 32 pre-chosen programmes at 18 partner universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "15 March (annually)",
+      "application_period": [
+        "1 December – 15 March (annually)"
+      ],
+      "important_dates": [
+        "Application opens: 1 December",
+        "Application deadline: 15 March",
+        "Results announced: May – June",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Specific list of partner developing countries (Indonesia included)"
+        ],
+        "raw_items": [
+          "Citizen of an eligible TaiwanICDF partner country (Indonesia is eligible)",
+          "Must apply to one of 32 designated programmes at 18 partner universities",
+          "Bachelor's degree for Master's applicants, Master's degree for PhD applicants",
+          "Not a current ROC citizen or resident of mainland China, Hong Kong, or Macau",
+          "Online application through TaiwanICDF portal (not via TECO)",
+          "ICDF handles university placement — you do not separately apply to the university"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee covered (no cap)",
+        "On-campus dormitory accommodation",
+        "Monthly living stipend: NTD 18,000/month (Master's), NTD 20,000/month (PhD)",
+        "One-way economy class airfare (arrival and departure)",
+        "Health insurance and NHI",
+        "Textbook and course material costs covered"
+      ],
+      "amounts": [
+        "Master's stipend: NTD 18,000/month (approx. USD 560)",
+        "PhD stipend: NTD 20,000/month (approx. USD 625)",
+        "Full tuition + on-campus dormitory included"
+      ],
+      "target_group": "Citizens of developing partner countries (including Indonesia) seeking fully funded master's or PhD degrees in Taiwan through 32 designated programmes. More comprehensive than MOE — covers tuition fully, includes housing and airfare.",
+      "official_url": "https://www.icdf.org.tw",
+      "description": "The TaiwanICDF Scholarship covers full tuition, on-campus housing, monthly stipend, airfare, and health insurance for master's and PhD students from partner developing countries. Unlike the MOE scholarship, ICDF restricts applicants to 32 pre-chosen programmes at 18 universities, but offers more comprehensive funding. The application and university placement are handled as one process through the ICDF portal.",
+      "application_process": [
+        "Step 1: Browse the 32 eligible programmes at the TaiwanICDF website",
+        "Step 2: Check that your country is on the eligible partner countries list",
+        "Step 3: Register and submit application online through the TaiwanICDF portal (Dec 1 – Mar 15)",
+        "Step 4: Submit academic transcripts, study plan, recommendation letters, and health certificate",
+        "Step 5: ICDF handles university placement — you do not apply to the university separately",
+        "Step 6: Await results (May–June), arrange visa and travel for September start"
+      ],
+      "source": "05_wikipedia_overview.md",
+      "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Huayu Enrichment Scholarship (HES) - Mandarin Language Study",
+      "provider": "Ministry of Education (MOE) Taiwan / TECO",
+      "country": "Taiwan",
+      "degree_levels": [
+        "Non-Degree"
+      ],
+      "fields": [
+        "Mandarin Chinese language study"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 2,
+        "max": 12
+      },
+      "deadline": "31 March (annually)",
+      "application_period": [
+        "1 February – 31 March (annually)"
+      ],
+      "important_dates": [
+        "Application opens: 1 February",
+        "Application deadline: 31 March",
+        "Results announced: May – June",
+        "Studies commence: September (main intake) or other terms depending on language centre",
+        "Duration: 2, 3, 6, 9, or 12 months"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Foreign nationals only (not ROC citizens)"
+        ],
+        "raw_items": [
+          "Foreign national (non-ROC citizen)",
+          "Must be 18 years or older",
+          "Hold a high school diploma or above",
+          "Not currently enrolled at a Mandarin language centre in Taiwan",
+          "Cannot be combined with any degree-seeking scholarship (MOE or ICDF)",
+          "Apply through local TECO office"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend of NTD 25,000/month for 2–12 months",
+        "No tuition coverage (tuition paid by recipient)"
+      ],
+      "amounts": [
+        "Stipend: NTD 25,000/month (approx. USD 780)",
+        "Duration: 2, 3, 6, 9, or 12 months"
+      ],
+      "target_group": "International students interested in Mandarin language training in Taiwan. Cannot be combined with degree scholarships. Good for building Chinese proficiency before applying to degree programmes.",
+      "official_url": "https://english.moe.gov.tw/cp-24-16833-23C09-1.html",
+      "description": "The Huayu Enrichment Scholarship provides a monthly stipend of NTD 25,000 for Mandarin language study at accredited language centres in Taiwan. Available for 2–12 months. This is a language-only scholarship and cannot be combined with degree scholarships. It is ideal for students who want to improve Chinese proficiency before applying to Chinese-taught degree programmes.",
+      "application_process": [
+        "Step 1: Choose an accredited Mandarin language centre in Taiwan",
+        "Step 2: Prepare documents: application form, transcripts, study plan, passport copy",
+        "Step 3: Apply through your local TECO office (Feb 1 – Mar 31)",
+        "Step 4: Await results (May–June)",
+        "Step 5: Arrange visa and travel to Taiwan for language study"
+      ],
+      "source": "05_wikipedia_overview.md",
+      "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Swiss Government Excellence Research Scholarship (Postdoctoral)",
+      "provider": "Swiss Confederation (SERI/SBFI)",
+      "country": "Switzerland",
+      "degree_levels": [
+        "Postdoc"
+      ],
+      "fields": [
+        "All academic fields including medicine"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 6,
+        "max": 12
+      },
+      "deadline": "Varies by country (typically September – December)",
+      "application_period": [
+        "August – December (varies by country)"
+      ],
+      "important_dates": [
+        "Applications open: 20 August 2026 (for 2027–2028)",
+        "Deadline: varies by country, typically September – December",
+        "Scholarship start: 1 September 2027",
+        "Duration: 6–12 months (no extensions)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Over 180 countries (country-specific quotas apply)"
+        ],
+        "raw_items": [
+          "Master's degree or equivalent completed by 31 July 2027",
+          "Date of birth after 31 December 1991",
+          "Detailed research plan with timeline and milestones",
+          "Must have a letter of support from an academic host professor in Switzerland",
+          "Priority given to applicants who have not previously studied or researched in Switzerland",
+          "If already residing in Switzerland: entry date must not be earlier than 1 August 2026",
+          "Application submitted to Swiss diplomatic representation in home country"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend of CHF 2,450",
+        "Flight allowance (lump sum)",
+        "Health insurance (SwissCare) contribution",
+        "Free accommodation search assistance",
+        "No tuition fees (research scholarship)"
+      ],
+      "amounts": [
+        "CHF 2,450/month (approx. USD 2,750)",
+        "Duration: 6–12 months"
+      ],
+      "target_group": "Early-career researchers who have completed a master's degree seeking a one-year research stay at a Swiss university or research institute. Available to over 180 countries.",
+      "official_url": "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships",
+      "description": "The Swiss Government Excellence Research Scholarship supports early-career researchers to carry out a one-year research project at a Swiss higher education institution or recognised research institute. Open to applicants from over 180 countries with a master's degree, it provides CHF 2,450/month and covers health insurance. An academic supervisor at a Swiss institution is required.",
+      "application_process": [
+        "Step 1: Identify a Swiss university or research institute and a potential academic supervisor",
+        "Step 2: Contact the professor and obtain a letter of support (including their short CV)",
+        "Step 3: Prepare a detailed research plan with timeline and milestones",
+        "Step 4: Gather all documents: CV, motivation letter, transcripts, degree certificates, letters of recommendation",
+        "Step 5: Submit application to the Swiss Embassy or Consulate in your home country",
+        "Step 6: Applications are evaluated by the Swiss National Science Foundation (SNSF)",
+        "Step 7: Results typically announced by May; scholarship starts 1 September"
+      ],
+      "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
+      "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Swiss Government Excellence PhD Scholarship",
+      "provider": "Swiss Confederation (SERI/SBFI)",
+      "country": "Switzerland",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "All academic fields"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 36
+      },
+      "deadline": "Varies by country (typically September – December)",
+      "application_period": [
+        "August – December (varies by country)"
+      ],
+      "important_dates": [
+        "Applications open: 20 August 2026 (for 2027–2028)",
+        "Deadline: varies by country, typically September – December",
+        "Scholarship start: 1 September 2027",
+        "Duration: 12 months, renewable up to 36 months total"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Over 180 countries (country-specific quotas apply)"
+        ],
+        "raw_items": [
+          "Master's degree or equivalent completed by 31 July 2027",
+          "Date of birth after 31 December 1991",
+          "Detailed research plan with timeline and milestones",
+          "Must have a letter of support from an academic host professor in Switzerland (supervisor must be authorised to supervise doctoral theses)",
+          "Priority given to applicants who have not previously studied or researched in Switzerland",
+          "Application submitted to Swiss diplomatic representation in home country"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend of CHF 2,450",
+        "Flight allowance (lump sum)",
+        "Health insurance (SwissCare) contribution",
+        "No tuition fees at most Swiss public universities"
+      ],
+      "amounts": [
+        "CHF 2,450/month (approx. USD 2,750)",
+        "Duration: 12 months, renewable up to 36 months"
+      ],
+      "target_group": "Highly qualified researchers with a master's degree seeking to pursue a full PhD at a Swiss university. Available to over 180 countries. Requires securing an academic supervisor in Switzerland.",
+      "official_url": "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships",
+      "description": "The Swiss Government Excellence PhD Scholarship funds up to 3 years of doctoral studies at a Swiss university. Provides CHF 2,450/month with no tuition fees at most Swiss public universities. Applicants must secure an academic supervisor at a Swiss institution and submit a detailed research plan. Renewable annually subject to academic progress.",
+      "application_process": [
+        "Step 1: Identify a potential PhD supervisor at a Swiss university in your research field",
+        "Step 2: Contact the professor, present your research proposal, and obtain a letter of support",
+        "Step 3: Prepare all documents: CV, motivation letter, research plan, transcripts, degree certificates, letters of recommendation",
+        "Step 4: Submit application to the Swiss Embassy or Consulate in your home country",
+        "Step 5: Applications evaluated by the Swiss National Science Foundation (SNSF)",
+        "Step 6: Results announced by May; scholarship starts 1 September"
+      ],
+      "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
+      "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Swiss Government Excellence Art Scholarship",
+      "provider": "Swiss Confederation (SERI/SBFI)",
+      "country": "Switzerland",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Music",
+        "Fine Arts",
+        "Design",
+        "Film",
+        "Performing Arts",
+        "Conservatory studies"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 21
+      },
+      "deadline": "Varies by country (typically September – December)",
+      "application_period": [
+        "August – December (varies by country)"
+      ],
+      "important_dates": [
+        "Applications open: 20 August 2026 (for 2027–2028)",
+        "Deadline: varies by country, typically September – December",
+        "Scholarship start: 1 September 2027",
+        "Duration: 12 months, extendable up to 21 months"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Limited number of countries (check Swiss Embassy for eligibility)"
+        ],
+        "raw_items": [
+          "Bachelor's degree or equivalent completed by 31 July 2027",
+          "Date of birth after 31 December 1991",
+          "Must not yet hold a Master's degree at the start of the scholarship",
+          "Highly talented young artist",
+          "Admission letter or proof of application to a Swiss University of the Arts or Music",
+          "Must submit a portfolio demonstrating artistic maturity and potential",
+          "Available only to applicants from a limited number of countries"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend of CHF 2,450",
+        "Flight allowance (lump sum)",
+        "Health insurance (SwissCare) contribution"
+      ],
+      "amounts": [
+        "CHF 2,450/month (approx. USD 2,750)",
+        "Duration: 12 months, extendable up to 21 months"
+      ],
+      "target_group": "Talented young artists pursuing their first Master's degree in arts or music at Swiss conservatories and art schools. Limited to specific countries.",
+      "official_url": "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships",
+      "description": "The Swiss Government Excellence Art Scholarship supports talented artists pursuing their first Master's degree at Swiss conservatories and art schools. Provides CHF 2,450/month for 12 months (extendable to 21 months). Applicants must submit a portfolio and have or be applying for admission to a Swiss arts institution.",
+      "application_process": [
+        "Step 1: Choose a Swiss University of the Arts or Music conservatory",
+        "Step 2: Apply for admission or confirm that the application period has not yet opened",
+        "Step 3: Prepare a strong portfolio demonstrating artistic maturity and potential",
+        "Step 4: Gather all documents: CV, motivation letter, transcripts, degree certificates, admission letter/proof",
+        "Step 5: Submit application to the Swiss Embassy or Consulate in your home country",
+        "Step 6: Applications evaluated by the Swiss National Science Foundation (SNSF)"
+      ],
+      "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
+      "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Manaaki New Zealand Scholarship - Tertiary (Undergraduate & Postgraduate)",
+      "provider": "Education New Zealand / MFAT (Ministry of Foreign Affairs and Trade)",
+      "country": "New Zealand",
+      "degree_levels": [
+        "Bachelor",
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "Varies by country — check eligible subjects for Indonesia"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Typically February – March (annually, varies by country)",
+      "application_period": [
+        "February – March (annually)"
+      ],
+      "important_dates": [
+        "Application period: typically February – March each year",
+        "Selection and interview: mid-year",
+        "English language testing: required for shortlisted candidates",
+        "Results announced: later in the year",
+        "Studies commence: following year (January – February NZ academic year)"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": true,
+        "professional_experience_years": 1,
+        "country_restrictions": [
+          "Citizens of eligible developing countries (Indonesia included)"
+        ],
+        "raw_items": [
+          "Citizen of an eligible developing country (Indonesia is eligible)",
+          "Must be 18 years old at signing the scholarship offer",
+          "No upper age limit, but preference for applicants under 40",
+          "Must have resided in home country for 2 years prior to applying",
+          "Postgraduate applicants: minimum 1 year full-time work experience (or 2 years part-time)",
+          "Must meet English language requirements (IELTS 6.5 for postgrad, 6.0 for undergrad)",
+          "Expected to contribute to country's development for at least 2 years after completion",
+          "PhD applicants should identify and contact a supervisor early"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees",
+        "Living allowance (fortnightly stipend)",
+        "Settling-in allowance",
+        "Medical and travel insurance",
+        "Return airfare to New Zealand",
+        "Research and thesis costs (for postgraduate)",
+        "PTE/IELTS test costs covered for shortlisted Indonesian candidates"
+      ],
+      "amounts": [
+        "Living allowance: NZD 490/week (approx. for postgraduate)",
+        "Settling-in allowance: NZD 3,000 (approx.)",
+        "Full tuition covered"
+      ],
+      "target_group": "Citizens from developing countries (including Indonesia) seeking fully funded undergraduate or postgraduate study in New Zealand. Scholars must commit to returning home and contributing to national development for at least 2 years after graduation.",
+      "official_url": "https://www.nzscholarships.govt.nz/",
+      "description": "Manaaki New Zealand Scholarships (formerly NZAS) are funded by the New Zealand government through MFAT for citizens of eligible developing countries, including Indonesia. They cover full tuition, living allowance, airfare, insurance, and settling-in costs for undergraduate, master's, and PhD studies at New Zealand universities. Indonesia is a priority partner country — shortlisted Indonesian candidates have their IELTS test costs covered.",
+      "application_process": [
+        "Step 1: Check eligibility at nzscholarships.govt.nz/check-eligibility-criteria",
+        "Step 2: Verify eligible subjects for Indonesia at nzscholarships.govt.nz/study-subjects",
+        "Step 3: Research preferred NZ universities and courses, check academic and English language entry requirements",
+        "Step 4: Submit online application during the open period (typically Feb–Mar)",
+        "Step 5: If shortlisted, sit for an English language test (IELTS/PTE/TOEFL/Cambridge)",
+        "Step 6: Attend interview if required",
+        "Step 7: Await results; if successful, NZ Scholarship team handles admission and visa support"
+      ],
+      "source": "08_check-eligibility-criteria.md",
+      "source_file": "data/raw/new-zealand/08_check-eligibility-criteria.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Manaaki New Zealand Scholarship - Vocational Short-Term Training",
+      "provider": "Education New Zealand / MFAT",
+      "country": "New Zealand",
+      "degree_levels": [
+        "Non-Degree"
+      ],
+      "fields": [
+        "Vocational skills training and on-the-job work experience"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 6
+      },
+      "deadline": "Varies by intake",
+      "application_period": [
+        "Rolling — multiple intakes per year"
+      ],
+      "important_dates": [
+        "Multiple intakes throughout the year",
+        "Duration: typically 1–6 months",
+        "Short-term skills-based training programmes"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": true,
+        "professional_experience_years": 1,
+        "country_restrictions": [
+          "Workers from eligible developing countries (Indonesia included)"
+        ],
+        "raw_items": [
+          "Must be a worker from an eligible developing country",
+          "Currently employed or recently employed in a relevant sector",
+          "Must demonstrate how training will benefit their career and home country",
+          "Meet specific programme requirements"
+        ]
+      },
+      "benefits": [
+        "Full tuition for training programme",
+        "Living allowance during training in New Zealand",
+        "Return airfare",
+        "Medical and travel insurance"
+      ],
+      "amounts": [],
+      "target_group": "Workers from eligible developing countries seeking short-term vocational skills training and practical work experience in New Zealand.",
+      "official_url": "https://www.nzscholarships.govt.nz/vocational-short-term-scholarships",
+      "description": "Vocational Short-Term Training Scholarships provide short-term (1–6 months) skills training and on-the-job work experience in New Zealand for workers from eligible developing countries. Fully funded with tuition, living allowance, airfare, and insurance. Focus on practical skills that can be applied back home.",
+      "application_process": [
+        "Step 1: Check if your country is eligible and identify relevant vocational training programmes",
+        "Step 2: Submit application during the open period",
+        "Step 3: Provide evidence of current or recent employment in the relevant sector",
+        "Step 4: Await selection results"
+      ],
+      "source": "04_vocational-short-term-scholarships.md",
+      "source_file": "data/raw/new-zealand/04_vocational-short-term-scholarships.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Manaaki New Zealand Scholarship - English Language Training for Officials (NZELTO)",
+      "provider": "Education New Zealand / MFAT",
+      "country": "New Zealand",
+      "degree_levels": [
+        "Non-Degree"
+      ],
+      "fields": [
+        "English language training for government officials"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 1,
+        "max": 3
+      },
+      "deadline": "Varies by intake",
+      "application_period": [
+        "Rolling — intakes throughout the year"
+      ],
+      "important_dates": [
+        "Multiple intakes per year",
+        "Duration: typically 1–3 months",
+        "For government officials from eligible African and Asian countries"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": true,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Government officials from eligible African and Asian countries (Indonesia included)"
+        ],
+        "raw_items": [
+          "Must be a current government official",
+          "Citizen of an eligible African or Asian country",
+          "Nominated by their government/ministry",
+          "Must demonstrate need for English language improvement for professional duties"
+        ]
+      },
+      "benefits": [
+        "Full tuition for English language course",
+        "Living allowance during training in New Zealand",
+        "Return airfare",
+        "Medical and travel insurance"
+      ],
+      "amounts": [],
+      "target_group": "Government officials from eligible Asian and African countries seeking English language training. Short programme (1–3 months) fully funded by New Zealand government.",
+      "official_url": "https://www.nzscholarships.govt.nz/english-language-training-for-officials-scholarships",
+      "description": "The NZELTO programme provides short-term (1–3 months) English language training in New Zealand for government officials from eligible African and Asian countries. Fully funded with tuition, accommodation, living allowance, airfare, and insurance. Focus on improving English proficiency for professional and diplomatic purposes.",
+      "application_process": [
+        "Step 1: Check if your country is eligible for NZELTO",
+        "Step 2: Obtain nomination from your government/ministry",
+        "Step 3: Submit application through the official Manaaki NZ Scholarship portal",
+        "Step 4: Await selection and visa arrangements"
+      ],
+      "source": "05_english-language-training-for-officials-scholarships.md",
+      "source_file": "data/raw/new-zealand/05_english-language-training-for-officials-scholarships.md",
+      "confidence_score": 0.95,
+      "program_type": null
     }
   ]
 }

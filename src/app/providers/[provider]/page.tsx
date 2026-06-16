@@ -7,9 +7,7 @@ import ScholarshipCard from '@/components/ScholarshipCard';
 import { getScholarshipsByProvider, providerMeta } from '@/lib/scholarships';
 
 export async function generateStaticParams() {
-  // Exclude 'astar' — all A*STAR scholarships are grouped under 'singapore'
   return Object.keys(providerMeta)
-    .filter((provider) => provider !== 'astar')
     .map((provider) => ({ provider }));
 }
 
