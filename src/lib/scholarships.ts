@@ -159,7 +159,8 @@ export function filterScholarships(params: FilterParams): Scholarship[] {
   }
 
   if (params.provider && params.provider !== 'all') {
-    list = list.filter((s) => providerGroup(s.provider) === params.provider);
+    // Match by exact provider name (program-specific, e.g. "DAAD", "Chevening")
+    list = list.filter((s) => s.provider === params.provider);
   }
 
   if (params.funding && params.funding !== 'all') {

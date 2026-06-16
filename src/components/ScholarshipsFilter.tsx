@@ -2,15 +2,39 @@
 
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Search, X } from 'lucide-react';
+import { Search, X, ChevronDown } from 'lucide-react';
 
-import { allScholarships, providerMeta } from '@/lib/scholarships';
+import { allScholarships, providerMeta, providerGroup } from '@/lib/scholarships';
+
+// Extract unique programs grouped by country, sorted by country then program
+const uniquePrograms = Array.from(
+  new Map(
+    allScholarships.map(s => {
+      // Normalize provider name for display
+      const key = s.provider;
+      return [key, { provider: s.provider, country: s.country, group: providerGroup(s.provider) }];
+    })
+  ).values()
+).sort((a, b) => {
+  const countryA = a.country ?? '';
+  const countryB = b.country ?? '';
+  if (countryA !== countryB) return countryA.localeCompare(countryB);
+  return a.provider.localeCompare(b.provider);
+});
+
+// Build a map of country flags for program labels
+const programFlagMap: Record<string, string> = {};
+Object.values(providerMeta).forEach(meta => {
+  if (meta.country) {
+    programFlagMap[meta.country.toLowerCase()] = meta.flag;
+  }
+});
 
 const PROVIDERS = [
-  { value: 'all', label: 'All Providers' },
-  ...Object.entries(providerMeta).map(([slug, meta]) => ({
-    value: slug,
-    label: `${meta.flag} ${meta.name}`,
+  { value: 'all', label: 'All Programs' },
+  ...uniquePrograms.map(p => ({
+    value: p.provider,
+    label: `${programFlagMap[p.country?.toLowerCase() ?? ''] ?? '🌍'} ${p.provider}`,
   })),
 ];
 
@@ -48,6 +72,76 @@ const COUNTRIES = [
 ];
 
 const DEBOUNCE_MS = 350;
+
+interface Option {
+  value: string;
+  label: string;
+}
+
+interface CustomSelectProps {
+  value: string;
+  options: Option[];
+  onChange: (val: string) => void;
+  align?: 'left' | 'right';
+}
+
+function CustomSelect({ value, options, onChange, align = 'left' }: CustomSelectProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const selectedOption = options.find((o) => o.value === value) ?? options[0];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative inline-block text-left z-20">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-between gap-1.5 text-xs px-3 py-2 rounded-full border border-brand-border bg-white text-brand-dark hover:border-brand-dark/20 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-dark/20 cursor-pointer min-w-[125px] text-left"
+      >
+        <span className="truncate">{selectedOption?.label}</span>
+        <ChevronDown className="h-3.5 w-3.5 flex-shrink-0 text-brand-muted" />
+      </button>
+
+      {isOpen && (
+        <div 
+          className={`absolute ${align === 'right' ? 'right-0' : 'left-0'} mt-1.5 w-60 rounded-2xl border border-brand-border bg-white shadow-lg py-1.5 z-50 focus:outline-none`}
+        >
+          <div
+            data-lenis-prevent
+            className="max-h-[280px] overflow-y-auto"
+            style={{ overscrollBehavior: 'contain', scrollbarWidth: 'thin', scrollbarColor: '#E8E8E6 transparent' }}
+          >
+            {options.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => {
+                  onChange(option.value);
+                  setIsOpen(false);
+                }}
+                className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-brand-cream/80 flex items-center gap-2 ${
+                  option.value === value ? 'bg-brand-cream/60 font-semibold text-brand-dark' : 'text-brand-dark/80'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ScholarshipsFilter({ total }: { total: number }) {
   const router = useRouter();
@@ -116,45 +210,30 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
 
       {/* Filter row */}
       <div className="flex flex-wrap items-center gap-2">
-        <select
+        <CustomSelect
           value={get('provider')}
-          onChange={(e) => pushParams('provider', e.target.value)}
-          className="text-xs px-3 py-2 rounded-full border border-brand-border bg-white text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-dark/20 cursor-pointer"
-        >
-          {PROVIDERS.map((p) => (
-            <option key={p.value} value={p.value}>{p.label}</option>
-          ))}
-        </select>
+          options={PROVIDERS}
+          onChange={(val) => pushParams('provider', val)}
+        />
 
-        <select
+        <CustomSelect
           value={get('funding')}
-          onChange={(e) => pushParams('funding', e.target.value)}
-          className="text-xs px-3 py-2 rounded-full border border-brand-border bg-white text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-dark/20 cursor-pointer"
-        >
-          {FUNDING.map((f) => (
-            <option key={f.value} value={f.value}>{f.label}</option>
-          ))}
-        </select>
+          options={FUNDING}
+          onChange={(val) => pushParams('funding', val)}
+        />
 
-        <select
+        <CustomSelect
           value={get('level')}
-          onChange={(e) => pushParams('level', e.target.value)}
-          className="text-xs px-3 py-2 rounded-full border border-brand-border bg-white text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-dark/20 cursor-pointer"
-        >
-          {LEVELS.map((l) => (
-            <option key={l.value} value={l.value}>{l.label}</option>
-          ))}
-        </select>
+          options={LEVELS}
+          onChange={(val) => pushParams('level', val)}
+        />
 
-        <select
+        <CustomSelect
           value={get('country')}
-          onChange={(e) => pushParams('country', e.target.value)}
-          className="text-xs px-3 py-2 rounded-full border border-brand-border bg-white text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-dark/20 cursor-pointer"
-        >
-          {COUNTRIES.map((c) => (
-            <option key={c.value} value={c.value}>{c.label}</option>
-          ))}
-        </select>
+          options={COUNTRIES}
+          onChange={(val) => pushParams('country', val)}
+          align="right"
+        />
 
         {hasFilters && (
           <button
