@@ -48,48 +48,62 @@ export function toSlug(name: string): string {
     .slice(0, 80);                  // cap length
 }
 
-/** Normalise provider string to a group slug */
+/** Normalise provider string to a country-level group slug */
 export function providerGroup(provider: string): string {
   const p = provider.toLowerCase();
-  if (p.includes('daad') || p.includes('dlr')) return 'daad';
-  if (p.includes('mext') || p.includes('monbukagakusho')) return 'mext';
-  if (p.includes('turkiye') || p.includes('ytb') || p.includes('burslari')) return 'turkiye';
-  if (p.includes('chevening')) return 'chevening';
-  if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp')) return 'australia-awards';
-  if (p.includes('niied') || p.includes('korean government') || p.includes('gks')) return 'gks';
+  // Germany
+  if (p.includes('daad') || p.includes('dlr') || p.includes('studienstiftung') || p.includes('german academic scholarship foundation')) return 'germany';
+  // Japan
+  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services')) return 'japan';
+  // Turkey
+  if (p.includes('turkiye') || p.includes('ytb') || p.includes('burslari')) return 'turkey';
+  // United Kingdom
+  if (p.includes('chevening') || p.includes('gates cambridge') || p.includes('clarendon') || p.includes('oxford university press') || p.includes('rhodes trust') || p.includes('rhodes house')) return 'united-kingdom';
+  // Australia
+  if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp')) return 'australia';
+  // South Korea
+  if (p.includes('niied') || p.includes('korean government') || p.includes('gks') || p.includes('koica') || p.includes('korea international cooperation')) return 'south-korea';
+  // Singapore
   if (p.includes('a*star') || p.includes('astar') || p.includes('nus') || p.includes('ntu') || p.includes('singa') || p.includes('nanyang') || p.includes('national university of singapore')) return 'singapore';
-  if (p.includes('eiffel') || p.includes('campus france') || p.includes('french ministry')) return 'eiffel';
-  if (p.includes('paris-saclay') || p.includes('paris saclay') || p.includes('sciences po') || p.includes('ens de lyon') || p.includes('ens lyon')) return 'eiffel';
-  // cpra must come BEFORE canada — provider string contains 'cihr'/'nserc'/'sshrc' which also match canada
-  if (p.includes('cpra') || p.includes('postdoctoral research award') || (p.includes('government of canada') && (p.includes('cihr') || p.includes('nserc') || p.includes('sshrc')))) return 'cpra';
+  // France
+  if (p.includes('eiffel') || p.includes('campus france') || p.includes('french ministry') || p.includes('paris-saclay') || p.includes('paris saclay') || p.includes('sciences po') || p.includes('ens de lyon') || p.includes('ens lyon')) return 'france';
+  // Canada (cpra must come before generic canada)
+  if (p.includes('cpra') || p.includes('postdoctoral research award') || (p.includes('government of canada') && (p.includes('cihr') || p.includes('nserc') || p.includes('sshrc')))) return 'canada';
   if (p.includes('canada') || p.includes('cihr') || p.includes('nserc') || p.includes('sshrc') || p.includes('crtas') || p.includes('cgrs') || p.includes('university of toronto')) return 'canada';
-  if (p.includes('jasso') || p.includes('japan student services')) return 'jasso';
-  if (p.includes('koica') || p.includes('korea international cooperation')) return 'koica';
-  if (p.includes('studienstiftung') || p.includes('german academic scholarship foundation')) return 'studienstiftung';
+  // United States
+  if (p.includes('fulbright') || p.includes('aminef')) return 'united-states';
+  // Netherlands
   if (p.includes('nuffic') || p.includes('dutch ministry') || p.includes('justus') || p.includes('van effen') || p.includes('university of groningen') || p.includes('university of amsterdam') || p.includes('leiden university') || p.includes('maastricht university') || p.includes('radboud university') || p.includes('tu delft') || p.includes('delft university')) return 'netherlands';
-  if (p.includes('gates cambridge')) return 'gates-cambridge';
-  if (p.includes('clarendon') || p.includes('oxford university press')) return 'clarendon';
-  if (p.includes('rhodes trust') || p.includes('rhodes house')) return 'rhodes';
-  if (p.includes('fulbright') || p.includes('aminef')) return 'fulbright';
-  if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian government') || p.includes('icp connect')) return 'belgium-vlir';
-  if (p.includes('erasmus mundus') || p.includes('erasmus+') || p.includes('european commission')) return 'erasmus-mundus';
+  // Belgium
+  if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian government') || p.includes('icp connect')) return 'belgium';
+  // EU
+  if (p.includes('erasmus mundus') || p.includes('erasmus+') || p.includes('european commission')) return 'eu';
+  // Sweden
   if (p.includes('swedish institute') || p.includes('svenska institutet')) return 'sweden';
+  // Italy
   if (p.includes('maeci') || p.includes('italian government') || p.includes('ministry of foreign affairs and international cooperation') || p.includes('invest your talent')) return 'italy';
-  if (p.includes('china scholarship council') || p.includes('csc') && p.includes('chinese') || p.includes('mofcom') || p.includes('ministry of commerce') && p.includes('china')) return 'china-csc';
+  // China
+  if (p.includes('china scholarship council') || (p.includes('csc') && p.includes('chinese')) || p.includes('mofcom') || (p.includes('ministry of commerce') && p.includes('china'))) return 'china';
+  // Hungary
   if (p.includes('stipendium hungaricum') || p.includes('tempus public foundation') || (p.includes('hungarian') && p.includes('government'))) return 'hungary';
+  // Taiwan
   if (p.includes('taiwan') || p.includes('teco') || p.includes('icdf') || p.includes('huayu') || p.includes('national tsing hua') || (p.includes('ministry of education') && p.includes('taiwan'))) return 'taiwan';
-  if (p.includes('swiss government') || p.includes('sbfi') || p.includes('seri') || p.includes('swiss confederation') || p.includes('eth zurich') || p.includes('epfl') || p.includes('école polytechnique fédérale')) return 'switzerland';
+  // Switzerland
+  if (p.includes('swiss government') || p.includes('sbfi') || p.includes('seri') || p.includes('swiss confederation') || p.includes('eth zurich') || p.includes('epfl') || p.includes('école polytechnique')) return 'switzerland';
+  // New Zealand
   if (p.includes('manaaki') || p.includes('education new zealand') || p.includes('mfat') || p.includes('new zealand')) return 'new-zealand';
+  // Ireland
   if (p.includes('government of ireland') || p.includes('hea') || p.includes('research ireland') || p.includes('irish research council') || p.includes('trinity college dublin') || p.includes('university college dublin') || p.includes('ucd global')) return 'ireland';
-  if (p.includes('danish') && p.includes('ministry') || p.includes('studyindenmark') || p.includes('denmark')) return 'denmark';
+  // Denmark
+  if ((p.includes('danish') && p.includes('ministry')) || p.includes('studyindenmark') || p.includes('denmark')) return 'denmark';
+  // Norway
   if (p.includes('studyinnorway') || (p.includes('norway') && p.includes('universities')) || p.includes('bi norwegian')) return 'norway';
+  // Hong Kong
   if (p.includes('hong kong phd') || p.includes('hkpf') || p.includes('research grants council') || p.includes('ugc.edu.hk') || p.includes('university of hong kong')) return 'hong-kong';
-  if (p.includes('malaysia international') || p.includes('mohe') || p.includes('malaysian government') && p.includes('scholarship')) return 'malaysia';
-  if (p.includes('eiffel')) return 'eiffel';
-  if (p.includes('singa')) return 'singa';
-  if (p.includes('vanier')) return 'vanier';
+  // Malaysia
+  if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship'))) return 'malaysia';
   // Fallback: slugify provider name
-  return p.replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+  return p.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 // ── Build the enriched list once ──────────────────────────────────────────
@@ -246,8 +260,8 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   const now = new Date();
   const group = providerGroup(s.provider);
 
-  // ── MEXT, Eiffel, SINGA, Vanier: parse from important_dates or deadline field ──────────────────
-  if (group === 'mext' || group === 'eiffel' || group === 'singa' || group === 'vanier') {
+  // ── Japan (MEXT, JASSO): parse from important_dates ────────────────────
+  if (group === 'japan' || group === 'france' || group === 'singapore') {
     const sources: string[] = [];
     if (s.important_dates) sources.push(...s.important_dates);
     if (s.deadline) sources.push(s.deadline);
@@ -265,8 +279,8 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'check', label: 'Check official site' };
   }
 
-  // ── Türkiye: known annual window Jan 10–Feb 20 ───────────────────────────
-  if (group === 'turkiye') {
+  // ── Turkey: known annual window Jan 10–Feb 20 ───────────────────────────
+  if (group === 'turkey') {
     const deadline = getTurkiyeDeadline();
     const openDate = new Date(deadline.getFullYear(), 0, 10); // Jan 10
     const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86_400_000);
@@ -283,8 +297,8 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'open', label: `Opens Jan 10 · closes ${fmt}`, daysLeft: diff, deadline };
   }
 
-  // ── Chevening: annual window Aug–Oct ────────────────────────────────────────
-  if (group === 'chevening') {
+  // ── United Kingdom (Chevening): annual window Aug–Oct ────────────────────────
+  if (group === 'united-kingdom') {
     const now2 = new Date();
     const year = now2.getFullYear();
     // Applications typically open 5 Aug, close 7 Oct
@@ -302,7 +316,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── Australia Awards: annual window closes ~30 April ─────────────────────
-  if (group === 'australia-awards') {
+  if (group === 'australia') {
     const now3 = new Date();
     const year3 = now3.getFullYear();
     const close = new Date(year3, 3, 30); // April 30
@@ -318,7 +332,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── GKS Graduate: Feb–Mar; Undergraduate: Sep–Oct ────────────────────────
-  if (group === 'gks') {
+  if (group === 'south-korea') {
     const degLower = s.degree_levels.map(d => d.toLowerCase()).join(' ');
     const isGrad = degLower.includes('master') || degLower.includes('phd') || degLower.includes('doctoral');
     const now4 = new Date();
@@ -371,7 +385,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── Eiffel: Oct 1 – Jan 8 (core Eiffel); Paris-Saclay ~May; others rolling ────
-  if (group === 'eiffel') {
+  if (group === 'france') {
     const now6 = new Date();
     const year6 = now6.getFullYear();
 
@@ -436,10 +450,10 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
 
   // ── DAAD: rolling ────────────────────────────────────────────────────────
   // ── JASSO: rolling (applied through school, no fixed public deadline) ────
-  if (group === 'jasso') return { type: 'rolling', label: 'Via enrolled university' };
+  if (group === 'japan') return { type: 'rolling', label: 'Via enrolled university' };
 
   // ── KOICA: annual, ~July deadline ────────────────────────────────────────
-  if (group === 'koica') {
+  if (group === 'south-korea') {
     const nowK = new Date();
     const yearK = nowK.getFullYear();
     const close = new Date(yearK, 6, 31); // July 31 approx
@@ -453,7 +467,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── CPRA: agency deadlines Sep 11–Oct 17 ─────────────────────────────────
-  if (group === 'cpra') {
+  if (group === 'canada') {
     const nowC = new Date();
     const yearC = nowC.getFullYear();
     const close = new Date(yearC, 9, 17); // Oct 17 (NSERC, latest deadline)
@@ -467,10 +481,10 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── A*STAR (astar group - AGS + AIF): rolling two intakes ────────────────
-  if (group === 'astar') return { type: 'rolling', label: 'Two intakes - Feb & Aug' };
+  if (group === 'singapore') return { type: 'rolling', label: 'Two intakes - Feb & Aug' };
 
   // ── Studienstiftung: nomination-based / special programme deadlines ──────
-  if (group === 'studienstiftung') {
+  if (group === 'germany') {
     const name = s.name.toLowerCase();
     const nowS = new Date();
     const yearS = nowS.getFullYear();
@@ -535,7 +549,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── Gates Cambridge: Sep open, ~Dec close ────────────────────────────────
-  if (group === 'gates-cambridge') {
+  if (group === 'united-kingdom') {
     const nowGC = new Date();
     const yearGC = nowGC.getFullYear();
     const open = new Date(yearGC, 8, 1);    // Sep 1
@@ -550,7 +564,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── Clarendon: Oxford first deadline ~Dec ────────────────────────────────
-  if (group === 'clarendon') {
+  if (group === 'united-kingdom') {
     const nowCL = new Date();
     const yearCL = nowCL.getFullYear();
     const close = new Date(yearCL, 11, 1); // Dec 1
@@ -561,7 +575,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── Rhodes: Jun–Oct, country-specific ────────────────────────────────────
-  if (group === 'rhodes') {
+  if (group === 'united-kingdom') {
     const nowRH = new Date();
     const yearRH = nowRH.getFullYear();
     const open = new Date(yearRH, 5, 1);  // Jun 1
@@ -576,7 +590,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── Fulbright: deadline Feb 15 ───────────────────────────────────────────
-  if (group === 'fulbright') {
+  if (group === 'united-states') {
     const nowF = new Date();
     const yearF = nowF.getFullYear();
     const close = new Date(yearF, 1, 15); // Feb 15
@@ -589,10 +603,10 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── VLIR-UOS Belgium: programme-specific, typically Jan-Apr ─────────────
-  if (group === 'belgium-vlir') return { type: 'rolling', label: 'Varies per programme' };
+  if (group === 'belgium') return { type: 'rolling', label: 'Varies per programme' };
 
   // ── Erasmus Mundus: Oct-Jan typically ────────────────────────────────────
-  if (group === 'erasmus-mundus') {
+  if (group === 'eu') {
     const nowEM = new Date();
     const yearEM = nowEM.getFullYear();
     const open = new Date(yearEM, 9, 1);   // Oct 1
@@ -609,7 +623,7 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   }
 
   // ── China CSC: Dec–Apr annually ───────────────────────────────────────
-  if (group === 'china-csc') {
+  if (group === 'china') {
     const nowCN = new Date();
     const yearCN = nowCN.getFullYear();
     // Application window: December 1 – April 30
@@ -792,261 +806,179 @@ export const providerMeta: Record<
   string,
   { name: string; flag: string; country: string; description: string; website: string }
 > = {
-  daad: {
-    name: 'DAAD',
+  germany: {
+    name: 'Germany',
     flag: '🇩🇪',
     country: 'Germany',
-    description:
-      'The German Academic Exchange Service (DAAD) is the world\'s largest funding organisation for the international exchange of students and researchers.',
+    description: 'Germany offers numerous scholarships through DAAD (the world\'s largest academic exchange organisation), Studienstiftung (Germany\'s most prestigious scholarship foundation), and various university-specific programmes. Public universities charge no tuition for most programmes.',
     website: 'https://www.daad.de',
   },
-  mext: {
-    name: 'MEXT / Monbukagakusho',
+  japan: {
+    name: 'Japan',
     flag: '🇯🇵',
     country: 'Japan',
-    description:
-      'The Japanese Ministry of Education, Culture, Sports, Science and Technology offers scholarships to international students wishing to study in Japan.',
+    description: 'Japan offers scholarships through MEXT (Ministry of Education) covering tuition, monthly stipend, and airfare for undergraduate to doctoral studies, plus JASSO scholarships for privately-financed students and exchange programmes.',
     website: 'https://www.mext.go.jp',
   },
-  turkiye: {
-    name: 'Türkiye Burslari',
+  turkey: {
+    name: 'Turkey',
     flag: '🇹🇷',
     country: 'Turkey',
-    description:
-      'Türkiye Burslari is the umbrella brand of the Turkish government scholarships offered to international students by the Presidency for Turks Abroad and Related Communities.',
+    description: 'Türkiye Burslari is the Turkish government\'s comprehensive scholarship programme offering tuition, monthly stipend, accommodation, health insurance, and flights for associate degree through PhD studies across 200+ Turkish universities.',
     website: 'https://www.turkiyeburslari.gov.tr',
   },
-  chevening: {
-    name: 'Chevening',
+  'united-kingdom': {
+    name: 'United Kingdom',
     flag: '🇬🇧',
     country: 'United Kingdom',
-    description:
-      'Chevening is the UK Government\'s prestigious international scholarships programme, funded by the Foreign, Commonwealth and Development Office (FCDO), offering future leaders a fully funded one-year master\'s degree at a UK university.',
+    description: 'The UK offers world-class scholarships including Chevening (government-funded Master\'s), Gates Cambridge, Clarendon Fund (Oxford), and the Rhodes Scholarship — among the most prestigious international scholarships globally.',
     website: 'https://www.chevening.org',
   },
-  'australia-awards': {
-    name: 'Australia Awards',
+  australia: {
+    name: 'Australia',
     flag: '🇦🇺',
     country: 'Australia',
-    description:
-      'Australia Awards are prestigious, transformational scholarships and short courses offered by the Australian Government to emerging leaders from developing countries for study, research and professional development in Australia.',
+    description: 'Australia Awards are prestigious, transformational scholarships and short courses offered by the Australian Government to emerging leaders from developing countries for study, research and professional development in Australia.',
     website: 'https://www.australiaawardsindonesia.org',
   },
-  gks: {
-    name: 'Global Korea Scholarship (GKS)',
+  'south-korea': {
+    name: 'South Korea',
     flag: '🇰🇷',
     country: 'South Korea',
-    description:
-      'The Global Korea Scholarship (GKS), administered by NIIED under the Korean Ministry of Education, invites outstanding international students to pursue undergraduate and graduate degrees at Korean universities.',
+    description: 'South Korea offers the Global Korea Scholarship (GKS) for undergraduate and graduate degrees at Korean universities, plus KOICA scholarships for public sector professionals from developing countries.',
     website: 'https://www.studyinkorea.go.kr',
   },
   singapore: {
-    name: 'Singapore Scholarships (NUS / NTU / A*STAR)',
+    name: 'Singapore',
     flag: '🇸🇬',
     country: 'Singapore',
-    description:
-      'Singapore offers prestigious scholarships for undergraduate and postgraduate students, including the ASEAN Undergraduate Scholarship (NUS/NTU) and the Singapore International Graduate Award (SINGA) for PhD studies, administered by A*STAR and Singapore\'s top universities.',
+    description: 'Singapore offers prestigious scholarships through NUS, NTU, and A*STAR, including the Singapore International Graduate Award (SINGA) for PhD studies and ASEAN Undergraduate Scholarships.',
     website: 'https://www.a-star.edu.sg/scholarships',
   },
-  eiffel: {
-    name: 'France Excellence Eiffel Scholarship',
+  france: {
+    name: 'France',
     flag: '🇫🇷',
     country: 'France',
-    description:
-      'Established by the French Ministry for Europe and Foreign Affairs, the Eiffel Excellence Scholarship Programme helps French higher education institutions attract top international students for master\'s and PhD programmes, providing generous monthly allowances and travel coverage.',
+    description: 'France offers the Eiffel Excellence Scholarship (government-funded), plus university-specific scholarships at Paris-Saclay, Sciences Po, and ENS Lyon for Master\'s and PhD studies.',
     website: 'https://www.campusfrance.org/en/eiffel-scholarship-program-of-excellence',
   },
   canada: {
-    name: 'Canada Research Training Awards (CRTAS)',
+    name: 'Canada',
     flag: '🇨🇦',
     country: 'Canada',
-    description:
-      'The Canada Research Training Awards Suite (CRTAS), jointly administered by CIHR, NSERC, and SSHRC, is Canada\'s premier graduate research funding program. It replaced the Vanier CGS in 2025, providing $40,000/year doctoral scholarships. International students enrolled at Canadian institutions may apply.',
-    website: 'https://nserc-crsng.canada.ca/en/funding-opportunity/canada-graduate-research-scholarship-doctoral-program',
+    description: 'Canada offers the CGRS-D and Impact+ research awards administered by CIHR/NSERC/SSHRC, the Lester B. Pearson Scholarship at University of Toronto, and the Canada Postdoctoral Research Award (CPRA) for postdoctoral researchers.',
+    website: 'https://nserc-crsng.canada.ca',
   },
-
-  jasso: {
-    name: 'JASSO - Japan Student Services Organization',
-    flag: '🇯🇵',
-    country: 'Japan',
-    description:
-      'JASSO (Japan Student Services Organization) provides two scholarship programs for international students in Japan: the Monbukagakusho Honors Scholarship (¥48,000/month) for privately-financed students with financial need, and the Student Exchange Support Program (¥80,000/month) for short-term exchange students under university agreements.',
-    website: 'https://www.jasso.or.jp/en/ryugaku/scholarship_j/index.html',
-  },
-  koica: {
-    name: 'KOICA Scholarship Program',
-    flag: '🇰🇷',
-    country: 'South Korea',
-    description:
-      "KOICA (Korea International Cooperation Agency) offers fully funded master's and doctoral scholarships to public sector professionals from developing countries. Programs span 15 specialised tracks at leading Korean universities including Yonsei, KDI School, and the University of Seoul, covering fields from AI and digital health to public policy and fisheries.",
-    website: 'https://www.koica.go.kr',
-  },
-  cpra: {
-    name: 'Canada Postdoctoral Research Award (CPRA)',
-    flag: '🇨🇦',
-    country: 'Canada',
-    description:
-      'The Canada Postdoctoral Research Award (CPRA) replaced the discontinued Banting Postdoctoral Fellowship, providing CAD $70,000/year for 2 years to outstanding postdoctoral researchers. Administered jointly by CIHR, NSERC, and SSHRC, up to 20% of awards are available to international applicants enrolled or conducting postdocs at Canadian institutions.',
-    website: 'https://www.nserc-crsng.gc.ca/Students-Etudiants/PD-NP/cpra-bprc_eng.asp',
-  },
-  studienstiftung: {
-    name: 'Studienstiftung des deutschen Volkes',
-    flag: '🇩🇪',
-    country: 'Germany',
-    description:
-      "Germany's oldest, largest, and most prestigious scholarship foundation, supporting ~13,300 students and doctoral candidates annually across all disciplines at German universities. Admission is by nomination only. Also offers special programmes including the ERP Fellowship (USA) and McCloy Scholarship (Harvard Kennedy School).",
-    website: 'https://www.studienstiftung.de/en',
-  },
-  netherlands: {
-    name: 'Netherlands Scholarships',
-    flag: '🇳🇱',
-    country: 'Netherlands',
-    description:
-      'The Netherlands offers a range of scholarships for international students, from the government-backed Holland Scholarship (€5,000) and Orange Knowledge Programme (fully funded, for professionals) to university-specific excellence awards at TU Delft (€30,000/year), University of Amsterdam, Groningen, Leiden, Maastricht, and Radboud University.',
-    website: 'https://www.studyinholland.nl/scholarships',
-  },
-  'gates-cambridge': {
-    name: 'Gates Cambridge Scholarship',
-    flag: '🇬🇧',
-    country: 'United Kingdom',
-    description:
-      'Established in 2000 with a US$210m donation from the Gates Foundation, the Gates Cambridge Scholarship offers ~80 fully funded postgraduate scholarships per year to outstanding non-UK citizens studying at the University of Cambridge. Covers full tuition, maintenance (£22,050/year), airfare, and visa costs.',
-    website: 'https://www.gatescambridge.org',
-  },
-  clarendon: {
-    name: 'Clarendon Fund - University of Oxford',
-    flag: '🇬🇧',
-    country: 'United Kingdom',
-    description:
-      "One of Oxford's most prestigious graduate scholarship programmes, the Clarendon Fund awards 200+ fully funded scholarships annually to outstanding students of any nationality for postgraduate study at Oxford. No separate application - all Oxford graduate applicants are automatically considered.",
-    website: 'https://www.ox.ac.uk/clarendon',
-  },
-  rhodes: {
-    name: 'Rhodes Scholarship',
-    flag: '🇬🇧',
-    country: 'United Kingdom',
-    description:
-      "Established in 1903, the Rhodes Scholarship is one of the world's oldest and most prestigious international scholarships, funding postgraduate study at the University of Oxford. Open to exceptional young graduates from approximately 60 countries who demonstrate outstanding intellect, character, leadership, and commitment to service.",
-    website: 'https://www.rhodeshouse.ox.ac.uk/scholarships/',
-  },
-  fulbright: {
-    name: 'Fulbright / AMINEF',
+  'united-states': {
+    name: 'United States',
     flag: '🇺🇸',
     country: 'United States',
-    description:
-      'The Fulbright Program, administered in Indonesia by AMINEF (American Indonesian Exchange Foundation), is the US government\'s flagship international exchange program. It offers fully funded scholarships and fellowships for Indonesian citizens to study, research, or teach in the United States, including the Master\'s Degree Scholarship, PhD Scholarship, Hubert H. Humphrey Fellowship for mid-career professionals, and the FLTA teaching assistantship program.',
+    description: 'The Fulbright Program, administered in Indonesia by AMINEF, is the US government\'s flagship international exchange program offering fully funded Master\'s, PhD, Humphrey Fellowship, and FLTA teaching assistantships for Indonesian citizens.',
     website: 'https://www.aminef.or.id',
   },
-  'belgium-vlir': {
-    name: 'VLIR-UOS Belgium (ICP Connect)',
+  netherlands: {
+    name: 'Netherlands',
+    flag: '🇳🇱',
+    country: 'Netherlands',
+    description: 'The Netherlands offers the government-backed Holland Scholarship, Orange Knowledge Programme, and university-specific excellence awards at TU Delft, Amsterdam, Groningen, Leiden, Maastricht, and Radboud.',
+    website: 'https://www.studyinholland.nl/scholarships',
+  },
+  belgium: {
+    name: 'Belgium',
     flag: '🇧🇪',
     country: 'Belgium',
-    description:
-      'VLIR-UOS (Flemish Interuniversity Council - University Development Cooperation) offers fully funded ICP Connect Scholarships for students from 29 eligible developing countries including Indonesia to pursue accredited international programmes at Flemish universities and universities of applied sciences. Available at bachelor (3 years), initial master (2 years), and advanced master (1 year) levels across development-related fields.',
+    description: 'Belgium offers VLIR-UOS ICP Connect Scholarships for students from 29 developing countries including Indonesia, available at bachelor, initial master, and advanced master levels across Flemish universities.',
     website: 'https://www.vliruos.be/get-funded/study-scholarships',
   },
-  'erasmus-mundus': {
-    name: 'Erasmus Mundus Joint Master (EMJM)',
+  eu: {
+    name: 'European Union',
     flag: '🇪🇺',
-    country: 'Belgium',
-    description:
-      'The Erasmus Mundus Joint Master (EMJM) is a prestigious EU-funded scholarship for a 1-2 year master\'s degree jointly delivered by at least 3 universities in at least 3 European countries. Open to students of any nationality worldwide including Indonesia. With 150+ programmes across all disciplines, full scholarships cover tuition, living allowance, travel, and insurance. Search programmes at eacea.ec.europa.eu.',
+    country: 'European Union',
+    description: 'Erasmus Mundus Joint Master (EMJM) is a prestigious EU-funded scholarship for 1-2 year master\'s degrees jointly delivered by at least 3 universities in 3+ European countries. Full scholarships cover tuition, living allowance, travel, and insurance for 150+ programmes.',
     website: 'https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters',
   },
-  'china-csc': {
-    name: 'China Scholarship Council (CSC)',
+  china: {
+    name: 'China',
     flag: '🇨🇳',
     country: 'China',
-    description:
-      'The China Scholarship Council (CSC) administers the Chinese Government Scholarship (CGS) programme, offering fully-funded undergraduate, master\'s, and doctoral scholarships at 274+ Chinese universities. Indonesia has a bilateral programme with China. Programmes include the CGS Bilateral Program (via embassy), CGS Chinese University Program (direct to university), Belt and Road / Silk Road Scholarship (for BRI partner countries), and the MOFCOM Scholarship for developing country students.',
+    description: 'China offers the Chinese Government Scholarship (CGS) through CSC for bachelor to PhD studies at 274+ universities, plus Belt and Road and MOFCOM scholarships for partner countries.',
     website: 'http://studyinchina.csc.edu.cn/',
   },
   sweden: {
-    name: 'Swedish Institute (SI) Scholarships',
+    name: 'Sweden',
     flag: '🇸🇪',
     country: 'Sweden',
-    description:
-      'The Swedish Institute (SI) is a Swedish government agency that offers fully-funded scholarships for master\'s studies at Swedish universities. The flagship SISGP programme is open to professionals from 34 developing countries including Indonesia, covering full tuition, SEK 12,000/month, and a travel grant. The Pioneering Women in STEM (PWIS) scholarship exclusively supports women from 10 countries in STEM fields.',
+    description: 'The Swedish Institute offers fully funded SISGP master\'s scholarships for professionals from 34 developing countries, plus the Pioneering Women in STEM scholarship for women in STEM fields.',
     website: 'https://si.se/en/apply/scholarships/',
   },
   italy: {
-    name: 'Italian Government Scholarships (MAECI)',
+    name: 'Italy',
     flag: '🇮🇹',
     country: 'Italy',
-    description:
-      'The Italian Ministry of Foreign Affairs and International Cooperation (MAECI) offers fully-funded scholarships for foreign students to study at Italian universities. Programmes include the general Italian Government Scholarship (open to many countries), Invest Your Talent in Italy (IYT) for 18 partner countries including Indonesia, and Special Projects scholarships for bilateral partnerships. Apply via the Study in Italy portal.',
+    description: 'Italy offers MAECI government scholarships, Invest Your Talent in Italy (IYT), and Special Projects scholarships for foreign students at Italian universities, covering tuition and monthly allowances.',
     website: 'https://studyinitaly.esteri.it/',
   },
   hungary: {
-    name: 'Stipendium Hungaricum',
+    name: 'Hungary',
     flag: '🇭🇺',
     country: 'Hungary',
-    description:
-      'The Stipendium Hungaricum Scholarship Programme, established by the Hungarian Government, offers fully funded scholarships for bachelor\'s, master\'s, and doctoral studies at Hungarian universities. Over 600 study programmes in English and other languages are available. Covers full tuition, monthly stipend, accommodation support, and medical insurance. Open to citizens of 70+ partner countries including Indonesia.',
+    description: 'Stipendium Hungaricum offers fully funded bachelor\'s, master\'s, and doctoral studies at Hungarian universities for citizens of 70+ partner countries including Indonesia, covering tuition, stipend, accommodation, and insurance.',
     website: 'https://stipendiumhungaricum.hu/',
   },
   taiwan: {
-    name: 'Taiwan Scholarships (MOE / ICDF)',
+    name: 'Taiwan',
     flag: '🇹🇼',
     country: 'Taiwan',
-    description:
-      'Taiwan offers three main scholarship programmes: the MOE Taiwan Scholarship (tuition up to NTD 40K/semester + NTD 15–20K/month stipend for bachelor\'s to PhD), the TaiwanICDF Scholarship (fully funded master\'s and PhD with housing and airfare at 32 designated programmes), and the Huayu Enrichment Scholarship (NTD 25K/month for Mandarin language study). Over 150 Taiwan universities participate. Applied through local TECO offices.',
+    description: 'Taiwan offers MOE scholarships (tuition + stipend), TaiwanICDF (fully funded with housing), Huayu (language study), plus university-specific awards at NTU and NTHU for bachelor to PhD studies.',
     website: 'https://english.moe.gov.tw',
   },
   switzerland: {
-    name: 'Swiss Government Excellence Scholarships',
+    name: 'Switzerland',
     flag: '🇨🇭',
     country: 'Switzerland',
-    description:
-      'The Swiss Government Excellence Scholarships, administered by SERI/SBFI, offer CHF 2,450/month for research stays (6–12 months), full PhD studies (up to 36 months), and art master\'s degrees (12–21 months) at Swiss universities and research institutes. Open to applicants from 180+ countries. Requires securing an academic supervisor at a Swiss institution. Applications submitted through Swiss embassies.',
+    description: 'Switzerland offers the Swiss Government Excellence Scholarships (CHF 2,450/month), ETH Zurich ESOP, and EPFL Excellence Fellowships for Master\'s and PhD studies at world-leading institutions.',
     website: 'https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships',
   },
   'new-zealand': {
-    name: 'Manaaki New Zealand Scholarships',
+    name: 'New Zealand',
     flag: '🇳🇿',
     country: 'New Zealand',
-    description:
-      'Manaaki New Zealand Scholarships (formerly NZAS), funded by MFAT, are fully funded scholarships for citizens of eligible developing countries including Indonesia. They cover tuition, living allowance, airfare, insurance, and settling-in costs for undergraduate, master\'s, and PhD studies at New Zealand universities. Also available: vocational short-term training and English language training for officials (NZELTO).',
+    description: 'Manaaki New Zealand Scholarships are fully funded for citizens of developing countries including Indonesia, covering tuition, living allowance, airfare, and insurance for undergraduate through PhD studies.',
     website: 'https://www.nzscholarships.govt.nz/',
   },
   ireland: {
-    name: 'Government of Ireland Scholarships',
+    name: 'Ireland',
     flag: '🇮🇪',
     country: 'Ireland',
-    description:
-      'Ireland offers two major scholarship programmes: GOI-IES (60 awards/year, EUR 10,000 + tuition waiver for one year of Master\'s/PhD for non-EU students) and GOIPG (fully funded up to EUR 34,000/year for up to 4 years of PhD research, open to all nationalities, 18% success rate). Both are prestigious government-funded programmes managed by HEA and Research Ireland respectively.',
+    description: 'Ireland offers GOI-IES (tuition + EUR 10,000 for one year), GOIPG (up to EUR 34,000/year for PhD), plus university scholarships at Trinity College Dublin and UCD.',
     website: 'https://hea.ie/',
   },
   denmark: {
-    name: 'Danish Government Scholarships',
+    name: 'Denmark',
     flag: '🇩🇰',
     country: 'Denmark',
-    description:
-      'The Danish Government Scholarship programme offers tuition waivers and living cost grants to highly qualified non-EU/EEA students pursuing full-degree Master\'s programmes at Danish universities. Scholarships are administered individually by each university. Denmark also participates in Erasmus Mundus and Nordplus exchange programmes.',
+    description: 'Denmark offers government scholarships (tuition waivers + DKK 7,000/month living grant) administered by individual universities for non-EU/EEA Master\'s students.',
     website: 'https://studyindenmark.dk/study-options/scholarships',
   },
   norway: {
-    name: 'Norway Tuition-Free Education',
+    name: 'Norway',
     flag: '🇳🇴',
     country: 'Norway',
-    description:
-      'Norway offers tuition-free education at public universities for ALL international students, regardless of nationality — one of very few countries where non-EU students also pay zero tuition. Around 350 English-taught programmes are available. PhD positions are advertised as fully salaried jobs (~NOK 500,000+/year). Students must fund living expenses (~NOK 12,350/month) through personal savings or part-time work.',
+    description: 'Norway offers tuition-free education at public universities for ALL international students. PhD positions are fully salaried. BI Norwegian Business School offers the Presidential Scholarship with full tuition + stipend.',
     website: 'https://www.studyinnorway.no/',
   },
   'hong-kong': {
-    name: 'Hong Kong PhD Fellowship Scheme (HKPFS)',
+    name: 'Hong Kong',
     flag: '🇭🇰',
     country: 'Hong Kong',
-    description:
-      'The Hong Kong PhD Fellowship Scheme (HKPFS), administered by the Research Grants Council, awards 400 fully funded PhD fellowships per year at Hong Kong\'s 8 UGC-funded universities (HKU, CUHK, HKUST, PolyU, CityU, HKBU, Lingnan, EdUHK). Provides HK$28,400/month stipend, full tuition waiver, and travel allowance. No nationality restrictions. One of Asia\'s most generous PhD programmes.',
+    description: 'Hong Kong offers the HKPFS (400 PhD fellowships at HK$28,400/month) and HKU Entrance Scholarships (full tuition + living allowance) at 8 world-class universities.',
     website: 'https://www.ugc.edu.hk/en/non-local-students/hong-kong-phd-fellowship-scheme.html',
   },
   malaysia: {
-    name: 'Malaysia International Scholarship (MIS)',
+    name: 'Malaysia',
     flag: '🇲🇾',
     country: 'Malaysia',
-    description:
-      'The Malaysia International Scholarship (MIS) is a Malaysian Government initiative to attract top international talent for postgraduate studies. Covers full tuition, MYR 1,500/month living allowance, health insurance, airfare, and thesis costs for Master\'s (24 months) and PhD (36 months). Open to citizens of partner countries including Indonesia. Living costs in Malaysia are relatively affordable.',
+    description: 'The Malaysia International Scholarship (MIS) covers tuition, MYR 1,500/month stipend, insurance, airfare, and thesis costs for Master\'s and PhD studies at Malaysian universities.',
     website: 'https://biasiswa.mohe.gov.my/INTER/index.php',
   },
 };
@@ -1206,12 +1138,12 @@ export function getScholarshipLogo(s: Scholarship): string | null {
 
   // 2. Fallback to Group Logos
   const group = providerGroup(s.provider);
-  if (group === 'daad') return '/images/logos/daad.svg';
-  if (group === 'mext') return '/images/logos/mext.svg';
-  if (group === 'turkiye') return '/images/logos/turkiye.png';
-  if (group === 'fulbright') return '/images/logos/Harvard.png';
-  if (group === 'belgium-vlir') return '/images/logos/KULeuven.png';
-  if (group === 'erasmus-mundus') return '/images/logos/Bologna.png';
+  if (group === 'germany') return '/images/logos/daad.svg';
+  if (group === 'japan') return '/images/logos/mext.svg';
+  if (group === 'turkey') return '/images/logos/turkiye.png';
+  if (group === 'united-states') return '/images/logos/Harvard.png';
+  if (group === 'belgium') return '/images/logos/KULeuven.png';
+  if (group === 'eu') return '/images/logos/Bologna.png';
 
   return null;
 }
@@ -1349,20 +1281,20 @@ export function getScholarshipImage(s: Scholarship): string {
 
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
-  if (group === 'daad') return '/images/universities/GE_HeidelbergU.png';
-  if (group === 'studienstiftung') return '/images/universities/GE_LMU.png';
-  if (group === 'mext') return '/images/universities/JP_UofTokyo.png';
-  if (group === 'jasso') return '/images/universities/JP_UofTokyo.png';
-  if (group === 'turkiye') return '/images/universities/TU_METU.png';
-  if (group === 'eiffel') return '/images/universities/FR_PSLU.png';
+  if (group === 'germany') return '/images/universities/GE_HeidelbergU.png';
+  if (group === 'germany') return '/images/universities/GE_LMU.png';
+  if (group === 'japan') return '/images/universities/JP_UofTokyo.png';
+  if (group === 'japan') return '/images/universities/JP_UofTokyo.png';
+  if (group === 'turkey') return '/images/universities/TU_METU.png';
+  if (group === 'france') return '/images/universities/FR_PSLU.png';
   if (group === 'singapore') return '/images/universities/SG_NUS.png';
-  if (group === 'astar') return '/images/universities/SG_NUS.png';
+  if (group === 'singapore') return '/images/universities/SG_NUS.png';
   if (group === 'canada') return '/images/universities/CA_UofT.png';
-  if (group === 'cpra') return '/images/universities/CA_UofT.png';
-  if (group === 'chevening') return '/images/universities/UK_Oxford.png';
-  if (group === 'gates-cambridge') return '/images/universities/UK_Cambridge.png';
-  if (group === 'clarendon') return '/images/universities/UK_Oxford.png';
-  if (group === 'rhodes') return '/images/universities/UK_Oxford.png';
+  if (group === 'canada') return '/images/universities/CA_UofT.png';
+  if (group === 'united-kingdom') return '/images/universities/UK_Oxford.png';
+  if (group === 'united-kingdom') return '/images/universities/UK_Cambridge.png';
+  if (group === 'united-kingdom') return '/images/universities/UK_Oxford.png';
+  if (group === 'united-kingdom') return '/images/universities/UK_Oxford.png';
   if (group === 'netherlands') {
     // Rotate through different NL university images based on scholarship name
     if (name.includes('groningen')) return '/images/universities/NL_TUDelft.png';
@@ -1374,28 +1306,28 @@ export function getScholarshipImage(s: Scholarship): string {
     if (name.includes('holland') || name.includes('nl scholarship')) return '/images/universities/NL_UniversityofAmsterdam.png';
     return '/images/universities/NL_TUDelft.png';
   }
-  if (group === 'australia-awards') return '/images/universities/AUS_Sydney.png';
-  if (group === 'gks') return '/images/universities/KOR_SNU.png';
-  if (group === 'koica') return '/images/universities/KOR_Yonsei.png';
+  if (group === 'australia') return '/images/universities/AUS_Sydney.png';
+  if (group === 'south-korea') return '/images/universities/KOR_SNU.png';
+  if (group === 'south-korea') return '/images/universities/KOR_Yonsei.png';
   // Fulbright - rotate between top US placement universities
-  if (group === 'fulbright') {
+  if (group === 'united-states') {
     const name = s.name.toLowerCase();
     if (name.includes('humphrey')) return '/images/universities/US_Columbia.png';
     if (name.includes('flta') || name.includes('teaching assistant')) return '/images/universities/US_Stanford.png';
     return '/images/universities/US_Harvard.png';
   }
   // Belgium VLIR - rotate between top Flemish universities
-  if (group === 'belgium-vlir') {
+  if (group === 'belgium') {
     const name = s.name.toLowerCase();
     if (name.includes('advanced') || name.includes('1 year')) return '/images/universities/BEL_VUB.png';
     if (name.includes('bachelor')) return '/images/universities/BEL_GhentU.png';
     return '/images/universities/BEL_KULeuven.png';
   }
   // Erasmus Mundus - use Bologna as iconic EU university
-  if (group === 'erasmus-mundus') return '/images/universities/ITA_Bologna.png';
+  if (group === 'eu') return '/images/universities/ITA_Bologna.png';
   if (group === 'italy') return '/images/universities/ITA_Polimi.png';
   if (group === 'sweden') return '/images/universities/SWE_LundU.png';
-  if (group === 'china-csc') return '/images/universities/CN_Tsinghua.png';
+  if (group === 'china') return '/images/universities/CN_Tsinghua.png';
   if (group === 'hungary') {
     if (name.includes('doctoral') || name.includes('phd')) return '/images/universities/HU_Semmelweis.png';
     return '/images/universities/HU_ELTE.png';
@@ -1649,7 +1581,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     const country = s.country ? s.country.toLowerCase() : '';
     const group = providerGroup(s.provider);
 
-    if (country === 'germany' || group === 'daad') {
+    if (group === 'germany') {
       list.push(
         { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png' },
         { name: 'LMU Munich', logo: '/images/logos/LMU.png' },
@@ -1657,7 +1589,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Freie Universität Berlin', logo: '/images/logos/FUBerlin.png' },
         { name: 'Karlsruhe Institute of Technology (KIT)', logo: '/images/logos/KIT.png' }
       );
-    } else if (country === 'japan' || group === 'mext') {
+    } else if (group === 'japan') {
       list.push(
         { name: 'University of Tokyo', logo: '/images/logos/UofTokyo.png' },
         { name: 'Kyoto University', logo: '/images/logos/KyotoU.png' },
@@ -1665,7 +1597,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Tohoku University', logo: '/images/logos/Tohoku.png' },
         { name: 'Tokyo Institute of Technology', logo: '/images/logos/TokyoTech.png' }
       );
-    } else if (country === 'turkey' || group === 'turkiye') {
+    } else if (group === 'turkey') {
       list.push(
         { name: 'Istanbul Technical University (ITU)', logo: '/images/logos/ITU.png' },
         { name: 'Middle East Technical University (METU)', logo: '/images/logos/METU.png' },
@@ -1673,7 +1605,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Hacettepe University', logo: '/images/logos/Hacettepe.png' },
         { name: 'Koç University', logo: '/images/logos/Koc.png' }
       );
-    } else if (country === 'canada' || group === 'canada') {
+    } else if (group === 'canada') {
       list.push(
         { name: 'University of Toronto', logo: '/images/logos/UofT.png' },
         { name: 'McGill University', logo: '/images/logos/McGill.png' },
@@ -1681,21 +1613,21 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'McMaster University', logo: '/images/logos/McMaster.png' },
         { name: 'University of Waterloo', logo: '/images/logos/Waterloo.png' }
       );
-    } else if (country === 'france' || group === 'eiffel') {
+    } else if (group === 'france') {
       list.push(
         { name: 'Institut Polytechnique de Paris', logo: '/images/logos/InstitutPolytechniqueDeParis.png' },
         { name: 'Paris Sciences et Lettres University (PSL)', logo: '/images/logos/PSLU.png' },
         { name: 'Sorbonne University', logo: '/images/logos/Sorbonne.png' },
         { name: 'Université Paris-Saclay', logo: '/images/logos/ParisSaclay.png' }
       );
-    } else if (country === 'singapore' || group === 'singapore') {
+    } else if (group === 'singapore') {
       list.push(
         { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png' },
         { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png' },
         { name: 'Singapore Management University (SMU)', logo: '/images/logos/SMU.png' },
         { name: 'Singapore University of Technology and Design (SUTD)', logo: '/images/logos/SUTD.png' }
       );
-    } else if (country === 'united kingdom' || group === 'chevening') {
+    } else if (group === 'united-kingdom') {
       list.push(
         { name: 'University of Oxford', logo: '/images/logos/Oxford.png' },
         { name: 'University of Cambridge', logo: '/images/logos/Cambridge.png' },
@@ -1703,7 +1635,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Edinburgh', logo: '/images/logos/Edinburgh.png' },
         { name: 'University College London (UCL)', logo: '/images/logos/UCL.png' }
       );
-    } else if (country === 'australia' || group === 'australia-awards') {
+    } else if (group === 'australia') {
       list.push(
         { name: 'University of Melbourne', logo: '/images/logos/Melbourne.png' },
         { name: 'University of Sydney', logo: '/images/logos/Sydney.png' },
@@ -1711,7 +1643,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Monash University', logo: '/images/logos/Monash_AUS.png' },
         { name: 'UNSW Sydney', logo: '/images/logos/UNSW.png' }
       );
-    } else if (country === 'south korea' || country === 'korea' || group === 'gks') {
+    } else if (country === 'south korea' || group === 'south-korea') {
       list.push(
         { name: 'Seoul National University (SNU)', logo: '/images/logos/SNU.png' },
         { name: 'KAIST', logo: '/images/logos/KAIST.png' },
@@ -1719,7 +1651,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Korea University', logo: '/images/logos/KoreaU.png' },
         { name: 'Pohang University of Science and Technology (POSTECH)', logo: '/images/logos/POSTECH.png' }
       );
-    } else if (country === 'netherlands' || group === 'netherlands') {
+    } else if (group === 'netherlands') {
       list.push(
         { name: 'TU Delft', logo: '/images/logos/TUDelft.png' },
         { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png' },
@@ -1727,11 +1659,11 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Groningen', logo: '/images/logos/Groningen.png' },
         { name: 'Maastricht University', logo: '/images/logos/Maastritcht.png' }
       );
-    } else if (group === 'gates-cambridge') {
+    } else if (group === 'united-kingdom') {
       list.push({ name: 'University of Cambridge', logo: '/images/logos/Cambridge.png' });
-    } else if (group === 'clarendon' || group === 'rhodes') {
+    } else if (group === 'united-kingdom' || group === 'united-kingdom') {
       list.push({ name: 'University of Oxford', logo: '/images/logos/Oxford.png' });
-    } else if (group === 'studienstiftung') {
+    } else if (group === 'germany') {
       list.push(
         { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png' },
         { name: 'LMU Munich', logo: '/images/logos/LMU.png' },
@@ -1739,37 +1671,37 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Freie Universität Berlin', logo: '/images/logos/FUBerlin.png' },
         { name: 'Karlsruhe Institute of Technology (KIT)', logo: '/images/logos/KIT.png' }
       );
-    } else if (group === 'fulbright') {
+    } else if (group === 'united-states') {
       list.push(
         { name: 'Harvard University', logo: '/images/logos/Harvard.png' },
         { name: 'Columbia University', logo: '/images/logos/ColumbiaU.png' },
         { name: 'Stanford University', logo: '/images/logos/Stanford.png' }
       );
-    } else if (group === 'belgium-vlir') {
+    } else if (group === 'belgium') {
       list.push(
         { name: 'KU Leuven', logo: '/images/logos/KULeuven.png' },
         { name: 'Ghent University', logo: '/images/logos/GhentU.png' },
         { name: 'Vrije Universiteit Brussel (VUB)', logo: '/images/logos/VUB.png' }
       );
-    } else if (group === 'erasmus-mundus') {
+    } else if (group === 'eu') {
       list.push(
         { name: 'University of Bologna', logo: '/images/logos/Bologna.png' },
         { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' },
         { name: 'KU Leuven', logo: '/images/logos/KULeuven.png' }
       );
-    } else if (country === 'italy' || group === 'italy') {
+    } else if (group === 'italy') {
       list.push(
         { name: 'Politecnico di Milano', logo: '/images/logos/Polimi.png' },
         { name: 'Sapienza Università di Roma', logo: '/images/logos/Sapienza.png' },
         { name: 'University of Bologna', logo: '/images/logos/Bologna.png' }
       );
-    } else if (country === 'sweden' || group === 'sweden') {
+    } else if (group === 'sweden') {
       list.push(
         { name: 'Lund University', logo: '/images/logos/LundU.png' },
         { name: 'KTH Royal Institute of Technology', logo: '/images/logos/KTH.png' },
         { name: 'Uppsala University', logo: '/images/logos/UppsalaU.png' }
       );
-    } else if (country === 'china' || group === 'china-csc') {
+    } else if (group === 'china') {
       list.push(
         { name: 'Tsinghua University', logo: '/images/logos/Tsinghua.png' },
         { name: 'Peking University', logo: '/images/logos/Peking.png' },

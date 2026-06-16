@@ -43,13 +43,13 @@ function getOpenThisMonth() {
 const openList = getOpenThisMonth();
 
 // Main featured = first open/closing scholarship
-// Fallback to MEXT if nothing is open (e.g. off-season)
-const mainScholarship = openList[0] ?? allScholarships.find((s) => providerGroup(s.provider) === 'mext')!;
+// Fallback to Japan if nothing is open (e.g. off-season)
+const mainScholarship = openList[0] ?? allScholarships.find((s) => providerGroup(s.provider) === 'japan')!;
 const sideScholarships = (openList.length > 1 ? openList.slice(1, 5) : [
-  allScholarships.filter((s) => providerGroup(s.provider) === 'daad')[0],
-  allScholarships.filter((s) => providerGroup(s.provider) === 'turkiye')[0],
-  allScholarships.filter((s) => providerGroup(s.provider) === 'daad')[1],
-  allScholarships.filter((s) => providerGroup(s.provider) === 'mext')[1],
+  allScholarships.filter((s) => providerGroup(s.provider) === 'germany')[0],
+  allScholarships.filter((s) => providerGroup(s.provider) === 'turkey')[0],
+  allScholarships.filter((s) => providerGroup(s.provider) === 'germany')[1],
+  allScholarships.filter((s) => providerGroup(s.provider) === 'japan')[1],
 ]).filter(Boolean);
 
 // Dynamic title: "Open in June 2026"

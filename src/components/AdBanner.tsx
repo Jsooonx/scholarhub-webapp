@@ -54,7 +54,7 @@ export default function AdBanner() {
               {total} Scholarships. One place.
             </h3>
             <p className="text-sm text-white/70 leading-relaxed mb-6">
-              From DAAD and Studienstiftung to Chevening, Gates Cambridge, Clarendon, Netherlands scholarships, Australia Awards, GKS Korea, MEXT, Eiffel France, Singapore (NUS/A*STAR), and more - all curated, structured, and ready to browse.
+              From Germany and Japan to the United Kingdom, France, Australia, South Korea, and more - 25 countries with curated scholarships, structured and ready to browse.
             </p>
             <Link
               href="/scholarships"

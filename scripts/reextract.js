@@ -1,4 +1,4 @@
-﻿// Re-extraction script - generates scholarships.json from raw data
+// Re-extraction script - generates scholarships.json from raw data
 // Run: node scripts/reextract.js
 
 const fs = require('fs');
@@ -6407,7 +6407,7 @@ const hongKong = [
 const malaysia = [
   {
     name: 'Malaysia International Scholarship (MIS)',
-    provider: 'Ministry of Higher Education (MOHE) Malaysia',
+    provider: 'MOHE Malaysia',
     country: 'Malaysia',
     degree_levels: ['Master', 'PhD'],
     fields: ['All disciplines at Malaysian public and selected private universities'],
@@ -6464,6 +6464,37 @@ const malaysia = [
   },
 ];
 
+// ── Country mapping ──────────────────────────────────────────────────────────
+
+// Maps each program array to its country slug and lists sub-program names
+const COUNTRY_PROGRAMS = {
+  germany: { arrays: [daad, studienstiftung], programs: ['DAAD', 'Studienstiftung'] },
+  japan: { arrays: [mext, jasso], programs: ['MEXT', 'JASSO'] },
+  turkey: { arrays: [turkiye], programs: ['Türkiye Burslari'] },
+  'united-kingdom': { arrays: [chevening, gatesCambridge, clarendon, rhodes], programs: ['Chevening', 'Gates Cambridge', 'Clarendon', 'Rhodes'] },
+  'australia': { arrays: [australiaAwards], programs: ['Australia Awards'] },
+  'south-korea': { arrays: [gks, koica], programs: ['GKS', 'KOICA'] },
+  singapore: { arrays: [singapore, astarNew], programs: ['SINGA', 'NUS', 'NTU', 'A*STAR'] },
+  france: { arrays: [eiffel], programs: ['Eiffel', 'Paris-Saclay', 'Sciences Po', 'ENS Lyon'] },
+  canada: { arrays: [canada, cpra], programs: ['CGRS-D', 'Impact+', 'Pearson', 'CPRA'] },
+  'united-states': { arrays: [fulbright], programs: ['Fulbright', 'Humphrey', 'FLTA'] },
+  netherlands: { arrays: [netherlands], programs: ['Holland Scholarship', 'OKP', 'OTS', 'TU Delft', 'Groningen', 'UvA', 'Leiden', 'Maastricht', 'Radboud'] },
+  belgium: { arrays: [belgiumVlir], programs: ['VLIR-UOS'] },
+  eu: { arrays: [erasmusMundus], programs: ['Erasmus Mundus'] },
+  china: { arrays: [chinaCsc], programs: ['CGS Bilateral', 'CGS University', 'Belt & Road', 'MOFCOM'] },
+  sweden: { arrays: [sweden], programs: ['SISGP', 'PWIS'] },
+  italy: { arrays: [italy], programs: ['MAECI', 'IYT', 'MAECI Special Projects'] },
+  hungary: { arrays: [hungary], programs: ['Stipendium Hungaricum'] },
+  taiwan: { arrays: [taiwan], programs: ['MOE', 'ICDF', 'Huayu', 'NTU', 'NTHU'] },
+  switzerland: { arrays: [switzerland], programs: ['Swiss Govt Excellence', 'ETH ESOP', 'EPFL Excellence'] },
+  'new-zealand': { arrays: [newZealand], programs: ['Manaaki NZ'] },
+  ireland: { arrays: [ireland], programs: ['GOI-IES', 'GOIPG', 'TCD', 'UCD'] },
+  denmark: { arrays: [denmark], programs: ['Danish Government Scholarship'] },
+  norway: { arrays: [norway], programs: ['Tuition-Free', 'BI Presidential'] },
+  'hong-kong': { arrays: [hongKong], programs: ['HKPFS', 'HKU Entrance'] },
+  malaysia: { arrays: [malaysia], programs: ['MIS'] },
+};
+
 // ── Assemble & write ─────────────────────────────────────────────────────────
 
 const scholarships = [...daad, ...mext, ...turkiye, ...chevening, ...australiaAwards, ...gks, ...singapore, ...eiffel, ...canada, ...astarNew, ...jasso, ...koica, ...cpra, ...studienstiftung, ...netherlands, ...gatesCambridge, ...clarendon, ...rhodes, ...fulbright, ...belgiumVlir, ...erasmusMundus, ...chinaCsc, ...sweden, ...italy, ...hungary, ...taiwan, ...switzerland, ...newZealand, ...ireland, ...denmark, ...norway, ...hongKong, ...malaysia].map((s, i) => ({
@@ -6485,48 +6516,27 @@ const scholarships = [...daad, ...mext, ...turkiye, ...chevening, ...australiaAw
   },
 }));
 
+const countryKeys = Object.keys(COUNTRY_PROGRAMS);
+
 const output = {
-  provider_groups: ['DAAD', 'MEXT', 'TURKIYE', 'CHEVENING', 'AUSTRALIA_AWARDS', 'GKS', 'SINGAPORE', 'EIFFEL', 'CANADA', 'ASTAR', 'JASSO', 'KOICA', 'CPRA', 'STUDIENSTIFTUNG', 'NETHERLANDS', 'GATES_CAMBRIDGE', 'CLARENDON', 'RHODES', 'FULBRIGHT', 'BELGIUM_VLIR', 'ERASMUS_MUNDUS', 'CHINA_CSC', 'SWEDEN', 'ITALY', 'HUNGARY', 'TAIWAN', 'SWITZERLAND', 'NEW_ZEALAND', 'IRELAND', 'DENMARK', 'NORWAY', 'HONG_KONG', 'MALAYSIA'],
-  provider_summaries: [
-    { provider_group: 'DAAD', file_count: 1, scholarship_count: daad.length },
-    { provider_group: 'MEXT', file_count: 6, scholarship_count: mext.length },
-    { provider_group: 'TURKIYE', file_count: 8, scholarship_count: turkiye.length },
-    { provider_group: 'CHEVENING', file_count: 25, scholarship_count: chevening.length },
-    { provider_group: 'AUSTRALIA_AWARDS', file_count: 30, scholarship_count: australiaAwards.length },
-    { provider_group: 'GKS', file_count: 6, scholarship_count: gks.length },
-    { provider_group: 'SINGAPORE', file_count: 7, scholarship_count: singapore.length },
-    { provider_group: 'EIFFEL', file_count: 23, scholarship_count: eiffel.length },
-    { provider_group: 'CANADA', file_count: 3, scholarship_count: canada.length },
-    { provider_group: 'ASTAR', file_count: 15, scholarship_count: astarNew.length },
-    { provider_group: 'JASSO', file_count: 2, scholarship_count: jasso.length },
-    { provider_group: 'KOICA', file_count: 1, scholarship_count: koica.length },
-    { provider_group: 'CPRA', file_count: 1, scholarship_count: cpra.length },
-    { provider_group: 'STUDIENSTIFTUNG', file_count: 16, scholarship_count: studienstiftung.length },
-    { provider_group: 'NETHERLANDS', file_count: 9, scholarship_count: netherlands.length },
-    { provider_group: 'GATES_CAMBRIDGE', file_count: 9, scholarship_count: gatesCambridge.length },
-    { provider_group: 'CLARENDON', file_count: 1, scholarship_count: clarendon.length },
-    { provider_group: 'RHODES', file_count: 1, scholarship_count: rhodes.length },
-    { provider_group: 'FULBRIGHT', file_count: 25, scholarship_count: fulbright.length },
-    { provider_group: 'BELGIUM_VLIR', file_count: 20, scholarship_count: belgiumVlir.length },
-    { provider_group: 'ERASMUS_MUNDUS', file_count: 16, scholarship_count: erasmusMundus.length },
-    { provider_group: 'CHINA_CSC', file_count: 7, scholarship_count: chinaCsc.length },
-    { provider_group: 'SWEDEN', file_count: 22, scholarship_count: sweden.length },
-    { provider_group: 'ITALY', file_count: 15, scholarship_count: italy.length },
-    { provider_group: 'HUNGARY', file_count: 30, scholarship_count: hungary.length },
-    { provider_group: 'TAIWAN', file_count: 8, scholarship_count: taiwan.length },
-    { provider_group: 'SWITZERLAND', file_count: 3, scholarship_count: switzerland.length },
-    { provider_group: 'NEW_ZEALAND', file_count: 9, scholarship_count: newZealand.length },
-    { provider_group: 'IRELAND', file_count: 3, scholarship_count: ireland.length },
-    { provider_group: 'DENMARK', file_count: 1, scholarship_count: denmark.length },
-    { provider_group: 'NORWAY', file_count: 1, scholarship_count: norway.length },
-    { provider_group: 'HONG_KONG', file_count: 4, scholarship_count: hongKong.length },
-    { provider_group: 'MALAYSIA', file_count: 1, scholarship_count: malaysia.length },
-  ],
+  provider_groups: countryKeys.map(k => k.toUpperCase().replace(/-/g, '_')),
+  provider_summaries: countryKeys.map(k => ({
+    provider_group: k.toUpperCase().replace(/-/g, '_'),
+    programs: COUNTRY_PROGRAMS[k].programs,
+    scholarship_count: COUNTRY_PROGRAMS[k].arrays.reduce((sum, arr) => sum + arr.length, 0),
+  })),
   scholarship_count: scholarships.length,
   scholarships,
 };
 
 const outPath = path.join(__dirname, '..', 'data', 'scholarships.json');
 fs.writeFileSync(outPath, JSON.stringify(output, null, 2), 'utf8');
-console.log(`✓ Written ${scholarships.length} scholarships to ${outPath}`);
-console.log(`  DAAD: ${daad.length}, MEXT: ${mext.length}, Türkiye: ${turkiye.length}, Chevening: ${chevening.length}, Australia Awards: ${australiaAwards.length}, GKS: ${gks.length}, Singapore: ${singapore.length}, Eiffel: ${eiffel.length}, Canada: ${canada.length}, A*STAR: ${astarNew.length}, JASSO: ${jasso.length}, KOICA: ${koica.length}, CPRA: ${cpra.length}, Studienstiftung: ${studienstiftung.length}, Netherlands: ${netherlands.length}, Gates Cambridge: ${gatesCambridge.length}, Clarendon: ${clarendon.length}, Rhodes: ${rhodes.length}, Fulbright: ${fulbright.length}, VLIR Belgium: ${belgiumVlir.length}, Erasmus Mundus: ${erasmusMundus.length}, China CSC: ${chinaCsc.length}, Sweden: ${sweden.length}, Italy: ${italy.length}, Hungary: ${hungary.length}, Taiwan: ${taiwan.length}, Switzerland: ${switzerland.length}, New Zealand: ${newZealand.length}, Ireland: ${ireland.length}, Denmark: ${denmark.length}, Norway: ${norway.length}, Hong Kong: ${hongKong.length}, Malaysia: ${malaysia.length}`);
+
+// Log per-country counts
+countryKeys.forEach(k => {
+  const count = COUNTRY_PROGRAMS[k].arrays.reduce((sum, arr) => sum + arr.length, 0);
+  const programs = COUNTRY_PROGRAMS[k].programs.join(', ');
+  console.log(`  ${k}: ${count} [${programs}]`);
+});
+console.log(`\n✓ Written ${scholarships.length} scholarships to ${outPath}`);
+console.log(`  Countries: ${countryKeys.length}`);

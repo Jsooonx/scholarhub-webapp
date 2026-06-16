@@ -1,27 +1,19 @@
 {
   "provider_groups": [
-    "DAAD",
-    "MEXT",
-    "TURKIYE",
-    "CHEVENING",
-    "AUSTRALIA_AWARDS",
-    "GKS",
+    "GERMANY",
+    "JAPAN",
+    "TURKEY",
+    "UNITED_KINGDOM",
+    "AUSTRALIA",
+    "SOUTH_KOREA",
     "SINGAPORE",
-    "EIFFEL",
+    "FRANCE",
     "CANADA",
-    "ASTAR",
-    "JASSO",
-    "KOICA",
-    "CPRA",
-    "STUDIENSTIFTUNG",
+    "UNITED_STATES",
     "NETHERLANDS",
-    "GATES_CAMBRIDGE",
-    "CLARENDON",
-    "RHODES",
-    "FULBRIGHT",
-    "BELGIUM_VLIR",
-    "ERASMUS_MUNDUS",
-    "CHINA_CSC",
+    "BELGIUM",
+    "EU",
+    "CHINA",
     "SWEDEN",
     "ITALY",
     "HUNGARY",
@@ -36,168 +28,220 @@
   ],
   "provider_summaries": [
     {
-      "provider_group": "DAAD",
-      "file_count": 1,
-      "scholarship_count": 19
+      "provider_group": "GERMANY",
+      "programs": [
+        "DAAD",
+        "Studienstiftung"
+      ],
+      "scholarship_count": 24
     },
     {
-      "provider_group": "MEXT",
-      "file_count": 6,
-      "scholarship_count": 6
+      "provider_group": "JAPAN",
+      "programs": [
+        "MEXT",
+        "JASSO"
+      ],
+      "scholarship_count": 8
     },
     {
-      "provider_group": "TURKIYE",
-      "file_count": 8,
+      "provider_group": "TURKEY",
+      "programs": [
+        "Türkiye Burslari"
+      ],
       "scholarship_count": 17
     },
     {
-      "provider_group": "CHEVENING",
-      "file_count": 25,
-      "scholarship_count": 3
-    },
-    {
-      "provider_group": "AUSTRALIA_AWARDS",
-      "file_count": 30,
-      "scholarship_count": 5
-    },
-    {
-      "provider_group": "GKS",
-      "file_count": 6,
-      "scholarship_count": 3
-    },
-    {
-      "provider_group": "SINGAPORE",
-      "file_count": 7,
+      "provider_group": "UNITED_KINGDOM",
+      "programs": [
+        "Chevening",
+        "Gates Cambridge",
+        "Clarendon",
+        "Rhodes"
+      ],
       "scholarship_count": 7
     },
     {
-      "provider_group": "EIFFEL",
-      "file_count": 23,
+      "provider_group": "AUSTRALIA",
+      "programs": [
+        "Australia Awards"
+      ],
+      "scholarship_count": 5
+    },
+    {
+      "provider_group": "SOUTH_KOREA",
+      "programs": [
+        "GKS",
+        "KOICA"
+      ],
+      "scholarship_count": 5
+    },
+    {
+      "provider_group": "SINGAPORE",
+      "programs": [
+        "SINGA",
+        "NUS",
+        "NTU",
+        "A*STAR"
+      ],
+      "scholarship_count": 10
+    },
+    {
+      "provider_group": "FRANCE",
+      "programs": [
+        "Eiffel",
+        "Paris-Saclay",
+        "Sciences Po",
+        "ENS Lyon"
+      ],
       "scholarship_count": 5
     },
     {
       "provider_group": "CANADA",
-      "file_count": 3,
-      "scholarship_count": 3
-    },
-    {
-      "provider_group": "ASTAR",
-      "file_count": 15,
-      "scholarship_count": 3
-    },
-    {
-      "provider_group": "JASSO",
-      "file_count": 2,
-      "scholarship_count": 2
-    },
-    {
-      "provider_group": "KOICA",
-      "file_count": 1,
-      "scholarship_count": 2
-    },
-    {
-      "provider_group": "CPRA",
-      "file_count": 1,
-      "scholarship_count": 1
-    },
-    {
-      "provider_group": "STUDIENSTIFTUNG",
-      "file_count": 16,
-      "scholarship_count": 5
-    },
-    {
-      "provider_group": "NETHERLANDS",
-      "file_count": 9,
-      "scholarship_count": 9
-    },
-    {
-      "provider_group": "GATES_CAMBRIDGE",
-      "file_count": 9,
-      "scholarship_count": 2
-    },
-    {
-      "provider_group": "CLARENDON",
-      "file_count": 1,
-      "scholarship_count": 1
-    },
-    {
-      "provider_group": "RHODES",
-      "file_count": 1,
-      "scholarship_count": 1
-    },
-    {
-      "provider_group": "FULBRIGHT",
-      "file_count": 25,
+      "programs": [
+        "CGRS-D",
+        "Impact+",
+        "Pearson",
+        "CPRA"
+      ],
       "scholarship_count": 4
     },
     {
-      "provider_group": "BELGIUM_VLIR",
-      "file_count": 20,
+      "provider_group": "UNITED_STATES",
+      "programs": [
+        "Fulbright",
+        "Humphrey",
+        "FLTA"
+      ],
+      "scholarship_count": 4
+    },
+    {
+      "provider_group": "NETHERLANDS",
+      "programs": [
+        "Holland Scholarship",
+        "OKP",
+        "OTS",
+        "TU Delft",
+        "Groningen",
+        "UvA",
+        "Leiden",
+        "Maastricht",
+        "Radboud"
+      ],
+      "scholarship_count": 9
+    },
+    {
+      "provider_group": "BELGIUM",
+      "programs": [
+        "VLIR-UOS"
+      ],
       "scholarship_count": 3
     },
     {
-      "provider_group": "ERASMUS_MUNDUS",
-      "file_count": 16,
+      "provider_group": "EU",
+      "programs": [
+        "Erasmus Mundus"
+      ],
       "scholarship_count": 1
     },
     {
-      "provider_group": "CHINA_CSC",
-      "file_count": 7,
+      "provider_group": "CHINA",
+      "programs": [
+        "CGS Bilateral",
+        "CGS University",
+        "Belt & Road",
+        "MOFCOM"
+      ],
       "scholarship_count": 4
     },
     {
       "provider_group": "SWEDEN",
-      "file_count": 22,
+      "programs": [
+        "SISGP",
+        "PWIS"
+      ],
       "scholarship_count": 2
     },
     {
       "provider_group": "ITALY",
-      "file_count": 15,
+      "programs": [
+        "MAECI",
+        "IYT",
+        "MAECI Special Projects"
+      ],
       "scholarship_count": 3
     },
     {
       "provider_group": "HUNGARY",
-      "file_count": 30,
+      "programs": [
+        "Stipendium Hungaricum"
+      ],
       "scholarship_count": 3
     },
     {
       "provider_group": "TAIWAN",
-      "file_count": 8,
+      "programs": [
+        "MOE",
+        "ICDF",
+        "Huayu",
+        "NTU",
+        "NTHU"
+      ],
       "scholarship_count": 6
     },
     {
       "provider_group": "SWITZERLAND",
-      "file_count": 3,
+      "programs": [
+        "Swiss Govt Excellence",
+        "ETH ESOP",
+        "EPFL Excellence"
+      ],
       "scholarship_count": 5
     },
     {
       "provider_group": "NEW_ZEALAND",
-      "file_count": 9,
+      "programs": [
+        "Manaaki NZ"
+      ],
       "scholarship_count": 3
     },
     {
       "provider_group": "IRELAND",
-      "file_count": 3,
+      "programs": [
+        "GOI-IES",
+        "GOIPG",
+        "TCD",
+        "UCD"
+      ],
       "scholarship_count": 4
     },
     {
       "provider_group": "DENMARK",
-      "file_count": 1,
+      "programs": [
+        "Danish Government Scholarship"
+      ],
       "scholarship_count": 1
     },
     {
       "provider_group": "NORWAY",
-      "file_count": 1,
+      "programs": [
+        "Tuition-Free",
+        "BI Presidential"
+      ],
       "scholarship_count": 2
     },
     {
       "provider_group": "HONG_KONG",
-      "file_count": 4,
+      "programs": [
+        "HKPFS",
+        "HKU Entrance"
+      ],
       "scholarship_count": 2
     },
     {
       "provider_group": "MALAYSIA",
-      "file_count": 1,
+      "programs": [
+        "MIS"
+      ],
       "scholarship_count": 1
     }
   ],
@@ -9027,7 +9071,7 @@
     },
     {
       "name": "Malaysia International Scholarship (MIS)",
-      "provider": "Ministry of Higher Education (MOHE) Malaysia",
+      "provider": "MOHE Malaysia",
       "country": "Malaysia",
       "degree_levels": [
         "Master",

@@ -12,18 +12,18 @@ function getFeaturedByGroup(group: string) {
 }
 
 const FEATURED_IMAGES: Record<string, string> = {
-  daad: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1600&q=80',
-  mext: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1600&q=80',
-  turkiye: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80',
-  chevening: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80',
-  'australia-awards': 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1600&q=80',
-  gks: 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=1600&q=80',
+  germany: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=1600&q=80',
+  japan: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=1600&q=80',
+  turkey: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80',
+  'united-kingdom': 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1600&q=80',
+  australia: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=1600&q=80',
+  'south-korea': 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=1600&q=80',
 };
 
 const bottomRow = [
-  { s: getFeaturedByGroup('daad'), image: FEATURED_IMAGES.daad },
-  { s: getFeaturedByGroup('mext'), image: FEATURED_IMAGES.mext },
-  { s: getFeaturedByGroup('turkiye'), image: FEATURED_IMAGES.turkiye },
+  { s: getFeaturedByGroup('germany'), image: FEATURED_IMAGES.germany },
+  { s: getFeaturedByGroup('japan'), image: FEATURED_IMAGES.japan },
+  { s: getFeaturedByGroup('turkey'), image: FEATURED_IMAGES.turkey },
 ];
 
 // Compute counts dynamically
@@ -41,7 +41,7 @@ const stats = [
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const cycleGroups = ['daad', 'mext', 'turkiye', 'chevening', 'australia-awards', 'gks'];
+  const cycleGroups = ['germany', 'japan', 'turkey', 'united-kingdom', 'australia', 'south-korea'];
   const featuredList = cycleGroups.map(group => ({
     s: getFeaturedByGroup(group),
     image: FEATURED_IMAGES[group],

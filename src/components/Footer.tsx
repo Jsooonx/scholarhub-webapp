@@ -63,7 +63,7 @@ export default function Footer() {
                 <span>Scholar<span className="text-brand-accent">Hub</span></span>
               </Link>
               <p className="text-xs text-brand-muted leading-relaxed mb-6">
-                A curated directory of scholarships from top providers worldwide - DAAD, MEXT, Türkiye Burslari, and more. Built to help students find their path abroad.
+                A curated directory of scholarships from top universities and governments worldwide - Germany, Japan, United Kingdom, and more. Built to help students find their path abroad.
               </p>
             </div>
 
@@ -121,10 +121,10 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Links Column: Providers (1 col) with Click/Hover Dropdown */}
+          {/* Links Column: Countries (1 col) with Click/Hover Dropdown */}
           <div className="relative flex flex-col items-start">
             <h4 className="text-xs font-bold text-brand-dark uppercase tracking-wider mb-4">
-              Providers
+              Countries
             </h4>
             <div className="relative group" ref={dropdownRef}>
               <button
@@ -134,7 +134,7 @@ export default function Footer() {
                 }}
                 className="flex items-center text-[11px] font-medium text-brand-muted hover:text-brand-dark transition-colors focus:outline-none pb-2 cursor-pointer"
               >
-                Select Provider
+                Select Country
                 <ChevronDown className="ml-1 h-3.5 w-3.5" />
               </button>
               
@@ -210,7 +210,7 @@ export default function Footer() {
         <div className="pt-8 border-t border-brand-border flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex flex-col gap-1 items-center sm:items-start text-center sm:text-left">
             <p className="text-[10px] text-brand-muted">
-              &copy; 2026 ScholarHub. All rights reserved. Scholarship information is sourced from official providers.
+              &copy; 2026 ScholarHub. All rights reserved. Scholarship information is sourced from official websites and universities.
             </p>
             <p className="text-[10px] text-brand-muted/80">
               Made by <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-brand-dark underline decoration-brand-accent/30 hover:decoration-brand-accent transition-all font-medium">Jsooonx</a> to All the Students out there.

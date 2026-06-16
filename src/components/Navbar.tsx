@@ -336,7 +336,7 @@ export default function Navbar() {
               >
                 <div className="md:col-span-2">
                   <h5 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-3.5 flex items-center gap-1.5">
-                    <Globe className="h-3.5 w-3.5" /> Browse By Provider
+                    <Globe className="h-3.5 w-3.5" /> Browse By Country
                   </h5>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
                     {providers.map((p) => (

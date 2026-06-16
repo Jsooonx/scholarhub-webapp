@@ -410,7 +410,7 @@ export default async function ScholarshipDetailPage({
                   <DeadlineStatus status={status} />
 
                   {/* Provider-specific context */}
-                  {group === 'mext' && (
+                  {group === 'japan' && (
                     <div className="space-y-1">
                       {status.type !== 'check' && s.deadline && (
                         <p className="text-xs text-brand-dark">
@@ -427,7 +427,7 @@ export default async function ScholarshipDetailPage({
                     </div>
                   )}
 
-                  {group === 'turkiye' && (
+                  {group === 'turkey' && (
                     <div className="text-xs text-brand-dark space-y-1">
                       <p><span className="font-medium">General intake: </span>January 10 - February 20 (annual)</p>
                       <p><span className="font-medium">Results announced: </span>Early August</p>
@@ -436,14 +436,14 @@ export default async function ScholarshipDetailPage({
                     </div>
                   )}
 
-                  {group === 'daad' && (
+                  {group === 'germany' && (
                     <div className="text-xs text-brand-dark space-y-1">
                       <p>DAAD operates on a <span className="font-medium">rolling / annual intake</span> basis. Most programs open applications in October-November for the following academic year.</p>
                       <p className="text-brand-muted pt-1">Always check the official DAAD scholarship database for current deadlines specific to this program.</p>
                     </div>
                   )}
 
-                  {group === 'eiffel' && (
+                  {group === 'france' && (
                     <div className="text-xs text-brand-dark space-y-1">
                       <p><span className="font-medium">Annual cycle: </span>October - January</p>
                       <p><span className="font-medium">Results announced: </span>April</p>
@@ -494,7 +494,7 @@ export default async function ScholarshipDetailPage({
                     </div>
                   )}
 
-                  {group === 'china-csc' && (
+                  {group === 'china' && (
                     <div className="text-xs text-brand-dark space-y-1">
                       <p><span className="font-medium">Application window: </span>December - April annually</p>
                       <p><span className="font-medium">Results announced: </span>July - August</p>
