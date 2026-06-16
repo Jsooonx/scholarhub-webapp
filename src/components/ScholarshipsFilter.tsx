@@ -4,28 +4,14 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Search, X } from 'lucide-react';
 
+import { allScholarships, providerMeta } from '@/lib/scholarships';
+
 const PROVIDERS = [
   { value: 'all', label: 'All Providers' },
-  { value: 'daad', label: '🇩🇪 DAAD' },
-  { value: 'studienstiftung', label: '🇩🇪 Studienstiftung' },
-  { value: 'mext', label: '🇯🇵 MEXT' },
-  { value: 'jasso', label: '🇯🇵 JASSO' },
-  { value: 'turkiye', label: '🇹🇷 Türkiye Burslari' },
-  { value: 'chevening', label: '🇬🇧 Chevening' },
-  { value: 'gates-cambridge', label: '🇬🇧 Gates Cambridge' },
-  { value: 'clarendon', label: '🇬🇧 Clarendon (Oxford)' },
-  { value: 'rhodes', label: '🇬🇧 Rhodes (Oxford)' },
-  { value: 'netherlands', label: '🇳🇱 Netherlands' },
-  { value: 'australia-awards', label: '🇦🇺 Australia Awards' },
-  { value: 'gks', label: '🇰🇷 GKS Korea' },
-  { value: 'koica', label: '🇰🇷 KOICA' },
-  { value: 'singapore', label: '🇸🇬 Singapore (NUS/NTU)' },
-  { value: 'eiffel', label: '🇫🇷 Eiffel (France)' },
-  { value: 'canada', label: '🇨🇦 Canada CRTAS' },
-  { value: 'cpra', label: '🇨🇦 Canada CPRA' },
-  { value: 'fulbright', label: '🇺🇸 Fulbright / AMINEF' },
-  { value: 'belgium-vlir', label: '🇧🇪 VLIR-UOS Belgium' },
-  { value: 'erasmus-mundus', label: '🇪🇺 Erasmus Mundus' },
+  ...Object.entries(providerMeta).map(([slug, meta]) => ({
+    value: slug,
+    label: `${meta.flag} ${meta.name}`,
+  })),
 ];
 
 const FUNDING = [
@@ -42,20 +28,23 @@ const LEVELS = [
   { value: 'non-degree', label: 'Non-Degree / Short' },
 ];
 
+const uniqueCountries = Array.from(new Set(
+  allScholarships.map(s => s.country).filter(Boolean)
+)).sort() as string[];
+
+const countryFlagMap: Record<string, string> = {};
+Object.values(providerMeta).forEach(meta => {
+  if (meta.country) {
+    countryFlagMap[meta.country.toLowerCase()] = meta.flag;
+  }
+});
+
 const COUNTRIES = [
   { value: 'all', label: 'All Countries' },
-  { value: 'germany', label: '🇩🇪 Germany' },
-  { value: 'japan', label: '🇯🇵 Japan' },
-  { value: 'turkey', label: '🇹🇷 Turkey' },
-  { value: 'united kingdom', label: '🇬🇧 United Kingdom' },
-  { value: 'netherlands', label: '🇳🇱 Netherlands' },
-  { value: 'australia', label: '🇦🇺 Australia' },
-  { value: 'south korea', label: '🇰🇷 South Korea' },
-  { value: 'france', label: '🇫🇷 France' },
-  { value: 'singapore', label: '🇸🇬 Singapore' },
-  { value: 'canada', label: '🇨🇦 Canada' },
-  { value: 'united states', label: '🇺🇸 United States' },
-  { value: 'belgium', label: '🇧🇪 Belgium' },
+  ...uniqueCountries.map(c => ({
+    value: c.toLowerCase(),
+    label: `${countryFlagMap[c.toLowerCase()] ?? '🌍'} ${c}`,
+  }))
 ];
 
 const DEBOUNCE_MS = 350;

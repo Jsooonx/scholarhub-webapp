@@ -2,16 +2,7 @@
 
 import Link from 'next/link';
 import { Bookmark } from 'lucide-react';
-import { allScholarships, providerGroup, getScholarshipImage, getDeadlineStatus } from '@/lib/scholarships';
-
-const flagMap: Record<string, string> = {
-  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
-  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
-  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
-  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
-  fulbright: '🇺🇸', 'belgium-vlir': '🇧🇪', 'erasmus-mundus': '🇪🇺',
-};
+import { allScholarships, providerGroup, getScholarshipImage, getDeadlineStatus, providerMeta } from '@/lib/scholarships';
 
 const FILTER_LINKS = [
   { name: 'Fully Funded', image: '/images/editorial/fully_funded.jpg', href: '/scholarships?funding=fully' },
@@ -98,7 +89,7 @@ export default function EditorsPick() {
                 style={{ backgroundImage: `url('${getScholarshipImage(mainScholarship)}')` }}
               />
               <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark text-white shadow-sm z-10">
-                {flagMap[mainGroup]} {mainScholarship.provider.split('/')[0].trim()}
+                {providerMeta[mainGroup]?.flag ?? '🌍'} {mainScholarship.provider.split('/')[0].trim()}
               </span>
               {/* Deadline badge */}
               {(mainStatus.type === 'closing' || mainStatus.type === 'open') && (
@@ -149,7 +140,7 @@ export default function EditorsPick() {
                   />
                   <div className="flex flex-col justify-center">
                     <span className="text-[9px] uppercase font-bold tracking-wider text-brand-muted mb-1">
-                      {flagMap[g]} {s.provider.split('/')[0].trim()} · {s.degree_levels[0] ?? 'Various'}
+                      {providerMeta[g]?.flag ?? '🌍'} {s.provider.split('/')[0].trim()} · {s.degree_levels[0] ?? 'Various'}
                     </span>
                     <h4 className="text-xs font-semibold text-brand-dark line-clamp-2 leading-snug group-hover:underline">
                       {s.name}

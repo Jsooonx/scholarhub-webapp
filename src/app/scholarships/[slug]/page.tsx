@@ -14,6 +14,7 @@ import {
   getDeadlineStatus,
   getScholarshipLogo,
   getMatchedUniversityLogos,
+  providerMeta,
   type Scholarship,
 } from '@/lib/scholarships';
 import {
@@ -69,21 +70,14 @@ export async function generateMetadata({
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-const flagMap: Record<string, string> = {
-  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
-  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
-  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
-  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
-  fulbright: '🇺🇸', 'belgium-vlir': '🇧🇪', 'erasmus-mundus': '🇪🇺',
-};
+
 
 function durationLabel(d: Scholarship['duration_months']) {
   if (!d.min && !d.max) return null;
   if (d.min === d.max) return `${d.min} months`;
   if (!d.min) return `Up to ${d.max} months`;
   if (!d.max) return `${d.min}+ months`;
-  return `${d.min}–${d.max} months`;
+  return `${d.min}-${d.max} months`;
 }
 
 const fundingColors: Record<string, string> = {
@@ -124,7 +118,7 @@ export default async function ScholarshipDetailPage({
   if (!s) notFound();
 
   const group = providerGroup(s.provider);
-  const flag = flagMap[group] ?? '🌍';
+  const flag = providerMeta[group]?.flag ?? '🌍';
   const dur = durationLabel(s.duration_months);
   const status = getDeadlineStatus(s);
   const partnerLogos = getMatchedUniversityLogos(s);
@@ -435,23 +429,23 @@ export default async function ScholarshipDetailPage({
 
                   {group === 'turkiye' && (
                     <div className="text-xs text-brand-dark space-y-1">
-                      <p><span className="font-medium">General intake: </span>January 10 – February 20 (annual)</p>
+                      <p><span className="font-medium">General intake: </span>January 10 - February 20 (annual)</p>
                       <p><span className="font-medium">Results announced: </span>Early August</p>
                       <p><span className="font-medium">Start date: </span>September</p>
-                      <p className="text-brand-muted pt-1">Research scholarships have additional quarterly cycles (Jan–Mar, Apr–Jun, Jul–Sep, Oct–Dec).</p>
+                      <p className="text-brand-muted pt-1">Research scholarships have additional quarterly cycles (Jan-Mar, Apr-Jun, Jul-Sep, Oct-Dec).</p>
                     </div>
                   )}
 
                   {group === 'daad' && (
                     <div className="text-xs text-brand-dark space-y-1">
-                      <p>DAAD operates on a <span className="font-medium">rolling / annual intake</span> basis. Most programs open applications in October–November for the following academic year.</p>
+                      <p>DAAD operates on a <span className="font-medium">rolling / annual intake</span> basis. Most programs open applications in October-November for the following academic year.</p>
                       <p className="text-brand-muted pt-1">Always check the official DAAD scholarship database for current deadlines specific to this program.</p>
                     </div>
                   )}
 
                   {group === 'eiffel' && (
                     <div className="text-xs text-brand-dark space-y-1">
-                      <p><span className="font-medium">Annual cycle: </span>October – January</p>
+                      <p><span className="font-medium">Annual cycle: </span>October - January</p>
                       <p><span className="font-medium">Results announced: </span>April</p>
                       <p className="text-brand-muted pt-1">Applications must be submitted by French higher education institutions on behalf of students.</p>
                     </div>
@@ -460,7 +454,7 @@ export default async function ScholarshipDetailPage({
                   {group === 'singapore' && (
                     <div className="text-xs text-brand-dark space-y-1">
                       <p><span className="font-medium">SINGA/AGS PhD: </span>Rolling - two intakes per year (January and August)</p>
-                      <p><span className="font-medium">ASEAN UG (NUS/NTU): </span>Apply via undergraduate admissions (October–March)</p>
+                      <p><span className="font-medium">ASEAN UG (NUS/NTU): </span>Apply via undergraduate admissions (October-March)</p>
                     </div>
                   )}
 
@@ -484,11 +478,35 @@ export default async function ScholarshipDetailPage({
                     </div>
                   )}
 
+                  {group === 'sweden' && (
+                    <div className="text-xs text-brand-dark space-y-1">
+                      <p><span className="font-medium">Application window: </span>February 9 - February 25 annually</p>
+                      <p><span className="font-medium">SI admission results: </span>April</p>
+                      <p className="text-brand-muted pt-1">You must apply for eligible master's programs at University Admissions in Sweden first (Oct - Jan).</p>
+                    </div>
+                  )}
+
+                  {group === 'italy' && (
+                    <div className="text-xs text-brand-dark space-y-1">
+                      <p><span className="font-medium">Application deadline: </span>Late May / early June annually</p>
+                      <p><span className="font-medium">Invest Your Talent in Italy: </span>Usually opens Jan - March</p>
+                      <p className="text-brand-muted pt-1">Applications are submitted via the official Study in Italy portal.</p>
+                    </div>
+                  )}
+
+                  {group === 'china-csc' && (
+                    <div className="text-xs text-brand-dark space-y-1">
+                      <p><span className="font-medium">Application window: </span>December - April annually</p>
+                      <p><span className="font-medium">Results announced: </span>July - August</p>
+                      <p className="text-brand-muted pt-1">Requires registration on the CSC portal and coordinating with either the Chinese Embassy (Type A) or Chinese universities (Type B).</p>
+                    </div>
+                  )}
+
                   {/* Disclaimer */}
                   <div className="flex items-start gap-2 pt-3 border-t border-brand-border">
                     <Info className="h-3.5 w-3.5 text-brand-muted flex-shrink-0 mt-0.5" />
                     <p className="text-[11px] text-brand-muted leading-relaxed">
-                      Dates are based on data sourced from official providers (2025–2026 cycle). Deadlines may shift between intake years. Always verify on the official website before applying.
+                      Dates are based on data sourced from official providers (2025-2026 cycle). Deadlines may shift between intake years. Always verify on the official website before applying.
                     </p>
                   </div>
                 </div>

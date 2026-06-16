@@ -3,53 +3,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
+import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
 
-const flagMap: Record<string, string> = {
-  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
-  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
-  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
-  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
-  fulbright: '🇺🇸', 'belgium-vlir': '🇧🇪', 'erasmus-mundus': '🇪🇺',
-};
-
-const PROVIDER_LABELS: Record<string, string> = {
-  daad: 'DAAD - Germany',
-  studienstiftung: 'Studienstiftung - Germany',
-  mext: 'MEXT - Japan',
-  turkiye: 'Türkiye Burslari',
-  chevening: 'Chevening - UK',
-  'gates-cambridge': 'Gates Cambridge - UK',
-  clarendon: 'Clarendon Fund - Oxford',
-  rhodes: 'Rhodes Scholarship',
-  netherlands: 'Netherlands Scholarships',
-  'australia-awards': 'Australia Awards',
-  gks: 'GKS - South Korea',
-  eiffel: 'Eiffel - France',
-  singapore: 'Singapore (NUS/NTU/A*STAR)',
-  fulbright: 'Fulbright / AMINEF - USA',
-  'belgium-vlir': 'VLIR-UOS - Belgium',
-  'erasmus-mundus': 'Erasmus Mundus - EU',
-  astar: 'A*STAR - Singapore',
-  jasso: 'JASSO - Japan',
-  koica: 'KOICA - South Korea',
-  cpra: 'Canada CPRA',
-};
-
-// All provider groups — add new ones here as providers are added
-const ALL_PROVIDER_GROUPS = [
-  // Page 1
-  'daad', 'mext', 'turkiye',
-  'chevening', 'australia-awards', 'gks',
-  'eiffel', 'singapore', 'netherlands',
-  // Page 2
-  'studienstiftung', 'gates-cambridge', 'canada',
-  'clarendon', 'rhodes', 'jasso',
-  'koica', 'cpra',
-  // Page 3 - new providers
-  'fulbright', 'belgium-vlir', 'erasmus-mundus',
-];
+const ALL_PROVIDER_GROUPS = Object.keys(providerMeta);
 
 const byGroup = Object.fromEntries(
   ALL_PROVIDER_GROUPS.map((g) => [
@@ -67,8 +23,8 @@ const totalPages = Math.ceil(ALL_PROVIDER_GROUPS.length / DESKTOP_PER_PAGE);
 
 function ProviderCard({ group }: { group: string }) {
   const list = byGroup[group] ?? [];
-  const flag = flagMap[group] ?? '🌍';
-  const label = PROVIDER_LABELS[group] ?? group;
+  const flag = providerMeta[group]?.flag ?? '🌍';
+  const label = providerMeta[group] ? `${providerMeta[group].name} - ${providerMeta[group].country}` : group;
   const featured = list[0];
   const rest = list.slice(1, 3);
 

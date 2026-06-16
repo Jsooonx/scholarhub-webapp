@@ -64,5 +64,8 @@ task.md
 implementation_plan.md
 walkthrough.md
 
+# CommandCode
+.commandcode/
+
 # Unused/Raw Crawled Data
 /data/raw/

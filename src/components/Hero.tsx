@@ -36,13 +36,7 @@ const stats = [
   { icon: GraduationCap, value: `${providerCount}`, label: 'Top providers' },
 ];
 
-const flagMap: Record<string, string> = {
-  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
-  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
-  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
-  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
-};
+
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -132,7 +126,7 @@ export default function Hero() {
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 md:p-12 z-10 select-none">
                 <div className="max-w-3xl">
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm text-white mb-4">
-                    {flagMap[activeGroup]} {activeFeatured.country} · {activeFeatured.provider}
+                    {providerMeta[activeGroup]?.flag ?? '🌍'} {activeFeatured.country} · {activeFeatured.provider}
                   </span>
                   <div className="flex flex-wrap gap-2 mb-3">
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-brand-accent/80 text-white">
@@ -192,7 +186,7 @@ export default function Hero() {
                 />
                 <div className="flex flex-col justify-center">
                   <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1">
-                    {flagMap[group]} {s.provider} · {s.degree_levels[0] ?? 'Various'}
+                    {providerMeta[group]?.flag ?? '🌍'} {s.provider} · {s.degree_levels[0] ?? 'Various'}
                   </p>
                   <h3 className="text-sm font-semibold text-brand-dark line-clamp-2 leading-snug group-hover:opacity-85 transition-opacity">
                     {s.name}

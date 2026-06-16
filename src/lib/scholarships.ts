@@ -1,4 +1,4 @@
-﻿import data from '../../data/scholarships.json';
+import data from '../../data/scholarships.json';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -73,6 +73,9 @@ export function providerGroup(provider: string): string {
   if (p.includes('fulbright') || p.includes('aminef')) return 'fulbright';
   if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian government') || p.includes('icp connect')) return 'belgium-vlir';
   if (p.includes('erasmus mundus') || p.includes('erasmus+') || p.includes('european commission')) return 'erasmus-mundus';
+  if (p.includes('swedish institute') || p.includes('svenska institutet')) return 'sweden';
+  if (p.includes('maeci') || p.includes('italian government') || p.includes('ministry of foreign affairs and international cooperation') || p.includes('invest your talent')) return 'italy';
+  if (p.includes('china scholarship council') || p.includes('csc') && p.includes('chinese') || p.includes('mofcom') || p.includes('ministry of commerce') && p.includes('china')) return 'china-csc';
   if (p.includes('eiffel')) return 'eiffel';
   if (p.includes('singa')) return 'singa';
   if (p.includes('vanier')) return 'vanier';
@@ -596,6 +599,56 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'closed', label: `Closed · opens Oct ${yearEM}`, deadline: open };
   }
 
+  // ── China CSC: Dec–Apr annually ───────────────────────────────────────
+  if (group === 'china-csc') {
+    const nowCN = new Date();
+    const yearCN = nowCN.getFullYear();
+    // Application window: December 1 – April 30
+    const open = new Date(yearCN - 1, 11, 1); // Dec 1 previous year
+    const close = new Date(yearCN, 3, 30);     // April 30 current year
+    const diff = Math.ceil((close.getTime() - nowCN.getTime()) / 86_400_000);
+    const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowCN >= open && nowCN <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ~${fmt}`, daysLeft: diff, deadline: close };
+      return { type: 'open', label: `Open · closes ~${fmt}`, daysLeft: diff, deadline: close };
+    }
+    if (nowCN > close) return { type: 'closed', label: `Closed · opens Dec ${yearCN}`, deadline: new Date(yearCN, 11, 1) };
+    return { type: 'open', label: `Opens Dec · closes ~Apr`, daysLeft: diff, deadline: close };
+  }
+
+  // ── Sweden SI: Feb 9–25 annually ─────────────────────────────────────────
+  if (group === 'sweden') {
+    const nowSE = new Date();
+    const yearSE = nowSE.getFullYear();
+    const open = new Date(yearSE, 1, 9);   // Feb 9
+    const close = new Date(yearSE, 1, 25); // Feb 25
+    const target = nowSE <= close ? close : new Date(yearSE + 1, 1, 25);
+    const openTarget = nowSE <= close ? open : new Date(yearSE + 1, 1, 9);
+    const diff = Math.ceil((target.getTime() - nowSE.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowSE >= open && nowSE <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    if (nowSE > close) return { type: 'closed', label: `Closed · opens Feb ${target.getFullYear()}`, deadline: openTarget };
+    return { type: 'open', label: `Opens 9 Feb · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Italy MAECI: main deadline ~26 March ──────────────────────────────────
+  if (group === 'italy') {
+    const nowIT = new Date();
+    const yearIT = nowIT.getFullYear();
+    const close = new Date(yearIT, 2, 26); // March 26
+    const target = nowIT <= close ? close : new Date(yearIT + 1, 2, 26);
+    const diff = Math.ceil((target.getTime() - nowIT.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowIT <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    return { type: 'closed', label: `Closed · next cycle ~Mar ${target.getFullYear()}`, deadline: target };
+  }
+
   return getDaadStatus();
 }
 
@@ -792,6 +845,30 @@ export const providerMeta: Record<
       'The Erasmus Mundus Joint Master (EMJM) is a prestigious EU-funded scholarship for a 1-2 year master\'s degree jointly delivered by at least 3 universities in at least 3 European countries. Open to students of any nationality worldwide including Indonesia. With 150+ programmes across all disciplines, full scholarships cover tuition, living allowance, travel, and insurance. Search programmes at eacea.ec.europa.eu.',
     website: 'https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters',
   },
+  'china-csc': {
+    name: 'China Scholarship Council (CSC)',
+    flag: '🇨🇳',
+    country: 'China',
+    description:
+      'The China Scholarship Council (CSC) administers the Chinese Government Scholarship (CGS) programme, offering fully-funded undergraduate, master\'s, and doctoral scholarships at 274+ Chinese universities. Indonesia has a bilateral programme with China. Programmes include the CGS Bilateral Program (via embassy), CGS Chinese University Program (direct to university), Belt and Road / Silk Road Scholarship (for BRI partner countries), and the MOFCOM Scholarship for developing country students.',
+    website: 'http://studyinchina.csc.edu.cn/',
+  },
+  sweden: {
+    name: 'Swedish Institute (SI) Scholarships',
+    flag: '🇸🇪',
+    country: 'Sweden',
+    description:
+      'The Swedish Institute (SI) is a Swedish government agency that offers fully-funded scholarships for master\'s studies at Swedish universities. The flagship SISGP programme is open to professionals from 34 developing countries including Indonesia, covering full tuition, SEK 12,000/month, and a travel grant. The Pioneering Women in STEM (PWIS) scholarship exclusively supports women from 10 countries in STEM fields.',
+    website: 'https://si.se/en/apply/scholarships/',
+  },
+  italy: {
+    name: 'Italian Government Scholarships (MAECI)',
+    flag: '🇮🇹',
+    country: 'Italy',
+    description:
+      'The Italian Ministry of Foreign Affairs and International Cooperation (MAECI) offers fully-funded scholarships for foreign students to study at Italian universities. Programmes include the general Italian Government Scholarship (open to many countries), Invest Your Talent in Italy (IYT) for 18 partner countries including Indonesia, and Special Projects scholarships for bilateral partnerships. Apply via the Study in Italy portal.',
+    website: 'https://studyinitaly.esteri.it/',
+  },
 };
 
 /**
@@ -889,6 +966,20 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('asian institute of technology') || hasWord('ait')) return '/images/logos/AIT.png';
   if (name.includes('ens de lyon') || name.includes('ens lyon') || provider.includes('lyon') && (name.includes('normale') || provider.includes('normale'))) return '/images/logos/ENSdeLyon.png';
 
+  // Italy Universities
+  if (name.includes('politecnico di milano') || provider.includes('politecnico di milano') || hasWord('polimi')) return '/images/logos/Polimi.png';
+  if (name.includes('sapienza') || provider.includes('sapienza')) return '/images/logos/Sapienza.png';
+
+  // China Universities
+  if (name.includes('tsinghua') || provider.includes('tsinghua')) return '/images/logos/Tsinghua.png';
+  if (name.includes('peking university') || provider.includes('peking university') || name.includes('peking') || provider.includes('peking')) return '/images/logos/Peking.png';
+  if (name.includes('zhejiang') || provider.includes('zhejiang')) return '/images/logos/Zhejiang.png';
+
+  // Sweden Universities
+  if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/logos/KTH.png';
+  if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/logos/LundU.png';
+  if (name.includes('uppsala university') || name.includes('uppsala universitet') || hasWord('uppsala')) return '/images/logos/UppsalaU.png';
+
   // 2. Fallback to Group Logos
   const group = providerGroup(s.provider);
   if (group === 'daad') return '/images/logos/daad.svg';
@@ -977,6 +1068,20 @@ export function getScholarshipImage(s: Scholarship): string {
   // SEARCA scholarship itself — use UGM as representative
   if (name.includes('searca')) return '/images/universities/ID_UGM.png';
 
+  // Italy Universities
+  if (name.includes('politecnico di milano') || provider.includes('politecnico di milano') || hasWord('polimi')) return '/images/universities/ITA_Polimi.png';
+  if (name.includes('sapienza') || provider.includes('sapienza')) return '/images/universities/ITA_Sapienza.png';
+
+  // China Universities
+  if (name.includes('tsinghua') || provider.includes('tsinghua')) return '/images/universities/CN_Tsinghua.png';
+  if (name.includes('peking university') || provider.includes('peking university') || name.includes('peking') || provider.includes('peking')) return '/images/universities/CN_Peking.png';
+  if (name.includes('zhejiang') || provider.includes('zhejiang')) return '/images/universities/CN_Zhejiang.png';
+
+  // Sweden Universities
+  if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/universities/SWE_KTH.png';
+  if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/universities/SWE_LundU.png';
+  if (name.includes('uppsala university') || name.includes('uppsala universitet') || hasWord('uppsala')) return '/images/universities/SWE_UppsalaU.png';
+
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
   if (group === 'daad') return '/images/universities/GE_HeidelbergU.png';
@@ -1023,6 +1128,9 @@ export function getScholarshipImage(s: Scholarship): string {
   }
   // Erasmus Mundus - use Bologna as iconic EU university
   if (group === 'erasmus-mundus') return '/images/universities/ITA_Bologna.png';
+  if (group === 'italy') return '/images/universities/ITA_Polimi.png';
+  if (group === 'sweden') return '/images/universities/SWE_LundU.png';
+  if (group === 'china-csc') return '/images/universities/CN_Tsinghua.png';
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
 }
@@ -1117,6 +1225,20 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of the Philippines Los Baños (UPLB)', logo: '/images/logos/UPLB.png', keywords: ['uplb', 'los baños', 'los banos', 'university of the philippines los'] },
     { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png', keywords: ['upm', 'universiti putra malaysia', 'putra malaysia'] },
     { name: 'Universitas Gadjah Mada (UGM)', logo: '/images/logos/UGM.png', keywords: ['ugm', 'gadjah mada', 'universitas gadjah'] },
+
+    // Italy Universities
+    { name: 'Politecnico di Milano', logo: '/images/logos/Polimi.png', keywords: ['polimi', 'politecnico di milano'] },
+    { name: 'Sapienza Università di Roma', logo: '/images/logos/Sapienza.png', keywords: ['sapienza', 'sapienza università di roma', 'sapienza university of rome'] },
+    
+    // China Universities
+    { name: 'Tsinghua University', logo: '/images/logos/Tsinghua.png', keywords: ['tsinghua'] },
+    { name: 'Peking University', logo: '/images/logos/Peking.png', keywords: ['peking'] },
+    { name: 'Zhejiang University', logo: '/images/logos/Zhejiang.png', keywords: ['zhejiang'] },
+
+    // Sweden Universities
+    { name: 'KTH Royal Institute of Technology', logo: '/images/logos/KTH.png', keywords: ['kth', 'royal institute of technology'] },
+    { name: 'Lund University', logo: '/images/logos/LundU.png', keywords: ['lund', 'lunds universitet'] },
+    { name: 'Uppsala University', logo: '/images/logos/UppsalaU.png', keywords: ['uppsala', 'uppsala universitet'] },
   ];
 
   universities.forEach((univ) => {
@@ -1126,7 +1248,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
           text.includes('itu ') || text.includes('itu/') || text.includes('itu,') || text.includes(' itu')
         );
       }
-      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug'].includes(kw)) {
+      if (['nus', 'ntu', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
@@ -1253,6 +1375,24 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Bologna', logo: '/images/logos/Bologna.png' },
         { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' },
         { name: 'KU Leuven', logo: '/images/logos/KULeuven.png' }
+      );
+    } else if (country === 'italy' || group === 'italy') {
+      list.push(
+        { name: 'Politecnico di Milano', logo: '/images/logos/Polimi.png' },
+        { name: 'Sapienza Università di Roma', logo: '/images/logos/Sapienza.png' },
+        { name: 'University of Bologna', logo: '/images/logos/Bologna.png' }
+      );
+    } else if (country === 'sweden' || group === 'sweden') {
+      list.push(
+        { name: 'Lund University', logo: '/images/logos/LundU.png' },
+        { name: 'KTH Royal Institute of Technology', logo: '/images/logos/KTH.png' },
+        { name: 'Uppsala University', logo: '/images/logos/UppsalaU.png' }
+      );
+    } else if (country === 'china' || group === 'china-csc') {
+      list.push(
+        { name: 'Tsinghua University', logo: '/images/logos/Tsinghua.png' },
+        { name: 'Peking University', logo: '/images/logos/Peking.png' },
+        { name: 'Zhejiang University', logo: '/images/logos/Zhejiang.png' }
       );
     }
   }

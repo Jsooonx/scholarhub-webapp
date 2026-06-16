@@ -10,28 +10,28 @@ export const metadata: Metadata = {
   description: 'ScholarHub is a curated directory of international scholarships to help students find their path to studying abroad.',
 };
 
-const steps = [
-  {
-    icon: Search,
-    title: 'Browse & filter',
-    description: 'Search by keyword, country, degree level, or funding type. All scholarships from 6 top providers in one place.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Read the details',
-    description: 'Every scholarship page shows requirements, benefits, eligibility, and important dates - no fluff.',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Apply officially',
-    description: 'Each page links directly to the official provider website so you always apply from the source.',
-  },
-];
-
 export default function AboutPage() {
   const total = allScholarships.length;
   const providers = Object.values(providerMeta);
   const countries = [...new Set(allScholarships.map(s => s.country).filter(Boolean))].length;
+
+  const steps = [
+    {
+      icon: Search,
+      title: 'Browse & filter',
+      description: `Search by keyword, country, degree level, or funding type. All scholarships from ${providers.length} top providers in one place.`,
+    },
+    {
+      icon: BookOpen,
+      title: 'Read the details',
+      description: 'Every scholarship page shows requirements, benefits, eligibility, and important dates - no fluff.',
+    },
+    {
+      icon: GraduationCap,
+      title: 'Apply officially',
+      description: 'Each page links directly to the official provider website so you always apply from the source.',
+    },
+  ];
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg">

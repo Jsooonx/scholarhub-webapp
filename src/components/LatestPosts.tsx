@@ -2,15 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { allScholarships, providerGroup, getScholarshipImage } from '@/lib/scholarships';
-
-const flagMap: Record<string, string> = {
-  daad: '🇩🇪', studienstiftung: '🇩🇪', mext: '🇯🇵', turkiye: '🇹🇷',
-  chevening: '🇬🇧', 'gates-cambridge': '🇬🇧', clarendon: '🇬🇧', rhodes: '🇬🇧',
-  netherlands: '🇳🇱', 'australia-awards': '🇦🇺', gks: '🇰🇷',
-  eiffel: '🇫🇷', singapore: '🇸🇬', canada: '🇨🇦',
-  astar: '🇸🇬', jasso: '🇯🇵', koica: '🇰🇷', cpra: '🇨🇦',
-};
+import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
 
 function cleanDescription(raw: string | null): string {
   if (!raw) return 'No description available.';
@@ -24,13 +16,14 @@ function cleanDescription(raw: string | null): string {
 
 // Show latest - one per provider group, cycling through to ensure variety
 const latest = (() => {
-  const groups = ['daad', 'mext', 'turkiye', 'eiffel', 'singapore', 'canada'];
+  const groups = Object.keys(providerMeta);
   return groups
     .map((g) => {
       const pool = allScholarships.filter((s) => providerGroup(s.provider) === g);
       return pool[0];
     })
-    .filter(Boolean);
+    .filter(Boolean)
+    .slice(0, 9);
 })();
 
 export default function LatestPosts() {
@@ -68,7 +61,7 @@ export default function LatestPosts() {
 
                   <div className="flex-1 flex flex-col">
                     <div className="flex items-center flex-wrap gap-2 mb-2.5">
-                      <span className="text-xs font-semibold text-brand-dark">{flagMap[g]} {s.provider.split('/')[0].trim()}</span>
+                      <span className="text-xs font-semibold text-brand-dark">{providerMeta[g]?.flag ?? '🌍'} {s.provider.split('/')[0].trim()}</span>
                       <span className="text-[10px] text-brand-muted">•</span>
                       <span className="text-xs text-brand-muted">{s.country ?? 'International'}</span>
                       <span className="text-[10px] text-brand-muted">•</span>

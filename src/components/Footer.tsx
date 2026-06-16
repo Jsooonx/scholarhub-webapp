@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDown, Mail } from 'lucide-react';
+import { providerMeta } from '@/lib/scholarships';
 
 export default function Footer() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -16,8 +17,18 @@ export default function Footer() {
     const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
     if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) return;
     e.stopPropagation();
-    const step = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 60);
-    el.scrollBy({ top: step, behavior: 'smooth' });
+    
+    // Detect trackpad scrolling (fractional deltas or small steps)
+    const isTrackpad = e.deltaY % 1 !== 0 || Math.abs(e.deltaY) < 15;
+    
+    if (isTrackpad) {
+      // Instant scroll for trackpad momentum
+      el.scrollTop += e.deltaY;
+    } else {
+      // Clamped smooth scroll for mouse wheel ticks
+      const step = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 60);
+      el.scrollBy({ top: step, behavior: 'smooth' });
+    }
   }
 
   const countryImages = [
@@ -144,26 +155,15 @@ export default function Footer() {
                     scrollbarColor: '#E8E8E6 transparent',
                   }}
                 >
-                  <Link href="/providers/daad" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇩🇪 DAAD - Germany</Link>
-                  <Link href="/providers/studienstiftung" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇩🇪 Studienstiftung - Germany</Link>
-                  <Link href="/providers/mext" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇯🇵 MEXT - Japan</Link>
-                  <Link href="/providers/jasso" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇯🇵 JASSO - Japan</Link>
-                  <Link href="/providers/turkiye" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇹🇷 Türkiye Burslari</Link>
-                  <Link href="/providers/chevening" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Chevening - UK</Link>
-                  <Link href="/providers/gates-cambridge" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Gates Cambridge - UK</Link>
-                  <Link href="/providers/clarendon" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Clarendon - Oxford</Link>
-                  <Link href="/providers/rhodes" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇬🇧 Rhodes - Oxford</Link>
-                  <Link href="/providers/netherlands" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇳🇱 Netherlands Scholarships</Link>
-                  <Link href="/providers/australia-awards" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇦🇺 Australia Awards</Link>
-                  <Link href="/providers/gks" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇰🇷 GKS - South Korea</Link>
-                  <Link href="/providers/koica" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇰🇷 KOICA - South Korea</Link>
-                  <Link href="/providers/eiffel" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇫🇷 Eiffel - France</Link>
-                  <Link href="/providers/singapore" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇸🇬 Singapore (NUS/NTU)</Link>
-                  <Link href="/providers/canada" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇨🇦 Canada CRTAS</Link>
-                  <Link href="/providers/cpra" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇨🇦 Canada CPRA</Link>
-                  <Link href="/providers/fulbright" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇺🇸 Fulbright / AMINEF</Link>
-                  <Link href="/providers/belgium-vlir" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇧🇪 VLIR-UOS Belgium</Link>
-                  <Link href="/providers/erasmus-mundus" className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream">🇪🇺 Erasmus Mundus</Link>
+                  {Object.entries(providerMeta).map(([slug, meta]) => (
+                    <Link
+                      key={slug}
+                      href={`/providers/${slug}`}
+                      className="block px-4 py-2 text-xs text-brand-muted hover:bg-brand-cream"
+                    >
+                      {meta.flag} {meta.name} - {meta.country}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>

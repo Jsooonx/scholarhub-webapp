@@ -1,29 +1,15 @@
-﻿'use client';
+'use client';
 
 import { useRef } from 'react';
 import Link from 'next/link';
-import { allScholarships } from '@/lib/scholarships';
+import { allScholarships, providerMeta } from '@/lib/scholarships';
 
-const providers = [
-  { flag: '🇩🇪', name: 'DAAD', country: 'Germany', href: '/providers/daad' },
-  { flag: '🇩🇪', name: 'Studienstiftung', country: 'Germany', href: '/providers/studienstiftung' },
-  { flag: '🇯🇵', name: 'MEXT', country: 'Japan', href: '/providers/mext' },
-  { flag: '🇹🇷', name: 'Türkiye Burslari', country: 'Turkey', href: '/providers/turkiye' },
-  { flag: '🇬🇧', name: 'Chevening', country: 'United Kingdom', href: '/providers/chevening' },
-  { flag: '🇬🇧', name: 'Gates Cambridge', country: 'United Kingdom', href: '/providers/gates-cambridge' },
-  { flag: '🇬🇧', name: 'Clarendon', country: 'United Kingdom', href: '/providers/clarendon' },
-  { flag: '🇬🇧', name: 'Rhodes', country: 'United Kingdom', href: '/providers/rhodes' },
-  { flag: '🇳🇱', name: 'Netherlands', country: 'Netherlands', href: '/providers/netherlands' },
-  { flag: '🇦🇺', name: 'Australia Awards', country: 'Australia', href: '/providers/australia-awards' },
-  { flag: '🇰🇷', name: 'GKS Korea', country: 'South Korea', href: '/providers/gks' },
-  { flag: '🇰🇷', name: 'KOICA', country: 'South Korea', href: '/providers/koica' },
-  { flag: '🇫🇷', name: 'Eiffel - France', country: 'France', href: '/providers/eiffel' },
-  { flag: '🇸🇬', name: 'Singapore', country: 'Singapore', href: '/providers/singapore' },
-  { flag: '🇨🇦', name: 'Canada CRTAS', country: 'Canada', href: '/providers/canada' },
-  { flag: '🇺🇸', name: 'Fulbright', country: 'United States', href: '/providers/fulbright' },
-  { flag: '🇧🇪', name: 'VLIR-UOS', country: 'Belgium', href: '/providers/belgium-vlir' },
-  { flag: '🇪🇺', name: 'Erasmus Mundus', country: 'European Union', href: '/providers/erasmus-mundus' },
-];
+const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
+  flag: meta.flag,
+  name: meta.name,
+  country: meta.country,
+  href: `/providers/${slug}`,
+}));
 
 export default function AdBanner() {
   const total = allScholarships.length;
@@ -36,9 +22,18 @@ export default function AdBanner() {
     const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
     if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) return;
     e.stopPropagation();
-    // Clamp to ~60px per tick so fast wheels don't jump the whole list
-    const step = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 60);
-    el.scrollBy({ top: step, behavior: 'smooth' });
+    
+    // Detect trackpad scrolling (fractional deltas or small steps)
+    const isTrackpad = e.deltaY % 1 !== 0 || Math.abs(e.deltaY) < 15;
+    
+    if (isTrackpad) {
+      // Instant scroll for trackpad momentum
+      el.scrollTop += e.deltaY;
+    } else {
+      // Clamped smooth scroll for mouse wheel ticks
+      const step = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 60);
+      el.scrollBy({ top: step, behavior: 'smooth' });
+    }
   }
 
   return (

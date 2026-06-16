@@ -1,28 +1,7 @@
 import Link from 'next/link';
-import { providerGroup, getDeadlineStatus, getScholarshipLogo, type Scholarship } from '@/lib/scholarships';
+import { providerGroup, getDeadlineStatus, getScholarshipLogo, providerMeta, type Scholarship } from '@/lib/scholarships';
 import DeadlineStatus from '@/components/DeadlineStatus';
 import { Clock, MapPin, GraduationCap } from 'lucide-react';
-
-const providerFlags: Record<string, string> = {
-  daad: '🇩🇪',
-  studienstiftung: '🇩🇪',
-  mext: '🇯🇵',
-  jasso: '🇯🇵',
-  turkiye: '🇹🇷',
-  chevening: '🇬🇧',
-  'gates-cambridge': '🇬🇧',
-  clarendon: '🇬🇧',
-  rhodes: '🇬🇧',
-  netherlands: '🇳🇱',
-  'australia-awards': '🇦🇺',
-  gks: '🇰🇷',
-  koica: '🇰🇷',
-  eiffel: '🇫🇷',
-  singapore: '🇸🇬',
-  astar: '🇸🇬',
-  canada: '🇨🇦',
-  cpra: '🇨🇦',
-};
 
 const fundingColors: Record<string, string> = {
   'fully funded': 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -38,7 +17,7 @@ function durationLabel(d: Scholarship['duration_months']) {
   if (d.min === d.max) return `${d.min} months`;
   if (!d.min) return `Up to ${d.max} months`;
   if (!d.max) return `${d.min}+ months`;
-  return `${d.min}–${d.max} months`;
+  return `${d.min}-${d.max} months`;
 }
 
 interface Props {
@@ -48,7 +27,7 @@ interface Props {
 
 export default function ScholarshipCard({ scholarship: s, variant = 'grid' }: Props) {
   const group = providerGroup(s.provider);
-  const flag = providerFlags[group] ?? '🌍';
+  const flag = providerMeta[group]?.flag ?? '🌍';
   const logoUrl = getScholarshipLogo(s);
   const dur = durationLabel(s.duration_months);
   const status = getDeadlineStatus(s);

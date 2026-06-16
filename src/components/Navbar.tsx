@@ -1,11 +1,11 @@
-﻿'use client';
+'use client';
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
 import { Menu, X, ChevronDown, Search, ArrowRight, Globe, GraduationCap, Info } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
-import { allScholarships } from '@/lib/scholarships';
+import { allScholarships, providerMeta } from '@/lib/scholarships';
 
 type ExpandMode = 'search' | 'menu' | null;
 
@@ -17,28 +17,15 @@ const MORPH_SPRING = { type: 'spring' as const, stiffness: 320, damping: 36, mas
 // SSR-safe layout effect
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-const providers = [
-  { name: 'DAAD', country: 'Germany', flag: '🇩🇪', slug: 'daad' },
-  { name: 'Studienstiftung', country: 'Germany', flag: '🇩🇪', slug: 'studienstiftung' },
-  { name: 'MEXT', country: 'Japan', flag: '🇯🇵', slug: 'mext' },
-  { name: 'Türkiye Burslari', country: 'Turkey', flag: '🇹🇷', slug: 'turkiye' },
-  { name: 'Chevening', country: 'United Kingdom', flag: '🇬🇧', slug: 'chevening' },
-  { name: 'Gates Cambridge', country: 'United Kingdom', flag: '🇬🇧', slug: 'gates-cambridge' },
-  { name: 'Clarendon (Oxford)', country: 'United Kingdom', flag: '🇬🇧', slug: 'clarendon' },
-  { name: 'Rhodes (Oxford)', country: 'United Kingdom', flag: '🇬🇧', slug: 'rhodes' },
-  { name: 'Netherlands Scholarships', country: 'Netherlands', flag: '🇳🇱', slug: 'netherlands' },
-  { name: 'Australia Awards', country: 'Australia', flag: '🇦🇺', slug: 'australia-awards' },
-  { name: 'GKS', country: 'South Korea', flag: '🇰🇷', slug: 'gks' },
-  { name: 'Singapore (NUS/NTU)', country: 'Singapore', flag: '🇸🇬', slug: 'singapore' },
-  { name: 'Eiffel Scholarship', country: 'France', flag: '🇫🇷', slug: 'eiffel' },
-  { name: 'Canada CRTAS', country: 'Canada', flag: '🇨🇦', slug: 'canada' },
-  { name: 'JASSO', country: 'Japan', flag: '🇯🇵', slug: 'jasso' },
-  { name: 'KOICA', country: 'South Korea', flag: '🇰🇷', slug: 'koica' },
-  { name: 'Canada CPRA', country: 'Canada', flag: '🇨🇦', slug: 'cpra' },
-  { name: 'Fulbright / AMINEF', country: 'United States', flag: '🇺🇸', slug: 'fulbright' },
-  { name: 'VLIR-UOS Belgium', country: 'Belgium', flag: '🇧🇪', slug: 'belgium-vlir' },
-  { name: 'Erasmus Mundus', country: 'EU', flag: '🇪🇺', slug: 'erasmus-mundus' },
-];
+const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
+  name: meta.name,
+  country: meta.country,
+  flag: meta.flag,
+  slug,
+}));
+
+
+const uniqueCountriesCount = new Set(allScholarships.map(s => s.country).filter(Boolean)).size;
 
 // Target width in px from viewport + state (mirrors the old Tailwind caps).
 function computeWidth(isExpanded: boolean): number {
@@ -391,7 +378,7 @@ export default function Navbar() {
                     <div>
                       <h6 className="text-[10px] font-bold uppercase tracking-wider text-white mb-1">ScholarHub Directory</h6>
                       <p className="text-[10px] text-white/60 leading-relaxed">
-                        Currently listing {allScholarships.length}+ international scholarships from 15+ countries. Use the search field above to find specific programs.
+                        Currently listing {allScholarships.length}+ international scholarships from {uniqueCountriesCount}+ countries. Use the search field above to find specific programs.
                       </p>
                     </div>
                   </div>

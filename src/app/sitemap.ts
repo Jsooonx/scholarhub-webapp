@@ -24,6 +24,9 @@ const PROVIDERS = [
   'fulbright',
   'belgium-vlir',
   'erasmus-mundus',
+  'sweden',
+  'italy',
+  'china-csc',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
