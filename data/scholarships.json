@@ -27,7 +27,12 @@
     "HUNGARY",
     "TAIWAN",
     "SWITZERLAND",
-    "NEW_ZEALAND"
+    "NEW_ZEALAND",
+    "IRELAND",
+    "DENMARK",
+    "NORWAY",
+    "HONG_KONG",
+    "MALAYSIA"
   ],
   "provider_summaries": [
     {
@@ -158,20 +163,45 @@
     {
       "provider_group": "TAIWAN",
       "file_count": 8,
-      "scholarship_count": 4
+      "scholarship_count": 6
     },
     {
       "provider_group": "SWITZERLAND",
       "file_count": 3,
-      "scholarship_count": 3
+      "scholarship_count": 5
     },
     {
       "provider_group": "NEW_ZEALAND",
       "file_count": 9,
       "scholarship_count": 3
+    },
+    {
+      "provider_group": "IRELAND",
+      "file_count": 3,
+      "scholarship_count": 4
+    },
+    {
+      "provider_group": "DENMARK",
+      "file_count": 1,
+      "scholarship_count": 1
+    },
+    {
+      "provider_group": "NORWAY",
+      "file_count": 1,
+      "scholarship_count": 2
+    },
+    {
+      "provider_group": "HONG_KONG",
+      "file_count": 4,
+      "scholarship_count": 2
+    },
+    {
+      "provider_group": "MALAYSIA",
+      "file_count": 1,
+      "scholarship_count": 1
     }
   ],
-  "scholarship_count": 124,
+  "scholarship_count": 138,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -7742,6 +7772,135 @@
       "program_type": null
     },
     {
+      "name": "National Taiwan University (NTU) International Student Scholarship",
+      "provider": "National Taiwan University (NTU)",
+      "country": "Taiwan",
+      "degree_levels": [
+        "Bachelor",
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All programmes at NTU"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Varies by intake (typically February–March for September start)",
+      "application_period": [
+        "February – March (annually)"
+      ],
+      "important_dates": [
+        "Application period: February – March (for September intake)",
+        "Results: May – June",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Foreign nationals (non-ROC citizens)"
+        ],
+        "raw_items": [
+          "Foreign national (non-ROC citizen)",
+          "Outstanding academic record",
+          "Must apply for admission to NTU",
+          "Scholarship application submitted alongside admission",
+          "NTU is Taiwan's #1 university (QS Top 70 globally)"
+        ]
+      },
+      "benefits": [
+        "Tuition fee waiver",
+        "Monthly stipend (amount varies by level and department)",
+        "Some programmes include accommodation support"
+      ],
+      "amounts": [
+        "Bachelor's: NTD 5,000–15,000/month stipend + tuition waiver",
+        "Master's: NTD 5,000–20,000/month stipend + tuition waiver",
+        "PhD: NTD 10,000–40,000/month stipend + tuition waiver"
+      ],
+      "target_group": "Outstanding international students at all levels applying to NTU. NTU is Taiwan's highest-ranked university (QS Top 70 globally) and the most prestigious institution in the country.",
+      "official_url": "https://admissions.ntu.edu.tw/fees-scholarships/scholarships/",
+      "description": "National Taiwan University (NTU), Taiwan's #1 university ranked in the global top 70 (QS), offers international student scholarships covering tuition and monthly stipends. Stipend amounts vary by level and department, ranging from NTD 5,000/month for undergraduates to NTD 40,000/month for PhD students. Scholarships are applied for alongside the admission application.",
+      "application_process": [
+        "Step 1: Choose a programme at NTU and check admission requirements",
+        "Step 2: Submit admission application with scholarship consideration through NTU's online portal",
+        "Step 3: Provide academic transcripts, study plan, language proficiency proof, and recommendation letters",
+        "Step 4: Results announced May–June"
+      ],
+      "source": "admissions.ntu.edu.tw",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "National Tsing Hua University (NTHU) International Student Scholarship",
+      "provider": "National Tsing Hua University (NTHU)",
+      "country": "Taiwan",
+      "degree_levels": [
+        "Bachelor",
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All programmes at NTHU (especially strong in STEM)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Varies by intake (typically February–March for September start)",
+      "application_period": [
+        "February – March (annually)"
+      ],
+      "important_dates": [
+        "Application period: February – March (for September intake)",
+        "Results: May – June",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Foreign nationals (non-ROC citizens)"
+        ],
+        "raw_items": [
+          "Foreign national (non-ROC citizen)",
+          "Strong academic record, especially for STEM programmes",
+          "Must apply for admission to NTHU",
+          "NTHU is one of Taiwan's top research universities (especially engineering and science)"
+        ]
+      },
+      "benefits": [
+        "Tuition and credit fee waiver",
+        "Monthly stipend: NTD 5,000 (Bachelor's), NTD 5,000 (Master's), NTD 10,000–40,000 (PhD)",
+        "Additional department-level top-ups may be available for PhD students"
+      ],
+      "amounts": [
+        "Bachelor's: NTD 5,000/month + tuition waiver",
+        "Master's: NTD 5,000/month + tuition waiver",
+        "PhD: NTD 10,000–40,000/month + tuition waiver (amount depends on department and advisor)"
+      ],
+      "target_group": "International students seeking STEM-focused education in Taiwan. NTHU is ranked among Taiwan's top 3 universities and is especially renowned for engineering, computer science, and natural sciences.",
+      "official_url": "https://oga.site.nthu.edu.tw/p/412-1524-18035.php?Lang=en",
+      "description": "National Tsing Hua University (NTHU), one of Taiwan's top research universities especially in STEM fields, offers international student scholarships covering tuition waivers and monthly stipends. PhD students can receive up to NTD 40,000/month depending on the department. NTHU is located in Hsinchu (Taiwan's tech hub), adjacent to the Industrial Technology Research Institute and Hsinchu Science Park.",
+      "application_process": [
+        "Step 1: Choose a programme at NTHU",
+        "Step 2: Submit admission application with scholarship consideration through NTHU's online portal",
+        "Step 3: Provide academic transcripts, study plan, and recommendation letters",
+        "Step 4: Results announced May–June"
+      ],
+      "source": "oga.site.nthu.edu.tw",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
       "name": "Swiss Government Excellence Research Scholarship (Postdoctoral)",
       "provider": "Swiss Confederation (SERI/SBFI)",
       "country": "Switzerland",
@@ -7951,6 +8110,130 @@
       "program_type": null
     },
     {
+      "name": "ETH Zurich Excellence Scholarship & Opportunity Programme (ESOP)",
+      "provider": "ETH Zurich",
+      "country": "Switzerland",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "All Master's programmes at ETH Zurich"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 18,
+        "max": 24
+      },
+      "deadline": "30 November (annually)",
+      "application_period": [
+        "1 November – 30 November (annually)"
+      ],
+      "important_dates": [
+        "Application window: 1 – 30 November",
+        "Results: March – April",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "Bachelor's degree with excellent academic record (top applicants)",
+          "Open to all nationalities worldwide",
+          "Must apply for a Master's programme at ETH Zurich",
+          "Scholarship application submitted alongside Master's programme application",
+          "Extremely competitive — awarded to top 3–5% of applicants"
+        ]
+      },
+      "benefits": [
+        "CHF 16,000/year living allowance (paid in monthly instalments)",
+        "Full tuition fee waiver for the entire Master's programme",
+        "Mentoring and networking opportunities through ETH Foundation"
+      ],
+      "amounts": [
+        "CHF 16,000/year (approx. CHF 1,333/month or USD 1,500)",
+        "Full tuition waiver (tuition: CHF 730/semester for international students)"
+      ],
+      "target_group": "Outstanding Master's applicants to ETH Zurich from any country. Extremely competitive — awarded to the top 3–5% of incoming Master's students based on academic excellence.",
+      "official_url": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
+      "description": "The ETH Zurich Excellence Scholarship & Opportunity Programme (ESOP) is ETH's flagship Master's scholarship, providing CHF 16,000/year plus full tuition waiver for the duration of the Master's programme. Open to all nationalities, it is awarded to the top 3–5% of applicants based on academic excellence. Applications are submitted alongside the Master's programme application in November.",
+      "application_process": [
+        "Step 1: Choose a Master's programme at ETH Zurich",
+        "Step 2: Prepare application including transcripts, CV, motivation letter, and references",
+        "Step 3: Submit Master's and ESOP application together via the ETH application portal (Nov 1–30)",
+        "Step 4: Selection based on academic excellence — results by March–April"
+      ],
+      "source": "ethz.ch",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "EPFL Excellence Fellowship",
+      "provider": "EPFL (École polytechnique fédérale de Lausanne)",
+      "country": "Switzerland",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "All Master's programmes at EPFL"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 18,
+        "max": 24
+      },
+      "deadline": "Varies by programme (typically December – April)",
+      "application_period": [
+        "December – April (varies by programme)"
+      ],
+      "important_dates": [
+        "Application period: varies by programme, typically December – April",
+        "Results: typically by May–June",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "Bachelor's degree with outstanding academic record",
+          "Open to all nationalities worldwide",
+          "Must apply for a Master's programme at EPFL",
+          "Fellowship awarded based on academic excellence, qualifications, and motivation",
+          "Each student may apply for only one Master's programme per year"
+        ]
+      },
+      "benefits": [
+        "CHF 16,000/year living allowance (paid in monthly instalments)",
+        "Full tuition fee waiver",
+        "Access to EPFL's research ecosystem and networking"
+      ],
+      "amounts": [
+        "CHF 16,000/year (approx. CHF 1,333/month or USD 1,500)",
+        "Full tuition waiver (tuition: CHF 780/semester for international students)"
+      ],
+      "target_group": "Outstanding Master's applicants to EPFL from any country. Awarded to the most deserving candidates based on academic excellence.",
+      "official_url": "https://www.epfl.ch/education/master/master-excellence-fellowships/how-to-apply/",
+      "description": "The EPFL Excellence Fellowship provides CHF 16,000/year plus full tuition waiver for Master's students at EPFL in Lausanne. A limited number of fellowships are awarded to the most deserving candidates based on academic excellence, qualifications, and motivation. EPFL is one of Europe's leading technical universities, consistently ranked among the top 15 globally in engineering and technology.",
+      "application_process": [
+        "Step 1: Choose a Master's programme at EPFL",
+        "Step 2: Prepare application with transcripts, CV, motivation letter",
+        "Step 3: Submit application through the EPFL online portal (deadline varies by programme)",
+        "Step 4: Selection based on academic merit — results typically by May–June"
+      ],
+      "source": "epfl.ch",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
       "name": "Manaaki New Zealand Scholarship - Tertiary (Undergraduate & Postgraduate)",
       "provider": "Education New Zealand / MFAT (Ministry of Foreign Affairs and Trade)",
       "country": "New Zealand",
@@ -8142,6 +8425,674 @@
       ],
       "source": "05_english-language-training-for-officials-scholarships.md",
       "source_file": "data/raw/new-zealand/05_english-language-training-for-officials-scholarships.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Government of Ireland International Education Scholarship (GOI-IES)",
+      "provider": "Higher Education Authority (HEA) / Irish Government",
+      "country": "Ireland",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines at eligible Irish higher education institutions"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "Mid-March (annually)",
+      "application_period": [
+        "Late January – Mid March (annually)"
+      ],
+      "important_dates": [
+        "Call opens: late January each year",
+        "Application deadline: mid-March (~6 week window)",
+        "Institutional shortlisting: March – April",
+        "HEA national assessment: April – May",
+        "Results announced: May – June",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens only (excludes Russia, Belarus, Switzerland, UK)"
+        ],
+        "raw_items": [
+          "Citizen of a non-EU/EEA country (not Russia, Belarus, Switzerland, or UK)",
+          "Must have a conditional or final offer of admission from an eligible Irish university BEFORE applying",
+          "Apply through the HEA online portal after securing admission offer",
+          "Covers Master's (NFQ Level 9), Postgraduate Diploma, and PhD (NFQ Level 10)",
+          "Personal statement (3 essays) weighted at 45/100 marks — more than academic record (40 marks)",
+          "Maximum 5 scholarships per institution; top 12 ranked automatically funded on excellence alone"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver (absorbed by host institution)",
+        "Stipend of EUR 10,000 for one academic year (paid in two instalments)"
+      ],
+      "amounts": [
+        "EUR 10,000/year stipend (approx. EUR 833/month)",
+        "Full tuition fee waiver at host institution"
+      ],
+      "target_group": "Non-EU/EEA students with admission offers from Irish universities seeking funding for one year of Master's or PhD study. Covers 60 scholarships per year across all eligible institutions. Note: EUR 10,000 stipend does not fully cover living costs in Dublin (~EUR 1,400/month).",
+      "official_url": "https://hea.ie/",
+      "description": "The Government of Ireland International Education Scholarship (GOI-IES) awards 60 scholarships per year to non-EU/EEA students for one year of postgraduate study in Ireland. It covers full tuition (by the host institution) and a EUR 10,000 stipend. The application requires a university admission offer first — you cannot apply to the HEA without one. Personal statements carry 45% of the evaluation weight, more than academic record (40%).",
+      "application_process": [
+        "Step 1: Apply to an eligible Irish university and receive a conditional or final admission offer",
+        "Step 2: Wait for the GOI-IES call to open (late January)",
+        "Step 3: Submit your application through the HEA online portal, including 3 personal statement essays (15 marks each)",
+        "Step 4: The university shortlists candidates from its own pool",
+        "Step 5: HEA runs a national assessment across all shortlisted candidates",
+        "Step 6: Results announced May–June; studies commence September"
+      ],
+      "source": "02_ireland_guide.md",
+      "source_file": "data/raw/ireland/02_ireland_guide.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Government of Ireland Postgraduate Scholarship (GOIPG)",
+      "provider": "Research Ireland (formerly Irish Research Council)",
+      "country": "Ireland",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All research disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Typically October–November (annually)",
+      "application_period": [
+        "September – October/November (annually)"
+      ],
+      "important_dates": [
+        "Call opens: September",
+        "Application deadline: October – November",
+        "Results: early following year",
+        "Duration: Master's up to 2 years, PhD up to 4 years"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities (Irish, EU, and international)"
+        ],
+        "raw_items": [
+          "Open to both Irish/EU and international students",
+          "Must have a supervisor endorsement from an Irish research institution",
+          "Strong research proposal required",
+          "Apply directly to Research Ireland (not via HEA)",
+          "18% success rate — highly competitive"
+        ]
+      },
+      "benefits": [
+        "Annual stipend of up to EUR 34,000/year",
+        "Full tuition fees (up to EUR 5,750/year for EU; higher for non-EU)",
+        "Research expenses allowance of EUR 3,250/year",
+        "Duration: up to 4 years for PhD"
+      ],
+      "amounts": [
+        "Stipend: up to EUR 34,000/year (approx. EUR 2,833/month)",
+        "Tuition: up to EUR 5,750/year (EU) or EUR 18,000/year (non-EU, institution-dependent)",
+        "Research expenses: EUR 3,250/year"
+      ],
+      "target_group": "Researchers of any nationality seeking fully funded Master's or PhD research positions in Ireland. More generous than GOI-IES (EUR 34,000/year vs EUR 10,000). Requires supervisor endorsement. Highly competitive (18% success rate).",
+      "official_url": "https://research.gov.ie/",
+      "description": "The Government of Ireland Postgraduate Scholarship (GOIPG), administered by Research Ireland, is a fully funded research scholarship open to all nationalities. It provides up to EUR 34,000/year stipend, full tuition, and research expenses for up to 4 years (PhD) or 2 years (Master's). Unlike GOI-IES, this is research-focused and requires a supervisor endorsement. Highly competitive with an 18% success rate.",
+      "application_process": [
+        "Step 1: Identify a potential supervisor at an Irish research institution",
+        "Step 2: Develop a research proposal with supervisor input",
+        "Step 3: Submit application directly to Research Ireland (typically Oct–Nov)",
+        "Step 4: Applications undergo peer review and panel assessment",
+        "Step 5: Results announced early the following year"
+      ],
+      "source": "02_ireland_guide.md",
+      "source_file": "data/raw/ireland/02_ireland_guide.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Trinity College Dublin (TCD) Global Excellence Postgraduate Scholarship",
+      "provider": "Trinity College Dublin",
+      "country": "Ireland",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "All taught Master's programmes at TCD (excluding MBA)"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "Typically March–April (annually)",
+      "application_period": [
+        "January – March/April (annually)"
+      ],
+      "important_dates": [
+        "Application period: January – March/April",
+        "Results: typically May–June",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA international students"
+        ],
+        "raw_items": [
+          "Must have a course offer (conditional or unconditional) for a one-year, full-time taught Master's at TCD",
+          "Preference given to applicants with unconditional offers",
+          "Non-EU/EEA international students",
+          "Excludes MBA programme",
+          "Outstanding academic record required"
+        ]
+      },
+      "benefits": [
+        "Tuition fee reduction or partial/full tuition waiver",
+        "Value varies by applicant (typically €2,000–€5,000 or full tuition for top candidates)"
+      ],
+      "amounts": [
+        "Partial to full tuition waiver (tuition: approx. €18,000–€25,000/year for non-EU)"
+      ],
+      "target_group": "Non-EU/EEA international students with admission offers for taught Master's programmes at Trinity College Dublin. TCD is Ireland's oldest and highest-ranked university (QS Top 100 globally).",
+      "official_url": "https://www.tcd.ie/study/international/scholarships/",
+      "description": "Trinity College Dublin, Ireland's oldest university (founded 1592) and ranked in the global top 100 (QS), offers Global Excellence Postgraduate Scholarships for non-EU/EEA international students. These scholarships provide partial to full tuition waivers for one-year taught Master's programmes. Applicants must hold an admission offer to TCD before being considered.",
+      "application_process": [
+        "Step 1: Apply for a taught Master's programme at Trinity College Dublin",
+        "Step 2: Receive a conditional or unconditional admission offer",
+        "Step 3: Apply for the Global Excellence Scholarship through TCD's scholarship portal",
+        "Step 4: Submit academic transcripts, personal statement, and scholarship application",
+        "Step 5: Results typically announced May–June"
+      ],
+      "source": "tcd.ie",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "UCD Global Excellence Scholarship",
+      "provider": "University College Dublin (UCD)",
+      "country": "Ireland",
+      "degree_levels": [
+        "Bachelor",
+        "Master"
+      ],
+      "fields": [
+        "All programmes at UCD"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Varies by intake (typically March–April for September start)",
+      "application_period": [
+        "Rolling — varies by programme and intake"
+      ],
+      "important_dates": [
+        "Application period: varies by programme",
+        "50–100% tuition fee waivers for outstanding applicants",
+        "Results: with or after admission offer",
+        "Studies commence: September (main intake)"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA international students"
+        ],
+        "raw_items": [
+          "Non-EU/EEA international students",
+          "Outstanding academic record",
+          "Must apply for admission to UCD",
+          "Scholarship consideration is automatic for many programmes during admission",
+          "UCD is Ireland's largest university and ranked in the global top 200 (QS)"
+        ]
+      },
+      "benefits": [
+        "50–100% tuition fee waivers",
+        "Value depends on academic excellence and programme"
+      ],
+      "amounts": [
+        "50–100% tuition waiver (tuition: approx. €20,000–€30,000/year for non-EU)"
+      ],
+      "target_group": "Outstanding non-EU/EEA international students applying to UCD at undergraduate or postgraduate level. UCD is Ireland's largest university and a global top 200 institution.",
+      "official_url": "https://www.ucd.ie/global/study-at-ucd/scholarshipsfinances/scholarships/",
+      "description": "University College Dublin (UCD), Ireland's largest university and ranked in the global top 200 (QS), offers Global Excellence Scholarships providing 50–100% tuition waivers for non-EU/EEA international students. Scholarships are available for both undergraduate and postgraduate programmes. Consideration is often automatic during the admission process.",
+      "application_process": [
+        "Step 1: Apply for admission to UCD through the UCD application portal",
+        "Step 2: Many scholarships are automatically considered during admission review",
+        "Step 2: Some scholarships may require a separate application",
+        "Step 3: Submit strong academic transcripts and personal statement",
+        "Step 4: Scholarship decision typically communicated with or after admission offer"
+      ],
+      "source": "ucd.ie",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Danish Government Scholarship - Full Tuition Waiver + Grant",
+      "provider": "Danish Ministry of Higher Education and Science",
+      "country": "Denmark",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "All full-degree programmes at Danish universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": "Varies by university (typically January–March)",
+      "application_period": [
+        "Varies by university (typically January–March)"
+      ],
+      "important_dates": [
+        "Application period: varies by university, typically January – March",
+        "Each Danish university administers its own scholarship allocation",
+        "Results: varies by university",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens and non-Swiss citizens"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU, EEA, or Switzerland",
+          "Enrolled in a full-degree higher education programme (Master's)",
+          "Granted a time-limited residence permit in Denmark for education",
+          "Not eligible if: applying to Artistic Higher Education Institutions, or have legal claim to Danish citizen rights",
+          "Scholarships administered individually by each university — contact your chosen university directly"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver",
+        "Monthly grant towards living costs (amount varies by university)"
+      ],
+      "amounts": [
+        "Full tuition fee waiver (tuition for non-EU: approx. DKK 45,000–120,000/year)",
+        "Living cost grant: varies by university (not standardized)"
+      ],
+      "target_group": "Highly qualified non-EU/EEA students seeking full Master's degrees at Danish universities. The number of scholarships is limited and allocated to individual universities, which select recipients. Note: living costs in Denmark are high (~DKK 6,000–10,000/month).",
+      "official_url": "https://studyindenmark.dk/study-options/scholarships",
+      "description": "The Danish Government Scholarship programme offers tuition waivers and living cost grants to highly qualified non-EU/EEA students pursuing full-degree Master's programmes at Danish universities. Scholarships are administered by individual universities — there is no centralized application. Each university has its own allocation and selection process. Contact the admissions office of your chosen university for details.",
+      "application_process": [
+        "Step 1: Choose a Danish university and a full-degree Master's programme",
+        "Step 2: Check the university's website for scholarship details and deadlines",
+        "Step 3: Apply for admission to the programme through the university",
+        "Step 4: Some universities automatically consider you for scholarships; others require a separate application",
+        "Step 5: Await results from the university"
+      ],
+      "source": "01_study-options_scholarships.md",
+      "source_file": "data/raw/denmark/01_study-options_scholarships.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Norway Tuition-Free Public University Education",
+      "provider": "Norwegian Government / Universities Norway",
+      "country": "Norway",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines at Norwegian public universities"
+      ],
+      "funding_type": "No Tuition Fees",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "December 1 (Nordic citizens) / varies for non-EU (typically January–March)",
+      "application_period": [
+        "October – December/January (varies by university)"
+      ],
+      "important_dates": [
+        "Application period: typically October – January (varies by university)",
+        "Non-EU/EEA students: some universities have earlier deadlines (December 1)",
+        "Results: varies by university (typically March–May)",
+        "Studies commence: August",
+        "PhD positions: advertised year-round as paid jobs on jobbnorge.no"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "No tuition fees at Norwegian public universities for ALL international students (EU and non-EU)",
+          "Must cover living costs independently (approx. NOK 12,350/month or ~EUR 1,100)",
+          "English proficiency required for English-taught programmes (IELTS 6.5 or TOEFL 90 typically)",
+          "PhD positions are advertised as paid jobs with salary (~NOK 500,000+/year)",
+          "Around 350 English-taught programmes available (mostly Master's level)",
+          "Student visa (Study Permit) allows part-time work (20 hrs/week during term)"
+        ]
+      },
+      "benefits": [
+        "NO tuition fees at public universities for all international students",
+        "PhD positions: full salary (~NOK 500,000+/year), pension, and benefits",
+        "Student visa allows part-time work (20 hours/week)"
+      ],
+      "amounts": [
+        "Tuition: FREE at public universities",
+        "Living costs: approx. NOK 12,350/month (~EUR 1,100) required for visa",
+        "PhD salary: ~NOK 500,000+/year (~EUR 44,000+)"
+      ],
+      "target_group": "International students of any nationality. Norway's unique advantage is tuition-free public university education. No centralized scholarship for living costs, but PhD positions are fully salaried. Students must fund living expenses through personal savings, part-time work, or external scholarships.",
+      "official_url": "https://www.studyinnorway.no/",
+      "description": "Norway offers tuition-free education at public universities for ALL international students, regardless of nationality. This is one of very few countries where non-EU students also pay zero tuition. However, living costs are high (NOK 12,350/month minimum for visa). There are no centralized government scholarships for living costs — students must self-fund or find PhD positions (which are advertised as paid jobs with full salary). Around 350 English-taught programmes are available, mostly at Master's level.",
+      "application_process": [
+        "Step 1: Browse English-taught programmes at studyinnorway.no or universities' websites",
+        "Step 2: Check specific admission requirements and deadlines for your chosen programme",
+        "Step 3: Apply online through the university's application portal (or via national application system for some)",
+        "Step 4: Submit academic transcripts, English proficiency proof, and supporting documents",
+        "Step 5: Await results; if accepted, apply for a Norwegian Study Permit (showing ~NOK 12,350/month in funds)",
+        "Step 6: For PhD: monitor jobbnorge.no for advertised PhD positions (apply like a job application)"
+      ],
+      "source": "01_study-in-norway_scholarships.md",
+      "source_file": "data/raw/norway/01_study-in-norway_scholarships.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "BI Presidential Scholarship - Norwegian Business School",
+      "provider": "BI Norwegian Business School",
+      "country": "Norway",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Business",
+        "Finance",
+        "Marketing",
+        "Economics",
+        "Strategy",
+        "Leadership"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": "1 March (annually)",
+      "application_period": [
+        "November – 1 March (annually)"
+      ],
+      "important_dates": [
+        "Application opens: November",
+        "Application deadline: 1 March",
+        "Results: April – May",
+        "Studies commence: August"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "Bachelor's degree with strong academic record",
+          "Open to all nationalities (international students and Norwegian)",
+          "Must apply for a Master's programme at BI Norwegian Business School",
+          "BI is a private institution — tuition is NOT free (unlike public Norwegian universities)",
+          "Triple-accredited (AACSB, EQUIS, AMBA) — top 1% of business schools worldwide"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee coverage for up to 2 years",
+        "Living expense stipend of NOK 50,000 per semester",
+        "Total value: approx. NOK 400,000+ over 2 years"
+      ],
+      "amounts": [
+        "NOK 50,000/semester stipend (approx. NOK 100,000/year or USD 9,300)",
+        "Full tuition waiver (tuition: approx. NOK 88,000–100,000/year)"
+      ],
+      "target_group": "Outstanding Master's applicants to BI Norwegian Business School from any country. Norway's largest and Europe's second-largest business school. This is the only major private university scholarship in Norway — all other Norwegian universities are tuition-free.",
+      "official_url": "https://www.bi.edu/study-at-bi/scholarships/",
+      "description": "The BI Presidential Scholarship covers full tuition and provides NOK 50,000/semester for living expenses for Master's students at BI Norwegian Business School. BI is triple-accredited (AACSB, EQUIS, AMBA) and ranked in the top 1% of business schools globally. Unlike public Norwegian universities (which are tuition-free), BI is private and charges tuition — this scholarship makes it accessible to top international students.",
+      "application_process": [
+        "Step 1: Choose a Master's programme at BI Norwegian Business School",
+        "Step 2: Submit online application with transcripts, CV, motivation letter, and scholarship essay",
+        "Step 3: Application deadline: 1 March",
+        "Step 4: Selection based on academic excellence and scholarship essay quality",
+        "Step 5: Results announced April–May; studies commence August"
+      ],
+      "source": "bi.edu",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Hong Kong PhD Fellowship Scheme (HKPFS)",
+      "provider": "Research Grants Council (RGC) of Hong Kong",
+      "country": "Hong Kong",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "All research disciplines at 8 UGC-funded universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 48
+      },
+      "deadline": "1 December (annually)",
+      "application_period": [
+        "1 September – 1 December (annually)"
+      ],
+      "important_dates": [
+        "Application opens: 1 September",
+        "Application deadline: 1 December",
+        "RGC results: May",
+        "Studies commence: September following year",
+        "RGC funding: 3 years (universities typically extend to Year 4)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities (including Hong Kong locals)"
+        ],
+        "raw_items": [
+          "Must be seeking admission as a new full-time PhD student",
+          "Open to all nationalities — no restrictions",
+          "No age limit, no nationality restriction",
+          "Master's degree not always required — some programmes accept exceptional Bachelor's holders",
+          "Must apply to a maximum of 2 participating universities",
+          "Two-step process: first file with RGC for Reference Number, then apply to university quoting the number",
+          "Advisor-driven: find a professor who wants to supervise you before applying",
+          "Cannot apply if already enrolled in a PhD programme"
+        ]
+      },
+      "benefits": [
+        "Annual stipend: HK$340,800 (HK$28,400/month, approx. USD 3,640)",
+        "Full tuition waiver for the normative PhD period (3 years)",
+        "Annual travel and conference allowance: HK$14,200 (approx. USD 1,820)",
+        "Universities typically provide Year 4 funding from their own resources"
+      ],
+      "amounts": [
+        "HK$28,400/month stipend (approx. USD 3,640 or EUR 3,350)",
+        "HK$14,200/year travel & conference allowance",
+        "Full tuition waiver (3 years)"
+      ],
+      "target_group": "Outstanding PhD applicants from any country worldwide. One of Asia's most generous PhD fellowships — 400 awards per year across 8 universities. Advisor-driven: securing a supervisor is critical. Very early deadline (December 1).",
+      "official_url": "https://www.ugc.edu.hk/en/non-local-students/hong-kong-phd-fellowship-scheme.html",
+      "description": "The Hong Kong PhD Fellowship Scheme (HKPFS), administered by the Research Grants Council, awards 400 fully funded PhD fellowships per year at Hong Kong's 8 UGC-funded universities (HKU, CUHK, HKUST, PolyU, CityU, HKBU, Lingnan, EdUHK). Provides HK$28,400/month stipend, full tuition waiver, and travel allowance for 3 years (universities typically extend to 4). No nationality restrictions. The application is advisor-driven — securing a supervisor before applying is essential.",
+      "application_process": [
+        "Step 1: Research the 8 participating universities and identify potential supervisors in your field",
+        "Step 2: Contact professors directly to discuss supervision — this is essential",
+        "Step 3: File an initial HKPFS application with RGC (Sep–Dec 1) to receive a Reference Number",
+        "Step 4: Separately apply to up to 2 universities, quoting your RGC Reference Number",
+        "Step 5: University evaluates your application and nominates top candidates to RGC",
+        "Step 6: RGC makes final selections; results announced in May"
+      ],
+      "source": "02_hkpfs_guide.md",
+      "source_file": "data/raw/hong-kong/02_hkpfs_guide.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "HKU Entrance Scholarship for International Students",
+      "provider": "University of Hong Kong (HKU)",
+      "country": "Hong Kong",
+      "degree_levels": [
+        "Bachelor",
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All programmes at HKU"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Varies by programme (typically December – April)",
+      "application_period": [
+        "November – April (varies by programme and faculty)"
+      ],
+      "important_dates": [
+        "Application period: varies by programme, typically November – April",
+        "Results: varies by faculty",
+        "Studies commence: September"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "Open to all nationalities — international applicants",
+          "Outstanding academic achievement",
+          "Must apply for admission to HKU",
+          "Scholarships may cover full tuition fees, accommodation, and living allowance",
+          "Some scholarships are automatically considered during admission; others require separate application"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver",
+        "Accommodation support",
+        "General living allowance",
+        "Duration aligned with programme length"
+      ],
+      "amounts": [
+        "Full tuition (HKD 182,000–421,000/year depending on programme)",
+        "Accommodation and living allowance included for top awards"
+      ],
+      "target_group": "Outstanding international students at all levels (UG, Master's, PhD) applying to HKU. HKU is Hong Kong's oldest and highest-ranked university (QS Top 30 globally). Entrance scholarships range from partial tuition waivers to fully funded packages.",
+      "official_url": "https://admissions.hku.hk/fees-and-scholarships/scholarships",
+      "description": "The University of Hong Kong (HKU) offers generous entrance scholarships for international students that may cover full tuition fees, accommodation, and a general living allowance. HKU is ranked in the global top 30 (QS) and is Hong Kong's premier university. Scholarships are available at undergraduate, Master's, and PhD levels. Some are automatically considered during admission; others require separate applications.",
+      "application_process": [
+        "Step 1: Apply for admission to HKU through the online application portal",
+        "Step 2: Check specific faculty/school scholarship requirements",
+        "Step 2: Some scholarships are automatically considered; others require a separate scholarship application",
+        "Step 3: Submit academic transcripts, personal statement, references, and any required scholarship essays",
+        "Step 4: Results vary by faculty — typically announced with or after admission offers"
+      ],
+      "source": "admissions.hku.hk",
+      "source_file": null,
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Malaysia International Scholarship (MIS)",
+      "provider": "Ministry of Higher Education (MOHE) Malaysia",
+      "country": "Malaysia",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines at Malaysian public and selected private universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 36
+      },
+      "deadline": "Typically July–August (annually)",
+      "application_period": [
+        "June – July/August (annually)"
+      ],
+      "important_dates": [
+        "Application period: typically June – July/August",
+        "Results: September – October",
+        "Studies commence: following February or September intake",
+        "Duration: Master's up to 24 months, PhD up to 36 months"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to citizens of specific partner countries (Indonesia is eligible)"
+        ],
+        "raw_items": [
+          "Citizen of a country with diplomatic relations with Malaysia (Indonesia is eligible)",
+          "Not more than 40 years old at the time of application",
+          "Bachelor's degree with minimum CGPA 3.0/4.0 (for Master's applicants)",
+          "Master's degree with minimum CGPA 3.0/4.0 (for PhD applicants)",
+          "English proficiency: IELTS 6.0+ or TOEFL 550+ (paper) / 80+ (internet)",
+          "Already obtained admission or currently applying to Malaysian universities",
+          "Not currently enrolled in any Malaysian university"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees paid directly to the university",
+        "Monthly living allowance of MYR 1,500",
+        "Annual book and internal travel grant",
+        "Health insurance",
+        "Thesis allowance (PhD)",
+        "Return economy class airfare"
+      ],
+      "amounts": [
+        "Living allowance: MYR 1,500/month (approx. USD 320)",
+        "Tuition: fully covered",
+        "Return airfare included"
+      ],
+      "target_group": "Citizens of partner countries (including Indonesia) seeking fully funded Master's or PhD studies in Malaysia. Malaysia offers affordable living costs and quality education. Open to applicants under 40 years old with strong academic records.",
+      "official_url": "https://biasiswa.mohe.gov.my/INTER/index.php",
+      "description": "The Malaysia International Scholarship (MIS) is a Malaysian Government initiative to attract top international talent for postgraduate studies. Covers full tuition, MYR 1,500/month living allowance, health insurance, airfare, and thesis costs for Master's (24 months) and PhD (36 months). Indonesia is a key partner country. Living costs in Malaysia are relatively low, making the stipend more sufficient compared to European programmes.",
+      "application_process": [
+        "Step 1: Check eligibility at biasiswa.mohe.gov.my",
+        "Step 2: Secure admission or apply to a Malaysian university simultaneously",
+        "Step 3: Submit online application through the MIS portal with academic transcripts, research proposal (for PhD), English test scores, and recommendation letters",
+        "Step 4: Applications reviewed by MOHE and the Selection Committee",
+        "Step 5: Results announced; if successful, arrange visa and travel"
+      ],
+      "source": "01_mis_scholarship.md",
+      "source_file": "data/raw/malaysia/01_mis_scholarship.md",
       "confidence_score": 0.95,
       "program_type": null
     }

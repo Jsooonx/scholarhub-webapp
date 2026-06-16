@@ -77,9 +77,14 @@ export function providerGroup(provider: string): string {
   if (p.includes('maeci') || p.includes('italian government') || p.includes('ministry of foreign affairs and international cooperation') || p.includes('invest your talent')) return 'italy';
   if (p.includes('china scholarship council') || p.includes('csc') && p.includes('chinese') || p.includes('mofcom') || p.includes('ministry of commerce') && p.includes('china')) return 'china-csc';
   if (p.includes('stipendium hungaricum') || p.includes('tempus public foundation') || (p.includes('hungarian') && p.includes('government'))) return 'hungary';
-  if (p.includes('taiwan') || p.includes('teco') || p.includes('icdf') || p.includes('huayu') || p.includes('ministry of education') && p.includes('taiwan')) return 'taiwan';
-  if (p.includes('swiss government') || p.includes('sbfi') || p.includes('seri') || p.includes('swiss confederation')) return 'switzerland';
+  if (p.includes('taiwan') || p.includes('teco') || p.includes('icdf') || p.includes('huayu') || p.includes('national tsing hua') || (p.includes('ministry of education') && p.includes('taiwan'))) return 'taiwan';
+  if (p.includes('swiss government') || p.includes('sbfi') || p.includes('seri') || p.includes('swiss confederation') || p.includes('eth zurich') || p.includes('epfl') || p.includes('école polytechnique fédérale')) return 'switzerland';
   if (p.includes('manaaki') || p.includes('education new zealand') || p.includes('mfat') || p.includes('new zealand')) return 'new-zealand';
+  if (p.includes('government of ireland') || p.includes('hea') || p.includes('research ireland') || p.includes('irish research council') || p.includes('trinity college dublin') || p.includes('university college dublin') || p.includes('ucd global')) return 'ireland';
+  if (p.includes('danish') && p.includes('ministry') || p.includes('studyindenmark') || p.includes('denmark')) return 'denmark';
+  if (p.includes('studyinnorway') || (p.includes('norway') && p.includes('universities')) || p.includes('bi norwegian')) return 'norway';
+  if (p.includes('hong kong phd') || p.includes('hkpf') || p.includes('research grants council') || p.includes('ugc.edu.hk') || p.includes('university of hong kong')) return 'hong-kong';
+  if (p.includes('malaysia international') || p.includes('mohe') || p.includes('malaysian government') && p.includes('scholarship')) return 'malaysia';
   if (p.includes('eiffel')) return 'eiffel';
   if (p.includes('singa')) return 'singa';
   if (p.includes('vanier')) return 'vanier';
@@ -702,6 +707,63 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'open', label: `Opens Feb · closes ${fmt}`, daysLeft: diff, deadline: target };
   }
 
+  // ── Ireland GOI-IES: ~late Jan – mid Mar ──────────────────────────────
+  if (group === 'ireland') {
+    const nowIE = new Date();
+    const yearIE = nowIE.getFullYear();
+    const open = new Date(yearIE, 0, 25);  // Jan 25
+    const close = new Date(yearIE, 2, 15); // Mar 15
+    const target = nowIE <= close ? close : new Date(yearIE + 1, 2, 15);
+    const diff = Math.ceil((target.getTime() - nowIE.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowIE >= open && nowIE <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    if (nowIE > close) return { type: 'closed', label: `Closed · opens Jan ${target.getFullYear()}`, deadline: new Date(target.getFullYear(), 0, 25) };
+    return { type: 'open', label: `Opens Jan · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Denmark: varies by university ────────────────────────────────────
+  if (group === 'denmark') return { type: 'rolling', label: 'Varies by university' };
+
+  // ── Norway: tuition-free, no centralized scholarship deadline ────────
+  if (group === 'norway') return { type: 'rolling', label: 'Tuition-free · rolling admissions' };
+
+  // ── Hong Kong HKPFS: Sep 1 – Dec 1 ──────────────────────────────────
+  if (group === 'hong-kong') {
+    const nowHK = new Date();
+    const yearHK = nowHK.getFullYear();
+    const open = new Date(yearHK, 8, 1);   // Sep 1
+    const close = new Date(yearHK, 11, 1); // Dec 1
+    const target = nowHK <= close ? close : new Date(yearHK + 1, 11, 1);
+    const diff = Math.ceil((target.getTime() - nowHK.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowHK >= open && nowHK <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    if (nowHK > close) return { type: 'closed', label: `Closed · opens Sep ${target.getFullYear()}`, deadline: new Date(target.getFullYear(), 8, 1) };
+    return { type: 'open', label: `Opens Sep · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Malaysia MIS: ~Jun–Aug annually ─────────────────────────────────
+  if (group === 'malaysia') {
+    const nowMY = new Date();
+    const yearMY = nowMY.getFullYear();
+    const open = new Date(yearMY, 5, 1);   // Jun 1
+    const close = new Date(yearMY, 7, 31); // Aug 31
+    const target = nowMY <= close ? close : new Date(yearMY + 1, 7, 31);
+    const diff = Math.ceil((target.getTime() - nowMY.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowMY >= open && nowMY <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    if (nowMY > close) return { type: 'closed', label: `Closed · opens Jun ${target.getFullYear()}`, deadline: new Date(target.getFullYear(), 5, 1) };
+    return { type: 'open', label: `Opens Jun · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
   return getDaadStatus();
 }
 
@@ -947,6 +1009,46 @@ export const providerMeta: Record<
       'Manaaki New Zealand Scholarships (formerly NZAS), funded by MFAT, are fully funded scholarships for citizens of eligible developing countries including Indonesia. They cover tuition, living allowance, airfare, insurance, and settling-in costs for undergraduate, master\'s, and PhD studies at New Zealand universities. Also available: vocational short-term training and English language training for officials (NZELTO).',
     website: 'https://www.nzscholarships.govt.nz/',
   },
+  ireland: {
+    name: 'Government of Ireland Scholarships',
+    flag: '🇮🇪',
+    country: 'Ireland',
+    description:
+      'Ireland offers two major scholarship programmes: GOI-IES (60 awards/year, EUR 10,000 + tuition waiver for one year of Master\'s/PhD for non-EU students) and GOIPG (fully funded up to EUR 34,000/year for up to 4 years of PhD research, open to all nationalities, 18% success rate). Both are prestigious government-funded programmes managed by HEA and Research Ireland respectively.',
+    website: 'https://hea.ie/',
+  },
+  denmark: {
+    name: 'Danish Government Scholarships',
+    flag: '🇩🇰',
+    country: 'Denmark',
+    description:
+      'The Danish Government Scholarship programme offers tuition waivers and living cost grants to highly qualified non-EU/EEA students pursuing full-degree Master\'s programmes at Danish universities. Scholarships are administered individually by each university. Denmark also participates in Erasmus Mundus and Nordplus exchange programmes.',
+    website: 'https://studyindenmark.dk/study-options/scholarships',
+  },
+  norway: {
+    name: 'Norway Tuition-Free Education',
+    flag: '🇳🇴',
+    country: 'Norway',
+    description:
+      'Norway offers tuition-free education at public universities for ALL international students, regardless of nationality — one of very few countries where non-EU students also pay zero tuition. Around 350 English-taught programmes are available. PhD positions are advertised as fully salaried jobs (~NOK 500,000+/year). Students must fund living expenses (~NOK 12,350/month) through personal savings or part-time work.',
+    website: 'https://www.studyinnorway.no/',
+  },
+  'hong-kong': {
+    name: 'Hong Kong PhD Fellowship Scheme (HKPFS)',
+    flag: '🇭🇰',
+    country: 'Hong Kong',
+    description:
+      'The Hong Kong PhD Fellowship Scheme (HKPFS), administered by the Research Grants Council, awards 400 fully funded PhD fellowships per year at Hong Kong\'s 8 UGC-funded universities (HKU, CUHK, HKUST, PolyU, CityU, HKBU, Lingnan, EdUHK). Provides HK$28,400/month stipend, full tuition waiver, and travel allowance. No nationality restrictions. One of Asia\'s most generous PhD programmes.',
+    website: 'https://www.ugc.edu.hk/en/non-local-students/hong-kong-phd-fellowship-scheme.html',
+  },
+  malaysia: {
+    name: 'Malaysia International Scholarship (MIS)',
+    flag: '🇲🇾',
+    country: 'Malaysia',
+    description:
+      'The Malaysia International Scholarship (MIS) is a Malaysian Government initiative to attract top international talent for postgraduate studies. Covers full tuition, MYR 1,500/month living allowance, health insurance, airfare, and thesis costs for Master\'s (24 months) and PhD (36 months). Open to citizens of partner countries including Indonesia. Living costs in Malaysia are relatively affordable.',
+    website: 'https://biasiswa.mohe.gov.my/INTER/index.php',
+  },
 };
 
 /**
@@ -1073,6 +1175,30 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('university of otago') || name.includes('otago university')) return '/images/logos/Otago.png';
   if (name.includes('victoria university of wellington') || name.includes('victoria university wellington') || hasWord('vuw')) return '/images/logos/VUW.png';
 
+  // Ireland Universities
+  if (name.includes('trinity college dublin') || name.includes('university of dublin') || hasWord('tcd')) return '/images/logos/TCD.png';
+  if (name.includes('university college dublin') || hasWord('ucd')) return '/images/logos/UCD.png';
+  if (name.includes('university college cork') || hasWord('ucc')) return '/images/logos/UCC.png';
+
+  // Denmark Universities
+  if (name.includes('university of copenhagen') || name.includes('københavns universitet')) return '/images/logos/Copenhagen.png';
+  if (name.includes('technical university of denmark') || (hasWord('dtu') && s.country === 'Denmark')) return '/images/logos/DTU_Denmark.png';
+  if (name.includes('aarhus university') || name.includes('aarhus universitet')) return '/images/logos/Aarhus.png';
+
+  // Norway Universities
+  if (name.includes('university of oslo') || provider.includes('university of oslo') || hasWord('uio')) return '/images/logos/Oslo.png';
+  if (name.includes('university of bergen') || provider.includes('university of bergen') || hasWord('uib')) return '/images/logos/Bergen.png';
+  if (name.includes('norwegian university of science and technology') || hasWord('ntnu')) return '/images/logos/NTNU.png';
+
+  // Hong Kong Universities
+  if (name.includes('university of hong kong') || (hasWord('hku') && s.country === 'Hong Kong')) return '/images/logos/HKU.png';
+  if (name.includes('chinese university of hong kong') || hasWord('cuhk')) return '/images/logos/CUHK.png';
+  if (name.includes('hong kong university of science and technology') || hasWord('hkust')) return '/images/logos/HKUST.png';
+
+  // Malaysia Universities
+  if (name.includes('university of malaya') || provider.includes('university of malaya') || (hasWord('um') && s.country === 'Malaysia')) return '/images/logos/UM.png';
+  if (name.includes('universiti kebangsaan malaysia') || hasWord('ukm')) return '/images/logos/UKM.png';
+
   // Sweden Universities
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/logos/KTH.png';
   if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/logos/LundU.png';
@@ -1196,6 +1322,26 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('university of auckland') || name.includes('auckland university')) return '/images/universities/NZ_Auckland.png';
   if (name.includes('university of otago') || name.includes('otago university')) return '/images/universities/NZ_Otago.png';
 
+  // Ireland Universities
+  if (name.includes('trinity college dublin') || name.includes('university of dublin') || hasWord('tcd')) return '/images/universities/IE_TCD.png';
+  if (name.includes('university college dublin') || hasWord('ucd')) return '/images/universities/IE_UCD.png';
+
+  // Denmark Universities
+  if (name.includes('university of copenhagen') || name.includes('københavns universitet')) return '/images/universities/DK_Copenhagen.png';
+  if (name.includes('technical university of denmark') || (hasWord('dtu') && s.country === 'Denmark')) return '/images/universities/DK_DTU.png';
+
+  // Norway Universities
+  if (name.includes('university of oslo') || provider.includes('university of oslo') || hasWord('uio')) return '/images/universities/NO_Oslo.png';
+  if (name.includes('norwegian university of science and technology') || hasWord('ntnu')) return '/images/universities/NO_NTNU.png';
+
+  // Hong Kong Universities
+  if (name.includes('university of hong kong') || (hasWord('hku') && s.country === 'Hong Kong')) return '/images/universities/HK_HKU.png';
+  if (name.includes('chinese university of hong kong') || hasWord('cuhk')) return '/images/universities/HK_CUHK.png';
+
+  // Malaysia Universities
+  if (name.includes('university of malaya') || provider.includes('university of malaya') || (hasWord('um') && s.country === 'Malaysia')) return '/images/universities/MY_UM.png';
+  if (name.includes('universiti kebangsaan malaysia') || hasWord('ukm')) return '/images/universities/MY_UKM.png';
+
   // Sweden Universities
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/universities/SWE_KTH.png';
   if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/universities/SWE_LundU.png';
@@ -1271,6 +1417,39 @@ export function getScholarshipImage(s: Scholarship): string {
       return '/images/universities/NZ_Otago.png';
     }
     return '/images/universities/NZ_Auckland.png';
+  }
+  if (group === 'ireland') {
+    if (name.includes('postgraduate') || name.includes('research') || name.includes('phd') || name.includes('goipg')) {
+      return '/images/universities/IE_UCD.png';
+    }
+    return '/images/universities/IE_TCD.png';
+  }
+  if (group === 'denmark') {
+    if (name.includes('technical') || name.includes('dtu') || name.includes('technology') || name.includes('science')) {
+      return '/images/universities/DK_DTU.png';
+    }
+    return '/images/universities/DK_Copenhagen.png';
+  }
+  if (group === 'norway') {
+    if (name.includes('technical') || name.includes('ntnu') || name.includes('technology') || name.includes('science')) {
+      return '/images/universities/NO_NTNU.png';
+    }
+    return '/images/universities/NO_Oslo.png';
+  }
+  if (group === 'hong-kong') {
+    if (name.includes('chinese') || name.includes('cuhk')) {
+      return '/images/universities/HK_CUHK.png';
+    }
+    return '/images/universities/HK_HKU.png';
+  }
+  if (group === 'malaysia') {
+    if (name.includes('kebangsaan') || name.includes('ukm')) {
+      return '/images/universities/MY_UKM.png';
+    }
+    if (name.includes('putra') || name.includes('upm')) {
+      return '/images/universities/MY_UPM.png';
+    }
+    return '/images/universities/MY_UM.png';
   }
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
@@ -1400,6 +1579,31 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Auckland', logo: '/images/logos/Auckland.png', keywords: ['auckland', 'university of auckland'] },
     { name: 'University of Otago', logo: '/images/logos/Otago.png', keywords: ['otago', 'university of otago'] },
     { name: 'Victoria University of Wellington', logo: '/images/logos/VUW.png', keywords: ['vuw', 'victoria university of wellington', 'victoria university wellington'] },
+
+    // Ireland Universities
+    { name: 'Trinity College Dublin', logo: '/images/logos/TCD.png', keywords: ['tcd', 'trinity college dublin', 'university of dublin'] },
+    { name: 'University College Dublin (UCD)', logo: '/images/logos/UCD.png', keywords: ['ucd', 'university college dublin'] },
+    { name: 'University College Cork (UCC)', logo: '/images/logos/UCC.png', keywords: ['ucc', 'university college cork'] },
+
+    // Denmark Universities
+    { name: 'University of Copenhagen', logo: '/images/logos/Copenhagen.png', keywords: ['copenhagen', 'københavns universitet'] },
+    { name: 'Technical University of Denmark (DTU)', logo: '/images/logos/DTU_Denmark.png', keywords: ['dtu_dk', 'technical university of denmark'] },
+    { name: 'Aarhus University', logo: '/images/logos/Aarhus.png', keywords: ['aarhus'] },
+
+    // Norway Universities
+    { name: 'University of Oslo', logo: '/images/logos/Oslo.png', keywords: ['uio', 'university of oslo', 'oslo universitet'] },
+    { name: 'University of Bergen', logo: '/images/logos/Bergen.png', keywords: ['uib', 'university of bergen', 'bergen universitet'] },
+    { name: 'NTNU', logo: '/images/logos/NTNU.png', keywords: ['ntnu', 'norwegian university of science and technology', 'norges teknisk-naturvitenskapelige'] },
+
+    // Hong Kong Universities
+    { name: 'University of Hong Kong (HKU)', logo: '/images/logos/HKU.png', keywords: ['hku', 'university of hong kong'] },
+    { name: 'The Chinese University of Hong Kong (CUHK)', logo: '/images/logos/CUHK.png', keywords: ['cuhk', 'chinese university of hong kong'] },
+    { name: 'Hong Kong University of Science and Technology (HKUST)', logo: '/images/logos/HKUST.png', keywords: ['hkust', 'hong kong university of science and technology'] },
+
+    // Malaysia Universities
+    { name: 'University of Malaya (UM)', logo: '/images/logos/UM.png', keywords: ['um_my', 'university of malaya'] },
+    { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png', keywords: ['upm', 'universiti putra malaysia', 'putra malaysia'] },
+    { name: 'Universiti Kebangsaan Malaysia (UKM)', logo: '/images/logos/UKM.png', keywords: ['ukm', 'universiti kebangsaan malaysia'] },
   ];
 
   universities.forEach((univ) => {
@@ -1417,7 +1621,15 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         const regex = new RegExp(`\\bntu\\b`, 'i');
         return s.country === 'Taiwan' && regex.test(text);
       }
-      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw'].includes(kw)) {
+      if (kw === 'dtu_dk') {
+        const regex = new RegExp(`\\bdtu\\b`, 'i');
+        return s.country === 'Denmark' && regex.test(text);
+      }
+      if (kw === 'um_my') {
+        const regex = new RegExp(`\\bum\\b`, 'i');
+        return s.country === 'Malaysia' && regex.test(text);
+      }
+      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
@@ -1586,6 +1798,36 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Auckland', logo: '/images/logos/Auckland.png' },
         { name: 'University of Otago', logo: '/images/logos/Otago.png' },
         { name: 'Victoria University of Wellington', logo: '/images/logos/VUW.png' }
+      );
+    } else if (group === 'ireland') {
+      list.push(
+        { name: 'Trinity College Dublin', logo: '/images/logos/TCD.png' },
+        { name: 'University College Dublin (UCD)', logo: '/images/logos/UCD.png' },
+        { name: 'University College Cork (UCC)', logo: '/images/logos/UCC.png' }
+      );
+    } else if (group === 'denmark') {
+      list.push(
+        { name: 'University of Copenhagen', logo: '/images/logos/Copenhagen.png' },
+        { name: 'Technical University of Denmark (DTU)', logo: '/images/logos/DTU_Denmark.png' },
+        { name: 'Aarhus University', logo: '/images/logos/Aarhus.png' }
+      );
+    } else if (group === 'norway') {
+      list.push(
+        { name: 'University of Oslo', logo: '/images/logos/Oslo.png' },
+        { name: 'University of Bergen', logo: '/images/logos/Bergen.png' },
+        { name: 'NTNU', logo: '/images/logos/NTNU.png' }
+      );
+    } else if (group === 'hong-kong') {
+      list.push(
+        { name: 'University of Hong Kong (HKU)', logo: '/images/logos/HKU.png' },
+        { name: 'Hong Kong University of Science and Technology (HKUST)', logo: '/images/logos/HKUST.png' },
+        { name: 'The Chinese University of Hong Kong (CUHK)', logo: '/images/logos/CUHK.png' }
+      );
+    } else if (group === 'malaysia') {
+      list.push(
+        { name: 'University of Malaya (UM)', logo: '/images/logos/UM.png' },
+        { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png' },
+        { name: 'Universiti Kebangsaan Malaysia (UKM)', logo: '/images/logos/UKM.png' }
       );
     }
   }
