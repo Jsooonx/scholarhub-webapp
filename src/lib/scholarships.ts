@@ -54,11 +54,11 @@ export function providerGroup(provider: string): string {
   // Germany
   if (p.includes('daad') || p.includes('dlr') || p.includes('studienstiftung') || p.includes('german academic scholarship foundation')) return 'germany';
   // Japan
-  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services')) return 'japan';
+  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services') || p.includes('government of japan') || p.includes('adb') || p.includes('world bank')) return 'japan';
   // Turkey
   if (p.includes('turkiye') || p.includes('ytb') || p.includes('burslari')) return 'turkey';
   // United Kingdom
-  if (p.includes('chevening') || p.includes('gates cambridge') || p.includes('clarendon') || p.includes('oxford university press') || p.includes('rhodes trust') || p.includes('rhodes house')) return 'united-kingdom';
+  if (p.includes('chevening') || p.includes('gates cambridge') || p.includes('clarendon') || p.includes('oxford university press') || p.includes('rhodes trust') || p.includes('rhodes house') || p.includes('commonwealth scholarship')) return 'united-kingdom';
   // Australia
   if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp')) return 'australia';
   // South Korea
@@ -71,9 +71,9 @@ export function providerGroup(provider: string): string {
   if (p.includes('cpra') || p.includes('postdoctoral research award') || (p.includes('government of canada') && (p.includes('cihr') || p.includes('nserc') || p.includes('sshrc')))) return 'canada';
   if (p.includes('canada') || p.includes('cihr') || p.includes('nserc') || p.includes('sshrc') || p.includes('crtas') || p.includes('cgrs') || p.includes('university of toronto')) return 'canada';
   // United States
-  if (p.includes('fulbright') || p.includes('aminef')) return 'united-states';
+  if (p.includes('fulbright') || p.includes('aminef') || p.includes('knight-hennessy') || p.includes('stanford university')) return 'united-states';
   // Netherlands
-  if (p.includes('nuffic') || p.includes('dutch ministry') || p.includes('justus') || p.includes('van effen') || p.includes('university of groningen') || p.includes('university of amsterdam') || p.includes('leiden university') || p.includes('maastricht university') || p.includes('radboud university') || p.includes('tu delft') || p.includes('delft university')) return 'netherlands';
+  if (p.includes('nuffic') || p.includes('dutch ministry') || p.includes('justus') || p.includes('van effen') || p.includes('university of groningen') || p.includes('university of amsterdam') || p.includes('vrije universiteit amsterdam') || p.includes('vu amsterdam') || p.includes('leiden university') || p.includes('maastricht university') || p.includes('radboud university') || p.includes('tu delft') || p.includes('delft university')) return 'netherlands';
   // Belgium
   if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian government') || p.includes('icp connect')) return 'belgium';
   // EU
@@ -300,6 +300,25 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
 
   // ── United Kingdom (Chevening): annual window Aug–Oct ────────────────────────
   if (group === 'united-kingdom') {
+    const provider = s.provider.toLowerCase();
+    if (!provider.includes('chevening')) {
+      const sources: string[] = [];
+      if (s.important_dates) sources.push(...s.important_dates);
+      if (s.deadline) sources.push(s.deadline);
+      if (s.application_period) sources.push(...s.application_period);
+
+      const deadline = extractDate(sources);
+      if (deadline) {
+        const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86_400_000);
+        const fmt = deadline.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        if (diff < 0) return { type: 'closed', label: `Closed Â· ${fmt}`, deadline };
+        if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline };
+        return { type: 'open', label: `Open Â· closes ${fmt}`, daysLeft: diff, deadline };
+      }
+
+      return { type: 'check', label: 'Check official site' };
+    }
+
     const now2 = new Date();
     const year = now2.getFullYear();
     // Applications typically open 5 Aug, close 7 Oct
@@ -811,14 +830,14 @@ export const providerMeta: Record<
     name: 'Germany',
     flag: '🇩🇪',
     country: 'Germany',
-    description: 'Germany offers numerous scholarships through DAAD (the world\'s largest academic exchange organisation), Studienstiftung (Germany\'s most prestigious scholarship foundation), and various university-specific programmes. Public universities charge no tuition for most programmes.',
+    description: 'Germany offers numerous scholarships through DAAD, including EPOS and Leadership for Africa, plus Studienstiftung and university-specific programmes. Public universities charge no tuition for most programmes.',
     website: 'https://www.daad.de',
   },
   japan: {
     name: 'Japan',
     flag: '🇯🇵',
     country: 'Japan',
-    description: 'Japan offers scholarships through MEXT (Ministry of Education) covering tuition, monthly stipend, and airfare for undergraduate to doctoral studies, plus JASSO scholarships for privately-financed students and exchange programmes.',
+    description: 'Japan offers MEXT scholarships covering tuition, monthly stipend, and airfare, plus JASSO awards and Japan-funded global development scholarships such as ADB-Japan and JJ/WBGSP.',
     website: 'https://www.mext.go.jp',
   },
   turkey: {
@@ -874,15 +893,15 @@ export const providerMeta: Record<
     name: 'United States',
     flag: '🇺🇸',
     country: 'United States',
-    description: 'The Fulbright Program, administered in Indonesia by AMINEF, is the US government\'s flagship international exchange program offering fully funded Master\'s, PhD, Humphrey Fellowship, and FLTA teaching assistantships for Indonesian citizens.',
+    description: 'The US offers Fulbright/AMINEF awards for Indonesian citizens plus global university scholarships such as Stanford\'s Knight-Hennessy Scholars for full-time graduate study.',
     website: 'https://www.aminef.or.id',
   },
   netherlands: {
     name: 'Netherlands',
     flag: '🇳🇱',
     country: 'Netherlands',
-    description: 'The Netherlands offers the government-backed Holland Scholarship, Orange Knowledge Programme, and university-specific excellence awards at TU Delft, Amsterdam, Groningen, Leiden, Maastricht, and Radboud.',
-    website: 'https://www.studyinholland.nl/scholarships',
+    description: 'The Netherlands offers the NL Scholarship and university-specific excellence awards at TU Delft, Amsterdam, Groningen, Leiden, Maastricht, Radboud, and VU Amsterdam. Older OKP rounds have ended, so current applicants should check active alternatives.',
+    website: 'https://www.studyinnl.org/finances/scholarships',
   },
   belgium: {
     name: 'Belgium',
@@ -997,6 +1016,11 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   };
 
   // 1. Specific University / Provider Logos
+  if (name.includes('commonwealth')) return '/images/programlogos/commonwealth.png';
+  if (name.includes('adb-japan') || provider.includes('asian development bank')) return '/images/programlogos/adb-jsp.png';
+  if (name.includes('joint japan/world bank') || provider.includes('world bank')) return '/images/programlogos/jjwbgsp.png';
+  if (name.includes('knight-hennessy') || provider.includes('knight-hennessy') || provider.includes('stanford university')) return '/images/logos/Stanford.png';
+
   if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/logos/UofT.png';
   if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/logos/McGill.png';
   if (name.includes('british columbia') || hasWord('ubc')) return '/images/logos/UBC.png';
@@ -1052,6 +1076,7 @@ export function getScholarshipLogo(s: Scholarship): string | null {
 
   // Netherlands Universities
   if (name.includes('tu delft') || provider.includes('tu delft') || provider.includes('delft university')) return '/images/logos/TUDelft.png';
+  if (name.includes('vu fellowship') || name.includes('vrije universiteit amsterdam') || provider.includes('vrije universiteit amsterdam') || provider.includes('vu amsterdam')) return '/images/logos/VUAmsterdam.png';
   if (name.includes('university of amsterdam') || provider.includes('university of amsterdam') || hasWord('uva')) return '/images/logos/UniversityofAmsterdam.png';
   if (name.includes('leiden') || provider.includes('leiden')) return '/images/logos/LeidenU.png';
   if (name.includes('groningen') || provider.includes('groningen') || hasWord('rug')) return '/images/logos/Groningen.png';
@@ -1162,6 +1187,8 @@ export function getScholarshipImage(s: Scholarship): string {
   };
 
   // 1. Specific University Images
+  if (name.includes('knight-hennessy') || provider.includes('stanford university')) return '/images/universities/US_Stanford.png';
+
   if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/universities/CA_UofT.png';
   if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/universities/CA_McGill.png';
   if (name.includes('british columbia') || hasWord('ubc')) return '/images/universities/CA_UBC.png';
@@ -1298,6 +1325,7 @@ export function getScholarshipImage(s: Scholarship): string {
   if (group === 'united-kingdom') return '/images/universities/UK_Oxford.png';
   if (group === 'netherlands') {
     // Rotate through different NL university images based on scholarship name
+    if (name.includes('vu fellowship') || name.includes('vrije universiteit amsterdam') || provider.includes('vrije universiteit amsterdam') || provider.includes('vu amsterdam')) return '/images/universities/NL_VUAmsterdam.png';
     if (name.includes('groningen')) return '/images/universities/NL_TUDelft.png';
     if (name.includes('leiden')) return '/images/universities/NL_UniversityofAmsterdam.png';
     if (name.includes('maastricht')) return '/images/universities/NL_TUDelft.png';
@@ -1397,6 +1425,44 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
   const text = `${s.name} ${s.provider} ${s.description ?? ''}`.toLowerCase();
   const list: UniversityLogo[] = [];
 
+  if (text.includes('knight-hennessy') || text.includes('stanford university')) {
+    list.push(
+      { name: 'Stanford University', logo: '/images/logos/Stanford.png' },
+      { name: 'Stanford Graduate School of Business', logo: '/images/logos/StanfordGSB.png' },
+      { name: 'Stanford Graduate School of Education', logo: '/images/logos/StanfordGSE.png' },
+      { name: 'Stanford School of Engineering', logo: '/images/logos/StanfordEngineering.png' },
+      { name: 'Stanford Humanities Institute', logo: '/images/logos/StanfordHumanitiesInstitute.png' },
+      { name: 'Stanford Law School', logo: '/images/logos/StanfordLaw.png' },
+      { name: 'Stanford Medicine', logo: '/images/logos/StanfordMedicine.png' },
+      { name: 'Stanford Doerr School of Sustainability', logo: '/images/logos/StanfordDoerrSustainability.png' }
+    );
+  }
+
+  if (text.includes('adb-japan scholarship') || text.includes('asian development bank')) {
+    list.push(
+      { name: 'University of Tokyo', logo: '/images/logos/UofTokyo.png' },
+      { name: 'Ritsumeikan University', logo: '/images/logos/Ritsumeikan.png' },
+      { name: 'Institute of Science Tokyo', logo: '/images/logos/ScienceTokyo.png' },
+      { name: 'Asian Institute of Technology (AIT)', logo: '/images/logos/AIT.png' },
+      { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png' }
+    );
+  }
+
+  if (text.includes('joint japan/world bank') || text.includes('jj/wbgsp') || text.includes('world bank')) {
+    list.push(
+      { name: 'Brandeis University', logo: '/images/logos/Brandeis.png' },
+      { name: 'Columbia University', logo: '/images/logos/ColumbiaU.png' },
+      { name: 'Johns Hopkins University', logo: '/images/logos/JohnsHopkins.png' },
+      { name: 'KIT Royal Tropical Institute', logo: '/images/logos/KITRoyalTropicalInstitute.png' },
+      { name: 'Vrije Universiteit Amsterdam', logo: '/images/logos/VUAmsterdam.png' },
+      { name: 'University of California, Berkeley', logo: '/images/logos/UCBerkeley.png' },
+      { name: 'University of Tokyo', logo: '/images/logos/UofTokyo.png' },
+      { name: 'University of Tsukuba', logo: '/images/logos/Tsukuba.png' },
+      { name: 'Williams College', logo: '/images/logos/WilliamsCollege.png' },
+      { name: 'Yale University', logo: '/images/logos/Yale.png' }
+    );
+  }
+
   const universities = [
     { name: 'National University of Singapore (NUS)', logo: '/images/logos/NUS.png', keywords: ['nus', 'national university of singapore'] },
     { name: 'Nanyang Technological University (NTU)', logo: '/images/logos/NTU.png', keywords: ['ntu_sg', 'nanyang'] },
@@ -1452,6 +1518,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
 
     // Netherlands Universities
     { name: 'TU Delft', logo: '/images/logos/TUDelft.png', keywords: ['tu delft', 'delft university'] },
+    { name: 'Vrije Universiteit Amsterdam', logo: '/images/logos/VUAmsterdam.png', keywords: ['vrije universiteit amsterdam', 'vu amsterdam', 'vu fellowship'] },
     { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png', keywords: ['amsterdam', 'uva'] },
     { name: 'Leiden University', logo: '/images/logos/LeidenU.png', keywords: ['leiden'] },
     { name: 'University of Groningen', logo: '/images/logos/Groningen.png', keywords: ['groningen', 'rug'] },
@@ -1765,6 +1832,6 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     }
   }
 
-  return list;
+  return Array.from(new Map(list.map((item) => [item.logo, item])).values());
 }
 

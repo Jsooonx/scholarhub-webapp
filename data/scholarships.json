@@ -31,17 +31,20 @@
       "provider_group": "GERMANY",
       "programs": [
         "DAAD",
-        "Studienstiftung"
+        "Studienstiftung",
+        "Leadership for Africa"
       ],
-      "scholarship_count": 24
+      "scholarship_count": 25
     },
     {
       "provider_group": "JAPAN",
       "programs": [
         "MEXT",
-        "JASSO"
+        "JASSO",
+        "ADB-Japan",
+        "JJ/WBGSP"
       ],
-      "scholarship_count": 8
+      "scholarship_count": 10
     },
     {
       "provider_group": "TURKEY",
@@ -56,9 +59,10 @@
         "Chevening",
         "Gates Cambridge",
         "Clarendon",
-        "Rhodes"
+        "Rhodes",
+        "Commonwealth"
       ],
-      "scholarship_count": 7
+      "scholarship_count": 10
     },
     {
       "provider_group": "AUSTRALIA",
@@ -110,9 +114,10 @@
       "programs": [
         "Fulbright",
         "Humphrey",
-        "FLTA"
+        "FLTA",
+        "Knight-Hennessy"
       ],
-      "scholarship_count": 4
+      "scholarship_count": 5
     },
     {
       "provider_group": "NETHERLANDS",
@@ -125,9 +130,10 @@
         "UvA",
         "Leiden",
         "Maastricht",
-        "Radboud"
+        "Radboud",
+        "VUFP"
       ],
-      "scholarship_count": 9
+      "scholarship_count": 10
     },
     {
       "provider_group": "BELGIUM",
@@ -245,7 +251,7 @@
       "scholarship_count": 1
     }
   ],
-  "scholarship_count": 138,
+  "scholarship_count": 146,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -5750,6 +5756,67 @@
       "confidence_score": 0.95
     },
     {
+      "name": "VU Fellowship Programme - Vrije Universiteit Amsterdam",
+      "provider": "Vrije Universiteit Amsterdam",
+      "country": "Netherlands",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Merit-based tuition fee waiver for non-EU/EEA Master's students",
+      "fields": [
+        "Eligible English-taught Master's programmes at VU Amsterdam"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "Varies by intake; check VU Amsterdam scholarship page",
+      "application_period": [
+        "Apply alongside VU Master's admission according to the current scholarship timeline"
+      ],
+      "important_dates": [
+        "VUFP is a merit-based tuition fee waiver",
+        "Can be combined with the NL Scholarship as a contribution toward living costs",
+        "Intended for non-EU/EEA students who pay higher tuition fees"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA"
+        ],
+        "raw_items": [
+          "Non-EU/EEA nationality",
+          "Applying for an eligible Master's programme at Vrije Universiteit Amsterdam",
+          "Required to pay the higher institutional tuition fee",
+          "Excellent academic record",
+          "Must follow VU Amsterdam scholarship application instructions and deadlines"
+        ]
+      },
+      "benefits": [
+        "Tuition fee waiver through the VU Fellowship Programme",
+        "May be combined with the NL Scholarship as a contribution toward living costs",
+        "Access to VU Amsterdam international student support services"
+      ],
+      "amounts": [
+        "Tuition fee waiver; NL Scholarship may add EUR 5,000 if awarded"
+      ],
+      "target_group": "Talented prospective non-EU/EEA Master's students applying to Vrije Universiteit Amsterdam who need support with institutional tuition fees.",
+      "official_url": "https://vu.nl/en/education/more-about/incoming-master-scholarships",
+      "description": "The VU Fellowship Programme is a merit-based tuition fee waiver for excellent non-EU/EEA students applying for Master's programmes at Vrije Universiteit Amsterdam. It may be combined with the NL Scholarship for living-cost support.",
+      "application_process": [
+        "Apply for admission to an eligible VU Amsterdam Master's programme",
+        "Follow the VUFP scholarship instructions in the VU application portal",
+        "Submit academic records, motivation, CV, and any required scholarship documents by the current deadline",
+        "Check whether the NL Scholarship can be combined for the same intake"
+      ],
+      "source": "10_vu_fellowship.md",
+      "source_file": "data/raw/netherlands/10_vu_fellowship.md",
+      "confidence_score": 0.95
+    },
+    {
       "name": "Gates Cambridge Scholarship",
       "provider": "Gates Cambridge Trust / University of Cambridge",
       "country": "United Kingdom",
@@ -9139,6 +9206,466 @@
       "source_file": "data/raw/malaysia/01_mis_scholarship.md",
       "confidence_score": 0.95,
       "program_type": null
+    },
+    {
+      "name": "Commonwealth Master's Scholarships",
+      "provider": "Commonwealth Scholarship Commission in the UK",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "UK government development-focused Master scholarship",
+      "fields": [
+        "All eligible development-related courses at UK universities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "Applications for 2026/27 are closed; next round typically opens annually",
+      "application_period": [
+        "Check CSC website for the next annual round"
+      ],
+      "important_dates": [
+        "Applications for Commonwealth Master's scholarships for the 2026/27 academic year are closed",
+        "Awards are for full-time taught Master's study at a UK university",
+        "Applicants normally apply through a nominating agency or approved route depending on country"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Eligible Commonwealth countries"
+        ],
+        "raw_items": [
+          "Citizen of, or refugee status granted by, an eligible Commonwealth country",
+          "Permanently resident in an eligible Commonwealth country",
+          "Available to start academic study in the UK by the relevant September/October intake",
+          "Hold at least an upper second class undergraduate degree or appropriate second degree",
+          "Unable to afford to study in the UK without the scholarship",
+          "Must submit all supporting documentation by the CSC deadline"
+        ]
+      },
+      "benefits": [
+        "Approved tuition fees",
+        "Return airfare to and from the United Kingdom",
+        "Monthly living allowance",
+        "Warm clothing allowance where applicable",
+        "Study travel grant",
+        "Thesis or dissertation grant where applicable",
+        "Family allowances in limited circumstances"
+      ],
+      "amounts": [],
+      "target_group": "Talented candidates from eligible low and middle income Commonwealth countries who want to complete a development-focused Master's degree in the UK.",
+      "official_url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
+      "description": "Commonwealth Master's Scholarships are fully funded UK government awards for candidates from eligible Commonwealth countries, supporting full-time Master's study aligned with international development objectives.",
+      "application_process": [
+        "Check the eligible countries and nominating routes on the CSC website",
+        "Apply through the CSC online application system and the required nominating agency route",
+        "Apply separately for admission to eligible UK university courses where required",
+        "Upload all supporting documentation before the CSC deadline"
+      ],
+      "source": "01_masters.md",
+      "source_file": "data/raw/commonwealth/01_masters.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Commonwealth PhD Scholarships",
+      "provider": "Commonwealth Scholarship Commission in the UK",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "PhD"
+      ],
+      "program_type": "UK government doctoral scholarship for development-focused research",
+      "fields": [
+        "All eligible research areas aligned with CSC development themes"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 48
+      },
+      "deadline": "Applications for 2026/27 are closed; next round typically opens annually",
+      "application_period": [
+        "Check CSC website for the next annual round"
+      ],
+      "important_dates": [
+        "Applications for Commonwealth PhD scholarships for the 2026/27 academic year are closed",
+        "Awards support full-time doctoral study at a UK university",
+        "Eligibility and nomination routes vary by country and annual call"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Eligible Commonwealth countries"
+        ],
+        "raw_items": [
+          "Citizen of, or refugee status granted by, an eligible Commonwealth country",
+          "Permanently resident in an eligible Commonwealth country",
+          "Available to start academic study in the UK by the relevant intake",
+          "Hold academic qualifications suitable for doctoral study",
+          "Research proposal must align with CSC development objectives",
+          "Must submit all supporting documentation by the CSC deadline"
+        ]
+      },
+      "benefits": [
+        "Approved tuition fees",
+        "Return airfare to and from the United Kingdom",
+        "Monthly living allowance",
+        "Warm clothing allowance where applicable",
+        "Study travel grant",
+        "Thesis or dissertation grant where applicable",
+        "Family allowances in limited circumstances"
+      ],
+      "amounts": [],
+      "target_group": "Candidates from eligible Commonwealth countries pursuing full-time doctoral research in the UK with clear development impact.",
+      "official_url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-phd-scholarships-for-least-developed-countries-and-vulnerable-states/",
+      "description": "Commonwealth PhD Scholarships fund full-time doctoral study at UK universities for candidates from eligible Commonwealth countries, with selection focused on academic merit, research quality, and development impact.",
+      "application_process": [
+        "Check country eligibility and the current CSC PhD scholarship route",
+        "Prepare a doctoral research proposal aligned with CSC development themes",
+        "Apply through the CSC online application system and required nominating route",
+        "Apply to UK universities or supervisors as required by the chosen programme"
+      ],
+      "source": "02_phd.md",
+      "source_file": "data/raw/commonwealth/02_phd.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Commonwealth Shared Scholarships",
+      "provider": "Commonwealth Scholarship Commission in the UK / UK Universities",
+      "country": "United Kingdom",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "CSC and UK university co-funded Master scholarship",
+      "fields": [
+        "Eligible courses under CSC development themes"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "Applications for 2026/27 are closed; next round typically opens annually",
+      "application_period": [
+        "Check CSC eligible courses page for the next annual round"
+      ],
+      "important_dates": [
+        "Applications for Commonwealth Shared Scholarships for the 2026/27 academic year are closed",
+        "Scholarships are tied to eligible courses at participating UK universities",
+        "Eligible courses are grouped under CSC development themes"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Eligible Commonwealth countries"
+        ],
+        "raw_items": [
+          "Citizen of, or refugee status granted by, an eligible low or middle income Commonwealth country",
+          "Permanently resident in an eligible Commonwealth country",
+          "Unable to afford UK study without the scholarship",
+          "Apply to an eligible participating Master's course",
+          "Meet the university course admission requirements",
+          "Must submit all supporting documentation by the CSC and university deadlines"
+        ]
+      },
+      "benefits": [
+        "Approved tuition fees",
+        "Return airfare to and from the United Kingdom",
+        "Monthly living allowance",
+        "Warm clothing allowance where applicable",
+        "Study travel grant",
+        "Thesis or dissertation grant where applicable",
+        "Family allowances in limited circumstances"
+      ],
+      "amounts": [],
+      "target_group": "Applicants from eligible low and middle income Commonwealth countries applying to CSC-approved Master's courses at participating UK universities.",
+      "official_url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-shared-scholarships-applications/",
+      "description": "Commonwealth Shared Scholarships are fully funded Master's awards jointly supported by the CSC and UK universities, for candidates who could not otherwise afford UK study and whose course aligns with development themes.",
+      "application_process": [
+        "Review the CSC eligible courses list for the current cycle",
+        "Apply to a participating UK university course",
+        "Submit the CSC Shared Scholarship application through the CSC system",
+        "Follow any university-specific scholarship instructions and deadlines"
+      ],
+      "source": "03_shared.md",
+      "source_file": "data/raw/commonwealth/03_shared.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Knight-Hennessy Scholars - Stanford University",
+      "provider": "Knight-Hennessy Scholars / Stanford University",
+      "country": "United States",
+      "degree_levels": [
+        "Master",
+        "PhD",
+        "Professional Degree"
+      ],
+      "program_type": "Full Stanford graduate scholarship and leadership development programme",
+      "fields": [
+        "All full-time graduate degree programmes at Stanford University"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 36
+      },
+      "deadline": "6 October 2026 at 1:00 pm Pacific Time for the 2027 cohort",
+      "application_period": [
+        "Applications for the 2027 cohort are open; KHS deadline 6 October 2026"
+      ],
+      "important_dates": [
+        "Knight-Hennessy Scholars deadline: 6 October 2026, 1:00 pm Pacific Time",
+        "Stanford graduate programme application must be submitted by the earlier of the programme deadline or 1 December 2026",
+        "Applicants must submit separate but concurrent applications to KHS and to Stanford graduate admission"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [],
+        "raw_items": [
+          "Open to citizens and residents of all countries",
+          "Must apply to, be accepted by, and enroll in a full-time Stanford graduate degree programme",
+          "Eligible degrees include DMA, JD, MA, MBA, MD, MFA, MPP, MS, PhD, and joint or dual degrees",
+          "For the 2027 cohort, first bachelor's degree generally must have been earned in January 2020 or later",
+          "Current students graduating by September 2027 may apply",
+          "No restriction by field, career aspiration, age, college, university, or nationality"
+        ]
+      },
+      "benefits": [
+        "Tuition and associated fees for up to three years",
+        "Stipend for living and academic expenses",
+        "Annual travel stipend for one economy-class trip to and from Stanford",
+        "One-time relocation stipend for newly enrolling scholars",
+        "Supplemental academic enrichment funding may be available in years two and three",
+        "Leadership development programming through Knight-Hennessy Scholars"
+      ],
+      "amounts": [
+        "Full tuition and fees + living stipend + annual travel stipend"
+      ],
+      "target_group": "High-potential graduate applicants from any country applying to full-time Stanford graduate programmes and seeking a multidisciplinary leadership development community.",
+      "official_url": "https://knight-hennessy.stanford.edu/",
+      "description": "Knight-Hennessy Scholars is Stanford University's global graduate scholarship and leadership programme. It funds up to three years of graduate study across Stanford's seven schools and is open to applicants from all countries and all fields.",
+      "application_process": [
+        "Choose an eligible full-time Stanford graduate degree programme",
+        "Submit the Knight-Hennessy Scholars application by 6 October 2026, 1:00 pm Pacific Time",
+        "Submit the separate Stanford graduate programme application by the earlier of the programme deadline or 1 December 2026",
+        "Complete all programme-specific tests, English proficiency, essays, and recommendations required by Stanford",
+        "Finalists participate in the KHS selection process"
+      ],
+      "source": "01_overview.md",
+      "source_file": "data/raw/knight-hennessy/01_overview.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "ADB-Japan Scholarship Program",
+      "provider": "Asian Development Bank / Government of Japan",
+      "country": "Japan",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Japan-funded graduate scholarship at participating Asia-Pacific institutions",
+      "fields": [
+        "Economics",
+        "Business and Management",
+        "Science and Technology",
+        "Development-related fields"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "Varies by participating institution and programme",
+      "application_period": [
+        "Check participating institution deadlines"
+      ],
+      "important_dates": [
+        "Around 130-135 scholarships are offered annually",
+        "Applications are submitted through participating academic institutions",
+        "Deadlines vary by university and programme"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 2,
+        "country_restrictions": [
+          "ADB developing member countries"
+        ],
+        "raw_items": [
+          "Citizen of an ADB developing member country",
+          "Bachelor's degree or equivalent with superior academic record",
+          "At least two years of full-time professional working experience after a university degree",
+          "Proficiency in oral and written English",
+          "Not more than 35 years old in most cases, with exceptions for senior officials and managers",
+          "Must agree to return to home country after completing studies",
+          "Must apply to an approved Master's programme at a participating institution"
+        ]
+      },
+      "benefits": [
+        "Full tuition fees",
+        "Monthly subsistence and housing allowance",
+        "Books and instructional materials",
+        "Medical insurance",
+        "Travel expenses",
+        "Special grant for thesis preparation may be available"
+      ],
+      "amounts": [
+        "Full tuition + monthly allowance + travel + medical insurance"
+      ],
+      "target_group": "Citizens of ADB developing member countries with professional experience who want Master's study in development-related fields at participating Asia-Pacific institutions.",
+      "official_url": "https://www.adb.org/work-with-us/careers/japan-scholarship-program",
+      "description": "The ADB-Japan Scholarship Program is funded by the Government of Japan and supports graduate study in economics, management, science, technology, and development-related fields at participating institutions across Asia and the Pacific.",
+      "application_process": [
+        "Review the ADB-JSP list of participating institutions and eligible programmes",
+        "Apply directly to the participating institution and request consideration for ADB-JSP",
+        "Submit required academic, professional, English, and financial documents",
+        "The institution screens and recommends candidates to ADB"
+      ],
+      "source": "01_overview.md",
+      "source_file": "data/raw/adb-japan/01_overview.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Joint Japan/World Bank Graduate Scholarship Program",
+      "provider": "World Bank / Government of Japan",
+      "country": "Japan",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Japan-funded World Bank graduate scholarship for development professionals",
+      "fields": [
+        "Development-related fields",
+        "Economic Policy",
+        "Public Policy",
+        "Infrastructure",
+        "Tax Policy",
+        "Environmental Management"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "2026 Window 2: 29 May 2026; future windows vary annually",
+      "application_period": [
+        "2026 Window 2: 30 March 2026 - 29 May 2026"
+      ],
+      "important_dates": [
+        "2026 Application Window 2 opened 30 March 2026 and closed 29 May 2026",
+        "For 2026, eligible applicants must be admitted to one of 44 participating Master's programmes at 24 universities",
+        "Not eligible if not admitted to a participating programme"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 3,
+        "country_restrictions": [
+          "Eligible World Bank developing member countries"
+        ],
+        "raw_items": [
+          "Citizen of an eligible developing country",
+          "Relevant professional experience and history of supporting development efforts",
+          "Apply to or be admitted to a participating Master's programme in a development-related topic",
+          "Hold a bachelor's degree or equivalent earned at least three years before the application deadline",
+          "Be employed in development-related work at the time of application unless exempted by country conditions",
+          "Must meet all World Bank programme eligibility requirements for the current call"
+        ]
+      },
+      "benefits": [
+        "Tuition for the participating Master's programme",
+        "Monthly living stipend",
+        "Round-trip economy class airfare",
+        "Health insurance",
+        "Travel allowance"
+      ],
+      "amounts": [
+        "Tuition + monthly stipend + airfare + health insurance"
+      ],
+      "target_group": "Development professionals from eligible developing countries applying to participating Master's programmes in development-related fields.",
+      "official_url": "https://www.worldbank.org/en/programs/scholarships/jj-wbgsp",
+      "description": "The Joint Japan/World Bank Graduate Scholarship Program supports development professionals from eligible developing countries to complete participating Master's programmes in development-related fields, funded by the Government of Japan.",
+      "application_process": [
+        "Check the current list of JJ/WBGSP participating Master's programmes",
+        "Apply and secure admission to an eligible participating programme",
+        "Submit the JJ/WBGSP application during the relevant application window",
+        "Provide employment, development experience, academic, and recommendation documents required by the World Bank"
+      ],
+      "source": "01_overview.md",
+      "source_file": "data/raw/jjwbgsp/01_overview.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "DAAD Leadership for Africa",
+      "provider": "DAAD / German Federal Foreign Office",
+      "country": "Germany",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Master scholarship in Germany for selected African graduates and refugees",
+      "fields": [
+        "All disciplines except fields excluded by the annual call"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "Varies by annual regional call",
+      "application_period": [
+        "Check DAAD Leadership for Africa calls for current target countries and deadlines"
+      ],
+      "important_dates": [
+        "Target countries are announced for each annual call",
+        "Recent calls have covered East Africa and West/Central Africa",
+        "Applicants apply through the DAAD portal during the relevant call window"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Selected Sub-Saharan African countries and eligible refugees in those host countries"
+        ],
+        "raw_items": [
+          "Completed Bachelor's degree",
+          "Highly qualified refugee with recognised refugee status in an eligible host country, or highly qualified graduate from an eligible target country",
+          "Must meet the requirements in the current DAAD call for applications",
+          "Must qualify for Master's study in Germany",
+          "Fields and exclusions depend on the annual call"
+        ]
+      },
+      "benefits": [
+        "Monthly DAAD scholarship payment",
+        "Payments toward health, accident, and personal liability insurance",
+        "Travel allowance unless covered by another source",
+        "Study allowance",
+        "Preparatory German language course may be included where applicable",
+        "Additional family or rent support may be available under DAAD rules"
+      ],
+      "amounts": [
+        "DAAD Master scholarship rate; check current call for exact amount"
+      ],
+      "target_group": "Highly qualified refugees and graduates from selected Sub-Saharan African countries who want to pursue a Master's degree in Germany.",
+      "official_url": "https://www.daad.de/en/the-daad/intersecting-dimensions-topics/sustainable-development/funding-programmes/funding-programmes-for-students-a-z/leadership-for-africa/",
+      "description": "DAAD Leadership for Africa supports Master's study in Germany for selected African graduates and refugees, strengthening future leadership and academic capacity across target regions announced in each annual call.",
+      "application_process": [
+        "Check the current DAAD Leadership for Africa regional call and target countries",
+        "Confirm whether applying as a refugee applicant or national graduate applicant",
+        "Prepare academic documents, motivation, references, and proof of eligibility required by the call",
+        "Submit through the DAAD portal before the call deadline"
+      ],
+      "source": "leadership-for-africa.md",
+      "source_file": "data/raw/daad/leadership-for-africa.md",
+      "confidence_score": 0.95
     }
   ]
 }
