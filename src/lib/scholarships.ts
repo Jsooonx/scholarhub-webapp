@@ -75,7 +75,7 @@ export function providerGroup(provider: string): string {
   // Netherlands
   if (p.includes('nuffic') || p.includes('dutch ministry') || p.includes('justus') || p.includes('van effen') || p.includes('university of groningen') || p.includes('university of amsterdam') || p.includes('vrije universiteit amsterdam') || p.includes('vu amsterdam') || p.includes('leiden university') || p.includes('maastricht university') || p.includes('radboud university') || p.includes('tu delft') || p.includes('delft university')) return 'netherlands';
   // Belgium
-  if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian government') || p.includes('icp connect')) return 'belgium';
+  if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian government') || p.includes('icp connect') || p.includes('ares') || p.includes('académie de recherche') || p.includes('master mind') || p.includes('government of flanders') || p.includes('science@leuven') || p.includes('ku leuven') || p.includes('global minds') || p.includes('k.u. leuven')) return 'belgium';
   // EU
   if (p.includes('erasmus mundus') || p.includes('erasmus+') || p.includes('european commission')) return 'eu';
   // Sweden
@@ -1034,10 +1034,28 @@ export function getScholarshipLogo(s: Scholarship): string | null {
     return regex.test(name) || regex.test(provider);
   };
 
-  // 1. Specific University / Provider Logos
+  // 1. Program Logos (scholarship-specific)
   if (name.includes('commonwealth')) return '/images/programlogos/commonwealth.png';
   if (name.includes('adb-japan') || provider.includes('asian development bank')) return '/images/programlogos/adb-jsp.png';
   if (name.includes('joint japan/world bank') || provider.includes('world bank')) return '/images/programlogos/jjwbgsp.png';
+  if (name.includes('chevening')) return '/images/programlogos/chevening.png';
+  if (name.includes('clarendon')) return '/images/programlogos/clarendon.png';
+  if (name.includes('gates cambridge')) return '/images/programlogos/gatescambridge.png';
+  if (name.includes('rhodes')) return '/images/programlogos/rhodes.png';
+  if (name.includes('erasmus mundus') || name.includes('emjm')) return '/images/programlogos/erasmus+.png';
+  if (name.includes('eiffel')) return '/images/programlogos/franceexcellenceeiffel.png';
+  if (name.includes('sciences po') || name.includes('émile boutmy')) return '/images/programlogos/sciencepo.png';
+  if (name.includes('fulbright')) return '/images/programlogos/fulbright.png';
+  if (name.includes('studienstiftung')) return '/images/programlogos/Studienstiftung.png';
+  if (name.includes('australia awards') || name.includes('lpdp-australia')) return '/images/programlogos/australiaawards.png';
+  if (name.includes('global korea') || name.includes('gks')) return '/images/programlogos/gks.png';
+  if (name.includes('jasso') || name.includes('monbukagakusho honors')) return '/images/programlogos/jasso.png';
+  if (name.includes('koica')) return '/images/programlogos/koica.png';
+  if (name.includes('vlir') || name.includes('vliruos') || name.includes('icp connect')) return '/images/programlogos/vliruos.png';
+  if (name.includes('ares')) return '/images/programlogos/ares.png';
+  if (name.includes('master mind')) return '/images/logos/KULeuven.png';
+  if (name.includes('science@leuven')) return '/images/logos/KULeuven.png';
+  if (name.includes('global minds')) return '/images/logos/KULeuven.png';
   if (name.includes('knight-hennessy') || provider.includes('knight-hennessy') || provider.includes('stanford university')) return '/images/logos/Stanford.png';
 
   if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/logos/UofT.png';
@@ -1188,13 +1206,13 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('gothenburg') || provider.includes('gothenburg')) return '/images/logos/GothenburgU.png';
   if (name.includes('karolinska') || provider.includes('karolinska')) return '/images/logos/Karolinska.png';
 
-  // 2. Fallback to Group Logos
+  // 3. Fallback to Group Logos
   const group = providerGroup(s.provider);
   if (group === 'germany') return '/images/logos/daad.svg';
   if (group === 'japan') return '/images/logos/mext.svg';
   if (group === 'turkey') return '/images/logos/turkiye.png';
   if (group === 'united-states') return '/images/logos/Harvard.png';
-  if (group === 'belgium') return '/images/logos/KULeuven.png';
+  if (group === 'belgium') return '/images/programlogos/vliruos.png';
   if (group === 'eu') return '/images/logos/Bologna.png';
 
   return null;
@@ -1378,9 +1396,12 @@ export function getScholarshipImage(s: Scholarship): string {
     if (name.includes('flta') || name.includes('teaching assistant')) return '/images/universities/US_Stanford.png';
     return '/images/universities/US_Harvard.png';
   }
-  // Belgium VLIR - rotate between top Flemish universities
+  // Belgium - rotate between top Belgian universities
   if (group === 'belgium') {
     const name = s.name.toLowerCase();
+    if (name.includes('science@leuven') || name.includes('global minds') || name.includes('doctoral')) return '/images/universities/BEL_KULeuven.png';
+    if (name.includes('master mind')) return '/images/universities/BEL_GhentU.png';
+    if (name.includes('ares')) return '/images/universities/BEL_VUB.png';
     if (name.includes('advanced') || name.includes('1 year')) return '/images/universities/BEL_VUB.png';
     if (name.includes('bachelor')) return '/images/universities/BEL_GhentU.png';
     return '/images/universities/BEL_KULeuven.png';
@@ -1648,6 +1669,14 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Malaya (UM)', logo: '/images/logos/UM.png', keywords: ['um_my', 'university of malaya'] },
     { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png', keywords: ['upm', 'universiti putra malaysia', 'putra malaysia'] },
     { name: 'Universiti Kebangsaan Malaysia (UKM)', logo: '/images/logos/UKM.png', keywords: ['ukm', 'universiti kebangsaan malaysia'] },
+
+    // Belgium Universities
+    { name: 'KU Leuven', logo: '/images/logos/KULeuven.png', keywords: ['ku leuven', 'k.u. leuven', 'katholieke universiteit leuven', 'science@leuven', 'global minds'] },
+    { name: 'Ghent University', logo: '/images/logos/GhentU.png', keywords: ['ghent', 'gent university', 'universiteit gent'] },
+    { name: 'Vrije Universiteit Brussel (VUB)', logo: '/images/logos/VUB.png', keywords: ['vub', 'vrije universiteit brussel'] },
+    { name: 'Université catholique de Louvain (UCLouvain)', logo: '/images/logos/Bologna.png', keywords: ['uclouvain', 'louvain', 'catholique de louvain'] },
+    { name: 'University of Antwerp', logo: '/images/logos/Bologna.png', keywords: ['antwerp', 'universiteit antwerpen'] },
+    { name: 'Hasselt University', logo: '/images/logos/Bologna.png', keywords: ['hasselt', 'universiteit hasselt'] },
   ];
 
   universities.forEach((univ) => {
