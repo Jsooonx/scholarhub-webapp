@@ -60,7 +60,7 @@ export function providerGroup(provider: string): string {
   // United Kingdom
   if (p.includes('chevening') || p.includes('gates cambridge') || p.includes('clarendon') || p.includes('oxford university press') || p.includes('rhodes trust') || p.includes('rhodes house') || p.includes('commonwealth scholarship')) return 'united-kingdom';
   // Australia
-  if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp')) return 'australia';
+  if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp') || p.includes('university of melbourne') || p.includes('university of sydney') || p.includes('australian national university') || p.includes('monash university') || p.includes('university of queensland') || p.includes('unsw') || p.includes('flinders university') || p.includes('griffith university')) return 'australia';
   // South Korea
   if (p.includes('niied') || p.includes('korean government') || p.includes('gks') || p.includes('koica') || p.includes('korea international cooperation')) return 'south-korea';
   // Singapore
@@ -337,6 +337,25 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
 
   // ── Australia Awards: annual window closes ~30 April ─────────────────────
   if (group === 'australia') {
+    const provider = s.provider.toLowerCase();
+    if (!provider.includes('australia awards') && !provider.includes('dfat') && !provider.includes('lpdp')) {
+      const sources: string[] = [];
+      if (s.important_dates) sources.push(...s.important_dates);
+      if (s.deadline) sources.push(s.deadline);
+      if (s.application_period) sources.push(...s.application_period);
+
+      const deadline = extractDate(sources);
+      if (deadline) {
+        const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86_400_000);
+        const fmt = deadline.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        if (diff < 0) return { type: 'closed', label: `Closed · ${fmt}`, deadline };
+        if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline };
+        return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline };
+      }
+
+      return { type: 'check', label: 'Check official site' };
+    }
+
     const now3 = new Date();
     const year3 = now3.getFullYear();
     const close = new Date(year3, 3, 30); // April 30
@@ -1066,7 +1085,10 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('sydney') || provider.includes('sydney')) return '/images/logos/Sydney.png';
   if (hasWord('anu') || name.includes('australian national university')) return '/images/logos/ANU.png';
   if (name.includes('monash') || provider.includes('monash')) return '/images/logos/Monash_AUS.png';
+  if (name.includes('queensland') || provider.includes('queensland') || hasWord('uq')) return '/images/logos/UQ.png';
   if (hasWord('unsw') || name.includes('new south wales')) return '/images/logos/UNSW.png';
+  if (name.includes('flinders') || provider.includes('flinders')) return '/images/logos/Flinders.png';
+  if (name.includes('griffith') || provider.includes('griffith')) return '/images/logos/Griffith.png';
 
   if (hasWord('snu') || name.includes('seoul national')) return '/images/logos/SNU.png';
   if (hasWord('kaist') || name.includes('korea advanced institute of science')) return '/images/logos/KAIST.png';
@@ -1238,7 +1260,10 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('sydney') || provider.includes('sydney')) return '/images/universities/AUS_Sydney.png';
   if (hasWord('anu') || name.includes('australian national university')) return '/images/universities/AUS_ANU.png';
   if (name.includes('monash') || provider.includes('monash')) return '/images/universities/AUS_Monash.png';
+  if (name.includes('queensland') || provider.includes('queensland') || hasWord('uq')) return '/images/universities/AUS_UQ.png';
   if (hasWord('unsw') || name.includes('new south wales')) return '/images/universities/AUS_UNSW.png';
+  if (name.includes('flinders') || provider.includes('flinders')) return '/images/universities/AUS_Flinders.png';
+  if (name.includes('griffith') || provider.includes('griffith')) return '/images/universities/AUS_Griffith.png';
 
   if (hasWord('snu') || name.includes('seoul national')) return '/images/universities/KOR_SNU.png';
   if (hasWord('kaist') || name.includes('korea advanced institute of science')) return '/images/universities/KOR_KAIST.png';
@@ -1508,7 +1533,10 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Sydney', logo: '/images/logos/Sydney.png', keywords: ['sydney'] },
     { name: 'Australian National University (ANU)', logo: '/images/logos/ANU.png', keywords: ['anu', 'australian national university'] },
     { name: 'Monash University', logo: '/images/logos/Monash_AUS.png', keywords: ['monash'] },
+    { name: 'University of Queensland (UQ)', logo: '/images/logos/UQ.png', keywords: ['uq_aus', 'university of queensland'] },
     { name: 'UNSW Sydney', logo: '/images/logos/UNSW.png', keywords: ['unsw', 'new south wales'] },
+    { name: 'Flinders University', logo: '/images/logos/Flinders.png', keywords: ['flinders'] },
+    { name: 'Griffith University', logo: '/images/logos/Griffith.png', keywords: ['griffith'] },
 
     { name: 'Seoul National University (SNU)', logo: '/images/logos/SNU.png', keywords: ['snu', 'seoul national university'] },
     { name: 'KAIST', logo: '/images/logos/KAIST.png', keywords: ['kaist', 'korea advanced institute of science'] },
@@ -1629,6 +1657,10 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         const regex = new RegExp(`\\bum\\b`, 'i');
         return s.country === 'Malaysia' && regex.test(text);
       }
+      if (kw === 'uq_aus') {
+        const regex = new RegExp(`\\buq\\b`, 'i');
+        return s.country === 'Australia' && regex.test(text);
+      }
       if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
@@ -1709,7 +1741,10 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Sydney', logo: '/images/logos/Sydney.png' },
         { name: 'Australian National University (ANU)', logo: '/images/logos/ANU.png' },
         { name: 'Monash University', logo: '/images/logos/Monash_AUS.png' },
-        { name: 'UNSW Sydney', logo: '/images/logos/UNSW.png' }
+        { name: 'University of Queensland (UQ)', logo: '/images/logos/UQ.png' },
+        { name: 'UNSW Sydney', logo: '/images/logos/UNSW.png' },
+        { name: 'Flinders University', logo: '/images/logos/Flinders.png' },
+        { name: 'Griffith University', logo: '/images/logos/Griffith.png' }
       );
     } else if (country === 'south korea' || group === 'south-korea') {
       list.push(
