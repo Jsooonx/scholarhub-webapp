@@ -1431,7 +1431,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       { name: 'Stanford Graduate School of Business', logo: '/images/logos/StanfordGSB.png' },
       { name: 'Stanford Graduate School of Education', logo: '/images/logos/StanfordGSE.png' },
       { name: 'Stanford School of Engineering', logo: '/images/logos/StanfordEngineering.png' },
-      { name: 'Stanford Humanities Institute', logo: '/images/logos/StanfordHumanitiesInstitute.png' },
+      { name: 'Stanford School of Humanities & Sciences', logo: '/images/logos/StanfordHumanitiesSciences.png' },
       { name: 'Stanford Law School', logo: '/images/logos/StanfordLaw.png' },
       { name: 'Stanford Medicine', logo: '/images/logos/StanfordMedicine.png' },
       { name: 'Stanford Doerr School of Sustainability', logo: '/images/logos/StanfordDoerrSustainability.png' }
