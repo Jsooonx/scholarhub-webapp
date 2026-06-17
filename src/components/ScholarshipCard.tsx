@@ -39,7 +39,7 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid' }: Pr
         className="flex flex-col sm:flex-row gap-4 sm:items-start group p-4 rounded-2xl border border-brand-border hover:border-brand-dark/20 hover:bg-brand-cream/50 transition-all duration-200"
       >
         {/* Provider badge */}
-        <div className="flex-shrink-0 w-12 h-12 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 text-xl">
+        <div className="relative flex-shrink-0 w-12 h-12 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 text-xl">
           {logoUrl ? (
             <img src={logoUrl} alt={s.provider} className="w-full h-full object-contain" />
           ) : (
@@ -102,7 +102,7 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid' }: Pr
       <div className="p-5 flex flex-col flex-1">
         {/* Header */}
         <div className="flex items-start justify-between gap-3 mb-3">
-          <div className="w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
+          <div className="relative w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
             {logoUrl ? (
               <img src={logoUrl} alt={s.provider} className="w-full h-full object-contain" />
             ) : (

@@ -151,7 +151,7 @@ export default async function ScholarshipDetailPage({
               {/* Left: Title block */}
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
+                  <div className="relative w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
                     {getScholarshipLogo(s) ? (
                       <img src={getScholarshipLogo(s)!} alt={s.provider} className="w-full h-full object-contain" />
                     ) : (
@@ -569,7 +569,7 @@ export default async function ScholarshipDetailPage({
               <div className="rounded-2xl border border-brand-border bg-brand-cream p-5">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-brand-muted mb-3">Provider</p>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
+                  <div className="relative w-10 h-10 rounded-xl border border-brand-border bg-white flex items-center justify-center p-1.5 flex-shrink-0">
                     {getScholarshipLogo(s) ? (
                       <img src={getScholarshipLogo(s)!} alt={s.provider} className="w-full h-full object-contain" />
                     ) : (

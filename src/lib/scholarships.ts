@@ -79,7 +79,7 @@ export function providerGroup(provider: string): string {
   // EU
   if (p.includes('erasmus mundus') || p.includes('erasmus+') || p.includes('european commission')) return 'eu';
   // Sweden
-  if (p.includes('swedish institute') || p.includes('svenska institutet')) return 'sweden';
+  if (p.includes('swedish institute') || p.includes('svenska institutet') || p.includes('lund university') || p.includes('kth royal institute') || p.includes('chalmers university') || p.includes('uppsala university') || p.includes('stockholm university') || p.includes('university of gothenburg') || p.includes('karolinska institutet')) return 'sweden';
   // Italy
   if (p.includes('maeci') || p.includes('italian government') || p.includes('ministry of foreign affairs and international cooperation') || p.includes('invest your talent')) return 'italy';
   // China
@@ -1183,6 +1183,10 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/logos/KTH.png';
   if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/logos/LundU.png';
   if (name.includes('uppsala university') || name.includes('uppsala universitet') || hasWord('uppsala')) return '/images/logos/UppsalaU.png';
+  if (name.includes('chalmers') || provider.includes('chalmers')) return '/images/logos/Chalmers.png';
+  if (name.includes('stockholm university') || provider.includes('stockholm university')) return '/images/logos/StockholmU.png';
+  if (name.includes('gothenburg') || provider.includes('gothenburg')) return '/images/logos/GothenburgU.png';
+  if (name.includes('karolinska') || provider.includes('karolinska')) return '/images/logos/Karolinska.png';
 
   // 2. Fallback to Group Logos
   const group = providerGroup(s.provider);
@@ -1331,6 +1335,10 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/universities/SWE_KTH.png';
   if (name.includes('lund university') || name.includes('lunds universitet') || hasWord('lund')) return '/images/universities/SWE_LundU.png';
   if (name.includes('uppsala university') || name.includes('uppsala universitet') || hasWord('uppsala')) return '/images/universities/SWE_UppsalaU.png';
+  if (name.includes('chalmers') || provider.includes('chalmers')) return '/images/universities/SWE_Chalmers.png';
+  if (name.includes('stockholm university') || provider.includes('stockholm university')) return '/images/universities/SWE_StockholmU.png';
+  if (name.includes('gothenburg') || provider.includes('gothenburg')) return '/images/universities/SWE_GothenburgU.png';
+  if (name.includes('karolinska') || provider.includes('karolinska')) return '/images/universities/SWE_Karolinska.png';
 
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
@@ -1592,6 +1600,10 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'KTH Royal Institute of Technology', logo: '/images/logos/KTH.png', keywords: ['kth', 'royal institute of technology'] },
     { name: 'Lund University', logo: '/images/logos/LundU.png', keywords: ['lund', 'lunds universitet'] },
     { name: 'Uppsala University', logo: '/images/logos/UppsalaU.png', keywords: ['uppsala', 'uppsala universitet'] },
+    { name: 'Chalmers University of Technology', logo: '/images/logos/Chalmers.png', keywords: ['chalmers'] },
+    { name: 'Stockholm University', logo: '/images/logos/StockholmU.png', keywords: ['stockholm university'] },
+    { name: 'University of Gothenburg', logo: '/images/logos/GothenburgU.png', keywords: ['gothenburg'] },
+    { name: 'Karolinska Institutet', logo: '/images/logos/Karolinska.png', keywords: ['karolinska'] },
 
     // Taiwan Universities
     { name: 'National Taiwan University (NTU)', logo: '/images/logos/NTU_Taiwan.png', keywords: ['ntu_tw', 'national taiwan university'] },
@@ -1802,7 +1814,11 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       list.push(
         { name: 'Lund University', logo: '/images/logos/LundU.png' },
         { name: 'KTH Royal Institute of Technology', logo: '/images/logos/KTH.png' },
-        { name: 'Uppsala University', logo: '/images/logos/UppsalaU.png' }
+        { name: 'Uppsala University', logo: '/images/logos/UppsalaU.png' },
+        { name: 'Chalmers University of Technology', logo: '/images/logos/Chalmers.png' },
+        { name: 'Stockholm University', logo: '/images/logos/StockholmU.png' },
+        { name: 'University of Gothenburg', logo: '/images/logos/GothenburgU.png' },
+        { name: 'Karolinska Institutet', logo: '/images/logos/Karolinska.png' }
       );
     } else if (group === 'china') {
       list.push(

@@ -171,9 +171,16 @@
       "provider_group": "SWEDEN",
       "programs": [
         "SISGP",
-        "PWIS"
+        "PWIS",
+        "Lund",
+        "KTH",
+        "Chalmers",
+        "Uppsala",
+        "Stockholm",
+        "Gothenburg",
+        "Karolinska"
       ],
-      "scholarship_count": 2
+      "scholarship_count": 9
     },
     {
       "provider_group": "ITALY",
@@ -259,7 +266,7 @@
       "scholarship_count": 1
     }
   ],
-  "scholarship_count": 154,
+  "scholarship_count": 161,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -7678,6 +7685,438 @@
       ],
       "source": "07_en_apply_scholarships_pioneeringwomeninstem.md",
       "source_file": "data/raw/sweden/07_en_apply_scholarships_pioneeringwomeninstem.md",
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Lund University Global Scholarship",
+      "provider": "Lund University",
+      "country": "Sweden",
+      "degree_levels": [
+        "Bachelor",
+        "Master"
+      ],
+      "program_type": "Merit-based tuition waiver for top academic students at Lund University",
+      "fields": [
+        "All Bachelor's and Master's programmes at Lund University"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Mid-February (annually)",
+      "application_period": [
+        "16 October – 15 January (programme application)",
+        "February (scholarship application)"
+      ],
+      "important_dates": [
+        "Programme application via UniversityAdmissions.se: 16 October 2025 – 15 January 2026",
+        "Scholarship application: February 2026 (after programme application)",
+        "Scholarship results: March – April 2026",
+        "Studies commence: August/September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens (and Switzerland) who are required to pay tuition fees"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU/EEA (and Switzerland) required to pay tuition",
+          "Must have applied to a Bachelor's or Master's programme at Lund University via UniversityAdmissions.se",
+          "Outstanding academic record — top academic students are prioritised",
+          "Strong motivation letter explaining why Lund University is the right choice"
+        ]
+      },
+      "benefits": [
+        "Up to 100% tuition fee waiver for the full programme duration",
+        "Coverage for Bachelor's (3 years) or Master's (1–2 years)"
+      ],
+      "amounts": [
+        "Up to 100% tuition fee waiver (tuition: approx. SEK 100,000–145,000/year depending on programme)"
+      ],
+      "target_group": "Top academic students from outside the EU/EEA applying for Bachelor's or Master's programmes at Lund University. Highly competitive — awarded based on academic excellence and motivation.",
+      "official_url": "https://www.lunduniversity.lu.se/study/bachelors-and-masters-studies/scholarships-and-awards/lund-university-global-scholarship",
+      "description": "The Lund University Global Scholarship is a selective, merit-based scholarship for top academic students from outside the EU/EEA who are applying for Bachelor's or Master's programmes at Lund University. The scholarship covers up to 100% of tuition fees for the full duration of the programme. Lund University is consistently ranked among the world's top 100 universities (QS World Rankings). Selection is based on academic excellence and the strength of the motivation letter.",
+      "application_process": [
+        "Step 1 (Oct 16 – Jan 15): Apply for a Bachelor's or Master's programme at Lund University via UniversityAdmissions.se",
+        "Step 2 (February): After submitting your programme application, apply for the Lund University Global Scholarship through the university's scholarship portal",
+        "Step 3: Write a strong motivation letter explaining your academic achievements and why you chose Lund",
+        "Step 4: Selection is based on academic merit — results announced March–April",
+        "Step 5: If awarded, the tuition fee waiver is applied automatically each semester"
+      ],
+      "source": "lund_university_global_scholarship",
+      "source_file": null,
+      "confidence_score": 0.95
+    },
+    {
+      "name": "KTH Scholarship",
+      "provider": "KTH Royal Institute of Technology",
+      "country": "Sweden",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Full tuition fee waiver for Master's students at KTH",
+      "fields": [
+        "All Master's programmes at KTH"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "January 15 (annually, aligned with UniversityAdmissions.se)",
+      "application_period": [
+        "16 October – 15 January (programme application)",
+        "Scholarship considered automatically after admission application"
+      ],
+      "important_dates": [
+        "Programme application via UniversityAdmissions.se: 16 October 2025 – 15 January 2026",
+        "Scholarship nomination: based on admission application (no separate application)",
+        "Scholarship results: April 2026",
+        "Studies commence: August/September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens required to pay tuition"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU/EEA required to pay tuition",
+          "Must have applied for a Master's programme at KTH via UniversityAdmissions.se",
+          "Excellent academic record — awarded to top applicants (approx. 8% of scholarship applicants)",
+          "No separate scholarship application — all admitted non-EU/EEA applicants are automatically considered"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver for the entire Master's programme (1–2 years)",
+        "Access to KTH's career services and industry network"
+      ],
+      "amounts": [
+        "Full tuition fee waiver (tuition: approx. SEK 155,000–170,000/year)"
+      ],
+      "target_group": "Outstanding non-EU/EEA Master's applicants to KTH Royal Institute of Technology. Extremely competitive — in 2025, only 65 out of 803 scholarship applicants (8%) were awarded.",
+      "official_url": "https://www.kth.se/en/studies/master/admissions/scholarships/kth-scholarship-1.72827",
+      "description": "The KTH Scholarship covers the full tuition fee for a one or two-year Master's programme at KTH Royal Institute of Technology in Stockholm. Open to non-EU/EEA citizens who are required to pay tuition. All admitted non-EU/EEA applicants are automatically considered — no separate scholarship application is needed. In 2025, 8% of scholarship applicants (65 out of 803) were awarded. KTH is ranked among the world's top 100 universities for engineering and technology.",
+      "application_process": [
+        "Step 1 (Oct 16 – Jan 15): Apply for a Master's programme at KTH via UniversityAdmissions.se",
+        "Step 2: All admitted non-EU/EEA applicants are automatically considered for the KTH Scholarship",
+        "Step 3: No separate scholarship application or additional documents required",
+        "Step 4: Selection is based on academic excellence — results announced in April",
+        "Step 5: If awarded, full tuition is waived for the programme duration"
+      ],
+      "source": "kth_scholarship",
+      "source_file": null,
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Chalmers IPOET Scholarship",
+      "provider": "Chalmers University of Technology",
+      "country": "Sweden",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "75% tuition fee waiver for Master's students at Chalmers",
+      "fields": [
+        "All Master's programmes at Chalmers"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "January 15 (annually, aligned with UniversityAdmissions.se)",
+      "application_period": [
+        "16 October – 15 January (programme application)",
+        "Scholarship application after admission"
+      ],
+      "important_dates": [
+        "Programme application via UniversityAdmissions.se: 16 October 2025 – 15 January 2026",
+        "Scholarship application: after programme application (separate process)",
+        "Scholarship results: March – April 2026",
+        "Studies commence: August/September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens required to pay tuition"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU/EEA required to pay tuition",
+          "Must have applied for a Master's programme at Chalmers via UniversityAdmissions.se",
+          "Excellent academic record — merit-based selection",
+          "Priority given to first-time applicants to Chalmers",
+          "Approximately 35 IPOET scholarships awarded per year"
+        ]
+      },
+      "benefits": [
+        "75% tuition fee waiver for the full Master's programme (2 years)",
+        "Priority for renewal in the second year if academic progress is satisfactory"
+      ],
+      "amounts": [
+        "75% tuition fee waiver (tuition: approx. SEK 140,000–160,000/year)"
+      ],
+      "target_group": "Outstanding non-EU/EEA Master's applicants to Chalmers University of Technology. Approximately 35 scholarships awarded per year. The IPOET scholarship covers 75% of tuition, funded by the Swedish Council for Higher Education.",
+      "official_url": "https://www.chalmers.se/en/education/fees-and-scholarships/scholarship-offers/",
+      "description": "The Chalmers IPOET (International Programme Office for Education and Training) Scholarship provides a 75% tuition fee waiver for non-EU/EEA students pursuing Master's programmes at Chalmers University of Technology in Gothenburg. Approximately 35 scholarships are awarded annually, funded by the Swedish Council for Higher Education. The scholarship is renewable for the second year subject to satisfactory academic progress. Chalmers is ranked in the top 150 globally for engineering and technology.",
+      "application_process": [
+        "Step 1 (Oct 16 – Jan 15): Apply for a Master's programme at Chalmers via UniversityAdmissions.se",
+        "Step 2: After submitting your programme application, apply for the IPOET Scholarship via Chalmers' scholarship portal",
+        "Step 3: Provide academic transcripts and a motivation letter",
+        "Step 4: Selection is based on academic merit — results announced March–April",
+        "Step 5: If awarded, 75% tuition is waived; renewal for Year 2 depends on academic progress"
+      ],
+      "source": "chalmers_ipoet",
+      "source_file": null,
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Uppsala University Global Scholarship",
+      "provider": "Uppsala University",
+      "country": "Sweden",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Tuition fee waiver for Master's students at Uppsala University",
+      "fields": [
+        "All Master's programmes at Uppsala University"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "February (annually)",
+      "application_period": [
+        "16 October – 15 January (programme application)",
+        "Scholarship application: typically January – February"
+      ],
+      "important_dates": [
+        "Programme application via UniversityAdmissions.se: 16 October 2025 – 15 January 2026",
+        "Scholarship application: January – February 2026",
+        "Scholarship results: March – April 2026",
+        "Studies commence: August/September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens (and Switzerland) required to pay tuition"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU/EEA (and Switzerland) required to pay tuition",
+          "Must have applied for a Master's programme at Uppsala University via UniversityAdmissions.se",
+          "Outstanding academic record",
+          "Must demonstrate strong motivation for the chosen programme"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver for the Master's programme (1–2 years)"
+      ],
+      "amounts": [
+        "Full tuition fee waiver (tuition: approx. SEK 100,000–145,000/year depending on programme)"
+      ],
+      "target_group": "Outstanding non-EU/EEA Master's applicants to Uppsala University. One of Sweden's oldest and most prestigious universities, ranked in the world's top 100.",
+      "official_url": "https://www.uu.se/en/admissions/scholarships/",
+      "description": "The Uppsala University Global Scholarship provides a full tuition fee waiver for non-EU/EEA students pursuing Master's programmes at Uppsala University. Uppsala University is one of Sweden's oldest and most prestigious universities, consistently ranked among the world's top 100 (QS World Rankings). Selection is based on academic excellence and motivation. The scholarship covers tuition only — living expenses must be funded separately.",
+      "application_process": [
+        "Step 1 (Oct 16 – Jan 15): Apply for a Master's programme at Uppsala University via UniversityAdmissions.se",
+        "Step 2 (Jan – Feb): Apply for the Global Scholarship through Uppsala University's scholarship portal",
+        "Step 3: Submit academic transcripts and motivation letter",
+        "Step 4: Selection based on academic merit — results announced March–April",
+        "Step 5: If awarded, full tuition is waived for the programme duration"
+      ],
+      "source": "uppsala_global_scholarship",
+      "source_file": null,
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Stockholm University Scholarship",
+      "provider": "Stockholm University",
+      "country": "Sweden",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Full tuition fee waiver for Master's students at Stockholm University",
+      "fields": [
+        "All Master's programmes at Stockholm University"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "January/February (annually)",
+      "application_period": [
+        "16 October – 15 January (programme application)",
+        "Scholarship application: January – February"
+      ],
+      "important_dates": [
+        "Programme application via UniversityAdmissions.se: 16 October 2025 – 15 January 2026",
+        "Scholarship application: January – February 2026",
+        "Scholarship results: March – April 2026",
+        "Studies commence: August/September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA/Swiss citizens required to pay tuition"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU/EEA/Switzerland required to pay tuition",
+          "Must have applied for a Master's programme at Stockholm University via UniversityAdmissions.se",
+          "Strong academic record — merit-based selection",
+          "No separate fee for the scholarship application"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver for the Master's programme (1–2 years)"
+      ],
+      "amounts": [
+        "Full tuition fee waiver (tuition: approx. SEK 90,000–145,000/year depending on programme)"
+      ],
+      "target_group": "Outstanding non-EU/EEA Master's applicants to Stockholm University, located in Sweden's capital. Limited number of scholarships — highly competitive.",
+      "official_url": "https://www.su.se/english/education/scholarships-1.643702",
+      "description": "The Stockholm University Scholarship covers full tuition fees for non-EU/EEA/Swiss students pursuing Master's programmes at Stockholm University. Located in Sweden's capital, Stockholm University offers a wide range of Master's programmes across all fields. The scholarship is highly competitive with a limited number of awards. Living expenses are not covered — students must fund these separately.",
+      "application_process": [
+        "Step 1 (Oct 16 – Jan 15): Apply for a Master's programme at Stockholm University via UniversityAdmissions.se",
+        "Step 2 (Jan – Feb): Apply for the scholarship through Stockholm University's scholarship portal",
+        "Step 3: Submit academic transcripts and motivation letter",
+        "Step 4: Selection is based on academic merit — results announced March–April",
+        "Step 5: If awarded, full tuition is waived each semester"
+      ],
+      "source": "stockholm_university_scholarship",
+      "source_file": null,
+      "confidence_score": 0.95
+    },
+    {
+      "name": "University of Gothenburg Global Scholarship",
+      "provider": "University of Gothenburg",
+      "country": "Sweden",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Tuition fee waiver for Master's students at the University of Gothenburg",
+      "fields": [
+        "All Master's programmes at the University of Gothenburg"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "January/February (annually)",
+      "application_period": [
+        "16 October – 15 January (programme application)",
+        "Scholarship application: January – February"
+      ],
+      "important_dates": [
+        "Programme application via UniversityAdmissions.se: 16 October 2025 – 15 January 2026",
+        "Scholarship application: January – February 2026",
+        "Scholarship results: March – April 2026",
+        "Studies commence: August/September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens required to pay tuition"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU/EEA required to pay tuition",
+          "Must have applied for a Master's programme at the University of Gothenburg via UniversityAdmissions.se",
+          "Strong academic record — merit-based selection"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver for the Master's programme (1–2 years)"
+      ],
+      "amounts": [
+        "Full tuition fee waiver (tuition: approx. SEK 90,000–145,000/year depending on programme)"
+      ],
+      "target_group": "Outstanding non-EU/EEA Master's applicants to the University of Gothenburg. One of Sweden's largest and most broad-based universities, ranked among the world's top 200.",
+      "official_url": "https://www.gu.se/en/study-in-gothenburg/apply/scholarships",
+      "description": "The University of Gothenburg Global Scholarship covers full tuition fees for non-EU/EEA students pursuing Master's programmes. The University of Gothenburg is one of Sweden's largest universities with over 38,000 students, known for its broad range of disciplines and strong research output. Selection is based on academic excellence. Living expenses are not covered.",
+      "application_process": [
+        "Step 1 (Oct 16 – Jan 15): Apply for a Master's programme at the University of Gothenburg via UniversityAdmissions.se",
+        "Step 2 (Jan – Feb): Apply for the Global Scholarship through the university's scholarship portal",
+        "Step 3: Submit academic transcripts and motivation letter",
+        "Step 4: Selection is based on academic merit — results announced March–April",
+        "Step 5: If awarded, full tuition is waived each semester"
+      ],
+      "source": "university_of_gothenburg_scholarship",
+      "source_file": null,
+      "confidence_score": 0.95
+    },
+    {
+      "name": "Karolinska Institutet Global Master's Scholarship",
+      "provider": "Karolinska Institutet",
+      "country": "Sweden",
+      "degree_levels": [
+        "Master"
+      ],
+      "program_type": "Full tuition fee waiver for Global Master's students at Karolinska Institutet",
+      "fields": [
+        "Global Master's programmes at Karolinska Institutet (biomedicine, public health, global health, etc.)"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 24
+      },
+      "deadline": "January 15 (annually, aligned with UniversityAdmissions.se)",
+      "application_period": [
+        "16 October – 15 January (programme application)",
+        "Scholarship application: after programme application"
+      ],
+      "important_dates": [
+        "Programme application via UniversityAdmissions.se: 16 October 2025 – 15 January 2026",
+        "Scholarship application: after programme application",
+        "Scholarship results: March – April 2026",
+        "Studies commence: August/September 2026"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA citizens required to pay tuition"
+        ],
+        "raw_items": [
+          "Citizen of a country outside the EU/EEA required to pay tuition",
+          "Must have applied for a Global Master's programme at Karolinska Institutet",
+          "Outstanding academic record in a relevant field",
+          "Strong motivation and alignment with programme goals",
+          "Limited number of scholarships — extremely competitive"
+        ]
+      },
+      "benefits": [
+        "Full tuition fee waiver for the Global Master's programme (1–2 years)"
+      ],
+      "amounts": [
+        "Full tuition fee waiver (tuition: approx. SEK 180,000–200,000/year for KI programmes)"
+      ],
+      "target_group": "Outstanding non-EU/EEA applicants to Karolinska Institutet's Global Master's programmes in biomedical sciences, public health, and related fields. KI is home to the Nobel Assembly — extremely competitive.",
+      "official_url": "https://education.ki.se/master/fees-scholarships",
+      "description": "The Karolinska Institutet Global Master's Scholarship covers full tuition fees for non-EU/EEA students in Global Master's programmes at KI, one of the world's leading medical universities. Karolinska Institutet is renowned for its role in awarding the Nobel Prize in Physiology or Medicine. The scholarship is highly competitive with limited awards. Covers tuition only — living expenses must be funded separately.",
+      "application_process": [
+        "Step 1 (Oct 16 – Jan 15): Apply for a Global Master's programme at Karolinska Institutet via UniversityAdmissions.se",
+        "Step 2: After submitting your programme application, apply for the KI scholarship through the university's portal",
+        "Step 3: Submit academic transcripts, CV, and motivation letter",
+        "Step 4: Selection is based on academic merit and motivation — results announced March–April",
+        "Step 5: If awarded, full tuition is waived each semester"
+      ],
+      "source": "karolinska_institutet_scholarship",
+      "source_file": null,
       "confidence_score": 0.95
     },
     {
