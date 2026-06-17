@@ -1388,7 +1388,11 @@ export function getScholarshipImage(s: Scholarship): string {
   // Erasmus Mundus - use Bologna as iconic EU university
   if (group === 'eu') return '/images/universities/ITA_Bologna.png';
   if (group === 'italy') return '/images/universities/ITA_Polimi.png';
-  if (group === 'sweden') return '/images/universities/SWE_LundU.png';
+  if (group === 'sweden') {
+    // Rotate Sweden images for scholarships without a specific university match
+    if (name.includes('stem') || name.includes('women') || name.includes('pioneering')) return '/images/universities/SWE_KTH.png';
+    return '/images/universities/SWE_StockholmU.png';
+  }
   if (group === 'china') return '/images/universities/CN_Tsinghua.png';
   if (group === 'hungary') {
     if (name.includes('doctoral') || name.includes('phd')) return '/images/universities/HU_Semmelweis.png';
