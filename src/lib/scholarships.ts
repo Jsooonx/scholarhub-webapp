@@ -1208,6 +1208,7 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('eötvös') || provider.includes('eötvös') || name.includes('elte') || provider.includes('elte')) return '/images/logos/ELTE.png';
   if (name.includes('semmelweis') || provider.includes('semmelweis')) return '/images/logos/Semmelweis.png';
   if (name.includes('szeged') || provider.includes('szeged') || hasWord('szte')) return '/images/logos/Szeged.png';
+  if (name.includes('debrecen') || provider.includes('debrecen')) return '/images/logos/Debrecen.png';
 
   // Taiwan Universities
   if (name.includes('national taiwan university') || (hasWord('ntu') && s.country === 'Taiwan')) return '/images/logos/NTU_Taiwan.png';
@@ -1223,6 +1224,7 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('university of auckland') || name.includes('auckland university')) return '/images/logos/Auckland.png';
   if (name.includes('university of otago') || name.includes('otago university')) return '/images/logos/Otago.png';
   if (name.includes('victoria university of wellington') || name.includes('victoria university wellington') || hasWord('vuw')) return '/images/logos/VUW.png';
+  if (name.includes('massey') || provider.includes('massey')) return '/images/logos/Massey.png';
 
   // Ireland Universities
   if (name.includes('trinity college dublin') || name.includes('university of dublin') || hasWord('tcd')) return '/images/logos/TCD.png';
@@ -1261,6 +1263,8 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('university of geneva') || provider.includes('university of geneva') || provider.includes('unige')) return '/images/logos/UNIGE.png';
   // Austria
   if (name.includes('helmut veith') || name.includes('tu wien') || provider.includes('vienna university of technology')) return '/images/logos/TUWien.png';
+  if (name.includes('university of vienna') || name.includes('universität wien') || name.includes('univie')) return '/images/logos/Vienna.png';
+  if (name.includes('innsbruck') || name.includes('universität innsbruck')) return '/images/logos/Innsbruck.png';
   if (provider.includes('oead') || provider.includes('austrian agency')) return '/images/programlogos/OeAD.png';
   // Finland
   if (name.includes('university of helsinki') || provider.includes('university of helsinki') || provider.includes('helsingin yliopisto')) return '/images/logos/Helsinki.png';
@@ -1300,6 +1304,81 @@ export function getScholarshipLogo(s: Scholarship): string | null {
  * Resolves a specific university image if available, falling back to country/group default images.
  */
 export function getScholarshipImage(s: Scholarship): string {
+  // ── Specific overrides for Home Page "By Provider" first 3 previews ────────
+  const nameTrimmed = s.name.trim();
+
+  // Germany
+  if (nameTrimmed === "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)") return '/images/universities/GE_TUM.png';
+  if (nameTrimmed === "Study scholarships for STEM disciplines") return '/images/universities/GE_LMU.png';
+  if (nameTrimmed === "Study Scholarships - Postgraduate Studies in the Field of Architecture") return '/images/universities/GE_HeidelbergU.png';
+
+  // Japan
+  if (nameTrimmed === "MEXT Scholarship - Undergraduate (Gakubu) 2027") return '/images/universities/JP_UofTokyo.png';
+  if (nameTrimmed === "MEXT Scholarship - College of Technology (KOSEN) 2027") return '/images/universities/JP_TokyoTech.png';
+  if (nameTrimmed === "MEXT Scholarship - Research Students (Master/PhD) 2027") return '/images/universities/JP_KyotoU.png';
+
+  // United Kingdom
+  if (nameTrimmed === "Chevening Scholarship (Indonesia)") return '/images/universities/UK_Oxford.png';
+  if (nameTrimmed === "Chevening ASEAN Scholarship") return '/images/universities/UK_Cambridge.png';
+  if (nameTrimmed === "Chevening Fellowships") return '/images/universities/UK_ImperialCollegeLondon.png';
+
+  // Australia
+  if (nameTrimmed === "Australia Awards Scholarships - PhD & Masters (Indonesia)") return '/images/universities/AUS_Sydney.png';
+  if (nameTrimmed === "Australia Awards Garuda Scholarships") return '/images/universities/AUS_ANU.png';
+  if (nameTrimmed === "LPDP–Australia Awards Scholarships") return '/images/universities/AUS_Melbourne.png';
+
+  // Singapore
+  if (nameTrimmed === "Singapore International Graduate Award (SINGA)") return '/images/universities/SG_SUTD.png';
+  if (nameTrimmed === "A*STAR Graduate Scholarship (AGS)") return '/images/universities/SG_NTU.png';
+  if (nameTrimmed === "ASEAN Undergraduate Scholarship - NUS") return '/images/universities/SG_NUS.png';
+
+  // Netherlands
+  if (nameTrimmed === "Holland Scholarship (NL Scholarship)") return '/images/universities/NL_UniversityofAmsterdam.png';
+  if (nameTrimmed === "Orange Knowledge Programme (OKP)") return '/images/universities/NL_TUDelft.png';
+  if (nameTrimmed === "Orange Tulip Scholarship (OTS)") return '/images/universities/NL_VUAmsterdam.png';
+
+  // Sweden
+  if (nameTrimmed === "Swedish Institute Scholarship for Global Professionals (SISGP)") return '/images/universities/SWE_UppsalaU.png';
+  if (nameTrimmed === "Pioneering Women in STEM (PWIS) – Swedish Institute") return '/images/universities/SWE_KTH.png';
+  if (nameTrimmed === "Lund University Global Scholarship") return '/images/universities/SWE_LundU.png';
+
+  // Switzerland
+  if (nameTrimmed === "Swiss Government Excellence Research Scholarship (Postdoctoral)") return '/images/universities/CH_EPFL.png';
+  if (nameTrimmed === "Swiss Government Excellence PhD Scholarship") return '/images/universities/CH_ETH.png';
+  if (nameTrimmed === "Swiss Government Excellence Art Scholarship") return '/images/universities/CH_UNIGE.png';
+
+  // Malaysia
+  if (nameTrimmed === "Malaysia International Scholarship (MIS)") return '/images/universities/MY_UM.png';
+
+  // New Zealand
+  if (nameTrimmed === "Manaaki New Zealand Scholarship - Tertiary (Undergraduate & Postgraduate)") return '/images/universities/NZ_Auckland.png';
+  if (nameTrimmed === "Manaaki New Zealand Scholarship - Vocational Short-Term Training") return '/images/universities/NZ_Otago.png';
+  if (nameTrimmed === "Manaaki New Zealand Scholarship - English Language Training for Officials (NZELTO)") return '/images/universities/NZ_Massey.png';
+
+  // Hong Kong
+  if (nameTrimmed === "Hong Kong PhD Fellowship Scheme (HKPFS)") return '/images/universities/HK_CUHK.png';
+  if (nameTrimmed === "HKU Entrance Scholarship for International Students") return '/images/universities/HK_HKU.png';
+
+  // Hungary
+  if (nameTrimmed === "Stipendium Hungaricum - Bachelor's / One-Tier Master's Scholarship") return '/images/universities/HU_ELTE.png';
+  if (nameTrimmed === "Stipendium Hungaricum - Master's Scholarship") return '/images/universities/HU_Semmelweis.png';
+  if (nameTrimmed === "Stipendium Hungaricum - Doctoral (PhD) Scholarship") return '/images/universities/HU_Debrecen.png';
+
+  // Taiwan
+  if (nameTrimmed === "MOE Taiwan Scholarship - Bachelor's Degree") return '/images/universities/TW_NTU.png';
+  if (nameTrimmed === "MOE Taiwan Scholarship - Master's / PhD Degree") return '/images/universities/TW_NTHU.png';
+  if (nameTrimmed === "TaiwanICDF Higher Education Scholarship") return '/images/universities/TW_NYCU.png';
+
+  // Austria
+  if (nameTrimmed === "Helmut Veith Stipend (TU Wien - Computer Science)") return '/images/universities/AT_TUWien.png';
+  if (nameTrimmed === "OeAD Ernst Mach Grant - Worldwide") return '/images/universities/AT_Vienna.png';
+  if (nameTrimmed === "OeAD Ernst Mach Grant - UAS Worldwide (Fachhochschulen)") return '/images/universities/AT_Innsbruck.png';
+
+  // Ireland
+  if (nameTrimmed === "Government of Ireland International Education Scholarship (GOI-IES)") return '/images/universities/IE_TCD.png';
+  if (nameTrimmed === "Government of Ireland Postgraduate Scholarship (GOIPG)") return '/images/universities/IE_UCD.png';
+  if (nameTrimmed === "Trinity College Dublin (TCD) Global Excellence Postgraduate Scholarship") return '/images/universities/IE_UCC.png';
+
   const name = s.name.toLowerCase();
   const provider = s.provider.toLowerCase();
 
@@ -1393,10 +1472,12 @@ export function getScholarshipImage(s: Scholarship): string {
   // Hungary Universities
   if (name.includes('eötvös') || provider.includes('eötvös') || name.includes('elte') || provider.includes('elte')) return '/images/universities/HU_ELTE.png';
   if (name.includes('semmelweis') || provider.includes('semmelweis')) return '/images/universities/HU_Semmelweis.png';
+  if (name.includes('debrecen') || provider.includes('debrecen')) return '/images/universities/HU_Debrecen.png';
 
   // Taiwan Universities
   if (name.includes('national taiwan university') || (hasWord('ntu') && s.country === 'Taiwan')) return '/images/universities/TW_NTU.png';
   if (name.includes('tsing hua') || hasWord('nthu') || (name.includes('tsinghua') && s.country === 'Taiwan')) return '/images/universities/TW_NTHU.png';
+  if (name.includes('chiao tung') || hasWord('nycu') || name.includes('yang ming chiao tung')) return '/images/universities/TW_NYCU.png';
 
   // Swiss Universities
   if (name.includes('eth zürich') || name.includes('eth zurich') || name.includes('eidgenössische technische hochschule') || hasWord('eth') || hasWord('ethz')) return '/images/universities/CH_ETH.png';
@@ -1405,10 +1486,12 @@ export function getScholarshipImage(s: Scholarship): string {
   // New Zealand Universities
   if (name.includes('university of auckland') || name.includes('auckland university')) return '/images/universities/NZ_Auckland.png';
   if (name.includes('university of otago') || name.includes('otago university')) return '/images/universities/NZ_Otago.png';
+  if (name.includes('massey') || provider.includes('massey')) return '/images/universities/NZ_Massey.png';
 
   // Ireland Universities
   if (name.includes('trinity college dublin') || name.includes('university of dublin') || hasWord('tcd')) return '/images/universities/IE_TCD.png';
   if (name.includes('university college dublin') || hasWord('ucd')) return '/images/universities/IE_UCD.png';
+  if (name.includes('university college cork') || hasWord('ucc') || name.includes('cork')) return '/images/universities/IE_UCC.png';
 
   // Denmark Universities
   if (name.includes('university of copenhagen') || name.includes('københavns universitet')) return '/images/universities/DK_Copenhagen.png';
@@ -1439,6 +1522,8 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('university of geneva') || provider.includes('university of geneva') || provider.includes('unige')) return '/images/universities/CH_UNIGE.png';
   // Austria
   if (name.includes('helmut veith') || name.includes('tu wien') || provider.includes('vienna university of technology')) return '/images/universities/AT_TUWien.png';
+  if (name.includes('university of vienna') || name.includes('universität wien') || name.includes('univie')) return '/images/universities/AT_Vienna.png';
+  if (name.includes('innsbruck') || name.includes('universität innsbruck')) return '/images/universities/AT_Innsbruck.png';
   // Finland
   if (name.includes('university of helsinki') || provider.includes('university of helsinki') || provider.includes('helsingin yliopisto')) return '/images/universities/FI_Helsinki.png';
   if (name.includes('aalto') || provider.includes('aalto-yliopisto')) return '/images/universities/FI_Aalto.png';
@@ -1497,11 +1582,15 @@ export function getScholarshipImage(s: Scholarship): string {
   }
   if (group === 'china') return '/images/universities/CN_Tsinghua.png';
   if (group === 'hungary') {
-    if (name.includes('doctoral') || name.includes('phd')) return '/images/universities/HU_Semmelweis.png';
+    if (name.includes('doctoral') || name.includes('phd') || name.includes('debrecen')) return '/images/universities/HU_Debrecen.png';
+    if (name.includes('master')) return '/images/universities/HU_Semmelweis.png';
     return '/images/universities/HU_ELTE.png';
   }
   if (group === 'taiwan') {
-    if (name.includes('master') || name.includes('phd') || name.includes('graduate') || name.includes('icdf')) {
+    if (name.includes('icdf') || name.includes('chiao tung') || name.includes('nycu')) {
+      return '/images/universities/TW_NYCU.png';
+    }
+    if (name.includes('master') || name.includes('phd') || name.includes('graduate')) {
       return '/images/universities/TW_NTHU.png';
     }
     return '/images/universities/TW_NTU.png';
@@ -1516,11 +1605,17 @@ export function getScholarshipImage(s: Scholarship): string {
     if (name.includes('postgraduate') || name.includes('phd') || name.includes('master') || name.includes('graduate')) {
       return '/images/universities/NZ_Otago.png';
     }
-    return '/images/universities/manaaki_nz_wide.png';
+    if (name.includes('english') || name.includes('nzelto') || name.includes('massey')) {
+      return '/images/universities/NZ_Massey.png';
+    }
+    return '/images/universities/NZ_Auckland.png';
   }
   if (group === 'ireland') {
     if (name.includes('postgraduate') || name.includes('research') || name.includes('phd') || name.includes('goipg')) {
       return '/images/universities/IE_UCD.png';
+    }
+    if (name.includes('cork') || name.includes('ucc')) {
+      return '/images/universities/IE_UCC.png';
     }
     return '/images/universities/IE_TCD.png';
   }
@@ -1701,6 +1796,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'Eötvös Loránd University (ELTE)', logo: '/images/logos/ELTE.png', keywords: ['elte', 'eötvös', 'eotvos'] },
     { name: 'Semmelweis University', logo: '/images/logos/Semmelweis.png', keywords: ['semmelweis'] },
     { name: 'University of Szeged', logo: '/images/logos/Szeged.png', keywords: ['szeged'] },
+    { name: 'University of Debrecen', logo: '/images/logos/Debrecen.png', keywords: ['debrecen'] },
 
     // Sweden Universities
     { name: 'KTH Royal Institute of Technology', logo: '/images/logos/KTH.png', keywords: ['kth', 'royal institute of technology'] },
@@ -1724,6 +1820,8 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
 
     // Austrian Universities
     { name: 'TU Wien', logo: '/images/logos/TUWien.png', keywords: ['tu wien', 'vienna university of technology', 'technische universität wien'] },
+    { name: 'University of Vienna', logo: '/images/logos/Vienna.png', keywords: ['university of vienna', 'universität wien', 'univie'] },
+    { name: 'University of Innsbruck', logo: '/images/logos/Innsbruck.png', keywords: ['innsbruck', 'universität innsbruck'] },
 
     // Finnish Universities
     { name: 'University of Helsinki', logo: '/images/logos/Helsinki.png', keywords: ['university of helsinki', 'helsingin yliopisto'] },
@@ -1736,6 +1834,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Auckland', logo: '/images/logos/Auckland.png', keywords: ['auckland', 'university of auckland'] },
     { name: 'University of Otago', logo: '/images/logos/Otago.png', keywords: ['otago', 'university of otago'] },
     { name: 'Victoria University of Wellington', logo: '/images/logos/VUW.png', keywords: ['vuw', 'victoria university of wellington', 'victoria university wellington'] },
+    { name: 'Massey University', logo: '/images/logos/Massey.png', keywords: ['massey'] },
 
     // Ireland Universities
     { name: 'Trinity College Dublin', logo: '/images/logos/TCD.png', keywords: ['tcd', 'trinity college dublin', 'university of dublin'] },
@@ -1804,7 +1903,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         const regex = new RegExp(`\\buq\\b`, 'i');
         return s.country === 'Australia' && regex.test(text);
       }
-      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm'].includes(kw)) {
+      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
@@ -1949,7 +2048,8 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       list.push(
         { name: 'Eötvös Loránd University (ELTE)', logo: '/images/logos/ELTE.png' },
         { name: 'Semmelweis University', logo: '/images/logos/Semmelweis.png' },
-        { name: 'University of Szeged', logo: '/images/logos/Szeged.png' }
+        { name: 'University of Szeged', logo: '/images/logos/Szeged.png' },
+        { name: 'University of Debrecen', logo: '/images/logos/Debrecen.png' }
       );
     } else if (group === 'taiwan') {
       list.push(
@@ -1966,7 +2066,9 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       );
     } else if (group === 'austria') {
       list.push(
-        { name: 'TU Wien', logo: '/images/logos/TUWien.png' }
+        { name: 'TU Wien', logo: '/images/logos/TUWien.png' },
+        { name: 'University of Vienna', logo: '/images/logos/Vienna.png' },
+        { name: 'University of Innsbruck', logo: '/images/logos/Innsbruck.png' }
       );
     } else if (group === 'finland') {
       list.push(
@@ -1980,7 +2082,8 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       list.push(
         { name: 'University of Auckland', logo: '/images/logos/Auckland.png' },
         { name: 'University of Otago', logo: '/images/logos/Otago.png' },
-        { name: 'Victoria University of Wellington', logo: '/images/logos/VUW.png' }
+        { name: 'Victoria University of Wellington', logo: '/images/logos/VUW.png' },
+        { name: 'Massey University', logo: '/images/logos/Massey.png' }
       );
     } else if (group === 'ireland') {
       list.push(
