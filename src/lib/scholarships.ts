@@ -97,7 +97,11 @@ export function providerGroup(provider: string): string {
   // New Zealand
   if (p.includes('manaaki') || p.includes('education new zealand') || p.includes('mfat') || p.includes('new zealand')) return 'new-zealand';
   // Ireland
-  if (p.includes('government of ireland') || p.includes('hea') || p.includes('research ireland') || p.includes('irish research council') || p.includes('trinity college dublin') || p.includes('university college dublin') || p.includes('ucd global')) return 'ireland';
+  if (p.includes('government of ireland') || p.includes('hea') || p.includes('research ireland') || p.includes('irish research council') || p.includes('trinity college dublin') || p.includes('university college dublin') || p.includes('ucd global') || p.includes('teagasc') || p.includes('munster technological') || p.includes('maynooth university') || p.includes('royal college of surgeons in ireland') || p.includes('rcsi')) return 'ireland';
+  // Poland
+  if (p.includes('nawa') || p.includes('polish national agency') || p.includes('stefan banach') || p.includes('lukasiewicz') || p.includes('łukasiewicz') || p.includes('ignacy') || p.includes('jagiellonian') || p.includes('university of warsaw') || p.includes('warsaw university') || p.includes('national science centre') || p.includes('ncn ') || p.includes('ncn/')) return 'poland';
+  // Spain
+  if (p.includes('aecid') || p.includes('maec') || p.includes('ministerio de asuntos exteriores') || p.includes('fundación "la caixa"') || p.includes('fundacion "la caixa"') || p.includes('"la caixa"') || p.includes('la caixa') || p.includes('ie foundation') || p.includes('ie university') || p.includes('universidad de girona') || p.includes('banco santander')) return 'spain';
   // Denmark
   if ((p.includes('danish') && p.includes('ministry')) || p.includes('studyindenmark') || p.includes('denmark')) return 'denmark';
   // Norway
@@ -821,6 +825,26 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
     return { type: 'open', label: `Opens Jun · closes ${fmt}`, daysLeft: diff, deadline: target };
   }
 
+  // ── Poland NAWA Banach: ~March – 8 May annually ─────────────────────
+  if (group === 'poland') {
+    const nowPL = new Date();
+    const yearPL = nowPL.getFullYear();
+    const open = new Date(yearPL, 2, 1);   // Mar 1
+    const close = new Date(yearPL, 4, 8);  // May 8 (NAWA Banach deadline)
+    const target = nowPL <= close ? close : new Date(yearPL + 1, 4, 8);
+    const diff = Math.ceil((target.getTime() - nowPL.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowPL >= open && nowPL <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    if (nowPL > close) return { type: 'closed', label: `Closed · opens Mar ${target.getFullYear()}`, deadline: new Date(target.getFullYear(), 2, 1) };
+    return { type: 'open', label: `Opens Mar · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Spain: la Caixa INPhINIT (28 Jan) + AECID (3 Jun) + others rolling ──
+  if (group === 'spain') return { type: 'rolling', label: 'Multiple cycles · check program' };
+
   return getDaadStatus();
 }
 
@@ -1038,6 +1062,20 @@ export const providerMeta: Record<
     description: 'The Malaysia International Scholarship (MIS) covers tuition, MYR 1,500/month stipend, insurance, airfare, and thesis costs for Master\'s and PhD studies at Malaysian universities.',
     website: 'https://biasiswa.mohe.gov.my/INTER/index.php',
   },
+  poland: {
+    name: 'Poland',
+    flag: '🇵🇱',
+    country: 'Poland',
+    description: 'Poland offers the NAWA Stefan Banach (fully funded Master\'s for 36 partner countries including Indonesia) and Ignacy Łukasiewicz programmes (STEM), plus university-specific scholarships at Jagiellonian (Kraków) and University of Warsaw.',
+    website: 'https://nawa.gov.pl/en/',
+  },
+  spain: {
+    name: 'Spain',
+    flag: '🇪🇸',
+    country: 'Spain',
+    description: 'Spain offers MAEC-AECID scholarships for citizens of Spanish cooperation partner countries (incl. Indonesia for select programs), "la Caixa" INPhINIT and Junior Leader fellowships (€35,800/yr PhD, €106,700/yr postdoc), and the IE Foundation Fellows Program at IE University.',
+    website: 'https://www.aecid.es/en/',
+  },
 };
 
 /**
@@ -1100,6 +1138,10 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('manaaki')) return '/images/programlogos/manaaki_nz.png';
   // Ireland (GOI-IES, GOIPG)
   if (name.includes('goi-ies') || name.includes('goipg') || name.includes('government of ireland')) return '/images/programlogos/irish_hea.png';
+  // Trinity College Dublin
+  if (name.includes('trinity college dublin') || provider.includes('trinity college dublin') || name.includes('tcd global') || name.includes('tcd rachel') || name.includes('ussher')) return '/images/logos/TCD.png';
+  // UCD
+  if (name.includes('university college dublin') || provider.includes('university college dublin') || name.includes('ucd global') || name.includes('ucd funded')) return '/images/logos/UCD.png';
   // Denmark Government Scholarship
   if (name.includes('danish government') || name.includes('danish ministry of higher education')) return '/images/programlogos/danish_govt.png';
   // Norway Tuition-Free
@@ -1230,6 +1272,22 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('trinity college dublin') || name.includes('university of dublin') || hasWord('tcd')) return '/images/logos/TCD.png';
   if (name.includes('university college dublin') || hasWord('ucd')) return '/images/logos/UCD.png';
   if (name.includes('university college cork') || hasWord('ucc')) return '/images/logos/UCC.png';
+  if (name.includes('munster technological') || hasWord('mtu')) return '/images/logos/MTU.png';
+  if (name.includes('maynooth')) return '/images/logos/Maynooth.png';
+  if (name.includes('royal college of surgeons') || hasWord('rcsi')) return '/images/logos/RCSI.png';
+  if (name.includes('teagasc')) return '/images/logos/Teagasc.png';
+
+  // Spain Universities
+  if (name.includes('ie foundation') || provider.includes('ie foundation')) return '/images/logos/IE_Foundation.png';
+  if (name.includes('ie university') || provider.includes('ie university') || hasWord('ie')) return '/images/logos/IE_University.png';
+  if (name.includes('girona') || provider.includes('girona') || hasWord('udg')) return '/images/logos/UdG.png';
+
+  // Poland Universities & Program Logos
+  if (name.includes('warsaw university of technology') || name.includes('warsaw unitech') || provider.includes('warsaw university of technology') || provider.includes('warsaw unitech')) return '/images/logos/Warsaw_Unitech.png';
+  if (name.includes('nawa') || provider.includes('nawa') || name.includes('banach') || name.includes('lukasiewicz') || name.includes('łukasiewicz')) return '/images/logos/NAWA.png';
+  if (name.includes('national science centre') || provider.includes('national science centre') || hasWord('ncn')) return '/images/logos/NCN.png';
+  if (name.includes('jagiellonian') || provider.includes('jagiellonian') || hasWord('ju')) return '/images/logos/JU.png';
+  if (name.includes('warsaw') || provider.includes('warsaw') || hasWord('uw')) return '/images/logos/UW.png';
 
   // Denmark Universities
   if (name.includes('university of copenhagen') || name.includes('københavns universitet')) return '/images/logos/Copenhagen.png';
@@ -1296,6 +1354,7 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (group === 'norway') return '/images/programlogos/norway_govt.png';
   if (group === 'hong-kong') return '/images/programlogos/hkpfs.png';
   if (group === 'malaysia') return '/images/programlogos/mis_malaysia.png';
+  if (group === 'poland') return '/images/logos/NAWA.png';
 
   return null;
 }
@@ -1378,6 +1437,18 @@ export function getScholarshipImage(s: Scholarship): string {
   if (nameTrimmed === "Government of Ireland International Education Scholarship (GOI-IES)") return '/images/universities/IE_TCD.png';
   if (nameTrimmed === "Government of Ireland Postgraduate Scholarship (GOIPG)") return '/images/universities/IE_UCD.png';
   if (nameTrimmed === "Trinity College Dublin (TCD) Global Excellence Postgraduate Scholarship") return '/images/universities/IE_UCC.png';
+
+  // Spain
+  if (nameTrimmed === "MAEC-AECID Becas (Spanish Government Scholarships)") return '/images/universities/ES_UB.png';
+  if (nameTrimmed === "\"la Caixa\" INPhINIT Doctoral Fellowships") return '/images/universities/ES_UAM.png';
+  if (nameTrimmed === "\"la Caixa\" Junior Leader Postdoctoral Fellowships") return '/images/universities/ES_IE.png';
+  if (nameTrimmed === "IE Foundation Fellows Program") return '/images/universities/ES_IE.png';
+  if (nameTrimmed === "Universidad de Girona Banco Santander Scholarship") return '/images/universities/ES_UB.png';
+
+  // Poland
+  if (nameTrimmed === "NAWA Stefan Banach Scholarship Programme") return '/images/universities/PL_UW.png';
+  if (nameTrimmed === "NAWA Ignacy Łukasiewicz Scholarship Programme") return '/images/universities/PL_WarsawUnitech.png';
+  if (nameTrimmed === "Jagiellonian University International Scholarships (Rector's Scholarship)") return '/images/universities/PL_JU.png';
 
   const name = s.name.toLowerCase();
   const provider = s.provider.toLowerCase();
@@ -1493,6 +1564,11 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('university college dublin') || hasWord('ucd')) return '/images/universities/IE_UCD.png';
   if (name.includes('university college cork') || hasWord('ucc') || name.includes('cork')) return '/images/universities/IE_UCC.png';
 
+  // Spain Universities
+  if (name.includes('barcelona') || name.includes('girona') || hasWord('ub')) return '/images/universities/ES_UB.png';
+  if (name.includes('autónoma de madrid') || name.includes('autonoma de madrid') || hasWord('uam')) return '/images/universities/ES_UAM.png';
+  if (name.includes('ie university') || name.includes('ie foundation') || name.includes('ie business')) return '/images/universities/ES_IE.png';
+
   // Denmark Universities
   if (name.includes('university of copenhagen') || name.includes('københavns universitet')) return '/images/universities/DK_Copenhagen.png';
   if (name.includes('technical university of denmark') || (hasWord('dtu') && s.country === 'Denmark')) return '/images/universities/DK_DTU.png';
@@ -1508,6 +1584,11 @@ export function getScholarshipImage(s: Scholarship): string {
   // Malaysia Universities
   if (name.includes('university of malaya') || provider.includes('university of malaya') || (hasWord('um') && s.country === 'Malaysia')) return '/images/universities/MY_UM.png';
   if (name.includes('universiti kebangsaan malaysia') || hasWord('ukm')) return '/images/universities/MY_UKM.png';
+
+  // Poland Universities
+  if (name.includes('jagiellonian') || provider.includes('jagiellonian') || hasWord('ju')) return '/images/universities/PL_JU.png';
+  if (name.includes('warsaw university of technology') || name.includes('warsaw unitech') || provider.includes('warsaw university of technology') || provider.includes('warsaw unitech')) return '/images/universities/PL_WarsawUnitech.png';
+  if (name.includes('warsaw') || provider.includes('warsaw') || hasWord('uw')) return '/images/universities/PL_UW.png';
 
   // Sweden Universities
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/universities/SWE_KTH.png';
@@ -1619,6 +1700,15 @@ export function getScholarshipImage(s: Scholarship): string {
     }
     return '/images/universities/IE_TCD.png';
   }
+  if (group === 'spain') {
+    if (name.includes('inphinit') || name.includes('doctoral')) {
+      return '/images/universities/ES_UAM.png';
+    }
+    if (name.includes('junior') || name.includes('leader') || name.includes('postdoctoral') || name.includes('ie ')) {
+      return '/images/universities/ES_IE.png';
+    }
+    return '/images/universities/ES_UB.png';
+  }
   if (group === 'denmark') {
     if (name.includes('technical') || name.includes('dtu') || name.includes('technology') || name.includes('science')) {
       return '/images/universities/DK_DTU.png';
@@ -1645,6 +1735,15 @@ export function getScholarshipImage(s: Scholarship): string {
       return '/images/universities/MY_UPM.png';
     }
     return '/images/universities/mohe_malaysia_wide.png';
+  }
+  if (group === 'poland') {
+    if (name.includes('lukasiewicz') || name.includes('łukasiewicz') || name.includes('unitech') || name.includes('technology')) {
+      return '/images/universities/PL_WarsawUnitech.png';
+    }
+    if (name.includes('jagiellonian') || name.includes('ju') || name.includes('rectors')) {
+      return '/images/universities/PL_JU.png';
+    }
+    return '/images/universities/PL_UW.png';
   }
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
@@ -1840,6 +1939,18 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'Trinity College Dublin', logo: '/images/logos/TCD.png', keywords: ['tcd', 'trinity college dublin', 'university of dublin'] },
     { name: 'University College Dublin (UCD)', logo: '/images/logos/UCD.png', keywords: ['ucd', 'university college dublin'] },
     { name: 'University College Cork (UCC)', logo: '/images/logos/UCC.png', keywords: ['ucc', 'university college cork'] },
+    { name: 'Munster Technological University (MTU)', logo: '/images/logos/MTU.png', keywords: ['mtu', 'munster technological'] },
+    { name: 'Maynooth University', logo: '/images/logos/Maynooth.png', keywords: ['maynooth'] },
+    { name: 'Royal College of Surgeons in Ireland (RCSI)', logo: '/images/logos/RCSI.png', keywords: ['rcsi', 'royal college of surgeons'] },
+
+    // Spain Universities
+    { name: 'IE University', logo: '/images/logos/IE_University.png', keywords: ['ie university', 'ie business', 'ie'] },
+    { name: 'Universidad de Girona (UdG)', logo: '/images/logos/UdG.png', keywords: ['girona', 'udg'] },
+
+    // Poland Universities
+    { name: 'University of Warsaw (UW)', logo: '/images/logos/UW.png', keywords: ['warsaw_uw', 'uw'] },
+    { name: 'Warsaw University of Technology', logo: '/images/logos/Warsaw_Unitech.png', keywords: ['warsaw_unitech', 'warsaw university of technology', 'warsaw unitech'] },
+    { name: 'Jagiellonian University (JU)', logo: '/images/logos/JU.png', keywords: ['jagiellonian', 'ju'] },
 
     // Denmark Universities
     { name: 'University of Copenhagen', logo: '/images/logos/Copenhagen.png', keywords: ['copenhagen', 'københavns universitet'] },
@@ -1903,7 +2014,17 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         const regex = new RegExp(`\\buq\\b`, 'i');
         return s.country === 'Australia' && regex.test(text);
       }
-      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey'].includes(kw)) {
+      if (kw === 'warsaw_uw') {
+        const regex = new RegExp(`\\buniversity of warsaw\\b|\\bwarsaw university\\b`, 'i');
+        if (regex.test(text)) return true;
+        if (text.includes('warsaw') && !text.includes('technology') && !text.includes('unitech')) return true;
+        return false;
+      }
+      if (kw === 'warsaw_unitech') {
+        const regex = new RegExp(`\\bwarsaw university of technology\\b|\\bwarsaw unitech\\b`, 'i');
+        return regex.test(text);
+      }
+      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey', 'mtu', 'maynooth', 'rcsi', 'ie', 'udg', 'uw', 'ju', 'ncn', 'nawa'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
@@ -2089,7 +2210,10 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       list.push(
         { name: 'Trinity College Dublin', logo: '/images/logos/TCD.png' },
         { name: 'University College Dublin (UCD)', logo: '/images/logos/UCD.png' },
-        { name: 'University College Cork (UCC)', logo: '/images/logos/UCC.png' }
+        { name: 'University College Cork (UCC)', logo: '/images/logos/UCC.png' },
+        { name: 'Munster Technological University (MTU)', logo: '/images/logos/MTU.png' },
+        { name: 'Maynooth University', logo: '/images/logos/Maynooth.png' },
+        { name: 'Royal College of Surgeons in Ireland (RCSI)', logo: '/images/logos/RCSI.png' }
       );
     } else if (group === 'denmark') {
       list.push(
@@ -2114,6 +2238,17 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Malaya (UM)', logo: '/images/logos/UM.png' },
         { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png' },
         { name: 'Universiti Kebangsaan Malaysia (UKM)', logo: '/images/logos/UKM.png' }
+      );
+    } else if (group === 'spain') {
+      list.push(
+        { name: 'IE University', logo: '/images/logos/IE_University.png' },
+        { name: 'Universidad de Girona (UdG)', logo: '/images/logos/UdG.png' }
+      );
+    } else if (group === 'poland') {
+      list.push(
+        { name: 'University of Warsaw (UW)', logo: '/images/logos/UW.png' },
+        { name: 'Warsaw University of Technology', logo: '/images/logos/Warsaw_Unitech.png' },
+        { name: 'Jagiellonian University (JU)', logo: '/images/logos/JU.png' }
       );
     }
   }

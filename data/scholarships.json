@@ -23,6 +23,8 @@
     "FINLAND",
     "NEW_ZEALAND",
     "IRELAND",
+    "POLAND",
+    "SPAIN",
     "DENMARK",
     "NORWAY",
     "HONG_KONG",
@@ -261,9 +263,39 @@
         "GOI-IES",
         "GOIPG",
         "TCD",
-        "UCD"
+        "UCD",
+        "Teagasc",
+        "MTU",
+        "Maynooth ARDÚ",
+        "Maynooth Hume",
+        "UCD Funded PhD",
+        "Trinity UG",
+        "RCSI",
+        "TCD Ussher"
       ],
-      "scholarship_count": 4
+      "scholarship_count": 12
+    },
+    {
+      "provider_group": "POLAND",
+      "programs": [
+        "NAWA Banach",
+        "NAWA Łukasiewicz",
+        "Jagiellonian",
+        "Warsaw",
+        "NCN PRELUDIUM"
+      ],
+      "scholarship_count": 5
+    },
+    {
+      "provider_group": "SPAIN",
+      "programs": [
+        "MAEC-AECID",
+        "la Caixa INPhINIT",
+        "la Caixa Junior Leader",
+        "IE Foundation",
+        "UdG Santander"
+      ],
+      "scholarship_count": 5
     },
     {
       "provider_group": "DENMARK",
@@ -296,7 +328,7 @@
       "scholarship_count": 1
     }
   ],
-  "scholarship_count": 177,
+  "scholarship_count": 195,
   "scholarships": [
     {
       "name": "University Summer Courses offered in Germany for Foreign Students and Graduates (HSK)",
@@ -338,8 +370,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "university-summer-courses-offered-in-germany-for-foreign-students-and-graduates-hsk"
+      "program_type": null
     },
     {
       "name": "Study scholarships for STEM disciplines",
@@ -386,8 +417,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "study-scholarships-for-stem-disciplines"
+      "program_type": null
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Field of Architecture",
@@ -435,8 +465,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "study-scholarships-postgraduate-studies-in-the-field-of-architecture"
+      "program_type": null
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Field of the Performing Arts",
@@ -476,8 +505,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "study-scholarships-postgraduate-studies-in-the-field-of-the-performing-arts"
+      "program_type": null
     },
     {
       "name": "Scholarship for Development-Related Postgraduate Courses (EPOS)",
@@ -516,8 +544,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "scholarship-for-development-related-postgraduate-courses-epos"
+      "program_type": null
     },
     {
       "name": "Helmut-Schmidt-Programme - Master's Scholarships for Public Policy and Good Governance (PPGG)",
@@ -562,8 +589,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "helmut-schmidt-programme-masters-scholarships-for-public-policy-and-good-governance-ppgg"
+      "program_type": null
     },
     {
       "name": "DAAD-ACEH Scholarship of Excellence",
@@ -607,8 +633,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "daad-aceh-scholarship-of-excellence"
+      "program_type": null
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Fields of Fine Art, Design, Visual Communication and Film",
@@ -653,8 +678,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "study-scholarships-postgraduate-studies-in-the-fields-of-fine-art-design-visual-communication-and-fi"
+      "program_type": null
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Field of Music",
@@ -695,8 +719,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "study-scholarships-postgraduate-studies-in-the-field-of-music"
+      "program_type": null
     },
     {
       "name": "In-Country/In-Region Scholarship at SEARCA Food Science",
@@ -741,8 +764,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "in-countryin-region-scholarship-at-searca-food-science"
+      "program_type": null
     },
     {
       "name": "In-Country/In-Region Scholarship at SEARCA Natural Resource Management",
@@ -791,8 +813,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "in-countryin-region-scholarship-at-searca-natural-resource-management"
+      "program_type": null
     },
     {
       "name": "In-Country/In-Region Scholarship at Universitas Gadjah Mada (UGM)",
@@ -833,8 +854,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "in-countryin-region-scholarship-at-universitas-gadjah-mada-ugm"
+      "program_type": null
     },
     {
       "name": "In-Country/In-Region Scholarship at Asian Institute of Technology (AIT) GDS/NRM",
@@ -886,8 +906,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "in-countryin-region-scholarship-at-asian-institute-of-technology-ait-gdsnrm"
+      "program_type": null
     },
     {
       "name": "Research Grants - Doctoral Programme in Germany",
@@ -926,8 +945,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "research-grants-doctoral-programme-in-germany"
+      "program_type": null
     },
     {
       "name": "Research Grants - Bi-nationally Supervised Doctoral Degrees",
@@ -966,8 +984,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "research-grants-bi-nationally-supervised-doctoral-degrees"
+      "program_type": null
     },
     {
       "name": "Research Grants in Germany",
@@ -1006,8 +1023,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "research-grants-in-germany"
+      "program_type": null
     },
     {
       "name": "DLR-DAAD Research Fellowships in the fields of Space, Aeronautics, Energy and Transportation Research",
@@ -1051,8 +1067,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "dlr-daad-research-fellowships-in-the-fields-of-space-aeronautics-energy-and-transportation-research"
+      "program_type": null
     },
     {
       "name": "Study Visits for Academics - Artists and Architects (Short visit)",
@@ -1096,8 +1111,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "study-visits-for-academics-artists-and-architects-short-visit"
+      "program_type": null
     },
     {
       "name": "Postdoctoral Researchers International Mobility Experience (P.R.I.M.E.)",
@@ -1133,8 +1147,7 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null,
-      "slug": "postdoctoral-researchers-international-mobility-experience-prime"
+      "program_type": null
     },
     {
       "name": "MEXT Scholarship - Undergraduate (Gakubu) 2027",
@@ -1209,8 +1222,7 @@
       ],
       "source": "undergraduate_gakubu.md",
       "source_file": "data/raw/mext/undergraduate_gakubu.md",
-      "confidence_score": 0.95,
-      "slug": "mext-scholarship-undergraduate-gakubu-2027"
+      "confidence_score": 0.95
     },
     {
       "name": "MEXT Scholarship - College of Technology (KOSEN) 2027",
@@ -1281,8 +1293,7 @@
       ],
       "source": "collegeoftechnology_kosen.md",
       "source_file": "data/raw/mext/collegeoftechnology_kosen.md",
-      "confidence_score": 0.95,
-      "slug": "mext-scholarship-college-of-technology-kosen-2027"
+      "confidence_score": 0.95
     },
     {
       "name": "MEXT Scholarship - Research Students (Master/PhD) 2027",
@@ -1359,8 +1370,7 @@
       ],
       "source": "research_student.md",
       "source_file": "data/raw/mext/research_student.md",
-      "confidence_score": 0.95,
-      "slug": "mext-scholarship-research-students-masterphd-2027"
+      "confidence_score": 0.95
     },
     {
       "name": "MEXT Scholarship - Japanese Studies (Non-Degree) 2026",
@@ -1437,8 +1447,7 @@
       ],
       "source": "japanesestudies.md",
       "source_file": "data/raw/mext/japanesestudies.md",
-      "confidence_score": 0.95,
-      "slug": "mext-scholarship-japanese-studies-non-degree-2026"
+      "confidence_score": 0.95
     },
     {
       "name": "MEXT Scholarship - Specialized Training College (Senshu) 2027",
@@ -1508,8 +1517,7 @@
       ],
       "source": "specializedtrainingcollege_senshu.md",
       "source_file": "data/raw/mext/specializedtrainingcollege_senshu.md",
-      "confidence_score": 0.95,
-      "slug": "mext-scholarship-specialized-training-college-senshu-2027"
+      "confidence_score": 0.95
     },
     {
       "name": "MEXT Scholarship - Teacher Training (Non-Degree) 2026",
@@ -1585,8 +1593,7 @@
       ],
       "source": "teacher_training.md",
       "source_file": "data/raw/mext/teacher_training.md",
-      "confidence_score": 0.95,
-      "slug": "mext-scholarship-teacher-training-non-degree-2026"
+      "confidence_score": 0.95
     },
     {
       "name": "Türkiye Burslari Associate Degree Scholarship (TVET)",
@@ -1637,8 +1644,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-associate-degree-scholarship-tvet"
+      "program_type": null
     },
     {
       "name": "Türkiye Burslari Bachelor's Scholarship Program",
@@ -1692,8 +1698,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-bachelors-scholarship-program"
+      "program_type": null
     },
     {
       "name": "Türkiye Burslari Graduate Scholarship Program (Master's)",
@@ -1748,8 +1753,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-graduate-scholarship-program-masters"
+      "program_type": null
     },
     {
       "name": "Türkiye Burslari Graduate Scholarship Program (PhD)",
@@ -1803,8 +1807,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-graduate-scholarship-program-phd"
+      "program_type": null
     },
     {
       "name": "Türkiye Burslari Art Scholarship Program",
@@ -1868,8 +1871,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-art-scholarship-program"
+      "program_type": null
     },
     {
       "name": "Türkiye Burslari Merit Scholarship Program",
@@ -1925,8 +1927,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-merit-scholarship-program"
+      "program_type": null
     },
     {
       "name": "Türkiye Burslari Success Scholarship Program",
@@ -1976,8 +1977,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-success-scholarship-program"
+      "program_type": null
     },
     {
       "name": "Türkiye Burslari Research Scholarship Program",
@@ -2027,8 +2027,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-burslari-research-scholarship-program"
+      "program_type": null
     },
     {
       "name": "KATİP - Turkish Communication Program for Public Officials and Academics",
@@ -2076,8 +2075,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "katip-turkish-communication-program-for-public-officials-and-academics"
+      "program_type": null
     },
     {
       "name": "DAFI Scholarship Program (Türkiye Scholarships / UNHCR)",
@@ -2122,8 +2120,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "dafi-scholarship-program-trkiye-scholarships-unhcr"
+      "program_type": null
     },
     {
       "name": "SPARK Scholarship Program (Türkiye Scholarships / SPARK)",
@@ -2169,8 +2166,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "spark-scholarship-program-trkiye-scholarships-spark"
+      "program_type": null
     },
     {
       "name": "YTB–IsDB Joint Scholarship Program",
@@ -2221,8 +2217,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "ytbisdb-joint-scholarship-program"
+      "program_type": null
     },
     {
       "name": "Yemeni Pioneers Scholarship Program",
@@ -2271,8 +2266,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "yemeni-pioneers-scholarship-program"
+      "program_type": null
     },
     {
       "name": "WIPO Scholarship - Intellectual Property Law (Ankara University)",
@@ -2318,8 +2312,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "wipo-scholarship-intellectual-property-law-ankara-university"
+      "program_type": null
     },
     {
       "name": "Higher Education Support Program (Türkiye Scholarships / UNHCR)",
@@ -2365,8 +2358,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "higher-education-support-program-trkiye-scholarships-unhcr"
+      "program_type": null
     },
     {
       "name": "Türkiye Scholarships – Baykar Technology Joint Scholarship Program",
@@ -2428,8 +2420,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-scholarships-baykar-technology-joint-scholarship-program"
+      "program_type": null
     },
     {
       "name": "Türkiye Scholarships – NAMA Foundation Joint Scholarship Program",
@@ -2488,8 +2479,7 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null,
-      "slug": "trkiye-scholarships-nama-foundation-joint-scholarship-program"
+      "program_type": null
     },
     {
       "name": "Chevening Scholarship (Indonesia)",
@@ -2568,8 +2558,7 @@
       "source": "01_scholarship_indonesia.md",
       "source_file": "data/raw/chevening/01_scholarship_indonesia.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "chevening-scholarship-indonesia"
+      "program_type": null
     },
     {
       "name": "Chevening ASEAN Scholarship",
@@ -2643,8 +2632,7 @@
       "source": "17_asean-chevening-scholarship.md",
       "source_file": "data/raw/chevening/17_asean-chevening-scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "chevening-asean-scholarship"
+      "program_type": null
     },
     {
       "name": "Chevening Fellowships",
@@ -2700,8 +2688,7 @@
       "source_file": "data/raw/chevening/07_fellowships.md",
       "confidence_score": 0.95,
       "important_dates": [],
-      "program_type": null,
-      "slug": "chevening-fellowships"
+      "program_type": null
     },
     {
       "name": "Australia Awards Scholarships - PhD & Masters (Indonesia)",
@@ -2791,8 +2778,7 @@
       "source": "05_content_325_12_about-phd-and-masters-awards.md",
       "source_file": "data/raw/australia-awards/05_content_325_12_about-phd-and-masters-awards.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "australia-awards-scholarships-phd-masters-indonesia"
+      "program_type": null
     },
     {
       "name": "Australia Awards Garuda Scholarships",
@@ -2867,8 +2853,7 @@
       "source": "13_content_1000344_12_australia-awards-garuda-scholarships.md",
       "source_file": "data/raw/australia-awards/13_content_1000344_12_australia-awards-garuda-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "australia-awards-garuda-scholarships"
+      "program_type": null
     },
     {
       "name": "LPDP–Australia Awards Scholarships",
@@ -2937,8 +2922,7 @@
       "source": "15_content_1000276_12_lpdp-australia-awards-scholarships.md",
       "source_file": "data/raw/australia-awards/15_content_1000276_12_lpdp-australia-awards-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "lpdpaustralia-awards-scholarships"
+      "program_type": null
     },
     {
       "name": "Australia Awards Split-Site Masters Program (Indonesia)",
@@ -2996,8 +2980,7 @@
       "source_file": "data/raw/australia-awards/17_content_177_825_about-the-program.md",
       "confidence_score": 0.95,
       "important_dates": [],
-      "program_type": null,
-      "slug": "australia-awards-split-site-masters-program-indonesia"
+      "program_type": null
     },
     {
       "name": "Australia Awards Short Courses (Indonesia)",
@@ -3064,8 +3047,7 @@
       "source_file": "data/raw/australia-awards/18_content_56_13_about-short-courses.md",
       "confidence_score": 0.95,
       "important_dates": [],
-      "program_type": null,
-      "slug": "australia-awards-short-courses-indonesia"
+      "program_type": null
     },
     {
       "name": "Melbourne Research Scholarship",
@@ -3126,8 +3108,7 @@
       "source": "melbourne-research-scholarship.md",
       "source_file": "data/raw/australia-universities/melbourne-research-scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "melbourne-research-scholarship"
+      "program_type": null
     },
     {
       "name": "University of Sydney RTP International / USYDIS",
@@ -3188,8 +3169,7 @@
       "source": "sydney-rtp-international.md",
       "source_file": "data/raw/australia-universities/sydney-rtp-international.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "university-of-sydney-rtp-international-usydis"
+      "program_type": null
     },
     {
       "name": "ANU PhD Scholarship + RTP International Fee Offset",
@@ -3252,8 +3232,7 @@
       "source": "anu-phd-rtp.md",
       "source_file": "data/raw/australia-universities/anu-phd-rtp.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "anu-phd-scholarship-rtp-international-fee-offset"
+      "program_type": null
     },
     {
       "name": "Monash Graduate Scholarship + Monash International Tuition Scholarship",
@@ -3315,8 +3294,7 @@
       "source": "monash-graduate-scholarship.md",
       "source_file": "data/raw/australia-universities/monash-graduate-scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "monash-graduate-scholarship-monash-international-tuition-scholarship"
+      "program_type": null
     },
     {
       "name": "UQ Graduate School Scholarships",
@@ -3376,8 +3354,7 @@
       "source": "uq-graduate-school-scholarships.md",
       "source_file": "data/raw/australia-universities/uq-graduate-school-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "uq-graduate-school-scholarships"
+      "program_type": null
     },
     {
       "name": "UNSW HDR / RTP Scholarship",
@@ -3437,8 +3414,7 @@
       "source": "unsw-hdr-scholarships.md",
       "source_file": "data/raw/australia-universities/unsw-hdr-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "unsw-hdr-rtp-scholarship"
+      "program_type": null
     },
     {
       "name": "Flinders AGRTPS International / FIPRS",
@@ -3498,8 +3474,7 @@
       "source": "flinders-agrtps-fiprs.md",
       "source_file": "data/raw/australia-universities/flinders-agrtps-fiprs.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "flinders-agrtps-international-fiprs"
+      "program_type": null
     },
     {
       "name": "Griffith Vice Chancellor's International Scholarship",
@@ -3558,8 +3533,7 @@
       "source": "griffith-vice-chancellors-international.md",
       "source_file": "data/raw/australia-universities/griffith-vice-chancellors-international.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "griffith-vice-chancellors-international-scholarship"
+      "program_type": null
     },
     {
       "name": "GKS Undergraduate Scholarship (Global Korea Scholarship - Bachelor's)",
@@ -3636,8 +3610,7 @@
       ],
       "source": "02_ko_plan_scholarship-do.md",
       "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
-      "confidence_score": 0.95,
-      "slug": "gks-undergraduate-scholarship-global-korea-scholarship-bachelors"
+      "confidence_score": 0.95
     },
     {
       "name": "GKS Graduate Scholarship (Global Korea Scholarship - Master's & PhD)",
@@ -3720,8 +3693,7 @@
       ],
       "source": "02_ko_plan_scholarship-do.md",
       "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
-      "confidence_score": 0.95,
-      "slug": "gks-graduate-scholarship-global-korea-scholarship-masters-phd"
+      "confidence_score": 0.95
     },
     {
       "name": "GKS Exchange Students Program (Global Korea Scholarship)",
@@ -3778,12 +3750,11 @@
       "source": "02_ko_plan_scholarship-do.md",
       "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
       "confidence_score": 0.95,
-      "important_dates": [],
-      "slug": "gks-exchange-students-program-global-korea-scholarship"
+      "important_dates": []
     },
     {
       "name": "Singapore International Graduate Award (SINGA)",
-      "provider": "A*STAR / Singapore / NTU / NUS / SUTD / SMU",
+      "provider": "A*STAR / Singapore/ NTU / NUS / SUTD / SMU",
       "country": "Singapore",
       "degree_levels": [
         "PhD"
@@ -3850,8 +3821,7 @@
       ],
       "source": "01_astar_scholarships_home.md",
       "source_file": "data/raw/singa/01_astar_scholarships_home.md",
-      "confidence_score": 0.95,
-      "slug": "singapore-international-graduate-award-singa"
+      "confidence_score": 0.95
     },
     {
       "name": "A*STAR Graduate Scholarship (AGS)",
@@ -3912,8 +3882,7 @@
       "source": "01_astar_scholarships_home.md",
       "source_file": "data/raw/singa/01_astar_scholarships_home.md",
       "confidence_score": 0.95,
-      "important_dates": [],
-      "slug": "astar-graduate-scholarship-ags"
+      "important_dates": []
     },
     {
       "name": "ASEAN Undergraduate Scholarship - NUS",
@@ -3993,8 +3962,7 @@
       ],
       "source": "01_nus_asean_ug.md",
       "source_file": "data/raw/asean-sg/01_nus_asean_ug.md",
-      "confidence_score": 0.95,
-      "slug": "asean-undergraduate-scholarship-nus"
+      "confidence_score": 0.95
     },
     {
       "name": "ASEAN Undergraduate Scholarship - NTU",
@@ -4063,8 +4031,7 @@
       "source": "02_ntu_asean_ug.md",
       "source_file": "data/raw/asean-sg/02_ntu_asean_ug.md",
       "confidence_score": 0.95,
-      "important_dates": [],
-      "slug": "asean-undergraduate-scholarship-ntu"
+      "important_dates": []
     },
     {
       "name": "NUS International Undergraduate Scholarship (NUS IUS)",
@@ -4135,8 +4102,7 @@
       ],
       "source": "10_nus_international_undergraduate_scholarship.md",
       "source_file": "data/raw/singa/10_nus_international_undergraduate_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "nus-international-undergraduate-scholarship-nus-ius"
+      "confidence_score": 0.95
     },
     {
       "name": "Dr Goh Keng Swee (GKS) Scholarship",
@@ -4219,8 +4185,7 @@
       ],
       "source": "11_dr_goh_keng_swee_scholarship.md",
       "source_file": "data/raw/singa/11_dr_goh_keng_swee_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "dr-goh-keng-swee-gks-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Nanyang President's Graduate Scholarship (NPGS)",
@@ -4287,8 +4252,7 @@
       ],
       "source": "12_ntu_nanyang_presidents_graduate_scholarship.md",
       "source_file": "data/raw/singa/12_ntu_nanyang_presidents_graduate_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "nanyang-presidents-graduate-scholarship-npgs"
+      "confidence_score": 0.95
     },
     {
       "name": "France Excellence Eiffel Scholarship - Master's Level",
@@ -4365,8 +4329,7 @@
       ],
       "source": "01_en_eiffel-scholarship-program-of-excellence.md",
       "source_file": "data/raw/eiffel/01_en_eiffel-scholarship-program-of-excellence.md",
-      "confidence_score": 0.95,
-      "slug": "france-excellence-eiffel-scholarship-masters-level"
+      "confidence_score": 0.95
     },
     {
       "name": "France Excellence Eiffel Scholarship - PhD Level",
@@ -4435,8 +4398,7 @@
       ],
       "source": "01_en_eiffel-scholarship-program-of-excellence.md",
       "source_file": "data/raw/eiffel/01_en_eiffel-scholarship-program-of-excellence.md",
-      "confidence_score": 0.95,
-      "slug": "france-excellence-eiffel-scholarship-phd-level"
+      "confidence_score": 0.95
     },
     {
       "name": "Université Paris-Saclay International Master's Scholarships (IDEX)",
@@ -4504,8 +4466,7 @@
       ],
       "source": "21_paris_saclay_international_masters_scholarships.md",
       "source_file": "data/raw/eiffel/21_paris_saclay_international_masters_scholarships.md",
-      "confidence_score": 0.95,
-      "slug": "universit-paris-saclay-international-masters-scholarships-idex"
+      "confidence_score": 0.95
     },
     {
       "name": "Sciences Po Émile Boutmy Scholarship",
@@ -4580,8 +4541,7 @@
       ],
       "source": "22_sciences_po_emile_boutmy_scholarship.md",
       "source_file": "data/raw/eiffel/22_sciences_po_emile_boutmy_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "sciences-po-mile-boutmy-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "ENS de Lyon Ampère Excellence Scholarships",
@@ -4647,8 +4607,7 @@
       ],
       "source": "23_ens_lyon_ampere_excellence_scholarship.md",
       "source_file": "data/raw/eiffel/23_ens_lyon_ampere_excellence_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "ens-de-lyon-ampre-excellence-scholarships"
+      "confidence_score": 0.95
     },
     {
       "name": "Canada Graduate Research Scholarship - Doctoral (CGRS-D)",
@@ -4722,8 +4681,7 @@
       ],
       "source": "01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
       "source_file": "data/raw/canada/01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
-      "confidence_score": 0.95,
-      "slug": "canada-graduate-research-scholarship-doctoral-cgrs-d"
+      "confidence_score": 0.95
     },
     {
       "name": "Canada Impact+ Research Training Awards - Doctoral",
@@ -4780,8 +4738,7 @@
       ],
       "source": "01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
       "source_file": "data/raw/canada/01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
-      "confidence_score": 0.95,
-      "slug": "canada-impact-research-training-awards-doctoral"
+      "confidence_score": 0.95
     },
     {
       "name": "Lester B. Pearson International Student Scholarships - University of Toronto",
@@ -4854,8 +4811,7 @@
       ],
       "source": "05_lester_pearson_scholarship.md",
       "source_file": "data/raw/canada/05_lester_pearson_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "lester-b-pearson-international-student-scholarships-university-of-toronto"
+      "confidence_score": 0.95
     },
     {
       "name": "A*STAR Graduate Scholarship (AGS) - International",
@@ -4926,8 +4882,7 @@
       ],
       "source": "13_scholarships_home_scholarships_ags-scholarship.md",
       "source_file": "data/raw/singa/13_scholarships_home_scholarships_ags-scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "astar-graduate-scholarship-ags-international"
+      "confidence_score": 0.95
     },
     {
       "name": "A*STAR International Fellowship (AIF) - Research Track",
@@ -4997,8 +4952,7 @@
       ],
       "source": "12_scholarships_home_scholarships_astar-international-fellowship.md",
       "source_file": "data/raw/singa/12_scholarships_home_scholarships_astar-international-fellowship.md",
-      "confidence_score": 0.95,
-      "slug": "astar-international-fellowship-aif-research-track"
+      "confidence_score": 0.95
     },
     {
       "name": "A*STAR International Fellowship (AIF) - Innovation Track",
@@ -5059,8 +5013,7 @@
       ],
       "source": "12_scholarships_home_scholarships_astar-international-fellowship.md",
       "source_file": "data/raw/singa/12_scholarships_home_scholarships_astar-international-fellowship.md",
-      "confidence_score": 0.95,
-      "slug": "astar-international-fellowship-aif-innovation-track"
+      "confidence_score": 0.95
     },
     {
       "name": "JASSO Monbukagakusho Honors Scholarship for Privately-Financed International Students",
@@ -5128,8 +5081,7 @@
       ],
       "source": "02_jasso_detail.md",
       "source_file": "data/raw/jasso/02_jasso_detail.md",
-      "confidence_score": 0.95,
-      "slug": "jasso-monbukagakusho-honors-scholarship-for-privately-financed-international-students"
+      "confidence_score": 0.95
     },
     {
       "name": "JASSO Student Exchange Support Program (Scholarship for Study in Japan under Agreement)",
@@ -5190,8 +5142,7 @@
       ],
       "source": "02_jasso_detail.md",
       "source_file": "data/raw/jasso/02_jasso_detail.md",
-      "confidence_score": 0.95,
-      "slug": "jasso-student-exchange-support-program-scholarship-for-study-in-japan-under-agreement"
+      "confidence_score": 0.95
     },
     {
       "name": "KOICA Scholarship Program - Master's Degree",
@@ -5267,8 +5218,7 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/koica/01_overview.md",
-      "confidence_score": 0.95,
-      "slug": "koica-scholarship-program-masters-degree"
+      "confidence_score": 0.95
     },
     {
       "name": "KOICA Scholarship Program - Doctoral Degree",
@@ -5330,8 +5280,7 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/koica/01_overview.md",
-      "confidence_score": 0.95,
-      "slug": "koica-scholarship-program-doctoral-degree"
+      "confidence_score": 0.95
     },
     {
       "name": "Canada Postdoctoral Research Award (CPRA)",
@@ -5404,8 +5353,7 @@
       ],
       "source": "06_cpra.md",
       "source_file": "data/raw/canada/06_cpra.md",
-      "confidence_score": 0.95,
-      "slug": "canada-postdoctoral-research-award-cpra"
+      "confidence_score": 0.95
     },
     {
       "name": "Studienstiftung des deutschen Volkes - Undergraduate & Master's Scholarship",
@@ -5472,8 +5420,7 @@
       ],
       "source": "01_en.md",
       "source_file": "data/raw/studienstiftung/01_en.md",
-      "confidence_score": 0.95,
-      "slug": "studienstiftung-des-deutschen-volkes-undergraduate-masters-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Studienstiftung des deutschen Volkes - Doctoral Scholarship",
@@ -5550,8 +5497,7 @@
       ],
       "source": "03_application.md",
       "source_file": "data/raw/studienstiftung/03_application.md",
-      "confidence_score": 0.95,
-      "slug": "studienstiftung-des-deutschen-volkes-doctoral-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Studienstiftung ERP Fellowship Programme",
@@ -5625,8 +5571,7 @@
       ],
       "source": "09_en_erp.md",
       "source_file": "data/raw/studienstiftung/09_en_erp.md",
-      "confidence_score": 0.95,
-      "slug": "studienstiftung-erp-fellowship-programme"
+      "confidence_score": 0.95
     },
     {
       "name": "Studienstiftung McCloy Scholarship Programme",
@@ -5703,8 +5648,7 @@
       ],
       "source": "11_en_mccloy.md",
       "source_file": "data/raw/studienstiftung/11_en_mccloy.md",
-      "confidence_score": 0.95,
-      "slug": "studienstiftung-mccloy-scholarship-programme"
+      "confidence_score": 0.95
     },
     {
       "name": "Studienstiftung Leo Baeck Fellowship",
@@ -5777,8 +5721,7 @@
       ],
       "source": "12_en_leo-baeck-fellowship.md",
       "source_file": "data/raw/studienstiftung/12_en_leo-baeck-fellowship.md",
-      "confidence_score": 0.95,
-      "slug": "studienstiftung-leo-baeck-fellowship"
+      "confidence_score": 0.95
     },
     {
       "name": "Holland Scholarship (NL Scholarship)",
@@ -5840,8 +5783,7 @@
       ],
       "source": "01_holland_scholarship.md",
       "source_file": "data/raw/netherlands/01_holland_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "holland-scholarship-nl-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Orange Knowledge Programme (OKP)",
@@ -5915,8 +5857,7 @@
       ],
       "source": "02_orange_knowledge_programme.md",
       "source_file": "data/raw/netherlands/02_orange_knowledge_programme.md",
-      "confidence_score": 0.95,
-      "slug": "orange-knowledge-programme-okp"
+      "confidence_score": 0.95
     },
     {
       "name": "Orange Tulip Scholarship (OTS)",
@@ -5991,8 +5932,7 @@
       ],
       "source": "03_orange_tulip_scholarship.md",
       "source_file": "data/raw/netherlands/03_orange_tulip_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "orange-tulip-scholarship-ots"
+      "confidence_score": 0.95
     },
     {
       "name": "Justus & Louise van Effen Excellence Scholarship - TU Delft",
@@ -6062,8 +6002,7 @@
       ],
       "source": "04_tu_delft_excellence.md",
       "source_file": "data/raw/netherlands/04_tu_delft_excellence.md",
-      "confidence_score": 0.95,
-      "slug": "justus-louise-van-effen-excellence-scholarship-tu-delft"
+      "confidence_score": 0.95
     },
     {
       "name": "University of Groningen Excellence Scholarship",
@@ -6128,8 +6067,7 @@
       ],
       "source": "05_groningen_excellence.md",
       "source_file": "data/raw/netherlands/05_groningen_excellence.md",
-      "confidence_score": 0.95,
-      "slug": "university-of-groningen-excellence-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Amsterdam Merit Scholarship (AMS) - University of Amsterdam",
@@ -6192,8 +6130,7 @@
       ],
       "source": "06_amsterdam_merit_scholarship.md",
       "source_file": "data/raw/netherlands/06_amsterdam_merit_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "amsterdam-merit-scholarship-ams-university-of-amsterdam"
+      "confidence_score": 0.95
     },
     {
       "name": "Leiden University Excellence Scholarship (LExS)",
@@ -6256,8 +6193,7 @@
       ],
       "source": "07_leiden_excellence.md",
       "source_file": "data/raw/netherlands/07_leiden_excellence.md",
-      "confidence_score": 0.95,
-      "slug": "leiden-university-excellence-scholarship-lexs"
+      "confidence_score": 0.95
     },
     {
       "name": "Maastricht University NL-High Potential Scholarship",
@@ -6317,8 +6253,7 @@
       ],
       "source": "08_maastricht_high_potential.md",
       "source_file": "data/raw/netherlands/08_maastricht_high_potential.md",
-      "confidence_score": 0.95,
-      "slug": "maastricht-university-nl-high-potential-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Radboud Scholarship Programme",
@@ -6381,8 +6316,7 @@
       ],
       "source": "09_radboud_scholarship.md",
       "source_file": "data/raw/netherlands/09_radboud_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "radboud-scholarship-programme"
+      "confidence_score": 0.95
     },
     {
       "name": "VU Fellowship Programme - Vrije Universiteit Amsterdam",
@@ -6443,8 +6377,7 @@
       ],
       "source": "10_vu_fellowship.md",
       "source_file": "data/raw/netherlands/10_vu_fellowship.md",
-      "confidence_score": 0.95,
-      "slug": "vu-fellowship-programme-vrije-universiteit-amsterdam"
+      "confidence_score": 0.95
     },
     {
       "name": "Gates Cambridge Scholarship",
@@ -6525,8 +6458,7 @@
       ],
       "source": "02_programme_the-scholarship.md",
       "source_file": "data/raw/gates-cambridge/02_programme_the-scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "gates-cambridge-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Gates Cambridge Scholarship - PhD",
@@ -6605,8 +6537,7 @@
       ],
       "source": "02_programme_the-scholarship.md",
       "source_file": "data/raw/gates-cambridge/02_programme_the-scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "gates-cambridge-scholarship-phd"
+      "confidence_score": 0.95
     },
     {
       "name": "Clarendon Fund Scholarship - University of Oxford",
@@ -6672,8 +6603,7 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/clarendon/01_overview.md",
-      "confidence_score": 0.95,
-      "slug": "clarendon-fund-scholarship-university-of-oxford"
+      "confidence_score": 0.95
     },
     {
       "name": "Rhodes Scholarship - University of Oxford",
@@ -6742,8 +6672,7 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/rhodes/01_overview.md",
-      "confidence_score": 0.95,
-      "slug": "rhodes-scholarship-university-of-oxford"
+      "confidence_score": 0.95
     },
     {
       "name": "Fulbright Master's Degree Scholarship",
@@ -6814,8 +6743,7 @@
       ],
       "source": "06_grants-for-indonesians_fulbright-programs_scholarship_fulbright-masters-degree-s.md",
       "source_file": "data/raw/fulbright-usa/06_grants-for-indonesians_fulbright-programs_scholarship_fulbright-masters-degree-s.md",
-      "confidence_score": 0.95,
-      "slug": "fulbright-masters-degree-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Fulbright Doctoral Degree (PhD) Scholarship",
@@ -6890,8 +6818,7 @@
       ],
       "source": "07_grants-for-indonesians_fulbright-programs_scholarship_fulbright-doctoral-degree-.md",
       "source_file": "data/raw/fulbright-usa/07_grants-for-indonesians_fulbright-programs_scholarship_fulbright-doctoral-degree-.md",
-      "confidence_score": 0.95,
-      "slug": "fulbright-doctoral-degree-phd-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Hubert H. Humphrey Fellowship Program",
@@ -6969,8 +6896,7 @@
       ],
       "source": "13_grants-for-indonesians_fulbright-programs_fellowships_hubert-h-humphrey-fellowsh.md",
       "source_file": "data/raw/fulbright-usa/13_grants-for-indonesians_fulbright-programs_fellowships_hubert-h-humphrey-fellowsh.md",
-      "confidence_score": 0.95,
-      "slug": "hubert-h-humphrey-fellowship-program"
+      "confidence_score": 0.95
     },
     {
       "name": "Fulbright Foreign Language Teaching Assistant (FLTA) Program",
@@ -7040,8 +6966,7 @@
       ],
       "source": "12_grants-for-indonesians_fulbright-programs_foreign-language-teaching-assistant-fl.md",
       "source_file": "data/raw/fulbright-usa/12_grants-for-indonesians_fulbright-programs_foreign-language-teaching-assistant-fl.md",
-      "confidence_score": 0.95,
-      "slug": "fulbright-foreign-language-teaching-assistant-flta-program"
+      "confidence_score": 0.95
     },
     {
       "name": "VLIR-UOS ICP Connect Scholarship - Initial Master's (2 years)",
@@ -7124,8 +7049,7 @@
       ],
       "source": "01_get-funded_study-scholarships.md",
       "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
-      "confidence_score": 0.95,
-      "slug": "vlir-uos-icp-connect-scholarship-initial-masters-2-years"
+      "confidence_score": 0.95
     },
     {
       "name": "VLIR-UOS ICP Connect Scholarship - Advanced Master's (1 year)",
@@ -7192,8 +7116,7 @@
       ],
       "source": "01_get-funded_study-scholarships.md",
       "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
-      "confidence_score": 0.95,
-      "slug": "vlir-uos-icp-connect-scholarship-advanced-masters-1-year"
+      "confidence_score": 0.95
     },
     {
       "name": "VLIR-UOS ICP Connect Scholarship - Professional Bachelor (3 years)",
@@ -7254,8 +7177,7 @@
       ],
       "source": "01_get-funded_study-scholarships.md",
       "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
-      "confidence_score": 0.95,
-      "slug": "vlir-uos-icp-connect-scholarship-professional-bachelor-3-years"
+      "confidence_score": 0.95
     },
     {
       "name": "ARES Scholarships (Belgium Government)",
@@ -7364,8 +7286,7 @@
       ],
       "source": "ares_scholarships",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "ares-scholarships-belgium-government"
+      "confidence_score": 0.95
     },
     {
       "name": "Master Mind Scholarships (Government of Flanders)",
@@ -7432,8 +7353,7 @@
       ],
       "source": "master_mind_scholarships",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "master-mind-scholarships-government-of-flanders"
+      "confidence_score": 0.95
     },
     {
       "name": "Science@Leuven Scholarship",
@@ -7493,8 +7413,7 @@
       ],
       "source": "science_leuven_scholarship",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "scienceleuven-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Global Minds Doctoral Scholarships Programme",
@@ -7560,8 +7479,7 @@
       ],
       "source": "global_minds_doctoral",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "global-minds-doctoral-scholarships-programme"
+      "confidence_score": 0.95
     },
     {
       "name": "Erasmus Mundus Joint Master (EMJM) Scholarship",
@@ -7632,8 +7550,7 @@
       ],
       "source": "01_opportunities_individuals_students_erasmus-mundus-joint-masters.md",
       "source_file": "data/raw/erasmus-mundus/01_opportunities_individuals_students_erasmus-mundus-joint-masters.md",
-      "confidence_score": 0.95,
-      "slug": "erasmus-mundus-joint-master-emjm-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Chinese Government Scholarship (CGS) - Bilateral Program",
@@ -7715,8 +7632,7 @@
       ],
       "source": "01_csc_main.md",
       "source_file": "data/raw/china-csc/01_csc_main.md",
-      "confidence_score": 0.95,
-      "slug": "chinese-government-scholarship-cgs-bilateral-program"
+      "confidence_score": 0.95
     },
     {
       "name": "Chinese Government Scholarship (CGS) - Chinese University Program",
@@ -7796,8 +7712,7 @@
       ],
       "source": "02_csc_programs.md",
       "source_file": "data/raw/china-csc/02_csc_programs.md",
-      "confidence_score": 0.95,
-      "slug": "chinese-government-scholarship-cgs-chinese-university-program"
+      "confidence_score": 0.95
     },
     {
       "name": "Belt and Road Scholarship (Silk Road Scholarship)",
@@ -7875,8 +7790,7 @@
       ],
       "source": "06_silk_road_scholarship.md",
       "source_file": "data/raw/china-csc/06_silk_road_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "belt-and-road-scholarship-silk-road-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "MOFCOM Scholarship (Ministry of Commerce Scholarship China)",
@@ -7949,8 +7863,7 @@
       ],
       "source": "07_mofcom_scholarship.md",
       "source_file": "data/raw/china-csc/07_mofcom_scholarship.md",
-      "confidence_score": 0.95,
-      "slug": "mofcom-scholarship-ministry-of-commerce-scholarship-china"
+      "confidence_score": 0.95
     },
     {
       "name": "Swedish Institute Scholarship for Global Professionals (SISGP)",
@@ -8055,8 +7968,7 @@
       ],
       "source": "06_en_apply_scholarships_swedish-institute-scholarships-for-global-professionals.md",
       "source_file": "data/raw/sweden/06_en_apply_scholarships_swedish-institute-scholarships-for-global-professionals.md",
-      "confidence_score": 0.95,
-      "slug": "swedish-institute-scholarship-for-global-professionals-sisgp"
+      "confidence_score": 0.95
     },
     {
       "name": "Pioneering Women in STEM (PWIS) – Swedish Institute",
@@ -8137,8 +8049,7 @@
       ],
       "source": "07_en_apply_scholarships_pioneeringwomeninstem.md",
       "source_file": "data/raw/sweden/07_en_apply_scholarships_pioneeringwomeninstem.md",
-      "confidence_score": 0.95,
-      "slug": "pioneering-women-in-stem-pwis-swedish-institute"
+      "confidence_score": 0.95
     },
     {
       "name": "Lund University Global Scholarship",
@@ -8201,8 +8112,7 @@
       ],
       "source": "lund_university_global_scholarship",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "lund-university-global-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "KTH Scholarship",
@@ -8264,8 +8174,7 @@
       ],
       "source": "kth_scholarship",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "kth-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Chalmers IPOET Scholarship",
@@ -8328,8 +8237,7 @@
       ],
       "source": "chalmers_ipoet",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "chalmers-ipoet-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Uppsala University Global Scholarship",
@@ -8390,8 +8298,7 @@
       ],
       "source": "uppsala_global_scholarship",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "uppsala-university-global-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Stockholm University Scholarship",
@@ -8452,8 +8359,7 @@
       ],
       "source": "stockholm_university_scholarship",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "stockholm-university-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "University of Gothenburg Global Scholarship",
@@ -8513,8 +8419,7 @@
       ],
       "source": "university_of_gothenburg_scholarship",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "university-of-gothenburg-global-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Karolinska Institutet Global Master's Scholarship",
@@ -8576,8 +8481,7 @@
       ],
       "source": "karolinska_institutet_scholarship",
       "source_file": null,
-      "confidence_score": 0.95,
-      "slug": "karolinska-institutet-global-masters-scholarship"
+      "confidence_score": 0.95
     },
     {
       "name": "Italian Government Scholarships for Foreign Students (MAECI)",
@@ -8638,8 +8542,7 @@
       ],
       "source": "07_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_borse.md",
       "source_file": "data/raw/italy/07_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_borse.md",
-      "confidence_score": 0.95,
-      "slug": "italian-government-scholarships-for-foreign-students-maeci"
+      "confidence_score": 0.95
     },
     {
       "name": "Invest Your Talent in Italy (IYT)",
@@ -8719,8 +8622,7 @@
       ],
       "source": "09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
       "source_file": "data/raw/italy/09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
-      "confidence_score": 0.95,
-      "slug": "invest-your-talent-in-italy-iyt"
+      "confidence_score": 0.95
     },
     {
       "name": "MAECI Special Projects Scholarships – PhD and Master (Italy)",
@@ -8791,8 +8693,7 @@
       ],
       "source": "09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
       "source_file": "data/raw/italy/09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
-      "confidence_score": 0.95,
-      "slug": "maeci-special-projects-scholarships-phd-and-master-italy"
+      "confidence_score": 0.95
     },
     {
       "name": "Stipendium Hungaricum - Bachelor's / One-Tier Master's Scholarship",
@@ -8863,8 +8764,7 @@
       "source": "01_index.md",
       "source_file": "data/raw/hungary/01_index.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "stipendium-hungaricum-bachelors-one-tier-masters-scholarship"
+      "program_type": null
     },
     {
       "name": "Stipendium Hungaricum - Master's Scholarship",
@@ -8933,8 +8833,7 @@
       "source": "02_apply.md",
       "source_file": "data/raw/hungary/02_apply.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "stipendium-hungaricum-masters-scholarship"
+      "program_type": null
     },
     {
       "name": "Stipendium Hungaricum - Doctoral (PhD) Scholarship",
@@ -9003,8 +8902,7 @@
       "source": "02_apply.md",
       "source_file": "data/raw/hungary/02_apply.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "stipendium-hungaricum-doctoral-phd-scholarship"
+      "program_type": null
     },
     {
       "name": "MOE Taiwan Scholarship - Bachelor's Degree",
@@ -9073,8 +8971,7 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "moe-taiwan-scholarship-bachelors-degree"
+      "program_type": null
     },
     {
       "name": "MOE Taiwan Scholarship - Master's / PhD Degree",
@@ -9144,8 +9041,7 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "moe-taiwan-scholarship-masters-phd-degree"
+      "program_type": null
     },
     {
       "name": "TaiwanICDF Higher Education Scholarship",
@@ -9216,8 +9112,7 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "taiwanicdf-higher-education-scholarship"
+      "program_type": null
     },
     {
       "name": "Huayu Enrichment Scholarship (HES) - Mandarin Language Study",
@@ -9282,8 +9177,7 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "huayu-enrichment-scholarship-hes-mandarin-language-study"
+      "program_type": null
     },
     {
       "name": "National Taiwan University (NTU) International Student Scholarship",
@@ -9348,8 +9242,7 @@
       "source": "admissions.ntu.edu.tw",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "national-taiwan-university-ntu-international-student-scholarship"
+      "program_type": null
     },
     {
       "name": "National Tsing Hua University (NTHU) International Student Scholarship",
@@ -9413,8 +9306,7 @@
       "source": "oga.site.nthu.edu.tw",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "national-tsing-hua-university-nthu-international-student-scholarship"
+      "program_type": null
     },
     {
       "name": "Swiss Government Excellence Research Scholarship (Postdoctoral)",
@@ -9484,8 +9376,7 @@
       "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "swiss-government-excellence-research-scholarship-postdoctoral"
+      "program_type": null
     },
     {
       "name": "Swiss Government Excellence PhD Scholarship",
@@ -9552,8 +9443,7 @@
       "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "swiss-government-excellence-phd-scholarship"
+      "program_type": null
     },
     {
       "name": "Swiss Government Excellence Art Scholarship",
@@ -9625,8 +9515,7 @@
       "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "swiss-government-excellence-art-scholarship"
+      "program_type": null
     },
     {
       "name": "ETH Zurich Excellence Scholarship & Opportunity Programme (ESOP)",
@@ -9688,8 +9577,7 @@
       "source": "ethz.ch",
       "source_file": "data/raw/switzerland/04_eth_esop.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "eth-zurich-excellence-scholarship-opportunity-programme-esop"
+      "program_type": null
     },
     {
       "name": "EPFL Excellence Fellowship",
@@ -9751,8 +9639,7 @@
       "source": "epfl.ch",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "epfl-excellence-fellowship"
+      "program_type": null
     },
     {
       "name": "University of Geneva Excellence Master Fellowships (Faculty of Science)",
@@ -9821,8 +9708,7 @@
       "source": "unige.ch",
       "source_file": "data/raw/switzerland/05_unige_excellence.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "university-of-geneva-excellence-master-fellowships-faculty-of-science"
+      "program_type": null
     },
     {
       "name": "Helmut Veith Stipend (TU Wien - Computer Science)",
@@ -9889,8 +9775,7 @@
       "source": "tuwien.at",
       "source_file": "data/raw/austria/01_helmut_veith_stipend.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "helmut-veith-stipend-tu-wien-computer-science"
+      "program_type": null
     },
     {
       "name": "OeAD Ernst Mach Grant - Worldwide",
@@ -9956,8 +9841,7 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/02_oead_ernst_mach_worldwide.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "oead-ernst-mach-grant-worldwide"
+      "program_type": null
     },
     {
       "name": "OeAD Ernst Mach Grant - UAS Worldwide (Fachhochschulen)",
@@ -10022,8 +9906,7 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/03_oead_ernst_mach_uas.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "oead-ernst-mach-grant-uas-worldwide-fachhochschulen"
+      "program_type": null
     },
     {
       "name": "OeAD Ernst Mach Follow-Up Grant",
@@ -10083,8 +9966,7 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/04_oead_ernst_mach_followup.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "oead-ernst-mach-follow-up-grant"
+      "program_type": null
     },
     {
       "name": "OeAD Franz Werfel Fellowship",
@@ -10150,8 +10032,7 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/05_oead_franz_werfel.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "oead-franz-werfel-fellowship"
+      "program_type": null
     },
     {
       "name": "University of Helsinki International Master Grants",
@@ -10214,8 +10095,7 @@
       "source": "helsinki.fi",
       "source_file": "data/raw/finland/03_helsinki_intl_master.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "university-of-helsinki-international-master-grants"
+      "program_type": null
     },
     {
       "name": "Aalto University Tuition Fee Waivers & Scholarship",
@@ -10277,8 +10157,7 @@
       "source": "aalto.fi",
       "source_file": "data/raw/finland/04_aalto_tuition_waiver.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "aalto-university-tuition-fee-waivers-scholarship"
+      "program_type": null
     },
     {
       "name": "Tampere University International Master Scholarship",
@@ -10339,8 +10218,7 @@
       "source": "tuni.fi",
       "source_file": "data/raw/finland/05_tampere_intl_scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "tampere-university-international-master-scholarship"
+      "program_type": null
     },
     {
       "name": "University of Oulu International Master Scholarship",
@@ -10401,8 +10279,7 @@
       "source": "oulu.fi",
       "source_file": "data/raw/finland/06_oulu_intl_master.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "university-of-oulu-international-master-scholarship"
+      "program_type": null
     },
     {
       "name": "Hanken School of Economics Premium Scholarship",
@@ -10466,8 +10343,7 @@
       "source": "hanken.fi",
       "source_file": "data/raw/finland/07_hanken_premium.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "hanken-school-of-economics-premium-scholarship"
+      "program_type": null
     },
     {
       "name": "Nokia Foundation Scholarship",
@@ -10534,8 +10410,7 @@
       "source": "nokiafoundation.com",
       "source_file": "data/raw/finland/08_nokia_foundation.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "nokia-foundation-scholarship"
+      "program_type": null
     },
     {
       "name": "Manaaki New Zealand Scholarship - Tertiary (Undergraduate & Postgraduate)",
@@ -10612,8 +10487,7 @@
       "source": "08_check-eligibility-criteria.md",
       "source_file": "data/raw/new-zealand/08_check-eligibility-criteria.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "manaaki-new-zealand-scholarship-tertiary-undergraduate-postgraduate"
+      "program_type": null
     },
     {
       "name": "Manaaki New Zealand Scholarship - Vocational Short-Term Training",
@@ -10672,8 +10546,7 @@
       "source": "04_vocational-short-term-scholarships.md",
       "source_file": "data/raw/new-zealand/04_vocational-short-term-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "manaaki-new-zealand-scholarship-vocational-short-term-training"
+      "program_type": null
     },
     {
       "name": "Manaaki New Zealand Scholarship - English Language Training for Officials (NZELTO)",
@@ -10732,8 +10605,7 @@
       "source": "05_english-language-training-for-officials-scholarships.md",
       "source_file": "data/raw/new-zealand/05_english-language-training-for-officials-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "manaaki-new-zealand-scholarship-english-language-training-for-officials-nzelto"
+      "program_type": null
     },
     {
       "name": "Government of Ireland International Education Scholarship (GOI-IES)",
@@ -10801,8 +10673,7 @@
       "source": "02_ireland_guide.md",
       "source_file": "data/raw/ireland/02_ireland_guide.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "government-of-ireland-international-education-scholarship-goi-ies"
+      "program_type": null
     },
     {
       "name": "Government of Ireland Postgraduate Scholarship (GOIPG)",
@@ -10869,8 +10740,7 @@
       "source": "02_ireland_guide.md",
       "source_file": "data/raw/ireland/02_ireland_guide.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "government-of-ireland-postgraduate-scholarship-goipg"
+      "program_type": null
     },
     {
       "name": "Trinity College Dublin (TCD) Global Excellence Postgraduate Scholarship",
@@ -10931,8 +10801,7 @@
       "source": "tcd.ie",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "trinity-college-dublin-tcd-global-excellence-postgraduate-scholarship"
+      "program_type": null
     },
     {
       "name": "UCD Global Excellence Scholarship",
@@ -10995,8 +10864,1340 @@
       "source": "ucd.ie",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "ucd-global-excellence-scholarship"
+      "program_type": null
+    },
+    {
+      "name": "Teagasc Walsh Scholars Programme",
+      "provider": "Teagasc (Irish Agriculture and Food Development Authority)",
+      "country": "Ireland",
+      "degree_levels": [
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "Agriculture",
+        "Food Science",
+        "Animal Science",
+        "Grassland Science",
+        "Crop Production",
+        "Rural Economics",
+        "Environment",
+        "Soil Science",
+        "Climate Change",
+        "Food Innovation"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "19 and 29 May 2026 (per-project rolling)",
+      "application_period": [
+        "March – May (per project)"
+      ],
+      "important_dates": [
+        "Call opens: February–March 2026",
+        "Project-specific deadlines: 19 May 2026 and 29 May 2026",
+        "Studies commence: September 2026",
+        "Duration: 3–4 years (PhD) or 2 years (Research MSc)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "All nationalities eligible (Indonesia ✓)",
+          "Honours degree (First Class or Upper Second Class, equivalent to GPA 3.0+/4.0)",
+          "Non-EU students require Irish study visa",
+          "Strong English proficiency (IELTS 6.5+ typical)",
+          "Co-supervised by Teagasc and an Irish university partner (UCD, UCC, Trinity, UL, UoG)",
+          "Apply directly per project on Teagasc website"
+        ]
+      },
+      "benefits": [
+        "Annual stipend of EUR 25,000 (tax-free)",
+        "Tuition fees covered up to EUR 6,000/year",
+        "Research expenses and conference travel budget",
+        "Co-supervision by Teagasc and partner university",
+        "Access to Teagasc research infrastructure"
+      ],
+      "amounts": [
+        "EUR 25,000/year stipend (approx. EUR 2,083/month)",
+        "Tuition: up to EUR 6,000/year",
+        "Research budget: variable per project"
+      ],
+      "target_group": "Researchers of any nationality pursuing agri-food, climate, animal, crop, or rural research at Teagasc + Irish university. 18 PhD + 2 MSc positions typically. Strong fit for Indonesian students with agriculture, food science, biology, or chemistry backgrounds.",
+      "official_url": "https://www.teagasc.ie/about/research--innovation/postgraduate-scholarships/walsh-scholars/",
+      "description": "The Teagasc Walsh Scholars Programme offers fully funded PhD (18 slots) and Research MSc (2 slots) scholarships in agriculture, food, and rural development. Scholars are co-supervised by Teagasc and an Irish university partner (UCD, UCC, Trinity, UL, UoG). The programme funds 20 scholars annually at EUR 25,000/year stipend + EUR 6,000/year fees + research budget. Application is per-project with rolling deadlines through May 2026. All nationalities are eligible.",
+      "application_process": [
+        "Step 1: Browse current Walsh Scholars projects at teagasc.ie",
+        "Step 2: Identify a project that matches your research interest",
+        "Step 3: Contact the project supervisor (Teagasc PI) to express interest",
+        "Step 4: Submit online application through Teagasc portal before project deadline",
+        "Step 5: Shortlisted candidates interviewed",
+        "Step 6: Successful candidates begin studies in September 2026"
+      ],
+      "source": "04_teagasc_walsh.md",
+      "source_file": "data/raw/ireland/04_teagasc_walsh.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "MTU TU RISE Master's by Research Scholarship",
+      "provider": "Munster Technological University (MTU)",
+      "country": "Ireland",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Artificial Intelligence",
+        "Maritime Security",
+        "Sustainable Dairy",
+        "Biomimicry",
+        "Sleep Studies",
+        "Cancer Biotherapeutics",
+        "Social Farming",
+        "Astronomy Communication"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": "Rolling per project",
+      "application_period": [
+        "Rolling — applications accepted throughout the year"
+      ],
+      "important_dates": [
+        "Call: rolling, 8+ projects announced annually",
+        "Project-specific deadlines (typically within 4–8 weeks of project posting)",
+        "Studies commence: September 2026 (or per project)",
+        "Duration: 2 years Master by Research"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "All nationalities eligible (Indonesia ✓)",
+          "Honours degree (2:1 or higher) in a relevant discipline",
+          "Strong English proficiency (IELTS 6.5+ typical)",
+          "Apply directly to the project supervisor by email",
+          "Project-specific requirements (e.g., STEM, business, marine biology)"
+        ]
+      },
+      "benefits": [
+        "Stipend of EUR 25,000/year (one of the highest Master-level stipends in Europe)",
+        "Tuition fees covered",
+        "Research and travel budget",
+        "2-year research Master with industrial or academic partner"
+      ],
+      "amounts": [
+        "EUR 25,000/year stipend (approx. EUR 2,083/month)",
+        "Tuition: fully covered"
+      ],
+      "target_group": "Master's by Research students from any nationality seeking a fully funded research degree at Munster Technological University (Cork or Kerry campuses). Strong fit for engineering, computer science, business, or biology backgrounds. Stipend is unusually high for Master's level (matching PhD rates).",
+      "official_url": "https://www.mtu.ie/research/tu-rise/",
+      "description": "The MTU TU RISE Master's by Research programme funds 8+ Master positions annually at Munster Technological University (Cork and Kerry). Each position offers a EUR 25,000/year stipend (unusually high for Master's level) plus tuition coverage. Projects span AI/Maritime Security, Sustainable Dairy, Biomimicry, Sleep Patterns in Maritime Personnel, Colorectal Cancer Biotherapeutics, Social Farming, and Astronomy Communication. Application is per-project, directly to the supervisor. All nationalities eligible.",
+      "application_process": [
+        "Step 1: Visit mtu.ie/research/tu-rise/ to view current Master's by Research projects",
+        "Step 2: Identify a project that matches your background",
+        "Step 3: Email the project supervisor with CV and cover letter",
+        "Step 4: Submit formal application if shortlisted",
+        "Step 5: Interview and admission decision",
+        "Step 6: Begin studies per project timeline"
+      ],
+      "source": "05_mtu_turise.md",
+      "source_file": "data/raw/ireland/05_mtu_turise.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Maynooth ARDÚ Doctoral Scholarships",
+      "provider": "Maynooth University",
+      "country": "Ireland",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "Data Science",
+        "Digital Transformation",
+        "Health",
+        "Wellbeing",
+        "Sustainability",
+        "Climate Change",
+        "Science",
+        "Engineering"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 48
+      },
+      "deadline": "Spring 2026 (per project)",
+      "application_period": [
+        "February – April (per project)"
+      ],
+      "important_dates": [
+        "Call: Spring 2026",
+        "25 PhD positions available in Faculty of Science & Engineering",
+        "3 themes: Data Science & Digital Transformation; Health & Wellbeing; Sustainability & Climate Change",
+        "Studies commence: September 2026",
+        "Duration: up to 4 years"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "All nationalities eligible (Indonesia ✓)",
+          "First Class or Upper Second Class Honours (2:1 minimum) in relevant discipline",
+          "Apply to a specific PhD project in Faculty of Science & Engineering",
+          "Strong English proficiency",
+          "Non-EU students require Irish study visa"
+        ]
+      },
+      "benefits": [
+        "Annual stipend of EUR 25,000",
+        "Full tuition fees covered",
+        "Up to 4 years of funding (PhD)",
+        "Research and training budget",
+        "Access to Maynooth Graduate Research Academy"
+      ],
+      "amounts": [
+        "EUR 25,000/year stipend",
+        "Tuition: fully covered",
+        "Duration: 3–4 years"
+      ],
+      "target_group": "PhD researchers of any nationality in Data Science, Health, or Sustainability/Climate Change at Maynooth University (near Dublin, 30 minutes by commuter rail). 25 positions available. Maynooth is Ireland's second-oldest university and ranked top 50 globally under 50 years old. Strong fit for STEM backgrounds.",
+      "official_url": "https://www.maynoothuniversity.ie/research/graduate-research/ardu-doctoral-scholarships",
+      "description": "The Maynooth ARDÚ Doctoral Scholarship Programme offers 25 fully funded PhD positions in the Faculty of Science & Engineering across three thematic clusters: Data Science & Digital Transformation, Health & Wellbeing, and Sustainability & Climate Change. Each scholarship provides EUR 25,000/year stipend plus tuition for up to 4 years. All nationalities are eligible. Application is per-project. Maynooth University is located 30 minutes from Dublin by commuter rail, with significantly lower living costs than central Dublin.",
+      "application_process": [
+        "Step 1: Browse ARDÚ projects on Maynooth Graduate Research Academy website",
+        "Step 2: Identify a project matching your research interest",
+        "Step 3: Contact the project supervisor to discuss fit",
+        "Step 4: Submit online application with research proposal, CV, transcripts, and references",
+        "Step 5: Shortlisted candidates interviewed",
+        "Step 6: Offers made by mid-summer 2026"
+      ],
+      "source": "06_maynooth_ardu.md",
+      "source_file": "data/raw/ireland/06_maynooth_ardu.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Maynooth John & Pat Hume Doctoral Awards",
+      "provider": "Maynooth University",
+      "country": "Ireland",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "All disciplines — Arts, Humanities, Social Sciences, Science, Engineering, Business, Law, Education"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "Annual (typically February–March 2026)",
+      "application_period": [
+        "January – March (annually)"
+      ],
+      "important_dates": [
+        "Call opens: January 2026",
+        "Application deadline: February–March 2026",
+        "Results: May–June 2026",
+        "Studies commence: September 2026",
+        "Duration: 4 years (PhD)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "All nationalities eligible (Indonesia ✓)",
+          "Honours degree First or Upper Second Class (2:1 minimum)",
+          "Supervisor must first submit an Expression of Interest before applicant can apply",
+          "Available across ALL Maynooth departments (broader than ARDÚ)",
+          "Strong research proposal required"
+        ]
+      },
+      "benefits": [
+        "Annual stipend of EUR 25,000",
+        "Research expenses EUR 2,000/year",
+        "Tuition fees covered (EU rate, up to EUR 6,000/year)",
+        "4 years of funding (full PhD duration)",
+        "Access to all Maynooth research centres"
+      ],
+      "amounts": [
+        "EUR 25,000/year stipend (approx. EUR 2,083/month)",
+        "EUR 2,000/year research allowance",
+        "Tuition: up to EUR 6,000/year (EU rate)"
+      ],
+      "target_group": "PhD researchers of any nationality across ALL Maynooth departments (broader than ARDÚ which is Science & Engineering only). More flexible for humanities, social sciences, business, law applicants. Supervisor-driven application — must find a willing supervisor first. Ideal for students with specific research interests not covered by project-based schemes.",
+      "official_url": "https://www.maynoothuniversity.ie/research/graduate-research/hume-doctoral-awards",
+      "description": "The Maynooth John & Pat Hume Doctoral Awards fund PhD positions across ALL Maynooth University departments — Arts, Humanities, Social Sciences, Science, Engineering, Business, Law, and Education. This is more flexible than the ARDÚ programme (Science & Engineering only). Each award provides EUR 25,000/year stipend + EUR 2,000/year research allowance + EU tuition fees for 4 years. Application is supervisor-driven: a prospective supervisor must first submit an Expression of Interest before the candidate can apply.",
+      "application_process": [
+        "Step 1: Identify a Maynooth academic whose research matches your interests",
+        "Step 2: Discuss your research proposal with the supervisor",
+        "Step 3: Supervisor submits Expression of Interest",
+        "Step 4: Submit your formal application through Maynooth Graduate Research Academy",
+        "Step 5: Departmental review and shortlisting",
+        "Step 6: Interview and final selection"
+      ],
+      "source": "07_maynooth_hume.md",
+      "source_file": "data/raw/ireland/07_maynooth_hume.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "UCD Funded PhD Studentships",
+      "provider": "University College Dublin (UCD)",
+      "country": "Ireland",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "All research disciplines — AI, Climate Science, Medicine, Engineering, Social Sciences, Computer Science, Biology, Humanities"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 48
+      },
+      "deadline": "Rolling (per-project)",
+      "application_period": [
+        "Rolling throughout the year"
+      ],
+      "important_dates": [
+        "Call: rolling — 50+ project-specific PhD positions announced continuously",
+        "Project-specific deadlines (typically 6–12 weeks after posting)",
+        "Studies commence: per project (typically September or January)",
+        "Duration: 4 years"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "All nationalities eligible (Indonesia ✓)",
+          "First Class or strong Upper Second Class Honours degree",
+          "Project-specific requirements apply",
+          "Strong English proficiency (IELTS 6.5+ typical)",
+          "Apply directly to the project supervisor or via UCD Research portal"
+        ]
+      },
+      "benefits": [
+        "Annual stipend of EUR 25,000 (tax-free)",
+        "Full tuition fees covered",
+        "4 years of funding (PhD)",
+        "Research and conference travel budget",
+        "Access to UCD research infrastructure (top 1% global university)"
+      ],
+      "amounts": [
+        "EUR 25,000/year stipend (tax-free)",
+        "Tuition: fully covered (typically EUR 18,000–27,000/year for non-EU)",
+        "Duration: 4 years"
+      ],
+      "target_group": "PhD researchers of any nationality seeking fully funded positions at University College Dublin (UCD) — Ireland's largest and top-ranked university (QS Top 1% globally). 50+ project-specific calls per year across all disciplines. Stipend is tax-free and one of the highest in Ireland. Application is per-project, directly to the supervisor.",
+      "official_url": "https://www.ucd.ie/research/careers/PhD/",
+      "description": "University College Dublin (UCD) offers 50+ project-specific funded PhD studentships per year across all disciplines — AI, Climate Science, Medicine, Engineering, Social Sciences, Computer Science, Biology, Humanities, and more. Each studentship provides a tax-free EUR 25,000/year stipend plus full tuition coverage for 4 years. UCD is Ireland's largest university and ranked in the global top 1%. Application is rolling, per-project, directly to the supervisor. All nationalities are eligible.",
+      "application_process": [
+        "Step 1: Browse current funded PhD positions on UCD Research careers portal",
+        "Step 2: Identify a project matching your research interests",
+        "Step 3: Contact the project supervisor with CV and cover letter",
+        "Step 4: Submit formal application (CV, transcripts, research statement, references)",
+        "Step 5: Interview with the project team",
+        "Step 6: Admission and PhD registration at UCD"
+      ],
+      "source": "08_ucd_funded_phd.md",
+      "source_file": "data/raw/ireland/08_ucd_funded_phd.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Trinity College Dublin Global Excellence Undergraduate Scholarship",
+      "provider": "Trinity College Dublin",
+      "country": "Ireland",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "fields": [
+        "Arts",
+        "Humanities",
+        "Social Sciences",
+        "Business",
+        "Economics",
+        "Computer Science (limited)",
+        "Law",
+        "Education"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "15 July 2026",
+      "application_period": [
+        "April – 15 July 2026"
+      ],
+      "important_dates": [
+        "Application period: April – 15 July 2026",
+        "Deadline: 15 July 2026",
+        "Results: August 2026",
+        "Studies commence: September 2026",
+        "Duration: Year 1 only (one-time award)"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA international students (Chinese citizens NOT eligible — apply Claddagh Scholarship instead)"
+        ],
+        "raw_items": [
+          "Non-EU/EEA students only (Indonesia ✓)",
+          "Must hold a course offer for a year-1 full-time undergraduate programme at Trinity",
+          "Excluded programmes: Medicine, Dentistry, Acting, Engineering, Natural Sciences, Computer Science & Statistics",
+          "Chinese nationals must apply for the Claddagh Scholarship instead",
+          "Outstanding academic record required"
+        ]
+      },
+      "benefits": [
+        "One-time tuition reduction of EUR 2,000–EUR 5,000",
+        "Applicable to year 1 tuition fees",
+        "No continuation requirements (one-time award)"
+      ],
+      "amounts": [
+        "EUR 2,000–EUR 5,000 one-time (year 1 only)",
+        "Non-EU tuition: approx. EUR 20,000–EUR 30,000/year"
+      ],
+      "target_group": "Outstanding non-EU/EEA international undergraduate students admitted to Trinity College Dublin in Arts, Humanities, Social Sciences, Business, or Economics. Excludes Medicine, Dentistry, Engineering, Natural Sciences, and Computer Science. One-time award (not recurring annually). Apply by 15 July 2026.",
+      "official_url": "https://www.tcd.ie/study/undergraduate/scholarships/",
+      "description": "The Trinity College Dublin Global Excellence Undergraduate Scholarship offers a one-time tuition reduction of EUR 2,000–EUR 5,000 for outstanding non-EU/EEA international undergraduate students entering year 1. Available for all Trinity UG programmes EXCEPT Medicine, Dentistry, Acting, Engineering, Natural Sciences, and Computer Science & Statistics. Chinese nationals are excluded (they must apply for the Claddagh Scholarship instead). Application deadline: 15 July 2026. Apply via the Surveymonkey form on the Trinity website after receiving a course offer.",
+      "application_process": [
+        "Step 1: Apply for a year-1 undergraduate programme at Trinity",
+        "Step 2: Receive a conditional or unconditional admission offer",
+        "Step 3: Complete the Global Excellence Scholarship application via Surveymonkey form",
+        "Step 4: Submit personal statement (typically 500 words) on academic and extracurricular achievements",
+        "Step 5: Award decision made by Trinity scholarship panel",
+        "Step 6: If successful, scholarship deducted from year 1 tuition"
+      ],
+      "source": "09_trinity_global_ug.md",
+      "source_file": "data/raw/ireland/09_trinity_global_ug.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "RCSI International Consilio Manuque Medicine Scholarship",
+      "provider": "Royal College of Surgeons in Ireland (RCSI)",
+      "country": "Ireland",
+      "degree_levels": [
+        "Bachelor"
+      ],
+      "fields": [
+        "Medicine",
+        "Surgery",
+        "Healthcare"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 48,
+        "max": 72
+      },
+      "deadline": "After accepting offer",
+      "application_period": [
+        "Rolling — after offer acceptance"
+      ],
+      "important_dates": [
+        "Application: after accepting RCSI Medicine offer",
+        "Scholarship decision: rolling (shortly after submission)",
+        "Studies commence: September 2026",
+        "Duration: 4, 5, or 6 years (depending on programme)"
+      ],
+      "requirements": {
+        "first_degree_required": false,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA international students only"
+        ],
+        "raw_items": [
+          "Non-EU/EEA students only (Indonesia ✓)",
+          "Self-funding (cannot hold other scholarships)",
+          "Must hold accepted offer for RCSI Medicine (Graduate Entry, Direct Entry 5-year, or Direct Entry 6-year)",
+          "First-time attending RCSI",
+          "Submit personal statement (300–500 words) and one academic reference",
+          "Holistic review: academics + personal achievement + potential"
+        ]
+      },
+      "benefits": [
+        "Total scholarship value of EUR 25,000 across the Medicine programme",
+        "Divided per year depending on programme length: EUR 6,250/yr (4-yr), EUR 5,000/yr (5-yr), or EUR 4,167/yr (6-yr)",
+        "Ambassadorship and development opportunities",
+        "Recognition as a RCSI Consilio Manuque Scholar"
+      ],
+      "amounts": [
+        "EUR 25,000 total scholarship value",
+        "EUR 6,250/year if 4-year Graduate Entry Medicine",
+        "EUR 5,000/year if 5-year Direct Entry Medicine",
+        "EUR 4,167/year if 6-year Direct Entry Medicine"
+      ],
+      "target_group": "Non-EU/EEA international students admitted to RCSI Medicine programmes (Graduate Entry 4-year, Direct Entry 5-year, or Direct Entry 6-year). Specifically for Medicine students only. Self-funding required (cannot combine with other scholarships). Strong fit for Indonesian students pursuing medical degrees in Europe. RCSI is Ireland's leading medical school.",
+      "official_url": "https://www.rcsi.com/undergraduate/scholarships",
+      "description": "The RCSI International Consilio Manuque Medicine Scholarship provides EUR 25,000 total scholarship value for non-EU/EEA international students admitted to RCSI Medicine programmes. The award is divided per year: EUR 6,250/year for 4-year Graduate Entry, EUR 5,000/year for 5-year Direct Entry, or EUR 4,167/year for 6-year Direct Entry. RCSI's annual non-EU Medicine tuition exceeds EUR 60,000, making this a significant partial award. Selection is holistic: academic record + personal statement + extracurricular achievement + interview.",
+      "application_process": [
+        "Step 1: Apply for RCSI Medicine (Graduate Entry, 5-yr, or 6-yr)",
+        "Step 2: Receive and accept an admission offer",
+        "Step 3: Submit the Consilio Manuque Scholarship application (personal statement 300–500 words)",
+        "Step 4: Provide one academic reference",
+        "Step 5: Holistic review by RCSI scholarship panel",
+        "Step 6: Interview if shortlisted",
+        "Step 7: Award decision (typically within 4–8 weeks of submission)"
+      ],
+      "source": "10_rcsi_consilio.md",
+      "source_file": "data/raw/ireland/10_rcsi_consilio.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "TCD Rachel Thompson Ussher Fellowship",
+      "provider": "Trinity College Dublin",
+      "country": "Ireland",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "Modern Languages — French, German, Italian, Spanish, Russian, Linguistics, Translation Studies, Comparative Literature"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "Awarded at 3-year intervals (next call: 2026)",
+      "application_period": [
+        "Call opens 2026 (3-year cycle)"
+      ],
+      "important_dates": [
+        "Award cycle: every 3 years (2002, 2005, 2008, 2011, 2014, 2017, 2020, 2023, 2026)",
+        "Call opens: typically early 2026",
+        "Studies commence: September 2026",
+        "Duration: 3 years"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Open to all nationalities"
+        ],
+        "raw_items": [
+          "All nationalities eligible (Indonesia ✓)",
+          "Master's degree in Modern Languages or a closely related field",
+          "PhD research proposal must be in Modern Languages (French, German, Italian, Spanish, Russian, etc.)",
+          "Strong academic record and research potential",
+          "Apply via TCD Modern Languages Department"
+        ]
+      },
+      "benefits": [
+        "Annual stipend of EUR 13,000",
+        "Travel and relocation grant of EUR 2,000–EUR 2,500",
+        "3 years of funding (PhD)",
+        "Tuition fees covered",
+        "Prestigious named fellowship — Ussher Scholars recognized internationally"
+      ],
+      "amounts": [
+        "EUR 13,000/year stipend (approx. EUR 1,083/month)",
+        "Travel/relocation grant: EUR 2,000–EUR 2,500 (one-time)",
+        "Tuition: fully covered"
+      ],
+      "target_group": "PhD researchers of any nationality in Modern Languages (French, German, Italian, Spanish, Russian, Linguistics, Translation Studies, Comparative Literature). Niche but prestigious — awarded only every 3 years. Strong fit for Indonesian students with language/humanities background who want a top-tier PhD in language studies at Trinity College Dublin.",
+      "official_url": "https://www.tcd.ie/Modern_Languages/research/",
+      "description": "The TCD Rachel Thompson Ussher Fellowship is a prestigious 3-year PhD fellowship awarded every 3 years at Trinity College Dublin for research in Modern Languages (French, German, Italian, Spanish, Russian, Linguistics, Translation Studies, Comparative Literature). The fellowship provides EUR 13,000/year stipend + EUR 2,000–EUR 2,500 travel/relocation grant + tuition. The 2026 cycle is the next call — ideal timing for Indonesian students with language/humanities backgrounds who want a Trinity PhD in this field.",
+      "application_process": [
+        "Step 1: Develop a PhD research proposal in Modern Languages (French, German, Italian, Spanish, Russian, or related)",
+        "Step 2: Identify a potential supervisor in TCD School of Languages, Literatures and Cultural Studies",
+        "Step 3: Contact the supervisor and discuss your proposal",
+        "Step 4: Submit formal application with research proposal, transcripts, and references",
+        "Step 5: Departmental shortlisting",
+        "Step 6: Interview with the Ussher selection panel",
+        "Step 7: Award decision and PhD registration"
+      ],
+      "source": "11_tcd_ussher.md",
+      "source_file": "data/raw/ireland/11_tcd_ussher.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "NAWA Stefan Banach Scholarship Programme",
+      "provider": "Polish National Agency for Academic Exchange (NAWA)",
+      "country": "Poland",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "All disciplines — Engineering, Science, Arts, Social Sciences, Technical, Agricultural, Life Sciences, Business, Law"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 24,
+        "max": 24
+      },
+      "deadline": "8 May 2026, 3 PM CEST",
+      "application_period": [
+        "March – 8 May 2026"
+      ],
+      "important_dates": [
+        "Call opens: February–March 2026",
+        "Application deadline: 8 May 2026, 3 PM CEST",
+        "Results announced: 31 July 2026",
+        "Studies commence: October 2026",
+        "Duration: 2 years Master's (English) or 1-yr prep + 2-yr Master (Polish)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Citizens of 36 eligible countries including Indonesia (NOT Poland, NOT EU)"
+        ],
+        "raw_items": [
+          "Citizen of 36 eligible countries — Indonesia ✓ confirmed eligible",
+          "NOT a Polish citizen",
+          "Bachelor's degree completed after 2024 (or will complete before 15 July 2026)",
+          "No previous Master's degree",
+          "Not previously awarded a Stefan Banach scholarship",
+          "English proficiency minimum B2 (IELTS 5.5+ / TOEFL iBT 72+)",
+          "Submit a video self-presentation (motivation + research interests)",
+          "Must apply to a programme on the NAWA-eligible list of public Polish universities"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend of PLN 2,500 (approx. EUR 580) for the full duration",
+        "Travel allowance of PLN 2,500 (approx. EUR 580) one-time",
+        "Tuition-free at public Polish universities",
+        "Optional 1-year Polish language preparatory course (if choosing Polish-taught track)",
+        "Polish language and culture course (for English-track students)"
+      ],
+      "amounts": [
+        "PLN 2,500/month stipend (approx. EUR 580/month, EUR 7,000/year)",
+        "PLN 2,500 travel allowance (one-time, approx. EUR 580)",
+        "Tuition: FREE at public Polish universities"
+      ],
+      "target_group": "Master's students from 36 developing/partner countries including Indonesia. Fully funded 2-year Master's at any public Polish university. English or Polish language tracks. PLN 2,500/month stipend covers living costs in Poland (~EUR 500–700/month). One of the top fully funded Master's scholarships in Europe for Indonesian students. ~500 scholarships per cycle.",
+      "official_url": "https://nawa.gov.pl/en/students/foreign-students/the-stefan-banach-scholarship-programme",
+      "description": "The NAWA Stefan Banach Scholarship Programme is a flagship Polish government scholarship offering fully funded Master's studies at public Polish universities. Open to citizens of 36 countries including Indonesia. The scholarship covers a monthly stipend of PLN 2,500 (~EUR 580), travel allowance PLN 2,500, and tuition-free study for 2 years. Application deadline: 8 May 2026. Both English and Polish tracks available (Polish track includes a 1-year preparatory course). One of the most accessible fully funded Master's scholarships in Europe for Indonesian students.",
+      "application_process": [
+        "Step 1: Verify Indonesia is on the eligible country list at nawa.gov.pl",
+        "Step 2: Choose a Master's programme from the NAWA list of public Polish universities (English or Polish track)",
+        "Step 3: Prepare application materials: transcripts, English certificate, CV, motivation letter",
+        "Step 4: Record a video self-presentation (max 3 minutes, motivation + research interests)",
+        "Step 5: Submit online application via programs.nawa.gov.pl before 8 May 2026, 3 PM CEST",
+        "Step 6: Results announced 31 July 2026",
+        "Step 7: Accept offer and apply for Polish student visa",
+        "Step 8: Begin studies in October 2026"
+      ],
+      "source": "01_nawa_banach.md",
+      "source_file": "data/raw/poland/01_nawa_banach.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "NAWA Ignacy Łukasiewicz Scholarship Programme",
+      "provider": "Polish National Agency for Academic Exchange (NAWA)",
+      "country": "Poland",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "Engineering & Technical Sciences",
+        "Agricultural Sciences",
+        "Natural Sciences",
+        "STEM disciplines"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "Spring 2026 (annual call, typically April)",
+      "application_period": [
+        "February – April (annually)"
+      ],
+      "important_dates": [
+        "Call opens: typically February",
+        "Application deadline: April 2026 (annually)",
+        "Results: typically June–July",
+        "Studies commence: October 2026",
+        "Duration: 3 years total (1-year Polish prep + 2-year Master's)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Citizens of 18 eligible countries including Indonesia (NOT Poland, NOT EU/EEA, NOT Central Asian)"
+        ],
+        "raw_items": [
+          "Citizen of 18 eligible countries — Indonesia ✓ confirmed eligible",
+          "Other eligible: Angola, Colombia, Ethiopia, India, Kenya, Lebanon, Mexico, Myanmar, Nigeria, Palestine, Peru, South Africa, Philippines, Senegal, Tanzania, Uganda, Vietnam",
+          "NOT Polish or European/Central Asian citizen",
+          "Bachelor's degree in STEM/agricultural field",
+          "Must pursue Master's in Engineering, Technical, Agricultural, or Natural Sciences"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend of PLN 1,500 (approx. EUR 350) for the full duration",
+        "Tuition-free at public Polish universities",
+        "1-year Polish language preparatory course (fully funded)",
+        "Master's degree (2 years) at a public Polish university after the prep course"
+      ],
+      "amounts": [
+        "PLN 1,500/month stipend (approx. EUR 350/month, EUR 4,200/year)",
+        "Tuition: FREE at public Polish universities",
+        "1-year Polish prep course: fully funded"
+      ],
+      "target_group": "STEM/Agriculture students from 18 eligible countries including Indonesia. Fully funded Master's in Engineering, Technical, Agricultural, or Natural Sciences at public Polish universities. 1-year Polish prep + 2-year Master's = 3 years total. Smaller stipend than Stefan Banach but specific to STEM/Agri fields. Indonesia is explicitly listed.",
+      "official_url": "https://nawa.gov.pl/en/students/foreign-students/the-ignacy-lukasiewicz-scholarship-programme",
+      "description": "The NAWA Ignacy Łukasiewicz Scholarship Programme offers fully funded Master's studies in STEM/Agriculture fields (Engineering, Technical Sciences, Agricultural Sciences, Natural Sciences) for citizens of 18 countries including Indonesia. The scholarship includes a 1-year Polish language preparatory course followed by a 2-year Master's at a public Polish university. Monthly stipend PLN 1,500 (~EUR 350) + tuition-free + prep course. Annual call, typically April deadline. Smaller stipend than Stefan Banach but specialised for STEM students.",
+      "application_process": [
+        "Step 1: Verify Indonesia is on the eligible country list",
+        "Step 2: Choose a STEM/Agri Master's programme at a NAWA-eligible public Polish university",
+        "Step 3: Prepare application materials (transcripts, motivation letter, CV)",
+        "Step 4: Submit online application via NAWA portal before April deadline",
+        "Step 5: Results typically June–July",
+        "Step 6: Accept offer, apply for Polish visa",
+        "Step 7: Begin 1-year Polish prep course October 2026",
+        "Step 8: After passing B2 Polish exam, start Master's programme"
+      ],
+      "source": "02_nawa_lukasiewicz.md",
+      "source_file": "data/raw/poland/02_nawa_lukasiewicz.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Jagiellonian University International Scholarships (Rector's Scholarship)",
+      "provider": "Jagiellonian University (Kraków)",
+      "country": "Poland",
+      "degree_levels": [
+        "Bachelor",
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "Medicine",
+        "Law",
+        "International Relations",
+        "Biotechnology",
+        "Artificial Intelligence",
+        "Polish Studies",
+        "Economics",
+        "Chemistry",
+        "Physics",
+        "Humanities",
+        "Social Sciences"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 60
+      },
+      "deadline": "Per-program (typically May–July 2026 for Fall intake)",
+      "application_period": [
+        "March – July (per program)"
+      ],
+      "important_dates": [
+        "Application: per program (March–July for Fall intake)",
+        "Results: typically 4–6 weeks after application",
+        "Studies commence: October 2026",
+        "Duration: per program (Bachelor 3–4 yr, Master 2 yr, PhD 3–4 yr)"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA international students (Indonesia ✓)"
+        ],
+        "raw_items": [
+          "Non-EU students only (Indonesia ✓)",
+          "Admitted to a JU programme (English or Polish)",
+          "Strong academic record for Rector's Scholarship",
+          "Apply separately via JU International Office",
+          "Faculty-specific scholarships vary widely"
+        ]
+      },
+      "benefits": [
+        "Tuition waiver (full or partial)",
+        "Rector's Scholarship: up to PLN 1,500/month (~EUR 350) for top students",
+        "Faculty-specific additional scholarships",
+        "Access to JU research centres (incl. JU Museum, synchrotron, etc.)"
+      ],
+      "amounts": [
+        "Tuition waiver: varies by program (full or partial)",
+        "Rector's Scholarship: up to PLN 1,500/month (~EUR 350)",
+        "Faculty scholarships: varies"
+      ],
+      "target_group": "Non-EU international students admitted to Jagiellonian University — Poland's oldest university (founded 1364) and ranked top in Central Europe. Located in Kraków, a beautiful student city with affordable living costs (~EUR 400–600/month). Tuition waivers and merit-based Rector's Scholarship available. Strong choice for humanities, social sciences, and life sciences.",
+      "official_url": "https://internationalstudents.uj.edu.pl/en_GB/finances/scholarships",
+      "description": "Jagiellonian University (JU) in Kraków offers international scholarships for non-EU students including Indonesia. JU is Poland's oldest university (founded 1364) and consistently ranked top in Central Europe. Benefits include tuition waivers (full or partial), the Rector's Scholarship of up to PLN 1,500/month (~EUR 350), and faculty-specific scholarships. Application is per-program via the JU International Office. Kraków is one of Europe's most beautiful student cities with affordable living costs (~EUR 400–600/month).",
+      "application_process": [
+        "Step 1: Browse JU programmes (English or Polish track) at internationalstudents.uj.edu.pl",
+        "Step 2: Apply for admission to your chosen programme",
+        "Step 3: After receiving admission offer, apply for the Rector's Scholarship (separate application)",
+        "Step 4: Submit academic transcripts, motivation letter, and references",
+        "Step 5: Scholarship decision typically 4–6 weeks after submission",
+        "Step 6: If successful, scholarship applied to tuition or paid monthly",
+        "Step 7: Apply for Polish student visa"
+      ],
+      "source": "03_jagiellonian_rectors.md",
+      "source_file": "data/raw/poland/03_jagiellonian_rectors.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "University of Warsaw Merit Scholarship",
+      "provider": "University of Warsaw (Uniwersytet Warszawski)",
+      "country": "Poland",
+      "degree_levels": [
+        "Bachelor",
+        "Master",
+        "PhD"
+      ],
+      "fields": [
+        "Law",
+        "Economics",
+        "Psychology",
+        "Data Science",
+        "Social Sciences",
+        "Physics (Optics, Nanostructures)",
+        "International Relations",
+        "Computer Science",
+        "Humanities"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "February – July 2026 (per program)",
+      "application_period": [
+        "February – July (per program)"
+      ],
+      "important_dates": [
+        "Application: rolling per program",
+        "Project-specific Physics PhD scholarships: separate calls with better funding",
+        "Studies commence: October 2026 (Fall) or February 2027 (Spring)",
+        "Duration: per program"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU/EEA international students (Indonesia ✓)"
+        ],
+        "raw_items": [
+          "Non-EU students only (Indonesia ✓)",
+          "Automatic consideration for many scholarships during admission",
+          "Some programs require separate scholarship application",
+          "Strong academic record required",
+          "Physics PhD specific scholarships more substantial"
+        ]
+      },
+      "benefits": [
+        "50–100% tuition fee waiver (tuition ~EUR 2,000–EUR 5,000/year)",
+        "Possible merit stipend ~PLN 1,000/month (~EUR 230)",
+        "Project-specific scholarships (esp. Physics PhD) with better funding",
+        "Access to UW research centres in Warsaw"
+      ],
+      "amounts": [
+        "Tuition waiver: 50–100% (tuition: EUR 2,000–5,000/year for non-EU)",
+        "Merit stipend: ~PLN 1,000/month (~EUR 230)",
+        "Physics PhD specific: variable, often fully funded"
+      ],
+      "target_group": "Non-EU international students admitted to the University of Warsaw (UW) — Poland's largest and most international university, located in the capital city of Warsaw. Tuition waivers (50–100%) and merit stipends available. Strong choice for students who prefer a metropolitan setting (Warsaw is larger and more expensive than Kraków but offers more industry opportunities). Physics PhD positions are particularly well-funded.",
+      "official_url": "https://en.uw.edu.pl/students/international-students/scholarships/",
+      "description": "The University of Warsaw offers merit scholarships for non-EU international students covering 50–100% tuition waiver (~EUR 2,000–5,000/year) plus possible merit stipends of ~PLN 1,000/month (~EUR 230). Application is often automatic during admission, though some scholarships require separate application. Project-specific Physics PhD positions are particularly well-funded. UW is Poland's largest and most international university, located in Warsaw. Strong choice for students in law, economics, social sciences, computer science, and physics.",
+      "application_process": [
+        "Step 1: Browse UW programmes at en.uw.edu.pl",
+        "Step 2: Apply for admission to your chosen programme",
+        "Step 3: Many scholarships are automatically considered during admission review",
+        "Step 4: For project-specific scholarships (esp. Physics PhD), contact the project PI",
+        "Step 5: Submit supporting documents (transcripts, CV, motivation)",
+        "Step 6: Scholarship decision typically with or after admission offer",
+        "Step 7: Apply for Polish student visa"
+      ],
+      "source": "04_warsaw_merit.md",
+      "source_file": "data/raw/poland/04_warsaw_merit.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Polish National Science Centre (NCN) PRELUDIUM Research Grant",
+      "provider": "National Science Centre (NCN), Poland",
+      "country": "Poland",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "All research areas — Basic Research, Arts, Humanities, Social Sciences, Life Sciences, Physical Sciences, Engineering"
+      ],
+      "funding_type": "Research Grant",
+      "duration_months": {
+        "min": 12,
+        "max": 36
+      },
+      "deadline": "Annual call (March–June 2026)",
+      "application_period": [
+        "March – June (annually)"
+      ],
+      "important_dates": [
+        "Annual call: March–June (varies by year)",
+        "Results: typically 6 months after submission",
+        "Project start: typically within 6 months of award",
+        "Duration: up to 36 months"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 4,
+        "country_restrictions": [
+          "No citizenship restriction, but must be at a Poland-based research institution"
+        ],
+        "raw_items": [
+          "PhD student OR researcher within 4 years after Master's defence (excluding parental leave)",
+          "No citizenship restriction — open to Indonesian researchers based in Poland",
+          "Must be affiliated with a Poland-based research institution",
+          "Research project must be conducted at a Polish institution",
+          "Combine with other PhD funding (e.g., NAWA Banach) for full support"
+        ]
+      },
+      "benefits": [
+        "Research grant to cover materials, equipment, travel, and consumables",
+        "Can be combined with PhD scholarship (e.g., NAWA Banach) for full support",
+        "Independent research project with PI role",
+        "International collaboration encouraged"
+      ],
+      "amounts": [
+        "Grant amount: typically PLN 50,000–PLN 250,000 per project",
+        "Covers research materials, equipment, travel, conferences",
+        "Not a personal stipend — institutional research budget"
+      ],
+      "target_group": "PhD students or early-career researchers (within 4 years of Master's) affiliated with a Polish research institution. Indonesian researchers already enrolled in a Polish PhD programme can apply. This is a research grant, NOT a personal scholarship — funds go to the institution to cover research costs. Often combined with NAWA Banach or Łukasiewicz for complete PhD funding.",
+      "official_url": "https://www.ncn.gov.pl/finansowanie-nauki/konkursy/typy/projekty/preludium/",
+      "description": "The Polish NCN PRELUDIUM grant funds basic research projects led by PhD students or researchers within 4 years of their Master's degree. Open to all nationalities including Indonesian researchers, provided the project is based at a Poland-based institution. The grant covers research expenses (materials, equipment, travel, conferences) but is NOT a personal stipend — typically PLN 50,000–250,000 per project. Often combined with NAWA Banach or Łukasiewicz for complete PhD funding. Annual call, March–June deadline.",
+      "application_process": [
+        "Step 1: Be enrolled in a PhD programme at a Polish research institution (or within 4 years post-Master)",
+        "Step 2: Develop a research proposal aligned with NCN funding priorities",
+        "Step 3: Submit application via NCN's online system (SUNONE/OSF) before the June deadline",
+        "Step 4: Proposal undergoes peer review and panel assessment",
+        "Step 5: Results typically 6 months after submission",
+        "Step 6: Begin research project per NCN's rules and reporting requirements"
+      ],
+      "source": "05_ncn_preludium.md",
+      "source_file": "data/raw/poland/05_ncn_preludium.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "MAEC-AECID Becas (Spanish Government Scholarships)",
+      "provider": "Ministerio de Asuntos Exteriores, Unión Europea y Cooperación / AECID",
+      "country": "Spain",
+      "degree_levels": [
+        "Master",
+        "PhD",
+        "Postdoctoral"
+      ],
+      "fields": [
+        "All academic fields (priority for development cooperation areas)",
+        "Diplomatic Studies",
+        "Cultural Studies",
+        "Research"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 9,
+        "max": 24
+      },
+      "deadline": "3 June 2026 (10 working days after publication in BOE)",
+      "application_period": [
+        "March – 3 June 2026"
+      ],
+      "important_dates": [
+        "Call opens: March 2026 (after BOE publication)",
+        "Application deadline: 3 June 2026",
+        "Results: typically 3 months after deadline",
+        "Studies commence: September–October 2026",
+        "Duration: 9 months (Master) or 1–2 years (PhD/research)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Citizens of priority countries for Spanish cooperation: Latin America, Sub-Saharan Africa, North Africa/Middle East, Asia (incl. Indonesia for some programs), Eastern Europe (Ukraine) — NOT EU/EEA/Swiss/high-income OECD"
+        ],
+        "raw_items": [
+          "Citizen of a priority country for Spanish cooperation — Indonesia ✓ eligible for select programs",
+          "NOT citizen of EU/EEA/Switzerland/high-income OECD country",
+          "Bachelor's degree (Master) or Master's (PhD)",
+          "Age limit: <35 years (Master) or <40 years (PhD/research)",
+          "Sub-programs: (a) Master's programme (250+ awards for Latin America & Philippines), (b) Diplomatic School Master (11 awards), (c) Royal Academy of Spain in Rome (19 residencies), (d) College of Europe scholarships",
+          "Indonesia primarily eligible for Master's programme and College of Europe tracks"
+        ]
+      },
+      "benefits": [
+        "Monthly stipend of EUR 1,200–EUR 1,500",
+        "Full or partial tuition at partner universities",
+        "Health insurance included",
+        "Round-trip airfare to Spain",
+        "Cultural and linguistic support"
+      ],
+      "amounts": [
+        "EUR 1,200–EUR 1,500/month stipend",
+        "Tuition: full or partial coverage at partner universities",
+        "Airfare: round-trip",
+        "Insurance: comprehensive"
+      ],
+      "target_group": "Students from Latin America, Sub-Saharan Africa, North Africa/Middle East, Asia (including Indonesia for some programs), and Eastern Europe (Ukraine). NOT for EU/EEA/Swiss/OECD high-income nationals. Master's and PhD applicants under age 35–40. One of the most generous fully funded scholarship programmes for developing-country students, especially for those committed to development work. Indonesia is eligible for select sub-programs.",
+      "official_url": "https://www.aecid.es/en/programmes-and-projects/education-and-research/maec-aecid-scholarships",
+      "description": "The MAEC-AECID Becas are fully funded scholarships offered by the Spanish Ministry of Foreign Affairs and the Spanish Agency for International Development Cooperation (AECID). The programme offers 250+ Master's awards, 11 Diplomatic School scholarships, 19 Royal Academy of Spain in Rome residencies, and College of Europe scholarships for citizens of priority countries for Spanish international cooperation, including Indonesia (for select programs). Benefits include EUR 1,200–1,500/month stipend, tuition coverage, health insurance, and round-trip airfare. Age limit: <35 (Master) or <40 (PhD/research). Deadline: 3 June 2026.",
+      "application_process": [
+        "Step 1: Verify Indonesia is eligible for your chosen sub-program at aecid.es",
+        "Step 2: Choose a sub-program (Master's, Diplomatic School, Royal Academy, or College of Europe)",
+        "Step 3: Identify a Spanish university/programme that accepts AECID scholars",
+        "Step 4: Prepare application: CV, motivation letter, research proposal (PhD), language certificate",
+        "Step 5: Submit online via AECID Sede Electrónica before 3 June 2026",
+        "Step 6: Application reviewed by AECID panel",
+        "Step 7: Results typically 3 months after deadline",
+        "Step 8: If successful, accept and apply for Spanish student visa"
+      ],
+      "source": "01_maec_aecid.md",
+      "source_file": "data/raw/spain/01_maec_aecid.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "\"la Caixa\" INPhINIT Doctoral Fellowships",
+      "provider": "Fundación \"la Caixa\"",
+      "country": "Spain",
+      "degree_levels": [
+        "PhD"
+      ],
+      "fields": [
+        "Incoming (30 awards): STEM only — Life Sciences, Experimental Sciences, Physics, Chemistry, Engineering, Technology, Mathematics",
+        "Retaining (30 awards): All disciplines including Humanities and Social Sciences"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 48
+      },
+      "deadline": "28 January 2026 (Incoming), 18 February 2026 (Retaining) — 2 PM Peninsular Spain",
+      "application_period": [
+        "November – 28 January 2026 (Incoming) / 18 February 2026 (Retaining)"
+      ],
+      "important_dates": [
+        "Incoming call opens: November 2025",
+        "Incoming deadline: 28 January 2026, 2 PM Spain",
+        "Retaining call opens: December 2025",
+        "Retaining deadline: 18 February 2026, 2 PM Spain",
+        "Results: typically April–May",
+        "Studies commence: September 2026",
+        "Duration: 3–4 years"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": false,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Any nationality (Indonesia ✓)"
+        ],
+        "raw_items": [
+          "Any nationality (Indonesia ✓)",
+          "Higher education degree eligible for PhD enrolment in Spain or Portugal",
+          "NOT already enrolled in a PhD programme at application time",
+          "English proficiency certified (TOEFL/IELTS)",
+          "Maximum 4 years of research experience since Master's defence",
+          "Incoming: NOT resided in Spain more than 12 months in the last 3 years",
+          "Retaining: MUST have resided in Spain more than 12 months in the last 3 years"
+        ]
+      },
+      "benefits": [
+        "Annual labour costs of EUR 35,800 (gross salary)",
+        "Research costs of EUR 3,500/year (conferences, courses, stays, consumables, equipment)",
+        "Tuition fees for official doctoral programme covered",
+        "Comprehensive complementary training programme",
+        "Membership in \"la Caixa\" Doctoral Fellows network"
+      ],
+      "amounts": [
+        "EUR 35,800/year gross salary",
+        "EUR 3,500/year research allowance",
+        "Tuition: fully covered",
+        "Total package: approx. EUR 39,300/year + tuition"
+      ],
+      "target_group": "PhD candidates of any nationality (Indonesia ✓) seeking fully funded PhD positions at Spanish or Portuguese research centres of excellence (Severo Ochoa, María de Maeztu, Carlos III Health Institutes, FCT excellent units). Two tracks: Incoming (30 awards, STEM only, must NOT be in Spain 12+ months in last 3 years) and Retaining (30 awards, all fields, MUST be in Spain 12+ months). Salary of EUR 35,800/year + EUR 3,500 research = one of the best PhD packages in Europe.",
+      "official_url": "https://fundacionlacaixa.org/en/inphinit-doctoral-fellowships",
+      "description": "The \"la Caixa\" INPhINIT Doctoral Fellowships offer 60 fully funded PhD positions per year at Spanish or Portuguese research centres of excellence. Two tracks: Incoming (30 awards, STEM only — life sciences, physics, chemistry, engineering, technology, mathematics) and Retaining (30 awards, all disciplines including humanities and social sciences). The fellowship provides EUR 35,800/year gross salary + EUR 3,500/year research allowance + tuition coverage. Incoming track requires NOT residing in Spain 12+ months in last 3 years (perfect for Indonesian applicants). Retaining track requires being IN Spain 12+ months. Deadlines: 28 Jan (Incoming) / 18 Feb (Retaining).",
+      "application_process": [
+        "Step 1: Choose track — Incoming (STEM, must not be in Spain 12+ months) or Retaining (all fields, must be in Spain 12+ months)",
+        "Step 2: Identify a research centre of excellence and a supervisor with an open INPhINIT project",
+        "Step 3: Contact the supervisor to discuss your fit",
+        "Step 4: Submit online application via fellowships.lacaixafoundation.org (CV, research proposal, transcripts, references, English certificate)",
+        "Step 5: Application reviewed by \"la Caixa\" panel",
+        "Step 6: Shortlisted candidates interviewed (typically March)",
+        "Step 7: Final decision typically April–May",
+        "Step 8: Begin PhD September 2026"
+      ],
+      "source": "02_lacaixa_inphinit.md",
+      "source_file": "data/raw/spain/02_lacaixa_inphinit.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "\"la Caixa\" Junior Leader Postdoctoral Fellowships",
+      "provider": "Fundación \"la Caixa\"",
+      "country": "Spain",
+      "degree_levels": [
+        "Postdoctoral"
+      ],
+      "fields": [
+        "STEM only — Life Sciences, Experimental Sciences, Physics, Chemistry, Engineering, Technology, Mathematics"
+      ],
+      "funding_type": "Fully Funded",
+      "duration_months": {
+        "min": 36,
+        "max": 36
+      },
+      "deadline": "25 September 2025 (closed for 2026 cycle) — NEXT: September 2026 for 2027 start",
+      "application_period": [
+        "June – 25 September (annually)"
+      ],
+      "important_dates": [
+        "Call opens: June 2026 (next cycle)",
+        "Deadline: 25 September 2026 (for 2027 start)",
+        "Results: typically December–January",
+        "Fellowship start: typically April–September 2027",
+        "Duration: 3 years"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": true,
+        "professional_experience_years": 7,
+        "country_restrictions": [
+          "Any nationality (Indonesia ✓)"
+        ],
+        "raw_items": [
+          "Any nationality (Indonesia ✓)",
+          "PhD obtained 2 to 7 years before the application deadline",
+          "Incoming: NOT resided in Spain more than 12 months in the last 3 years",
+          "Retaining: MUST have resided in Spain more than 12 months in the last 3 years",
+          "Open to STEM fields only (life sciences, physics, chemistry, engineering, technology, mathematics)",
+          "Multidisciplinary training programme participation required"
+        ]
+      },
+      "benefits": [
+        "Total maximum EUR 320,100 for 3 years (~EUR 106,700/year gross)",
+        "Competitive salary",
+        "Research support",
+        "Multidisciplinary training programme",
+        "3-year contract at Spanish or Portuguese research centre",
+        "Membership in \"la Caixa\" Junior Leader Fellows network"
+      ],
+      "amounts": [
+        "Maximum EUR 320,100 total (3 years)",
+        "Approx. EUR 106,700/year gross",
+        "Research support included"
+      ],
+      "target_group": "Postdoctoral researchers (PhD obtained 2–7 years ago) of any nationality (Indonesia ✓) in STEM fields. Two tracks: Incoming (20 awards, must NOT be in Spain 12+ months in last 3 years) and Retaining (20 awards, MUST be in Spain 12+ months). One of the most generous postdoc fellowships in Europe. The 2026 cycle closed on 25 September 2025 — NEXT DEADLINE: 25 September 2026 for 2027 start. Plan ahead for 2027 application.",
+      "official_url": "https://fundacionlacaixa.org/en/junior-leader-postdoctoral-fellowships",
+      "description": "The \"la Caixa\" Junior Leader Postdoctoral Fellowships offer 40 fully funded 3-year postdoctoral positions per year at Spanish or Portuguese research centres, exclusively in STEM fields (life sciences, experimental sciences, physics, chemistry, engineering, technology, mathematics). The fellowship provides up to EUR 320,100 total (~EUR 106,700/year gross) — one of the most generous postdoc packages in Europe. Two tracks: Incoming (20 awards, must NOT be in Spain 12+ months) and Retaining (20 awards, MUST be in Spain 12+ months). For PhD holders 2–7 years post-graduation. The 2026 cycle is CLOSED; next deadline: 25 September 2026 for 2027 start.",
+      "application_process": [
+        "Step 1: Choose track — Incoming (must not be in Spain 12+ months) or Retaining (must be in Spain 12+ months)",
+        "Step 2: Identify a host research centre and supervisor with an open Junior Leader project",
+        "Step 3: Develop a research proposal aligned with the host lab's interests",
+        "Step 4: Submit application via fellowships.lacaixafoundation.org (CV, proposal, references, publications)",
+        "Step 5: External peer review",
+        "Step 6: Shortlisted candidates interviewed",
+        "Step 7: Final decision typically December–January",
+        "Step 8: Begin fellowship typically April–September following year"
+      ],
+      "source": "03_lacaixa_junior.md",
+      "source_file": "data/raw/spain/03_lacaixa_junior.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "IE Foundation Fellows Program",
+      "provider": "IE Foundation / IE University",
+      "country": "Spain",
+      "degree_levels": [
+        "Bachelor",
+        "Master"
+      ],
+      "fields": [
+        "Business",
+        "Law",
+        "Engineering",
+        "Architecture",
+        "Communications",
+        "International Relations",
+        "Computer Science",
+        "Data Analytics",
+        "Finance",
+        "Marketing"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 48
+      },
+      "deadline": "Rolling (per admission round)",
+      "application_period": [
+        "Rolling — apply with admission"
+      ],
+      "important_dates": [
+        "Application: rolling with admission",
+        "Results: typically with admission offer",
+        "Studies commence: September 2026 (Fall) or January 2027 (Spring)",
+        "Duration: per program (Bachelor 3–4 yr, Master 1–2 yr)"
+      ],
+      "requirements": {
+        "first_degree_required": null,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "All nationalities (Indonesia ✓)"
+        ],
+        "raw_items": [
+          "All nationalities eligible (Indonesia ✓)",
+          "Must be admitted to an IE University programme first",
+          "Strong academic record",
+          "Demonstrated leadership, extracurricular involvement, and social impact",
+          "Financial need considered for some awards",
+          "Bachelor programmes: 67% of awards; Master programmes: 33%"
+        ]
+      },
+      "benefits": [
+        "Tuition reduction of 10–60% (merit + need-based)",
+        "Bachelor tuition: up to EUR 15,900/year reduction",
+        "Master tuition: significant reduction",
+        "Access to IE Foundation network (2,300+ Fellows from 100+ nationalities)",
+        "Mentorship and leadership development via Student Board",
+        "Access to events (Hay Festival, etc.)",
+        "Ambassador opportunities"
+      ],
+      "amounts": [
+        "Tuition reduction: 10–60%",
+        "Bachelor tuition: EUR 26,500/year (so reduction = EUR 2,650–15,900/year)",
+        "Master tuition varies by program",
+        "Lifetime access to Fellows network"
+      ],
+      "target_group": "International students admitted to IE University (Madrid + Segovia) — Spain's top private university. Tuition reductions of 10–60% based on merit and need. Strong fit for business, law, engineering, architecture, communications, IR, and computer science students. The Fellows network (2,300+ from 100+ nationalities) provides lifetime connections and mentorship. Rolling application with admission.",
+      "official_url": "https://www.ie.edu/foundation/fellows/",
+      "description": "The IE Foundation Fellows Program provides merit + need-based tuition reductions of 10–60% to international students admitted to IE University (Madrid + Segovia campuses) — Spain's top private university with a global reputation in business and innovation. Bachelor tuition reduction: EUR 2,650–15,900/year. Master tuition reductions also available. Benefits include lifetime access to the Fellows network (2,300+ from 100+ nationalities), mentorship via Student Board, and ambassador opportunities. Rolling application with admission — apply early.",
+      "application_process": [
+        "Step 1: Apply for admission to an IE University programme (Bachelor or Master)",
+        "Step 2: Receive a conditional or unconditional admission offer",
+        "Step 3: Submit the financial aid application via IE portal",
+        "Step 4: For specific named scholarships, submit scholarship-specific essay",
+        "Step 5: Awards decided on rolling basis with admission",
+        "Step 6: If successful, scholarship applied to tuition",
+        "Step 7: Apply for Spanish student visa"
+      ],
+      "source": "04_ie_foundation.md",
+      "source_file": "data/raw/spain/04_ie_foundation.md",
+      "confidence_score": 0.95,
+      "program_type": null
+    },
+    {
+      "name": "Universidad de Girona Banco Santander Scholarship",
+      "provider": "Universidad de Girona (UdG) + Banco Santander",
+      "country": "Spain",
+      "degree_levels": [
+        "Master"
+      ],
+      "fields": [
+        "All official Master's programmes at UdG (60+ programmes across humanities, sciences, engineering, business)"
+      ],
+      "funding_type": "Partially Funded",
+      "duration_months": {
+        "min": 12,
+        "max": 12
+      },
+      "deadline": "April–May 2026 (annual call)",
+      "application_period": [
+        "March – May (annually)"
+      ],
+      "important_dates": [
+        "Call opens: typically March",
+        "Deadline: typically April–May",
+        "Results: typically June",
+        "Studies commence: September 2026",
+        "Duration: 1 year (official Master's degree)"
+      ],
+      "requirements": {
+        "first_degree_required": true,
+        "professional_experience_required": null,
+        "professional_experience_years": null,
+        "country_restrictions": [
+          "Non-EU international students (Indonesia ✓), not holding Spanish residence permit"
+        ],
+        "raw_items": [
+          "Non-EU students only (Indonesia ✓)",
+          "Bachelor's degree from a university outside Spain",
+          "Pre-registered for an official Master's at UdG (EUR 30.21 pre-registration fee)",
+          "NOT holding a Spanish residence permit",
+          "NOT holding a previous official Master's degree from a Spanish university",
+          "Submit GPA Equivalence Document from Spanish Ministry of Education (must apply for this early)"
+        ]
+      },
+      "benefits": [
+        "Up to EUR 3,952 tuition grant (full or partial)",
+        "21 seats per year",
+        "Access to UdG Master's programmes (60+ official programmes)",
+        "Located in Girona — beautiful medieval city 1.5 hours from Barcelona"
+      ],
+      "amounts": [
+        "Up to EUR 3,952 per recipient",
+        "21 seats per year",
+        "Tuition grant (full or partial) applied to UdG Master's tuition"
+      ],
+      "target_group": "Non-EU international students (Indonesia ✓) with a Bachelor's degree from outside Spain, pre-registered for an official Master's at Universidad de Girona. Up to EUR 3,952 tuition grant (21 seats per year). Girona is a charming medieval city 1.5 hours from Barcelona with affordable living costs. Important: GPA Equivalence Document from Spanish Ministry of Education must be obtained early — this can take several weeks.",
+      "official_url": "https://www.udg.edu/en/international/scholarships",
+      "description": "The Universidad de Girona (UdG) Banco Santander Scholarship offers up to EUR 3,952 tuition grant to 21 non-EU international students per year pre-registered for an official Master's programme at UdG. Eligible students must hold a Bachelor's from outside Spain, NOT have a Spanish residence permit, and NOT hold a previous Spanish official Master's. Requires a GPA Equivalence Document from the Spanish Ministry of Education (apply early — takes several weeks). UdG offers 60+ official Master's programmes. Located in Girona, a beautiful medieval city 1.5 hours from Barcelona with affordable living costs.",
+      "application_process": [
+        "Step 1: Apply early for GPA Equivalence Document from Spanish Ministry of Education (takes weeks)",
+        "Step 2: Pre-register for an official Master's at UdG via the UdG portal (EUR 30.21 fee)",
+        "Step 3: Receive pre-registration confirmation",
+        "Step 4: Submit Santander Scholarship application via UdG portal (April–May)",
+        "Step 5: Submit supporting documents (Bachelor's degree, transcripts, language certificate)",
+        "Step 6: Results typically June",
+        "Step 7: If successful, scholarship applied to tuition",
+        "Step 8: Apply for Spanish student visa"
+      ],
+      "source": "05_udg_santander.md",
+      "source_file": "data/raw/spain/05_udg_santander.md",
+      "confidence_score": 0.95,
+      "program_type": null
     },
     {
       "name": "Danish Government Scholarship - Full Tuition Waiver + Grant",
@@ -11059,8 +12260,7 @@
       "source": "01_study-options_scholarships.md",
       "source_file": "data/raw/denmark/01_study-options_scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "danish-government-scholarship-full-tuition-waiver-grant"
+      "program_type": null
     },
     {
       "name": "Norway Tuition-Free Public University Education",
@@ -11129,8 +12329,7 @@
       "source": "01_study-in-norway_scholarships.md",
       "source_file": "data/raw/norway/01_study-in-norway_scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "norway-tuition-free-public-university-education"
+      "program_type": null
     },
     {
       "name": "BI Presidential Scholarship - Norwegian Business School",
@@ -11199,8 +12398,7 @@
       "source": "bi.edu",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "bi-presidential-scholarship-norwegian-business-school"
+      "program_type": null
     },
     {
       "name": "Hong Kong PhD Fellowship Scheme (HKPFS)",
@@ -11271,8 +12469,7 @@
       "source": "02_hkpfs_guide.md",
       "source_file": "data/raw/hong-kong/02_hkpfs_guide.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "hong-kong-phd-fellowship-scheme-hkpfs"
+      "program_type": null
     },
     {
       "name": "HKU Entrance Scholarship for International Students",
@@ -11338,8 +12535,7 @@
       "source": "admissions.hku.hk",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "hku-entrance-scholarship-for-international-students"
+      "program_type": null
     },
     {
       "name": "Malaysia International Scholarship (MIS)",
@@ -11410,8 +12606,7 @@
       "source": "01_mis_scholarship.md",
       "source_file": "data/raw/malaysia/01_mis_scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null,
-      "slug": "malaysia-international-scholarship-mis"
+      "program_type": null
     },
     {
       "name": "Commonwealth Master's Scholarships",
@@ -11475,8 +12670,7 @@
       ],
       "source": "01_masters.md",
       "source_file": "data/raw/commonwealth/01_masters.md",
-      "confidence_score": 0.95,
-      "slug": "commonwealth-masters-scholarships"
+      "confidence_score": 0.95
     },
     {
       "name": "Commonwealth PhD Scholarships",
@@ -11540,8 +12734,7 @@
       ],
       "source": "02_phd.md",
       "source_file": "data/raw/commonwealth/02_phd.md",
-      "confidence_score": 0.95,
-      "slug": "commonwealth-phd-scholarships"
+      "confidence_score": 0.95
     },
     {
       "name": "Commonwealth Shared Scholarships",
@@ -11605,8 +12798,7 @@
       ],
       "source": "03_shared.md",
       "source_file": "data/raw/commonwealth/03_shared.md",
-      "confidence_score": 0.95,
-      "slug": "commonwealth-shared-scholarships"
+      "confidence_score": 0.95
     },
     {
       "name": "Knight-Hennessy Scholars - Stanford University",
@@ -11671,8 +12863,7 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/knight-hennessy/01_overview.md",
-      "confidence_score": 0.95,
-      "slug": "knight-hennessy-scholars-stanford-university"
+      "confidence_score": 0.95
     },
     {
       "name": "ADB-Japan Scholarship Program",
@@ -11741,8 +12932,7 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/adb-japan/01_overview.md",
-      "confidence_score": 0.95,
-      "slug": "adb-japan-scholarship-program"
+      "confidence_score": 0.95
     },
     {
       "name": "Joint Japan/World Bank Graduate Scholarship Program",
@@ -11811,8 +13001,7 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/jjwbgsp/01_overview.md",
-      "confidence_score": 0.95,
-      "slug": "joint-japanworld-bank-graduate-scholarship-program"
+      "confidence_score": 0.95
     },
     {
       "name": "DAAD Leadership for Africa",
@@ -11876,8 +13065,7 @@
       ],
       "source": "leadership-for-africa.md",
       "source_file": "data/raw/daad/leadership-for-africa.md",
-      "confidence_score": 0.95,
-      "slug": "daad-leadership-for-africa"
+      "confidence_score": 0.95
     }
   ]
 }
