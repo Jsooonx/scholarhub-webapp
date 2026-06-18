@@ -89,7 +89,11 @@ export function providerGroup(provider: string): string {
   // Taiwan
   if (p.includes('taiwan') || p.includes('teco') || p.includes('icdf') || p.includes('huayu') || p.includes('national tsing hua') || (p.includes('ministry of education') && p.includes('taiwan'))) return 'taiwan';
   // Switzerland
-  if (p.includes('swiss government') || p.includes('sbfi') || p.includes('seri') || p.includes('swiss confederation') || p.includes('eth zurich') || p.includes('epfl') || p.includes('école polytechnique')) return 'switzerland';
+  if (p.includes('swiss government') || p.includes('sbfi') || p.includes('seri') || p.includes('swiss confederation') || p.includes('eth zurich') || p.includes('epfl') || p.includes('école polytechnique') || p.includes('university of geneva') || p.includes('unige')) return 'switzerland';
+  // Austria
+  if (p.includes('oead') || p.includes('austrian agency') || p.includes('österreich') || p.includes('austrian government') || p.includes('austrian academic') || p.includes('tu wien') || p.includes('vienna university of technology')) return 'austria';
+  // Finland
+  if (p.includes('nokia foundation') || p.includes('university of helsinki') || p.includes('helsingin yliopisto') || p.includes('aalto university') || p.includes('aalto-yliopisto') || p.includes('tampere university') || p.includes('tuni.fi') || p.includes('university of oulu') || p.includes('oulun yliopisto') || p.includes('hanken')) return 'finland';
   // New Zealand
   if (p.includes('manaaki') || p.includes('education new zealand') || p.includes('mfat') || p.includes('new zealand')) return 'new-zealand';
   // Ireland
@@ -975,8 +979,22 @@ export const providerMeta: Record<
     name: 'Switzerland',
     flag: '🇨🇭',
     country: 'Switzerland',
-    description: 'Switzerland offers the Swiss Government Excellence Scholarships (CHF 2,450/month), ETH Zurich ESOP, and EPFL Excellence Fellowships for Master\'s and PhD studies at world-leading institutions.',
+    description: 'Switzerland offers the Swiss Government Excellence Scholarships (CHF 2,450/month), ETH Zurich ESOP (CHF 12,000/semester), EPFL Excellence Fellowships, and the University of Geneva Excellence Master Fellowships for Master\'s and PhD studies at world-leading institutions.',
     website: 'https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships',
+  },
+  austria: {
+    name: 'Austria',
+    flag: '🇦🇹',
+    country: 'Austria',
+    description: 'Austria offers OeAD-managed scholarships (Ernst Mach Worldwide, Ernst Mach UAS, Follow-Up, and Franz Werfel) for Master\'s, PhD, and postdoc research stays, plus the Helmut Veith Stipend at TU Wien for Computer Science Master\'s students.',
+    website: 'https://oead.at/en/to-austria/scholarships/',
+  },
+  finland: {
+    name: 'Finland',
+    flag: '🇫🇮',
+    country: 'Finland',
+    description: 'Finland offers fully funded international Master scholarships at the University of Helsinki, Aalto, Tampere, Oulu, and Hanken (Swan and Eduard Swan), plus the Nokia Foundation Scholarship (EUR 10,000/year) for ICT, CS, and STEM Master\'s and PhD students.',
+    website: 'https://www.studyinfinland.fi/scholarships',
   },
   'new-zealand': {
     name: 'New Zealand',
@@ -1206,6 +1224,19 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('gothenburg') || provider.includes('gothenburg')) return '/images/logos/GothenburgU.png';
   if (name.includes('karolinska') || provider.includes('karolinska')) return '/images/logos/Karolinska.png';
 
+  // Switzerland
+  if (name.includes('university of geneva') || provider.includes('university of geneva') || provider.includes('unige')) return '/images/logos/UNIGE.png';
+  // Austria
+  if (name.includes('helmut veith') || name.includes('tu wien') || provider.includes('vienna university of technology')) return '/images/logos/TUWien.png';
+  if (provider.includes('oead') || provider.includes('austrian agency')) return '/images/programlogos/OeAD.png';
+  // Finland
+  if (name.includes('university of helsinki') || provider.includes('university of helsinki') || provider.includes('helsingin yliopisto')) return '/images/logos/Helsinki.png';
+  if (name.includes('aalto') || provider.includes('aalto-yliopisto')) return '/images/logos/Aalto.png';
+  if (name.includes('tampere') || provider.includes('tuni.fi')) return '/images/logos/Tampere.png';
+  if (name.includes('oulu') || provider.includes('oulun yliopisto')) return '/images/logos/Oulu.png';
+  if (name.includes('hanken')) return '/images/logos/Hanken.png';
+  if (provider.includes('nokia foundation')) return '/images/programlogos/NokiaFoundation.png';
+
   // 3. Fallback to Group Logos
   const group = providerGroup(s.provider);
   if (group === 'germany') return '/images/logos/daad.svg';
@@ -1357,6 +1388,17 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('stockholm university') || provider.includes('stockholm university')) return '/images/universities/SWE_StockholmU.png';
   if (name.includes('gothenburg') || provider.includes('gothenburg')) return '/images/universities/SWE_GothenburgU.png';
   if (name.includes('karolinska') || provider.includes('karolinska')) return '/images/universities/SWE_Karolinska.png';
+
+  // Switzerland
+  if (name.includes('university of geneva') || provider.includes('university of geneva') || provider.includes('unige')) return '/images/universities/CH_UNIGE.png';
+  // Austria
+  if (name.includes('helmut veith') || name.includes('tu wien') || provider.includes('vienna university of technology')) return '/images/universities/AT_TUWien.png';
+  // Finland
+  if (name.includes('university of helsinki') || provider.includes('university of helsinki') || provider.includes('helsingin yliopisto')) return '/images/universities/FI_Helsinki.png';
+  if (name.includes('aalto') || provider.includes('aalto-yliopisto')) return '/images/universities/FI_Aalto.png';
+  if (name.includes('tampere') || provider.includes('tuni.fi')) return '/images/universities/FI_Tampere.png';
+  if (name.includes('oulu') || provider.includes('oulun yliopisto')) return '/images/universities/FI_Oulu.png';
+  if (name.includes('hanken')) return '/images/universities/FI_Hanken.png';
 
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
@@ -1639,6 +1681,17 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'ETH Zurich', logo: '/images/logos/ETH.png', keywords: ['eth', 'eth zurich', 'eth zürich', 'eidgenössische technische hochschule'] },
     { name: 'EPFL', logo: '/images/logos/EPFL.png', keywords: ['epfl', 'école polytechnique fédérale de lausanne', 'polytechnique federale de lausanne'] },
     { name: 'University of Zurich', logo: '/images/logos/UZH.png', keywords: ['uzh', 'university of zurich', 'university of zürich', 'universität zürich'] },
+    { name: 'University of Geneva', logo: '/images/logos/UNIGE.png', keywords: ['university of geneva', 'unige', 'université de genève'] },
+
+    // Austrian Universities
+    { name: 'TU Wien', logo: '/images/logos/TUWien.png', keywords: ['tu wien', 'vienna university of technology', 'technische universität wien'] },
+
+    // Finnish Universities
+    { name: 'University of Helsinki', logo: '/images/logos/Helsinki.png', keywords: ['university of helsinki', 'helsingin yliopisto'] },
+    { name: 'Aalto University', logo: '/images/logos/Aalto.png', keywords: ['aalto', 'aalto-yliopisto', 'aalto university'] },
+    { name: 'Tampere University', logo: '/images/logos/Tampere.png', keywords: ['tampere', 'tampere university'] },
+    { name: 'University of Oulu', logo: '/images/logos/Oulu.png', keywords: ['oulu', 'university of oulu', 'oulun yliopisto'] },
+    { name: 'Hanken School of Economics', logo: '/images/logos/Hanken.png', keywords: ['hanken', 'hanken school of economics'] },
 
     // New Zealand Universities
     { name: 'University of Auckland', logo: '/images/logos/Auckland.png', keywords: ['auckland', 'university of auckland'] },
@@ -1669,6 +1722,12 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Malaya (UM)', logo: '/images/logos/UM.png', keywords: ['um_my', 'university of malaya'] },
     { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png', keywords: ['upm', 'universiti putra malaysia', 'putra malaysia'] },
     { name: 'Universiti Kebangsaan Malaysia (UKM)', logo: '/images/logos/UKM.png', keywords: ['ukm', 'universiti kebangsaan malaysia'] },
+
+    // Norway Universities
+    { name: 'BI Norwegian Business School', logo: '/images/logos/BI_Norwegian.png', keywords: ['bi norwegian', 'bi norwegian business school', 'bi business school'] },
+
+    // France Universities
+    { name: 'Sciences Po Paris', logo: '/images/logos/SciencesPo.png', keywords: ['sciences po', 'sciences po paris', 'émile boutmy', 'emile boutmy'] },
 
     // Belgium Universities
     { name: 'KU Leuven', logo: '/images/logos/KULeuven.png', keywords: ['ku leuven', 'k.u. leuven', 'katholieke universiteit leuven', 'science@leuven', 'global minds'] },
@@ -1875,7 +1934,20 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
       list.push(
         { name: 'ETH Zurich', logo: '/images/logos/ETH.png' },
         { name: 'EPFL', logo: '/images/logos/EPFL.png' },
-        { name: 'University of Zurich', logo: '/images/logos/UZH.png' }
+        { name: 'University of Zurich', logo: '/images/logos/UZH.png' },
+        { name: 'University of Geneva', logo: '/images/logos/UNIGE.png' }
+      );
+    } else if (group === 'austria') {
+      list.push(
+        { name: 'TU Wien', logo: '/images/logos/TUWien.png' }
+      );
+    } else if (group === 'finland') {
+      list.push(
+        { name: 'University of Helsinki', logo: '/images/logos/Helsinki.png' },
+        { name: 'Aalto University', logo: '/images/logos/Aalto.png' },
+        { name: 'Tampere University', logo: '/images/logos/Tampere.png' },
+        { name: 'University of Oulu', logo: '/images/logos/Oulu.png' },
+        { name: 'Hanken School of Economics', logo: '/images/logos/Hanken.png' }
       );
     } else if (group === 'new-zealand') {
       list.push(
