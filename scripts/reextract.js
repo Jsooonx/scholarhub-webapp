@@ -1849,7 +1849,7 @@ const singapore = [
   },
   {
     name: 'A*STAR Graduate Scholarship (AGS)',
-    provider: 'Singapore A*STAR',
+    provider: 'A*STAR / Singapore',
     country: 'Singapore',
     degree_levels: ['PhD'],
     program_type: 'Government-funded PhD scholarship',
@@ -8213,8 +8213,38 @@ const COUNTRY_PROGRAMS = {
 
 // ── Assemble & write ─────────────────────────────────────────────────────────
 
+// Degree level alias normalization (added 2026-06-18)
+const DEGREE_ALIASES = {
+  'College of Technology': 'Vocational',
+  'Vocational / Diploma': 'Vocational',
+  'Postdoc': 'Postdoctoral',
+  'Professional Degree': 'Master',
+};
+function normalizeDegreeLevels(levels) {
+  if (!Array.isArray(levels)) return levels;
+  return Array.from(new Set(levels.map((d) => DEGREE_ALIASES[d] || d)));
+}
+
+// Provider string standardizations (added 2026-06-18)
+const PROVIDER_RENAMES = [
+  { from: /^Singapore A\*STAR(\s|$|\/)/, to: 'A*STAR / Singapore' },
+];
+function normalizeProvider(p) {
+  if (typeof p !== 'string') return p;
+  let out = p;
+  for (const rule of PROVIDER_RENAMES) {
+    out = out.replace(rule.from, rule.to);
+  }
+  if (out.includes('Education New Zealand')) {
+    out = 'Education New Zealand / MFAT';
+  }
+  return out;
+}
+
 const scholarships = [...daad, ...mext, ...turkiye, ...chevening, ...australiaAwards, ...australiaUniversityScholarships, ...gks, ...singapore, ...eiffel, ...canada, ...astarNew, ...jasso, ...koica, ...cpra, ...studienstiftung, ...netherlands, ...gatesCambridge, ...clarendon, ...rhodes, ...fulbright, ...belgiumVlir, ...belgiumOther, ...erasmusMundus, ...chinaCsc, ...sweden, ...italy, ...hungary, ...taiwan, ...switzerland, ...austria, ...finland, ...newZealand, ...ireland, ...denmark, ...norway, ...hongKong, ...malaysia, ...commonwealth, ...knightHennessy, ...japanGlobal, ...daadLeadership].map((s) => ({
   ...s,
+  provider: normalizeProvider(s.provider),
+  degree_levels: normalizeDegreeLevels(s.degree_levels),
   confidence_score: s.confidence_score ?? 0.95,
   source_file: s.source_file ?? null,
   amounts: s.amounts ?? [],

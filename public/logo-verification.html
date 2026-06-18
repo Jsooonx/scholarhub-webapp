@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ScholarHub — New Logo Mapping Verification (2026-06-18)</title>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; max-width: 1400px; margin: 24px auto; padding: 0 20px; background: #f8fafc; color: #0f172a; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .subtitle { color: #64748b; margin-bottom: 24px; font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+  .card { background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; }
+  .card.new { border-left: 4px solid #16a34a; }
+  .card.existing { border-left: 4px solid #94a3b8; }
+  .filename { font-family: 'SF Mono', Consolas, monospace; font-size: 13px; color: #1e293b; font-weight: 600; }
+  .path { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; color: #64748b; margin-top: 2px; }
+  img { max-width: 100%; height: 96px; object-fit: contain; margin: 12px 0; background: #f1f5f9; border-radius: 4px; padding: 8px; }
+  .maps-to { font-size: 12px; color: #475569; margin-top: 4px; }
+  .maps-to strong { color: #0f172a; }
+  .badge { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .badge.new { background: #dcfce7; color: #166534; }
+  .badge.existing { background: #f1f5f9; color: #64748b; }
+  .section { margin-bottom: 32px; }
+  .section h2 { font-size: 16px; color: #334155; border-bottom: 1px solid #cbd5e1; padding-bottom: 6px; }
+  .help { background: #fef3c7; border: 1px solid #fcd34d; border-radius: 6px; padding: 12px 16px; margin-bottom: 24px; font-size: 13px; color: #78350f; }
+  .help code { background: #fde68a; padding: 1px 4px; border-radius: 3px; }
+</style>
+</head>
+<body>
+<h1>🔍 Logo Mapping Verification</h1>
+<p class="subtitle">Added 2026-06-18 — review each logo and confirm it matches the labeled program. If any is wrong, rename the file and update <code>src/lib/scholarships.ts</code> (and the data folder if needed).</p>
+<div class="help">
+  <strong>How to use:</strong> Each card shows a logo file and the program(s) it should map to. Verify visually. If a logo doesn't match (e.g. <code>astar.png</code> shows a Dutch flag), tell me which file is wrong and what it actually is, and I'll fix the mapping.
+</div>
+
+<div class="section">
+  <h2>🆕 New logos (14 — best-guess mapping, needs your visual confirmation)</h2>
+  <div class="grid">
+    <div class="card new">
+      <div class="filename">astar.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/astar.png</div>
+      <img src="/images/programlogos/astar.png" alt="astar.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>A*STAR Graduate Scholarship (AGS, AGS-Intl, AIF-Research, AIF-Innovation)</strong> × 4 entries (Singapore)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">nuffic.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/nuffic.png</div>
+      <img src="/images/programlogos/nuffic.png" alt="nuffic.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Holland Scholarship / OKP / OTS</strong> × 3 entries (Netherlands)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">csc_china.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/csc_china.png</div>
+      <img src="/images/programlogos/csc_china.png" alt="csc_china.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>CSC: CGS Bilateral / CGS University / Belt and Road / MOFCOM</strong> × 4 entries (China)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">si_sweden.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/si_sweden.png</div>
+      <img src="/images/programlogos/si_sweden.png" alt="si_sweden.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Swedish Institute: SISGP / PWIS</strong> × 2 entries (Sweden)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">maeci_italy.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/maeci_italy.png</div>
+      <img src="/images/programlogos/maeci_italy.png" alt="maeci_italy.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>MAECI / Invest Your Talent / MAECI Special Projects</strong> × 3 entries (Italy)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">stipendium_hungaricum.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/stipendium_hungaricum.png</div>
+      <img src="/images/programlogos/stipendium_hungaricum.png" alt="stipendium_hungaricum.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Stipendium Hungaricum (Bachelor / Master / PhD)</strong> × 3 entries (Hungary)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">moe_taiwan.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/moe_taiwan.png</div>
+      <img src="/images/programlogos/moe_taiwan.png" alt="moe_taiwan.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>MOE Taiwan (Bachelor/Master/PhD) / ICDF / Huayu</strong> × 4 entries (Taiwan)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">swiss_seri.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/swiss_seri.png</div>
+      <img src="/images/programlogos/swiss_seri.png" alt="swiss_seri.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Swiss Government Excellence (Research / PhD / Art)</strong> × 3 entries (Switzerland)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">manaaki_nz.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/manaaki_nz.png</div>
+      <img src="/images/programlogos/manaaki_nz.png" alt="manaaki_nz.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Manaaki NZ (Tertiary / Vocational / NZELTO)</strong> × 3 entries (NZ)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">irish_hea.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/irish_hea.png</div>
+      <img src="/images/programlogos/irish_hea.png" alt="irish_hea.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>GOI-IES / GOIPG</strong> × 2 entries (Ireland)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">danish_govt.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/danish_govt.png</div>
+      <img src="/images/programlogos/danish_govt.png" alt="danish_govt.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Danish Government Scholarship</strong> × 1 entry (Denmark)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">norway_govt.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/norway_govt.png</div>
+      <img src="/images/programlogos/norway_govt.png" alt="norway_govt.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Norway Tuition-Free</strong> × 1 entry (BI Presidential uses existing BI_Norwegian.png)</div>
+    </div>
+    <div class="card new">
+      <div class="filename">hkpfs.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/hkpfs.png</div>
+      <img src="/images/programlogos/hkpfs.png" alt="hkpfs.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Hong Kong PhD Fellowship Scheme (HKPFS)</strong> × 1 entry</div>
+    </div>
+    <div class="card new">
+      <div class="filename">mis_malaysia.png <span class="badge new">NEW</span></div>
+      <div class="path">/images/programlogos/mis_malaysia.png</div>
+      <img src="/images/programlogos/mis_malaysia.png" alt="mis_malaysia.png" onerror="this.style.background='#fee'; this.alt='❌ NOT FOUND'">
+      <div class="maps-to">→ <strong>Malaysia International Scholarship (MIS)</strong> × 1 entry</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>✅ Pre-existing logos (also re-checked, no changes)</h2>
+  <div class="grid">
+    <div class="card existing"><div class="filename">OeAD.png</div><div class="path">/images/programlogos/OeAD.png</div><img src="/images/programlogos/OeAD.png" alt="OeAD.png"><div class="maps-to">→ Austria (4 entries)</div></div>
+    <div class="card existing"><div class="filename">NokiaFoundation.png</div><div class="path">/images/programlogos/NokiaFoundation.png</div><img src="/images/programlogos/NokiaFoundation.png" alt="NokiaFoundation.png"><div class="maps-to">→ Finland (1 entry)</div></div>
+    <div class="card existing"><div class="filename">Studienstiftung.png</div><div class="path">/images/programlogos/Studienstiftung.png</div><img src="/images/programlogos/Studienstiftung.png" alt="Studienstiftung.png"><div class="maps-to">→ Germany (5 entries)</div></div>
+    <div class="card existing"><div class="filename">vliruos.png</div><div class="path">/images/programlogos/vliruos.png</div><img src="/images/programlogos/vliruos.png" alt="vliruos.png"><div class="maps-to">→ Belgium (3 entries)</div></div>
+    <div class="card existing"><div class="filename">australiaawards.png</div><div class="path">/images/programlogos/australiaawards.png</div><img src="/images/programlogos/australiaawards.png" alt="australiaawards.png"><div class="maps-to">→ Australia (5 entries)</div></div>
+    <div class="card existing"><div class="filename">chevening.png</div><div class="path">/images/programlogos/chevening.png</div><img src="/images/programlogos/chevening.png" alt="chevening.png"><div class="maps-to">→ UK (3 entries)</div></div>
+    <div class="card existing"><div class="filename">gatescambridge.png</div><div class="path">/images/programlogos/gatescambridge.png</div><img src="/images/programlogos/gatescambridge.png" alt="gatescambridge.png"><div class="maps-to">→ UK (2 entries)</div></div>
+    <div class="card existing"><div class="filename">clarendon.png</div><div class="path">/images/programlogos/clarendon.png</div><img src="/images/programlogos/clarendon.png" alt="clarendon.png"><div class="maps-to">→ UK (1 entry)</div></div>
+    <div class="card existing"><div class="filename">rhodes.png</div><div class="path">/images/programlogos/rhodes.png</div><img src="/images/programlogos/rhodes.png" alt="rhodes.png"><div class="maps-to">→ UK (1 entry)</div></div>
+    <div class="card existing"><div class="filename">commonwealth.png</div><div class="path">/images/programlogos/commonwealth.png</div><img src="/images/programlogos/commonwealth.png" alt="commonwealth.png"><div class="maps-to">→ UK (3 entries)</div></div>
+    <div class="card existing"><div class="filename">gks.png</div><div class="path">/images/programlogos/gks.png</div><img src="/images/programlogos/gks.png" alt="gks.png"><div class="maps-to">→ South Korea (3 entries)</div></div>
+    <div class="card existing"><div class="filename">koica.png</div><div class="path">/images/programlogos/koica.png</div><img src="/images/programlogos/koica.png" alt="koica.png"><div class="maps-to">→ South Korea (2 entries)</div></div>
+    <div class="card existing"><div class="filename">jasso.png</div><div class="path">/images/programlogos/jasso.png</div><img src="/images/programlogos/jasso.png" alt="jasso.png"><div class="maps-to">→ Japan (2 entries)</div></div>
+    <div class="card existing"><div class="filename">franceexcellenceeiffel.png</div><div class="path">/images/programlogos/franceexcellenceeiffel.png</div><img src="/images/programlogos/franceexcellenceeiffel.png" alt="franceexcellenceeiffel.png"><div class="maps-to">→ France (2 entries)</div></div>
+    <div class="card existing"><div class="filename">sciencepo.png</div><div class="path">/images/programlogos/sciencepo.png</div><img src="/images/programlogos/sciencepo.png" alt="sciencepo.png"><div class="maps-to">→ France (1 entry)</div></div>
+    <div class="card existing"><div class="filename">fulbright.png</div><div class="path">/images/programlogos/fulbright.png</div><img src="/images/programlogos/fulbright.png" alt="fulbright.png"><div class="maps-to">→ USA (4 entries)</div></div>
+    <div class="card existing"><div class="filename">ares.png</div><div class="path">/images/programlogos/ares.png</div><img src="/images/programlogos/ares.png" alt="ares.png"><div class="maps-to">→ Belgium (1 entry)</div></div>
+    <div class="card existing"><div class="filename">erasmus+.png</div><div class="path">/images/programlogos/erasmus+.png</div><img src="/images/programlogos/erasmus+.png" alt="erasmus+.png"><div class="maps-to">→ EU (1 entry)</div></div>
+    <div class="card existing"><div class="filename">adb-jsp.png</div><div class="path">/images/programlogos/adb-jsp.png</div><img src="/images/programlogos/adb-jsp.png" alt="adb-jsp.png"><div class="maps-to">→ Japan-funded ADB (1 entry)</div></div>
+    <div class="card existing"><div class="filename">jjwbgsp.png</div><div class="path">/images/programlogos/jjwbgsp.png</div><img src="/images/programlogos/jjwbgsp.png" alt="jjwbgsp.png"><div class="maps-to">→ World Bank/Japan (1 entry)</div></div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:32px; padding-top:16px; border-top:1px solid #cbd5e1;">
+  🇨🇦 <strong>Canada (3 entries):</strong> CGRS-D, Impact+, CPRA — by your request, use country flag only (no logo).
+  The audit confirms only these 3 entries remain without a logo, which is intentional.
+</p>
+</body>
+</html>

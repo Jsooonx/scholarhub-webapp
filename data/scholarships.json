@@ -338,7 +338,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "university-summer-courses-offered-in-germany-for-foreign-students-and-graduates-hsk"
     },
     {
       "name": "Study scholarships for STEM disciplines",
@@ -385,7 +386,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "study-scholarships-for-stem-disciplines"
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Field of Architecture",
@@ -433,7 +435,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "study-scholarships-postgraduate-studies-in-the-field-of-architecture"
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Field of the Performing Arts",
@@ -473,7 +476,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "study-scholarships-postgraduate-studies-in-the-field-of-the-performing-arts"
     },
     {
       "name": "Scholarship for Development-Related Postgraduate Courses (EPOS)",
@@ -512,7 +516,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "scholarship-for-development-related-postgraduate-courses-epos"
     },
     {
       "name": "Helmut-Schmidt-Programme - Master's Scholarships for Public Policy and Good Governance (PPGG)",
@@ -557,7 +562,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "helmut-schmidt-programme-masters-scholarships-for-public-policy-and-good-governance-ppgg"
     },
     {
       "name": "DAAD-ACEH Scholarship of Excellence",
@@ -601,7 +607,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "daad-aceh-scholarship-of-excellence"
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Fields of Fine Art, Design, Visual Communication and Film",
@@ -646,7 +653,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "study-scholarships-postgraduate-studies-in-the-fields-of-fine-art-design-visual-communication-and-fi"
     },
     {
       "name": "Study Scholarships - Postgraduate Studies in the Field of Music",
@@ -687,7 +695,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "study-scholarships-postgraduate-studies-in-the-field-of-music"
     },
     {
       "name": "In-Country/In-Region Scholarship at SEARCA Food Science",
@@ -732,7 +741,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "in-countryin-region-scholarship-at-searca-food-science"
     },
     {
       "name": "In-Country/In-Region Scholarship at SEARCA Natural Resource Management",
@@ -781,7 +791,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "in-countryin-region-scholarship-at-searca-natural-resource-management"
     },
     {
       "name": "In-Country/In-Region Scholarship at Universitas Gadjah Mada (UGM)",
@@ -822,7 +833,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "in-countryin-region-scholarship-at-universitas-gadjah-mada-ugm"
     },
     {
       "name": "In-Country/In-Region Scholarship at Asian Institute of Technology (AIT) GDS/NRM",
@@ -874,7 +886,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "in-countryin-region-scholarship-at-asian-institute-of-technology-ait-gdsnrm"
     },
     {
       "name": "Research Grants - Doctoral Programme in Germany",
@@ -913,7 +926,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "research-grants-doctoral-programme-in-germany"
     },
     {
       "name": "Research Grants - Bi-nationally Supervised Doctoral Degrees",
@@ -952,7 +966,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "research-grants-bi-nationally-supervised-doctoral-degrees"
     },
     {
       "name": "Research Grants in Germany",
@@ -991,7 +1006,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "research-grants-in-germany"
     },
     {
       "name": "DLR-DAAD Research Fellowships in the fields of Space, Aeronautics, Energy and Transportation Research",
@@ -1035,7 +1051,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "dlr-daad-research-fellowships-in-the-fields-of-space-aeronautics-energy-and-transportation-research"
     },
     {
       "name": "Study Visits for Academics - Artists and Architects (Short visit)",
@@ -1079,7 +1096,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "study-visits-for-academics-artists-and-architects-short-visit"
     },
     {
       "name": "Postdoctoral Researchers International Mobility Experience (P.R.I.M.E.)",
@@ -1115,7 +1133,8 @@
       "application_process": [],
       "important_dates": [],
       "deadline": null,
-      "program_type": null
+      "program_type": null,
+      "slug": "postdoctoral-researchers-international-mobility-experience-prime"
     },
     {
       "name": "MEXT Scholarship - Undergraduate (Gakubu) 2027",
@@ -1190,14 +1209,15 @@
       ],
       "source": "undergraduate_gakubu.md",
       "source_file": "data/raw/mext/undergraduate_gakubu.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "mext-scholarship-undergraduate-gakubu-2027"
     },
     {
       "name": "MEXT Scholarship - College of Technology (KOSEN) 2027",
       "provider": "MEXT / Monbukagakusho",
       "country": "Japan",
       "degree_levels": [
-        "College of Technology"
+        "Vocational"
       ],
       "program_type": "Pre-undergraduate technical/vocational scholarship",
       "fields": [
@@ -1261,7 +1281,8 @@
       ],
       "source": "collegeoftechnology_kosen.md",
       "source_file": "data/raw/mext/collegeoftechnology_kosen.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "mext-scholarship-college-of-technology-kosen-2027"
     },
     {
       "name": "MEXT Scholarship - Research Students (Master/PhD) 2027",
@@ -1338,7 +1359,8 @@
       ],
       "source": "research_student.md",
       "source_file": "data/raw/mext/research_student.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "mext-scholarship-research-students-masterphd-2027"
     },
     {
       "name": "MEXT Scholarship - Japanese Studies (Non-Degree) 2026",
@@ -1415,14 +1437,15 @@
       ],
       "source": "japanesestudies.md",
       "source_file": "data/raw/mext/japanesestudies.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "mext-scholarship-japanese-studies-non-degree-2026"
     },
     {
       "name": "MEXT Scholarship - Specialized Training College (Senshu) 2027",
       "provider": "MEXT / Monbukagakusho",
       "country": "Japan",
       "degree_levels": [
-        "Vocational / Diploma"
+        "Vocational"
       ],
       "program_type": "Vocational/Diploma scholarship",
       "fields": [
@@ -1485,7 +1508,8 @@
       ],
       "source": "specializedtrainingcollege_senshu.md",
       "source_file": "data/raw/mext/specializedtrainingcollege_senshu.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "mext-scholarship-specialized-training-college-senshu-2027"
     },
     {
       "name": "MEXT Scholarship - Teacher Training (Non-Degree) 2026",
@@ -1561,7 +1585,8 @@
       ],
       "source": "teacher_training.md",
       "source_file": "data/raw/mext/teacher_training.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "mext-scholarship-teacher-training-non-degree-2026"
     },
     {
       "name": "Türkiye Burslari Associate Degree Scholarship (TVET)",
@@ -1612,7 +1637,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-associate-degree-scholarship-tvet"
     },
     {
       "name": "Türkiye Burslari Bachelor's Scholarship Program",
@@ -1666,7 +1692,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-bachelors-scholarship-program"
     },
     {
       "name": "Türkiye Burslari Graduate Scholarship Program (Master's)",
@@ -1721,7 +1748,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-graduate-scholarship-program-masters"
     },
     {
       "name": "Türkiye Burslari Graduate Scholarship Program (PhD)",
@@ -1775,7 +1803,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-graduate-scholarship-program-phd"
     },
     {
       "name": "Türkiye Burslari Art Scholarship Program",
@@ -1839,7 +1868,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-art-scholarship-program"
     },
     {
       "name": "Türkiye Burslari Merit Scholarship Program",
@@ -1895,7 +1925,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-merit-scholarship-program"
     },
     {
       "name": "Türkiye Burslari Success Scholarship Program",
@@ -1945,7 +1976,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-success-scholarship-program"
     },
     {
       "name": "Türkiye Burslari Research Scholarship Program",
@@ -1995,7 +2027,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-burslari-research-scholarship-program"
     },
     {
       "name": "KATİP - Turkish Communication Program for Public Officials and Academics",
@@ -2043,7 +2076,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "katip-turkish-communication-program-for-public-officials-and-academics"
     },
     {
       "name": "DAFI Scholarship Program (Türkiye Scholarships / UNHCR)",
@@ -2088,7 +2122,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "dafi-scholarship-program-trkiye-scholarships-unhcr"
     },
     {
       "name": "SPARK Scholarship Program (Türkiye Scholarships / SPARK)",
@@ -2134,7 +2169,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "spark-scholarship-program-trkiye-scholarships-spark"
     },
     {
       "name": "YTB–IsDB Joint Scholarship Program",
@@ -2185,7 +2221,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "ytbisdb-joint-scholarship-program"
     },
     {
       "name": "Yemeni Pioneers Scholarship Program",
@@ -2234,7 +2271,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "yemeni-pioneers-scholarship-program"
     },
     {
       "name": "WIPO Scholarship - Intellectual Property Law (Ankara University)",
@@ -2280,7 +2318,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "wipo-scholarship-intellectual-property-law-ankara-university"
     },
     {
       "name": "Higher Education Support Program (Türkiye Scholarships / UNHCR)",
@@ -2326,7 +2365,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "higher-education-support-program-trkiye-scholarships-unhcr"
     },
     {
       "name": "Türkiye Scholarships – Baykar Technology Joint Scholarship Program",
@@ -2388,7 +2428,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-scholarships-baykar-technology-joint-scholarship-program"
     },
     {
       "name": "Türkiye Scholarships – NAMA Foundation Joint Scholarship Program",
@@ -2447,7 +2488,8 @@
       "source_file": null,
       "application_process": [],
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "trkiye-scholarships-nama-foundation-joint-scholarship-program"
     },
     {
       "name": "Chevening Scholarship (Indonesia)",
@@ -2526,7 +2568,8 @@
       "source": "01_scholarship_indonesia.md",
       "source_file": "data/raw/chevening/01_scholarship_indonesia.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "chevening-scholarship-indonesia"
     },
     {
       "name": "Chevening ASEAN Scholarship",
@@ -2600,7 +2643,8 @@
       "source": "17_asean-chevening-scholarship.md",
       "source_file": "data/raw/chevening/17_asean-chevening-scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "chevening-asean-scholarship"
     },
     {
       "name": "Chevening Fellowships",
@@ -2656,7 +2700,8 @@
       "source_file": "data/raw/chevening/07_fellowships.md",
       "confidence_score": 0.95,
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "chevening-fellowships"
     },
     {
       "name": "Australia Awards Scholarships - PhD & Masters (Indonesia)",
@@ -2746,7 +2791,8 @@
       "source": "05_content_325_12_about-phd-and-masters-awards.md",
       "source_file": "data/raw/australia-awards/05_content_325_12_about-phd-and-masters-awards.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "australia-awards-scholarships-phd-masters-indonesia"
     },
     {
       "name": "Australia Awards Garuda Scholarships",
@@ -2821,7 +2867,8 @@
       "source": "13_content_1000344_12_australia-awards-garuda-scholarships.md",
       "source_file": "data/raw/australia-awards/13_content_1000344_12_australia-awards-garuda-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "australia-awards-garuda-scholarships"
     },
     {
       "name": "LPDP–Australia Awards Scholarships",
@@ -2890,7 +2937,8 @@
       "source": "15_content_1000276_12_lpdp-australia-awards-scholarships.md",
       "source_file": "data/raw/australia-awards/15_content_1000276_12_lpdp-australia-awards-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "lpdpaustralia-awards-scholarships"
     },
     {
       "name": "Australia Awards Split-Site Masters Program (Indonesia)",
@@ -2948,7 +2996,8 @@
       "source_file": "data/raw/australia-awards/17_content_177_825_about-the-program.md",
       "confidence_score": 0.95,
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "australia-awards-split-site-masters-program-indonesia"
     },
     {
       "name": "Australia Awards Short Courses (Indonesia)",
@@ -3015,7 +3064,8 @@
       "source_file": "data/raw/australia-awards/18_content_56_13_about-short-courses.md",
       "confidence_score": 0.95,
       "important_dates": [],
-      "program_type": null
+      "program_type": null,
+      "slug": "australia-awards-short-courses-indonesia"
     },
     {
       "name": "Melbourne Research Scholarship",
@@ -3076,7 +3126,8 @@
       "source": "melbourne-research-scholarship.md",
       "source_file": "data/raw/australia-universities/melbourne-research-scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "melbourne-research-scholarship"
     },
     {
       "name": "University of Sydney RTP International / USYDIS",
@@ -3137,7 +3188,8 @@
       "source": "sydney-rtp-international.md",
       "source_file": "data/raw/australia-universities/sydney-rtp-international.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "university-of-sydney-rtp-international-usydis"
     },
     {
       "name": "ANU PhD Scholarship + RTP International Fee Offset",
@@ -3200,7 +3252,8 @@
       "source": "anu-phd-rtp.md",
       "source_file": "data/raw/australia-universities/anu-phd-rtp.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "anu-phd-scholarship-rtp-international-fee-offset"
     },
     {
       "name": "Monash Graduate Scholarship + Monash International Tuition Scholarship",
@@ -3262,7 +3315,8 @@
       "source": "monash-graduate-scholarship.md",
       "source_file": "data/raw/australia-universities/monash-graduate-scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "monash-graduate-scholarship-monash-international-tuition-scholarship"
     },
     {
       "name": "UQ Graduate School Scholarships",
@@ -3322,7 +3376,8 @@
       "source": "uq-graduate-school-scholarships.md",
       "source_file": "data/raw/australia-universities/uq-graduate-school-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "uq-graduate-school-scholarships"
     },
     {
       "name": "UNSW HDR / RTP Scholarship",
@@ -3382,7 +3437,8 @@
       "source": "unsw-hdr-scholarships.md",
       "source_file": "data/raw/australia-universities/unsw-hdr-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "unsw-hdr-rtp-scholarship"
     },
     {
       "name": "Flinders AGRTPS International / FIPRS",
@@ -3442,7 +3498,8 @@
       "source": "flinders-agrtps-fiprs.md",
       "source_file": "data/raw/australia-universities/flinders-agrtps-fiprs.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "flinders-agrtps-international-fiprs"
     },
     {
       "name": "Griffith Vice Chancellor's International Scholarship",
@@ -3501,7 +3558,8 @@
       "source": "griffith-vice-chancellors-international.md",
       "source_file": "data/raw/australia-universities/griffith-vice-chancellors-international.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "griffith-vice-chancellors-international-scholarship"
     },
     {
       "name": "GKS Undergraduate Scholarship (Global Korea Scholarship - Bachelor's)",
@@ -3578,7 +3636,8 @@
       ],
       "source": "02_ko_plan_scholarship-do.md",
       "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "gks-undergraduate-scholarship-global-korea-scholarship-bachelors"
     },
     {
       "name": "GKS Graduate Scholarship (Global Korea Scholarship - Master's & PhD)",
@@ -3661,7 +3720,8 @@
       ],
       "source": "02_ko_plan_scholarship-do.md",
       "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "gks-graduate-scholarship-global-korea-scholarship-masters-phd"
     },
     {
       "name": "GKS Exchange Students Program (Global Korea Scholarship)",
@@ -3718,11 +3778,12 @@
       "source": "02_ko_plan_scholarship-do.md",
       "source_file": "data/raw/gks/02_ko_plan_scholarship-do.md",
       "confidence_score": 0.95,
-      "important_dates": []
+      "important_dates": [],
+      "slug": "gks-exchange-students-program-global-korea-scholarship"
     },
     {
       "name": "Singapore International Graduate Award (SINGA)",
-      "provider": "Singapore A*STAR / NTU / NUS / SUTD / SMU",
+      "provider": "A*STAR / Singapore / NTU / NUS / SUTD / SMU",
       "country": "Singapore",
       "degree_levels": [
         "PhD"
@@ -3789,11 +3850,12 @@
       ],
       "source": "01_astar_scholarships_home.md",
       "source_file": "data/raw/singa/01_astar_scholarships_home.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "singapore-international-graduate-award-singa"
     },
     {
       "name": "A*STAR Graduate Scholarship (AGS)",
-      "provider": "Singapore A*STAR",
+      "provider": "A*STAR / Singapore",
       "country": "Singapore",
       "degree_levels": [
         "PhD"
@@ -3850,7 +3912,8 @@
       "source": "01_astar_scholarships_home.md",
       "source_file": "data/raw/singa/01_astar_scholarships_home.md",
       "confidence_score": 0.95,
-      "important_dates": []
+      "important_dates": [],
+      "slug": "astar-graduate-scholarship-ags"
     },
     {
       "name": "ASEAN Undergraduate Scholarship - NUS",
@@ -3930,7 +3993,8 @@
       ],
       "source": "01_nus_asean_ug.md",
       "source_file": "data/raw/asean-sg/01_nus_asean_ug.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "asean-undergraduate-scholarship-nus"
     },
     {
       "name": "ASEAN Undergraduate Scholarship - NTU",
@@ -3999,7 +4063,8 @@
       "source": "02_ntu_asean_ug.md",
       "source_file": "data/raw/asean-sg/02_ntu_asean_ug.md",
       "confidence_score": 0.95,
-      "important_dates": []
+      "important_dates": [],
+      "slug": "asean-undergraduate-scholarship-ntu"
     },
     {
       "name": "NUS International Undergraduate Scholarship (NUS IUS)",
@@ -4070,7 +4135,8 @@
       ],
       "source": "10_nus_international_undergraduate_scholarship.md",
       "source_file": "data/raw/singa/10_nus_international_undergraduate_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "nus-international-undergraduate-scholarship-nus-ius"
     },
     {
       "name": "Dr Goh Keng Swee (GKS) Scholarship",
@@ -4153,7 +4219,8 @@
       ],
       "source": "11_dr_goh_keng_swee_scholarship.md",
       "source_file": "data/raw/singa/11_dr_goh_keng_swee_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "dr-goh-keng-swee-gks-scholarship"
     },
     {
       "name": "Nanyang President's Graduate Scholarship (NPGS)",
@@ -4220,7 +4287,8 @@
       ],
       "source": "12_ntu_nanyang_presidents_graduate_scholarship.md",
       "source_file": "data/raw/singa/12_ntu_nanyang_presidents_graduate_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "nanyang-presidents-graduate-scholarship-npgs"
     },
     {
       "name": "France Excellence Eiffel Scholarship - Master's Level",
@@ -4297,7 +4365,8 @@
       ],
       "source": "01_en_eiffel-scholarship-program-of-excellence.md",
       "source_file": "data/raw/eiffel/01_en_eiffel-scholarship-program-of-excellence.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "france-excellence-eiffel-scholarship-masters-level"
     },
     {
       "name": "France Excellence Eiffel Scholarship - PhD Level",
@@ -4366,7 +4435,8 @@
       ],
       "source": "01_en_eiffel-scholarship-program-of-excellence.md",
       "source_file": "data/raw/eiffel/01_en_eiffel-scholarship-program-of-excellence.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "france-excellence-eiffel-scholarship-phd-level"
     },
     {
       "name": "Université Paris-Saclay International Master's Scholarships (IDEX)",
@@ -4434,7 +4504,8 @@
       ],
       "source": "21_paris_saclay_international_masters_scholarships.md",
       "source_file": "data/raw/eiffel/21_paris_saclay_international_masters_scholarships.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "universit-paris-saclay-international-masters-scholarships-idex"
     },
     {
       "name": "Sciences Po Émile Boutmy Scholarship",
@@ -4509,7 +4580,8 @@
       ],
       "source": "22_sciences_po_emile_boutmy_scholarship.md",
       "source_file": "data/raw/eiffel/22_sciences_po_emile_boutmy_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "sciences-po-mile-boutmy-scholarship"
     },
     {
       "name": "ENS de Lyon Ampère Excellence Scholarships",
@@ -4575,7 +4647,8 @@
       ],
       "source": "23_ens_lyon_ampere_excellence_scholarship.md",
       "source_file": "data/raw/eiffel/23_ens_lyon_ampere_excellence_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "ens-de-lyon-ampre-excellence-scholarships"
     },
     {
       "name": "Canada Graduate Research Scholarship - Doctoral (CGRS-D)",
@@ -4649,7 +4722,8 @@
       ],
       "source": "01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
       "source_file": "data/raw/canada/01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "canada-graduate-research-scholarship-doctoral-cgrs-d"
     },
     {
       "name": "Canada Impact+ Research Training Awards - Doctoral",
@@ -4706,7 +4780,8 @@
       ],
       "source": "01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
       "source_file": "data/raw/canada/01_en_funding-opportunity_canada-graduate-research-scholarship-doctoral-program.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "canada-impact-research-training-awards-doctoral"
     },
     {
       "name": "Lester B. Pearson International Student Scholarships - University of Toronto",
@@ -4779,7 +4854,8 @@
       ],
       "source": "05_lester_pearson_scholarship.md",
       "source_file": "data/raw/canada/05_lester_pearson_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "lester-b-pearson-international-student-scholarships-university-of-toronto"
     },
     {
       "name": "A*STAR Graduate Scholarship (AGS) - International",
@@ -4850,7 +4926,8 @@
       ],
       "source": "13_scholarships_home_scholarships_ags-scholarship.md",
       "source_file": "data/raw/singa/13_scholarships_home_scholarships_ags-scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "astar-graduate-scholarship-ags-international"
     },
     {
       "name": "A*STAR International Fellowship (AIF) - Research Track",
@@ -4920,7 +4997,8 @@
       ],
       "source": "12_scholarships_home_scholarships_astar-international-fellowship.md",
       "source_file": "data/raw/singa/12_scholarships_home_scholarships_astar-international-fellowship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "astar-international-fellowship-aif-research-track"
     },
     {
       "name": "A*STAR International Fellowship (AIF) - Innovation Track",
@@ -4981,7 +5059,8 @@
       ],
       "source": "12_scholarships_home_scholarships_astar-international-fellowship.md",
       "source_file": "data/raw/singa/12_scholarships_home_scholarships_astar-international-fellowship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "astar-international-fellowship-aif-innovation-track"
     },
     {
       "name": "JASSO Monbukagakusho Honors Scholarship for Privately-Financed International Students",
@@ -5049,7 +5128,8 @@
       ],
       "source": "02_jasso_detail.md",
       "source_file": "data/raw/jasso/02_jasso_detail.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "jasso-monbukagakusho-honors-scholarship-for-privately-financed-international-students"
     },
     {
       "name": "JASSO Student Exchange Support Program (Scholarship for Study in Japan under Agreement)",
@@ -5110,7 +5190,8 @@
       ],
       "source": "02_jasso_detail.md",
       "source_file": "data/raw/jasso/02_jasso_detail.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "jasso-student-exchange-support-program-scholarship-for-study-in-japan-under-agreement"
     },
     {
       "name": "KOICA Scholarship Program - Master's Degree",
@@ -5186,7 +5267,8 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/koica/01_overview.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "koica-scholarship-program-masters-degree"
     },
     {
       "name": "KOICA Scholarship Program - Doctoral Degree",
@@ -5248,7 +5330,8 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/koica/01_overview.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "koica-scholarship-program-doctoral-degree"
     },
     {
       "name": "Canada Postdoctoral Research Award (CPRA)",
@@ -5321,7 +5404,8 @@
       ],
       "source": "06_cpra.md",
       "source_file": "data/raw/canada/06_cpra.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "canada-postdoctoral-research-award-cpra"
     },
     {
       "name": "Studienstiftung des deutschen Volkes - Undergraduate & Master's Scholarship",
@@ -5388,7 +5472,8 @@
       ],
       "source": "01_en.md",
       "source_file": "data/raw/studienstiftung/01_en.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "studienstiftung-des-deutschen-volkes-undergraduate-masters-scholarship"
     },
     {
       "name": "Studienstiftung des deutschen Volkes - Doctoral Scholarship",
@@ -5465,7 +5550,8 @@
       ],
       "source": "03_application.md",
       "source_file": "data/raw/studienstiftung/03_application.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "studienstiftung-des-deutschen-volkes-doctoral-scholarship"
     },
     {
       "name": "Studienstiftung ERP Fellowship Programme",
@@ -5539,7 +5625,8 @@
       ],
       "source": "09_en_erp.md",
       "source_file": "data/raw/studienstiftung/09_en_erp.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "studienstiftung-erp-fellowship-programme"
     },
     {
       "name": "Studienstiftung McCloy Scholarship Programme",
@@ -5616,7 +5703,8 @@
       ],
       "source": "11_en_mccloy.md",
       "source_file": "data/raw/studienstiftung/11_en_mccloy.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "studienstiftung-mccloy-scholarship-programme"
     },
     {
       "name": "Studienstiftung Leo Baeck Fellowship",
@@ -5689,7 +5777,8 @@
       ],
       "source": "12_en_leo-baeck-fellowship.md",
       "source_file": "data/raw/studienstiftung/12_en_leo-baeck-fellowship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "studienstiftung-leo-baeck-fellowship"
     },
     {
       "name": "Holland Scholarship (NL Scholarship)",
@@ -5751,7 +5840,8 @@
       ],
       "source": "01_holland_scholarship.md",
       "source_file": "data/raw/netherlands/01_holland_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "holland-scholarship-nl-scholarship"
     },
     {
       "name": "Orange Knowledge Programme (OKP)",
@@ -5825,7 +5915,8 @@
       ],
       "source": "02_orange_knowledge_programme.md",
       "source_file": "data/raw/netherlands/02_orange_knowledge_programme.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "orange-knowledge-programme-okp"
     },
     {
       "name": "Orange Tulip Scholarship (OTS)",
@@ -5900,7 +5991,8 @@
       ],
       "source": "03_orange_tulip_scholarship.md",
       "source_file": "data/raw/netherlands/03_orange_tulip_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "orange-tulip-scholarship-ots"
     },
     {
       "name": "Justus & Louise van Effen Excellence Scholarship - TU Delft",
@@ -5970,7 +6062,8 @@
       ],
       "source": "04_tu_delft_excellence.md",
       "source_file": "data/raw/netherlands/04_tu_delft_excellence.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "justus-louise-van-effen-excellence-scholarship-tu-delft"
     },
     {
       "name": "University of Groningen Excellence Scholarship",
@@ -6035,7 +6128,8 @@
       ],
       "source": "05_groningen_excellence.md",
       "source_file": "data/raw/netherlands/05_groningen_excellence.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "university-of-groningen-excellence-scholarship"
     },
     {
       "name": "Amsterdam Merit Scholarship (AMS) - University of Amsterdam",
@@ -6098,7 +6192,8 @@
       ],
       "source": "06_amsterdam_merit_scholarship.md",
       "source_file": "data/raw/netherlands/06_amsterdam_merit_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "amsterdam-merit-scholarship-ams-university-of-amsterdam"
     },
     {
       "name": "Leiden University Excellence Scholarship (LExS)",
@@ -6161,7 +6256,8 @@
       ],
       "source": "07_leiden_excellence.md",
       "source_file": "data/raw/netherlands/07_leiden_excellence.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "leiden-university-excellence-scholarship-lexs"
     },
     {
       "name": "Maastricht University NL-High Potential Scholarship",
@@ -6221,7 +6317,8 @@
       ],
       "source": "08_maastricht_high_potential.md",
       "source_file": "data/raw/netherlands/08_maastricht_high_potential.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "maastricht-university-nl-high-potential-scholarship"
     },
     {
       "name": "Radboud Scholarship Programme",
@@ -6284,7 +6381,8 @@
       ],
       "source": "09_radboud_scholarship.md",
       "source_file": "data/raw/netherlands/09_radboud_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "radboud-scholarship-programme"
     },
     {
       "name": "VU Fellowship Programme - Vrije Universiteit Amsterdam",
@@ -6345,7 +6443,8 @@
       ],
       "source": "10_vu_fellowship.md",
       "source_file": "data/raw/netherlands/10_vu_fellowship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "vu-fellowship-programme-vrije-universiteit-amsterdam"
     },
     {
       "name": "Gates Cambridge Scholarship",
@@ -6426,7 +6525,8 @@
       ],
       "source": "02_programme_the-scholarship.md",
       "source_file": "data/raw/gates-cambridge/02_programme_the-scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "gates-cambridge-scholarship"
     },
     {
       "name": "Gates Cambridge Scholarship - PhD",
@@ -6505,7 +6605,8 @@
       ],
       "source": "02_programme_the-scholarship.md",
       "source_file": "data/raw/gates-cambridge/02_programme_the-scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "gates-cambridge-scholarship-phd"
     },
     {
       "name": "Clarendon Fund Scholarship - University of Oxford",
@@ -6571,7 +6672,8 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/clarendon/01_overview.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "clarendon-fund-scholarship-university-of-oxford"
     },
     {
       "name": "Rhodes Scholarship - University of Oxford",
@@ -6640,7 +6742,8 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/rhodes/01_overview.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "rhodes-scholarship-university-of-oxford"
     },
     {
       "name": "Fulbright Master's Degree Scholarship",
@@ -6711,7 +6814,8 @@
       ],
       "source": "06_grants-for-indonesians_fulbright-programs_scholarship_fulbright-masters-degree-s.md",
       "source_file": "data/raw/fulbright-usa/06_grants-for-indonesians_fulbright-programs_scholarship_fulbright-masters-degree-s.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "fulbright-masters-degree-scholarship"
     },
     {
       "name": "Fulbright Doctoral Degree (PhD) Scholarship",
@@ -6786,7 +6890,8 @@
       ],
       "source": "07_grants-for-indonesians_fulbright-programs_scholarship_fulbright-doctoral-degree-.md",
       "source_file": "data/raw/fulbright-usa/07_grants-for-indonesians_fulbright-programs_scholarship_fulbright-doctoral-degree-.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "fulbright-doctoral-degree-phd-scholarship"
     },
     {
       "name": "Hubert H. Humphrey Fellowship Program",
@@ -6864,7 +6969,8 @@
       ],
       "source": "13_grants-for-indonesians_fulbright-programs_fellowships_hubert-h-humphrey-fellowsh.md",
       "source_file": "data/raw/fulbright-usa/13_grants-for-indonesians_fulbright-programs_fellowships_hubert-h-humphrey-fellowsh.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "hubert-h-humphrey-fellowship-program"
     },
     {
       "name": "Fulbright Foreign Language Teaching Assistant (FLTA) Program",
@@ -6934,7 +7040,8 @@
       ],
       "source": "12_grants-for-indonesians_fulbright-programs_foreign-language-teaching-assistant-fl.md",
       "source_file": "data/raw/fulbright-usa/12_grants-for-indonesians_fulbright-programs_foreign-language-teaching-assistant-fl.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "fulbright-foreign-language-teaching-assistant-flta-program"
     },
     {
       "name": "VLIR-UOS ICP Connect Scholarship - Initial Master's (2 years)",
@@ -7017,7 +7124,8 @@
       ],
       "source": "01_get-funded_study-scholarships.md",
       "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "vlir-uos-icp-connect-scholarship-initial-masters-2-years"
     },
     {
       "name": "VLIR-UOS ICP Connect Scholarship - Advanced Master's (1 year)",
@@ -7084,7 +7192,8 @@
       ],
       "source": "01_get-funded_study-scholarships.md",
       "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "vlir-uos-icp-connect-scholarship-advanced-masters-1-year"
     },
     {
       "name": "VLIR-UOS ICP Connect Scholarship - Professional Bachelor (3 years)",
@@ -7145,7 +7254,8 @@
       ],
       "source": "01_get-funded_study-scholarships.md",
       "source_file": "data/raw/belgium-vlir/01_get-funded_study-scholarships.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "vlir-uos-icp-connect-scholarship-professional-bachelor-3-years"
     },
     {
       "name": "ARES Scholarships (Belgium Government)",
@@ -7254,7 +7364,8 @@
       ],
       "source": "ares_scholarships",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "ares-scholarships-belgium-government"
     },
     {
       "name": "Master Mind Scholarships (Government of Flanders)",
@@ -7321,7 +7432,8 @@
       ],
       "source": "master_mind_scholarships",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "master-mind-scholarships-government-of-flanders"
     },
     {
       "name": "Science@Leuven Scholarship",
@@ -7381,7 +7493,8 @@
       ],
       "source": "science_leuven_scholarship",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "scienceleuven-scholarship"
     },
     {
       "name": "Global Minds Doctoral Scholarships Programme",
@@ -7447,7 +7560,8 @@
       ],
       "source": "global_minds_doctoral",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "global-minds-doctoral-scholarships-programme"
     },
     {
       "name": "Erasmus Mundus Joint Master (EMJM) Scholarship",
@@ -7518,7 +7632,8 @@
       ],
       "source": "01_opportunities_individuals_students_erasmus-mundus-joint-masters.md",
       "source_file": "data/raw/erasmus-mundus/01_opportunities_individuals_students_erasmus-mundus-joint-masters.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "erasmus-mundus-joint-master-emjm-scholarship"
     },
     {
       "name": "Chinese Government Scholarship (CGS) - Bilateral Program",
@@ -7600,7 +7715,8 @@
       ],
       "source": "01_csc_main.md",
       "source_file": "data/raw/china-csc/01_csc_main.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "chinese-government-scholarship-cgs-bilateral-program"
     },
     {
       "name": "Chinese Government Scholarship (CGS) - Chinese University Program",
@@ -7680,7 +7796,8 @@
       ],
       "source": "02_csc_programs.md",
       "source_file": "data/raw/china-csc/02_csc_programs.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "chinese-government-scholarship-cgs-chinese-university-program"
     },
     {
       "name": "Belt and Road Scholarship (Silk Road Scholarship)",
@@ -7758,7 +7875,8 @@
       ],
       "source": "06_silk_road_scholarship.md",
       "source_file": "data/raw/china-csc/06_silk_road_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "belt-and-road-scholarship-silk-road-scholarship"
     },
     {
       "name": "MOFCOM Scholarship (Ministry of Commerce Scholarship China)",
@@ -7831,7 +7949,8 @@
       ],
       "source": "07_mofcom_scholarship.md",
       "source_file": "data/raw/china-csc/07_mofcom_scholarship.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "mofcom-scholarship-ministry-of-commerce-scholarship-china"
     },
     {
       "name": "Swedish Institute Scholarship for Global Professionals (SISGP)",
@@ -7936,7 +8055,8 @@
       ],
       "source": "06_en_apply_scholarships_swedish-institute-scholarships-for-global-professionals.md",
       "source_file": "data/raw/sweden/06_en_apply_scholarships_swedish-institute-scholarships-for-global-professionals.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "swedish-institute-scholarship-for-global-professionals-sisgp"
     },
     {
       "name": "Pioneering Women in STEM (PWIS) – Swedish Institute",
@@ -8017,7 +8137,8 @@
       ],
       "source": "07_en_apply_scholarships_pioneeringwomeninstem.md",
       "source_file": "data/raw/sweden/07_en_apply_scholarships_pioneeringwomeninstem.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "pioneering-women-in-stem-pwis-swedish-institute"
     },
     {
       "name": "Lund University Global Scholarship",
@@ -8080,7 +8201,8 @@
       ],
       "source": "lund_university_global_scholarship",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "lund-university-global-scholarship"
     },
     {
       "name": "KTH Scholarship",
@@ -8142,7 +8264,8 @@
       ],
       "source": "kth_scholarship",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "kth-scholarship"
     },
     {
       "name": "Chalmers IPOET Scholarship",
@@ -8205,7 +8328,8 @@
       ],
       "source": "chalmers_ipoet",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "chalmers-ipoet-scholarship"
     },
     {
       "name": "Uppsala University Global Scholarship",
@@ -8266,7 +8390,8 @@
       ],
       "source": "uppsala_global_scholarship",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "uppsala-university-global-scholarship"
     },
     {
       "name": "Stockholm University Scholarship",
@@ -8327,7 +8452,8 @@
       ],
       "source": "stockholm_university_scholarship",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "stockholm-university-scholarship"
     },
     {
       "name": "University of Gothenburg Global Scholarship",
@@ -8387,7 +8513,8 @@
       ],
       "source": "university_of_gothenburg_scholarship",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "university-of-gothenburg-global-scholarship"
     },
     {
       "name": "Karolinska Institutet Global Master's Scholarship",
@@ -8449,7 +8576,8 @@
       ],
       "source": "karolinska_institutet_scholarship",
       "source_file": null,
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "karolinska-institutet-global-masters-scholarship"
     },
     {
       "name": "Italian Government Scholarships for Foreign Students (MAECI)",
@@ -8510,7 +8638,8 @@
       ],
       "source": "07_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_borse.md",
       "source_file": "data/raw/italy/07_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_borse.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "italian-government-scholarships-for-foreign-students-maeci"
     },
     {
       "name": "Invest Your Talent in Italy (IYT)",
@@ -8590,7 +8719,8 @@
       ],
       "source": "09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
       "source_file": "data/raw/italy/09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "invest-your-talent-in-italy-iyt"
     },
     {
       "name": "MAECI Special Projects Scholarships – PhD and Master (Italy)",
@@ -8661,7 +8791,8 @@
       ],
       "source": "09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
       "source_file": "data/raw/italy/09_en_servizi-opportunita_opportunita_borse-di-studio_per-cittadini-stranieri_proge.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "maeci-special-projects-scholarships-phd-and-master-italy"
     },
     {
       "name": "Stipendium Hungaricum - Bachelor's / One-Tier Master's Scholarship",
@@ -8732,7 +8863,8 @@
       "source": "01_index.md",
       "source_file": "data/raw/hungary/01_index.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "stipendium-hungaricum-bachelors-one-tier-masters-scholarship"
     },
     {
       "name": "Stipendium Hungaricum - Master's Scholarship",
@@ -8801,7 +8933,8 @@
       "source": "02_apply.md",
       "source_file": "data/raw/hungary/02_apply.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "stipendium-hungaricum-masters-scholarship"
     },
     {
       "name": "Stipendium Hungaricum - Doctoral (PhD) Scholarship",
@@ -8870,7 +9003,8 @@
       "source": "02_apply.md",
       "source_file": "data/raw/hungary/02_apply.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "stipendium-hungaricum-doctoral-phd-scholarship"
     },
     {
       "name": "MOE Taiwan Scholarship - Bachelor's Degree",
@@ -8939,7 +9073,8 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "moe-taiwan-scholarship-bachelors-degree"
     },
     {
       "name": "MOE Taiwan Scholarship - Master's / PhD Degree",
@@ -9009,7 +9144,8 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "moe-taiwan-scholarship-masters-phd-degree"
     },
     {
       "name": "TaiwanICDF Higher Education Scholarship",
@@ -9080,7 +9216,8 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "taiwanicdf-higher-education-scholarship"
     },
     {
       "name": "Huayu Enrichment Scholarship (HES) - Mandarin Language Study",
@@ -9145,7 +9282,8 @@
       "source": "05_wikipedia_overview.md",
       "source_file": "data/raw/taiwan/05_wikipedia_overview.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "huayu-enrichment-scholarship-hes-mandarin-language-study"
     },
     {
       "name": "National Taiwan University (NTU) International Student Scholarship",
@@ -9210,7 +9348,8 @@
       "source": "admissions.ntu.edu.tw",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "national-taiwan-university-ntu-international-student-scholarship"
     },
     {
       "name": "National Tsing Hua University (NTHU) International Student Scholarship",
@@ -9274,14 +9413,15 @@
       "source": "oga.site.nthu.edu.tw",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "national-tsing-hua-university-nthu-international-student-scholarship"
     },
     {
       "name": "Swiss Government Excellence Research Scholarship (Postdoctoral)",
       "provider": "Swiss Confederation (SERI/SBFI)",
       "country": "Switzerland",
       "degree_levels": [
-        "Postdoc"
+        "Postdoctoral"
       ],
       "fields": [
         "All academic fields including medicine"
@@ -9344,7 +9484,8 @@
       "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "swiss-government-excellence-research-scholarship-postdoctoral"
     },
     {
       "name": "Swiss Government Excellence PhD Scholarship",
@@ -9411,7 +9552,8 @@
       "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "swiss-government-excellence-phd-scholarship"
     },
     {
       "name": "Swiss Government Excellence Art Scholarship",
@@ -9483,7 +9625,8 @@
       "source": "02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "source_file": "data/raw/switzerland/02_en_swiss-government-excellence-scholarships-at-a-glance.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "swiss-government-excellence-art-scholarship"
     },
     {
       "name": "ETH Zurich Excellence Scholarship & Opportunity Programme (ESOP)",
@@ -9545,7 +9688,8 @@
       "source": "ethz.ch",
       "source_file": "data/raw/switzerland/04_eth_esop.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "eth-zurich-excellence-scholarship-opportunity-programme-esop"
     },
     {
       "name": "EPFL Excellence Fellowship",
@@ -9607,7 +9751,8 @@
       "source": "epfl.ch",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "epfl-excellence-fellowship"
     },
     {
       "name": "University of Geneva Excellence Master Fellowships (Faculty of Science)",
@@ -9676,7 +9821,8 @@
       "source": "unige.ch",
       "source_file": "data/raw/switzerland/05_unige_excellence.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "university-of-geneva-excellence-master-fellowships-faculty-of-science"
     },
     {
       "name": "Helmut Veith Stipend (TU Wien - Computer Science)",
@@ -9743,7 +9889,8 @@
       "source": "tuwien.at",
       "source_file": "data/raw/austria/01_helmut_veith_stipend.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "helmut-veith-stipend-tu-wien-computer-science"
     },
     {
       "name": "OeAD Ernst Mach Grant - Worldwide",
@@ -9752,7 +9899,7 @@
       "degree_levels": [
         "Master",
         "PhD",
-        "Postdoc"
+        "Postdoctoral"
       ],
       "fields": [
         "All academic fields"
@@ -9809,7 +9956,8 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/02_oead_ernst_mach_worldwide.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "oead-ernst-mach-grant-worldwide"
     },
     {
       "name": "OeAD Ernst Mach Grant - UAS Worldwide (Fachhochschulen)",
@@ -9874,7 +10022,8 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/03_oead_ernst_mach_uas.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "oead-ernst-mach-grant-uas-worldwide-fachhochschulen"
     },
     {
       "name": "OeAD Ernst Mach Follow-Up Grant",
@@ -9882,7 +10031,7 @@
       "country": "Austria",
       "degree_levels": [
         "PhD",
-        "Postdoc"
+        "Postdoctoral"
       ],
       "fields": [
         "All academic fields"
@@ -9934,7 +10083,8 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/04_oead_ernst_mach_followup.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "oead-ernst-mach-follow-up-grant"
     },
     {
       "name": "OeAD Franz Werfel Fellowship",
@@ -10000,7 +10150,8 @@
       "source": "oead.at",
       "source_file": "data/raw/austria/05_oead_franz_werfel.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "oead-franz-werfel-fellowship"
     },
     {
       "name": "University of Helsinki International Master Grants",
@@ -10063,7 +10214,8 @@
       "source": "helsinki.fi",
       "source_file": "data/raw/finland/03_helsinki_intl_master.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "university-of-helsinki-international-master-grants"
     },
     {
       "name": "Aalto University Tuition Fee Waivers & Scholarship",
@@ -10125,7 +10277,8 @@
       "source": "aalto.fi",
       "source_file": "data/raw/finland/04_aalto_tuition_waiver.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "aalto-university-tuition-fee-waivers-scholarship"
     },
     {
       "name": "Tampere University International Master Scholarship",
@@ -10186,7 +10339,8 @@
       "source": "tuni.fi",
       "source_file": "data/raw/finland/05_tampere_intl_scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "tampere-university-international-master-scholarship"
     },
     {
       "name": "University of Oulu International Master Scholarship",
@@ -10247,7 +10401,8 @@
       "source": "oulu.fi",
       "source_file": "data/raw/finland/06_oulu_intl_master.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "university-of-oulu-international-master-scholarship"
     },
     {
       "name": "Hanken School of Economics Premium Scholarship",
@@ -10311,7 +10466,8 @@
       "source": "hanken.fi",
       "source_file": "data/raw/finland/07_hanken_premium.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "hanken-school-of-economics-premium-scholarship"
     },
     {
       "name": "Nokia Foundation Scholarship",
@@ -10378,11 +10534,12 @@
       "source": "nokiafoundation.com",
       "source_file": "data/raw/finland/08_nokia_foundation.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "nokia-foundation-scholarship"
     },
     {
       "name": "Manaaki New Zealand Scholarship - Tertiary (Undergraduate & Postgraduate)",
-      "provider": "Education New Zealand / MFAT (Ministry of Foreign Affairs and Trade)",
+      "provider": "Education New Zealand / MFAT",
       "country": "New Zealand",
       "degree_levels": [
         "Bachelor",
@@ -10455,7 +10612,8 @@
       "source": "08_check-eligibility-criteria.md",
       "source_file": "data/raw/new-zealand/08_check-eligibility-criteria.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "manaaki-new-zealand-scholarship-tertiary-undergraduate-postgraduate"
     },
     {
       "name": "Manaaki New Zealand Scholarship - Vocational Short-Term Training",
@@ -10514,7 +10672,8 @@
       "source": "04_vocational-short-term-scholarships.md",
       "source_file": "data/raw/new-zealand/04_vocational-short-term-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "manaaki-new-zealand-scholarship-vocational-short-term-training"
     },
     {
       "name": "Manaaki New Zealand Scholarship - English Language Training for Officials (NZELTO)",
@@ -10573,7 +10732,8 @@
       "source": "05_english-language-training-for-officials-scholarships.md",
       "source_file": "data/raw/new-zealand/05_english-language-training-for-officials-scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "manaaki-new-zealand-scholarship-english-language-training-for-officials-nzelto"
     },
     {
       "name": "Government of Ireland International Education Scholarship (GOI-IES)",
@@ -10641,7 +10801,8 @@
       "source": "02_ireland_guide.md",
       "source_file": "data/raw/ireland/02_ireland_guide.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "government-of-ireland-international-education-scholarship-goi-ies"
     },
     {
       "name": "Government of Ireland Postgraduate Scholarship (GOIPG)",
@@ -10708,7 +10869,8 @@
       "source": "02_ireland_guide.md",
       "source_file": "data/raw/ireland/02_ireland_guide.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "government-of-ireland-postgraduate-scholarship-goipg"
     },
     {
       "name": "Trinity College Dublin (TCD) Global Excellence Postgraduate Scholarship",
@@ -10769,7 +10931,8 @@
       "source": "tcd.ie",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "trinity-college-dublin-tcd-global-excellence-postgraduate-scholarship"
     },
     {
       "name": "UCD Global Excellence Scholarship",
@@ -10832,7 +10995,8 @@
       "source": "ucd.ie",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "ucd-global-excellence-scholarship"
     },
     {
       "name": "Danish Government Scholarship - Full Tuition Waiver + Grant",
@@ -10895,7 +11059,8 @@
       "source": "01_study-options_scholarships.md",
       "source_file": "data/raw/denmark/01_study-options_scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "danish-government-scholarship-full-tuition-waiver-grant"
     },
     {
       "name": "Norway Tuition-Free Public University Education",
@@ -10964,7 +11129,8 @@
       "source": "01_study-in-norway_scholarships.md",
       "source_file": "data/raw/norway/01_study-in-norway_scholarships.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "norway-tuition-free-public-university-education"
     },
     {
       "name": "BI Presidential Scholarship - Norwegian Business School",
@@ -11033,7 +11199,8 @@
       "source": "bi.edu",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "bi-presidential-scholarship-norwegian-business-school"
     },
     {
       "name": "Hong Kong PhD Fellowship Scheme (HKPFS)",
@@ -11104,7 +11271,8 @@
       "source": "02_hkpfs_guide.md",
       "source_file": "data/raw/hong-kong/02_hkpfs_guide.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "hong-kong-phd-fellowship-scheme-hkpfs"
     },
     {
       "name": "HKU Entrance Scholarship for International Students",
@@ -11170,7 +11338,8 @@
       "source": "admissions.hku.hk",
       "source_file": null,
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "hku-entrance-scholarship-for-international-students"
     },
     {
       "name": "Malaysia International Scholarship (MIS)",
@@ -11241,7 +11410,8 @@
       "source": "01_mis_scholarship.md",
       "source_file": "data/raw/malaysia/01_mis_scholarship.md",
       "confidence_score": 0.95,
-      "program_type": null
+      "program_type": null,
+      "slug": "malaysia-international-scholarship-mis"
     },
     {
       "name": "Commonwealth Master's Scholarships",
@@ -11305,7 +11475,8 @@
       ],
       "source": "01_masters.md",
       "source_file": "data/raw/commonwealth/01_masters.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "commonwealth-masters-scholarships"
     },
     {
       "name": "Commonwealth PhD Scholarships",
@@ -11369,7 +11540,8 @@
       ],
       "source": "02_phd.md",
       "source_file": "data/raw/commonwealth/02_phd.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "commonwealth-phd-scholarships"
     },
     {
       "name": "Commonwealth Shared Scholarships",
@@ -11433,7 +11605,8 @@
       ],
       "source": "03_shared.md",
       "source_file": "data/raw/commonwealth/03_shared.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "commonwealth-shared-scholarships"
     },
     {
       "name": "Knight-Hennessy Scholars - Stanford University",
@@ -11441,8 +11614,7 @@
       "country": "United States",
       "degree_levels": [
         "Master",
-        "PhD",
-        "Professional Degree"
+        "PhD"
       ],
       "program_type": "Full Stanford graduate scholarship and leadership development programme",
       "fields": [
@@ -11499,7 +11671,8 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/knight-hennessy/01_overview.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "knight-hennessy-scholars-stanford-university"
     },
     {
       "name": "ADB-Japan Scholarship Program",
@@ -11568,7 +11741,8 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/adb-japan/01_overview.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "adb-japan-scholarship-program"
     },
     {
       "name": "Joint Japan/World Bank Graduate Scholarship Program",
@@ -11637,7 +11811,8 @@
       ],
       "source": "01_overview.md",
       "source_file": "data/raw/jjwbgsp/01_overview.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "joint-japanworld-bank-graduate-scholarship-program"
     },
     {
       "name": "DAAD Leadership for Africa",
@@ -11701,7 +11876,8 @@
       ],
       "source": "leadership-for-africa.md",
       "source_file": "data/raw/daad/leadership-for-africa.md",
-      "confidence_score": 0.95
+      "confidence_score": 0.95,
+      "slug": "daad-leadership-for-africa"
     }
   ]
 }

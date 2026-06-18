@@ -998,9 +998,9 @@ function getScholarshipLogo(s) {
     if (name.includes('groningen') || provider.includes('groningen') || hasWord('rug'))
         return '/images/logos/Groningen.png';
     if (name.includes('maastricht') || provider.includes('maastricht'))
-        return '/images/logos/Maastritcht.png';
+        return '/images/logos/Maastricht.png';
     if (name.includes('radboud') || provider.includes('radboud'))
-        return '/images/logos/RadboundU.png';
+        return '/images/logos/RadboudU.png';
     // South Korea (KOICA/GKS partners)
     if (name.includes('sungkyunkwan') || provider.includes('sungkyunkwan') || hasWord('skku'))
         return '/images/logos/SKKU.png';
@@ -1343,8 +1343,8 @@ function getMatchedUniversityLogos(s) {
         { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png', keywords: ['amsterdam', 'uva'] },
         { name: 'Leiden University', logo: '/images/logos/LeidenU.png', keywords: ['leiden'] },
         { name: 'University of Groningen', logo: '/images/logos/Groningen.png', keywords: ['groningen', 'rug'] },
-        { name: 'Maastricht University', logo: '/images/logos/Maastritcht.png', keywords: ['maastricht'] },
-        { name: 'Radboud University', logo: '/images/logos/RadboundU.png', keywords: ['radboud'] },
+        { name: 'Maastricht University', logo: '/images/logos/Maastricht.png', keywords: ['maastricht'] },
+        { name: 'Radboud University', logo: '/images/logos/RadboudU.png', keywords: ['radboud'] },
         // South Korea (KOICA/GKS partners)
         { name: 'Sungkyunkwan University (SKKU)', logo: '/images/logos/SKKU.png', keywords: ['sungkyunkwan', 'skku'] },
         { name: 'KDI School of Public Policy and Management', logo: '/images/logos/KDI.png', keywords: ['kdi school', 'kdi'] },
@@ -1425,7 +1425,7 @@ function getMatchedUniversityLogos(s) {
             list.push({ name: 'Seoul National University (SNU)', logo: '/images/logos/SNU.png' }, { name: 'KAIST', logo: '/images/logos/KAIST.png' }, { name: 'Yonsei University', logo: '/images/logos/Yonsei.png' }, { name: 'Korea University', logo: '/images/logos/KoreaU.png' }, { name: 'Pohang University of Science and Technology (POSTECH)', logo: '/images/logos/POSTECH.png' });
         }
         else if (country === 'netherlands' || group === 'netherlands') {
-            list.push({ name: 'TU Delft', logo: '/images/logos/TUDelft.png' }, { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png' }, { name: 'Leiden University', logo: '/images/logos/LeidenU.png' }, { name: 'University of Groningen', logo: '/images/logos/Groningen.png' }, { name: 'Maastricht University', logo: '/images/logos/Maastritcht.png' });
+            list.push({ name: 'TU Delft', logo: '/images/logos/TUDelft.png' }, { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png' }, { name: 'Leiden University', logo: '/images/logos/LeidenU.png' }, { name: 'University of Groningen', logo: '/images/logos/Groningen.png' }, { name: 'Maastricht University', logo: '/images/logos/Maastricht.png' });
         }
         else if (group === 'gates-cambridge') {
             list.push({ name: 'University of Cambridge', logo: '/images/logos/Cambridge.png' });

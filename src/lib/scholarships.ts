@@ -1076,6 +1076,39 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('global minds')) return '/images/logos/KULeuven.png';
   if (name.includes('knight-hennessy') || provider.includes('knight-hennessy') || provider.includes('stanford university')) return '/images/logos/Stanford.png';
 
+  // ── Program Logos (scholarship-specific) — added 2026-06-18 ───────────
+  // A*STAR (Singapore)
+  if (name.includes('a*star') || name.includes('astar')) return '/images/programlogos/astar.png';
+  // NL umbrella scholarships (Holland, OKP, OTS)
+  if (name.includes('orange tulip') || name.includes('ots')) return '/images/programlogos/orange_tulip.png';
+  if (name.includes('holland scholarship') || name.includes('orange knowledge') || name.includes('okp') || name.includes('nl scholarship')) return '/images/programlogos/nuffic.png';
+  // China CSC umbrella (CGS, Belt and Road, MOFCOM)
+  if (name.includes('mofcom')) return '/images/programlogos/mofcom_china.png';
+  if (name.includes('china scholarship council') || name.includes('belt and road') || name.includes('cgs -') || name.includes('silk road')) return '/images/programlogos/csc_china.png';
+  // Sweden Institute (SISGP, PWIS)
+  if (name.includes('swedish institute') || name.includes('sisgp') || name.includes('pioneering women in stem') || name.includes('pwis')) return '/images/programlogos/si_sweden.png';
+  // Italy MAECI umbrella
+  if (name.includes('maeci') || name.includes('invest your talent') || name.includes('iyt')) return '/images/programlogos/maeci_italy.png';
+  // Hungary Stipendium Hungaricum
+  if (name.includes('stipendium hungaricum') || name.includes('tempus public foundation')) return '/images/programlogos/stipendium_hungaricum.png';
+  // Taiwan MOE / ICDF / Huayu
+  if (name.includes('taiwanicdf') || name.includes('icdf')) return '/images/programlogos/taiwan_icdf.png';
+  if (name.includes('moe taiwan') || name.includes('huayu') || name.includes('mandarin language study')) return '/images/programlogos/moe_taiwan.png';
+  // Swiss Government Excellence (SERI/SBFI)
+  if (name.includes('swiss government excellence') || name.includes('swiss confederation') || (name.includes('seri') || name.includes('sbfi'))) return '/images/programlogos/swiss_seri.png';
+  // New Zealand Manaaki
+  if (name.includes('manaaki')) return '/images/programlogos/manaaki_nz.png';
+  // Ireland (GOI-IES, GOIPG)
+  if (name.includes('goi-ies') || name.includes('goipg') || name.includes('government of ireland')) return '/images/programlogos/irish_hea.png';
+  // Denmark Government Scholarship
+  if (name.includes('danish government') || name.includes('danish ministry of higher education')) return '/images/programlogos/danish_govt.png';
+  // Norway Tuition-Free
+  if (name.includes('norway tuition') || name.includes('norwegian government')) return '/images/programlogos/norway_govt.png';
+  // Hong Kong PhD Fellowship Scheme
+  if (name.includes('hkpfs') || name.includes('hong kong phd fellowship') || name.includes('research grants council of hong kong')) return '/images/programlogos/hkpfs.png';
+  // Malaysia International Scholarship (MIS)
+  if (name.includes('mis') || name.includes('malaysia international scholarship') || name.includes('mohe malaysia')) return '/images/programlogos/mis_malaysia.png';
+
   if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/logos/UofT.png';
   if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/logos/McGill.png';
   if (name.includes('british columbia') || hasWord('ubc')) return '/images/logos/UBC.png';
@@ -1138,8 +1171,8 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('university of amsterdam') || provider.includes('university of amsterdam') || hasWord('uva')) return '/images/logos/UniversityofAmsterdam.png';
   if (name.includes('leiden') || provider.includes('leiden')) return '/images/logos/LeidenU.png';
   if (name.includes('groningen') || provider.includes('groningen') || hasWord('rug')) return '/images/logos/Groningen.png';
-  if (name.includes('maastricht') || provider.includes('maastricht')) return '/images/logos/Maastritcht.png';
-  if (name.includes('radboud') || provider.includes('radboud')) return '/images/logos/RadboundU.png';
+  if (name.includes('maastricht') || provider.includes('maastricht')) return '/images/logos/Maastricht.png';
+  if (name.includes('radboud') || provider.includes('radboud')) return '/images/logos/RadboudU.png';
 
   // South Korea (KOICA/GKS partners)
   if (name.includes('sungkyunkwan') || provider.includes('sungkyunkwan') || hasWord('skku')) return '/images/logos/SKKU.png';
@@ -1245,6 +1278,20 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (group === 'united-states') return '/images/logos/Harvard.png';
   if (group === 'belgium') return '/images/programlogos/vliruos.png';
   if (group === 'eu') return '/images/logos/Bologna.png';
+  // Group fallbacks added 2026-06-18 (previously returned null → flag-only card)
+  if (group === 'netherlands') return '/images/programlogos/nuffic.png';
+  if (group === 'china') return '/images/programlogos/csc_china.png';
+  if (group === 'sweden') return '/images/programlogos/si_sweden.png';
+  if (group === 'italy') return '/images/programlogos/maeci_italy.png';
+  if (group === 'hungary') return '/images/programlogos/stipendium_hungaricum.png';
+  if (group === 'taiwan') return '/images/programlogos/moe_taiwan.png';
+  if (group === 'switzerland') return '/images/programlogos/swiss_seri.png';
+  if (group === 'new-zealand') return '/images/programlogos/manaaki_nz.png';
+  if (group === 'ireland') return '/images/programlogos/irish_hea.png';
+  if (group === 'denmark') return '/images/programlogos/danish_govt.png';
+  if (group === 'norway') return '/images/programlogos/norway_govt.png';
+  if (group === 'hong-kong') return '/images/programlogos/hkpfs.png';
+  if (group === 'malaysia') return '/images/programlogos/mis_malaysia.png';
 
   return null;
 }
@@ -1272,8 +1319,7 @@ export function getScholarshipImage(s: Scholarship): string {
 
   // A*STAR and SINGA specific rotations to prevent matching generic NUS/NTU checks on provider
   if (name.includes('singa') || name.includes('singapore international graduate')) return '/images/universities/SG_SUTD.png';
-  if (name.includes('graduate scholarship') && (name.includes('astar') || name.includes('a*star'))) return '/images/universities/SG_NTU.png';
-  if (name.includes('fellowship') && (name.includes('astar') || name.includes('a*star'))) return '/images/universities/SG_SMU.png';
+  if (name.includes('astar') || name.includes('a*star')) return '/images/universities/astar_wide.png';
 
   if (name.includes('national university of singapore') || provider.includes('national university of singapore') || hasWord('nus')) return '/images/universities/SG_NUS.png';
   if (name.includes('nanyang') || provider.includes('nanyang') || hasWord('ntu')) return '/images/universities/SG_NTU.png';
@@ -1403,18 +1449,11 @@ export function getScholarshipImage(s: Scholarship): string {
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
   if (group === 'germany') return '/images/universities/GE_HeidelbergU.png';
-  if (group === 'germany') return '/images/universities/GE_LMU.png';
-  if (group === 'japan') return '/images/universities/JP_UofTokyo.png';
   if (group === 'japan') return '/images/universities/JP_UofTokyo.png';
   if (group === 'turkey') return '/images/universities/TU_METU.png';
   if (group === 'france') return '/images/universities/FR_PSLU.png';
   if (group === 'singapore') return '/images/universities/SG_NUS.png';
-  if (group === 'singapore') return '/images/universities/SG_NUS.png';
   if (group === 'canada') return '/images/universities/CA_UofT.png';
-  if (group === 'canada') return '/images/universities/CA_UofT.png';
-  if (group === 'united-kingdom') return '/images/universities/UK_Oxford.png';
-  if (group === 'united-kingdom') return '/images/universities/UK_Cambridge.png';
-  if (group === 'united-kingdom') return '/images/universities/UK_Oxford.png';
   if (group === 'united-kingdom') return '/images/universities/UK_Oxford.png';
   if (group === 'netherlands') {
     // Rotate through different NL university images based on scholarship name
@@ -1423,10 +1462,10 @@ export function getScholarshipImage(s: Scholarship): string {
     if (name.includes('leiden')) return '/images/universities/NL_UniversityofAmsterdam.png';
     if (name.includes('maastricht')) return '/images/universities/NL_TUDelft.png';
     if (name.includes('radboud')) return '/images/universities/NL_UniversityofAmsterdam.png';
-    if (name.includes('orange knowledge') || name.includes('okp')) return '/images/universities/NL_UniversityofAmsterdam.png';
-    if (name.includes('orange tulip') || name.includes('ots')) return '/images/universities/NL_TUDelft.png';
-    if (name.includes('holland') || name.includes('nl scholarship')) return '/images/universities/NL_UniversityofAmsterdam.png';
-    return '/images/universities/NL_TUDelft.png';
+    if (name.includes('orange knowledge') || name.includes('okp')) return '/images/universities/nuffic_wide.png';
+    if (name.includes('orange tulip') || name.includes('ots')) return '/images/universities/nuffic_wide.png';
+    if (name.includes('holland') || name.includes('nl scholarship')) return '/images/universities/nuffic_wide.png';
+    return '/images/universities/nuffic_wide.png';
   }
   if (group === 'australia') return '/images/universities/AUS_Sydney.png';
   if (group === 'south-korea') return '/images/universities/KOR_SNU.png';
@@ -1454,7 +1493,7 @@ export function getScholarshipImage(s: Scholarship): string {
   if (group === 'sweden') {
     // Rotate Sweden images for scholarships without a specific university match
     if (name.includes('stem') || name.includes('women') || name.includes('pioneering')) return '/images/universities/SWE_KTH.png';
-    return '/images/universities/SWE_StockholmU.png';
+    return '/images/universities/si_sweden_wide.png';
   }
   if (group === 'china') return '/images/universities/CN_Tsinghua.png';
   if (group === 'hungary') {
@@ -1477,7 +1516,7 @@ export function getScholarshipImage(s: Scholarship): string {
     if (name.includes('postgraduate') || name.includes('phd') || name.includes('master') || name.includes('graduate')) {
       return '/images/universities/NZ_Otago.png';
     }
-    return '/images/universities/NZ_Auckland.png';
+    return '/images/universities/manaaki_nz_wide.png';
   }
   if (group === 'ireland') {
     if (name.includes('postgraduate') || name.includes('research') || name.includes('phd') || name.includes('goipg')) {
@@ -1510,7 +1549,7 @@ export function getScholarshipImage(s: Scholarship): string {
     if (name.includes('putra') || name.includes('upm')) {
       return '/images/universities/MY_UPM.png';
     }
-    return '/images/universities/MY_UM.png';
+    return '/images/universities/mohe_malaysia_wide.png';
   }
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
@@ -1625,8 +1664,8 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png', keywords: ['amsterdam', 'uva'] },
     { name: 'Leiden University', logo: '/images/logos/LeidenU.png', keywords: ['leiden'] },
     { name: 'University of Groningen', logo: '/images/logos/Groningen.png', keywords: ['groningen', 'rug'] },
-    { name: 'Maastricht University', logo: '/images/logos/Maastritcht.png', keywords: ['maastricht'] },
-    { name: 'Radboud University', logo: '/images/logos/RadboundU.png', keywords: ['radboud'] },
+    { name: 'Maastricht University', logo: '/images/logos/Maastricht.png', keywords: ['maastricht'] },
+    { name: 'Radboud University', logo: '/images/logos/RadboudU.png', keywords: ['radboud'] },
 
     // South Korea (KOICA/GKS partners)
     { name: 'Sungkyunkwan University (SKKU)', logo: '/images/logos/SKKU.png', keywords: ['sungkyunkwan', 'skku'] },
@@ -1864,19 +1903,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Amsterdam', logo: '/images/logos/UniversityofAmsterdam.png' },
         { name: 'Leiden University', logo: '/images/logos/LeidenU.png' },
         { name: 'University of Groningen', logo: '/images/logos/Groningen.png' },
-        { name: 'Maastricht University', logo: '/images/logos/Maastritcht.png' }
-      );
-    } else if (group === 'united-kingdom') {
-      list.push({ name: 'University of Cambridge', logo: '/images/logos/Cambridge.png' });
-    } else if (group === 'united-kingdom' || group === 'united-kingdom') {
-      list.push({ name: 'University of Oxford', logo: '/images/logos/Oxford.png' });
-    } else if (group === 'germany') {
-      list.push(
-        { name: 'Heidelberg University', logo: '/images/logos/HeidelbergU.png' },
-        { name: 'LMU Munich', logo: '/images/logos/LMU.png' },
-        { name: 'Technical University of Munich (TUM)', logo: '/images/logos/TUM.png' },
-        { name: 'Freie Universität Berlin', logo: '/images/logos/FUBerlin.png' },
-        { name: 'Karlsruhe Institute of Technology (KIT)', logo: '/images/logos/KIT.png' }
+        { name: 'Maastricht University', logo: '/images/logos/Maastricht.png' }
       );
     } else if (group === 'united-states') {
       list.push(
