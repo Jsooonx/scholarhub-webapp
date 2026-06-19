@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Globe, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { allScholarships, providerGroup, providerMeta } from '@/lib/scholarships';
+import TrueFocus from './TrueFocus';
 
 // Pull one per provider group for the hero row - prioritise the most complete providers
 function getFeaturedByGroup(group: string) {
@@ -73,7 +74,15 @@ export default function Hero() {
               Scholarship Directory
             </span>
             <h1 className="font-serif text-5xl sm:text-7xl font-bold tracking-tight text-brand-dark leading-[1.05] max-w-2xl">
-              Your path to studying abroad
+              <TrueFocus
+                sentence="Your path to studying abroad"
+                manualMode={false}
+                blurAmount={3}
+                borderColor="#2563EB"
+                glowColor="rgba(37, 99, 235, 0.25)"
+                animationDuration={0.6}
+                pauseBetweenAnimations={1.2}
+              />
             </h1>
           </div>
 
