@@ -6,6 +6,7 @@ import { GraduationCap, Globe, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { allScholarships, providerGroup, providerMeta } from '@/lib/scholarships';
 import TrueFocus from './TrueFocus';
+import BorderGlow from './BorderGlow/BorderGlow';
 
 // Pull one per provider group for the hero row - prioritise the most complete providers
 function getFeaturedByGroup(group: string) {
@@ -64,8 +65,8 @@ export default function Hero() {
   const activeGroup = activeItem.group;
 
   return (
-    <section className="py-12 sm:py-16 bg-brand-bg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 sm:py-16 bg-brand-bg relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Top Header Row: Title & Stats */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-end mb-10 sm:mb-14">
@@ -78,8 +79,8 @@ export default function Hero() {
                 sentence="Your path to studying abroad"
                 manualMode={false}
                 blurAmount={3}
-                borderColor="#2563EB"
-                glowColor="rgba(37, 99, 235, 0.25)"
+                borderColor="#3730A3"
+                glowColor="rgba(55, 48, 163, 0.25)"
                 animationDuration={0.6}
                 pauseBetweenAnimations={1.2}
               />
@@ -87,22 +88,36 @@ export default function Hero() {
           </div>
 
           {/* Stats Card */}
-          <div className="bg-brand-cream border border-brand-border rounded-2xl p-6 lg:max-w-sm">
-            <p className="text-xs text-brand-muted leading-relaxed mb-4">
-              Browse curated scholarships from top providers worldwide - all requirements, benefits, and deadlines in one place.
-            </p>
-            <div className="flex flex-col gap-3">
-              {stats.map(({ icon: Icon, value, label }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <div className="p-1.5 rounded-lg bg-brand-dark/5 border border-brand-border">
-                    <Icon className="h-3.5 w-3.5 text-brand-dark" />
+          <BorderGlow
+            edgeSensitivity={30}
+            glowColor="243 54% 41%"
+            backgroundColor="#F3F1EC"
+            borderRadius={16}
+            glowRadius={30}
+            glowIntensity={0.8}
+            coneSpread={30}
+            animated={true}
+            looping={true}
+            colors={['#3730A3', '#831843', '#C27E3A']}
+            className="lg:max-w-sm w-full border border-brand-border/40"
+          >
+            <div className="p-6">
+              <p className="text-xs text-brand-muted leading-relaxed mb-4">
+                Browse curated scholarships from top providers worldwide - all requirements, benefits, and deadlines in one place.
+              </p>
+              <div className="flex flex-col gap-3">
+                {stats.map(({ icon: Icon, value, label }) => (
+                  <div key={label} className="flex items-center gap-3">
+                    <div className="p-1.5 rounded-lg bg-brand-dark/5 border border-brand-border">
+                      <Icon className="h-3.5 w-3.5 text-brand-dark" />
+                    </div>
+                    <span className="text-sm font-bold text-brand-dark">{value}</span>
+                    <span className="text-xs text-brand-muted">{label}</span>
                   </div>
-                  <span className="text-sm font-bold text-brand-dark">{value}</span>
-                  <span className="text-xs text-brand-muted">{label}</span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          </BorderGlow>
         </div>
 
         {/* Big Featured Card with Carousel Slideshow */}
