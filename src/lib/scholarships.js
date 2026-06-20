@@ -101,6 +101,12 @@ export function providerGroup(provider) {
     // Malaysia
     if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship')))
         return 'malaysia';
+    // Romania
+    if (p.includes('study in romania') || p.includes('scholarships.studyinromania') || p.includes('arice') || p.includes('romanian ministry of foreign') || p.includes('romanian agency for investments') || p.includes('transilvania university') || p.includes('unitbv') || p.includes('west university of timisoara') || p.includes('west university of timișoara') || p.includes('uvt'))
+        return 'romania';
+    // Russia
+    if (p.includes('open doors') || p.includes('global universities association') || p.includes('rossotrudnichestvo') || p.includes('russian government') || p.includes('government of russia') || p.includes('russian federation') || p.includes('saint petersburg state university') || p.includes('spbu') || p.includes('nust misis') || p.includes('bmstu') || p.includes('bauman moscow') || p.includes('mgimo') || p.includes('hse university') || p.includes('higher school of economics') || p.includes('skoltech') || p.includes('presidential scholarship') || p.includes('presidentskaya') || p.includes('russian ministry'))
+        return 'russia';
     // Fallback: slugify provider name
     return p.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
@@ -109,12 +115,11 @@ const rawList = data.scholarships;
 // Deduplicate slugs by appending an index if necessary
 const seenSlugs = new Map();
 export const allScholarships = rawList.map((s) => {
-    var _a;
     const base = toSlug(s.name);
-    const count = (_a = seenSlugs.get(base)) !== null && _a !== void 0 ? _a : 0;
+    const count = seenSlugs.get(base) ?? 0;
     seenSlugs.set(base, count + 1);
     const slug = count === 0 ? base : `${base}-${count}`;
-    return Object.assign(Object.assign({}, s), { slug });
+    return { ...s, slug };
 });
 // ── Accessors ──────────────────────────────────────────────────────────────
 export function getScholarshipBySlug(slug) {
@@ -130,12 +135,9 @@ export function filterScholarships(params) {
     let list = allScholarships;
     if (params.query) {
         const q = params.query.toLowerCase();
-        list = list.filter((s) => {
-            var _a;
-            return s.name.toLowerCase().includes(q) ||
-                ((_a = s.description) !== null && _a !== void 0 ? _a : '').toLowerCase().includes(q) ||
-                s.fields.some((f) => f.toLowerCase().includes(q));
-        });
+        list = list.filter((s) => s.name.toLowerCase().includes(q) ||
+            (s.description ?? '').toLowerCase().includes(q) ||
+            s.fields.some((f) => f.toLowerCase().includes(q)));
     }
     if (params.provider && params.provider !== 'all') {
         // Match by exact provider name (program-specific, e.g. "DAAD", "Chevening")
@@ -148,7 +150,7 @@ export function filterScholarships(params) {
         list = list.filter((s) => s.degree_levels.some((d) => d.toLowerCase().includes(params.level.toLowerCase())));
     }
     if (params.country && params.country !== 'all') {
-        list = list.filter((s) => { var _a; return ((_a = s.country) === null || _a === void 0 ? void 0 : _a.toLowerCase()) === params.country.toLowerCase(); });
+        list = list.filter((s) => s.country?.toLowerCase() === params.country.toLowerCase());
     }
     return list;
 }
@@ -157,7 +159,6 @@ export function filterScholarships(params) {
  * messy strings such as MEXT's important_dates format.
  */
 function extractDate(strings) {
-    var _a;
     const joined = strings.join(' ');
     // Try ISO-ish formats: "10 Mei 2026", "10 May 2026", "February 20, 2026"
     const MONTHS_ID = {
@@ -174,7 +175,7 @@ function extractDate(strings) {
         const day = parseInt(idMatch[1]);
         const rawMonth = idMatch[2].toLowerCase();
         const year = parseInt(idMatch[3]);
-        const month = (_a = MONTHS_ID[rawMonth]) !== null && _a !== void 0 ? _a : MONTHS_EN[rawMonth];
+        const month = MONTHS_ID[rawMonth] ?? MONTHS_EN[rawMonth];
         if (month !== undefined)
             return new Date(year, month, day);
     }
@@ -225,7 +226,7 @@ export function getDeadlineStatus(s) {
             sources.push(...s.application_period);
         const deadline = extractDate(sources);
         if (deadline) {
-            const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86400000);
+            const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86_400_000);
             const fmt = deadline.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (diff < 0)
                 return { type: 'closed', label: `Closed · ${fmt}`, deadline };
@@ -240,7 +241,7 @@ export function getDeadlineStatus(s) {
     if (group === 'turkey') {
         const deadline = getTurkiyeDeadline();
         const openDate = new Date(deadline.getFullYear(), 0, 10); // Jan 10
-        const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86400000);
+        const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86_400_000);
         const fmt = deadline.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (now >= openDate && now <= deadline) {
             if (diff <= 14)
@@ -266,7 +267,7 @@ export function getDeadlineStatus(s) {
                 sources.push(...s.application_period);
             const deadline = extractDate(sources);
             if (deadline) {
-                const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86400000);
+                const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86_400_000);
                 const fmt = deadline.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
                 if (diff < 0)
                     return { type: 'closed', label: `Closed Â· ${fmt}`, deadline };
@@ -282,7 +283,7 @@ export function getDeadlineStatus(s) {
         const open = new Date(year, 7, 5); // Aug 5
         const close = new Date(year, 9, 7); // Oct 7
         const nextClose = new Date(year + 1, 9, 7);
-        const diff = Math.ceil((close.getTime() - now2.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - now2.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (now2 >= open && now2 <= close) {
             if (diff <= 14)
@@ -306,7 +307,7 @@ export function getDeadlineStatus(s) {
                 sources.push(...s.application_period);
             const deadline = extractDate(sources);
             if (deadline) {
-                const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86400000);
+                const diff = Math.ceil((deadline.getTime() - now.getTime()) / 86_400_000);
                 const fmt = deadline.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
                 if (diff < 0)
                     return { type: 'closed', label: `Closed · ${fmt}`, deadline };
@@ -320,7 +321,7 @@ export function getDeadlineStatus(s) {
         const year3 = now3.getFullYear();
         const close = new Date(year3, 3, 30); // April 30
         const open = new Date(year3, 0, 1); // Jan 1 approx
-        const diff = Math.ceil((close.getTime() - now3.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - now3.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (now3 >= open && now3 <= close) {
             if (diff <= 14)
@@ -341,7 +342,7 @@ export function getDeadlineStatus(s) {
         // Undergraduate: results Dec, apps Sep–Oct
         if (isGrad) {
             const close = new Date(year4, 2, 31); // March 31
-            const diff = Math.ceil((close.getTime() - now4.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - now4.getTime()) / 86_400_000);
             const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (now4 >= new Date(year4, 1, 1) && now4 <= close) {
                 if (diff <= 14)
@@ -354,7 +355,7 @@ export function getDeadlineStatus(s) {
         }
         else {
             const close = new Date(year4, 9, 15); // Oct 15
-            const diff = Math.ceil((close.getTime() - now4.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - now4.getTime()) / 86_400_000);
             const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (now4 >= new Date(year4, 8, 1) && now4 <= close) {
                 if (diff <= 14)
@@ -376,7 +377,7 @@ export function getDeadlineStatus(s) {
             const now5 = new Date();
             const year5 = now5.getFullYear();
             const close = new Date(year5, 2, 31); // March 31
-            const diff = Math.ceil((close.getTime() - now5.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - now5.getTime()) / 86_400_000);
             const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (now5 >= new Date(year5, 9, 1) || now5 <= close) {
                 if (diff <= 14)
@@ -395,7 +396,7 @@ export function getDeadlineStatus(s) {
         // Paris-Saclay: ~May annually
         if (s.provider.toLowerCase().includes('paris-saclay') || s.provider.toLowerCase().includes('paris saclay')) {
             const close = new Date(year6, 4, 5); // May 5 approx
-            const diff = Math.ceil((close.getTime() - now6.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - now6.getTime()) / 86_400_000);
             const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (now6 <= close) {
                 if (diff <= 14)
@@ -413,7 +414,7 @@ export function getDeadlineStatus(s) {
         const close = new Date(year6, 0, 8) > now6
             ? new Date(year6, 0, 8) // Jan 8 this year
             : new Date(year6 + 1, 0, 8); // Jan 8 next year
-        const diff = Math.ceil((close.getTime() - now6.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - now6.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (now6 >= open || now6 <= close) {
             if (diff <= 14)
@@ -429,7 +430,7 @@ export function getDeadlineStatus(s) {
         // Lester B. Pearson: student application deadline Nov 7
         if (s.provider.toLowerCase().includes('university of toronto')) {
             const close = new Date(year7, 10, 7); // Nov 7
-            const diff = Math.ceil((close.getTime() - now7.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - now7.getTime()) / 86_400_000);
             const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (now7 <= close) {
                 if (diff <= 14)
@@ -440,7 +441,7 @@ export function getDeadlineStatus(s) {
         }
         // CGRS-D and Impact+: agency deadline Oct 17
         const close = new Date(year7, 9, 17); // Oct 17
-        const diff = Math.ceil((close.getTime() - now7.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - now7.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (now7 <= close) {
             if (diff <= 30)
@@ -458,7 +459,7 @@ export function getDeadlineStatus(s) {
         const nowK = new Date();
         const yearK = nowK.getFullYear();
         const close = new Date(yearK, 6, 31); // July 31 approx
-        const diff = Math.ceil((close.getTime() - nowK.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - nowK.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowK <= close) {
             if (diff <= 30)
@@ -472,7 +473,7 @@ export function getDeadlineStatus(s) {
         const nowC = new Date();
         const yearC = nowC.getFullYear();
         const close = new Date(yearC, 9, 17); // Oct 17 (NSERC, latest deadline)
-        const diff = Math.ceil((close.getTime() - nowC.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - nowC.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowC <= close) {
             if (diff <= 30)
@@ -492,7 +493,7 @@ export function getDeadlineStatus(s) {
         if (name.includes('erp')) {
             const open = new Date(yearS, 6, 1); // Jul 1
             const close = new Date(yearS, 8, 20); // Sep 20
-            const diff = Math.ceil((close.getTime() - nowS.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - nowS.getTime()) / 86_400_000);
             const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (nowS >= open && nowS <= close) {
                 if (diff <= 14)
@@ -506,7 +507,7 @@ export function getDeadlineStatus(s) {
         if (name.includes('mccloy')) {
             const open = new Date(yearS, 7, 1); // Aug 1
             const close = new Date(yearS, 10, 1); // Nov 1
-            const diff = Math.ceil((close.getTime() - nowS.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - nowS.getTime()) / 86_400_000);
             const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (nowS >= open && nowS <= close) {
                 if (diff <= 14)
@@ -520,7 +521,7 @@ export function getDeadlineStatus(s) {
         if (name.includes('leo baeck')) {
             const close = new Date(yearS, 1, 1); // Feb 1
             const target = nowS <= close ? close : new Date(yearS + 1, 1, 1);
-            const diff = Math.ceil((target.getTime() - nowS.getTime()) / 86400000);
+            const diff = Math.ceil((target.getTime() - nowS.getTime()) / 86_400_000);
             const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
             if (diff <= 14)
                 return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
@@ -540,7 +541,7 @@ export function getDeadlineStatus(s) {
         if (name.includes('holland scholarship')) {
             const open = new Date(yearNL, 10, 1); // Nov 1
             const close = new Date(yearNL + 1, 3, 1); // ~Apr 1
-            const diff = Math.ceil((close.getTime() - nowNL.getTime()) / 86400000);
+            const diff = Math.ceil((close.getTime() - nowNL.getTime()) / 86_400_000);
             if (nowNL >= open) {
                 if (diff <= 14)
                     return { type: 'closing', label: `Closing ~Apr`, daysLeft: diff, deadline: close };
@@ -550,7 +551,7 @@ export function getDeadlineStatus(s) {
         }
         const close = new Date(yearNL, 1, 1); // Feb 1
         const target = nowNL <= close ? close : new Date(yearNL + 1, 1, 1);
-        const diff = Math.ceil((target.getTime() - nowNL.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowNL.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (diff <= 14)
             return { type: 'closing', label: `Closing ~${fmt}`, daysLeft: diff, deadline: target };
@@ -562,7 +563,7 @@ export function getDeadlineStatus(s) {
         const yearGC = nowGC.getFullYear();
         const open = new Date(yearGC, 8, 1); // Sep 1
         const close = new Date(yearGC, 11, 15); // ~Dec 15
-        const diff = Math.ceil((close.getTime() - nowGC.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - nowGC.getTime()) / 86_400_000);
         if (nowGC >= open && nowGC <= close) {
             if (diff <= 14)
                 return { type: 'closing', label: `Closing ~Dec`, daysLeft: diff, deadline: close };
@@ -578,7 +579,7 @@ export function getDeadlineStatus(s) {
         const yearCL = nowCL.getFullYear();
         const close = new Date(yearCL, 11, 1); // Dec 1
         const target = nowCL <= close ? close : new Date(yearCL + 1, 11, 1);
-        const diff = Math.ceil((target.getTime() - nowCL.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowCL.getTime()) / 86_400_000);
         if (diff <= 14)
             return { type: 'closing', label: `First deadline ~Dec`, daysLeft: diff, deadline: target };
         return { type: 'open', label: `Open · first deadline ~Dec`, daysLeft: diff, deadline: target };
@@ -589,7 +590,7 @@ export function getDeadlineStatus(s) {
         const yearRH = nowRH.getFullYear();
         const open = new Date(yearRH, 5, 1); // Jun 1
         const close = new Date(yearRH, 9, 1); // ~Oct 1
-        const diff = Math.ceil((close.getTime() - nowRH.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - nowRH.getTime()) / 86_400_000);
         if (nowRH >= open && nowRH <= close) {
             if (diff <= 14)
                 return { type: 'closing', label: `Closing ~Oct`, daysLeft: diff, deadline: close };
@@ -605,7 +606,7 @@ export function getDeadlineStatus(s) {
         const yearF = nowF.getFullYear();
         const close = new Date(yearF, 1, 15); // Feb 15
         const target = nowF <= close ? close : new Date(yearF + 1, 1, 15);
-        const diff = Math.ceil((target.getTime() - nowF.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowF.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (diff <= 0)
             return { type: 'closed', label: `Closed · next cycle ~Oct`, deadline: target };
@@ -624,7 +625,7 @@ export function getDeadlineStatus(s) {
         const close = new Date(yearEM, 0, 31) > nowEM
             ? new Date(yearEM, 0, 31)
             : new Date(yearEM + 1, 0, 31);
-        const diff = Math.ceil((close.getTime() - nowEM.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - nowEM.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowEM >= open || nowEM <= close) {
             if (diff <= 14)
@@ -640,7 +641,7 @@ export function getDeadlineStatus(s) {
         // Application window: December 1 – April 30
         const open = new Date(yearCN - 1, 11, 1); // Dec 1 previous year
         const close = new Date(yearCN, 3, 30); // April 30 current year
-        const diff = Math.ceil((close.getTime() - nowCN.getTime()) / 86400000);
+        const diff = Math.ceil((close.getTime() - nowCN.getTime()) / 86_400_000);
         const fmt = close.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowCN >= open && nowCN <= close) {
             if (diff <= 14)
@@ -659,7 +660,7 @@ export function getDeadlineStatus(s) {
         const close = new Date(yearSE, 1, 25); // Feb 25
         const target = nowSE <= close ? close : new Date(yearSE + 1, 1, 25);
         const openTarget = nowSE <= close ? open : new Date(yearSE + 1, 1, 9);
-        const diff = Math.ceil((target.getTime() - nowSE.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowSE.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowSE >= open && nowSE <= close) {
             if (diff <= 14)
@@ -676,7 +677,7 @@ export function getDeadlineStatus(s) {
         const yearIT = nowIT.getFullYear();
         const close = new Date(yearIT, 2, 26); // March 26
         const target = nowIT <= close ? close : new Date(yearIT + 1, 2, 26);
-        const diff = Math.ceil((target.getTime() - nowIT.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowIT.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowIT <= close) {
             if (diff <= 14)
@@ -691,7 +692,7 @@ export function getDeadlineStatus(s) {
         const yearH = nowH.getFullYear();
         const close = new Date(yearH, 0, 15); // Jan 15
         const target = nowH <= close ? close : new Date(yearH + 1, 0, 15);
-        const diff = Math.ceil((target.getTime() - nowH.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowH.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (diff <= 14)
             return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
@@ -703,7 +704,7 @@ export function getDeadlineStatus(s) {
         const yearTW = nowTW.getFullYear();
         const close = new Date(yearTW, 2, 31); // Mar 31
         const target = nowTW <= close ? close : new Date(yearTW + 1, 2, 31);
-        const diff = Math.ceil((target.getTime() - nowTW.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowTW.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowTW <= close) {
             if (diff <= 14)
@@ -723,7 +724,7 @@ export function getDeadlineStatus(s) {
         const open = new Date(yearNZ, 1, 1); // Feb 1
         const close = new Date(yearNZ, 2, 31); // Mar 31
         const target = nowNZ <= close ? close : new Date(yearNZ + 1, 2, 31);
-        const diff = Math.ceil((target.getTime() - nowNZ.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowNZ.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowNZ >= open && nowNZ <= close) {
             if (diff <= 14)
@@ -741,7 +742,7 @@ export function getDeadlineStatus(s) {
         const open = new Date(yearIE, 0, 25); // Jan 25
         const close = new Date(yearIE, 2, 15); // Mar 15
         const target = nowIE <= close ? close : new Date(yearIE + 1, 2, 15);
-        const diff = Math.ceil((target.getTime() - nowIE.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowIE.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowIE >= open && nowIE <= close) {
             if (diff <= 14)
@@ -765,7 +766,7 @@ export function getDeadlineStatus(s) {
         const open = new Date(yearHK, 8, 1); // Sep 1
         const close = new Date(yearHK, 11, 1); // Dec 1
         const target = nowHK <= close ? close : new Date(yearHK + 1, 11, 1);
-        const diff = Math.ceil((target.getTime() - nowHK.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowHK.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowHK >= open && nowHK <= close) {
             if (diff <= 14)
@@ -783,7 +784,7 @@ export function getDeadlineStatus(s) {
         const open = new Date(yearMY, 5, 1); // Jun 1
         const close = new Date(yearMY, 7, 31); // Aug 31
         const target = nowMY <= close ? close : new Date(yearMY + 1, 7, 31);
-        const diff = Math.ceil((target.getTime() - nowMY.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowMY.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowMY >= open && nowMY <= close) {
             if (diff <= 14)
@@ -801,7 +802,7 @@ export function getDeadlineStatus(s) {
         const open = new Date(yearPL, 2, 1); // Mar 1
         const close = new Date(yearPL, 4, 8); // May 8 (NAWA Banach deadline)
         const target = nowPL <= close ? close : new Date(yearPL + 1, 4, 8);
-        const diff = Math.ceil((target.getTime() - nowPL.getTime()) / 86400000);
+        const diff = Math.ceil((target.getTime() - nowPL.getTime()) / 86_400_000);
         const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         if (nowPL >= open && nowPL <= close) {
             if (diff <= 14)
@@ -815,6 +816,12 @@ export function getDeadlineStatus(s) {
     // ── Spain: la Caixa INPhINIT (28 Jan) + AECID (3 Jun) + others rolling ──
     if (group === 'spain')
         return { type: 'rolling', label: 'Multiple cycles · check program' };
+    // ── Romania: MFA (Mar 1) + ARICE + others ────────────────────────────
+    if (group === 'romania')
+        return { type: 'rolling', label: 'Multiple cycles · Dec – Mar' };
+    // ── Russia: Open Doors Olympiad (Dec) + Government Quota (Dec/Jan) ────
+    if (group === 'russia')
+        return { type: 'rolling', label: 'Olympiad & Quota cycles · Sep – Jan' };
     return getDaadStatus();
 }
 // ── Description cleaner ───────────────────────────────────────────────────
@@ -1040,6 +1047,20 @@ export const providerMeta = {
         description: 'Spain offers MAEC-AECID scholarships for citizens of Spanish cooperation partner countries (incl. Indonesia for select programs), "la Caixa" INPhINIT and Junior Leader fellowships (€35,800/yr PhD, €106,700/yr postdoc), and the IE Foundation Fellows Program at IE University.',
         website: 'https://www.aecid.es/en/',
     },
+    romania: {
+        name: 'Romania',
+        flag: '🇷🇴',
+        country: 'Romania',
+        description: 'Romania offers MFA scholarships (Non-EU citizens) covering tuition, monthly stipend, and a Romanian language preparatory year; the ARICE programme (40 seats/year, non-EU/EFTA only) with full funding; plus university-specific awards at Transilvania University of Brașov (TAS, 800 lei/month) and West University of Timișoara (WUT for EU Third Countries).',
+        website: 'https://scholarships.studyinromania.gov.ro/',
+    },
+    russia: {
+        name: 'Russia',
+        flag: '🇷🇺',
+        country: 'Russia',
+        description: 'Russia offers the Open Doors Russian Scholarship Project (24+ leading universities, online Olympiad), the Russian Government Quota via Rossotrudnichestvo (15,000 seats/year, 180+ countries), the SPbU Open International Olympiad, federal university olympiads (BMSTU, NUST MISIS, MIPT, MIFI, Ural Federal), MGIMO state-funded places, and the HSE International Olympiad (incl. joint Skoltech Math of Machine Learning track).',
+        website: 'https://education-in-russia.com/',
+    },
 };
 /**
  * Resolves a specific university or provider logo if available, falling back to group-level logos.
@@ -1149,8 +1170,34 @@ export function getScholarshipLogo(s) {
     if (name.includes('hkpfs') || name.includes('hong kong phd fellowship') || name.includes('research grants council of hong kong'))
         return '/images/programlogos/hkpfs.png';
     // Malaysia International Scholarship (MIS)
-    if (name.includes('mis') || name.includes('malaysia international scholarship') || name.includes('mohe malaysia'))
+    if (hasWord('mis') || name.includes('malaysia international scholarship') || name.includes('mohe malaysia'))
         return '/images/programlogos/mis_malaysia.png';
+    // Romania (program & university logos)
+    if (name.includes('arice'))
+        return '/images/programlogos/arice.png';
+    if (name.includes('romanian government mfa') || name.includes('romanian ministry of foreign') || provider.includes('romanian ministry of foreign') || provider.includes('study in romania'))
+        return '/images/programlogos/study_in_romania.png';
+    if (name.includes('transilvania university') || provider.includes('transilvania university') || name.includes('tas -'))
+        return '/images/logos/Transilvania.png';
+    if (name.includes('west university of timi') || provider.includes('west university of timi') || hasWord('wut') || hasWord('uvt'))
+        return '/images/logos/WUT.png';
+    // Russia (program & university logos)
+    if (name.includes('open doors') || name.includes('russian scholarship project'))
+        return '/images/programlogos/open_doors.png';
+    if (name.includes('rossotrudnichestvo') || name.includes('quota via rossotrudnichestvo') || provider.includes('rossotrudnichestvo'))
+        return '/images/programlogos/rossotrudnichestvo.png';
+    if (name.includes('moscow state university') || provider.includes('moscow state university') || hasWord('msu'))
+        return '/images/logos/MSU.png';
+    if (name.includes('saint petersburg state') || provider.includes('saint petersburg state') || hasWord('spbu'))
+        return '/images/logos/SPbU.png';
+    if (name.includes('higher school of economics') || name.includes('hse university') || provider.includes('higher school of economics') || hasWord('hse'))
+        return '/images/logos/HSE.png';
+    if (name.includes('bauman moscow') || provider.includes('bauman moscow') || hasWord('bmstu'))
+        return '/images/logos/BMSTU.png';
+    if (name.includes('mgimo') || provider.includes('mgimo') || name.includes('moscow state institute of international'))
+        return '/images/logos/MGIMO.png';
+    if (name.includes('nust misis') || provider.includes('nust misis') || hasWord('misis'))
+        return '/images/logos/MISIS.png';
     if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft'))
         return '/images/logos/UofT.png';
     if (name.includes('mcgill') || provider.includes('mcgill'))
@@ -1479,6 +1526,10 @@ export function getScholarshipLogo(s) {
         return '/images/programlogos/mis_malaysia.png';
     if (group === 'poland')
         return '/images/logos/NAWA.png';
+    if (group === 'romania')
+        return '/images/programlogos/study_in_romania.png';
+    if (group === 'russia')
+        return '/images/programlogos/rossotrudnichestvo.png';
     return null;
 }
 /**
@@ -1604,6 +1655,30 @@ export function getScholarshipImage(s) {
         return '/images/universities/PL_WarsawUnitech.png';
     if (nameTrimmed === "Jagiellonian University International Scholarships (Rector's Scholarship)")
         return '/images/universities/PL_JU.png';
+    // Romania
+    if (nameTrimmed === "Romanian Government MFA Scholarship (Non-EU Citizens)")
+        return '/images/universities/RO_Bucharest.png';
+    if (nameTrimmed === "Romanian Government ARICE Scholarship")
+        return '/images/universities/RO_UBB.png';
+    if (nameTrimmed === "Transilvania Academica Scholarship (TAS) - Brașov")
+        return '/images/universities/RO_Transilvania.png';
+    if (nameTrimmed === "WUT Scholarship for EU Third Countries (West University of Timișoara)")
+        return '/images/universities/RO_WUT.png';
+    // Russia
+    if (nameTrimmed === "Open Doors: Russian Scholarship Project")
+        return '/images/universities/RU_HSE.png';
+    if (nameTrimmed === "Russian Government Scholarship (Quota via Rossotrudnichestvo)")
+        return '/images/universities/RU_MSU.png';
+    if (nameTrimmed === "SPbU Open International Olympiad")
+        return '/images/universities/RU_SPbU.png';
+    if (nameTrimmed === "NUST MISIS, BMSTU & Federal University Olympiads")
+        return '/images/universities/RU_BMSTU.png';
+    if (nameTrimmed === "MGIMO State-Funded Places")
+        return '/images/universities/RU_MGIMO.png';
+    if (nameTrimmed === "HSE University International Olympiad")
+        return '/images/universities/RU_HSE.png';
+    if (nameTrimmed === "Russian Presidential Scholarship (Президентская стипендия)")
+        return '/images/universities/RU_MSU.png';
     const name = s.name.toLowerCase();
     const provider = s.provider.toLowerCase();
     const hasWord = (word) => {
@@ -2004,11 +2079,37 @@ export function getScholarshipImage(s) {
         }
         return '/images/universities/PL_UW.png';
     }
+    if (group === 'romania') {
+        if (name.includes('transilvania') || name.includes('tas')) {
+            return '/images/universities/RO_Transilvania.png';
+        }
+        if (name.includes('west university') || name.includes('wut') || name.includes('timisoara') || name.includes('timișoara') || name.includes('uvt')) {
+            return '/images/universities/RO_Transilvania.png';
+        }
+        if (name.includes('arice')) {
+            return '/images/universities/RO_UBB.png';
+        }
+        return '/images/universities/RO_Bucharest.png';
+    }
+    if (group === 'russia') {
+        if (name.includes('doors') || name.includes('hse') || name.includes('economics')) {
+            return '/images/universities/RU_HSE.png';
+        }
+        if (name.includes('bmstu') || name.includes('misis') || name.includes('technical') || name.includes('federal')) {
+            return '/images/universities/RU_SPbU.png';
+        }
+        if (name.includes('saint petersburg') || name.includes('spbu') || name.includes('olympiad')) {
+            return '/images/universities/RU_SPbU.png';
+        }
+        if (name.includes('mgimo')) {
+            return '/images/universities/RU_MSU.png';
+        }
+        return '/images/universities/RU_MSU.png';
+    }
     return '/images/editorial/stem.jpg'; // ultimate fallback
 }
 export function getMatchedUniversityLogos(s) {
-    var _a;
-    const text = `${s.name} ${s.provider} ${(_a = s.description) !== null && _a !== void 0 ? _a : ''}`.toLowerCase();
+    const text = `${s.name} ${s.provider} ${s.description ?? ''}`.toLowerCase();
     const list = [];
     if (text.includes('knight-hennessy') || text.includes('stanford university')) {
         list.push({ name: 'Stanford University', logo: '/images/logos/Stanford.png' }, { name: 'Stanford Graduate School of Business', logo: '/images/logos/StanfordGSB.png' }, { name: 'Stanford Graduate School of Education', logo: '/images/logos/StanfordGSE.png' }, { name: 'Stanford School of Engineering', logo: '/images/logos/StanfordEngineering.png' }, { name: 'Stanford School of Humanities & Sciences', logo: '/images/logos/StanfordHumanitiesSciences.png' }, { name: 'Stanford Law School', logo: '/images/logos/StanfordLaw.png' }, { name: 'Stanford Medicine', logo: '/images/logos/StanfordMedicine.png' }, { name: 'Stanford Doerr School of Sustainability', logo: '/images/logos/StanfordDoerrSustainability.png' });
@@ -2177,6 +2278,18 @@ export function getMatchedUniversityLogos(s) {
         { name: 'Université catholique de Louvain (UCLouvain)', logo: '/images/logos/Bologna.png', keywords: ['uclouvain', 'louvain', 'catholique de louvain'] },
         { name: 'University of Antwerp', logo: '/images/logos/Bologna.png', keywords: ['antwerp', 'universiteit antwerpen'] },
         { name: 'Hasselt University', logo: '/images/logos/Bologna.png', keywords: ['hasselt', 'universiteit hasselt'] },
+        // Romania Universities
+        { name: 'University of Bucharest', logo: '/images/logos/Bucharest.png', keywords: ['unibuc', 'university of bucharest', 'bucharest university'] },
+        { name: 'Babeș-Bolyai University', logo: '/images/logos/UBB.png', keywords: ['ubb', 'babes-bolyai', 'babeș-bolyai', 'babes bolyai'] },
+        { name: 'Transilvania University of Brașov', logo: '/images/logos/Transilvania.png', keywords: ['transilvania university', 'transilvania academica', 'brasov', 'brașov', 'unitbv'] },
+        { name: 'West University of Timișoara', logo: '/images/logos/WUT.png', keywords: ['west university of timi', 'timisoara', 'timișoara', 'wut', 'uvt'] },
+        // Russia Universities
+        { name: 'Lomonosov Moscow State University', logo: '/images/logos/MSU.png', keywords: ['moscow state university', 'lomonosov', 'msu'] },
+        { name: 'Saint Petersburg State University', logo: '/images/logos/SPbU.png', keywords: ['saint petersburg state', 'spbu', 'spbsu'] },
+        { name: 'HSE University', logo: '/images/logos/HSE.png', keywords: ['hse', 'higher school of economics'] },
+        { name: 'Bauman Moscow State Technical University', logo: '/images/logos/BMSTU.png', keywords: ['bauman moscow', 'bmstu', 'bauman state'] },
+        { name: 'Moscow State Institute of International Relations (MGIMO)', logo: '/images/logos/MGIMO.png', keywords: ['mgimo'] },
+        { name: 'NUST MISIS', logo: '/images/logos/MISIS.png', keywords: ['nust misis', 'misis'] },
     ];
     universities.forEach((univ) => {
         const matched = univ.keywords.some((kw) => {
@@ -2215,7 +2328,7 @@ export function getMatchedUniversityLogos(s) {
                 const regex = new RegExp(`\\bwarsaw university of technology\\b|\\bwarsaw unitech\\b`, 'i');
                 return regex.test(text);
             }
-            if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey', 'mtu', 'maynooth', 'rcsi', 'ie', 'udg', 'uw', 'ju', 'ncn', 'nawa'].includes(kw)) {
+            if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey', 'mtu', 'maynooth', 'rcsi', 'ie', 'udg', 'uw', 'ju', 'ncn', 'nawa', 'unibuc', 'ubb', 'unitbv', 'wut', 'uvt', 'msu', 'spbu', 'spbsu', 'hse', 'bmstu', 'mgimo', 'misis'].includes(kw)) {
                 const regex = new RegExp(`\\b${kw}\\b`, 'i');
                 return regex.test(text);
             }
@@ -2318,6 +2431,12 @@ export function getMatchedUniversityLogos(s) {
         }
         else if (group === 'poland') {
             list.push({ name: 'University of Warsaw (UW)', logo: '/images/logos/UW.png' }, { name: 'Warsaw University of Technology', logo: '/images/logos/Warsaw_Unitech.png' }, { name: 'Jagiellonian University (JU)', logo: '/images/logos/JU.png' });
+        }
+        else if (group === 'romania') {
+            list.push({ name: 'University of Bucharest', logo: '/images/logos/Bucharest.png' }, { name: 'Babeș-Bolyai University', logo: '/images/logos/UBB.png' }, { name: 'Transilvania University of Brașov', logo: '/images/logos/Transilvania.png' }, { name: 'West University of Timișoara', logo: '/images/logos/WUT.png' });
+        }
+        else if (group === 'russia') {
+            list.push({ name: 'Lomonosov Moscow State University', logo: '/images/logos/MSU.png' }, { name: 'Saint Petersburg State University', logo: '/images/logos/SPbU.png' }, { name: 'HSE University', logo: '/images/logos/HSE.png' }, { name: 'Bauman Moscow State Technical University', logo: '/images/logos/BMSTU.png' }, { name: 'MGIMO University', logo: '/images/logos/MGIMO.png' }, { name: 'NUST MISIS', logo: '/images/logos/MISIS.png' });
         }
     }
     return Array.from(new Map(list.map((item) => [item.logo, item])).values());

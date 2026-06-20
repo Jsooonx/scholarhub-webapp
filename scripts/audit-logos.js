@@ -118,6 +118,26 @@ const LOGO_RULES = [
   [/tampere/, 'Tampere.png'],
   [/oulu|oulun yliopisto/, 'Oulu.png'],
   [/hanken/, 'Hanken.png'],
+  // Romania
+  [/transilvania university|unitbv/, 'Transilvania.png'],
+  [/west university of timi|timișoara|timisoara|\bwut\b|\buvt\b/, 'WUT.png'],
+  [/babeș-bolyai|babes-bolyai|\bubb\b/, 'UBB.png'],
+  [/university of bucharest|unibuc/, 'Bucharest.png'],
+  // Russia
+  [/moscow state university|\bmsu\b/, 'MSU.png'],
+  [/saint petersburg state|\bspbu\b|\bspbsu\b/, 'SPbU.png'],
+  [/higher school of economics|hse university|\bhse\b/, 'HSE.png'],
+  [/bauman moscow|\bbmstu\b/, 'BMSTU.png'],
+  [/mgimo university|mgimo/, 'MGIMO.png'],
+  [/nust misis|misis/, 'MISIS.png'],
+  // Poland
+  [/university of warsaw|uniwersytet warszawski|\buw\b/, 'UW.png'],
+  [/warsaw university of technology|warsaw unitech/, 'Warsaw_Unitech.png'],
+  [/jagiellonian university|\bju\b/, 'JU.png'],
+  // Spain
+  [/ie university|\bie\b/, 'IE_University.png'],
+  [/ie foundation/, 'IE_Foundation.png'],
+  [/girona|\budg\b/, 'UdG.png'],
 ];
 
 const logoFiles = [
@@ -154,11 +174,15 @@ function providerGroupHeuristic(p) {
   if (p.includes('oead') || p.includes('austrian agency') || p.includes('österreich') || p.includes('austrian government') || p.includes('austrian academic') || p.includes('tu wien') || p.includes('vienna university of technology')) return 'austria';
   if (p.includes('nokia foundation') || p.includes('university of helsinki') || p.includes('helsingin yliopisto') || p.includes('aalto') || p.includes('aalto-yliopisto') || p.includes('tampere') || p.includes('tuni.fi') || p.includes('oulu') || p.includes('oulun yliopisto') || p.includes('hanken')) return 'finland';
   if (p.includes('manaaki') || p.includes('education new zealand') || p.includes('mfat') || p.includes('new zealand')) return 'new-zealand';
-  if (p.includes('government of ireland') || p.includes('hea') || p.includes('research ireland') || p.includes('irish research council') || p.includes('trinity college dublin') || p.includes('university college dublin') || p.includes('ucd global')) return 'ireland';
+  if (p.includes('government of ireland') || p.includes('hea') || p.includes('research ireland') || p.includes('irish research council') || p.includes('trinity college dublin') || p.includes('university college dublin') || p.includes('ucd global') || p.includes('teagasc') || p.includes('munster technological') || p.includes('maynooth university') || p.includes('royal college of surgeons in ireland') || p.includes('rcsi')) return 'ireland';
   if ((p.includes('danish') && p.includes('ministry')) || p.includes('studyindenmark') || p.includes('denmark')) return 'denmark';
   if (p.includes('studyinnorway') || (p.includes('norway') && p.includes('universities')) || p.includes('bi norwegian')) return 'norway';
   if (p.includes('hong kong phd') || p.includes('hkpf') || p.includes('research grants council') || p.includes('ugc.edu.hk') || p.includes('university of hong kong')) return 'hong-kong';
   if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship'))) return 'malaysia';
+  if (p.includes('spain') || p.includes('aecid') || p.includes('la caixa') || p.includes('caixa') || p.includes('ie university') || p.includes('ie foundation') || p.includes('girona') || p.includes('udg')) return 'spain';
+  if (p.includes('nawa') || p.includes('polish national agency') || p.includes('stefan banach') || p.includes('lukasiewicz') || p.includes('łukasiewicz') || p.includes('ignacy') || p.includes('jagiellonian') || p.includes('university of warsaw') || p.includes('warsaw university') || p.includes('national science centre') || p.includes('ncn ') || p.includes('ncn/')) return 'poland';
+  if (p.includes('study in romania') || p.includes('scholarships.studyinromania') || p.includes('arice') || p.includes('romanian ministry of foreign') || p.includes('romanian agency for investments') || p.includes('transilvania university') || p.includes('unitbv') || p.includes('west university of timisoara') || p.includes('west university of timișoara') || p.includes('uvt')) return 'romania';
+  if (p.includes('open doors') || p.includes('global universities association') || p.includes('rossotrudnichestvo') || p.includes('russian government') || p.includes('government of russia') || p.includes('russian federation') || p.includes('saint petersburg state university') || p.includes('spbu') || p.includes('nust misis') || p.includes('bmstu') || p.includes('bauman moscow') || p.includes('mgimo') || p.includes('hse university') || p.includes('higher school of economics') || p.includes('skoltech') || p.includes('presidential scholarship') || p.includes('presidentskaya') || p.includes('russian ministry')) return 'russia';
   return p.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
@@ -166,7 +190,7 @@ const PROVIDER_META_KEYS = new Set([
   'germany','japan','turkey','united-kingdom','australia','south-korea','singapore','france',
   'canada','united-states','netherlands','belgium','eu','china','sweden','italy','hungary',
   'taiwan','switzerland','austria','finland','new-zealand','ireland','denmark','norway',
-  'hong-kong','malaysia'
+  'hong-kong','malaysia','spain','poland','romania','russia'
 ]);
 
 // Check provider-group vs providerMeta
@@ -228,7 +252,15 @@ function checkLogo(x) {
   if (text.includes('danish government') || text.includes('danish ministry of higher education')) return 'danish_govt.png';
   if (text.includes('norway tuition') || text.includes('norwegian government')) return 'norway_govt.png';
   if (text.includes('hkpfs') || text.includes('hong kong phd fellowship') || text.includes('research grants council of hong kong')) return 'hkpfs.png';
-  if (text.includes('mis') || text.includes('malaysia international scholarship') || text.includes('mohe malaysia')) return 'mis_malaysia.png';
+  if (hasWord('mis') || text.includes('malaysia international scholarship') || text.includes('mohe malaysia')) return 'mis_malaysia.png';
+  // Romania & Russia Program Logos
+  if (text.includes('arice')) return 'arice.png';
+  if (text.includes('romanian government mfa') || text.includes('romanian ministry of foreign') || text.includes('study in romania')) return 'study_in_romania.png';
+  if (text.includes('open doors') || text.includes('russian scholarship project')) return 'open_doors.png';
+  if (text.includes('rossotrudnichestvo') || text.includes('quota via rossotrudnichestvo')) return 'rossotrudnichestvo.png';
+  // Poland Program Logos
+  if (text.includes('nawa') || text.includes('banach') || text.includes('lukasiewicz') || text.includes('łukasiewicz')) return 'NAWA.png';
+  if (text.includes('national science centre') || text.includes('ncn')) return 'NCN.png';
   // University
   for (const [regex, logo] of LOGO_RULES) {
     if (regex.test(text)) return logo;
@@ -256,6 +288,9 @@ function checkLogo(x) {
   if (g === 'norway') return 'norway_govt.png';
   if (g === 'hong-kong') return 'hkpfs.png';
   if (g === 'malaysia') return 'mis_malaysia.png';
+  if (g === 'romania') return 'study_in_romania.png';
+  if (g === 'russia') return 'rossotrudnichestvo.png';
+  if (g === 'poland') return 'NAWA.png';
   return null;
 }
 

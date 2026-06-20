@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
@@ -128,6 +128,11 @@ function ProviderGrid({ groups }: { groups: string[] }) {
 
 export default function Trending() {
   const [page, setPage] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const desktopGroups = ALL_PROVIDER_GROUPS.slice(
     page * DESKTOP_PER_PAGE,
@@ -146,27 +151,33 @@ export default function Trending() {
 
           {/* Desktop: pagination controls */}
           <div className="hidden md:flex items-center gap-3">
-            <span className="text-xs text-brand-muted tabular-nums">
-              {page + 1} / {totalPages}
-            </span>
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => setPage((p) => Math.max(0, p - 1))}
-                disabled={page === 0}
-                aria-label="Previous page"
-                className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-                disabled={page === totalPages - 1}
-                aria-label="Next page"
-                className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            </div>
+            {mounted ? (
+              <>
+                <span className="text-xs text-brand-muted tabular-nums">
+                  {page + 1} / {totalPages}
+                </span>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={() => setPage((p) => Math.max(0, p - 1))}
+                    disabled={page === 0}
+                    aria-label="Previous page"
+                    className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+                    disabled={page === totalPages - 1}
+                    aria-label="Next page"
+                    className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="w-20 h-4" />
+            )}
             <Link
               href="/scholarships"
               className="text-xs font-medium text-brand-muted hover:text-brand-dark transition-colors"
@@ -195,7 +206,7 @@ export default function Trending() {
           </div>
 
           {/* Page dots */}
-          {totalPages > 1 && (
+          {mounted && totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-10">
               {Array.from({ length: totalPages }).map((_, i) => (
                 <button

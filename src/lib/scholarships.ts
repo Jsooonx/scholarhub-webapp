@@ -110,6 +110,10 @@ export function providerGroup(provider: string): string {
   if (p.includes('hong kong phd') || p.includes('hkpf') || p.includes('research grants council') || p.includes('ugc.edu.hk') || p.includes('university of hong kong')) return 'hong-kong';
   // Malaysia
   if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship'))) return 'malaysia';
+  // Romania
+  if (p.includes('study in romania') || p.includes('scholarships.studyinromania') || p.includes('arice') || p.includes('romanian ministry of foreign') || p.includes('romanian agency for investments') || p.includes('transilvania university') || p.includes('unitbv') || p.includes('west university of timisoara') || p.includes('west university of timișoara') || p.includes('uvt')) return 'romania';
+  // Russia
+  if (p.includes('open doors') || p.includes('global universities association') || p.includes('rossotrudnichestvo') || p.includes('russian government') || p.includes('government of russia') || p.includes('russian federation') || p.includes('saint petersburg state university') || p.includes('spbu') || p.includes('nust misis') || p.includes('bmstu') || p.includes('bauman moscow') || p.includes('mgimo') || p.includes('hse university') || p.includes('higher school of economics') || p.includes('skoltech') || p.includes('presidential scholarship') || p.includes('presidentskaya') || p.includes('russian ministry')) return 'russia';
   // Fallback: slugify provider name
   return p.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
@@ -845,6 +849,12 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   // ── Spain: la Caixa INPhINIT (28 Jan) + AECID (3 Jun) + others rolling ──
   if (group === 'spain') return { type: 'rolling', label: 'Multiple cycles · check program' };
 
+  // ── Romania: MFA (Mar 1) + ARICE + others ────────────────────────────
+  if (group === 'romania') return { type: 'rolling', label: 'Multiple cycles · Dec – Mar' };
+
+  // ── Russia: Open Doors Olympiad (Dec) + Government Quota (Dec/Jan) ────
+  if (group === 'russia') return { type: 'rolling', label: 'Olympiad & Quota cycles · Sep – Jan' };
+
   return getDaadStatus();
 }
 
@@ -1076,6 +1086,20 @@ export const providerMeta: Record<
     description: 'Spain offers MAEC-AECID scholarships for citizens of Spanish cooperation partner countries (incl. Indonesia for select programs), "la Caixa" INPhINIT and Junior Leader fellowships (€35,800/yr PhD, €106,700/yr postdoc), and the IE Foundation Fellows Program at IE University.',
     website: 'https://www.aecid.es/en/',
   },
+  romania: {
+    name: 'Romania',
+    flag: '🇷🇴',
+    country: 'Romania',
+    description: 'Romania offers MFA scholarships (Non-EU citizens) covering tuition, monthly stipend, and a Romanian language preparatory year; the ARICE programme (40 seats/year, non-EU/EFTA only) with full funding; plus university-specific awards at Transilvania University of Brașov (TAS, 800 lei/month) and West University of Timișoara (WUT for EU Third Countries).',
+    website: 'https://scholarships.studyinromania.gov.ro/',
+  },
+  russia: {
+    name: 'Russia',
+    flag: '🇷🇺',
+    country: 'Russia',
+    description: 'Russia offers the Open Doors Russian Scholarship Project (24+ leading universities, online Olympiad), the Russian Government Quota via Rossotrudnichestvo (15,000 seats/year, 180+ countries), the SPbU Open International Olympiad, federal university olympiads (BMSTU, NUST MISIS, MIPT, MIFI, Ural Federal), MGIMO state-funded places, and the HSE International Olympiad (incl. joint Skoltech Math of Machine Learning track).',
+    website: 'https://education-in-russia.com/',
+  },
 };
 
 /**
@@ -1149,7 +1173,23 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   // Hong Kong PhD Fellowship Scheme
   if (name.includes('hkpfs') || name.includes('hong kong phd fellowship') || name.includes('research grants council of hong kong')) return '/images/programlogos/hkpfs.png';
   // Malaysia International Scholarship (MIS)
-  if (name.includes('mis') || name.includes('malaysia international scholarship') || name.includes('mohe malaysia')) return '/images/programlogos/mis_malaysia.png';
+  if (hasWord('mis') || name.includes('malaysia international scholarship') || name.includes('mohe malaysia')) return '/images/programlogos/mis_malaysia.png';
+
+  // Romania (program & university logos)
+  if (name.includes('arice')) return '/images/programlogos/arice.png';
+  if (name.includes('romanian government mfa') || name.includes('romanian ministry of foreign') || provider.includes('romanian ministry of foreign') || provider.includes('study in romania')) return '/images/programlogos/study_in_romania.png';
+  if (name.includes('transilvania university') || provider.includes('transilvania university') || name.includes('tas -')) return '/images/logos/Transilvania.png';
+  if (name.includes('west university of timi') || provider.includes('west university of timi') || hasWord('wut') || hasWord('uvt')) return '/images/logos/WUT.png';
+
+  // Russia (program & university logos)
+  if (name.includes('open doors') || name.includes('russian scholarship project')) return '/images/programlogos/open_doors.png';
+  if (name.includes('rossotrudnichestvo') || name.includes('quota via rossotrudnichestvo') || provider.includes('rossotrudnichestvo')) return '/images/programlogos/rossotrudnichestvo.png';
+  if (name.includes('moscow state university') || provider.includes('moscow state university') || hasWord('msu')) return '/images/logos/MSU.png';
+  if (name.includes('saint petersburg state') || provider.includes('saint petersburg state') || hasWord('spbu')) return '/images/logos/SPbU.png';
+  if (name.includes('higher school of economics') || name.includes('hse university') || provider.includes('higher school of economics') || hasWord('hse')) return '/images/logos/HSE.png';
+  if (name.includes('bauman moscow') || provider.includes('bauman moscow') || hasWord('bmstu')) return '/images/logos/BMSTU.png';
+  if (name.includes('mgimo') || provider.includes('mgimo') || name.includes('moscow state institute of international')) return '/images/logos/MGIMO.png';
+  if (name.includes('nust misis') || provider.includes('nust misis') || hasWord('misis')) return '/images/logos/MISIS.png';
 
   if (name.includes('university of toronto') || provider.includes('university of toronto') || hasWord('uoft')) return '/images/logos/UofT.png';
   if (name.includes('mcgill') || provider.includes('mcgill')) return '/images/logos/McGill.png';
@@ -1355,6 +1395,8 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (group === 'hong-kong') return '/images/programlogos/hkpfs.png';
   if (group === 'malaysia') return '/images/programlogos/mis_malaysia.png';
   if (group === 'poland') return '/images/logos/NAWA.png';
+  if (group === 'romania') return '/images/programlogos/study_in_romania.png';
+  if (group === 'russia') return '/images/programlogos/rossotrudnichestvo.png';
 
   return null;
 }
@@ -1449,6 +1491,21 @@ export function getScholarshipImage(s: Scholarship): string {
   if (nameTrimmed === "NAWA Stefan Banach Scholarship Programme") return '/images/universities/PL_UW.png';
   if (nameTrimmed === "NAWA Ignacy Łukasiewicz Scholarship Programme") return '/images/universities/PL_WarsawUnitech.png';
   if (nameTrimmed === "Jagiellonian University International Scholarships (Rector's Scholarship)") return '/images/universities/PL_JU.png';
+
+  // Romania
+  if (nameTrimmed === "Romanian Government MFA Scholarship (Non-EU Citizens)") return '/images/universities/RO_Bucharest.png';
+  if (nameTrimmed === "Romanian Government ARICE Scholarship") return '/images/universities/RO_UBB.png';
+  if (nameTrimmed === "Transilvania Academica Scholarship (TAS) - Brașov") return '/images/universities/RO_Transilvania.png';
+  if (nameTrimmed === "WUT Scholarship for EU Third Countries (West University of Timișoara)") return '/images/universities/RO_WUT.png';
+
+  // Russia
+  if (nameTrimmed === "Open Doors: Russian Scholarship Project") return '/images/universities/RU_HSE.png';
+  if (nameTrimmed === "Russian Government Scholarship (Quota via Rossotrudnichestvo)") return '/images/universities/RU_MSU.png';
+  if (nameTrimmed === "SPbU Open International Olympiad") return '/images/universities/RU_SPbU.png';
+  if (nameTrimmed === "NUST MISIS, BMSTU & Federal University Olympiads") return '/images/universities/RU_BMSTU.png';
+  if (nameTrimmed === "MGIMO State-Funded Places") return '/images/universities/RU_MGIMO.png';
+  if (nameTrimmed === "HSE University International Olympiad") return '/images/universities/RU_HSE.png';
+  if (nameTrimmed === "Russian Presidential Scholarship (Президентская стипендия)") return '/images/universities/RU_MSU.png';
 
   const name = s.name.toLowerCase();
   const provider = s.provider.toLowerCase();
@@ -1745,6 +1802,33 @@ export function getScholarshipImage(s: Scholarship): string {
     }
     return '/images/universities/PL_UW.png';
   }
+  if (group === 'romania') {
+    if (name.includes('transilvania') || name.includes('tas')) {
+      return '/images/universities/RO_Transilvania.png';
+    }
+    if (name.includes('west university') || name.includes('wut') || name.includes('timisoara') || name.includes('timișoara') || name.includes('uvt')) {
+      return '/images/universities/RO_Transilvania.png';
+    }
+    if (name.includes('arice')) {
+      return '/images/universities/RO_UBB.png';
+    }
+    return '/images/universities/RO_Bucharest.png';
+  }
+  if (group === 'russia') {
+    if (name.includes('doors') || name.includes('hse') || name.includes('economics')) {
+      return '/images/universities/RU_HSE.png';
+    }
+    if (name.includes('bmstu') || name.includes('misis') || name.includes('technical') || name.includes('federal')) {
+      return '/images/universities/RU_SPbU.png';
+    }
+    if (name.includes('saint petersburg') || name.includes('spbu') || name.includes('olympiad')) {
+      return '/images/universities/RU_SPbU.png';
+    }
+    if (name.includes('mgimo')) {
+      return '/images/universities/RU_MSU.png';
+    }
+    return '/images/universities/RU_MSU.png';
+  }
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
 }
@@ -1985,6 +2069,20 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'Université catholique de Louvain (UCLouvain)', logo: '/images/logos/Bologna.png', keywords: ['uclouvain', 'louvain', 'catholique de louvain'] },
     { name: 'University of Antwerp', logo: '/images/logos/Bologna.png', keywords: ['antwerp', 'universiteit antwerpen'] },
     { name: 'Hasselt University', logo: '/images/logos/Bologna.png', keywords: ['hasselt', 'universiteit hasselt'] },
+
+    // Romania Universities
+    { name: 'University of Bucharest', logo: '/images/logos/Bucharest.png', keywords: ['unibuc', 'university of bucharest', 'bucharest university'] },
+    { name: 'Babeș-Bolyai University', logo: '/images/logos/UBB.png', keywords: ['ubb', 'babes-bolyai', 'babeș-bolyai', 'babes bolyai'] },
+    { name: 'Transilvania University of Brașov', logo: '/images/logos/Transilvania.png', keywords: ['transilvania university', 'transilvania academica', 'brasov', 'brașov', 'unitbv'] },
+    { name: 'West University of Timișoara', logo: '/images/logos/WUT.png', keywords: ['west university of timi', 'timisoara', 'timișoara', 'wut', 'uvt'] },
+
+    // Russia Universities
+    { name: 'Lomonosov Moscow State University', logo: '/images/logos/MSU.png', keywords: ['moscow state university', 'lomonosov', 'msu'] },
+    { name: 'Saint Petersburg State University', logo: '/images/logos/SPbU.png', keywords: ['saint petersburg state', 'spbu', 'spbsu'] },
+    { name: 'HSE University', logo: '/images/logos/HSE.png', keywords: ['hse', 'higher school of economics'] },
+    { name: 'Bauman Moscow State Technical University', logo: '/images/logos/BMSTU.png', keywords: ['bauman moscow', 'bmstu', 'bauman state'] },
+    { name: 'Moscow State Institute of International Relations (MGIMO)', logo: '/images/logos/MGIMO.png', keywords: ['mgimo'] },
+    { name: 'NUST MISIS', logo: '/images/logos/MISIS.png', keywords: ['nust misis', 'misis'] },
   ];
 
   universities.forEach((univ) => {
@@ -2024,7 +2122,7 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         const regex = new RegExp(`\\bwarsaw university of technology\\b|\\bwarsaw unitech\\b`, 'i');
         return regex.test(text);
       }
-      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey', 'mtu', 'maynooth', 'rcsi', 'ie', 'udg', 'uw', 'ju', 'ncn', 'nawa'].includes(kw)) {
+      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey', 'mtu', 'maynooth', 'rcsi', 'ie', 'udg', 'uw', 'ju', 'ncn', 'nawa', 'unibuc', 'ubb', 'unitbv', 'wut', 'uvt', 'msu', 'spbu', 'spbsu', 'hse', 'bmstu', 'mgimo', 'misis'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
@@ -2249,6 +2347,22 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'University of Warsaw (UW)', logo: '/images/logos/UW.png' },
         { name: 'Warsaw University of Technology', logo: '/images/logos/Warsaw_Unitech.png' },
         { name: 'Jagiellonian University (JU)', logo: '/images/logos/JU.png' }
+      );
+    } else if (group === 'romania') {
+      list.push(
+        { name: 'University of Bucharest', logo: '/images/logos/Bucharest.png' },
+        { name: 'Babeș-Bolyai University', logo: '/images/logos/UBB.png' },
+        { name: 'Transilvania University of Brașov', logo: '/images/logos/Transilvania.png' },
+        { name: 'West University of Timișoara', logo: '/images/logos/WUT.png' }
+      );
+    } else if (group === 'russia') {
+      list.push(
+        { name: 'Lomonosov Moscow State University', logo: '/images/logos/MSU.png' },
+        { name: 'Saint Petersburg State University', logo: '/images/logos/SPbU.png' },
+        { name: 'HSE University', logo: '/images/logos/HSE.png' },
+        { name: 'Bauman Moscow State Technical University', logo: '/images/logos/BMSTU.png' },
+        { name: 'MGIMO University', logo: '/images/logos/MGIMO.png' },
+        { name: 'NUST MISIS', logo: '/images/logos/MISIS.png' }
       );
     }
   }
