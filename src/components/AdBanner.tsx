@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import Link from 'next/link';
 import { allScholarships, providerMeta } from '@/lib/scholarships';
+import SplitText from '@/components/SplitText';
 
 const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
   flag: meta.flag,
@@ -50,9 +51,15 @@ export default function AdBanner() {
             <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/80 border border-white/10 mb-4 uppercase tracking-widest">
               Don&apos;t miss out
             </span>
-            <h3 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 leading-tight">
-              {total} Scholarships. One place.
-            </h3>
+            <SplitText
+              text={`${total} Scholarships. One place.`}
+              className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 leading-tight"
+              tag="h3"
+              delay={30}
+              duration={0.6}
+              ease="power2.out"
+              threshold={0.1}
+            />
             <p className="text-sm text-white/70 leading-relaxed mb-6">
               From Germany and Japan to the United Kingdom, France, Australia, South Korea, and more - 25 countries with curated scholarships, structured and ready to browse.
             </p>

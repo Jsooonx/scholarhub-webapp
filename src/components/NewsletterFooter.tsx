@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Loader2 } from 'lucide-react';
+import SplitText from '@/components/SplitText';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -79,9 +80,15 @@ export default function NewsletterFooter() {
         </div>
 
         {/* Text */}
-        <h2 className="font-serif text-3xl sm:text-4xl font-bold text-brand-dark mb-3 tracking-tight">
-          Never miss a new scholarship
-        </h2>
+        <SplitText
+          text="Never miss a new scholarship"
+          className="font-serif text-3xl sm:text-4xl font-bold text-brand-dark mb-3 tracking-tight"
+          tag="h2"
+          delay={30}
+          duration={0.6}
+          ease="power2.out"
+          threshold={0.1}
+        />
         <p className="text-xs sm:text-sm text-brand-muted max-w-lg mb-8 leading-relaxed">
           Get notified when new scholarships are added. Delivered to your inbox, no spam.
         </p>

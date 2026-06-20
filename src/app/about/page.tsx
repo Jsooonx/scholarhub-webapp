@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { allScholarships, providerMeta } from '@/lib/scholarships';
 import { BookOpen, Globe, GraduationCap, Search, Mail } from 'lucide-react';
+import SplitText from '@/components/SplitText';
 
 export const metadata: Metadata = {
   title: 'About ScholarHub',
@@ -46,9 +47,15 @@ export default function AboutPage() {
               <span className="mx-2">·</span>
               <span className="text-brand-dark font-medium">About</span>
             </nav>
-            <h1 className="font-serif text-5xl sm:text-6xl font-bold tracking-tight text-brand-dark mb-6 leading-tight">
-              About ScholarHub
-            </h1>
+            <SplitText
+              text="About ScholarHub"
+              className="font-serif text-5xl sm:text-6xl font-bold tracking-tight text-brand-dark mb-6 leading-tight"
+              tag="h1"
+              delay={30}
+              duration={0.6}
+              ease="power2.out"
+              threshold={0.1}
+            />
             <p className="text-base text-brand-muted leading-relaxed max-w-2xl mx-auto">
               ScholarHub is a free, independent scholarship directory built to make finding international scholarships simpler - no accounts, no spam, just clean information.
             </p>

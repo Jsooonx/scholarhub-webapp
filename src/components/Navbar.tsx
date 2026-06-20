@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
 import { Menu, X, ChevronDown, Search, ArrowRight, Globe, GraduationCap, Info } from 'lucide-react';
 import Link from 'next/link';
+import { createPortal } from 'react-dom';
 import { useRouter, usePathname } from 'next/navigation';
 import { allScholarships, providerMeta } from '@/lib/scholarships';
 
@@ -56,7 +57,37 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isProviderHovered, setIsProviderHovered] = useState(false);
   const providerBtnRef = useRef<HTMLDivElement>(null);
+  const providerButtonRef = useRef<HTMLButtonElement>(null);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
+  const [mounted, setMounted] = useState(false);
+  const providerLeaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleProviderEnter = () => {
+    if (providerLeaveTimer.current) {
+      clearTimeout(providerLeaveTimer.current);
+      providerLeaveTimer.current = null;
+    }
+    // Measure the button element itself for precise position
+    const el = providerButtonRef.current ?? providerBtnRef.current;
+    if (el) {
+      const r = el.getBoundingClientRect();
+      setDropdownPos({ top: r.bottom + 4, left: r.left });
+    }
+    setIsProviderHovered(true);
+  };
+
+  const handleProviderLeave = () => {
+    providerLeaveTimer.current = setTimeout(() => {
+      setIsProviderHovered(false);
+    }, 100);
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    return () => {
+      if (providerLeaveTimer.current) clearTimeout(providerLeaveTimer.current);
+    };
+  }, []);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -229,42 +260,40 @@ export default function Navbar() {
                 <div
                   ref={providerBtnRef}
                   className="relative"
-                  onMouseEnter={() => {
-                    if (providerBtnRef.current) {
-                      const r = providerBtnRef.current.getBoundingClientRect();
-                      setDropdownPos({ top: r.bottom + 8, left: r.left + r.width / 2 });
-                    }
-                    setIsProviderHovered(true);
-                  }}
-                  onMouseLeave={() => setIsProviderHovered(false)}
+                  onMouseEnter={handleProviderEnter}
+                  onMouseLeave={handleProviderLeave}
                 >
-                  <button className="flex items-center text-xs font-semibold text-white/80 hover:text-white transition-colors focus:outline-none cursor-pointer">
+                  <button ref={providerButtonRef} className="flex items-center text-xs font-semibold text-white/80 hover:text-white transition-colors focus:outline-none cursor-pointer">
                     Providers <ChevronDown className="ml-0.5 h-3 w-3" />
                   </button>
-                  <AnimatePresence>
-                    {isProviderHovered && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 4 }}
-                        transition={{ duration: 0.15, ease: 'easeOut' }}
-                        className="fixed -translate-x-1/2 w-52 rounded-2xl bg-black shadow-[0_8px_32px_rgba(0,0,0,0.3)] p-2 z-[9999]"
-                        style={{ top: dropdownPos.top, left: dropdownPos.left }}
+                  {mounted && createPortal(
+                    <div
+                      className="fixed w-52 rounded-2xl bg-black shadow-[0_8px_32px_rgba(0,0,0,0.3)] p-2 z-[9999]"
+                      style={{
+                        top: dropdownPos.top,
+                        left: dropdownPos.left,
+                        opacity: isProviderHovered ? 1 : 0,
+                        pointerEvents: isProviderHovered ? 'auto' : 'none',
+                        transform: `translateY(${isProviderHovered ? '0px' : '4px'})`,
+                        transition: 'opacity 0.15s ease, transform 0.15s ease',
+                      }}
+                      onMouseEnter={handleProviderEnter}
+                      onMouseLeave={handleProviderLeave}
+                    >
+                      <div
+                        data-lenis-prevent
+                        className="flex flex-col gap-1 max-h-44 overflow-y-auto navbar-dropdown-scroll"
+                        style={{ overscrollBehavior: 'contain', scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.15) transparent' }}
                       >
-                        <div
-                          data-lenis-prevent
-                          className="flex flex-col gap-1 max-h-44 overflow-y-auto navbar-dropdown-scroll"
-                          style={{ overscrollBehavior: 'contain', scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.15) transparent' }}
-                        >
-                          {providers.map((p) => (
-                            <Link key={p.slug} href={`/providers/${p.slug}`} className="block px-3 py-2 rounded-xl text-[11px] text-white/85 hover:text-white hover:bg-white/10 transition-colors">
-                              {p.flag} {p.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        {providers.map((p) => (
+                          <Link key={p.slug} href={`/providers/${p.slug}`} className="block px-3 py-2 rounded-xl text-[11px] text-white/85 hover:text-white hover:bg-white/10 transition-colors">
+                            {p.flag} {p.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>,
+                    document.body
+                  )}
                 </div>
 
                 <Link href="/about" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">

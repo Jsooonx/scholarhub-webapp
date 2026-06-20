@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SplitText from '@/components/SplitText';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
@@ -21,9 +22,15 @@ export default function TermsPage() {
               <span className="mx-2">·</span>
               <span className="text-brand-dark font-medium">Terms of Service</span>
             </nav>
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-brand-dark mb-4 leading-tight">
-              Terms of Service
-            </h1>
+            <SplitText
+              text="Terms of Service"
+              className="font-serif text-4xl sm:text-5xl font-bold tracking-tight text-brand-dark mb-4 leading-tight"
+              tag="h1"
+              delay={30}
+              duration={0.6}
+              ease="power2.out"
+              threshold={0.1}
+            />
             <p className="text-xs text-brand-muted">
               Last updated: June 12, 2026
             </p>
