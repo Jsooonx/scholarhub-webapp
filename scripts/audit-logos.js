@@ -152,12 +152,12 @@ const LOGO_RULES = [
 ];
 
 const logoFiles = [
-  ...fs.readdirSync('public/images/logos/').map(f => f.toLowerCase().replace(/\.(png|svg|jpg|jpeg|webp)$/i, '')),
-  ...fs.readdirSync('public/images/programlogos/').map(f => f.toLowerCase().replace(/\.(png|svg|jpg|jpeg|webp)$/i, '')),
+  ...fs.readdirSync('public/images-optimized/logos/').map(f => f.toLowerCase().replace(/\.(png|svg|jpg|jpeg|webp)$/i, '')),
+  ...fs.readdirSync('public/images-optimized/programlogos/').map(f => f.toLowerCase().replace(/\.(png|svg|jpg|jpeg|webp)$/i, '')),
 ];
 const logoFilePaths = [
-  ...fs.readdirSync('public/images/logos/').map(f => '/images/logos/' + f),
-  ...fs.readdirSync('public/images/programlogos/').map(f => '/images/programlogos/' + f),
+  ...fs.readdirSync('public/images-optimized/logos/').map(f => '/images-optimized/logos/' + f),
+  ...fs.readdirSync('public/images-optimized/programlogos/').map(f => '/images-optimized/programlogos/' + f),
 ];
 
 function providerGroupHeuristic(p) {

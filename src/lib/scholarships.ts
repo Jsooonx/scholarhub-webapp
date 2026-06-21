@@ -1140,10 +1140,19 @@ export const providerMeta: Record<
   },
 };
 
+function optimizeImagePath(path: string | null): string | null {
+  if (!path) return null;
+  if (path.startsWith('/images/')) {
+    const optPath = path.replace(/^\/images\//, '/images-optimized/');
+    return optPath.replace(/\.(png|jpg|jpeg|webp)$/i, '.webp');
+  }
+  return path;
+}
+
 /**
  * Resolves a specific university or provider logo if available, falling back to group-level logos.
  */
-export function getScholarshipLogo(s: Scholarship): string | null {
+function getScholarshipLogoRaw(s: Scholarship): string | null {
   const name = s.name.toLowerCase();
   const provider = s.provider.toLowerCase();
 
@@ -1454,10 +1463,14 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   return null;
 }
 
+export function getScholarshipLogo(s: Scholarship): string | null {
+  return optimizeImagePath(getScholarshipLogoRaw(s));
+}
+
 /**
  * Resolves a specific university image if available, falling back to country/group default images.
  */
-export function getScholarshipImage(s: Scholarship): string {
+function getScholarshipImageRaw(s: Scholarship): string {
   // ── Specific overrides for Home Page "By Provider" first 3 previews ────────
   const nameTrimmed = s.name.trim();
 
@@ -1928,6 +1941,10 @@ export function getScholarshipImage(s: Scholarship): string {
   }
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
+}
+
+export function getScholarshipImage(s: Scholarship): string {
+  return optimizeImagePath(getScholarshipImageRaw(s)) ?? '/images-optimized/editorial/stem.webp';
 }
 
 export interface UniversityLogo {
@@ -2492,6 +2509,9 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     }
   }
 
-  return Array.from(new Map(list.map((item) => [item.logo, item])).values());
+  return Array.from(new Map(list.map((item) => [item.logo, item])).values()).map(item => ({
+    ...item,
+    logo: optimizeImagePath(item.logo) ?? item.logo
+  }));
 }
 

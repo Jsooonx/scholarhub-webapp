@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
+import { isPopNavigation } from '@/components/SmoothScroll';
 
 const ALL_PROVIDER_GROUPS = Object.keys(providerMeta);
 
@@ -129,9 +130,13 @@ function ProviderGrid({ groups }: { groups: string[] }) {
 export default function Trending() {
   const [page, setPage] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [skipAnimation, setSkipAnimation] = useState(false);
 
   // Restore page from sessionStorage on mount (back navigation)
   useEffect(() => {
+    if (isPopNavigation()) {
+      setSkipAnimation(true);
+    }
     try {
       const saved = sessionStorage.getItem('__trending_page');
       if (saved !== null) {
@@ -172,7 +177,10 @@ export default function Trending() {
                 </span>
                 <div className="flex items-center gap-1">
                   <button
-                    onClick={() => setPage((p) => Math.max(0, p - 1))}
+                    onClick={() => {
+                      setSkipAnimation(false);
+                      setPage((p) => Math.max(0, p - 1));
+                    }}
                     disabled={page === 0}
                     aria-label="Previous page"
                     className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
@@ -180,7 +188,10 @@ export default function Trending() {
                     <ChevronLeft className="h-4 w-4" />
                   </button>
                   <button
-                    onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+                    onClick={() => {
+                      setSkipAnimation(false);
+                      setPage((p) => Math.min(totalPages - 1, p + 1));
+                    }}
                     disabled={page === totalPages - 1}
                     aria-label="Next page"
                     className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
@@ -213,7 +224,7 @@ export default function Trending() {
         <div className="hidden md:block">
           <div
             key={page}
-            className="animate-fade-in"
+            className={skipAnimation ? '' : 'animate-fade-in'}
           >
             {/* Row 1 */}
             <ProviderGrid groups={desktopGroups} />
@@ -225,7 +236,10 @@ export default function Trending() {
               {Array.from({ length: totalPages }).map((_, i) => (
                 <button
                   key={i}
-                  onClick={() => setPage(i)}
+                  onClick={() => {
+                    setSkipAnimation(false);
+                    setPage(i);
+                  }}
                   aria-label={`Go to page ${i + 1}`}
                   className={`h-1.5 rounded-full transition-all cursor-pointer ${
                     i === page

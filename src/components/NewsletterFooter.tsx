@@ -59,7 +59,7 @@ export default function NewsletterFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="absolute w-20 h-28 rounded-xl overflow-hidden border-2 border-white shadow-lg bg-cover bg-center"
-            style={{ backgroundImage: `url('/images/universities/GE_HeidelbergU.png')` }}
+            style={{ backgroundImage: `url('/images-optimized/universities/GE_HeidelbergU.webp')` }}
           />
           <motion.div
             initial={{ opacity: 0, rotate: 20, x: 50 }}
@@ -67,7 +67,7 @@ export default function NewsletterFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="absolute w-20 h-28 rounded-xl overflow-hidden border-2 border-white shadow-lg bg-cover bg-center"
-            style={{ backgroundImage: `url('/images/universities/TU_METU.png')` }}
+            style={{ backgroundImage: `url('/images-optimized/universities/TU_METU.webp')` }}
           />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -75,7 +75,7 @@ export default function NewsletterFooter() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="absolute w-24 h-32 rounded-xl overflow-hidden border-2 border-white shadow-xl bg-cover bg-center z-10"
-            style={{ backgroundImage: `url('/images/universities/JP_UofTokyo.png')` }}
+            style={{ backgroundImage: `url('/images-optimized/universities/JP_UofTokyo.webp')` }}
           />
         </div>
 

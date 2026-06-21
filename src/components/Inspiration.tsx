@@ -30,7 +30,7 @@ export default function Inspiration() {
   const levelCards = [
     {
       id: 'bachelor',
-      image: '/images/editorial/bachelor.jpg',
+      image: '/images-optimized/editorial/bachelor.webp',
       badge: 'Bachelor',
       title: 'Undergraduate scholarships for your first degree abroad',
       count: `${bachelorCount} scholarships`,
@@ -38,7 +38,7 @@ export default function Inspiration() {
     },
     {
       id: 'master',
-      image: '/images/editorial/master_phd.jpg',
+      image: '/images-optimized/editorial/master_phd.webp',
       badge: 'Master',
       title: "Postgraduate scholarships for Master's degree programs",
       count: `${masterCount} scholarships`,
@@ -46,7 +46,7 @@ export default function Inspiration() {
     },
     {
       id: 'phd',
-      image: '/images/editorial/stem.jpg',
+      image: '/images-optimized/editorial/stem.webp',
       badge: 'PhD & Research',
       title: 'Doctoral & postdoctoral grants for advanced research',
       count: `${phdCount} scholarships`,
@@ -54,7 +54,7 @@ export default function Inspiration() {
     },
     {
       id: 'non-degree',
-      image: '/images/editorial/fully_funded.jpg',
+      image: '/images-optimized/editorial/fully_funded.webp',
       badge: 'Short Course',
       title: 'Short courses, language training & non-degree studies',
       count: `${nonDegreeCount} scholarships`,
