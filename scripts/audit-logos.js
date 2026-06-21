@@ -138,6 +138,17 @@ const LOGO_RULES = [
   [/ie university|\bie\b/, 'IE_University.png'],
   [/ie foundation/, 'IE_Foundation.png'],
   [/girona|\budg\b/, 'UdG.png'],
+  // Qatar
+  [/qatar university/, 'QU.png'],
+  [/hamad bin khalifa|hbku/, 'HBKU.svg'],
+  [/doha institute/, 'DohaInstitute.svg'],
+  // Saudi Arabia
+  [/king saud|ksu/, 'KSU.png'],
+  [/king abdulaziz|kau/, 'KAU.png'],
+  [/king fahd|kfupm|petroleum and minerals/, 'KFUPM.png'],
+  [/kaust|king abdullah/, 'KAUST.png'],
+  [/umm al-qura|uqu/, 'UQU.png'],
+  [/islamic university of madinah|madinah/, 'IUMadinah.png'],
 ];
 
 const logoFiles = [
@@ -183,6 +194,8 @@ function providerGroupHeuristic(p) {
   if (p.includes('nawa') || p.includes('polish national agency') || p.includes('stefan banach') || p.includes('lukasiewicz') || p.includes('łukasiewicz') || p.includes('ignacy') || p.includes('jagiellonian') || p.includes('university of warsaw') || p.includes('warsaw university') || p.includes('national science centre') || p.includes('ncn ') || p.includes('ncn/')) return 'poland';
   if (p.includes('study in romania') || p.includes('scholarships.studyinromania') || p.includes('arice') || p.includes('romanian ministry of foreign') || p.includes('romanian agency for investments') || p.includes('transilvania university') || p.includes('unitbv') || p.includes('west university of timisoara') || p.includes('west university of timișoara') || p.includes('uvt')) return 'romania';
   if (p.includes('open doors') || p.includes('global universities association') || p.includes('rossotrudnichestvo') || p.includes('russian government') || p.includes('government of russia') || p.includes('russian federation') || p.includes('saint petersburg state university') || p.includes('spbu') || p.includes('nust misis') || p.includes('bmstu') || p.includes('bauman moscow') || p.includes('mgimo') || p.includes('hse university') || p.includes('higher school of economics') || p.includes('skoltech') || p.includes('presidential scholarship') || p.includes('presidentskaya') || p.includes('russian ministry')) return 'russia';
+  if (p.includes('qatar university') || p.includes('hamad bin khalifa') || p.includes('hbku') || p.includes('qatar foundation') || p.includes('education above all') || p.includes('doha institute') || p.includes('qatar government') || p.includes('qffd') || p.includes('qatarscholarships') || p.includes('qu ')) return 'qatar';
+  if (p.includes('saudi ministry') || p.includes('saudi arabia') || p.includes('king saud') || p.includes('ksu ') || p.includes('king abdulaziz') || p.includes('kau ') || p.includes('king fahd') || p.includes('kfupm') || p.includes('umm al-qura') || p.includes('uqu ') || p.includes('islamic university of madinah') || p.includes('kaust') || p.includes('king abdullah university') || p.includes('studyinsaudi') || p.includes('study in saudi')) return 'saudi-arabia';
   return p.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
@@ -190,7 +203,7 @@ const PROVIDER_META_KEYS = new Set([
   'germany','japan','turkey','united-kingdom','australia','south-korea','singapore','france',
   'canada','united-states','netherlands','belgium','eu','china','sweden','italy','hungary',
   'taiwan','switzerland','austria','finland','new-zealand','ireland','denmark','norway',
-  'hong-kong','malaysia','spain','poland','romania','russia'
+  'hong-kong','malaysia','spain','poland','romania','russia','qatar','saudi-arabia'
 ]);
 
 // Check provider-group vs providerMeta
@@ -261,6 +274,9 @@ function checkLogo(x) {
   // Poland Program Logos
   if (text.includes('nawa') || text.includes('banach') || text.includes('lukasiewicz') || text.includes('łukasiewicz')) return 'NAWA.png';
   if (text.includes('national science centre') || text.includes('ncn')) return 'NCN.png';
+  // Qatar & Saudi Program Logos
+  if (text.includes('education above all') || text.includes('eaa qatar') || hasWord('eaa')) return 'eaa_qatar.png';
+  if (text.includes('saudi ministry') || text.includes('study in saudi')) return 'saudi_moe.png';
   // University
   for (const [regex, logo] of LOGO_RULES) {
     if (regex.test(text)) return logo;
@@ -291,6 +307,8 @@ function checkLogo(x) {
   if (g === 'romania') return 'study_in_romania.png';
   if (g === 'russia') return 'rossotrudnichestvo.png';
   if (g === 'poland') return 'NAWA.png';
+  if (g === 'qatar') return 'QU.png';
+  if (g === 'saudi-arabia') return 'saudi_moe.png';
   return null;
 }
 

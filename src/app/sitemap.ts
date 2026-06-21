@@ -1,33 +1,7 @@
 import type { MetadataRoute } from 'next';
-import { allScholarships } from '@/lib/scholarships';
+import { allScholarships, providerMeta } from '@/lib/scholarships';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://scholarhub.jsooonx.my.id';
-
-const PROVIDERS = [
-  'daad',
-  'mext',
-  'turkiye',
-  'chevening',
-  'australia-awards',
-  'gks',
-  'singapore',
-  'eiffel',
-  'canada',
-  'jasso',
-  'koica',
-  'cpra',
-  'studienstiftung',
-  'netherlands',
-  'gates-cambridge',
-  'clarendon',
-  'rhodes',
-  'fulbright',
-  'belgium-vlir',
-  'erasmus-mundus',
-  'sweden',
-  'italy',
-  'china-csc',
-];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -50,12 +24,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/about`,
       lastModified: now,
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/privacy`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/terms`,
+      lastModified: now,
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ];
 
-  // Provider pages
-  const providerPages: MetadataRoute.Sitemap = PROVIDERS.map((slug) => ({
+  // Provider pages — dynamically derived from providerMeta so it stays in sync
+  const providerPages: MetadataRoute.Sitemap = Object.keys(providerMeta).map((slug) => ({
     url: `${BASE_URL}/providers/${slug}`,
     lastModified: now,
     changeFrequency: 'monthly' as const,

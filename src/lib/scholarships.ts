@@ -114,6 +114,10 @@ export function providerGroup(provider: string): string {
   if (p.includes('study in romania') || p.includes('scholarships.studyinromania') || p.includes('arice') || p.includes('romanian ministry of foreign') || p.includes('romanian agency for investments') || p.includes('transilvania university') || p.includes('unitbv') || p.includes('west university of timisoara') || p.includes('west university of timișoara') || p.includes('uvt')) return 'romania';
   // Russia
   if (p.includes('open doors') || p.includes('global universities association') || p.includes('rossotrudnichestvo') || p.includes('russian government') || p.includes('government of russia') || p.includes('russian federation') || p.includes('saint petersburg state university') || p.includes('spbu') || p.includes('nust misis') || p.includes('bmstu') || p.includes('bauman moscow') || p.includes('mgimo') || p.includes('hse university') || p.includes('higher school of economics') || p.includes('skoltech') || p.includes('presidential scholarship') || p.includes('presidentskaya') || p.includes('russian ministry')) return 'russia';
+  // Saudi Arabia
+  if (p.includes('saudi ministry') || p.includes('saudi arabia') || p.includes('king saud') || p.includes('ksu ') || p.includes('king abdulaziz') || p.includes('kau ') || p.includes('king fahd') || p.includes('kfupm') || p.includes('umm al-qura') || p.includes('uqu ') || p.includes('islamic university of madinah') || p.includes('kaust') || p.includes('king abdullah university') || p.includes('studyinsaudi') || p.includes('study in saudi')) return 'saudi-arabia';
+  // Qatar
+  if (p.includes('qatar university') || p.includes('hamad bin khalifa') || p.includes('hbku') || p.includes('qatar foundation') || p.includes('education above all') || p.includes('doha institute') || p.includes('qatar government') || p.includes('qffd') || p.includes('qatarscholarships') || p.includes('qu ')) return 'qatar';
   // Fallback: slugify provider name
   return p.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
@@ -855,6 +859,26 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
   // ── Russia: Open Doors Olympiad (Dec) + Government Quota (Dec/Jan) ────
   if (group === 'russia') return { type: 'rolling', label: 'Olympiad & Quota cycles · Sep – Jan' };
 
+  // ── Saudi Arabia: MOE universities ~Mar–May; KAUST rolling ──────────
+  if (group === 'saudi-arabia') {
+    const nowSA = new Date();
+    const yearSA = nowSA.getFullYear();
+    const open = new Date(yearSA, 2, 1);   // Mar 1
+    const close = new Date(yearSA, 4, 31); // May 31
+    const target = nowSA <= close ? close : new Date(yearSA + 1, 4, 31);
+    const diff = Math.ceil((target.getTime() - nowSA.getTime()) / 86_400_000);
+    const fmt = target.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (nowSA >= open && nowSA <= close) {
+      if (diff <= 14) return { type: 'closing', label: `Closing ${fmt}`, daysLeft: diff, deadline: target };
+      return { type: 'open', label: `Open · closes ${fmt}`, daysLeft: diff, deadline: target };
+    }
+    if (nowSA > close) return { type: 'closed', label: `Closed · opens Mar ${target.getFullYear()}`, deadline: new Date(target.getFullYear(), 2, 1) };
+    return { type: 'open', label: `Opens Mar · closes ${fmt}`, daysLeft: diff, deadline: target };
+  }
+
+  // ── Qatar: QU ~Mar 25; HBKU ~Feb 1; others rolling ────────────────
+  if (group === 'qatar') return { type: 'rolling', label: 'Varies · Jan–Mar (check university)' };
+
   return getDaadStatus();
 }
 
@@ -1100,6 +1124,20 @@ export const providerMeta: Record<
     description: 'Russia offers the Open Doors Russian Scholarship Project (24+ leading universities, online Olympiad), the Russian Government Quota via Rossotrudnichestvo (15,000 seats/year, 180+ countries), the SPbU Open International Olympiad, federal university olympiads (BMSTU, NUST MISIS, MIPT, MIFI, Ural Federal), MGIMO state-funded places, and the HSE International Olympiad (incl. joint Skoltech Math of Machine Learning track).',
     website: 'https://education-in-russia.com/',
   },
+  'saudi-arabia': {
+    name: 'Saudi Arabia',
+    flag: '🇸🇦',
+    country: 'Saudi Arabia',
+    description: 'Saudi Arabia offers fully funded government scholarships through 27 public universities including King Saud University (KSU), King Abdulaziz University (KAU), KFUPM, Umm Al-Qura, Islamic University of Madinah, and KAUST. Benefits include full tuition, housing, monthly stipend, health insurance, and annual flights under Saudi Vision 2030.',
+    website: 'https://studyinsaudi.moe.gov.sa',
+  },
+  qatar: {
+    name: 'Qatar',
+    flag: '🇶🇦',
+    country: 'Qatar',
+    description: 'Qatar offers fully funded scholarships through Qatar University (QU), Hamad Bin Khalifa University (HBKU / Qatar Foundation), Doha Institute, and the Education Above All (EAA) programme, covering tuition, housing, monthly stipends, and flights for international students.',
+    website: 'https://www.qu.edu.qa',
+  },
 };
 
 /**
@@ -1174,6 +1212,21 @@ export function getScholarshipLogo(s: Scholarship): string | null {
   if (name.includes('hkpfs') || name.includes('hong kong phd fellowship') || name.includes('research grants council of hong kong')) return '/images/programlogos/hkpfs.png';
   // Malaysia International Scholarship (MIS)
   if (hasWord('mis') || name.includes('malaysia international scholarship') || name.includes('mohe malaysia')) return '/images/programlogos/mis_malaysia.png';
+
+  // Qatar (program & university logos)
+  if (name.includes('education above all') || name.includes('eaa qatar') || hasWord('eaa')) return '/images/programlogos/eaa_qatar.png';
+  if (name.includes('qatar university') || hasWord('qu')) return '/images/logos/QU.png';
+  if (name.includes('hamad bin khalifa') || hasWord('hbku')) return '/images/logos/HBKU.svg';
+  if (name.includes('doha institute') || provider.includes('doha institute')) return '/images/logos/DohaInstitute.svg';
+
+  // Saudi Arabia (program & university logos)
+  if (name.includes('saudi ministry') || name.includes('study in saudi') || provider.includes('saudi ministry') || provider.includes('study in saudi')) return '/images/programlogos/saudi_moe.png';
+  if (name.includes('king saud') || hasWord('ksu')) return '/images/logos/KSU.png';
+  if (name.includes('king abdulaziz') || hasWord('kau')) return '/images/logos/KAU.png';
+  if (name.includes('king fahd') || hasWord('kfupm') || name.includes('petroleum and minerals')) return '/images/logos/KFUPM.png';
+  if (name.includes('king abdullah') || name.includes('kaust')) return '/images/logos/KAUST.png';
+  if (name.includes('umm al-qura') || hasWord('uqu')) return '/images/logos/UQU.png';
+  if (name.includes('islamic university of madinah') || name.includes('madinah')) return '/images/logos/IUMadinah.png';
 
   // Romania (program & university logos)
   if (name.includes('arice')) return '/images/programlogos/arice.png';
@@ -1507,6 +1560,28 @@ export function getScholarshipImage(s: Scholarship): string {
   if (nameTrimmed === "HSE University International Olympiad") return '/images/universities/RU_HSE.png';
   if (nameTrimmed === "Russian Presidential Scholarship (Президентская стипендия)") return '/images/universities/RU_MSU.png';
 
+  // Qatar overrides — 7 scholarships rotated across 3 unique preview images
+  if (nameTrimmed === "Qatar University (QU) Graduate Scholarship - Master's") return '/images/universities/QA_QU.png';
+  if (nameTrimmed === "Qatar University (QU) Graduate Scholarship - PhD & PharmD") return '/images/universities/QA_HBKU.png';
+  if (nameTrimmed === "Qatar University (QU) Undergraduate International Scholarship") return '/images/universities/QA_DohaInstitute.png';
+  if (nameTrimmed === "Hamad Bin Khalifa University (HBKU) Graduate Scholarship - Master's") return '/images/universities/QA_HBKU.png';
+  if (nameTrimmed === "Hamad Bin Khalifa University (HBKU) Graduate Scholarship - PhD") return '/images/universities/QA_QU.png';
+  if (nameTrimmed === "Doha Institute for Graduate Studies Scholarship") return '/images/universities/QA_DohaInstitute.png';
+  if (nameTrimmed === "EAA Qatar Scholarship Programme (Education Above All)") return '/images/universities/QA_HBKU.png';
+
+  // Saudi Arabia overrides — 11 scholarships rotated across 3 unique preview images
+  if (nameTrimmed === "Saudi Government Scholarship - Bachelor's (Study in Saudi Arabia)") return '/images/universities/SA_KSU.png';
+  if (nameTrimmed === "Saudi Government Scholarship - Master's (Study in Saudi Arabia)") return '/images/universities/SA_KAU.png';
+  if (nameTrimmed === "Saudi Government Scholarship - PhD (Study in Saudi Arabia)") return '/images/universities/SA_KAUST.png';
+  if (nameTrimmed === "King Saud University (KSU) International Scholarship - Bachelor's") return '/images/universities/SA_KSU.png';
+  if (nameTrimmed === "King Saud University (KSU) International Scholarship - Master's") return '/images/universities/SA_KAU.png';
+  if (nameTrimmed === "King Saud University (KSU) International Scholarship - PhD") return '/images/universities/SA_KAUST.png';
+  if (nameTrimmed === "King Abdulaziz University (KAU) International Scholarship") return '/images/universities/SA_KAU.png';
+  if (nameTrimmed === "King Fahd University of Petroleum & Minerals (KFUPM) International Scholarship") return '/images/universities/SA_KSU.png';
+  if (nameTrimmed === "Umm Al-Qura University International Scholarship") return '/images/universities/SA_KAU.png';
+  if (nameTrimmed === "Islamic University of Madinah International Scholarship") return '/images/universities/SA_KSU.png';
+  if (nameTrimmed === "King Abdullah University of Science & Technology (KAUST) Fellowship") return '/images/universities/SA_KAUST.png';
+
   const name = s.name.toLowerCase();
   const provider = s.provider.toLowerCase();
 
@@ -1669,6 +1744,19 @@ export function getScholarshipImage(s: Scholarship): string {
   if (name.includes('oulu') || provider.includes('oulun yliopisto')) return '/images/universities/FI_Oulu.png';
   if (name.includes('hanken')) return '/images/universities/FI_Hanken.png';
 
+  // Qatar
+  if (name.includes('qatar university') || hasWord('qu')) return '/images/universities/QA_QU.png';
+  if (name.includes('hamad bin khalifa') || hasWord('hbku')) return '/images/universities/QA_HBKU.png';
+  if (name.includes('doha institute')) return '/images/universities/QA_DohaInstitute.png';
+
+  // Saudi Arabia
+  if (name.includes('king saud') || hasWord('ksu')) return '/images/universities/SA_KSU.png';
+  if (name.includes('king abdulaziz') || hasWord('kau')) return '/images/universities/SA_KAU.png';
+  if (name.includes('kaust') || name.includes('king abdullah')) return '/images/universities/SA_KAUST.png';
+  if (name.includes('kfupm') || name.includes('king fahd') || name.includes('petroleum and minerals')) return '/images/universities/SA_KAUST.png';
+  if (name.includes('umm al-qura') || hasWord('uqu')) return '/images/universities/SA_KSU.png';
+  if (name.includes('islamic university of madinah') || name.includes('madinah')) return '/images/universities/SA_KAU.png';
+
   // 2. Fallback to Country/Group Images
   const group = providerGroup(s.provider);
   if (group === 'germany') return '/images/universities/GE_HeidelbergU.png';
@@ -1828,6 +1916,15 @@ export function getScholarshipImage(s: Scholarship): string {
       return '/images/universities/RU_MSU.png';
     }
     return '/images/universities/RU_MSU.png';
+  }
+  if (group === 'saudi-arabia') {
+    if (name.includes('kaust') || name.includes('king abdullah')) {
+      return '/images/logos/kaust.png';
+    }
+    return '/images/universities/SA_KSU.png';
+  }
+  if (group === 'qatar') {
+    return '/images/universities/QA_HBKU.png';
   }
 
   return '/images/editorial/stem.jpg'; // ultimate fallback
@@ -2083,6 +2180,19 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'Bauman Moscow State Technical University', logo: '/images/logos/BMSTU.png', keywords: ['bauman moscow', 'bmstu', 'bauman state'] },
     { name: 'Moscow State Institute of International Relations (MGIMO)', logo: '/images/logos/MGIMO.png', keywords: ['mgimo'] },
     { name: 'NUST MISIS', logo: '/images/logos/MISIS.png', keywords: ['nust misis', 'misis'] },
+
+    // Qatar Universities
+    { name: 'Qatar University (QU)', logo: '/images/logos/QU.png', keywords: ['qatar university', 'qu'] },
+    { name: 'Hamad Bin Khalifa University (HBKU)', logo: '/images/logos/HBKU.svg', keywords: ['hamad bin khalifa', 'hbku'] },
+    { name: 'Doha Institute for Graduate Studies', logo: '/images/logos/DohaInstitute.svg', keywords: ['doha institute'] },
+
+    // Saudi Arabia Universities
+    { name: 'King Saud University (KSU)', logo: '/images/logos/KSU.png', keywords: ['king saud', 'ksu'] },
+    { name: 'King Abdulaziz University (KAU)', logo: '/images/logos/KAU.png', keywords: ['king abdulaziz', 'kau'] },
+    { name: 'King Fahd University of Petroleum & Minerals (KFUPM)', logo: '/images/logos/KFUPM.png', keywords: ['king fahd', 'kfupm', 'petroleum and minerals'] },
+    { name: 'KAUST', logo: '/images/logos/KAUST.png', keywords: ['kaust', 'king abdullah'] },
+    { name: 'Umm Al-Qura University', logo: '/images/logos/UQU.png', keywords: ['umm al-qura', 'uqu'] },
+    { name: 'Islamic University of Madinah', logo: '/images/logos/IUMadinah.png', keywords: ['islamic university of madinah', 'madinah'] },
   ];
 
   universities.forEach((univ) => {
@@ -2363,6 +2473,21 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         { name: 'Bauman Moscow State Technical University', logo: '/images/logos/BMSTU.png' },
         { name: 'MGIMO University', logo: '/images/logos/MGIMO.png' },
         { name: 'NUST MISIS', logo: '/images/logos/MISIS.png' }
+      );
+    } else if (group === 'saudi-arabia') {
+      list.push(
+        { name: 'King Saud University (KSU)', logo: '/images/logos/KSU.png' },
+        { name: 'King Abdulaziz University (KAU)', logo: '/images/logos/KAU.png' },
+        { name: 'King Fahd University of Petroleum & Minerals (KFUPM)', logo: '/images/logos/KFUPM.png' },
+        { name: 'KAUST', logo: '/images/logos/KAUST.png' },
+        { name: 'Umm Al-Qura University', logo: '/images/logos/UQU.png' },
+        { name: 'Islamic University of Madinah', logo: '/images/logos/IUMadinah.png' }
+      );
+    } else if (group === 'qatar') {
+      list.push(
+        { name: 'Qatar University (QU)', logo: '/images/logos/QU.png' },
+        { name: 'Hamad Bin Khalifa University (HBKU)', logo: '/images/logos/HBKU.png' },
+        { name: 'Doha Institute for Graduate Studies', logo: '/images/logos/DohaInstitute.png' }
       );
     }
   }

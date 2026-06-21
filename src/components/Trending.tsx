@@ -130,9 +130,23 @@ export default function Trending() {
   const [page, setPage] = useState(0);
   const [mounted, setMounted] = useState(false);
 
+  // Restore page from sessionStorage on mount (back navigation)
   useEffect(() => {
+    try {
+      const saved = sessionStorage.getItem('__trending_page');
+      if (saved !== null) {
+        const n = parseInt(saved, 10);
+        if (!isNaN(n) && n >= 0 && n < totalPages) setPage(n);
+      }
+    } catch {}
     setMounted(true);
   }, []);
+
+  // Persist page changes to sessionStorage
+  useEffect(() => {
+    if (!mounted) return;
+    try { sessionStorage.setItem('__trending_page', String(page)); } catch {}
+  }, [page, mounted]);
 
   const desktopGroups = ALL_PROVIDER_GROUPS.slice(
     page * DESKTOP_PER_PAGE,
