@@ -2,13 +2,21 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { allScholarships, providerMeta } from '@/lib/scholarships';
+import { allScholarships, providerMeta, BASE_URL } from '@/lib/scholarships';
 import { BookOpen, Globe, GraduationCap, Search, Mail } from 'lucide-react';
 import SplitText from '@/components/SplitText';
 
 export const metadata: Metadata = {
-  title: 'About ScholarHub',
+  title: 'About',
   description: 'ScholarHub is a curated directory of international scholarships to help students find their path to studying abroad.',
+  alternates: {
+    canonical: `${BASE_URL}/about`,
+  },
+  openGraph: {
+    title: 'About',
+    description: 'ScholarHub is a curated directory of international scholarships to help students find their path to studying abroad.',
+    url: `${BASE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {
@@ -34,8 +42,31 @@ export default function AboutPage() {
     },
   ];
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'About',
+        'item': `${BASE_URL}/about`,
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow">

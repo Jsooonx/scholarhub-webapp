@@ -15,6 +15,7 @@ import {
   getScholarshipLogo,
   getMatchedUniversityLogos,
   providerMeta,
+  BASE_URL,
   type Scholarship,
 } from '@/lib/scholarships';
 import {
@@ -49,14 +50,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const s = getScholarshipBySlug(slug);
-  if (!s) return { title: 'Not Found - ScholarHub' };
+  if (!s) return { title: 'Not Found' };
   const desc = cleanDescription(s.description)?.slice(0, 155) || `${s.provider} scholarship in ${s.country ?? 'various countries'}.`;
   return {
-    title: `${s.name} - ScholarHub`,
+    title: s.name,
     description: desc,
+    alternates: {
+      canonical: `${BASE_URL}/scholarships/${slug}`,
+    },
     openGraph: {
       title: s.name,
       description: desc,
+      url: `${BASE_URL}/scholarships/${slug}`,
       type: 'website',
       siteName: 'ScholarHub',
     },
@@ -128,8 +133,67 @@ export default async function ScholarshipDetailPage({
     .filter((r) => providerGroup(r.provider) === group && r.slug !== slug)
     .slice(0, 4);
 
+  // Structured Data (JSON-LD)
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Scholarships',
+        'item': `${BASE_URL}/scholarships`,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': s.provider,
+        'item': `${BASE_URL}/providers/${group}`,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 4,
+        'name': s.name,
+        'item': `${BASE_URL}/scholarships/${slug}`,
+      },
+    ],
+  };
+
+  const scholarshipSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Scholarship',
+    'name': s.name,
+    'description': cleanDescription(s.description) || `${s.name} provided by ${s.provider}.`,
+    'provider': {
+      '@type': 'EducationalOrganization',
+      'name': s.provider,
+      'url': s.official_url || undefined,
+    },
+    'financialAidType': 'Scholarship',
+    'educationalCredentialAwarded': s.degree_levels.join(', '),
+    'benefits': s.benefits.join(', '),
+    'awardee': s.requirements.country_restrictions.length > 0 ? {
+      '@type': 'AdministrativeArea',
+      'name': s.requirements.country_restrictions.join(', '),
+    } : undefined,
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarshipSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow">

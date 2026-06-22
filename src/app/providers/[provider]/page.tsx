@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
-import { getScholarshipsByProvider, providerMeta } from '@/lib/scholarships';
+import { getScholarshipsByProvider, providerMeta, BASE_URL } from '@/lib/scholarships';
 
 export async function generateStaticParams() {
   return Object.keys(providerMeta)
@@ -18,19 +18,23 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { provider } = await params;
   const meta = providerMeta[provider];
-  if (!meta) return { title: 'Not Found - ScholarHub' };
+  if (!meta) return { title: 'Not Found' };
   return {
-    title: `${meta.name} Scholarships - ScholarHub`,
+    title: `${meta.name} Scholarships`,
     description: meta.description,
+    alternates: {
+      canonical: `${BASE_URL}/providers/${provider}`,
+    },
     openGraph: {
-      title: `${meta.name} Scholarships - ScholarHub`,
+      title: `${meta.name} Scholarships`,
       description: meta.description,
+      url: `${BASE_URL}/providers/${provider}`,
       type: 'website',
       siteName: 'ScholarHub',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${meta.name} Scholarships - ScholarHub`,
+      title: `${meta.name} Scholarships`,
       description: meta.description,
     },
   };
@@ -64,8 +68,37 @@ export default async function ProviderPage({
     (a, b) => (levelOrder.indexOf(a) ?? 99) - (levelOrder.indexOf(b) ?? 99)
   );
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Scholarships',
+        'item': `${BASE_URL}/scholarships`,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': meta.name,
+        'item': `${BASE_URL}/providers/${provider}`,
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow">

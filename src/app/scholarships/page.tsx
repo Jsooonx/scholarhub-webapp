@@ -4,13 +4,21 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import ScholarshipsFilter from '@/components/ScholarshipsFilter';
-import { filterScholarships } from '@/lib/scholarships';
+import { filterScholarships, BASE_URL } from '@/lib/scholarships';
 import { LayoutGrid, List, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'All Scholarships - ScholarHub',
+  title: 'All Scholarships',
   description: 'Browse and filter all scholarships from DAAD, MEXT, Türkiye Burslari and more.',
+  alternates: {
+    canonical: `${BASE_URL}/scholarships`,
+  },
+  openGraph: {
+    title: 'All Scholarships',
+    description: 'Browse and filter all scholarships from DAAD, MEXT, Türkiye Burslari and more.',
+    url: `${BASE_URL}/scholarships`,
+  },
 };
 
 const PAGE_SIZE = 12;
@@ -58,8 +66,31 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
     return `/scholarships${qs ? `?${qs}` : ''}`;
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Scholarships',
+        'item': `${BASE_URL}/scholarships`,
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow">

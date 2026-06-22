@@ -3,15 +3,47 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SplitText from '@/components/SplitText';
+import { BASE_URL } from '@/lib/scholarships';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'Read the privacy policy for ScholarHub.',
+  alternates: {
+    canonical: `${BASE_URL}/privacy`,
+  },
+  openGraph: {
+    title: 'Privacy Policy',
+    description: 'Read the privacy policy for ScholarHub.',
+    url: `${BASE_URL}/privacy`,
+  },
 };
 
 export default function PrivacyPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Privacy Policy',
+        'item': `${BASE_URL}/privacy`,
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow">

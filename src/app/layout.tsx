@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { BASE_URL } from "@/lib/scholarships";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -16,7 +17,6 @@ const lora = Lora({
   display: "swap",
 });
 
-const BASE_URL = 'https://scholarhub.jsooonx.my.id';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

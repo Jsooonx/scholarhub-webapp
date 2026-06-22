@@ -1,7 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { allScholarships, providerMeta } from '@/lib/scholarships';
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://scholarhub.jsooonx.my.id';
+import { allScholarships, providerMeta, BASE_URL } from '@/lib/scholarships';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

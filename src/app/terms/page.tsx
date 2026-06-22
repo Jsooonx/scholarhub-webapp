@@ -3,15 +3,47 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SplitText from '@/components/SplitText';
+import { BASE_URL } from '@/lib/scholarships';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'Read the terms of service for using ScholarHub.',
+  alternates: {
+    canonical: `${BASE_URL}/terms`,
+  },
+  openGraph: {
+    title: 'Terms of Service',
+    description: 'Read the terms of service for using ScholarHub.',
+    url: `${BASE_URL}/terms`,
+  },
 };
 
 export default function TermsPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Terms of Service',
+        'item': `${BASE_URL}/terms`,
+      },
+    ],
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Navbar />
 
       <main className="flex-grow">

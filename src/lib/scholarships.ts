@@ -1,5 +1,7 @@
 import data from '../../data/scholarships.json';
 
+export const BASE_URL = 'https://scholarhub.jsooonx.my.id';
+
 // ── Types ──────────────────────────────────────────────────────────────────
 
 export interface Scholarship {
@@ -103,13 +105,15 @@ export function providerGroup(provider: string): string {
   // Spain
   if (p.includes('aecid') || p.includes('maec') || p.includes('ministerio de asuntos exteriores') || p.includes('fundación "la caixa"') || p.includes('fundacion "la caixa"') || p.includes('"la caixa"') || p.includes('la caixa') || p.includes('ie foundation') || p.includes('ie university') || p.includes('universidad de girona') || p.includes('banco santander')) return 'spain';
   // Denmark
-  if ((p.includes('danish') && p.includes('ministry')) || p.includes('studyindenmark') || p.includes('denmark')) return 'denmark';
+  if ((p.includes('danish') && p.includes('ministry')) || p.includes('studyindenmark') || p.includes('denmark') || p.includes('copenhagen') || p.includes('aarhus') || p.includes('aalborg') || p.includes('roskilde')) return 'denmark';
   // Norway
   if (p.includes('studyinnorway') || (p.includes('norway') && p.includes('universities')) || p.includes('bi norwegian')) return 'norway';
   // Hong Kong
-  if (p.includes('hong kong phd') || p.includes('hkpf') || p.includes('research grants council') || p.includes('ugc.edu.hk') || p.includes('university of hong kong')) return 'hong-kong';
+  if (p.includes('hong kong') || p.includes('hkpf') || p.includes('research grants council') || p.includes('ugc.edu.hk') || p.includes('hku') || p.includes('cuhk') || p.includes('hkust') || p.includes('polyu')) return 'hong-kong';
   // Malaysia
-  if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship'))) return 'malaysia';
+  if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship')) || p.includes('university of malaya') || p.includes('universiti sains malaysia') || p.includes('universiti putra malaysia') || p.includes('universiti teknologi malaysia') || p.includes('monash malaysia') || p.includes('nottingham malaysia') || p.includes('curtin malaysia') || p.includes('taylor')) return 'malaysia';
+  // Short abbreviations with word boundaries
+  if (/\b(usm|upm|utm)\b/i.test(p)) return 'malaysia';
   // Romania
   if (p.includes('study in romania') || p.includes('scholarships.studyinromania') || p.includes('arice') || p.includes('romanian ministry of foreign') || p.includes('romanian agency for investments') || p.includes('transilvania university') || p.includes('unitbv') || p.includes('west university of timisoara') || p.includes('west university of timișoara') || p.includes('uvt')) return 'romania';
   // Russia
@@ -1395,6 +1399,8 @@ function getScholarshipLogoRaw(s: Scholarship): string | null {
   if (name.includes('university of copenhagen') || name.includes('københavns universitet')) return '/images/logos/Copenhagen.png';
   if (name.includes('technical university of denmark') || (hasWord('dtu') && s.country === 'Denmark')) return '/images/logos/DTU_Denmark.png';
   if (name.includes('aarhus university') || name.includes('aarhus universitet')) return '/images/logos/Aarhus.png';
+  if (name.includes('copenhagen business school') || hasWord('cbs')) return '/images/logos/CBS.png';
+  if (name.includes('university of southern denmark') || provider.includes('university of southern denmark') || hasWord('sdu')) return '/images/logos/SDU.png';
 
   // Norway Universities
   if (name.includes('university of oslo') || provider.includes('university of oslo') || hasWord('uio')) return '/images/logos/Oslo.png';
@@ -1405,10 +1411,17 @@ function getScholarshipLogoRaw(s: Scholarship): string | null {
   if (name.includes('university of hong kong') || (hasWord('hku') && s.country === 'Hong Kong')) return '/images/logos/HKU.png';
   if (name.includes('chinese university of hong kong') || hasWord('cuhk')) return '/images/logos/CUHK.png';
   if (name.includes('hong kong university of science and technology') || hasWord('hkust')) return '/images/logos/HKUST.png';
+  if (name.includes('polytechnic university of hong kong') || name.includes('hong kong polytechnic') || hasWord('polyu')) return '/images/logos/PolyU.png';
 
   // Malaysia Universities
   if (name.includes('university of malaya') || provider.includes('university of malaya') || (hasWord('um') && s.country === 'Malaysia')) return '/images/logos/UM.png';
   if (name.includes('universiti kebangsaan malaysia') || hasWord('ukm')) return '/images/logos/UKM.png';
+  if (name.includes('universiti sains malaysia') || hasWord('usm')) return '/images/logos/USM.png';
+  if (name.includes('universiti putra malaysia') || hasWord('upm')) return '/images/logos/UPM.png';
+  if (name.includes('universiti teknologi malaysia') || hasWord('utm')) return '/images/logos/UTM.png';
+  if (name.includes('nottingham') || provider.includes('nottingham')) return '/images/logos/Nottingham_Malaysia.png';
+  if (name.includes('curtin') || provider.includes('curtin')) return '/images/logos/Curtin_Malaysia.png';
+  if (name.includes('taylor') || provider.includes('taylor')) return '/images/logos/Taylors.png';
 
   // Sweden Universities
   if (name.includes('kth royal institute') || name.includes('kth') || provider.includes('kth')) return '/images/logos/KTH.png';
@@ -1717,6 +1730,11 @@ function getScholarshipImageRaw(s: Scholarship): string {
   // Denmark Universities
   if (name.includes('university of copenhagen') || name.includes('københavns universitet')) return '/images/universities/DK_Copenhagen.png';
   if (name.includes('technical university of denmark') || (hasWord('dtu') && s.country === 'Denmark')) return '/images/universities/DK_DTU.png';
+  if (name.includes('aarhus') || provider.includes('aarhus')) return '/images/universities/DK_Aarhus.png';
+  if (name.includes('copenhagen business school') || hasWord('cbs')) return '/images/universities/DK_CBS.png';
+  if (name.includes('aalborg') || provider.includes('aalborg') || hasWord('aau')) return '/images/universities/DK_AAU.png';
+  if (name.includes('roskilde') || provider.includes('roskilde') || hasWord('ruc')) return '/images/universities/DK_RUC.png';
+  if (name.includes('university of southern denmark') || provider.includes('university of southern denmark') || hasWord('sdu')) return '/images/universities/DK_SDU.png';
 
   // Norway Universities
   if (name.includes('university of oslo') || provider.includes('university of oslo') || hasWord('uio')) return '/images/universities/NO_Oslo.png';
@@ -1725,10 +1743,19 @@ function getScholarshipImageRaw(s: Scholarship): string {
   // Hong Kong Universities
   if (name.includes('university of hong kong') || (hasWord('hku') && s.country === 'Hong Kong')) return '/images/universities/HK_HKU.png';
   if (name.includes('chinese university of hong kong') || hasWord('cuhk')) return '/images/universities/HK_CUHK.png';
+  if (name.includes('hong kong university of science and technology') || hasWord('hkust')) return '/images/universities/HK_HKUST.png';
+  if (name.includes('polytechnic university of hong kong') || name.includes('hong kong polytechnic') || hasWord('polyu')) return '/images/universities/HK_PolyU.png';
 
   // Malaysia Universities
   if (name.includes('university of malaya') || provider.includes('university of malaya') || (hasWord('um') && s.country === 'Malaysia')) return '/images/universities/MY_UM.png';
   if (name.includes('universiti kebangsaan malaysia') || hasWord('ukm')) return '/images/universities/MY_UKM.png';
+  if (name.includes('universiti sains malaysia') || hasWord('usm')) return '/images/universities/MY_USM.png';
+  if (name.includes('universiti putra malaysia') || hasWord('upm')) return '/images/universities/MY_UPM.png';
+  if (name.includes('universiti teknologi malaysia') || hasWord('utm')) return '/images/universities/MY_UTM.png';
+  if (name.includes('monash') || provider.includes('monash')) return '/images/universities/MY_Monash.png';
+  if (name.includes('nottingham') || provider.includes('nottingham')) return '/images/universities/MY_Nottingham.png';
+  if (name.includes('curtin') || provider.includes('curtin')) return '/images/universities/MY_Curtin.png';
+  if (name.includes('taylor') || provider.includes('taylor')) return '/images/universities/MY_Taylors.png';
 
   // Poland Universities
   if (name.includes('jagiellonian') || provider.includes('jagiellonian') || hasWord('ju')) return '/images/universities/PL_JU.png';
@@ -2154,6 +2181,10 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Copenhagen', logo: '/images/logos/Copenhagen.png', keywords: ['copenhagen', 'københavns universitet'] },
     { name: 'Technical University of Denmark (DTU)', logo: '/images/logos/DTU_Denmark.png', keywords: ['dtu_dk', 'technical university of denmark'] },
     { name: 'Aarhus University', logo: '/images/logos/Aarhus.png', keywords: ['aarhus'] },
+    { name: 'Copenhagen Business School (CBS)', logo: '/images/logos/CBS.png', keywords: ['cbs', 'copenhagen business school'] },
+    { name: 'Aalborg University (AAU)', logo: '/images/logos/AAU.png', keywords: ['aau', 'aalborg university'] },
+    { name: 'Roskilde University (RUC)', logo: '/images/logos/RUC.png', keywords: ['ruc', 'roskilde university'] },
+    { name: 'University of Southern Denmark (SDU)', logo: '/images/logos/SDU.png', keywords: ['sdu', 'university of southern denmark', 'syddansk universitet'] },
 
     // Norway Universities
     { name: 'University of Oslo', logo: '/images/logos/Oslo.png', keywords: ['uio', 'university of oslo', 'oslo universitet'] },
@@ -2164,11 +2195,19 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
     { name: 'University of Hong Kong (HKU)', logo: '/images/logos/HKU.png', keywords: ['hku', 'university of hong kong'] },
     { name: 'The Chinese University of Hong Kong (CUHK)', logo: '/images/logos/CUHK.png', keywords: ['cuhk', 'chinese university of hong kong'] },
     { name: 'Hong Kong University of Science and Technology (HKUST)', logo: '/images/logos/HKUST.png', keywords: ['hkust', 'hong kong university of science and technology'] },
+    { name: 'City University of Hong Kong (CityU)', logo: '/images/logos/CityU.png', keywords: ['cityu', 'city university of hong kong'] },
+    { name: 'The Hong Kong Polytechnic University (PolyU)', logo: '/images/logos/PolyU.png', keywords: ['polyu', 'polytechnic university of hong kong'] },
 
     // Malaysia Universities
     { name: 'University of Malaya (UM)', logo: '/images/logos/UM.png', keywords: ['um_my', 'university of malaya'] },
     { name: 'Universiti Putra Malaysia (UPM)', logo: '/images/logos/UPM.png', keywords: ['upm', 'universiti putra malaysia', 'putra malaysia'] },
     { name: 'Universiti Kebangsaan Malaysia (UKM)', logo: '/images/logos/UKM.png', keywords: ['ukm', 'universiti kebangsaan malaysia'] },
+    { name: 'Universiti Sains Malaysia (USM)', logo: '/images/logos/USM.png', keywords: ['usm', 'universiti sains malaysia'] },
+    { name: 'Universiti Teknologi Malaysia (UTM)', logo: '/images/logos/UTM.png', keywords: ['utm', 'universiti teknologi malaysia'] },
+    { name: 'Monash University Malaysia', logo: '/images/logos/Monash_AUS.png', keywords: ['monash malaysia', 'monash university malaysia'] },
+    { name: 'University of Nottingham Malaysia', logo: '/images/logos/Nottingham_Malaysia.png', keywords: ['nottingham malaysia', 'university of nottingham malaysia'] },
+    { name: 'Curtin University Malaysia', logo: '/images/logos/Curtin_Malaysia.png', keywords: ['curtin malaysia', 'curtin university malaysia'] },
+    { name: 'Taylor\'s University', logo: '/images/logos/Taylors.png', keywords: ['taylor', 'taylors', "taylor's university"] },
 
     // Norway Universities
     { name: 'BI Norwegian Business School', logo: '/images/logos/BI_Norwegian.png', keywords: ['bi norwegian', 'bi norwegian business school', 'bi business school'] },
@@ -2249,7 +2288,22 @@ export function getMatchedUniversityLogos(s: Scholarship): UniversityLogo[] {
         const regex = new RegExp(`\\bwarsaw university of technology\\b|\\bwarsaw unitech\\b`, 'i');
         return regex.test(text);
       }
-      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey', 'mtu', 'maynooth', 'rcsi', 'ie', 'udg', 'uw', 'ju', 'ncn', 'nawa', 'unibuc', 'ubb', 'unitbv', 'wut', 'uvt', 'msu', 'spbu', 'spbsu', 'hse', 'bmstu', 'mgimo', 'misis'].includes(kw)) {
+      if (kw === 'university of hong kong') {
+        return text.includes('university of hong kong') && !text.includes('city university of hong kong') && !text.includes('chinese university of hong kong');
+      }
+      if (kw === 'copenhagen') {
+        return text.includes('copenhagen') && !text.includes('copenhagen business school') && !text.includes('cbs');
+      }
+      if (kw === 'tokyo') {
+        return text.includes('tokyo') && !text.includes('tokyo institute of technology') && !text.includes('tokyo tech') && !text.includes('science tokyo');
+      }
+      if (kw === 'munich' || kw === 'münchen') {
+        return (text.includes('munich') || text.includes('münchen')) && !text.includes('lmu') && !text.includes('ludwig-maximilians');
+      }
+      if (kw === 'monash') {
+        return text.includes('monash') && !text.includes('monash malaysia') && !text.includes('monash university malaysia');
+      }
+      if (['nus', 'lmu', 'ubc', 'tum', 'psl', 'anu', 'unsw', 'snu', 'kaist', 'postech', 'kit', 'smu', 'sutd', 'ucl', 'skku', 'kdi', 'ait', 'uva', 'rug', 'polimi', 'kth', 'nthu', 'nycu', 'eth', 'epfl', 'uzh', 'vuw', 'tcd', 'ucd', 'ucc', 'copenhagen', 'aarhus', 'uio', 'uib', 'ntnu', 'hku', 'cuhk', 'hkust', 'ukm', 'debrecen', 'massey', 'mtu', 'maynooth', 'rcsi', 'ie', 'udg', 'uw', 'ju', 'ncn', 'nawa', 'unibuc', 'ubb', 'unitbv', 'wut', 'uvt', 'msu', 'spbu', 'spbsu', 'hse', 'bmstu', 'mgimo', 'misis', 'qu', 'upm', 'usm', 'utm', 'ugm', 'ksu', 'kau', 'uqu', 'hbku', 'vub', 'unige', 'uoft', 'cityu', 'polyu', 'cbs', 'aau', 'ruc', 'sdu'].includes(kw)) {
         const regex = new RegExp(`\\b${kw}\\b`, 'i');
         return regex.test(text);
       }
