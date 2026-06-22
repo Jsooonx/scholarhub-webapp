@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import DeadlineStatus from '@/components/DeadlineStatus';
+import SaveScholarshipButton from '@/components/SaveScholarshipButton';
 import {
   getScholarshipBySlug,
   getAllSlugs,
@@ -346,6 +347,10 @@ export default async function ScholarshipDetailPage({
                   ) : (
                     <p className="text-xs text-brand-muted text-center italic">No official link available</p>
                   )}
+
+                  <div className="mt-3">
+                    <SaveScholarshipButton slug={s.slug} variant="wide" />
+                  </div>
 
                   <p className="text-[10px] text-brand-muted text-center mt-3">
                     Opens the provider's official website

@@ -2,11 +2,12 @@
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
-import { Menu, X, ChevronDown, Search, ArrowRight, Globe, GraduationCap, Info } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, ArrowRight, Globe, GraduationCap, Info, Bookmark } from 'lucide-react';
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
 import { useRouter, usePathname } from 'next/navigation';
 import { allScholarships, providerMeta } from '@/lib/scholarships';
+import { useShortlist } from '@/components/ShortlistProvider';
 
 type ExpandMode = 'search' | 'menu' | null;
 
@@ -30,11 +31,11 @@ const uniqueCountriesCount = new Set(allScholarships.map(s => s.country).filter(
 
 // Target width in px from viewport + state (mirrors the old Tailwind caps).
 function computeWidth(isExpanded: boolean): number {
-  if (typeof window === 'undefined') return 576;
+  if (typeof window === 'undefined') return 680;
   const vw = window.innerWidth;
-  if (isExpanded) return Math.min(vw * 0.92, 768); // max-w-3xl
-  const cap = vw >= 640 ? 576 : 384; // sm:max-w-xl else max-w-sm
-  return Math.min(vw * 0.9, cap);
+  if (isExpanded) return Math.min(vw - 24, 840); // max-w-4xl
+  const cap = vw >= 640 ? 680 : 420; // sm:max-w-2xl (680) else max-w-md (420)
+  return Math.min(vw - 32, cap);
 }
 
 // Max island height - half the viewport. Keeps the expanded panel compact;
@@ -91,6 +92,7 @@ export default function Navbar() {
 
   const router = useRouter();
   const pathname = usePathname();
+  const { authenticated, ready, slugs, signOut } = useShortlist();
   const islandRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -252,7 +254,7 @@ export default function Navbar() {
 
             {/* Center links - compact only (instant, hidden behind the morph) */}
             {!isExpanded && (
-              <div className="hidden sm:flex items-center space-x-6 mx-4">
+              <div className="hidden sm:flex items-center space-x-4 md:space-x-6 mx-2 md:mx-4">
                 <Link href="/scholarships" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
                   Scholarships
                 </Link>
@@ -299,11 +301,45 @@ export default function Navbar() {
                 <Link href="/about" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
                   About
                 </Link>
+                {authenticated && (
+                  <Link href="/shortlist" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
+                    Shortlist
+                  </Link>
+                )}
               </div>
             )}
 
             {/* Right controls - slide with layout; icons swap instantly (no in/out) */}
             <div className="flex items-center space-x-1.5 sm:space-x-2 flex-shrink-0">
+              {ready && !authenticated && (
+                <Link
+                  href={`/login?next=${encodeURIComponent(pathname)}`}
+                  className="hidden sm:inline-flex items-center rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-black transition-opacity hover:opacity-85"
+                >
+                  Sign in
+                </Link>
+              )}
+
+              {ready && authenticated && (
+                <>
+                  <Link
+                    href="/shortlist"
+                    className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[11px] font-bold text-white transition-colors hover:bg-white/15"
+                    title="View shortlist"
+                  >
+                    <Bookmark className="h-3.5 w-3.5" />
+                    {slugs.size}
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => void signOut()}
+                    className="hidden sm:inline-flex items-center rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-black transition-opacity hover:opacity-85"
+                  >
+                    Sign out
+                  </button>
+                </>
+              )}
+
               {/* Slot A: search (compact/menu) ↔ menu (search) */}
               <button
                 onClick={() => openMode(expandMode === 'search' ? 'menu' : 'search')}
@@ -399,6 +435,23 @@ export default function Navbar() {
                         <span>Guides &amp; Information</span>
                         <ArrowRight className="h-3.5 w-3.5 text-white/50" />
                       </Link>
+                      {authenticated ? (
+                        <>
+                          <Link href="/shortlist" onClick={close} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-semibold cursor-pointer">
+                            <span>My Shortlist ({slugs.size})</span>
+                            <ArrowRight className="h-3.5 w-3.5 text-white/50" />
+                          </Link>
+                          <button onClick={() => void signOut()} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-left text-xs font-semibold cursor-pointer">
+                            <span>Sign out</span>
+                            <ArrowRight className="h-3.5 w-3.5 text-white/50" />
+                          </button>
+                        </>
+                      ) : (
+                        <Link href={`/login?next=${encodeURIComponent(pathname)}`} onClick={close} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-semibold cursor-pointer">
+                          <span>Sign in</span>
+                          <ArrowRight className="h-3.5 w-3.5 text-white/50" />
+                        </Link>
+                      )}
                     </div>
                   </div>
 

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { ShortlistProvider } from "@/components/ShortlistProvider";
 import { BASE_URL } from "@/lib/scholarships";
 
 const inter = Inter({
@@ -59,9 +61,13 @@ export default function RootLayout({
       className={`${inter.variable} ${lora.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-brand-bg text-brand-dark font-sans flex flex-col selection:bg-brand-dark selection:text-white">
-        <SmoothScroll>
-          {children}
-        </SmoothScroll>
+        <Suspense>
+          <ShortlistProvider>
+            <SmoothScroll>
+              {children}
+            </SmoothScroll>
+          </ShortlistProvider>
+        </Suspense>
       </body>
     </html>
   );
