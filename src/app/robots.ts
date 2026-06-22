@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next';
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://scholarhub.jsooonx.my.id';
+import { BASE_URL } from '@/lib/scholarships';
 
 export default function robots(): MetadataRoute.Robots {
   return {
