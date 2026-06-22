@@ -1846,7 +1846,12 @@ function getScholarshipImageRaw(s: Scholarship): string {
     if (name.includes('stem') || name.includes('women') || name.includes('pioneering')) return '/images/universities/SWE_KTH.png';
     return '/images/universities/si_sweden_wide.png';
   }
-  if (group === 'china') return '/images/universities/CN_Tsinghua.png';
+  if (group === 'china') {
+    if (name.includes('bilateral')) return '/images/universities/CN_Tsinghua.png';
+    if (name.includes('chinese university')) return '/images/universities/CN_Peking.png';
+    if (name.includes('belt and road') || name.includes('silk road')) return '/images/universities/CN_Zhejiang.png';
+    return '/images/universities/CN_Peking.png';
+  }
   if (group === 'hungary') {
     if (name.includes('doctoral') || name.includes('phd') || name.includes('debrecen')) return '/images/universities/HU_Debrecen.png';
     if (name.includes('master')) return '/images/universities/HU_Semmelweis.png';
