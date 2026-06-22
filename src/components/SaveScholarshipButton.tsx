@@ -48,8 +48,10 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
       aria-pressed={saved}
       aria-label={label}
       title={label}
-      className={`grid h-9 w-9 place-items-center rounded-full border border-brand-border bg-white text-brand-dark shadow-sm transition-colors hover:bg-brand-cream disabled:cursor-wait disabled:opacity-60 ${
-        saved ? 'border-brand-dark bg-brand-dark text-white hover:bg-brand-dark' : ''
+      className={`grid h-9 w-9 place-items-center rounded-full border shadow-sm transition-colors disabled:cursor-wait disabled:opacity-60 ${
+        saved
+          ? 'border-brand-dark bg-brand-dark text-white hover:bg-brand-dark'
+          : 'border-brand-border bg-white text-brand-dark hover:bg-brand-cream'
       } ${className}`}
     >
       {isPending ? (
