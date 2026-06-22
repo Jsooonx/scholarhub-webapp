@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, animate } from 'framer-motion';
-import { Menu, X, ChevronDown, Search, ArrowRight, Globe, GraduationCap, Info, Bookmark } from 'lucide-react';
+import { Menu, X, ChevronDown, Search, ArrowRight, Globe, GraduationCap, Info, Bookmark, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
 import { useRouter, usePathname } from 'next/navigation';
@@ -31,10 +31,10 @@ const uniqueCountriesCount = new Set(allScholarships.map(s => s.country).filter(
 
 // Target width in px from viewport + state (mirrors the old Tailwind caps).
 function computeWidth(isExpanded: boolean): number {
-  if (typeof window === 'undefined') return 680;
+  if (typeof window === 'undefined') return 880;
   const vw = window.innerWidth;
-  if (isExpanded) return Math.min(vw - 24, 840); // max-w-4xl
-  const cap = vw >= 640 ? 680 : 420; // sm:max-w-2xl (680) else max-w-md (420)
+  if (isExpanded) return Math.min(vw - 24, 960);
+  const cap = vw >= 640 ? 880 : 420;
   return Math.min(vw - 32, cap);
 }
 
@@ -301,10 +301,15 @@ export default function Navbar() {
                 <Link href="/about" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
                   About
                 </Link>
-                {authenticated && (
-                  <Link href="/shortlist" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
-                    Shortlist
-                  </Link>
+                {mounted && authenticated && (
+                  <>
+                    <Link href="/shortlist" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
+                      Shortlist
+                    </Link>
+                    <Link href="/profile" className="text-xs font-semibold text-white/80 hover:text-white transition-colors">
+                      Profile
+                    </Link>
+                  </>
                 )}
               </div>
             )}
@@ -333,9 +338,11 @@ export default function Navbar() {
                   <button
                     type="button"
                     onClick={() => void signOut()}
-                    className="hidden sm:inline-flex items-center rounded-full bg-white px-3 py-1.5 text-[11px] font-bold text-black transition-opacity hover:opacity-85"
+                    className="hidden sm:grid h-8 w-8 place-items-center rounded-full bg-white/10 text-white/85 transition-colors hover:bg-white/15 hover:text-white"
+                    aria-label="Sign out"
+                    title="Sign out"
                   >
-                    Sign out
+                    <LogOut className="h-3.5 w-3.5" />
                   </button>
                 </>
               )}
@@ -439,6 +446,10 @@ export default function Navbar() {
                         <>
                           <Link href="/shortlist" onClick={close} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-semibold cursor-pointer">
                             <span>My Shortlist ({slugs.size})</span>
+                            <ArrowRight className="h-3.5 w-3.5 text-white/50" />
+                          </Link>
+                          <Link href="/profile" onClick={close} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-semibold cursor-pointer">
+                            <span>Profile</span>
                             <ArrowRight className="h-3.5 w-3.5 text-white/50" />
                           </Link>
                           <button onClick={() => void signOut()} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-left text-xs font-semibold cursor-pointer">

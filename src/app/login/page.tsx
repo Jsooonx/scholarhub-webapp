@@ -3,10 +3,14 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { signInWithEmail, signInWithGoogle } from './actions';
+import { BASE_URL } from '@/lib/scholarships';
 
 export const metadata: Metadata = {
   title: 'Sign in',
   description: 'Sign in to ScholarHub to save scholarships to your shortlist.',
+  alternates: {
+    canonical: `${BASE_URL}/login`,
+  },
 };
 
 function safeNext(next?: string) {

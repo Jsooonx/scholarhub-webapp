@@ -1,6 +1,6 @@
-# ScholarHub Shortlist Accounts Setup
+# ScholarHub Accounts Setup
 
-The shortlist feature uses Supabase Auth and a Postgres table protected by Row Level Security.
+The account features use Supabase Auth and Postgres tables protected by Row Level Security.
 
 ## Environment variables
 
@@ -13,13 +13,14 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="your-publishable-or-anon-key"
 
 ## Database migration
 
-Run the SQL migration in:
+Run the SQL migrations in:
 
 ```text
 supabase/migrations/20260622000000_create_shortlists.sql
+supabase/migrations/20260622001000_create_profiles.sql
 ```
 
-It creates the `public.shortlists` table with:
+The shortlist migration creates the `public.shortlists` table with:
 
 - `id`
 - `user_id`
@@ -27,6 +28,20 @@ It creates the `public.shortlists` table with:
 - `created_at`
 - unique `(user_id, scholarship_slug)`
 - RLS policies for owner-only select, insert, and delete
+
+The profile migration creates the `public.profiles` table with:
+
+- `user_id`
+- `display_name`
+- `username`
+- `bio`
+- `location`
+- `website_url`
+- `avatar_url`
+- `created_at`
+- `updated_at`
+- public read policy for future community member cards
+- owner-only insert/update policies
 
 ## Auth providers
 
