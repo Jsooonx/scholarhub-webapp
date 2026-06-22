@@ -292,7 +292,7 @@ export default async function ScholarshipDetailPage({
                       <DeadlineStatus status={status} size="sm" />
                       {status.type === 'rolling' && (
                         <p className="text-[10px] text-brand-muted mt-1.5 leading-snug">
-                          DAAD deadlines vary per program. Check the official site for the current intake window.
+                          {group === 'germany' ? 'DAAD' : 'Application'} deadlines vary per program. Check the official site for the current intake window.
                         </p>
                       )}
                       {status.type === 'check' && (
