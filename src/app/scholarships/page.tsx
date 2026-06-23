@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import ScholarshipsFilter from '@/components/ScholarshipsFilter';
@@ -91,7 +91,7 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <Navbar />
+
 
       <main className="flex-grow">
         {/* Page header */}

@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+
 import Hero from "@/components/Hero";
 import EditorsPick from "@/components/EditorsPick";
 import AdBanner from "@/components/AdBanner";
@@ -56,8 +56,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      {/* Navigation */}
-      <Navbar />
+
 
       {/* Main Content Layout */}
       <main className="flex-grow">

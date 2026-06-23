@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import DeadlineStatus from '@/components/DeadlineStatus';
@@ -195,7 +195,7 @@ export default async function ScholarshipDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarshipSchema) }}
       />
-      <Navbar />
+
 
       <main className="flex-grow">
         {/* ── Hero band ─────────────────────────────────────────────────── */}

@@ -216,13 +216,14 @@ export default function Navbar() {
   };
 
   return (
-    <div className="sticky top-0 z-50 w-full pointer-events-none h-14 sm:h-16 flex items-start justify-center pt-2 sm:pt-3">
+    <div className="sticky top-0 z-50 w-full pointer-events-none h-14 sm:h-16 flex items-start justify-center pt-2 sm:pt-3 animate-navbar-enter">
       <motion.div
         ref={islandRef}
         data-lenis-prevent
         style={{
-          width,
-          height,
+          width: mounted ? width : 'calc(100% - 32px)',
+          maxWidth: mounted ? undefined : 880,
+          height: height.get() === -1 ? 'auto' : height,
           borderRadius: 28,
           // Collapsed: clip content so absolutley-positioned expanded menu
           // doesn't bleed through as ghost text/flags below the island.
@@ -238,7 +239,7 @@ export default function Navbar() {
             height never constrains it - `contentRef` always reports the true
             natural height for the spring to chase. It's w-full so the header
             reflows continuously while `width` springs, making children slide. */}
-        <motion.div ref={contentRef} style={{ width }} className="absolute top-0 left-0">
+        <motion.div ref={contentRef} style={{ width: mounted ? width : '100%' }} className="absolute top-0 left-0">
           <div className={isExpanded ? 'w-full p-6 sm:p-8' : 'w-full px-4 sm:px-6 py-2 sm:py-3'}>
           {/* ── HEADER ROW (persistent, slides into place) ── */}
           <div className="flex items-center justify-between w-full">

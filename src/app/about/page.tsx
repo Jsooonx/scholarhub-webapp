@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import { allScholarships, providerMeta, BASE_URL } from '@/lib/scholarships';
 import { BookOpen, Globe, GraduationCap, Search, Mail } from 'lucide-react';
@@ -67,7 +67,7 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <Navbar />
+
 
       <main className="flex-grow">
         {/* Hero */}

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import SplitText from '@/components/SplitText';
 import { BASE_URL } from '@/lib/scholarships';
@@ -44,7 +44,7 @@ export default function PrivacyPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <Navbar />
+
 
       <main className="flex-grow">
         <div className="border-b border-brand-border">

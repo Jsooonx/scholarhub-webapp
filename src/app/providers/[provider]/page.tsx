@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import { getScholarshipsByProvider, providerMeta, BASE_URL } from '@/lib/scholarships';
@@ -99,7 +99,7 @@ export default async function ProviderPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <Navbar />
+
 
       <main className="flex-grow">
         {/* Header */}

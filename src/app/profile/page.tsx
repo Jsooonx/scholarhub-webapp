@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import { getCurrentProfile } from '@/app/actions/profile';
 import { BASE_URL } from '@/lib/scholarships';
@@ -32,7 +32,7 @@ export default async function ProfilePage({
 
   return (
     <div className="flex min-h-screen flex-col bg-brand-bg">
-      <Navbar />
+
 
       <main className="flex-grow">
         <div className="border-b border-brand-border bg-brand-bg">

@@ -5,6 +5,7 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ShortlistProvider } from "@/components/ShortlistProvider";
 import { BASE_URL } from "@/lib/scholarships";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Suspense>
           <ShortlistProvider>
             <SmoothScroll>
+              <Navbar />
               {children}
             </SmoothScroll>
           </ShortlistProvider>

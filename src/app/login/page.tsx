@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '@/components/Navbar';
+
 import Footer from '@/components/Footer';
 import { signInWithEmail, signInWithGoogle } from './actions';
 import { BASE_URL } from '@/lib/scholarships';
@@ -37,7 +37,7 @@ export default async function LoginPage({
 
   return (
     <div className="flex min-h-screen flex-col bg-brand-bg">
-      <Navbar />
+
       <main className="flex flex-grow items-center justify-center px-4 py-16">
         <div className="w-full max-w-md rounded-3xl border border-brand-border bg-white p-7 shadow-sm">
           <Link href="/" className="mb-6 inline-flex text-xs font-medium text-brand-muted hover:text-brand-dark">
