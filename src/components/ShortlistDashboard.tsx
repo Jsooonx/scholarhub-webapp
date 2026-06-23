@@ -7,8 +7,9 @@ import type { ScholarshipApplication } from '@/app/actions/shortlist';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import RemoveShortlistButton from '@/components/RemoveShortlistButton';
 import ApplicationTracker from '@/components/ApplicationTracker';
+import DeadlineCalendar from '@/components/DeadlineCalendar';
 import SplitText from '@/components/SplitText';
-import { Kanban, List, LayoutGrid, Heart } from 'lucide-react';
+import { Kanban, List, LayoutGrid, Heart, Calendar } from 'lucide-react';
 
 interface Props {
   initialApplications: ScholarshipApplication[];
@@ -17,7 +18,7 @@ interface Props {
 }
 
 export default function ShortlistDashboard({ initialApplications, email, error }: Props) {
-  const [view, setView] = useState<'board' | 'list'>('board');
+  const [view, setView] = useState<'board' | 'list' | 'calendar'>('board');
   const [apps, setApps] = useState<ScholarshipApplication[]>(initialApplications);
 
   const available = apps.filter((app) => app.scholarship);
@@ -79,6 +80,24 @@ export default function ShortlistDashboard({ initialApplications, email, error }
                   )}
                 </button>
                 <button
+                  onClick={() => setView('calendar')}
+                  className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
+                    view === 'calendar'
+                      ? 'text-white'
+                      : 'text-brand-muted hover:text-brand-dark'
+                  }`}
+                >
+                  <Calendar className="h-3.5 w-3.5" />
+                  Deadline Calendar
+                  {view === 'calendar' && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+                <button
                   onClick={() => setView('list')}
                   className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
                     view === 'list'
@@ -128,6 +147,8 @@ export default function ShortlistDashboard({ initialApplications, email, error }
           </div>
         ) : view === 'board' ? (
           <ApplicationTracker initialApplications={apps} />
+        ) : view === 'calendar' ? (
+          <DeadlineCalendar applications={apps} />
         ) : (
           <div className="space-y-8 animate-fade-in">
             {available.length > 0 && (

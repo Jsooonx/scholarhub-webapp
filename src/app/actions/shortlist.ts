@@ -21,6 +21,10 @@ export interface ScholarshipApplication {
   status: 'shortlisted' | 'preparing' | 'applied' | 'interviewing' | 'accepted' | 'rejected';
   notes: string | null;
   checklist: ChecklistItem[] | null;
+  target_deadline: string | null;
+  is_deadline_verified: boolean;
+  announcement_date: string | null;
+  is_announcement_verified: boolean;
   created_at: string;
   updated_at: string;
   scholarship: Scholarship | null;
@@ -278,6 +282,10 @@ export async function getApplicationsWithDetails(): Promise<{
       status: row.status,
       notes: row.notes,
       checklist: row.checklist ?? null,
+      target_deadline: row.target_deadline,
+      is_deadline_verified: row.is_deadline_verified ?? false,
+      announcement_date: row.announcement_date,
+      is_announcement_verified: row.is_announcement_verified ?? false,
       created_at: row.created_at,
       updated_at: row.updated_at,
       scholarship: getScholarshipBySlug(row.scholarship_slug) || null,
@@ -330,6 +338,90 @@ export async function updateApplicationChecklist(
       ok: false,
       status: 500,
       error: error instanceof Error ? error.message : 'Unable to update checklist.',
+    };
+  }
+}
+
+export async function updateApplicationDeadline(
+  slug: string,
+  targetDeadline: string | null,
+  isVerified: boolean
+): Promise<ShortlistResult> {
+  if (!isSupabaseConfigured()) {
+    return { ok: false, status: 500, error: 'Supabase is not configured.' };
+  }
+
+  try {
+    const supabase = await createClient();
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return { ok: false, status: 401, error: 'Sign in to update deadline.' };
+    }
+
+    const { error } = await supabase
+      .from('scholarship_applications')
+      .update({
+        target_deadline: targetDeadline || null,
+        is_deadline_verified: isVerified,
+        updated_at: new Date().toISOString()
+      })
+      .eq('user_id', user.id)
+      .eq('scholarship_slug', slug);
+
+    if (error) {
+      return { ok: false, status: 500, error: error.message };
+    }
+
+    revalidatePath('/shortlist');
+    return { ok: true };
+  } catch (error) {
+    return {
+      ok: false,
+      status: 500,
+      error: error instanceof Error ? error.message : 'Unable to update deadline.',
+    };
+  }
+}
+
+export async function updateApplicationAnnouncement(
+  slug: string,
+  announcementDate: string | null,
+  isVerified: boolean
+): Promise<ShortlistResult> {
+  if (!isSupabaseConfigured()) {
+    return { ok: false, status: 500, error: 'Supabase is not configured.' };
+  }
+
+  try {
+    const supabase = await createClient();
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return { ok: false, status: 401, error: 'Sign in to update announcement date.' };
+    }
+
+    const { error } = await supabase
+      .from('scholarship_applications')
+      .update({
+        announcement_date: announcementDate || null,
+        is_announcement_verified: isVerified,
+        updated_at: new Date().toISOString()
+      })
+      .eq('user_id', user.id)
+      .eq('scholarship_slug', slug);
+
+    if (error) {
+      return { ok: false, status: 500, error: error.message };
+    }
+
+    revalidatePath('/shortlist');
+    return { ok: true };
+  } catch (error) {
+    return {
+      ok: false,
+      status: 500,
+      error: error instanceof Error ? error.message : 'Unable to update announcement date.',
     };
   }
 }

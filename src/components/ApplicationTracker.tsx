@@ -10,10 +10,13 @@ import {
   updateApplicationStatus,
   updateApplicationNotes,
   updateApplicationChecklist,
+  updateApplicationDeadline,
+  updateApplicationAnnouncement,
   removeFromShortlist,
 } from '@/app/actions/shortlist';
 import { getDeadlineStatus, getScholarshipLogo, providerMeta, providerGroup } from '@/lib/scholarships';
 import DeadlineStatusComponent from '@/components/DeadlineStatus';
+import DatePicker from '@/components/DatePicker';
 import {
   FileText,
   Trash2,
@@ -29,6 +32,8 @@ import {
   CheckSquare,
   Square,
   Plus,
+  Info,
+  Megaphone,
 } from 'lucide-react';
 
 interface Props {
@@ -59,6 +64,8 @@ export default function ApplicationTracker({ initialApplications }: Props) {
   const [draggingSlug, setDraggingSlug] = useState<string | null>(null);
   const [expandedNotesSlug, setExpandedNotesSlug] = useState<string | null>(null);
   const [expandedChecklistSlug, setExpandedChecklistSlug] = useState<string | null>(null);
+  const [expandedDeadlineSlug, setExpandedDeadlineSlug] = useState<string | null>(null);
+  const [expandedAnnouncementSlug, setExpandedAnnouncementSlug] = useState<string | null>(null);
   const [activeTextareaSlug, setActiveTextareaSlug] = useState<string | null>(null);
   const [activeInputSlug, setActiveInputSlug] = useState<string | null>(null);
   const [editingNotes, setEditingNotes] = useState<Record<string, string>>({});
@@ -202,6 +209,78 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     }
   };
 
+  const handleUpdateDeadlineDate = async (slug: string, dateStr: string) => {
+    const app = apps.find((a) => a.scholarship_slug === slug);
+    if (!app) return;
+
+    const previousApps = [...apps];
+    setApps((current) =>
+      current.map((a) => (a.scholarship_slug === slug ? { ...a, target_deadline: dateStr || null } : a))
+    );
+
+    const result = await updateApplicationDeadline(slug, dateStr || null, app.is_deadline_verified);
+    if (!result.ok) {
+      setApps(previousApps);
+      alert(result.error || 'Failed to update target deadline date.');
+    } else {
+      router.refresh();
+    }
+  };
+
+  const handleUpdateDeadlineVerification = async (slug: string, isVerified: boolean) => {
+    const app = apps.find((a) => a.scholarship_slug === slug);
+    if (!app) return;
+
+    const previousApps = [...apps];
+    setApps((current) =>
+      current.map((a) => (a.scholarship_slug === slug ? { ...a, is_deadline_verified: isVerified } : a))
+    );
+
+    const result = await updateApplicationDeadline(slug, app.target_deadline, isVerified);
+    if (!result.ok) {
+      setApps(previousApps);
+      alert(result.error || 'Failed to update verification status.');
+    } else {
+      router.refresh();
+    }
+  };
+
+  const handleUpdateAnnouncementDate = async (slug: string, dateStr: string) => {
+    const app = apps.find((a) => a.scholarship_slug === slug);
+    if (!app) return;
+
+    const previousApps = [...apps];
+    setApps((current) =>
+      current.map((a) => (a.scholarship_slug === slug ? { ...a, announcement_date: dateStr || null } : a))
+    );
+
+    const result = await updateApplicationAnnouncement(slug, dateStr || null, app.is_announcement_verified);
+    if (!result.ok) {
+      setApps(previousApps);
+      alert(result.error || 'Failed to update target announcement date.');
+    } else {
+      router.refresh();
+    }
+  };
+
+  const handleUpdateAnnouncementVerification = async (slug: string, isVerified: boolean) => {
+    const app = apps.find((a) => a.scholarship_slug === slug);
+    if (!app) return;
+
+    const previousApps = [...apps];
+    setApps((current) =>
+      current.map((a) => (a.scholarship_slug === slug ? { ...a, is_announcement_verified: isVerified } : a))
+    );
+
+    const result = await updateApplicationAnnouncement(slug, app.announcement_date, isVerified);
+    if (!result.ok) {
+      setApps(previousApps);
+      alert(result.error || 'Failed to update announcement verification status.');
+    } else {
+      router.refresh();
+    }
+  };
+
   const handleRemove = async (slug: string) => {
     if (confirm('Are you sure you want to remove this scholarship from your tracker?')) {
       const result = await removeFromShortlist(slug);
@@ -267,6 +346,8 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                         const logoUrl = getScholarshipLogo(s);
                         const status = getDeadlineStatus(s);
                         const hasNotes = Boolean(app.notes?.trim());
+                        const hasDeadline = Boolean(app.target_deadline);
+                        const hasAnnouncement = Boolean(app.announcement_date);
                         const isNotesExpanded = expandedNotesSlug === s.slug;
 
                         return (
@@ -282,6 +363,10 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                             onDragStart={(e: any) => handleDragStart(e, s.slug)}
                             className={`group/card relative rounded-2xl border border-brand-border bg-white p-4 shadow-sm hover:border-brand-dark/20 hover:shadow-md cursor-grab active:cursor-grabbing ${
                               draggingSlug === s.slug ? 'opacity-40' : ''
+                            } ${
+                              (expandedNotesSlug === s.slug || expandedChecklistSlug === s.slug || expandedDeadlineSlug === s.slug || expandedAnnouncementSlug === s.slug)
+                                ? 'z-30'
+                                : 'z-0'
                             }`}
                           >
                             {/* Provider info & controls */}
@@ -331,7 +416,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                             {/* Bottom Actions Row */}
                             <div className="mt-4 border-t border-brand-border/60 pt-3 space-y-2">
                               {/* Row 1: Toggles */}
-                              <div className="flex items-center gap-4">
+                              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                                 {/* Notes toggle */}
                                 <motion.button
                                   whileTap={{ scale: 0.97 }}
@@ -341,6 +426,8 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                     } else {
                                       setExpandedNotesSlug(s.slug);
                                       setExpandedChecklistSlug(null);
+                                      setExpandedDeadlineSlug(null);
+                                      setExpandedAnnouncementSlug(null);
                                       setEditingNotes((prev) => ({
                                         ...prev,
                                         [s.slug]: app.notes ?? '',
@@ -354,7 +441,53 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                   }`}
                                 >
                                   <FileText className="h-3.5 w-3.5" />
-                                  <span>{hasNotes ? 'Notes' : 'Add Notes'}</span>
+                                  <span>Notes</span>
+                                </motion.button>
+
+                                {/* Deadline toggle */}
+                                <motion.button
+                                  whileTap={{ scale: 0.97 }}
+                                  onClick={() => {
+                                    if (expandedDeadlineSlug === s.slug) {
+                                      setExpandedDeadlineSlug(null);
+                                    } else {
+                                      setExpandedDeadlineSlug(s.slug);
+                                      setExpandedNotesSlug(null);
+                                      setExpandedChecklistSlug(null);
+                                      setExpandedAnnouncementSlug(null);
+                                    }
+                                  }}
+                                  className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
+                                    expandedDeadlineSlug === s.slug || hasDeadline
+                                      ? 'text-brand-accent font-semibold'
+                                      : 'text-brand-muted hover:text-brand-dark'
+                                  }`}
+                                >
+                                  <Calendar className="h-3.5 w-3.5" />
+                                  <span>{hasDeadline ? 'Deadline' : 'Set Deadline'}</span>
+                                </motion.button>
+
+                                {/* Announcement toggle */}
+                                <motion.button
+                                  whileTap={{ scale: 0.97 }}
+                                  onClick={() => {
+                                    if (expandedAnnouncementSlug === s.slug) {
+                                      setExpandedAnnouncementSlug(null);
+                                    } else {
+                                      setExpandedAnnouncementSlug(s.slug);
+                                      setExpandedNotesSlug(null);
+                                      setExpandedChecklistSlug(null);
+                                      setExpandedDeadlineSlug(null);
+                                    }
+                                  }}
+                                  className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
+                                    expandedAnnouncementSlug === s.slug || hasAnnouncement
+                                      ? 'text-brand-accent font-semibold'
+                                      : 'text-brand-muted hover:text-brand-dark'
+                                  }`}
+                                >
+                                  <Megaphone className="h-3.5 w-3.5" />
+                                  <span>{hasAnnouncement ? 'Announcement' : 'Announcement'}</span>
                                 </motion.button>
 
                                 {/* Checklist toggle */}
@@ -366,6 +499,8 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                     } else {
                                       setExpandedChecklistSlug(s.slug);
                                       setExpandedNotesSlug(null);
+                                      setExpandedDeadlineSlug(null);
+                                      setExpandedAnnouncementSlug(null);
                                     }
                                   }}
                                   className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
@@ -378,54 +513,54 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                   <span>Checklist</span>
                                 </motion.button>
                               </div>
+                            </div>
 
-                              {/* Row 2: Stage selector & navigation */}
-                              <div className="flex items-center justify-between gap-1.5 bg-brand-cream/30 p-1.5 rounded-xl border border-brand-border/40">
-                                <span className="text-[9px] font-bold text-brand-muted uppercase pl-1">Stage</span>
-                                <div className="flex items-center gap-1 flex-grow justify-end">
-                                  {/* Prev Stage arrow */}
-                                  {COLUMNS.findIndex((c) => c.id === col.id) > 0 && (
-                                    <motion.button
-                                      whileTap={{ scale: 0.92 }}
-                                      onClick={() => {
-                                        const idx = COLUMNS.findIndex((c) => c.id === col.id);
-                                        void moveApplication(s.slug, COLUMNS[idx - 1].id);
-                                      }}
-                                      className="p-1 rounded bg-white border border-brand-border text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex-shrink-0"
-                                      title="Move left"
-                                    >
-                                      <ChevronLeft className="h-3 w-3" />
-                                    </motion.button>
-                                  )}
-
-                                  {/* Mobile helper dropdown / select */}
-                                  <select
-                                    value={col.id}
-                                    onChange={(e) => void moveApplication(s.slug, e.target.value as ColumnId)}
-                                    className="text-[10px] bg-white border border-brand-border rounded px-1 py-0.5 font-semibold text-brand-dark outline-none cursor-pointer hover:bg-brand-cream/80 min-w-[90px]"
+                            {/* Row 2: Stage selector & navigation */}
+                            <div className="mt-2 flex items-center justify-between gap-1.5 bg-brand-cream/30 p-1.5 rounded-xl border border-brand-border/40">
+                              <span className="text-[9px] font-bold text-brand-muted uppercase pl-1">Stage</span>
+                              <div className="flex items-center gap-1 flex-grow justify-end">
+                                {/* Prev Stage arrow */}
+                                {COLUMNS.findIndex((c) => c.id === col.id) > 0 && (
+                                  <motion.button
+                                    whileTap={{ scale: 0.92 }}
+                                    onClick={() => {
+                                      const idx = COLUMNS.findIndex((c) => c.id === col.id);
+                                      void moveApplication(s.slug, COLUMNS[idx - 1].id);
+                                    }}
+                                    className="p-1 rounded bg-white border border-brand-border text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex-shrink-0"
+                                    title="Move left"
                                   >
-                                    {COLUMNS.map((c) => (
-                                      <option key={c.id} value={c.id}>
-                                        {c.title.replace(' 🎉', '').replace(' 💪', '')}
-                                      </option>
-                                    ))}
-                                  </select>
+                                    <ChevronLeft className="h-3 w-3" />
+                                  </motion.button>
+                                )}
 
-                                  {/* Next Stage arrow */}
-                                  {COLUMNS.findIndex((c) => c.id === col.id) < COLUMNS.length - 1 && (
-                                    <motion.button
-                                      whileTap={{ scale: 0.92 }}
-                                      onClick={() => {
-                                        const idx = COLUMNS.findIndex((c) => c.id === col.id);
-                                        void moveApplication(s.slug, COLUMNS[idx + 1].id);
-                                      }}
-                                      className="p-1 rounded bg-white border border-brand-border text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex-shrink-0"
-                                      title="Move right"
-                                    >
-                                      <ChevronRight className="h-3 w-3" />
-                                    </motion.button>
-                                  )}
-                                </div>
+                                {/* Mobile helper dropdown / select */}
+                                <select
+                                  value={col.id}
+                                  onChange={(e) => void moveApplication(s.slug, e.target.value as ColumnId)}
+                                  className="text-[10px] bg-white border border-brand-border rounded px-1 py-0.5 font-semibold text-brand-dark outline-none cursor-pointer hover:bg-brand-cream/80 min-w-[90px]"
+                                >
+                                  {COLUMNS.map((c) => (
+                                    <option key={c.id} value={c.id}>
+                                      {c.title.replace(' 🎉', '').replace(' 💪', '')}
+                                    </option>
+                                  ))}
+                                </select>
+
+                                {/* Next Stage arrow */}
+                                {COLUMNS.findIndex((c) => c.id === col.id) < COLUMNS.length - 1 && (
+                                  <motion.button
+                                    whileTap={{ scale: 0.92 }}
+                                    onClick={() => {
+                                      const idx = COLUMNS.findIndex((c) => c.id === col.id);
+                                      void moveApplication(s.slug, COLUMNS[idx + 1].id);
+                                    }}
+                                    className="p-1 rounded bg-white border border-brand-border text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex-shrink-0"
+                                    title="Move right"
+                                  >
+                                    <ChevronRight className="h-3 w-3" />
+                                  </motion.button>
+                                )}
                               </div>
                             </div>
 
@@ -433,14 +568,21 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                             <AnimatePresence>
                               {isNotesExpanded && (
                                 <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
+                                  initial={{ height: 0, opacity: 0, overflow: 'hidden' }}
+                                  animate={{ 
+                                    height: 'auto', 
+                                    opacity: 1,
+                                    transitionEnd: { overflow: 'visible' }
+                                  }}
+                                  exit={{ 
+                                    height: 0, 
+                                    opacity: 0,
+                                    overflow: 'hidden'
+                                  }}
                                   transition={{
                                     height: { type: "spring", duration: 0.28, bounce: 0 },
                                     opacity: { duration: 0.15, ease: "linear" }
                                   }}
-                                  style={{ overflow: 'hidden' }}
                                 >
                                   <div className="mt-3 rounded-xl border border-brand-border/60 bg-brand-cream/30 p-2.5 space-y-2">
                                     <label className="block">
@@ -501,14 +643,21 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                             <AnimatePresence>
                               {expandedChecklistSlug === s.slug && (
                                 <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
+                                  initial={{ height: 0, opacity: 0, overflow: 'hidden' }}
+                                  animate={{ 
+                                    height: 'auto', 
+                                    opacity: 1,
+                                    transitionEnd: { overflow: 'visible' }
+                                  }}
+                                  exit={{ 
+                                    height: 0, 
+                                    opacity: 0,
+                                    overflow: 'hidden'
+                                  }}
                                   transition={{
                                     height: { type: "spring", duration: 0.28, bounce: 0 },
                                     opacity: { duration: 0.15, ease: "linear" }
                                   }}
-                                  style={{ overflow: 'hidden' }}
                                 >
                                   <div className="mt-3 rounded-xl border border-brand-border/60 bg-brand-cream/30 p-2.5 space-y-3">
                                     {/* Checklist header with progress bar */}
@@ -572,7 +721,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                             className="text-brand-muted/40 hover:text-red-500 opacity-0 group-hover/item:opacity-100 transition-all p-0.5"
                                             title="Delete item"
                                           >
-                                            <Trash2 className="h-3 w-3" />
+                                            <Trash2 className="h-3.5 w-3.5" />
                                           </button>
                                         </div>
                                       ))}
@@ -607,6 +756,116 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                       >
                                         <Plus className="h-4 w-4" />
                                       </motion.button>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+
+                            {/* Collapsible Deadline Panel */}
+                            <AnimatePresence>
+                              {expandedDeadlineSlug === s.slug && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0, overflow: 'hidden' }}
+                                  animate={{ 
+                                    height: 'auto', 
+                                    opacity: 1,
+                                    transitionEnd: { overflow: 'visible' }
+                                  }}
+                                  exit={{ 
+                                    height: 0, 
+                                    opacity: 0,
+                                    overflow: 'hidden'
+                                  }}
+                                  transition={{
+                                    height: { type: "spring", duration: 0.28, bounce: 0 },
+                                    opacity: { duration: 0.15, ease: "linear" }
+                                  }}
+                                >
+                                  <div className="mt-3 rounded-xl border border-brand-border/60 bg-brand-cream/30 p-2.5 space-y-3">
+                                    <div className="flex items-center justify-between gap-2">
+                                      <span className="text-[10px] font-bold text-brand-muted uppercase tracking-wider">
+                                        Target Deadline
+                                      </span>
+                                      
+                                      <label className="flex items-center gap-1.5 cursor-pointer">
+                                        <input
+                                          type="checkbox"
+                                          checked={app.is_deadline_verified}
+                                          onChange={(e) => void handleUpdateDeadlineVerification(s.slug, e.target.checked)}
+                                          className="rounded text-brand-accent border-brand-border focus:ring-brand-accent h-3.5 w-3.5 cursor-pointer"
+                                        />
+                                        <span className="text-[9px] font-bold text-brand-muted uppercase">Verified</span>
+                                      </label>
+                                    </div>
+
+                                    <div className="flex gap-2">
+                                      <DatePicker
+                                        value={app.target_deadline}
+                                        onChange={(dateStr) => void handleUpdateDeadlineDate(s.slug, dateStr)}
+                                        className="w-full"
+                                        placeholder="Set deadline"
+                                      />
+                                    </div>
+
+                                    <div className="text-[9px] text-brand-muted italic leading-tight flex items-start gap-1">
+                                      <Info className="h-3.5 w-3.5 text-brand-accent flex-shrink-0 mt-0.5" />
+                                      <span>Verify timezone differences (GMT/EET) on the official portal.</span>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+
+                            {/* Collapsible Announcement Panel */}
+                            <AnimatePresence>
+                              {expandedAnnouncementSlug === s.slug && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0, overflow: 'hidden' }}
+                                  animate={{ 
+                                    height: 'auto', 
+                                    opacity: 1,
+                                    transitionEnd: { overflow: 'visible' }
+                                  }}
+                                  exit={{ 
+                                    height: 0, 
+                                    opacity: 0,
+                                    overflow: 'hidden'
+                                  }}
+                                  transition={{
+                                    height: { type: "spring", duration: 0.28, bounce: 0 },
+                                    opacity: { duration: 0.15, ease: "linear" }
+                                  }}
+                                >
+                                  <div className="mt-3 rounded-xl border border-brand-border/60 bg-brand-cream/30 p-2.5 space-y-3">
+                                    <div className="flex items-center justify-between gap-2">
+                                      <span className="text-[10px] font-bold text-brand-muted uppercase tracking-wider">
+                                        Result Announcement
+                                      </span>
+                                      
+                                      <label className="flex items-center gap-1.5 cursor-pointer">
+                                        <input
+                                          type="checkbox"
+                                          checked={app.is_announcement_verified}
+                                          onChange={(e) => void handleUpdateAnnouncementVerification(s.slug, e.target.checked)}
+                                          className="rounded text-brand-accent border-brand-border focus:ring-brand-accent h-3.5 w-3.5 cursor-pointer"
+                                        />
+                                        <span className="text-[9px] font-bold text-brand-muted uppercase">Verified</span>
+                                      </label>
+                                    </div>
+
+                                    <div className="flex gap-2">
+                                       <DatePicker
+                                         value={app.announcement_date}
+                                         onChange={(dateStr) => void handleUpdateAnnouncementDate(s.slug, dateStr)}
+                                         className="w-full"
+                                         placeholder="Set announcement"
+                                       />
+                                     </div>
+
+                                    <div className="text-[9px] text-brand-muted italic leading-tight flex items-start gap-1">
+                                      <Info className="h-3.5 w-3.5 text-brand-accent flex-shrink-0 mt-0.5" />
+                                      <span>Verify official portal timeline for results announcement updates.</span>
                                     </div>
                                   </div>
                                 </motion.div>
