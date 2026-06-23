@@ -8,12 +8,19 @@ type ShortlistResult =
   | { ok: true }
   | { ok: false; status: 401 | 404 | 500; error: string };
 
+export interface ChecklistItem {
+  id: string;
+  text: string;
+  completed: boolean;
+}
+
 export interface ScholarshipApplication {
   id: string;
   user_id: string;
   scholarship_slug: string;
   status: 'shortlisted' | 'preparing' | 'applied' | 'interviewing' | 'accepted' | 'rejected';
   notes: string | null;
+  checklist: ChecklistItem[] | null;
   created_at: string;
   updated_at: string;
   scholarship: Scholarship | null;
@@ -270,6 +277,7 @@ export async function getApplicationsWithDetails(): Promise<{
       scholarship_slug: row.scholarship_slug,
       status: row.status,
       notes: row.notes,
+      checklist: row.checklist ?? null,
       created_at: row.created_at,
       updated_at: row.updated_at,
       scholarship: getScholarshipBySlug(row.scholarship_slug) || null,
@@ -285,6 +293,43 @@ export async function getApplicationsWithDetails(): Promise<{
       authenticated: false,
       applications: [],
       error: error instanceof Error ? error.message : 'Unable to load applications.',
+    };
+  }
+}
+
+export async function updateApplicationChecklist(
+  slug: string,
+  checklist: ChecklistItem[]
+): Promise<ShortlistResult> {
+  if (!isSupabaseConfigured()) {
+    return { ok: false, status: 500, error: 'Supabase is not configured.' };
+  }
+
+  try {
+    const supabase = await createClient();
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return { ok: false, status: 401, error: 'Sign in to update checklist.' };
+    }
+
+    const { error } = await supabase
+      .from('scholarship_applications')
+      .update({ checklist, updated_at: new Date().toISOString() })
+      .eq('user_id', user.id)
+      .eq('scholarship_slug', slug);
+
+    if (error) {
+      return { ok: false, status: 500, error: error.message };
+    }
+
+    revalidatePath('/shortlist');
+    return { ok: true };
+  } catch (error) {
+    return {
+      ok: false,
+      status: 500,
+      error: error instanceof Error ? error.message : 'Unable to update checklist.',
     };
   }
 }
