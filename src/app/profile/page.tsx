@@ -7,6 +7,8 @@ import { getCurrentProfile, updateProfileAction } from '@/app/actions/profile';
 import { BASE_URL } from '@/lib/scholarships';
 import { Camera, Globe, MapPin, UserRound } from 'lucide-react';
 
+import SplitText from '@/components/SplitText';
+
 export const metadata: Metadata = {
   title: 'Profile',
   description: 'Manage your ScholarHub profile.',
@@ -59,9 +61,15 @@ export default async function ProfilePage({
               <span className="mx-2">·</span>
               <span className="font-medium text-brand-dark">Profile</span>
             </nav>
-            <h1 className="font-serif text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl">
-              Profile
-            </h1>
+            <SplitText
+              text="Profile"
+              className="font-serif text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl"
+              tag="h1"
+              delay={30}
+              duration={0.6}
+              ease="power2.out"
+              threshold={0.1}
+            />
             <p className="mt-2 max-w-xl text-sm text-brand-muted">
               Set up your public ScholarHub identity before community features arrive.
             </p>

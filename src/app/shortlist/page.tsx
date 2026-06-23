@@ -8,6 +8,8 @@ import RemoveShortlistButton from '@/components/RemoveShortlistButton';
 import { getShortlistSlugs } from '@/app/actions/shortlist';
 import { getScholarshipBySlug, BASE_URL } from '@/lib/scholarships';
 
+import SplitText from '@/components/SplitText';
+
 export const metadata: Metadata = {
   title: 'My Shortlist',
   description: 'Your saved scholarships on ScholarHub.',
@@ -47,9 +49,15 @@ export default async function ShortlistPage() {
             </nav>
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h1 className="font-serif text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl">
-                  My Shortlist
-                </h1>
+                <SplitText
+                  text="My Shortlist"
+                  className="font-serif text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl"
+                  tag="h1"
+                  delay={30}
+                  duration={0.6}
+                  ease="power2.out"
+                  threshold={0.1}
+                />
                 <p className="mt-2 max-w-xl text-sm text-brand-muted">
                   Scholarships you saved while exploring ScholarHub.
                 </p>
