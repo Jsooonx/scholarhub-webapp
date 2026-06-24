@@ -18,9 +18,15 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
   const isPopRef = useRef(false);
   const prevPathRef = useRef(pathname);
+  const currentPathRef = useRef(pathname);
   // Flag to prevent the "forward" scroll-to-0 from firing during a restore
   const restoringRef = useRef(false);
   const scrollMapRef = useRef<Record<string, number>>({});
+
+  // Keep currentPathRef in sync with pathname React state
+  useEffect(() => {
+    currentPathRef.current = pathname;
+  }, [pathname]);
 
   // ── Lenis setup (runs once) ──
   useEffect(() => {
@@ -56,14 +62,13 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       isPopRef.current = true;
       _isPopNavigation = true;
 
-      // Save scroll position of the page we are leaving immediately
-      const prevPath = prevPathRef.current;
+      const prevPath = currentPathRef.current;
       const scrollY = window.scrollY;
       try {
         sessionStorage.setItem(SCROLL_KEY(prevPath), String(Math.round(scrollY)));
       } catch {}
     };
-    window.addEventListener('popstate', handlePop);
+    window.addEventListener('popstate', handlePop, { capture: true });
 
     // Save scroll position immediately on click of any link before layout shrinks
     const handleClick = (e: MouseEvent) => {
@@ -72,7 +77,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         target = target.parentElement;
       }
       if (target && target.getAttribute('href')) {
-        const currentPath = window.location.pathname;
+        const currentPath = currentPathRef.current;
         const scrollY = window.scrollY;
         scrollMapRef.current[currentPath] = scrollY;
         try {
@@ -85,7 +90,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     // Track scroll positions continuously
     const handleScroll = () => {
       if (restoringRef.current) return;
-      const currentPath = window.location.pathname;
+      const currentPath = currentPathRef.current;
       scrollMapRef.current[currentPath] = window.scrollY;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -95,17 +100,18 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       resizeObserver.disconnect();
       lenis.destroy();
       lenisRef.current = null;
-      window.removeEventListener('popstate', handlePop);
+      window.removeEventListener('popstate', handlePop, { capture: true });
       window.removeEventListener('click', handleClick, { capture: true });
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   // Robustly scroll to `target` Y after the page layout has settled.
-  // Uses rAF chaining + a MutationObserver to wait for DOM stability.
+  // Uses ResizeObserver + a continuous rAF loop to counteract Next.js async layout rendering.
   const scrollToAfterPaint = useCallback((target: number) => {
-    restoringRef.current = true;
+    if (typeof window === 'undefined') return;
 
+    restoringRef.current = true;
     const doScroll = () => {
       if (lenisRef.current) {
         lenisRef.current.scrollTo(target, { immediate: true });
@@ -113,22 +119,68 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       window.scrollTo(0, target);
     };
 
-    // Strategy: wait 2 animation frames (guarantees one paint cycle),
-    // then set scroll. Follow up with another rAF pair to correct any
-    // layout shift from lazy-loaded images or deferred content.
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        doScroll();
+    // Try scrolling immediately
+    doScroll();
 
-        // Second correction pass after content may have shifted
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            doScroll();
-            restoringRef.current = false;
-          });
-        });
-      });
+    let resizeObserver: ResizeObserver | null = null;
+    let timeoutId: any = null;
+    let rafId: number | null = null;
+
+    const cleanup = () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+        resizeObserver = null;
+      }
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      restoringRef.current = false;
+    };
+
+    // Set a safety timeout to stop restoring after 1.5 seconds under any circumstance
+    timeoutId = setTimeout(cleanup, 1500);
+
+    // Keep checking and scrolling as the body size changes
+    let lastHeight = document.body.scrollHeight;
+    resizeObserver = new ResizeObserver(() => {
+      const currentHeight = document.body.scrollHeight;
+      if (currentHeight !== lastHeight) {
+        lastHeight = currentHeight;
+        doScroll();
+      }
+
+      // Check if we've successfully scrolled to the target
+      const currentScroll = lenisRef.current ? lenisRef.current.scroll : window.scrollY;
+      const maxScroll = currentHeight - window.innerHeight;
+      
+      if (Math.abs(currentScroll - target) < 2 || (currentScroll >= maxScroll - 2 && maxScroll >= target - 10)) {
+        cleanup();
+      }
     });
+
+    if (document.body) {
+      resizeObserver.observe(document.body);
+    }
+
+    // Also run a few rAF passes to ensure we catch paint cycles
+    const tick = (count: number) => {
+      if (count > 15) return; // limit checks to 15 frames (~250ms)
+      doScroll();
+      
+      const currentScroll = lenisRef.current ? lenisRef.current.scroll : window.scrollY;
+      if (Math.abs(currentScroll - target) < 2) {
+        cleanup();
+        return;
+      }
+      
+      rafId = requestAnimationFrame(() => tick(count + 1));
+    };
+    rafId = requestAnimationFrame(() => tick(0));
   }, []);
 
   // ── Pathname change handler ──
@@ -155,7 +207,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
       const saved = (() => {
         try {
-          return parseInt(sessionStorage.getItem(SCROLL_KEY(pathname)) ?? '', 10);
+          const val = sessionStorage.getItem(SCROLL_KEY(pathname));
+          return parseInt(val ?? '', 10);
         } catch { return NaN; }
       })();
 
