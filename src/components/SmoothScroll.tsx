@@ -3,6 +3,8 @@
 import { ReactNode, useEffect, useRef, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const SCROLL_KEY = (path: string) => `__scroll_${path}`;
 
@@ -37,6 +39,9 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       history.scrollRestoration = 'manual';
     }
 
+    // Register GSAP ScrollTrigger client-side
+    gsap.registerPlugin(ScrollTrigger);
+
     const lenis = new Lenis({
       lerp: 0.1,
       orientation: 'vertical',
@@ -46,12 +51,17 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
     lenisRef.current = lenis;
 
-    let animationFrameId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      animationFrameId = requestAnimationFrame(raf);
-    }
-    animationFrameId = requestAnimationFrame(raf);
+    // Sync ScrollTrigger updates with Lenis scroll
+    lenis.on('scroll', () => {
+      ScrollTrigger.update();
+    });
+
+    // Use GSAP's ticker to drive Lenis's RAF loop for perfect frame synchronization
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(updateLenis);
+    gsap.ticker.lagSmoothing(0);
 
     let lastResize = 0;
     let resizeTimeout: any = null;
@@ -62,6 +72,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
         resizeTimeout = setTimeout(() => {
           if (lenisRef.current) {
             lenisRef.current.resize();
+            ScrollTrigger.refresh();
           }
           lastResize = performance.now();
         }, 150);
@@ -71,6 +82,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       lastResize = now;
       if (lenisRef.current) {
         lenisRef.current.resize();
+        ScrollTrigger.refresh();
       }
     });
     resizeObserver.observe(document.body);
@@ -114,7 +126,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      gsap.ticker.remove(updateLenis);
       resizeObserver.disconnect();
       lenis.destroy();
       lenisRef.current = null;

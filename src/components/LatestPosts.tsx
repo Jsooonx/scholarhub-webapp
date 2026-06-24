@@ -53,7 +53,7 @@ export default function LatestPosts() {
                   <div className="md:w-1/3 flex-shrink-0">
                     <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-brand-border">
                       <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                         style={{ backgroundImage: `url('${getScholarshipImage(s)}')` }}
                       />
                     </div>

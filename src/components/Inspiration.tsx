@@ -146,7 +146,7 @@ export default function Inspiration() {
             >
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-brand-border">
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                   style={{ backgroundImage: `url('${card.image}')` }}
                 />
                 {/* Bottom Text Overlay */}

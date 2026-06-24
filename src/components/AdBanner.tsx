@@ -17,18 +17,6 @@ export default function AdBanner() {
   const total = allScholarships.length;
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
-    const el = e.currentTarget;
-    const atTop = el.scrollTop === 0;
-    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
-    const isScrollingUp = e.deltaY < 0;
-    const isScrollingDown = e.deltaY > 0;
-    
-    if ((isScrollingUp && !atTop) || (isScrollingDown && !atBottom)) {
-      e.stopPropagation();
-    }
-  }
-
   return (
     <section className="py-6 bg-brand-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +68,7 @@ export default function AdBanner() {
             <div className="relative z-10 flex-1 w-full max-w-md lg:max-w-none flex items-center justify-center lg:justify-end">
               <div
                 ref={scrollRef}
-                onWheel={handleWheel}
+                data-lenis-prevent
                 className="w-full overflow-y-auto pr-0.5"
                 style={{
                   maxHeight: '11.5rem',

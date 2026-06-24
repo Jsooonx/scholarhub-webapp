@@ -47,7 +47,7 @@ function ProviderCard({ group }: { group: string }) {
         <Link href={`/scholarships/${featured.slug}`} className="group cursor-pointer">
           <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-brand-border mb-3">
             <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
               style={{ backgroundImage: `url('${getScholarshipImage(featured)}')` }}
             />
             <span className="absolute top-3 left-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-brand-cream text-brand-dark border border-brand-border shadow-sm z-10">

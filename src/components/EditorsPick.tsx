@@ -85,7 +85,7 @@ export default function EditorsPick() {
           <Link href={`/scholarships/${mainScholarship.slug}`} className="lg:col-span-5 flex flex-col group cursor-pointer">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-brand-border mb-4">
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                 style={{ backgroundImage: `url('${getScholarshipImage(mainScholarship)}')` }}
               />
               <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark text-white shadow-sm z-10">
@@ -187,7 +187,7 @@ export default function EditorsPick() {
                     className="relative rounded-xl overflow-hidden aspect-[4/3] group cursor-pointer border border-brand-border"
                   >
                     <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105"
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                       style={{ backgroundImage: `url('${type.image}')` }}
                     />
                     <div className="absolute inset-0 bg-black/55 group-hover:bg-black/60 transition-colors" />

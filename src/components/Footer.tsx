@@ -10,18 +10,6 @@ export default function Footer() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
-    const el = e.currentTarget;
-    const atTop = el.scrollTop === 0;
-    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
-    const isScrollingUp = e.deltaY < 0;
-    const isScrollingDown = e.deltaY > 0;
-    
-    if ((isScrollingUp && !atTop) || (isScrollingDown && !atBottom)) {
-      e.stopPropagation();
-    }
-  }
-
   const countryImages = [
     '/images/universities/GE_HeidelbergU.png',
     '/images/universities/JP_UofTokyo.png',
@@ -137,7 +125,7 @@ export default function Footer() {
               >
                 <div
                   ref={scrollRef}
-                  onWheel={handleWheel}
+                  data-lenis-prevent
                   onClick={() => setIsDropdownOpen(false)}
                   className="py-1 overflow-y-auto"
                   style={{
@@ -187,7 +175,7 @@ export default function Footer() {
                   <img
                     src={img}
                     alt="Country thumbnail"
-                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105 will-change-transform transform-gpu"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                 </div>

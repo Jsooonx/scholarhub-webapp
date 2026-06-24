@@ -142,7 +142,7 @@ export default function Hero() {
                 aria-label={activeFeatured.name}
               />
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                 style={{ backgroundImage: `url('${activeImage}')` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />

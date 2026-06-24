@@ -344,18 +344,6 @@ export default function DeadlineCalendar({ applications }: Props) {
     }
   };
 
-  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    const el = e.currentTarget;
-    const atTop = el.scrollTop === 0;
-    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
-    const isScrollingUp = e.deltaY < 0;
-    const isScrollingDown = e.deltaY > 0;
-    
-    if ((isScrollingUp && !atTop) || (isScrollingDown && !atBottom)) {
-      e.stopPropagation();
-    }
-  };
-
   // Helper to check if calendar cell matches today
   const isToday = (cellYear: number, cellMonth: number, cellDay: number) => {
     const today = new Date();
@@ -561,7 +549,7 @@ export default function DeadlineCalendar({ applications }: Props) {
 
                 {/* Day Cell Event Pills */}
                 <div 
-                  onWheel={handleWheel}
+                  data-lenis-prevent
                   className="flex flex-col gap-1 overflow-y-auto max-h-[85px] scrollbar-thin"
                 >
                   {events.map((event) => {
@@ -608,7 +596,7 @@ export default function DeadlineCalendar({ applications }: Props) {
           </div>
         ) : (
           <div 
-            onWheel={handleWheel}
+            data-lenis-prevent
             className="space-y-4 max-h-[500px] overflow-y-auto pr-1.5 scrollbar-thin"
           >
             {agendaList.map((item) => {
@@ -763,7 +751,7 @@ export default function DeadlineCalendar({ applications }: Props) {
 
                 {/* Editor Content Area */}
                 <div 
-                  onWheel={handleWheel}
+                  data-lenis-prevent
                   className="space-y-4 border-t border-brand-border/60 pt-4 max-h-[60vh] overflow-y-auto pr-1 scrollbar-thin"
                 >
                   
