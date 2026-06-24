@@ -38,8 +38,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     }
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
@@ -54,7 +53,26 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     }
     animationFrameId = requestAnimationFrame(raf);
 
-    const resizeObserver = new ResizeObserver(() => lenis.resize());
+    let lastResize = 0;
+    let resizeTimeout: any = null;
+    const resizeObserver = new ResizeObserver(() => {
+      const now = performance.now();
+      if (now - lastResize < 150) {
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          if (lenisRef.current) {
+            lenisRef.current.resize();
+          }
+          lastResize = performance.now();
+        }, 150);
+        return;
+      }
+      
+      lastResize = now;
+      if (lenisRef.current) {
+        lenisRef.current.resize();
+      }
+    });
     resizeObserver.observe(document.body);
 
     // Mark the next pathname change as back/forward

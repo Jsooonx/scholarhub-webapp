@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
@@ -61,6 +61,12 @@ type ColumnId = typeof COLUMNS[number]['id'];
 export default function ApplicationTracker({ initialApplications }: Props) {
   const router = useRouter();
   const [apps, setApps] = useState<ScholarshipApplication[]>(initialApplications);
+
+  // Sync state with parent props updates
+  useEffect(() => {
+    setApps(initialApplications);
+  }, [initialApplications]);
+
   const [draggingSlug, setDraggingSlug] = useState<string | null>(null);
   const [expandedNotesSlug, setExpandedNotesSlug] = useState<string | null>(null);
   const [expandedChecklistSlug, setExpandedChecklistSlug] = useState<string | null>(null);

@@ -19,10 +19,9 @@ interface Props {
 
 export default function ShortlistDashboard({ initialApplications, email, error }: Props) {
   const [view, setView] = useState<'board' | 'list' | 'calendar'>('board');
-  const [apps, setApps] = useState<ScholarshipApplication[]>(initialApplications);
 
-  const available = apps.filter((app) => app.scholarship);
-  const unavailable = apps.filter((app) => !app.scholarship);
+  const available = initialApplications.filter((app) => app.scholarship);
+  const unavailable = initialApplications.filter((app) => !app.scholarship);
 
   return (
     <main className="flex-grow">
@@ -129,7 +128,7 @@ export default function ShortlistDashboard({ initialApplications, email, error }
           </div>
         )}
 
-        {apps.length === 0 ? (
+        {initialApplications.length === 0 ? (
           <div className="rounded-3xl border border-brand-border bg-white px-6 py-16 text-center shadow-sm">
             <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-brand-cream text-brand-accent">
               <Heart className="h-6 w-6" />
@@ -146,9 +145,9 @@ export default function ShortlistDashboard({ initialApplications, email, error }
             </Link>
           </div>
         ) : view === 'board' ? (
-          <ApplicationTracker initialApplications={apps} />
+          <ApplicationTracker initialApplications={initialApplications} />
         ) : view === 'calendar' ? (
-          <DeadlineCalendar applications={apps} />
+          <DeadlineCalendar applications={initialApplications} />
         ) : (
           <div className="space-y-8 animate-fade-in">
             {available.length > 0 && (
