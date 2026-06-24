@@ -344,6 +344,18 @@ export default function DeadlineCalendar({ applications }: Props) {
     }
   };
 
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const atTop = el.scrollTop === 0;
+    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+    const isScrollingUp = e.deltaY < 0;
+    const isScrollingDown = e.deltaY > 0;
+    
+    if ((isScrollingUp && !atTop) || (isScrollingDown && !atBottom)) {
+      e.stopPropagation();
+    }
+  };
+
   // Helper to check if calendar cell matches today
   const isToday = (cellYear: number, cellMonth: number, cellDay: number) => {
     const today = new Date();
@@ -548,7 +560,10 @@ export default function DeadlineCalendar({ applications }: Props) {
                 </div>
 
                 {/* Day Cell Event Pills */}
-                <div className="flex flex-col gap-1 overflow-y-auto max-h-[85px] scrollbar-thin">
+                <div 
+                  onWheel={handleWheel}
+                  className="flex flex-col gap-1 overflow-y-auto max-h-[85px] scrollbar-thin"
+                >
                   {events.map((event) => {
                     const s = event.app.scholarship!;
                     const pill = getPillStyles(event);
@@ -592,7 +607,10 @@ export default function DeadlineCalendar({ applications }: Props) {
             <p className="text-xs mt-1">Set target dates inside your checklist or announcement panels in Board Tracker view.</p>
           </div>
         ) : (
-          <div className="space-y-4 max-h-[500px] overflow-y-auto pr-1.5 scrollbar-thin">
+          <div 
+            onWheel={handleWheel}
+            className="space-y-4 max-h-[500px] overflow-y-auto pr-1.5 scrollbar-thin"
+          >
             {agendaList.map((item) => {
               const { app, date, isVerified, isFallback, type } = item;
               const s = app.scholarship!;
@@ -744,7 +762,10 @@ export default function DeadlineCalendar({ applications }: Props) {
                 </div>
 
                 {/* Editor Content Area */}
-                <div className="space-y-4 border-t border-brand-border/60 pt-4 max-h-[60vh] overflow-y-auto pr-1 scrollbar-thin">
+                <div 
+                  onWheel={handleWheel}
+                  className="space-y-4 border-t border-brand-border/60 pt-4 max-h-[60vh] overflow-y-auto pr-1 scrollbar-thin"
+                >
                   
                   {/* Stage Select */}
                   <div className="space-y-1.5">

@@ -101,6 +101,18 @@ function CustomSelect({ value, options, onChange, align = 'left' }: CustomSelect
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const atTop = el.scrollTop === 0;
+    const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
+    const isScrollingUp = e.deltaY < 0;
+    const isScrollingDown = e.deltaY > 0;
+    
+    if ((isScrollingUp && !atTop) || (isScrollingDown && !atBottom)) {
+      e.stopPropagation();
+    }
+  };
+
   return (
     <div ref={containerRef} className="relative inline-block text-left z-20">
       <button
@@ -117,9 +129,9 @@ function CustomSelect({ value, options, onChange, align = 'left' }: CustomSelect
           className={`absolute ${align === 'right' ? 'right-0' : 'left-0'} mt-1.5 w-60 rounded-2xl border border-brand-border bg-white shadow-lg py-1.5 z-50 focus:outline-none`}
         >
           <div
-            data-lenis-prevent
+            onWheel={handleWheel}
             className="max-h-[280px] overflow-y-auto"
-            style={{ overscrollBehavior: 'contain', scrollbarWidth: 'thin', scrollbarColor: '#E8E8E6 transparent' }}
+            style={{ scrollbarWidth: 'thin', scrollbarColor: '#E8E8E6 transparent' }}
           >
             {options.map((option) => (
               <button

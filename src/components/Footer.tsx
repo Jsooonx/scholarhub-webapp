@@ -11,23 +11,14 @@ export default function Footer() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   function handleWheel(e: React.WheelEvent<HTMLDivElement>) {
-    const el = scrollRef.current;
-    if (!el) return;
+    const el = e.currentTarget;
     const atTop = el.scrollTop === 0;
     const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 1;
-    if ((e.deltaY < 0 && atTop) || (e.deltaY > 0 && atBottom)) return;
-    e.stopPropagation();
+    const isScrollingUp = e.deltaY < 0;
+    const isScrollingDown = e.deltaY > 0;
     
-    // Detect trackpad scrolling (fractional deltas or small steps)
-    const isTrackpad = e.deltaY % 1 !== 0 || Math.abs(e.deltaY) < 15;
-    
-    if (isTrackpad) {
-      // Instant scroll for trackpad momentum
-      el.scrollTop += e.deltaY;
-    } else {
-      // Clamped smooth scroll for mouse wheel ticks
-      const step = Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), 60);
-      el.scrollBy({ top: step, behavior: 'smooth' });
+    if ((isScrollingUp && !atTop) || (isScrollingDown && !atBottom)) {
+      e.stopPropagation();
     }
   }
 
