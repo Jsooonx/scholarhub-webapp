@@ -252,13 +252,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     }
 
     // ── Normal forward navigation: scroll to top ──
-    if (!restoringRef.current) {
-      if (lenis) {
-        lenis.scrollTo(0, { immediate: true });
-      } else {
-        window.scrollTo(0, 0);
-      }
-    }
+    scrollToAfterPaint(0);
   }, [pathname, scrollToAfterPaint]);
 
   return <>{children}</>;

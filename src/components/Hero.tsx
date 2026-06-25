@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { allScholarships, providerGroup, providerMeta } from '@/lib/scholarships';
 import TrueFocus from './TrueFocus';
 import BorderGlow from './BorderGlow/BorderGlow';
+import { useShortlist } from '@/components/ShortlistProvider';
+import { getCurrentProfile, type Profile } from '@/app/actions/profile';
 
 // Pull one per provider group for the hero row - prioritise the most complete providers
 function getFeaturedByGroup(group: string) {
@@ -42,6 +44,18 @@ const stats = [
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { authenticated } = useShortlist();
+  const [profile, setProfile] = useState<Profile | null>(null);
+
+  useEffect(() => {
+    if (authenticated) {
+      getCurrentProfile().then((res) => {
+        if (res.profile) setProfile(res.profile);
+      });
+    } else {
+      setProfile(null);
+    }
+  }, [authenticated]);
 
   const cycleGroups = ['germany', 'japan', 'turkey', 'united-kingdom', 'australia', 'south-korea'];
   const featuredList = cycleGroups.map(group => ({
@@ -85,6 +99,33 @@ export default function Hero() {
                 pauseBetweenAnimations={1.2}
               />
             </h1>
+
+            {/* ScholarMatch CTA */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              {profile?.quiz_answers ? (
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-cream border border-brand-border text-brand-dark">
+                    <span>Target: </span>
+                    <span className="capitalize font-bold text-brand-accent">
+                      {profile.quiz_answers.degree} · {profile.quiz_answers.field}
+                    </span>
+                  </span>
+                  <Link
+                    href="/match"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-brand-accent hover:underline cursor-pointer"
+                  >
+                    Retake Quiz
+                  </Link>
+                </div>
+              ) : (
+                <Link
+                  href="/match"
+                  className="inline-flex items-center justify-center rounded-full bg-brand-dark border border-brand-dark px-6 py-3 text-xs font-bold text-white hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
+                >
+                  Find Your Match (30s)
+                </Link>
+              )}
+            </div>
           </div>
 
           {/* Stats Card */}

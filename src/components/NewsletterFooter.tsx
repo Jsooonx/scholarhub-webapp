@@ -127,11 +127,13 @@ export default function NewsletterFooter() {
                 <button
                   type="submit"
                   disabled={status === 'loading' || !consent}
-                  className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 border border-transparent text-xs font-semibold rounded-full text-white bg-brand-dark hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
+                  className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 border border-brand-dark text-xs font-semibold rounded-full text-white bg-brand-dark hover:bg-white hover:text-brand-dark cursor-pointer interactive-press disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {status === 'loading' ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                  ) : 'Notify me'}
+                  ) : (
+                    'Notify me'
+                  )}
                 </button>
               </div>
 

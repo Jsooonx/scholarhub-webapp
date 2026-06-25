@@ -9,16 +9,21 @@ import RemoveShortlistButton from '@/components/RemoveShortlistButton';
 import ApplicationTracker from '@/components/ApplicationTracker';
 import DeadlineCalendar from '@/components/DeadlineCalendar';
 import SplitText from '@/components/SplitText';
-import { Kanban, List, LayoutGrid, Heart, Calendar } from 'lucide-react';
+import { Kanban, List, LayoutGrid, Heart, Calendar, Compass, Undo2, ArrowRight, GraduationCap } from 'lucide-react';
+import { filterScholarships, type QuizAnswers } from '@/components/ScholarMatchQuiz';
+import { useShortlist } from '@/components/ShortlistProvider';
 
 interface Props {
   initialApplications: ScholarshipApplication[];
   email?: string;
   error?: string;
+  quizAnswers?: QuizAnswers | null;
 }
 
-export default function ShortlistDashboard({ initialApplications, email, error }: Props) {
-  const [view, setView] = useState<'board' | 'list' | 'calendar'>('board');
+export default function ShortlistDashboard({ initialApplications, email, error, quizAnswers }: Props) {
+  const [view, setView] = useState<'board' | 'list' | 'calendar' | 'match'>('board');
+  const { authenticated } = useShortlist();
+  const currentQuizAnswers = quizAnswers ?? null;
 
   const available = initialApplications.filter((app) => app.scholarship);
   const unavailable = initialApplications.filter((app) => !app.scholarship);
@@ -114,6 +119,24 @@ export default function ShortlistDashboard({ initialApplications, email, error }
                     />
                   )}
                 </button>
+                <button
+                  onClick={() => setView('match')}
+                  className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
+                    view === 'match'
+                      ? 'text-white'
+                      : 'text-brand-muted hover:text-brand-dark'
+                  }`}
+                >
+                  <Compass className="h-3.5 w-3.5" />
+                  ScholarMatch
+                  {view === 'match' && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
               </div>
             </div>
           </div>
@@ -128,7 +151,73 @@ export default function ShortlistDashboard({ initialApplications, email, error }
           </div>
         )}
 
-        {initialApplications.length === 0 ? (
+        {view === 'match' ? (
+          currentQuizAnswers ? (
+            <div className="space-y-8 animate-fade-in">
+              <div className="p-6 sm:p-8 rounded-3xl bg-brand-cream border border-brand-border/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-sm">
+                <div>
+                  <h2 className="font-serif text-xl font-bold text-brand-dark flex items-center gap-1.5">
+                    Recommended For Your Profile
+                  </h2>
+                  <p className="text-xs text-brand-muted mt-1 font-medium">
+                    Matching settings: <span className="font-bold text-brand-dark uppercase">{currentQuizAnswers.degree} · {currentQuizAnswers.field} · {currentQuizAnswers.experience === 'yes' ? 'Exp' : 'No Exp'} · {currentQuizAnswers.funding === 'fully' ? 'Fully' : 'Any'} · {currentQuizAnswers.region}</span>
+                  </p>
+                </div>
+                <Link
+                  href="/match"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-brand-border text-xs font-semibold rounded-full bg-white hover:bg-brand-cream text-brand-dark cursor-pointer transition-colors shadow-sm self-start sm:self-auto interactive-press"
+                >
+                  <Undo2 className="h-3.5 w-3.5" /> Retake Quiz
+                </Link>
+              </div>
+
+              {(() => {
+                const results = filterScholarships(currentQuizAnswers);
+                return (
+                  <div className="space-y-6">
+                    {results.isFuzzy && (
+                      <div className="p-3 border border-amber-100 bg-amber-50 text-[11px] text-amber-800 rounded-xl font-medium max-w-2xl leading-normal flex items-start gap-1.5">
+                        <span className="text-sm leading-none mt-0.5">💡</span>
+                        <span>
+                          Fuzzy match: we relaxed constraints for <strong>{results.fuzzyLevels.join(' & ')}</strong> to display opportunities suitable for your level and field.
+                        </span>
+                      </div>
+                    )}
+
+                    {results.matches.length === 0 ? (
+                      <div className="text-center py-12 text-brand-muted italic text-xs">
+                        No matching scholarships found.
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {results.matches.slice(0, 8).map((s) => (
+                          <ScholarshipCard key={s.slug} scholarship={s} variant="grid" />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+            </div>
+          ) : (
+            <div className="rounded-3xl border border-brand-border bg-white px-6 py-16 text-center shadow-sm max-w-2xl mx-auto">
+              <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-brand-cream text-brand-dark">
+                <GraduationCap className="h-6 w-6" />
+              </div>
+              <p className="font-serif text-2xl font-semibold text-brand-dark">Find your matching scholarships</p>
+              <p className="mx-auto mt-2 max-w-md text-sm text-brand-muted leading-relaxed">
+                Take our 30-second ScholarMatch quiz. We will analyze your degree level, study fields, work history, and funding expectations to show you personalized grants!
+              </p>
+              <Link
+                href="/match"
+                className="mt-6 inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-dark border border-brand-dark px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-brand-dark cursor-pointer shadow-md hover:shadow-lg interactive-press"
+              >
+                Start ScholarMatch Quiz
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+              </Link>
+            </div>
+          )
+        ) : initialApplications.length === 0 ? (
           <div className="rounded-3xl border border-brand-border bg-white px-6 py-16 text-center shadow-sm">
             <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-brand-cream text-brand-accent">
               <Heart className="h-6 w-6" />
@@ -139,7 +228,7 @@ export default function ShortlistDashboard({ initialApplications, email, error }
             </p>
             <Link
               href="/scholarships"
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-brand-dark px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-brand-dark border border-brand-dark px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
             >
               Browse scholarships
             </Link>

@@ -58,7 +58,7 @@ export default function AdBanner() {
               </p>
               <Link
                 href="/scholarships"
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-xs font-semibold rounded-full text-brand-dark bg-white hover:bg-white/90 transition-colors duration-200"
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-xs font-semibold rounded-full text-brand-dark bg-white hover:bg-brand-dark hover:text-white cursor-pointer interactive-press"
               >
                 Browse all scholarships
               </Link>

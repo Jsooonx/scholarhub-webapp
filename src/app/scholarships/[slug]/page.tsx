@@ -339,10 +339,10 @@ export default async function ScholarshipDetailPage({
                       href={s.official_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 border border-transparent text-sm font-semibold rounded-full text-white bg-brand-dark hover:opacity-90 transition-opacity"
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-3 border border-brand-dark text-sm font-semibold rounded-full text-white bg-brand-dark hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
                     >
                       Apply on official site
-                      <ExternalLink className="h-3.5 w-3.5" />
+                      <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" />
                     </a>
                   ) : (
                     <p className="text-xs text-brand-muted text-center italic">No official link available</p>

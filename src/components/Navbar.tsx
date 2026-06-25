@@ -435,6 +435,17 @@ export default function Navbar() {
                       <GraduationCap className="h-3.5 w-3.5" /> Quick Navigation
                     </h5>
                     <div className="flex flex-col gap-2">
+                      <Link
+                        href="/match"
+                        onClick={close}
+                        className="flex items-center justify-between p-3 rounded-xl bg-white/10 hover:bg-white/15 border border-brand-accent/20 hover:border-brand-accent/30 text-xs font-semibold text-white cursor-pointer group/quiz text-left"
+                      >
+                        <span className="flex items-center gap-1.5 text-brand-accent brightness-150 font-bold">
+                          ScholarMatch Quiz
+                        </span>
+                        <ArrowRight className="h-3.5 w-3.5 text-white/50 group-hover/quiz:translate-x-0.5 transition-transform" />
+                      </Link>
+
                       <Link href="/scholarships" onClick={close} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-xs font-semibold cursor-pointer">
                         <span>Explore All Scholarships</span>
                         <ArrowRight className="h-3.5 w-3.5 text-white/50" />

@@ -66,7 +66,7 @@ export default async function LoginPage({
             <input type="hidden" name="next" value={next} />
             <button
               type="submit"
-              className="w-full rounded-full bg-brand-dark px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="w-full rounded-full border border-brand-dark bg-brand-dark px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
             >
               Continue with Google
             </button>
@@ -92,7 +92,7 @@ export default async function LoginPage({
             </label>
             <button
               type="submit"
-              className="w-full rounded-full border border-brand-border bg-brand-cream px-5 py-3 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-border/50"
+              className="w-full rounded-full border border-brand-border bg-brand-cream px-5 py-3 text-sm font-semibold text-brand-dark hover:bg-brand-dark hover:text-white hover:border-brand-dark cursor-pointer interactive-press"
             >
               Send magic link
             </button>

@@ -12,6 +12,7 @@ export interface Profile {
   location: string | null;
   website_url: string | null;
   avatar_url: string | null;
+  quiz_answers: any | null;
   created_at: string;
   updated_at: string;
 }
@@ -153,4 +154,44 @@ export async function updateProfileAction(formData: FormData) {
 
   revalidatePath('/profile');
   redirect('/profile?saved=1');
+}
+
+export async function updateProfileQuizAnswers(answers: any): Promise<{ success: boolean; error?: string }> {
+  if (!isSupabaseConfigured()) {
+    return { success: false, error: 'Supabase is not configured.' };
+  }
+
+  try {
+    const supabase = await createClient();
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return { success: false, error: 'Unauthorized.' };
+    }
+
+    const { error } = await supabase
+      .from('profiles')
+      .upsert(
+        {
+          user_id: user.id,
+          quiz_answers: answers,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'user_id' }
+      );
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    revalidatePath('/');
+    revalidatePath('/profile');
+    revalidatePath('/shortlist');
+    return { success: true };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unable to save quiz answers.',
+    };
+  }
 }
