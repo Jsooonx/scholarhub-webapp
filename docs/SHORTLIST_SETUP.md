@@ -1,5 +1,7 @@
 # ScholarHub Accounts Setup
 
+> ⚠️ **This guide is deprecated.** See [SETUP_GUIDE.md](./SETUP_GUIDE.md) → Section 7 (Auth & Database) for the complete, up-to-date setup including all 8 migrations, environment variables, and feature documentation.
+
 The account features use Supabase Auth and Postgres tables protected by Row Level Security.
 
 ## Environment variables

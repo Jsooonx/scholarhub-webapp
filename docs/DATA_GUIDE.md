@@ -1,5 +1,7 @@
 # ScholarHub - Data Management Guide
 
+> ⚠️ **This guide is deprecated.** See [SETUP_GUIDE.md](./SETUP_GUIDE.md) for the comprehensive, up-to-date documentation covering data management, auth, features, and more.
+
 Complete guide for adding new providers or updating existing scholarship data.
 
 ---

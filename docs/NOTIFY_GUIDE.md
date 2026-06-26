@@ -1,5 +1,7 @@
 # ScholarHub - Notify Guide
 
+> Also referenced in [SETUP_GUIDE.md](./SETUP_GUIDE.md) → Section 9 (Sending Notifications).
+
 Complete guide for sending email notifications to all ScholarHub subscribers.
 
 ---
