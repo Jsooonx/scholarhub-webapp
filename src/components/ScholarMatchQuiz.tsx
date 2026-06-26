@@ -684,7 +684,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
   );
 }
 
-function FilterPill({
+export function FilterPill({
   label,
   value,
   active,

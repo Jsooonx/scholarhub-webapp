@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import type { ScholarshipApplication } from '@/app/actions/shortlist';
@@ -12,6 +12,8 @@ import SplitText from '@/components/SplitText';
 import { Kanban, List, LayoutGrid, Heart, Calendar, Compass, Undo2, ArrowRight, GraduationCap } from 'lucide-react';
 import { filterScholarships, type QuizAnswers } from '@/lib/matching';
 import { useShortlist } from '@/components/ShortlistProvider';
+import { updateProfileQuizAnswers } from '@/app/actions/profile';
+import { FilterPill } from '@/components/ScholarMatchQuiz';
 
 interface Props {
   initialApplications: ScholarshipApplication[];
@@ -23,7 +25,32 @@ interface Props {
 export default function ShortlistDashboard({ initialApplications, email, error, quizAnswers }: Props) {
   const [view, setView] = useState<'board' | 'list' | 'calendar' | 'match'>('board');
   const { authenticated } = useShortlist();
-  const currentQuizAnswers = quizAnswers ?? null;
+  
+  const [currentQuizAnswers, setCurrentQuizAnswers] = useState<QuizAnswers | null>(quizAnswers ?? null);
+  const [activeDropdown, setActiveDropdown] = useState<'degree' | 'field' | 'experience' | 'funding' | 'region' | null>(null);
+
+  // Sync state if prop changes
+  useEffect(() => {
+    setCurrentQuizAnswers(quizAnswers ?? null);
+  }, [quizAnswers]);
+
+  // Close active dropdown on click outside
+  useEffect(() => {
+    if (!activeDropdown) return;
+    const handleOutsideClick = () => {
+      setActiveDropdown(null);
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [activeDropdown]);
+
+  const handleUpdateAnswers = async (updated: QuizAnswers) => {
+    setCurrentQuizAnswers(updated);
+    sessionStorage.setItem('scholarMatchAnswers', JSON.stringify(updated));
+    if (authenticated) {
+      await updateProfileQuizAnswers(updated);
+    }
+  };
 
   const available = initialApplications.filter((app) => app.scholarship);
   const unavailable = initialApplications.filter((app) => !app.scholarship);
@@ -154,21 +181,135 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
         {view === 'match' ? (
           currentQuizAnswers ? (
             <div className="space-y-8 animate-fade-in">
-              <div className="p-6 sm:p-8 rounded-3xl bg-brand-cream border border-brand-border/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-sm">
-                <div>
-                  <h2 className="font-serif text-xl font-bold text-brand-dark flex items-center gap-1.5">
-                    Recommended For Your Profile
-                  </h2>
-                  <p className="text-xs text-brand-muted mt-1 font-medium">
-                    Matching settings: <span className="font-bold text-brand-dark uppercase">{currentQuizAnswers.degree} · {currentQuizAnswers.field} · {currentQuizAnswers.experience === 'yes' ? 'Exp' : 'No Exp'} · {currentQuizAnswers.funding === 'fully' ? 'Fully' : 'Any'} · {currentQuizAnswers.region}</span>
-                  </p>
+              <div className="p-6 sm:p-8 rounded-3xl bg-brand-cream border border-brand-border/60 flex flex-col gap-5 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div>
+                    <h2 className="font-serif text-xl font-bold text-brand-dark flex items-center gap-1.5">
+                      Recommended For Your Profile
+                    </h2>
+                    <p className="text-xs text-brand-muted mt-1">
+                      Here are matching scholarships based on your quiz profile. Adjust your options below:
+                    </p>
+                  </div>
+                  <Link
+                    href="/match"
+                    className="inline-flex items-center gap-1.5 px-4 py-2 border border-brand-border text-xs font-semibold rounded-full bg-white hover:bg-brand-cream text-brand-dark cursor-pointer transition-colors shadow-sm self-start sm:self-auto"
+                  >
+                    <Undo2 className="h-3.5 w-3.5" /> Retake Quiz
+                  </Link>
                 </div>
-                <Link
-                  href="/match"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-brand-border text-xs font-semibold rounded-full bg-white hover:bg-brand-cream text-brand-dark cursor-pointer transition-colors shadow-sm self-start sm:self-auto"
-                >
-                  <Undo2 className="h-3.5 w-3.5" /> Retake Quiz
-                </Link>
+
+                {/* Live Adjust Filters Panel */}
+                <div className="flex flex-wrap gap-2 z-20 relative">
+                  {/* Degree Pill */}
+                  <FilterPill
+                    label="Degree"
+                    value={currentQuizAnswers.degree === 'non-degree' ? 'Short Course' : currentQuizAnswers.degree}
+                    active={activeDropdown === 'degree'}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveDropdown(activeDropdown === 'degree' ? null : 'degree');
+                    }}
+                    options={[
+                      { val: 'bachelor', label: 'Bachelor' },
+                      { val: 'master', label: 'Master' },
+                      { val: 'phd', label: 'PhD / Doctoral' },
+                      { val: 'non-degree', label: 'Short Course' }
+                    ]}
+                    onChange={(val) => {
+                      const updated = { ...currentQuizAnswers, degree: val as any };
+                      void handleUpdateAnswers(updated);
+                      setActiveDropdown(null);
+                    }}
+                  />
+
+                  {/* Field Pill */}
+                  <FilterPill
+                    label="Field"
+                    value={currentQuizAnswers.field === 'any' ? 'General' : currentQuizAnswers.field}
+                    active={activeDropdown === 'field'}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveDropdown(activeDropdown === 'field' ? null : 'field');
+                    }}
+                    options={[
+                      { val: 'stem', label: 'STEM & IT' },
+                      { val: 'business', label: 'Business & Econ' },
+                      { val: 'arts', label: 'Arts & Creative' },
+                      { val: 'social', label: 'Social & Human' },
+                      { val: 'medicine', label: 'Medicine & Health' },
+                      { val: 'any', label: 'General / Any' }
+                    ]}
+                    onChange={(val) => {
+                      const updated = { ...currentQuizAnswers, field: val as any };
+                      void handleUpdateAnswers(updated);
+                      setActiveDropdown(null);
+                    }}
+                  />
+
+                  {/* Experience Pill */}
+                  <FilterPill
+                    label="Work Exp"
+                    value={currentQuizAnswers.experience === 'yes' ? '2+ Yrs' : 'None / Fresh'}
+                    active={activeDropdown === 'experience'}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveDropdown(activeDropdown === 'experience' ? null : 'experience');
+                    }}
+                    options={[
+                      { val: 'yes', label: '2+ Yrs Experience' },
+                      { val: 'no', label: 'No/Less Experience' }
+                    ]}
+                    onChange={(val) => {
+                      const updated = { ...currentQuizAnswers, experience: val as any };
+                      void handleUpdateAnswers(updated);
+                      setActiveDropdown(null);
+                    }}
+                  />
+
+                  {/* Funding Pill */}
+                  <FilterPill
+                    label="Funding"
+                    value={currentQuizAnswers.funding === 'fully' ? 'Strictly Fully' : 'All/Partial'}
+                    active={activeDropdown === 'funding'}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveDropdown(activeDropdown === 'funding' ? null : 'funding');
+                    }}
+                    options={[
+                      { val: 'fully', label: 'Strictly Fully' },
+                      { val: 'any', label: 'Open to All' }
+                    ]}
+                    onChange={(val) => {
+                      const updated = { ...currentQuizAnswers, funding: val as any };
+                      void handleUpdateAnswers(updated);
+                      setActiveDropdown(null);
+                    }}
+                  />
+
+                  {/* Region Pill */}
+                  <FilterPill
+                    label="Region"
+                    value={currentQuizAnswers.region === 'any' ? 'Any Region' : currentQuizAnswers.region}
+                    active={activeDropdown === 'region'}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveDropdown(activeDropdown === 'region' ? null : 'region');
+                    }}
+                    options={[
+                      { val: 'any', label: 'Any Region' },
+                      { val: 'asia', label: 'Asia' },
+                      { val: 'europe', label: 'Europe' },
+                      { val: 'americas', label: 'Americas' },
+                      { val: 'oceania', label: 'Oceania' }
+                    ]}
+                    onChange={(val) => {
+                      const updated = { ...currentQuizAnswers, region: val as any };
+                      void handleUpdateAnswers(updated);
+                      setActiveDropdown(null);
+                    }}
+                  />
+                </div>
               </div>
 
               {(() => {
@@ -191,7 +332,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                     ) : (
                       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {results.matches.slice(0, 8).map((s) => (
-                          <ScholarshipCard key={s.slug} scholarship={s} variant="grid" />
+                          <ScholarshipCard key={s.slug} scholarship={s} variant="grid" quizAnswers={currentQuizAnswers} />
                         ))}
                       </div>
                     )}
