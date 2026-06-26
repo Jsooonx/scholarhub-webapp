@@ -144,6 +144,18 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
+
+  const [transitionType, setTransitionType] = useState<'spring' | 'tween'>('spring');
+  const lastStepRef = useRef<number>(0);
+
+  useEffect(() => {
+    if (step === stepsCount || lastStepRef.current === stepsCount) {
+      setTransitionType('tween');
+    } else {
+      setTransitionType('spring');
+    }
+    lastStepRef.current = step;
+  }, [step]);
   
   const [answers, setAnswers] = useState<QuizAnswers>({
     degree: 'master',
@@ -267,7 +279,11 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
 
         <motion.div
           animate={{ height: isResultsStep ? 'auto' : contentHeight }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          transition={
+            transitionType === 'tween'
+              ? { type: 'tween', duration: 0.35, ease: 'easeInOut' }
+              : { type: 'spring', stiffness: 300, damping: 30 }
+          }
           className="bg-white border border-brand-border rounded-3xl shadow-sm overflow-hidden"
         >
           <div 
@@ -632,7 +648,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
             <div className="flex justify-center gap-4 pt-6 border-t border-brand-border/40">
               <button
                 onClick={() => setStep(0)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-border text-xs font-semibold rounded-full text-brand-dark bg-white hover:bg-brand-dark hover:text-white cursor-pointer interactive-press"
+                className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-border text-xs font-semibold rounded-full text-brand-dark bg-white hover:bg-brand-cream cursor-pointer transition-colors"
               >
                 <Undo2 className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-45" />
                 Retake Quiz

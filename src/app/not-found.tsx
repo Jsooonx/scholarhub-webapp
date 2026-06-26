@@ -22,7 +22,7 @@ export default function NotFound() {
             </Link>
             <Link
               href="/scholarships"
-              className="inline-flex items-center justify-center px-6 py-3 border border-brand-border bg-white text-sm font-semibold rounded-full text-brand-dark hover:bg-brand-dark hover:text-white hover:border-brand-dark cursor-pointer interactive-press"
+              className="inline-flex items-center justify-center px-6 py-3 border border-brand-border bg-white text-sm font-semibold rounded-full text-brand-dark hover:bg-brand-cream cursor-pointer transition-colors"
             >
               Browse scholarships
             </Link>

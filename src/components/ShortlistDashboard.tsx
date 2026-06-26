@@ -165,7 +165,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                 </div>
                 <Link
                   href="/match"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-brand-border text-xs font-semibold rounded-full bg-white hover:bg-brand-cream text-brand-dark cursor-pointer transition-colors shadow-sm self-start sm:self-auto interactive-press"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-brand-border text-xs font-semibold rounded-full bg-white hover:bg-brand-cream text-brand-dark cursor-pointer transition-colors shadow-sm self-start sm:self-auto"
                 >
                   <Undo2 className="h-3.5 w-3.5" /> Retake Quiz
                 </Link>
