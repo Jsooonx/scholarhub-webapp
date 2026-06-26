@@ -8,124 +8,14 @@ import {
   CheckCircle2, XCircle, DollarSign, Globe, ArrowRight, Loader2, Undo2, Home
 } from 'lucide-react';
 import Link from 'next/link';
-import { allScholarships, type Scholarship, providerGroup } from '@/lib/scholarships';
+import { type Scholarship } from '@/lib/scholarships';
 import { updateProfileQuizAnswers } from '@/app/actions/profile';
 import ScholarshipCard from '@/components/ScholarshipCard';
-
-export interface QuizAnswers {
-  degree: 'bachelor' | 'master' | 'phd' | 'non-degree';
-  field: 'stem' | 'business' | 'arts' | 'social' | 'medicine' | 'any';
-  experience: 'yes' | 'no';
-  funding: 'fully' | 'any';
-  region: 'any' | 'asia' | 'europe' | 'americas' | 'oceania';
-}
+import { type QuizAnswers, filterScholarships } from '@/lib/matching';
 
 interface Props {
   initialAnswers: QuizAnswers | null;
   isAuthenticated: boolean;
-}
-
-const REGION_COUNTRIES: Record<string, string[]> = {
-  asia: ['japan', 'south-korea', 'turkey', 'china', 'singapore', 'taiwan', 'hong-kong', 'malaysia', 'saudi-arabia', 'qatar'],
-  europe: ['germany', 'united-kingdom', 'france', 'netherlands', 'belgium', 'sweden', 'italy', 'hungary', 'switzerland', 'austria', 'finland', 'ireland', 'poland', 'spain', 'denmark', 'norway', 'romania', 'russia'],
-  americas: ['united-states', 'canada'],
-  oceania: ['australia', 'new-zealand']
-};
-
-const FIELD_KEYWORDS: Record<string, string[]> = {
-  stem: ['science', 'tech', 'engineering', 'math', 'computer', 'it', 'physics', 'chemistry', 'biology', 'data', 'stem'],
-  business: ['business', 'management', 'economics', 'mba', 'finance', 'accounting', 'marketing'],
-  arts: ['art', 'music', 'design', 'architecture', 'drama', 'theater', 'creative'],
-  social: ['social', 'law', 'politics', 'international', 'sociology', 'history', 'language', 'philosophy', 'humanities', 'literature'],
-  medicine: ['medicine', 'medical', 'nursing', 'health', 'pharmacy', 'clinical', 'dental', 'veterinary']
-};
-
-export function filterScholarships(answers: QuizAnswers): { matches: Scholarship[]; isFuzzy: boolean; fuzzyLevels: string[] } {
-  const matchDegree = (s: Scholarship, degree: string) => {
-    const levels = s.degree_levels.map(l => l.toLowerCase());
-    if (degree === 'bachelor') return levels.some(l => l.includes('bachelor') || l.includes('undergraduate'));
-    if (degree === 'master') return levels.some(l => l.includes('master') || l.includes('postgraduate'));
-    if (degree === 'phd') return levels.some(l => l.includes('phd') || l.includes('doctoral') || l.includes('postdoctoral'));
-    if (degree === 'non-degree') return levels.some(l => l.includes('non-degree') || l.includes('short') || l.includes('diploma') || l.includes('certificate'));
-    return true;
-  };
-
-  const matchField = (s: Scholarship, field: string) => {
-    if (field === 'any') return true;
-    const sFields = s.fields.map(f => f.toLowerCase());
-    const keywords = FIELD_KEYWORDS[field] || [];
-    return sFields.some(sf => 
-      sf.includes('all') || 
-      sf.includes('various') || 
-      sf.includes('any') ||
-      keywords.some(kw => sf.includes(kw))
-    );
-  };
-
-  const matchExperience = (s: Scholarship, experience: string) => {
-    if (experience === 'yes') return true;
-    return !s.requirements.professional_experience_required;
-  };
-
-  const matchFunding = (s: Scholarship, funding: string) => {
-    if (funding === 'any') return true;
-    return s.funding_type.toLowerCase().includes('fully');
-  };
-
-  const matchRegion = (s: Scholarship, region: string) => {
-    if (region === 'any') return true;
-    const country = s.country ? s.country.toLowerCase() : '';
-    const pGroup = providerGroup(s.provider).toLowerCase();
-    const countries = REGION_COUNTRIES[region] || [];
-    return countries.some(c => country.includes(c) || pGroup.includes(c));
-  };
-
-  // 1. Exact match
-  let matches = allScholarships.filter(s => 
-    matchDegree(s, answers.degree) &&
-    matchField(s, answers.field) &&
-    matchExperience(s, answers.experience) &&
-    matchFunding(s, answers.funding) &&
-    matchRegion(s, answers.region)
-  );
-
-  if (matches.length > 0) {
-    return { matches, isFuzzy: false, fuzzyLevels: [] };
-  }
-
-  // 2. Fallback: Drop Region
-  let fuzzyLevels: string[] = ['Region'];
-  matches = allScholarships.filter(s => 
-    matchDegree(s, answers.degree) &&
-    matchField(s, answers.field) &&
-    matchExperience(s, answers.experience) &&
-    matchFunding(s, answers.funding)
-  );
-
-  if (matches.length > 0) {
-    return { matches, isFuzzy: true, fuzzyLevels };
-  }
-
-  // 3. Fallback: Drop Funding (allow partial)
-  fuzzyLevels.push('Funding');
-  matches = allScholarships.filter(s => 
-    matchDegree(s, answers.degree) &&
-    matchField(s, answers.field) &&
-    matchExperience(s, answers.experience)
-  );
-
-  if (matches.length > 0) {
-    return { matches, isFuzzy: true, fuzzyLevels };
-  }
-
-  // 4. Fallback: Drop Experience
-  fuzzyLevels.push('Work Experience');
-  matches = allScholarships.filter(s => 
-    matchDegree(s, answers.degree) &&
-    matchField(s, answers.field)
-  );
-
-  return { matches, isFuzzy: true, fuzzyLevels };
 }
 
 export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Props) {
@@ -164,6 +54,17 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
     funding: 'fully',
     region: 'any'
   });
+
+  const [activeDropdown, setActiveDropdown] = useState<'degree' | 'field' | 'experience' | 'funding' | 'region' | null>(null);
+
+  useEffect(() => {
+    if (!activeDropdown) return;
+    const handleOutsideClick = () => {
+      setActiveDropdown(null);
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [activeDropdown]);
 
   const stepsCount = 5;
 
@@ -590,7 +491,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
           // Matches Results View
           <div className="space-y-6 w-full">
             {/* Result header */}
-            <div className="max-w-2xl mx-auto text-center border-b border-brand-border pb-6">
+            <div className="max-w-3xl mx-auto text-center border-b border-brand-border pb-6">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark text-white mb-3">
                 Matches Found
               </span>
@@ -598,14 +499,128 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                 Your Personalized Recommendations
               </h3>
               <p className="text-xs text-brand-muted mt-2">
-                Here are scholarships matching your profile: {' '}
-                <span className="font-semibold text-brand-dark uppercase">
-                  {answers.degree} · {answers.field} · {answers.experience === 'yes' ? 'Exp' : 'No Exp'} · {answers.funding === 'fully' ? 'Fully' : 'Any'} · {answers.region}
-                </span>
+                Here are scholarships matching your profile. Adjust your options below to filter in real-time:
               </p>
 
+              {/* Live Adjust Filters Panel */}
+              <div className="mt-5 flex flex-wrap justify-center gap-2 max-w-3xl mx-auto z-20 relative">
+                {/* Degree Pill */}
+                <FilterPill
+                  label="Degree"
+                  value={answers.degree === 'non-degree' ? 'Short Course' : answers.degree}
+                  active={activeDropdown === 'degree'}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveDropdown(activeDropdown === 'degree' ? null : 'degree');
+                  }}
+                  options={[
+                    { val: 'bachelor', label: 'Bachelor' },
+                    { val: 'master', label: 'Master' },
+                    { val: 'phd', label: 'PhD / Doctoral' },
+                    { val: 'non-degree', label: 'Short Course' }
+                  ]}
+                  onChange={(val) => {
+                    const updated = { ...answers, degree: val as any };
+                    setAnswers(updated);
+                    void handleComplete(updated);
+                    setActiveDropdown(null);
+                  }}
+                />
+
+                {/* Field Pill */}
+                <FilterPill
+                  label="Field"
+                  value={answers.field === 'any' ? 'General' : answers.field}
+                  active={activeDropdown === 'field'}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveDropdown(activeDropdown === 'field' ? null : 'field');
+                  }}
+                  options={[
+                    { val: 'stem', label: 'STEM & IT' },
+                    { val: 'business', label: 'Business & Econ' },
+                    { val: 'arts', label: 'Arts & Creative' },
+                    { val: 'social', label: 'Social & Human' },
+                    { val: 'medicine', label: 'Medicine & Health' },
+                    { val: 'any', label: 'General / Any' }
+                  ]}
+                  onChange={(val) => {
+                    const updated = { ...answers, field: val as any };
+                    setAnswers(updated);
+                    void handleComplete(updated);
+                    setActiveDropdown(null);
+                  }}
+                />
+
+                {/* Experience Pill */}
+                <FilterPill
+                  label="Work Exp"
+                  value={answers.experience === 'yes' ? '2+ Yrs' : 'None / Fresh'}
+                  active={activeDropdown === 'experience'}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveDropdown(activeDropdown === 'experience' ? null : 'experience');
+                  }}
+                  options={[
+                    { val: 'yes', label: '2+ Yrs Experience' },
+                    { val: 'no', label: 'No/Less Experience' }
+                  ]}
+                  onChange={(val) => {
+                    const updated = { ...answers, experience: val as any };
+                    setAnswers(updated);
+                    void handleComplete(updated);
+                    setActiveDropdown(null);
+                  }}
+                />
+
+                {/* Funding Pill */}
+                <FilterPill
+                  label="Funding"
+                  value={answers.funding === 'fully' ? 'Strictly Fully' : 'All/Partial'}
+                  active={activeDropdown === 'funding'}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveDropdown(activeDropdown === 'funding' ? null : 'funding');
+                  }}
+                  options={[
+                    { val: 'fully', label: 'Strictly Fully' },
+                    { val: 'any', label: 'Open to All' }
+                  ]}
+                  onChange={(val) => {
+                    const updated = { ...answers, funding: val as any };
+                    setAnswers(updated);
+                    void handleComplete(updated);
+                    setActiveDropdown(null);
+                  }}
+                />
+
+                {/* Region Pill */}
+                <FilterPill
+                  label="Region"
+                  value={answers.region === 'any' ? 'Any Region' : answers.region}
+                  active={activeDropdown === 'region'}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveDropdown(activeDropdown === 'region' ? null : 'region');
+                  }}
+                  options={[
+                    { val: 'any', label: 'Any Region' },
+                    { val: 'asia', label: 'Asia' },
+                    { val: 'europe', label: 'Europe' },
+                    { val: 'americas', label: 'Americas' },
+                    { val: 'oceania', label: 'Oceania' }
+                  ]}
+                  onChange={(val) => {
+                    const updated = { ...answers, region: val as any };
+                    setAnswers(updated);
+                    void handleComplete(updated);
+                    setActiveDropdown(null);
+                  }}
+                />
+              </div>
+
               {currentResult.isFuzzy && (
-                <div className="mt-4 p-3 inline-flex items-center gap-2 rounded-xl bg-amber-50 border border-amber-100 text-[11px] text-amber-800 text-left max-w-lg font-medium leading-normal">
+                <div className="mt-5 p-3 inline-flex items-center gap-2 rounded-xl bg-amber-50 border border-amber-100 text-[11px] text-amber-800 text-left max-w-lg font-medium leading-normal">
                   <span className="text-base">💡</span>
                   <span>
                     We adjusted constraints for <strong>{currentResult.fuzzyLevels.join(' & ')}</strong> to ensure you find opportunities, rather than showing empty results.
@@ -638,7 +653,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
                 {currentResult.matches.slice(0, 9).map(s => (
                   <div key={s.slug} className="h-full flex flex-col">
-                    <ScholarshipCard scholarship={s} variant="grid" />
+                    <ScholarshipCard scholarship={s} variant="grid" quizAnswers={answers} />
                   </div>
                 ))}
               </div>
@@ -665,6 +680,63 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
         </div>
       </motion.div>
     </div>
+    </div>
+  );
+}
+
+function FilterPill({
+  label,
+  value,
+  active,
+  onClick,
+  options,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  active: boolean;
+  onClick: (e: React.MouseEvent) => void;
+  options: { val: string; label: string }[];
+  onChange: (val: string) => void;
+}) {
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        onClick={onClick}
+        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs font-semibold transition-colors cursor-pointer select-none ${
+          active
+            ? 'bg-brand-dark text-white border-brand-dark'
+            : 'bg-white text-brand-dark border-brand-border hover:bg-brand-cream'
+        }`}
+      >
+        <span className="opacity-60 font-normal">
+          {label}:
+        </span>
+        <span className="capitalize">{value}</span>
+        <span className="text-[10px] ml-0.5 opacity-70">
+          ▼
+        </span>
+      </button>
+
+      {active && (
+        <div className="absolute left-1/2 -translate-x-1/2 mt-1.5 z-40 min-w-[150px] bg-white border border-brand-border rounded-xl shadow-xl py-1 overflow-hidden animate-fade-in">
+          {options.map((opt) => (
+            <button
+              key={opt.val}
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onChange(opt.val);
+              }}
+              className="w-full text-left px-3 py-2 text-xs font-semibold text-brand-dark hover:bg-brand-cream cursor-pointer transition-colors block"
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

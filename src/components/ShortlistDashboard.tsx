@@ -10,7 +10,7 @@ import ApplicationTracker from '@/components/ApplicationTracker';
 import DeadlineCalendar from '@/components/DeadlineCalendar';
 import SplitText from '@/components/SplitText';
 import { Kanban, List, LayoutGrid, Heart, Calendar, Compass, Undo2, ArrowRight, GraduationCap } from 'lucide-react';
-import { filterScholarships, type QuizAnswers } from '@/components/ScholarMatchQuiz';
+import { filterScholarships, type QuizAnswers } from '@/lib/matching';
 import { useShortlist } from '@/components/ShortlistProvider';
 
 interface Props {
