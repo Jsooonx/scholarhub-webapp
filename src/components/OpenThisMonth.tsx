@@ -57,9 +57,9 @@ const now = new Date();
 const monthLabel = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
 const sectionTitle = openList.length > 0
   ? `Open in ${monthLabel}`
-  : "Editor's pick";
+  : "Featured Scholarships";
 
-export default function EditorsPick() {
+export default function OpenThisMonth() {
   if (!mainScholarship) return null;
   const mainGroup = providerGroup(mainScholarship.provider);
   const mainStatus = getDeadlineStatus(mainScholarship);

@@ -1,6 +1,6 @@
 
 import Hero from "@/components/Hero";
-import EditorsPick from "@/components/EditorsPick";
+import OpenThisMonth from "@/components/OpenThisMonth";
 import AdBanner from "@/components/AdBanner";
 import Trending from "@/components/Trending";
 import Inspiration from "@/components/Inspiration";
@@ -63,8 +63,8 @@ export default function Home() {
         {/* Hero Area */}
         <Hero />
 
-        {/* Editor's Pick Section */}
-        <EditorsPick />
+        {/* Featured Scholarships Section */}
+        <OpenThisMonth />
 
         {/* Ad Banner Promo */}
         <AdBanner />
