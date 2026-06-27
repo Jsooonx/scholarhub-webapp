@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { StaggerContainer, StaggerItem } from './StaggerContainer';
 import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
 
 function cleanDescription(raw: string | null): string {
@@ -35,17 +35,11 @@ export default function LatestPosts() {
           Latest additions
         </h2>
 
-        <div className="flex flex-col gap-8">
-          {latest.map((s, idx) => {
+        <StaggerContainer className="flex flex-col gap-8">
+          {latest.map((s) => {
             const g = providerGroup(s.provider);
             return (
-              <motion.div
-                key={s.slug}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.05 }}
-              >
+              <StaggerItem key={s.slug}>
                 <Link
                   href={`/scholarships/${s.slug}`}
                   className="flex flex-col md:flex-row gap-6 md:items-center group cursor-pointer pb-8 border-b border-brand-border last:border-b-0 last:pb-0"
@@ -81,10 +75,10 @@ export default function LatestPosts() {
                     </span>
                   </div>
                 </Link>
-              </motion.div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
 
         <div className="flex justify-center mt-12">
           <Link

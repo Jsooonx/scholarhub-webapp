@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import DeadlineStatus from '@/components/DeadlineStatus';
 import SaveScholarshipButton from '@/components/SaveScholarshipButton';
+import CompareCTA from '@/components/CompareCTA';
 import {
   getScholarshipBySlug,
   getAllSlugs,
@@ -350,6 +351,10 @@ export default async function ScholarshipDetailPage({
 
                   <div className="mt-3">
                     <SaveScholarshipButton slug={s.slug} variant="wide" />
+                  </div>
+
+                  <div className="mt-2">
+                    <CompareCTA currentScholarship={s} />
                   </div>
 
                   <p className="text-[10px] text-brand-muted text-center mt-3">
