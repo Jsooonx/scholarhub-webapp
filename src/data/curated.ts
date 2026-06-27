@@ -17,7 +17,7 @@ export const curatedPicks: CuratedPick[] = [
     slug: 'mext-scholarship-research-students-masterphd-2027',
     badge: 'No IELTS Required',
     editorReason: 'A premier research pathway offering complete academic freedom in Japan with zero return bonds. Candidates can choose between the nationwide Embassy route or securing a direct nomination from a Japanese host institution.',
-    insiderTip: 'MEXT applications are strictly split into Embassy and University recommendations. For undergraduate tracks, written exams are the ultimate filter, while research applicants can strategically bypass these tests by securing a direct professor nomination. Click to explore both tracks in our detailed guide.'
+    insiderTip: 'MEXT applications are split into Embassy and University tracks. For undergraduate applicants, written exams are the ultimate filter, whereas research applicants can strategically bypass these tests via direct professor nomination. Click to explore both tracks.'
   },
 
   // South Korea (GKS)
