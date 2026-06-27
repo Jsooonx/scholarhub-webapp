@@ -151,7 +151,18 @@ export default function ScholarshipTrackDetailView({
                     {dur}
                   </span>
                 )}
-                <DeadlineStatus status={status} />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={status.label}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.12 }}
+                    className="inline-block"
+                  >
+                    <DeadlineStatus status={status} />
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
               {s.description && (
@@ -185,51 +196,55 @@ export default function ScholarshipTrackDetailView({
               <div className="rounded-2xl border border-brand-border bg-brand-cream p-6 sticky top-24">
                 <p className="text-xs font-bold uppercase tracking-wider text-brand-muted mb-4">Quick info</p>
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeTrack}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                    className="space-y-3 mb-6"
-                  >
-                    <div className="pb-3 border-b border-brand-border">
-                      <p className="text-[10px] text-brand-muted mb-1.5 font-medium uppercase tracking-wider">Application status</p>
-                      <DeadlineStatus status={status} size="sm" />
+                <div className="space-y-3 mb-6">
+                  <div className="pb-3 border-b border-brand-border">
+                    <p className="text-[10px] text-brand-muted mb-1.5 font-medium uppercase tracking-wider">Application status</p>
+                    <div className="h-10 flex items-center relative overflow-hidden">
+                      <AnimatePresence mode="popLayout">
+                        <motion.div
+                          key={status.label}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.18 }}
+                          className="absolute inset-x-0 top-1/2 -translate-y-1/2"
+                        >
+                          <DeadlineStatus status={status} size="sm" />
+                        </motion.div>
+                      </AnimatePresence>
                     </div>
-                    {s.country && (
-                      <div className="flex items-center gap-2.5 text-xs text-brand-dark">
-                        <MapPin className="h-4 w-4 text-brand-muted flex-shrink-0" />
-                        <span>{s.country}</span>
-                      </div>
-                    )}
-                    {s.degree_levels.length > 0 && (
-                      <div className="flex items-center gap-2.5 text-xs text-brand-dark">
-                        <GraduationCap className="h-4 w-4 text-brand-muted flex-shrink-0" />
-                        <span>{s.degree_levels.join(', ')}</span>
-                      </div>
-                    )}
-                    {dur && (
-                      <div className="flex items-center gap-2.5 text-xs text-brand-dark">
-                        <Clock className="h-4 w-4 text-brand-muted flex-shrink-0" />
-                        <span>{dur}</span>
-                      </div>
-                    )}
-                    {s.fields.length > 0 && s.fields[0].length < 60 && (
-                      <div className="flex items-start gap-2.5 text-xs text-brand-dark">
-                        <BookOpen className="h-4 w-4 text-brand-muted flex-shrink-0 mt-0.5" />
-                        <span className="line-clamp-2">{s.fields.slice(0, 3).join(', ')}{s.fields.length > 3 ? '…' : ''}</span>
-                      </div>
-                    )}
-                    {s.requirements.country_restrictions.length > 0 && (
-                      <div className="flex items-start gap-2.5 text-xs text-brand-dark">
-                        <Globe className="h-4 w-4 text-brand-muted flex-shrink-0 mt-0.5" />
-                        <span>Open to: {s.requirements.country_restrictions.join(', ')}</span>
-                      </div>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
+                  </div>
+                  {s.country && (
+                    <div className="flex items-center gap-2.5 text-xs text-brand-dark">
+                      <MapPin className="h-4 w-4 text-brand-muted flex-shrink-0" />
+                      <span>{s.country}</span>
+                    </div>
+                  )}
+                  {s.degree_levels.length > 0 && (
+                    <div className="flex items-center gap-2.5 text-xs text-brand-dark">
+                      <GraduationCap className="h-4 w-4 text-brand-muted flex-shrink-0" />
+                      <span>{s.degree_levels.join(', ')}</span>
+                    </div>
+                  )}
+                  {dur && (
+                    <div className="flex items-center gap-2.5 text-xs text-brand-dark">
+                      <Clock className="h-4 w-4 text-brand-muted flex-shrink-0" />
+                      <span>{dur}</span>
+                    </div>
+                  )}
+                  {s.fields.length > 0 && s.fields[0].length < 60 && (
+                    <div className="flex items-start gap-2.5 text-xs text-brand-dark">
+                      <BookOpen className="h-4 w-4 text-brand-muted flex-shrink-0 mt-0.5" />
+                      <span className="line-clamp-2">{s.fields.slice(0, 3).join(', ')}{s.fields.length > 3 ? '…' : ''}</span>
+                    </div>
+                  )}
+                  {s.requirements.country_restrictions.length > 0 && (
+                    <div className="flex items-start gap-2.5 text-xs text-brand-dark">
+                      <Globe className="h-4 w-4 text-brand-muted flex-shrink-0 mt-0.5" />
+                      <span>Open to: {s.requirements.country_restrictions.join(', ')}</span>
+                    </div>
+                  )}
+                </div>
 
                 {officialUrl ? (
                   <a
@@ -451,7 +466,20 @@ export default function ScholarshipTrackDetailView({
                     Application window
                   </h2>
                   <div className="rounded-2xl border border-brand-border bg-white p-5 space-y-4">
-                    <DeadlineStatus status={status} />
+                    <div className="h-10 flex items-center relative overflow-hidden">
+                      <AnimatePresence mode="popLayout">
+                        <motion.div
+                          key={status.label}
+                          initial={{ opacity: 0, y: 5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.18 }}
+                          className="absolute inset-x-0 top-1/2 -translate-y-1/2"
+                        >
+                          <DeadlineStatus status={status} />
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
 
                     {currentTrackData ? (
                       <div className="text-xs text-brand-dark space-y-1">

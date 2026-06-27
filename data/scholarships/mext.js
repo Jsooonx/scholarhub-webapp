@@ -1,7 +1,7 @@
 const MEXT_BENEFITS_117 = [
   'Full tuition fee coverage (including preparatory school)',
   'Monthly living allowance of approx. ¥117,000',
-  'Round-trip airfare (Indonesia ↔ Japan)',
+  'Round-trip airfare between Indonesia and Japan',
   'Student visa fee waiver',
   'No bond / service obligation',
 ];
@@ -158,7 +158,7 @@ const mext = [
     benefits: [
       'Full tuition fee coverage',
       'Monthly living allowance of approx. ¥143,000 (research student) / ¥144,000 (Master) / ¥145,000 (PhD)',
-      'Round-trip airfare (Indonesia ↔ Japan)',
+      'Round-trip airfare between Indonesia and Japan',
       'Student visa fee waiver',
       'Assistance with accommodation',
       'No bond / service obligation',
@@ -218,7 +218,7 @@ const mext = [
     benefits: [
       'Full tuition fee coverage',
       'Monthly living allowance of approx. ¥117,000',
-      'Round-trip airfare (Indonesia ↔ Japan, 1 time)',
+      'Round-trip airfare between Indonesia and Japan',
       'Student visa fee waiver',
       'No bond / service obligation',
       'Certificate of completion upon finishing the program',
@@ -326,7 +326,7 @@ const mext = [
     benefits: [
       'Full tuition fee coverage',
       'Monthly living allowance of approx. ¥143,000',
-      'Round-trip airfare (Indonesia ↔ Japan)',
+      'Round-trip airfare between Indonesia and Japan',
       'Student visa fee waiver',
       'No bond / service obligation',
       'Includes 6-month Japanese language training',

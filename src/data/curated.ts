@@ -10,22 +10,22 @@ export const curatedPicks: CuratedPick[] = [
   {
     slug: 'mext-scholarship-undergraduate-gakubu-2027',
     badge: 'Fully Funded S1',
-    editorReason: 'The MEXT Undergraduate Scholarship offers a rare opportunity for high school graduates to pursue a full Bachelor\'s degree in Japan, including 1 year of preparatory Japanese language and academic foundation courses.',
-    insiderTip: 'The written exams (Math, English, and Chemistry/Physics/Japanese depending on your major) are extremely challenging. Practice past papers extensively—they are the key filter for the interview stage.'
+    editorReason: 'The MEXT Gakubu scholarship is a highly competitive, fully funded academic pathway that benchmarks applicants through a centralized, rigorous written examination rather than just school grades. It includes 1 year of intensive Japanese language and university preparatory culture training.',
+    insiderTip: 'MEXT applications are strictly split into Embassy and University recommendations. For undergraduate tracks, written exams are the ultimate filter, while research applicants can strategically bypass these tests by securing a direct professor nomination. Click to explore both tracks in our detailed guide.'
   },
   {
     slug: 'mext-scholarship-research-students-masterphd-2027',
     badge: 'No IELTS Required',
-    editorReason: 'The MEXT Research Scholarship is one of the most prestigious fully funded pathways to Japan. It offers generous monthly stipends, zero return bonds, and multiple application routes via embassy or university recommendation.',
-    insiderTip: 'The research proposal (Research Plan) is the single most critical factor. Reach out to prospective Japanese professors early to secure an unofficial acceptance before the final selection round.'
+    editorReason: 'A premier research pathway offering complete academic freedom in Japan with zero return bonds. Candidates can choose between the nationwide Embassy route or securing a direct nomination from a Japanese host institution.',
+    insiderTip: 'MEXT applications are strictly split into Embassy and University recommendations. For undergraduate tracks, written exams are the ultimate filter, while research applicants can strategically bypass these tests by securing a direct professor nomination. Click to explore both tracks in our detailed guide.'
   },
 
   // South Korea (GKS)
   {
     slug: 'gks-undergraduate-scholarship-global-korea-scholarship-bachelors',
     badge: 'No IELTS Required',
-    editorReason: 'GKS Undergraduate is the prime pathway to study S1 in South Korea for free, covering flights, accommodation, and offering a robust monthly allowance.',
-    insiderTip: 'Highlight any interest in Korean culture, language, or prior academic accomplishments in your Self-Introduction and Study Plan. Getting a TOPIK level or learning basic Hangul beforehand adds great points.'
+    editorReason: 'South Korea\'s ultimate fully funded scheme, unique for its dual-track system that allows applicants to strategically choose between multi-university options or localized regional quotas.',
+    insiderTip: 'Success in GKS depends entirely on choosing the right gateway. You must strategically weigh the multi-choice Embassy Track against the direct, single-choice University Track which offers dedicated regional quotas. Click to unlock our full breakdown of both pathways.'
   },
   {
     slug: 'gks-graduate-scholarship-global-korea-scholarship-masters-phd',

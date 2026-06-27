@@ -198,32 +198,14 @@ export default async function ScholarshipDetailPage({
       />
 
 
-      <main className="flex-grow">
-        {/* ── Hero band ─────────────────────────────────────────────────── */}
-        <div className="border-b border-brand-border bg-brand-bg">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-1.5 text-xs text-brand-muted mb-6">
-              <Link href="/" className="hover:text-brand-dark transition-colors">Home</Link>
-              <span>·</span>
-              <Link href="/scholarships" className="hover:text-brand-dark transition-colors">Scholarships</Link>
-              <span>·</span>
-              <Link href={`/providers/${group}`} className="hover:text-brand-dark transition-colors">{s.provider}</Link>
-              <span>·</span>
-              <span className="text-brand-dark font-medium line-clamp-1">{s.name}</span>
-            </nav>
-
-            <ScholarshipTrackDetailView
-              scholarship={s}
-              tracks={tracks}
-              dur={dur}
-              initialStatus={status}
-              partnerLogos={partnerLogos}
-              related={related}
-            />
-          </div>
-        </div>
-      </main>
+      <ScholarshipTrackDetailView
+        scholarship={s}
+        tracks={tracks}
+        dur={dur}
+        initialStatus={status}
+        partnerLogos={partnerLogos}
+        related={related}
+      />
 
       <Footer />
     </div>
