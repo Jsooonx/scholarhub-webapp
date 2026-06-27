@@ -1,5 +1,6 @@
 
 import Hero from "@/components/Hero";
+import CuratedPicks from "@/components/CuratedPicks";
 import OpenThisMonth from "@/components/OpenThisMonth";
 import AdBanner from "@/components/AdBanner";
 import Trending from "@/components/Trending";
@@ -62,6 +63,9 @@ export default function Home() {
       <main className="flex-grow">
         {/* Hero Area */}
         <Hero />
+
+        {/* Handpicked Curated Picks */}
+        <CuratedPicks />
 
         {/* Featured Scholarships Section */}
         <OpenThisMonth />
