@@ -10,8 +10,8 @@ export const curatedPicks: CuratedPick[] = [
   {
     slug: 'mext-scholarship-undergraduate-gakubu-2027',
     badge: 'Fully Funded S1',
-    editorReason: 'The MEXT Gakubu scholarship is a highly competitive, fully funded academic pathway that benchmarks applicants through a centralized, rigorous written examination rather than just school grades. It includes 1 year of intensive Japanese language and university preparatory culture training.',
-    insiderTip: 'MEXT applications are strictly split into Embassy and University recommendations. For undergraduate tracks, written exams are the ultimate filter, while research applicants can strategically bypass these tests by securing a direct professor nomination. Click to explore both tracks in our detailed guide.'
+    editorReason: 'The MEXT Gakubu scholarship is a highly competitive, fully funded pathway that benchmarks applicants through a rigorous written examination rather than just school grades. It includes 1 year of intensive Japanese language and university preparatory training.',
+    insiderTip: 'MEXT applications are split into Embassy and University tracks. For undergraduate applicants, written exams are the ultimate filter, whereas research applicants can strategically bypass these tests via direct professor nomination. Click to explore both tracks.'
   },
   {
     slug: 'mext-scholarship-research-students-masterphd-2027',
