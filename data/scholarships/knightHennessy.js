@@ -1,0 +1,56 @@
+const knightHennessy = [
+  {
+    name: 'Knight-Hennessy Scholars - Stanford University',
+    provider: 'Knight-Hennessy Scholars / Stanford University',
+    country: 'United States',
+    degree_levels: ['Master', 'PhD', 'Professional Degree'],
+    program_type: 'Full Stanford graduate scholarship and leadership development programme',
+    fields: ['All full-time graduate degree programmes at Stanford University'],
+    funding_type: 'Fully Funded',
+    duration_months: { min: 12, max: 36 },
+    deadline: '6 October 2026 at 1:00 pm Pacific Time for the 2027 cohort',
+    application_period: ['Applications for the 2027 cohort are open; KHS deadline 6 October 2026'],
+    important_dates: [
+      'Knight-Hennessy Scholars deadline: 6 October 2026, 1:00 pm Pacific Time',
+      'Stanford graduate programme application must be submitted by the earlier of the programme deadline or 1 December 2026',
+      'Applicants must submit separate but concurrent applications to KHS and to Stanford graduate admission',
+    ],
+    requirements: {
+      first_degree_required: true,
+      professional_experience_required: null,
+      professional_experience_years: null,
+      country_restrictions: [],
+      raw_items: [
+        'Open to citizens and residents of all countries',
+        'Must apply to, be accepted by, and enroll in a full-time Stanford graduate degree programme',
+        'Eligible degrees include DMA, JD, MA, MBA, MD, MFA, MPP, MS, PhD, and joint or dual degrees',
+        'For the 2027 cohort, first bachelor\'s degree generally must have been earned in January 2020 or later',
+        'Current students graduating by September 2027 may apply',
+        'No restriction by field, career aspiration, age, college, university, or nationality',
+      ],
+    },
+    benefits: [
+      'Tuition and associated fees for up to three years',
+      'Stipend for living and academic expenses',
+      'Annual travel stipend for one economy-class trip to and from Stanford',
+      'One-time relocation stipend for newly enrolling scholars',
+      'Supplemental academic enrichment funding may be available in years two and three',
+      'Leadership development programming through Knight-Hennessy Scholars',
+    ],
+    amounts: ['Full tuition and fees + living stipend + annual travel stipend'],
+    target_group: 'High-potential graduate applicants from any country applying to full-time Stanford graduate programmes and seeking a multidisciplinary leadership development community.',
+    official_url: 'https://knight-hennessy.stanford.edu/',
+    description: 'Knight-Hennessy Scholars is Stanford University\'s global graduate scholarship and leadership programme. It funds up to three years of graduate study across Stanford\'s seven schools and is open to applicants from all countries and all fields.',
+    application_process: [
+      'Choose an eligible full-time Stanford graduate degree programme',
+      'Submit the Knight-Hennessy Scholars application by 6 October 2026, 1:00 pm Pacific Time',
+      'Submit the separate Stanford graduate programme application by the earlier of the programme deadline or 1 December 2026',
+      'Complete all programme-specific tests, English proficiency, essays, and recommendations required by Stanford',
+      'Finalists participate in the KHS selection process',
+    ],
+    source: '01_overview.md',
+    source_file: 'data/raw/knight-hennessy/01_overview.md',
+  },
+];
+
+module.exports = knightHennessy;

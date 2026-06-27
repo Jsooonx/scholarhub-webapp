@@ -27,13 +27,17 @@ Stack: Next.js 16 + React 19 + Supabase + Tailwind v4
 Animations: Framer Motion, GSAP, Lenis (smooth scroll)
 Auth: Supabase Auth (Google OAuth + Email magic link)
 Email: Resend (newsletter + notifications)
-Data: Static JSON generated from scripts/reextract.js
+Data: Static JSON generated from data/scholarships/index.js (per-country files)
 ```
 
 ### Data Flow
 
 ```
-research → scripts/reextract.js (add arrays)
+research → data/scholarships/<country>.js (add arrays)
+                ↓
+      data/scholarships/index.js (imports all + assembly)
+                ↓
+      node scripts/reextract.js (thin wrapper → requires index.js)
                 ↓
       data/scholarships.json (auto-generated)
                 ↓
@@ -89,33 +93,57 @@ npx next build
 
 ```
 data/
-├── scholarships.json          ← Main file read by the app (DO NOT edit manually!)
+├── scholarships.json              ← Main file read by the app (DO NOT edit manually!)
 ├── README.md
-└── raw/                       ← 48 provider folders with scraped .md files
+├── scholarships/                  ← Per-country scholarship data files
+│   ├── index.js                   ← Assembly: imports all countries + writes JSON
+│   ├── daad.js                    ← Germany (DAAD)
+│   ├── mext.js                    ← Japan (MEXT)
+│   ├── turkiye.js                 ← Turkey
+│   ├── saudiMoe.js                ← Saudi Arabia
+│   ├── qatar.js                   ← Qatar
+│   ├── hongKong.js                ← Hong Kong
+│   ├── malaysia.js                ← Malaysia
+│   ├── denmark.js                 ← Denmark
+│   └── ... (48 files total, one per country array)
+└── raw/                           ← 48 provider folders with scraped .md files
     ├── daad/
     ├── mext/
     ├── turkiyeburslari/
-    ├── chevening/
-    ├── australia-awards/
-    ├── gks/
-    ├── singa/
-    ├── ...
-    └── [35+ more folders]
+    └── [45+ more folders]
 
 scripts/
-├── reextract.js               ← Master data file — all scholarship arrays + assembly
-├── crawl.js                   ← Auto-discover web crawler
-└── jina_fetch.js              ← Jina Reader for JS-heavy sites
+├── reextract.js                   ← Thin wrapper — just requires data/scholarships/index.js
+├── crawl.js                       ← Auto-discover web crawler
+└── jina_fetch.js                  ← Jina Reader for JS-heavy sites
 
 src/
 └── lib/
-    └── scholarships.ts        ← Core pipeline — types, groups, meta, filters, logos, images
+    └── scholarships.ts            ← Core pipeline — types, groups, meta, filters, logos, images
 
 supabase/
-└── migrations/                ← 8 SQL migration files for auth & features
+└── migrations/                    ← 8 SQL migration files for auth & features
 ```
 
-> ⚠️ **Never edit `data/scholarships.json` directly!** It's the output of `scripts/reextract.js`.
+> ⚠️ **Never edit `data/scholarships.json` directly!** It's the output of `data/scholarships/index.js`.
+> Instead, edit the per-country file in `data/scholarships/<country>.js`.
+
+### Why Per-Country Files?
+
+- **Before**: 1 file `scripts/reextract.js` — ~11K lines, 680KB
+- **After**: 48 files in `data/scholarships/`, each 3-38KB
+- Editing Malaysia? Open `data/scholarships/malaysia.js` → no scrolling through 11K lines
+- Adding a new country? Create `data/scholarships/new-country.js` → register in `index.js`
+
+### Quick Commands
+
+```bash
+# Generate JSON from all country files (after editing any data)
+node scripts/reextract.js
+
+# Build
+npx next build
+```
 
 ---
 
@@ -124,84 +152,77 @@ supabase/
 ```
 1. Research scholarships for a country
         ↓
-2. Add scholarship arrays to scripts/reextract.js
+2. Create/edit data/scholarships/<country>.js
         ↓
-3. Update COUNTRY_PROGRAMS mapping
+3. Register the array in data/scholarships/index.js (COUNTRY_PROGRAMS + spread)
         ↓
-4. Add arrays to the scholarships spread
+4. node scripts/reextract.js (thin wrapper → triggers data/scholarships/index.js)
         ↓
-5. node scripts/reextract.js
-        ↓
-6. Update src/lib/scholarships.ts:
+5. Update src/lib/scholarships.ts:
    - providerGroup()      ← map provider names → country slug
    - providerMeta         ← flag, description, website
    - getDeadlineStatus()  ← deadline logic
    - getScholarshipImage()← hero images
    - getMatchedUniversityLogos() ← partner uni logos
         ↓
-7. npx next build
+6. npx next build
         ↓
-8. Verify in browser
+7. Verify in browser
 ```
 
 ---
 
 ## 5. Adding a New Country / Provider
 
-### Step 1 — Prepare Data in `scripts/reextract.js`
+### Step 1 — Create Data File in `data/scholarships/`
 
-Find the end of the file (before `const COUNTRY_PROGRAMS`). Add a new array:
+Create a new file e.g. `data/scholarships/my-new-country.js`:
 
 ```js
 // ── My New Country ───────────────────────────────────────────────
 const myNewCountry = [
   {
-    name: 'Scholarship Name Here',
-    provider: 'Provider Name',
-    country: 'Country Name',
-    degree_levels: ['Bachelor', 'Master', 'PhD'],
-    fields: ['All disciplines'],
-    funding_type: 'Fully Funded',       // or 'Partially Funded'
+    name: "Scholarship Name Here",
+    provider: "Provider Name",
+    country: "Country Name",
+    degree_levels: ["Bachelor", "Master", "PhD"],
+    fields: ["All disciplines"],
+    funding_type: "Fully Funded",
     duration_months: { min: 12, max: 48 },
-    deadline: '15 January (annually)',
-    application_period: ['October – January'],
-    important_dates: [
-      'Applications open: October',
-      'Applications close: 15 January',
-    ],
+    deadline: "15 January (annually)",
+    application_period: ["October – January"],
     requirements: {
       first_degree_required: true,
       professional_experience_required: null,
       professional_experience_years: null,
-      country_restrictions: ['Indonesia'],
-      raw_items: [
-        'Requirement item 1',
-        'Requirement item 2',
-      ],
+      country_restrictions: ["Indonesia"],
+      raw_items: ["Requirement item 1", "Requirement item 2"],
     },
-    benefits: [
-      'Full tuition fee',
-      'Monthly living allowance',
-    ],
-    amounts: ['$X,000/year'],
-    target_group: 'Description of ideal candidate.',
-    official_url: 'https://official-website.com',
-    description: 'Detailed scholarship description.',
-    application_process: [
-      'Step 1: Apply online',
-      'Step 2: Submit documents',
-    ],
-    source: 'source_file_name.md',
+    benefits: ["Full tuition fee", "Monthly living allowance"],
+    amounts: ["$X,000/year"],
+    target_group: "Description of ideal candidate.",
+    official_url: "https://official-website.com",
+    description: "Detailed scholarship description.",
+    application_process: ["Step 1: Apply online", "Step 2: Submit documents"],
+    source: "source_file_name.md",
     source_file: null,
   },
   // Add more entries...
 ];
+
+module.exports = myNewCountry;
 ```
 
-### Step 2 — Add to COUNTRY_PROGRAMS
+### Step 2 — Register in `data/scholarships/index.js`
 
-Find the `const COUNTRY_PROGRAMS = {` section and add:
+Two things to add:
 
+**A. Add import at the top:**
+```js
+const myNewCountry = require('./my-new-country');
+```
+
+**B. Add to COUNTRY_PROGRAMS:**
 ```js
 const COUNTRY_PROGRAMS = {
   // ...existing entries...
@@ -209,15 +230,12 @@ const COUNTRY_PROGRAMS = {
 };
 ```
 
-### Step 3 — Add to Scholarships Spread
-
-Find the `const scholarships = [...` line and add your array:
-
+**C. Add to the scholarships spread:**
 ```js
 const scholarships = [...daad, ...mext, ..., ...myNewCountry].map(...)
 ```
 
-### Step 4 — Generate JSON
+### Step 3 — Generate JSON
 
 ```bash
 node scripts/reextract.js
@@ -520,11 +538,11 @@ if (s) console.log(providerGroup(s.provider));
 ### Commands
 
 ```bash
-# Generate data
+# Generate data (delegates to data/scholarships/index.js)
 node scripts/reextract.js
 
-# Check syntax
-node --check scripts/reextract.js
+# Check syntax of a data file
+node --check data/scholarships/my-country.js
 
 # Build
 npx next build
@@ -538,8 +556,9 @@ curl -X POST https://scholarhub.jsooonx.my.id/api/notify ...
 
 ### Files to edit when adding a new country
 
-1. `scripts/reextract.js` — Scholarship data arrays
-2. `src/lib/scholarships.ts` — 5 functions: `providerGroup`, `providerMeta`, `getDeadlineStatus`, `getScholarshipImage`, `getMatchedUniversityLogos`
+1. `data/scholarships/<country>.js` — Scholarship data arrays
+2. `data/scholarships/index.js` — Import + register in COUNTRY_PROGRAMS + spread
+3. `src/lib/scholarships.ts` — 5 functions: `providerGroup`, `providerMeta`, `getDeadlineStatus`, `getScholarshipImage`, `getMatchedUniversityLogos`
 
 ### Files you NEVER need to edit manually
 
