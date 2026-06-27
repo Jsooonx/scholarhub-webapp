@@ -159,7 +159,7 @@ export const scholarshipTracks: Record<string, ScholarshipTracks> = {
   'mext-scholarship-undergraduate-gakubu-2027': {
     embassy: {
       title: 'Embassy Recommendation (G-to-G)',
-      description: 'Apply through the Embassy of Japan in Jakarta. High school graduates undergo challenging national written exams in major Indonesian cities (Jakarta, Surabaya, Medan, etc.) before final selection.',
+      description: 'Apply through the Embassy of Japan in Jakarta. High school graduates undergo challenging national written exams in major Indonesian cities (Jakarta, Surabaya, Medan, etc.) before final selection. The entire process from application to departure takes approximately 1 full year. Ensure all documents are translated into English or Japanese by an official translator.',
       requirements: [
         'Must be an Indonesian citizen.',
         'Must be a high school graduate (or hold an equivalent qualification) by the departure date.',
@@ -167,20 +167,20 @@ export const scholarshipTracks: Record<string, ScholarshipTracks> = {
         'Must be willing to learn Japanese and undergo 1 year of preparatory foundation studies in Japan.'
       ],
       process: [
-        'Step 1: Check the Gakubu scholarship announcement on the Japanese Embassy website (opens in April).',
-        'Step 2: Register online and mail your high school transcripts, graduation certificate, and recommendation letters to the Japanese Embassy.',
-        'Step 3: Attend written examinations (Mathematics, English, and Chemistry/Physics/Biology depending on your major) in your chosen test center.',
-        'Step 4: Shortlisted candidates attend the interview round at the Embassy in Jakarta.',
-        'Step 5: Pass Primary Screening. The Embassy nominates your dossier to MEXT Tokyo.',
-        'Step 6: MEXT Tokyo performs secondary evaluation and arranges your placement in a Japanese preparatory school.',
-        'Step 7: Final results are announced in January/February.'
+        'Step 1: Check the Gakubu scholarship announcement on the Japanese Embassy website in early April.',
+        'Step 2: Register online and submit your high school transcripts, graduation certificate, and recommendation letter to the Japanese Embassy.',
+        'Step 3: Attend written examinations covering Mathematics, English, and Chemistry, Physics, or Japanese depending on your chosen major.',
+        'Step 4: Shortlisted candidates attend the interview round at the Japanese Embassy.',
+        'Step 5: Pass the Primary Screening. The Embassy then nominates successful candidates to MEXT in Tokyo for the final round.',
+        'Step 6: MEXT Tokyo conducts the Secondary Screening to officially approve the scholarship winners.',
+        'Step 7: Final results and university preparatory school placements are officially announced between January and February.'
       ],
       deadlines: 'April to May annually.',
       url: 'https://www.id.emb-japan.go.jp/itpr_id/sch_ug.html'
     },
     university: {
       title: 'University Recommendation (U-to-U)',
-      description: 'Direct university recommendation for S1 is extremely rare and typically limited to specific collaborative agreements between Japanese universities and designated foreign high schools or international schools.',
+      description: 'Direct university recommendation for S1 is extremely rare and typically limited to specific collaborative agreements between Japanese universities and designated foreign high schools or international schools. Timeline varies significantly depending on the host university agreement. Deadlines are typically much earlier than the embassy track.',
       requirements: [
         'Must be an Indonesian citizen.',
         'Must be nominated by a partner high school that holds a direct nomination agreement with a Japanese university.',
