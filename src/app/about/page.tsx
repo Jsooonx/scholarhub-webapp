@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import Footer from '@/components/Footer';
 import { allScholarships, providerMeta, BASE_URL } from '@/lib/scholarships';
-import { BookOpen, Globe, GraduationCap, Search, Mail } from 'lucide-react';
+import { BookOpen, Globe, GraduationCap, Search, Mail, Compass, Kanban, Calendar, SlidersHorizontal } from 'lucide-react';
 import SplitText from '@/components/SplitText';
 
 export const metadata: Metadata = {
@@ -131,8 +131,107 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Core Features */}
+          <section className="border-t border-brand-border pt-16">
+            <h2 className="font-serif text-3xl font-bold text-brand-dark mb-4 text-center">Core Features</h2>
+            <p className="text-sm text-brand-muted text-center max-w-xl mx-auto mb-10">
+              ScholarHub offers powerful tools to simplify your scholarship hunt, organize applications, and track milestones.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Feature 1: ScholarMatch */}
+              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
+                  <Compass className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-semibold text-brand-dark mb-2">ScholarMatch Quiz</h3>
+                  <p className="text-xs text-brand-muted leading-relaxed mb-3">
+                    A smart 30-second wizard that matches your level, field, experience, funding, and region with our directory.
+                  </p>
+                  <ul className="space-y-1.5 text-[11px] text-brand-muted">
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Match Checklist:</strong> Instantly check which of the 5 criteria match on each card.
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Live Adjust Panel:</strong> Tweak your profile options directly on the results grid.
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Fuzzy Match Logic:</strong> Dynamically adapts filters to ensure zero empty results pages.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Feature 2: Application Tracker */}
+              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
+                  <Kanban className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-semibold text-brand-dark mb-2">Shortlist & Tracker Board</h3>
+                  <p className="text-xs text-brand-muted leading-relaxed mb-3">
+                    Bookmark your favorite scholarships and manage your pipelines on a dedicated Kanban Board.
+                  </p>
+                  <ul className="space-y-1.5 text-[11px] text-brand-muted">
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Pipeline Stages:</strong> Move items from Shortlisted, Applying, to Outcome.
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Personal Notes:</strong> Keep documentation links, essay drafts, or status reminders.
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Supabase Syncing:</strong> Save your dashboard permanently across multiple devices.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Feature 3: Smart Calendar */}
+              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
+                  <Calendar className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-semibold text-brand-dark mb-2">Deadline Calendar</h3>
+                  <p className="text-xs text-brand-muted leading-relaxed mb-3">
+                    A visual monthly schedule that consolidates the deadlines of all your shortlisted programs.
+                  </p>
+                  <ul className="space-y-1.5 text-[11px] text-brand-muted">
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Color-coded Indicators:</strong> Instantly view open, closing, or closed statuses.
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Quick Edit Panel:</strong> Manage application notes and dates directly from the calendar.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Feature 4: Verified Directory */}
+              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
+                  <SlidersHorizontal className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-serif text-lg font-semibold text-brand-dark mb-2">Curated Directory & Filters</h3>
+                  <p className="text-xs text-brand-muted leading-relaxed mb-3">
+                    Browse all scholarships with instant filters for degree levels, funding types, and providers.
+                  </p>
+                  <ul className="space-y-1.5 text-[11px] text-brand-muted">
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Official Sites Redirection:</strong> Apply directly from verified government & foundation sources.
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Clean Layout:</strong> Essential requirements, target groups, and benefits presented with zero fluff.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Providers */}
-          <section>
+          <section className="border-t border-brand-border pt-16">
             <h2 className="font-serif text-3xl font-bold text-brand-dark mb-8 text-center">Scholarship providers</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {providers.map((p) => (
