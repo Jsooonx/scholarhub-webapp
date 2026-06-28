@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -69,6 +69,11 @@ export default function ScholarshipTrackDetailView({
   related,
 }: Props) {
   const [activeTrack, setActiveTrack] = useState<'embassy' | 'university'>('embassy');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const group = providerGroup(s.provider);
   const flag = providerMeta[group]?.flag ?? '🌍';
@@ -151,18 +156,22 @@ export default function ScholarshipTrackDetailView({
                     {dur}
                   </span>
                 )}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={status.label}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.12 }}
-                    className="inline-block"
-                  >
-                    <DeadlineStatus status={status} />
-                  </motion.div>
-                </AnimatePresence>
+                {mounted ? (
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={status.label}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.12 }}
+                      className="inline-block"
+                    >
+                      <DeadlineStatus status={status} />
+                    </motion.div>
+                  </AnimatePresence>
+                ) : (
+                  <DeadlineStatus status={status} />
+                )}
               </div>
 
               {s.description && (
@@ -199,20 +208,26 @@ export default function ScholarshipTrackDetailView({
                 <div className="space-y-3 mb-6">
                   <div className="pb-3 border-b border-brand-border">
                     <p className="text-[10px] text-brand-muted mb-1.5 font-medium uppercase tracking-wider">Application status</p>
-                    <div className="h-10 flex items-center relative overflow-hidden">
-                      <AnimatePresence mode="popLayout">
-                        <motion.div
-                          key={status.label}
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          transition={{ duration: 0.18 }}
-                          className="absolute inset-x-0 top-1/2 -translate-y-1/2"
-                        >
-                          <DeadlineStatus status={status} size="sm" />
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
+                    {mounted ? (
+                      <div className="h-10 flex items-center relative overflow-hidden">
+                        <AnimatePresence mode="popLayout">
+                          <motion.div
+                            key={status.label}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            transition={{ duration: 0.18 }}
+                            className="absolute inset-x-0 top-1/2 -translate-y-1/2"
+                          >
+                            <DeadlineStatus status={status} size="sm" />
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <div className="h-10 flex items-center">
+                        <DeadlineStatus status={status} size="sm" />
+                      </div>
+                    )}
                   </div>
                   {s.country && (
                     <div className="flex items-center gap-2.5 text-xs text-brand-dark">
@@ -466,20 +481,26 @@ export default function ScholarshipTrackDetailView({
                     Application window
                   </h2>
                   <div className="rounded-2xl border border-brand-border bg-white p-5 space-y-4">
-                    <div className="h-10 flex items-center relative overflow-hidden">
-                      <AnimatePresence mode="popLayout">
-                        <motion.div
-                          key={status.label}
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          transition={{ duration: 0.18 }}
-                          className="absolute inset-x-0 top-1/2 -translate-y-1/2"
-                        >
-                          <DeadlineStatus status={status} />
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
+                    {mounted ? (
+                      <div className="h-10 flex items-center relative overflow-hidden">
+                        <AnimatePresence mode="popLayout">
+                          <motion.div
+                            key={status.label}
+                            initial={{ opacity: 0, y: 5 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -5 }}
+                            transition={{ duration: 0.18 }}
+                            className="absolute inset-x-0 top-1/2 -translate-y-1/2"
+                          >
+                            <DeadlineStatus status={status} />
+                          </motion.div>
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <div className="h-10 flex items-center">
+                        <DeadlineStatus status={status} />
+                      </div>
+                    )}
 
                     {currentTrackData ? (
                       <div className="text-xs text-brand-dark space-y-1">
