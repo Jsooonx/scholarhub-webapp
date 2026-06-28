@@ -193,7 +193,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
       exit="exit"
       transition={{ duration: 0.22, ease: 'easeInOut' }}
       data-lenis-prevent
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 bg-brand-dark/40 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-brand-dark/40 backdrop-blur-sm"
     >
       {/* Background click to close */}
       <div className="absolute inset-0" onClick={onClose} />
