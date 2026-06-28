@@ -160,13 +160,13 @@ export default function CuratedPicks() {
             </div>
 
             {/* Slider Navigation Arrows */}
-            {mounted && totalPages > 1 && (
+            {totalPages > 1 && (
               <div className="flex space-x-2">
                 <button
                   onClick={handlePrev}
-                  disabled={currentPage === 0}
+                  disabled={!mounted || currentPage === 0}
                   className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
-                    currentPage === 0 ? 'opacity-30 pointer-events-none' : ''
+                    !mounted || currentPage === 0 ? 'opacity-30 pointer-events-none' : ''
                   }`}
                   aria-label="Previous Page"
                 >
@@ -174,9 +174,9 @@ export default function CuratedPicks() {
                 </button>
                 <button
                   onClick={handleNext}
-                  disabled={currentPage === totalPages - 1}
+                  disabled={!mounted || currentPage === totalPages - 1}
                   className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
-                    currentPage === totalPages - 1 ? 'opacity-30 pointer-events-none' : ''
+                    !mounted || currentPage === totalPages - 1 ? 'opacity-30 pointer-events-none' : ''
                   }`}
                   aria-label="Next Page"
                 >
@@ -279,16 +279,17 @@ export default function CuratedPicks() {
         </div>
 
         {/* Premium Dot Indicators */}
-        {mounted && totalPages > 1 && (
+        {totalPages > 1 && (
           <div className="flex justify-center gap-2 mt-8">
             {Array.from({ length: totalPages }).map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => handlePageChange(idx)}
                 className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === currentPage ? 'bg-brand-dark w-5' : 'bg-brand-border hover:bg-brand-dark/30 w-2'
+                  mounted && idx === currentPage ? 'bg-brand-dark w-5' : 'bg-brand-border hover:bg-brand-dark/30 w-2'
                 }`}
                 aria-label={`Go to page ${idx + 1}`}
+                disabled={!mounted}
               />
             ))}
           </div>

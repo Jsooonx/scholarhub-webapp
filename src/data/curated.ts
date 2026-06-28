@@ -79,7 +79,7 @@ export const curatedPicks: CuratedPick[] = [
     slug: 'trkiye-burslari-graduate-scholarship-program-masters',
     badge: 'Free Turkish Course',
     editorReason: 'The Master\'s track of Türkiye Bursları is a comprehensive package covering tuition, accommodation, health insurance, return flights, and a full preparatory year of Turkish language studies.',
-    insiderTip: 'The online application form is highly detailed. Pay extra attention to the Letter of Intent section—clearly describe why Turkey is your ideal academic destination.'
+    insiderTip: 'The online application form is highly detailed. Pay extra attention to the Letter of Intent section. Clearly describe why Turkey is your ideal academic destination.'
   },
   {
     slug: 'trkiye-burslari-graduate-scholarship-program-phd',
