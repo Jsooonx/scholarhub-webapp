@@ -183,3 +183,15 @@ html.lenis, html.lenis body {
   }
 }
 
+/* Prevent sticky navbar from jumping off-screen during body scroll locks */
+body[style*="overflow"][style*="hidden"] .sticky.top-0 {
+  position: fixed !important;
+}
+body[style*="overflow"][style*="hidden"] .sticky.top-0 + * {
+  margin-top: 3.5rem !important; /* h-14 (56px) on mobile */
+}
+@media (min-width: 640px) {
+  body[style*="overflow"][style*="hidden"] .sticky.top-0 + * {
+    margin-top: 4rem !important; /* h-16 (64px) on desktop */
+  }
+}
