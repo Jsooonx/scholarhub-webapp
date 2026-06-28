@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import ScholarshipTrackDetailView from '@/components/ScholarshipTrackDetailView';
 import { scholarshipTracks } from '@/data/tracks';
+import { enrichmentData } from '@/data/enriched';
 import {
   getScholarshipBySlug,
   getAllSlugs,
@@ -129,6 +130,7 @@ export default async function ScholarshipDetailPage({
   const status = getDeadlineStatus(s);
   const partnerLogos = getMatchedUniversityLogos(s);
   const tracks = scholarshipTracks[s.slug];
+  const enrichment = enrichmentData[s.slug] ?? null;
 
   // Related: same provider, excluding this one
   const related = allScholarships
@@ -204,6 +206,7 @@ export default async function ScholarshipDetailPage({
         dur={dur}
         initialStatus={status}
         partnerLogos={partnerLogos}
+        enrichment={enrichment}
         related={related}
       />
 

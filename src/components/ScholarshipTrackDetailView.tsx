@@ -22,7 +22,9 @@ import {
 import SaveScholarshipButton from '@/components/SaveScholarshipButton';
 import CompareCTA from '@/components/CompareCTA';
 import DeadlineStatus from '@/components/DeadlineStatus';
+import InsiderGuide from '@/components/InsiderGuide';
 import ScholarshipCard from '@/components/ScholarshipCard';
+import { type EnrichmentData } from '@/data/enriched';
 import {
   type Scholarship,
   type DeadlineStatus as DStatus,
@@ -39,6 +41,7 @@ interface Props {
   dur: string | null;
   initialStatus: DStatus;
   partnerLogos: Array<{ name: string; logo: string }>;
+  enrichment?: EnrichmentData | null;
   related: Scholarship[];
 }
 
@@ -66,6 +69,7 @@ export default function ScholarshipTrackDetailView({
   dur,
   initialStatus,
   partnerLogos,
+  enrichment,
   related,
 }: Props) {
   const [activeTrack, setActiveTrack] = useState<'embassy' | 'university'>('embassy');
@@ -178,6 +182,13 @@ export default function ScholarshipTrackDetailView({
                 <p className="text-sm text-brand-muted leading-relaxed max-w-2xl font-serif leading-relaxed italic border-l-2 border-brand-accent/30 pl-4 py-1">
                   {cleanDescription(s.description)}
                 </p>
+              )}
+
+              {/* Insider's Guide */}
+              {enrichment && (
+                <div className="mt-6">
+                  <InsiderGuide data={enrichment} />
+                </div>
               )}
 
               {/* Partner Universities Section */}
