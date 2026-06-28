@@ -1,36 +1,42 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { CheckCircle2, Lightbulb, Sparkles, ArrowLeft, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { allScholarships, getScholarshipImage, providerGroup, providerMeta } from '@/lib/scholarships';
 import { curatedPicks, CuratedPick } from '@/data/curated';
+import { isPopNavigation } from '@/components/SmoothScroll';
 
 const CARDS_PER_PAGE = 6;
 
+interface CustomProp {
+  direction: number;
+  skipAnimation: boolean;
+}
+
 const pageVariants: Variants = {
-  initial: (direction: number) => ({
-    opacity: 0,
-    x: direction > 0 ? 100 : -100,
+  initial: ({ direction, skipAnimation }: CustomProp) => ({
+    opacity: skipAnimation ? 1 : 0,
+    x: skipAnimation ? 0 : (direction > 0 ? 100 : -100),
   }),
-  animate: {
+  animate: ({ skipAnimation }: CustomProp) => ({
     opacity: 1,
     x: 0,
     transition: {
       type: 'tween',
       ease: 'easeOut',
-      duration: 0.32,
+      duration: skipAnimation ? 0 : 0.32,
     },
-  },
-  exit: (direction: number) => ({
-    opacity: 0,
-    x: direction > 0 ? -100 : 100,
+  }),
+  exit: ({ direction, skipAnimation }: CustomProp) => ({
+    opacity: skipAnimation ? 1 : 0,
+    x: skipAnimation ? 0 : (direction > 0 ? -100 : 100),
     transition: {
       type: 'tween',
       ease: 'easeIn',
-      duration: 0.24,
+      duration: skipAnimation ? 0 : 0.24,
     },
   }),
 };
@@ -38,6 +44,8 @@ const pageVariants: Variants = {
 export default function CuratedPicks() {
   const [currentPage, setCurrentPage] = useState(0);
   const [direction, setDirection] = useState(0); // 1 = right, -1 = left
+  const [mounted, setMounted] = useState(false);
+  const [skipAnimation, setSkipAnimation] = useState(false);
 
   // Resolve and filter the curated picks to Bachelor, Master, PhD only
   const resolvedPicks = useMemo(() => {
@@ -62,6 +70,29 @@ export default function CuratedPicks() {
 
   const totalPages = Math.ceil(resolvedPicks.length / CARDS_PER_PAGE);
 
+  // Restore page from sessionStorage on mount (back navigation)
+  useEffect(() => {
+    if (isPopNavigation()) {
+      setSkipAnimation(true);
+    }
+    try {
+      const saved = sessionStorage.getItem('__curated_picks_page');
+      if (saved !== null) {
+        const n = parseInt(saved, 10);
+        if (!isNaN(n) && n >= 0 && n < totalPages) setCurrentPage(n);
+      }
+    } catch {}
+    setMounted(true);
+  }, [totalPages]);
+
+  // Persist page changes to sessionStorage
+  useEffect(() => {
+    if (!mounted) return;
+    try {
+      sessionStorage.setItem('__curated_picks_page', String(currentPage));
+    } catch {}
+  }, [currentPage, mounted]);
+
   const currentPagePicks = useMemo(() => {
     const start = currentPage * CARDS_PER_PAGE;
     return resolvedPicks.slice(start, start + CARDS_PER_PAGE);
@@ -69,6 +100,7 @@ export default function CuratedPicks() {
 
   const handlePageChange = (newPage: number) => {
     setDirection(newPage > currentPage ? 1 : -1);
+    setSkipAnimation(false);
     setCurrentPage(newPage);
   };
 
@@ -128,37 +160,39 @@ export default function CuratedPicks() {
             </div>
 
             {/* Slider Navigation Arrows */}
-            <div className="flex space-x-2">
-              <button
-                onClick={handlePrev}
-                disabled={currentPage === 0}
-                className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
-                  currentPage === 0 ? 'opacity-30 pointer-events-none' : ''
-                }`}
-                aria-label="Previous Page"
-              >
-                <ArrowLeft className="h-4 w-4" />
-              </button>
-              <button
-                onClick={handleNext}
-                disabled={currentPage === totalPages - 1}
-                className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
-                  currentPage === totalPages - 1 ? 'opacity-30 pointer-events-none' : ''
-                }`}
-                aria-label="Next Page"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
+            {mounted && totalPages > 1 && (
+              <div className="flex space-x-2">
+                <button
+                  onClick={handlePrev}
+                  disabled={currentPage === 0}
+                  className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
+                    currentPage === 0 ? 'opacity-30 pointer-events-none' : ''
+                  }`}
+                  aria-label="Previous Page"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  disabled={currentPage === totalPages - 1}
+                  className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
+                    currentPage === totalPages - 1 ? 'opacity-30 pointer-events-none' : ''
+                  }`}
+                  aria-label="Next Page"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Curated Grid with Smooth Slide Transition */}
         <div className="relative overflow-hidden min-h-[3640px] md:min-h-[1804px] lg:min-h-[1192px]">
-          <AnimatePresence initial={false} custom={direction} mode="wait">
+          <AnimatePresence initial={false} custom={{ direction, skipAnimation }} mode="wait">
             <motion.div
               key={currentPage}
-              custom={direction}
+              custom={{ direction, skipAnimation }}
               variants={pageVariants}
               initial="initial"
               animate="animate"
@@ -245,7 +279,7 @@ export default function CuratedPicks() {
         </div>
 
         {/* Premium Dot Indicators */}
-        {totalPages > 1 && (
+        {mounted && totalPages > 1 && (
           <div className="flex justify-center gap-2 mt-8">
             {Array.from({ length: totalPages }).map((_, idx) => (
               <button

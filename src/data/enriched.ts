@@ -29,6 +29,7 @@ export interface SocialLink {
 export interface EnrichmentData {
   slug: string;
   tracks?: TrackInfo[];
+  trackSectionTitle?: string;
   exams?: ExamDetail[];
   socialLinks?: SocialLink[];
   communityNotes?: string;
@@ -276,6 +277,302 @@ const gksDifferentiators: { label: string; description: string }[] = [
   },
 ];
 
+// ── Stipendium Hungaricum Shared Data ──────────────────────────────────────────────
+
+const stipendiumTrackComparison: TrackInfo[] = [
+  {
+    name: 'Stage 1: Sending Partner Nomination',
+    acceptanceRate: 'Varies by partner (~5-10 awardees/year for Indonesia)',
+    quota: 'Limited Indonesian quota via Kemendiktisaintek',
+    pros: [
+      'Direct bilateral nomination through Kemendiktisaintek - no separate embassy application',
+      'Allowed to choose 2 study programs out of 800+ offered across Hungary',
+      'Many programs taught in English, no Hungarian language required upfront',
+      'Most programs do not require IELTS/TOEFL if previous degree was in English',
+    ],
+    cons: [
+      'Must be selected by Kemendiktisaintek first before applying to Tempus Public Foundation',
+      'Competitive nomination process depends on Indonesian quota allocation each year',
+      'No public breakdown of the sending partner shortlist criteria',
+    ],
+    bestFor: 'Indonesian applicants who want a fully funded European degree with relatively low language barrier',
+  },
+  {
+    name: 'Stage 2: University Entrance Exam',
+    acceptanceRate: 'Must score at least 56/100 to remain eligible',
+    quota: 'University allocates seats per program (varies)',
+    pros: [
+      'Direct interview with university faculty - chance to demonstrate motivation',
+      'Some programs accept without IELTS/TOEFL if medium of instruction was English',
+      'Online exam format (most cases) - no need to travel to Hungary for the exam',
+    ],
+    cons: [
+      '56/100 minimum pass mark is strict - below this threshold = disqualified',
+      'Engineering programs may have additional physics/math subject tests',
+      'Interview performance and program-fit matter as much as academics',
+    ],
+    bestFor: 'Candidates who can articulate their motivation well in an interview setting',
+  },
+];
+
+const stipendiumSocialLinks: SocialLink[] = [
+  { label: 'Tempus Public Foundation (Official)', platform: 'website', handle: 'stipendiumhungaricum.hu', url: 'https://stipendiumhungaricum.hu' },
+  { label: 'Online Application Portal (DreamApply)', platform: 'website', handle: 'apply.stipendiumhungaricum.hu', url: 'https://apply.stipendiumhungaricum.hu/' },
+  { label: 'Stipendium Hungaricum Indonesia Page', platform: 'website', handle: 'stipendiumhungaricum.hu/country/indonesia', url: 'https://stipendiumhungaricum.hu/country/indonesia/' },
+  { label: 'Indonesian Sending Partner (Kemendiktisaintek)', platform: 'website', handle: 'kemdiktisaintek.go.id', url: 'https://kemdiktisaintek.go.id/announcement/article/tawaran-beasiswa-stipendium-hungaricum-scholarship-programme-tahun-2026' },
+  { label: 'Eligible Programs (Excel Sheet)', platform: 'website', handle: 'Program List', url: 'https://stipendiumhungaricum.hu/wp-content/uploads/2025/10/eligible-study-programmes-full-degree.xlsx' },
+];
+
+const stipendiumStrategyTips: string[] = [
+  'Indonesian applicants MUST be nominated by Kemendiktisaintek (sending partner) before applying - contact them early, this is the most critical step',
+  'Choose only 2 study programs (not more) - use the study finder to match your profile carefully',
+  'Score at least 56/100 on the university entrance exam - below this threshold you are disqualified entirely',
+  'For Engineering programs: prepare for additional subject tests in physics and mathematics',
+  'If your previous degree was taught in English, request a Medium of Instruction letter from your university - this can exempt you from IELTS/TOEFL',
+  'Master level stipend stays at HUF 43,700 throughout - it does NOT increase like PhD does. Plan your budget accordingly',
+  'Stipend of HUF 43,700 (~$120/month) is tight. Most awardees report supplementing with part-time work or personal savings. Hungary is affordable but plan wisely',
+  'Bachelor applicants: focus on strong school records and motivation letter. Master: focus on academic consistency and research fit. PhD: must find a supervisor willing to support your application',
+];
+
+const stipendiumDifferentiators: { label: string; description: string }[] = [
+  {
+    label: 'Direct University Exam (No Embassy Written Test)',
+    description: 'Unlike MEXT or GKS, Stipendium has no centralized embassy written exam. Each Hungarian university conducts its own entrance exam/interview directly with shortlisted candidates.',
+  },
+  {
+    label: 'Indonesian Sending Partner (Kemendiktisaintek) Required',
+    description: 'Indonesian applicants must first be nominated by Kemendiktisaintek (the Indonesian sending partner) before they can apply to Tempus Public Foundation. This is a critical pre-screening step that many candidates miss.',
+  },
+  {
+    label: '56/100 Minimum Exam Pass Mark',
+    description: 'University entrance exam scores must reach at least 56 out of 100 points to remain eligible for final selection. Below this, the application is automatically disqualified regardless of other merits.',
+  },
+  {
+    label: '2 Program Choice Limit',
+    description: 'Applicants can only choose 2 study programs (out of 800+). Strategic selection matters - choose programs that are strong fits, not reach schools.',
+  },
+  {
+    label: 'Stipend Stays Flat for Master (Does Not Increase)',
+    description: 'Unlike PhD which has 2 phases (HUF 140K then HUF 180K), Master level stays at HUF 43,700 throughout the entire program. Bachelor is also HUF 43,700.',
+  },
+  {
+    label: 'Alumni Network Access',
+    description: 'After completing the scholarship, recipients join the Stipendium Hungaricum Alumni Network for ongoing professional development and global networking opportunities.',
+  },
+];
+
+// ── Romanian MFA + ARICE Shared Data ─────────────────────────────────────────────
+
+const romaniaTrackComparison: TrackInfo[] = [
+  {
+    name: 'Romanian MFA Scholarship (MFA Route)',
+    acceptanceRate: '500 awards/year globally for non-EU (highly competitive)',
+    quota: 'Limited per sending country; Indonesia eligible',
+    pros: [
+      'Apply online via the Study in Romania portal - straightforward workflow',
+      'All non-EU students eligible, no separate interview at the embassy stage',
+      'Choose 2 Romanian public universities in order of preference (locked after submit)',
+      'All education-related documents (only) need apostille during registration',
+      '1-year Romanian language preparatory year provided free for non-speakers',
+    ],
+    cons: [
+      'Stipend is very small: ~925 Lei/month (~€185 or ~$200). Enough for one month only if you get free dorm.',
+      'Dorm availability varies by university - free, partial, or paid depending on each campus',
+      'Romanian language is mandatory - no bypass even for English-taught programs',
+      'Application is locked after submit - cannot add or change anything',
+      'Results delayed historically (mid-July but can slip) - check your portal account, not just email',
+    ],
+    bestFor: 'Indonesians who want a fully-funded European degree and can self-fund living costs (stipend is symbolic)',
+  },
+  {
+    name: 'Romanian ARICE Scholarship (ARICE Route)',
+    acceptanceRate: 'Only 40 seats worldwide (extremely competitive)',
+    quota: '40 awards globally per year',
+    pros: [
+      'Send application by EMAIL (not portal) with 3 specific annexes (1, 2, 3) all signed',
+      'Priority fields: economics/business admin, agricultural sciences, technical sciences, oil & gas',
+      'Selection is strictly merit-based - academic transcripts + strong letters of recommendation',
+      'Coordinated with the Indonesian Embassy in Bucharest for documentation',
+      'Same benefits as MFA: tuition + dorm + medical + transport + monthly stipend',
+    ],
+    cons: [
+      'Only 40 seats worldwide - highly selective',
+      'Recommendation letter MUST be from specific entities: ARICE economic rep in your country, embassy/consulate in Romania, or ARICE-backed economic entities (not any professor)',
+      'Different deadline from MFA: usually May-June (vs MFA Feb-March)',
+      'Email-based application - incomplete or late submissions automatically disqualified',
+      'Same low stipend (~925 Lei/month) and dorm lottery',
+    ],
+    bestFor: 'Top-performing students in priority fields (economics, business, agriculture, engineering) with strong academic records and existing professional connections',
+  },
+];
+
+const romaniaSocialLinks: SocialLink[] = [
+  { label: 'KBRI Bucharest (Indonesian Embassy)', platform: 'instagram', handle: '@indonesiainbucharest', url: 'https://www.instagram.com/indonesiainbucharest/' },
+  { label: 'PPI Romania (Indonesian Student Association)', platform: 'instagram', handle: '@ppi.rumania', url: 'https://www.instagram.com/ppi.rumania/' },
+  { label: 'PPI Romania (Facebook)', platform: 'website', handle: 'PPI Romania', url: 'https://www.facebook.com/ppirromania/' },
+  { label: 'Romanian Embassy in Jakarta', platform: 'instagram', handle: '@romaniainindonesia', url: 'https://www.instagram.com/romaniainindonesia/' },
+  { label: 'Romanian Embassy Jakarta (Official Site)', platform: 'website', handle: 'jakarta.mae.ro', url: 'https://jakarta.mae.ro/en' },
+  { label: 'Study in Romania Portal (MFA Application)', platform: 'website', handle: 'scholarships.studyinromania.gov.ro', url: 'https://scholarships.studyinromania.gov.ro' },
+  { label: 'ARICE Official Site', platform: 'website', handle: 'arice.gov.ro', url: 'https://arice.gov.ro' },
+];
+
+const romaniaMfaStrategyTips: string[] = [
+  'Indonesian applicants MUST go through the Study in Romania portal (scholarships.studyinromania.gov.ro) - not directly to a Romanian university',
+  'Choose only 2 Romanian public universities in order of preference. Application is locked after submit - research both before submitting',
+  'Apostille is ONLY required for education documents (diplomas, transcripts). Birth cert, passport, photos do NOT need apostille',
+  'Mandatory 1-year Romanian language preparatory year for everyone (even for English-taught programs). No bypass.',
+  'Plan to self-fund living costs. The ~925 Lei/month stipend (~€185 or ~$200) only covers basic needs if you get free dorm. Without dorm, you need €300-500/month from your own pocket.',
+  'Dorm status varies by university - some give free dorm, some partial subsidy, some nothing. Check the specific university housing office before you apply.',
+  'Choose cities wisely: Iași (€300-400/month) is most affordable, Bucharest (€500-700) is most expensive. Pick a program in a city you can afford.',
+  'PhD applicants: contact a potential Romanian supervisor BEFORE March deadline. MFA provides zero help finding one. Securing their agreement in principle is your responsibility.',
+  'Check your portal account for results, not just email. Results traditionally come mid-July but have been delayed in past cycles.',
+];
+
+const romaniaAriceStrategyTips: string[] = [
+  'Apply via EMAIL to burse2026@arice.gov.ro (not via portal). Subject line: "ARICE Scholarship Application 2026 - [Your Full Name]"',
+  'All 3 specific annexes MUST be filled, signed, and scanned as PDFs: Annex 1 (ARICE form), Annex 2 (Ministry of Education form), Annex 3 (self-declaration)',
+  'Recommendation letter MUST come from specific entities: ARICE economic rep in your country, embassy/consulate in Romania, or ARICE-backed economic entities. NOT just any professor.',
+  'Application window: 11 May - 12 June 2026 (different from MFA which is Feb-March). Incomplete or late submissions are automatically disqualified.',
+  'Priority fields: economics/business admin, agricultural sciences, technical sciences, oil & gas. Other fields only if seats remain after priority placement.',
+  'Selection is strictly merit-based - academic transcripts and strong recommendations. No interviews at this stage.',
+  'ARICE has only 40 seats worldwide for all non-EU countries combined - including Indonesia. Highly competitive.',
+  'All documents must be in PDF. Translations accepted in Romanian, English, or French only.',
+  'Documents from Hague Convention countries need apostille. Non-Hague countries need superlegalization via Romanian embassy.',
+];
+
+const romaniaDifferentiators: { label: string; description: string }[] = [
+  {
+    label: 'Real Stipend: 925 Lei/Month (~€185 or ~$200)',
+    description: 'The actual amount awardees receive is 925 Lei per month. Enough for basic needs ONLY if you get a free dorm. Without dorm, you need to self-fund €300-500/month from personal savings.',
+  },
+  {
+    label: 'Dormitory Varies Per University (Not Guaranteed Free)',
+    description: 'Each Romanian university decides its own dorm policy: some give free dorm, some partial subsidy, some nothing (you pay private rent €150-300/month). Check housing office before applying.',
+  },
+  {
+    label: 'Apostille Only for Education Documents',
+    description: 'Apostille is required ONLY for diplomas, transcripts, and birth certificate at the REGISTRATION phase. Passport copies, photos, and ID cards do NOT need apostille.',
+  },
+  {
+    label: 'Mandatory Romanian Language Year',
+    description: 'Even for English-taught programs, all non-Romanian speakers must complete 1-year preparatory language course before starting their degree. No bypass, no exemption (except B1 certificate or 4+ years in Romanian school).',
+  },
+  {
+    label: '2-University Choice Limit',
+    description: 'You can only choose 2 Romanian public universities in order of preference. Application is LOCKED after submit - cannot add or change anything later.',
+  },
+  {
+    label: 'Two Separate Timelines (MFA vs ARICE)',
+    description: 'MFA opens mid-February, deadline end of March, results mid-July. ARICE opens May, deadline mid-June, results September. Do not confuse them.',
+  },
+  {
+    label: 'PhD Needs Supervisor in Advance',
+    description: 'For PhD: must contact a Romanian doctoral school professor willing to sponsor you BEFORE the deadline. Both MFA and ARICE provide zero help finding supervisors.',
+  },
+  {
+    label: 'All Stipends Stop in Summer (Bachelor/Master)',
+    description: 'Bachelor and Master stipends stop during summer vacation (July-September). Only PhD and residency awardees receive year-round stipends.',
+  },
+  {
+    label: 'Travel Costs NOT Covered',
+    description: 'International flight to Romania AND domestic transport from arrival point to your university are NOT covered by the scholarship.',
+  },
+  {
+    label: '30-Day Post-Graduation Coverage',
+    description: 'All scholarship benefits continue for 30 days after graduation for programs lasting at least one year.',
+  },
+];
+
+// ── Turkey Government Scholarship Shared Data ───────────────────────────────────────
+
+const turkeyTrackComparison: TrackInfo[] = [
+  {
+    name: 'Stage 1: Document & Expert Evaluation',
+    acceptanceRate: 'Highly competitive (150,000+ global applicants)',
+    quota: '70 - 100 awardees per year for Indonesia',
+    pros: [
+      '100% free online application via TBBS portal',
+      'Choose up to 12 study programs & universities in one application',
+      'No English certificate required if choosing Turkish-taught programs',
+    ],
+    cons: [
+      'Extremely high global competition makes screening highly selective',
+      'Strict age limits: Bachelors max 21, Masters max 30, PhD max 35',
+      'Subjective evaluation heavily weighs Letter of Intent and reference letters',
+    ],
+    bestFor: 'Applicants with strong academic records and active community/social involvement',
+  },
+  {
+    name: 'Stage 2: Quantitative Academic Test',
+    acceptanceRate: 'Shortlisted candidates only',
+    quota: 'Determines interview qualification',
+    pros: [
+      'Only required for STEM (Engineering, Science) and Health Sciences',
+      'Basic quantitative subjects (Mathematics, Geometry, Logic)',
+    ],
+    cons: [
+      'Held at the interview venue right before the oral interview starts',
+      'Short time limit to complete 30 questions',
+    ],
+    bestFor: 'STEM and Medical applicants with solid high school math and logical reasoning skills',
+  },
+  {
+    name: 'Stage 3: Panel Interview (Final Selection)',
+    acceptanceRate: 'Roughly 10-15% of interviewed candidates',
+    quota: 'Final seat allocation per country',
+    pros: [
+      'Direct interaction with YTB committee and Turkish university professors',
+      'Opportunity for S2/S3 candidates to defend their research plans directly',
+    ],
+    cons: [
+      'Conducted strictly in English or Turkish (no translator provided)',
+      'STEM/Medical candidates may be asked to solve math/science problems on a board',
+    ],
+    bestFor: 'Candidates with excellent communication skills and clear future goals',
+  },
+];
+
+const turkeySocialLinks: SocialLink[] = [
+  { label: 'Official Website', platform: 'website', handle: 'turkiyeburslari.gov.tr', url: 'https://www.turkiyeburslari.gov.tr' },
+  { label: 'Application Portal (TBBS)', platform: 'website', handle: 'tbbs.turkiyeburslari.gov.tr', url: 'https://tbbs.turkiyeburslari.gov.tr/' },
+  { label: 'PPI Turki (Indonesian Students)', platform: 'instagram', handle: '@ppiturki', url: 'https://www.instagram.com/ppiturki/' },
+  { label: 'Kobi Education (Turkey Prep)', platform: 'instagram', handle: '@kobieducation', url: 'https://www.instagram.com/kobieducation/' },
+];
+
+const turkeyStrategyTips: string[] = [
+  'Do not choose only top-tier universities in Istanbul/Ankara for all 12 choices. Mix in regional universities to boost placement odds.',
+  'Your Letter of Intent (LoI) is extremely critical since there is no separate university application. Match your profile to university choices.',
+  'For S1 and STEM applicants: refresh basic math, geometry, and algebra concepts as you may be asked to solve problems during the interview.',
+  'Obtain recommendation letters from professors or figures with high academic or professional titles, as YTB values these highly.',
+  'Turkish language prep year (TÖMER) is 100% mandatory for all awardees, even if your chosen study program is fully in English.',
+  'Undergraduate stipend is 4,500 TRY/month, Masters is 6,500 TRY/month, and PhD is 9,000 TRY/month. Academically outstanding students can receive merit stipends up to 2x higher.',
+  'The scholarship covers free KYK state dorms. If you choose to live outside, you must fund your own housing; YTB does not give rent allowance.',
+  'stipends continue year-round (12 months), unlike some programs that pause during summer vacation.',
+];
+
+const turkeyDifferentiators: { label: string; description: string }[] = [
+  {
+    label: 'Mandatory 1-Year Turkish Prep (TÖMER)',
+    description: 'All scholarship holders must complete a 1-year Turkish language preparatory year, even if their course of study is taught entirely in English.',
+  },
+  {
+    label: 'University & Dorm Placement Included',
+    description: 'YTB handles both university admissions and state-run dormitory (KYK) assignments directly. No separate university applications are required.',
+  },
+  {
+    label: 'Academically Tiered Merit Scholarships',
+    description: 'Outstanding students with top-tier test scores (SAT/GRE) or publications can qualify for Merit Scholarships providing up to 2x the standard monthly stipend.',
+  },
+  {
+    label: '12 University Choice Placements',
+    description: 'Applicants choose up to 12 public universities. Placements are determined centrally by YTB and are final.',
+  },
+  {
+    label: 'Full Year Stipend Coverage',
+    description: 'Monthly allowances are paid consistently for all 12 months of the year, including the summer holidays (July-September).',
+  },
+];
+
 // ── All Enrichment Data ────────────────────────────────────────────────────────────
 
 export const enrichmentData: Record<string, EnrichmentData> = {
@@ -429,5 +726,88 @@ export const enrichmentData: Record<string, EnrichmentData> = {
       'If you complete a GKS Master, you can also apply for a GKS PhD afterward - many awardees follow this path',
     ],
     differentiators: gksDifferentiators,
+  },
+
+  // ── Stipendium Hungaricum ──────────────────────────────────────────────────────────
+  'stipendium-hungaricum-bachelors-one-tier-masters-scholarship': {
+    slug: 'stipendium-hungaricum-bachelors-one-tier-masters-scholarship',
+    tracks: stipendiumTrackComparison,
+    trackSectionTitle: 'Key Selection Stages',
+    socialLinks: stipendiumSocialLinks,
+    strategyTips: stipendiumStrategyTips,
+    differentiators: stipendiumDifferentiators,
+  },
+
+  // ── Stipendium Master's ──
+  'stipendium-hungaricum-masters-scholarship': {
+    slug: 'stipendium-hungaricum-masters-scholarship',
+    tracks: stipendiumTrackComparison,
+    trackSectionTitle: 'Key Selection Stages',
+    socialLinks: stipendiumSocialLinks,
+    strategyTips: stipendiumStrategyTips,
+    differentiators: stipendiumDifferentiators,
+  },
+
+  // ── Stipendium Doctoral (PhD) ──
+  'stipendium-hungaricum-doctoral-phd-scholarship': {
+    slug: 'stipendium-hungaricum-doctoral-phd-scholarship',
+    tracks: stipendiumTrackComparison,
+    trackSectionTitle: 'Key Selection Stages',
+    socialLinks: stipendiumSocialLinks,
+    strategyTips: [
+      ...stipendiumStrategyTips,
+      'For PhD: contact a potential supervisor at your chosen Hungarian university BEFORE applying - many doctoral schools require a Statement of Supervisor by 15 March',
+      'PhD stipend has 2 phases: HUF 140,000/month for first 2 years, HUF 180,000/month for the next 2 years - significantly higher than Master level',
+      'Doctoral programs are 4 years - plan supervisor relationship and funding continuity carefully',
+    ],
+    differentiators: stipendiumDifferentiators,
+  },
+
+  // ── Romanian MFA Scholarship ──
+  'romanian-government-mfa-scholarship-non-eu-citizens': {
+    slug: 'romanian-government-mfa-scholarship-non-eu-citizens',
+    tracks: romaniaTrackComparison,
+    socialLinks: romaniaSocialLinks,
+    strategyTips: romaniaMfaStrategyTips,
+    differentiators: romaniaDifferentiators,
+  },
+
+  // ── Romanian ARICE Scholarship ──
+  'romanian-government-arice-scholarship': {
+    slug: 'romanian-government-arice-scholarship',
+    tracks: romaniaTrackComparison,
+    socialLinks: romaniaSocialLinks,
+    strategyTips: romaniaAriceStrategyTips,
+    differentiators: romaniaDifferentiators,
+  },
+
+  // ── Turkey Government Scholarship ──────────────────────────────────────────────────
+  'trkiye-burslari-bachelors-scholarship-program': {
+    slug: 'trkiye-burslari-bachelors-scholarship-program',
+    tracks: turkeyTrackComparison,
+    trackSectionTitle: 'Key Selection Stages',
+    socialLinks: turkeySocialLinks,
+    strategyTips: turkeyStrategyTips,
+    differentiators: turkeyDifferentiators,
+  },
+
+  // ── Turkey Government Scholarship (Master's) ──
+  'trkiye-burslari-graduate-scholarship-program-masters': {
+    slug: 'trkiye-burslari-graduate-scholarship-program-masters',
+    tracks: turkeyTrackComparison,
+    trackSectionTitle: 'Key Selection Stages',
+    socialLinks: turkeySocialLinks,
+    strategyTips: turkeyStrategyTips,
+    differentiators: turkeyDifferentiators,
+  },
+
+  // ── Turkey Government Scholarship (PhD) ──
+  'trkiye-burslari-graduate-scholarship-program-phd': {
+    slug: 'trkiye-burslari-graduate-scholarship-program-phd',
+    tracks: turkeyTrackComparison,
+    trackSectionTitle: 'Key Selection Stages',
+    socialLinks: turkeySocialLinks,
+    strategyTips: turkeyStrategyTips,
+    differentiators: turkeyDifferentiators,
   },
 };

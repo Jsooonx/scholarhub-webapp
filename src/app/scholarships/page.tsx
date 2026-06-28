@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import ScholarshipsFilter from '@/components/ScholarshipsFilter';
 import { filterScholarships, BASE_URL } from '@/lib/scholarships';
-import { LayoutGrid, List, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LayoutGrid, List } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -21,8 +21,6 @@ export const metadata: Metadata = {
   },
 };
 
-const PAGE_SIZE = 12;
-
 interface PageProps {
   searchParams: Promise<{
     q?: string;
@@ -31,14 +29,12 @@ interface PageProps {
     level?: string;
     country?: string;
     view?: string;
-    page?: string;
   }>;
 }
 
 export default async function ScholarshipsPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const view = params.view ?? 'grid';
-  const currentPage = Math.max(1, parseInt(params.page ?? '1', 10));
 
   const allResults = filterScholarships({
     query: params.q,
@@ -48,20 +44,17 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
     country: params.country,
   });
 
-  const totalPages = Math.max(1, Math.ceil(allResults.length / PAGE_SIZE));
-  const safePage = Math.min(currentPage, totalPages);
-  const results = allResults.slice((safePage - 1) * PAGE_SIZE, safePage * PAGE_SIZE);
+  const results = allResults;
 
-  // Build a URL with updated page param, keeping all other params
-  function pageUrl(p: number) {
+  // Build a URL with updated view param, keeping all other params
+  function viewUrl(v: string) {
     const sp = new URLSearchParams();
     if (params.q) sp.set('q', params.q);
     if (params.provider) sp.set('provider', params.provider);
     if (params.funding) sp.set('funding', params.funding);
     if (params.level) sp.set('level', params.level);
     if (params.country) sp.set('country', params.country);
-    if (params.view && params.view !== 'grid') sp.set('view', params.view);
-    if (p > 1) sp.set('page', String(p));
+    if (v !== 'grid') sp.set('view', v);
     const qs = sp.toString();
     return `/scholarships${qs ? `?${qs}` : ''}`;
   }
@@ -115,7 +108,7 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
               {/* View toggle */}
               <div className="flex items-center gap-1 border border-brand-border rounded-full p-1 bg-white self-start sm:self-auto">
                 <Link
-                  href={pageUrl(1).replace(/view=[^&]*&?/, '').replace(/[?&]$/, '')}
+                  href={viewUrl('grid')}
                   scroll={false}
                   className={`p-2 rounded-full transition-colors ${view === 'grid' ? 'bg-brand-dark text-white' : 'text-brand-muted hover:text-brand-dark'}`}
                   aria-label="Grid view"
@@ -123,7 +116,7 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
                   <LayoutGrid className="h-4 w-4" />
                 </Link>
                 <Link
-                  href={`${pageUrl(1)}${pageUrl(1).includes('?') ? '&' : '?'}view=list`}
+                  href={viewUrl('list')}
                   scroll={false}
                   className={`p-2 rounded-full transition-colors ${view === 'list' ? 'bg-brand-dark text-white' : 'text-brand-muted hover:text-brand-dark'}`}
                   aria-label="List view"
@@ -173,80 +166,10 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
                 </div>
               )}
 
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-2 mt-12">
-                  {/* Prev */}
-                  {safePage > 1 ? (
-                    <Link
-                      href={pageUrl(safePage - 1)}
-                      className="p-2 rounded-full border border-brand-border hover:bg-brand-cream transition-colors text-brand-dark"
-                      aria-label="Previous page"
-                    >
-                      <ChevronLeft className="h-4 w-4" />
-                    </Link>
-                  ) : (
-                    <span className="p-2 rounded-full border border-brand-border/40 text-brand-border cursor-not-allowed">
-                      <ChevronLeft className="h-4 w-4" />
-                    </span>
-                  )}
-
-                  {/* Page numbers */}
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => {
-                    // Show first, last, current ±1
-                    const show =
-                      p === 1 || p === totalPages || Math.abs(p - safePage) <= 1;
-                    const showEllipsisBefore = p === safePage - 2 && safePage > 3;
-                    const showEllipsisAfter = p === safePage + 2 && safePage < totalPages - 2;
-
-                    if (showEllipsisBefore || showEllipsisAfter) {
-                      return (
-                        <span key={`ellipsis-${p}`} className="text-xs text-brand-muted px-1">
-                          …
-                        </span>
-                      );
-                    }
-                    if (!show) return null;
-
-                    return (
-                      <Link
-                        key={p}
-                        href={pageUrl(p)}
-                        className={`min-w-[36px] h-9 flex items-center justify-center rounded-full text-xs font-medium transition-colors border ${
-                          p === safePage
-                            ? 'bg-brand-dark text-white border-brand-dark'
-                            : 'border-brand-border hover:bg-brand-cream text-brand-dark'
-                        }`}
-                        aria-current={p === safePage ? 'page' : undefined}
-                      >
-                        {p}
-                      </Link>
-                    );
-                  })}
-
-                  {/* Next */}
-                  {safePage < totalPages ? (
-                    <Link
-                      href={pageUrl(safePage + 1)}
-                      className="p-2 rounded-full border border-brand-border hover:bg-brand-cream transition-colors text-brand-dark"
-                      aria-label="Next page"
-                    >
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
-                  ) : (
-                    <span className="p-2 rounded-full border border-brand-border/40 text-brand-border cursor-not-allowed">
-                      <ChevronRight className="h-4 w-4" />
-                    </span>
-                  )}
-                </div>
-              )}
-
-              {/* Page info */}
-              {totalPages > 1 && (
-                <p className="text-center text-xs text-brand-muted mt-3">
-                  Page {safePage} of {totalPages} · {allResults.length} scholarships
-                </p>
-              )}
+              {/* Total count footer */}
+              <p className="text-center text-xs text-brand-muted mt-12">
+                Showing all {allResults.length} scholarships
+              </p>
             </>
           )}
         </div>

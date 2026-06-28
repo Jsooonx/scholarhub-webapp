@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { providerGroup, getDeadlineStatus, getScholarshipLogo, providerMeta, type Scholarship } from '@/lib/scholarships';
 import DeadlineStatus from '@/components/DeadlineStatus';

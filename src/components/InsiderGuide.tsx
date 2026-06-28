@@ -19,7 +19,7 @@ interface Props {
 }
 
 export default function InsiderGuide({ data, className = '' }: Props) {
-  const { tracks, exams, socialLinks, strategyTips, differentiators } = data;
+  const { tracks, trackSectionTitle, exams, socialLinks, strategyTips, differentiators } = data;
 
   if (!tracks && !exams && !socialLinks && !strategyTips && !differentiators) return null;
 
@@ -81,7 +81,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <GraduationCap className="w-4 h-4 text-brand-muted" />
-            <h3 className="text-xs font-bold uppercase tracking-wider text-brand-muted">Track Comparison</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-brand-muted">{trackSectionTitle || 'Track Comparison'}</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {tracks.map((track) => (
