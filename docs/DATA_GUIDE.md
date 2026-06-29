@@ -322,9 +322,9 @@ const output = {
 };
 ```
 
-### Step 5 - Update `src/lib/scholarships.ts`
+### Step 5 - Update `src/lib/scholarships/` Submodules
 
-**Add the new provider group** to the `providerGroup()` function:
+**Add the new provider group** to the `providerGroup()` function in [helpers.ts](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/lib/scholarships/helpers.ts):
 
 ```ts
 export function providerGroup(provider: string): string {
@@ -335,7 +335,7 @@ export function providerGroup(provider: string): string {
 }
 ```
 
-**Add providerMeta entry:**
+**Add providerMeta entry** in [providerMeta.ts](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/lib/scholarships/providerMeta.ts):
 
 ```ts
 export const providerMeta = {
@@ -350,7 +350,8 @@ export const providerMeta = {
 };
 ```
 
-**Update deadline logic** in `getDeadlineStatus()` if the provider has a specific annual deadline pattern. Otherwise it will automatically fall back to `rolling`.
+**Update deadline logic** in `getDeadlineStatus()` in [helpers.ts](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/lib/scholarships/helpers.ts) if the provider has a specific annual deadline pattern. Otherwise it will automatically fall back to `rolling`.
+
 
 ### Step 6 - Update `providers/[provider]/page.tsx`
 
@@ -466,12 +467,13 @@ node --check scripts/reextract.js
 
 Most common causes:
 1. **TypeScript** - `providerGroup()` return type changed from a union to `string`. Make sure no component is type-checking against a specific union value.
-2. **Missing slug** - slugs are auto-generated from names. If there are duplicates across providers, slugs get a numeric suffix (`-1`, `-2`). Check `lib/scholarships.ts` in the `toSlug` function.
+2. **Missing slug** - slugs are auto-generated from names. If there are duplicates across providers, slugs get a numeric suffix (`-1`, `-2`). Check `src/lib/scholarships/helpers.ts` in the `toSlug` function.
 3. **generateStaticParams** - added a new provider but forgot to update `providers/[provider]/page.tsx`.
 
 ### Deadline badge missing or showing wrong status
 
-Check `getDeadlineStatus()` in `src/lib/scholarships.ts`. Each provider group has its own logic. If a new provider does not have a handler, it will fall back to `rolling` (blue badge, "Rolling intake").
+Check `getDeadlineStatus()` in [src/lib/scholarships/helpers.ts](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/lib/scholarships/helpers.ts). Each provider group has its own logic. If a new provider does not have a handler, it will fall back to `rolling` (blue badge, "Rolling intake").
+
 
 ---
 

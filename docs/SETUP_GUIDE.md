@@ -11,7 +11,7 @@ One guide to rule them all. Covers everything from adding scholarship data to im
 3. [Data Structure](#3-data-structure)
 4. [General Data Flow](#4-general-data-flow)
 5. [Adding a New Country / Provider](#5-adding-a-new-country--provider)
-6. [Updating scholarships.ts](#6-updating-scholarshipsts)
+6. [Updating the Scholarships Library](#6-updating-the-scholarships-library)
 7. [Auth & Database](#7-auth--database)
 8. [Current Features](#8-current-features)
 9. [Sending Notifications](#9-sending-notifications)
@@ -41,9 +41,9 @@ research → data/scholarships/<country>.js (add arrays)
                 ↓
       data/scholarships.json (auto-generated)
                 ↓
-      src/lib/scholarships.ts (providerGroup, meta, etc.)
+      src/lib/scholarships/ (providerGroup, meta, helpers, data)
                 ↓
-      Pages & components consume scholarships.ts
+      Pages & components consume src/lib/scholarships.ts (facade)
 ```
 
 ### Key Architecture Decisions
@@ -119,7 +119,12 @@ scripts/
 
 src/
 └── lib/
-    └── scholarships.ts            ← Core pipeline — types, groups, meta, filters, logos, images
+    └── scholarships/              ← Core pipeline directory
+        ├── types.ts               ← Type/interface contracts
+        ├── providerMeta.ts        ← Metadata for all providers
+        ├── helpers.ts             ← Helper functions (logos, images, deadlines)
+        ├── data.ts                ← Accessors & filtering logic
+    └── scholarships.ts            ← Facade exporting all submodules
 
 supabase/
 └── migrations/                    ← 8 SQL migration files for auth & features
@@ -158,12 +163,9 @@ npx next build
         ↓
 4. node scripts/reextract.js (thin wrapper → triggers data/scholarships/index.js)
         ↓
-5. Update src/lib/scholarships.ts:
-   - providerGroup()      ← map provider names → country slug
-   - providerMeta         ← flag, description, website
-   - getDeadlineStatus()  ← deadline logic
-   - getScholarshipImage()← hero images
-   - getMatchedUniversityLogos() ← partner uni logos
+5. Update files under src/lib/scholarships/:
+   - helpers.ts        ← providerGroup(), getDeadlineStatus(), getScholarshipImage(), getMatchedUniversityLogos()
+   - providerMeta.ts   ← providerMeta (flag, description, website)
         ↓
 6. npx next build
         ↓
@@ -245,11 +247,11 @@ Expected output will show your new country with counts.
 
 ---
 
-## 6. Updating scholarships.ts
+## 6. Updating the Scholarships Library
 
-After adding data to `reextract.js` and running it, you must update `src/lib/scholarships.ts` in these 5 places:
+After adding data to `reextract.js` and running it, you must update the submodules under `src/lib/scholarships/` in these 5 places:
 
-### 6a. `providerGroup()` — Map provider names to country slug
+### 6a. `providerGroup()` (in `src/lib/scholarships/helpers.ts`) — Map provider names to country slug
 
 Find the function and add a new if-statement:
 
@@ -265,7 +267,7 @@ export function providerGroup(provider: string): string {
 
 > **Naming convention**: Use kebab-case for country slugs (`united-kingdom`, `south-korea`, `saudi-arabia`)
 
-### 6b. `providerMeta` — Country info, flag, description
+### 6b. `providerMeta` (in `src/lib/scholarships/providerMeta.ts`) — Country info, flag, description
 
 Add an entry to the `providerMeta` object:
 
@@ -284,7 +286,7 @@ export const providerMeta = {
 
 > This automatically populates: Navbar dropdown, Footer links, About page, filter dropdowns, provider pages.
 
-### 6c. `getDeadlineStatus()` — Deadline badge logic
+### 6c. `getDeadlineStatus()` (in `src/lib/scholarships/helpers.ts`) — Deadline badge logic
 
 Find the function and add a new if-statement before `return getDaadStatus()`:
 
@@ -306,7 +308,7 @@ If the scholarship has rolling/no deadline, use:
 if (group === 'my-new-country') return { type: 'rolling', label: 'Rolling intake' };
 ```
 
-### 6d. `getScholarshipImage()` — Hero background images
+### 6d. `getScholarshipImage()` (in `src/lib/scholarships/helpers.ts`) — Hero background images
 
 Add override entries for specific university images, plus a fallback:
 
@@ -318,7 +320,7 @@ if (name.includes('my-uni') || provider.includes('my-uni')) return '/images/univ
 if (group === 'my-new-country') return '/images/universities/MY_Default.png';
 ```
 
-### 6e. `getMatchedUniversityLogos()` — Participating university logos
+### 6e. `getMatchedUniversityLogos()` (in `src/lib/scholarships/helpers.ts`) — Participating university logos
 
 Add to the keyword-matching list:
 
@@ -457,7 +459,7 @@ curl https://api.resend.com/audiences/AUDIENCE_ID/contacts \
 
 Common causes:
 1. **providerGroup() doesn't match** — Check if your provider name string is caught by the function. `node -e "console.log(require('./src/lib/scholarships').providerGroup('Your Provider'))"`
-2. **Missing slug** — Duplicate scholarship names get `-1`, `-2` suffixes. Check `toSlug()` in `scholarships.ts`.
+2. **Missing slug** — Duplicate scholarship names get `-1`, `-2` suffixes. Check `toSlug()` in `src/lib/scholarships/helpers.ts`.
 3. **Missing provider group** — New scholarships not showing on `/providers/xxx`? The `generateStaticParams` uses `Object.keys(providerMeta)` — so if it's not in `providerMeta`, it won't appear.
 
 ### `reextract.js` syntax error
@@ -558,7 +560,7 @@ curl -X POST https://scholarhub.jsooonx.my.id/api/notify ...
 
 1. `data/scholarships/<country>.js` — Scholarship data arrays
 2. `data/scholarships/index.js` — Import + register in COUNTRY_PROGRAMS + spread
-3. `src/lib/scholarships.ts` — 5 functions: `providerGroup`, `providerMeta`, `getDeadlineStatus`, `getScholarshipImage`, `getMatchedUniversityLogos`
+3. `src/lib/scholarships/` submodules — `providerGroup`, `getDeadlineStatus`, `getScholarshipImage`, `getMatchedUniversityLogos` in `helpers.ts`; and `providerMeta` in `providerMeta.ts`
 
 ### Files you NEVER need to edit manually
 

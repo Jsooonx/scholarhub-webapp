@@ -53,7 +53,7 @@ Locate active community channels to help students consult peers or alumni:
 
 ## 3. Data Model & Architecture
 
-All research data is stored statically in [enriched.ts](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/data/enriched.ts). 
+All research data is defined statically in country-specific modules under [src/data/enriched/](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/data/enriched/) (e.g. `japan.ts`, `korea.ts`, etc.) and consolidated in [enriched.ts](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/data/enriched.ts). 
 
 ### Key Interfaces
 ```typescript
@@ -93,8 +93,8 @@ export interface EnrichmentData {
 ```
 
 ### Implementation Rules
-1.  **Shared Constants:** Group similar scholarships (e.g., S1/S2/S3 of the same provider) by defining shared constants for `SocialLink[]`, `TrackInfo[]`, `strategyTips`, and `differentiators` in [enriched.ts](file:///d:/Productivity/Coding/Websites/(Usecase-Webapp)/WebApp-ScholarHub/src/data/enriched.ts) to prevent code duplication.
-2.  **Mapping Key:** Ensure the key mapped inside `enrichmentData: Record<string, EnrichmentData>` matches the exact scholarship `slug` generated from the raw database.
+1.  **Shared Constants:** Group similar scholarships (e.g., S1/S2/S3 of the same provider) by defining shared constants for `SocialLink[]`, `TrackInfo[]`, `strategyTips`, and `differentiators` in the respective country file in `src/data/enriched/` to prevent code duplication.
+2.  **Mapping Key:** Ensure the key mapped inside each country's `<country>Enrichment` record matches the exact scholarship `slug` generated from the raw database.
 
 ---
 
@@ -127,6 +127,6 @@ All curated picks in `src/data/curated.ts` have been fully enriched. No pending 
     > [!IMPORTANT]
     > Never perform a `git push` or merge to remote unless explicitly commanded by the user. Keep changes local.
 *   **Verify Build Health:** 
-    Always run `npm run build` after editing `enriched.ts` to ensure all TypeScript typings and Next.js static generation params compile correctly.
+    Always run `npm run build` after editing any file under `src/data/enriched/` to ensure all TypeScript typings and Next.js static generation params compile correctly.
 *   **Hydration Mismatch Awareness:** 
     If modifying components like `CuratedPicks.tsx`, avoid conditional structural DOM changes based on the `mounted` state. Keep the outer elements static, and only change attributes (like `disabled`) or styles once mounted to satisfy Next.js SSR requirements.
