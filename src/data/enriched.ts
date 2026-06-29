@@ -573,6 +573,128 @@ const turkeyDifferentiators: { label: string; description: string }[] = [
   },
 ];
 
+// ── Chinese Government Scholarship (CGS) Shared Data ─────────────────────────────────
+
+const cgsSocialLinks: SocialLink[] = [
+  { label: 'Official Website (CSC)', platform: 'website', handle: 'campuschina.org', url: 'https://www.campuschina.org' },
+  { label: 'Application Portal (CSC System)', platform: 'website', handle: 'studyinchina.csc.edu.cn', url: 'https://studyinchina.csc.edu.cn/' },
+  { label: 'Chinese Embassy in Jakarta', platform: 'website', handle: 'id.china-embassy.gov.cn', url: 'http://id.china-embassy.gov.cn/eng/' },
+  { label: 'PPI Tiongkok (PPIT)', platform: 'instagram', handle: '@ppitiongkok', url: 'https://www.instagram.com/ppitiongkok/' },
+  { label: 'PPIT Official Site', platform: 'website', handle: 'ppitiongkok.org', url: 'https://ppitiongkok.org/' },
+];
+
+const cgsTrackComparison: TrackInfo[] = [
+  {
+    name: 'Bilateral Program (Type A)',
+    quota: 'Allocated per country via Chinese Embassy',
+    pros: [
+      'Agency Number for Indonesian applicants is 3602 (direct to Chinese Embassy Jakarta)',
+      'Available for all degrees: Bachelor\'s (S1), Master\'s (S2), and Doctoral (S3)',
+      '100% tuition waiver, comprehensive medical insurance, and free on-campus dormitory accommodation',
+      'If Chinese language proficiency is low, a fully-funded 1-year Mandarin prep course is provided',
+    ],
+    cons: [
+      'Does NOT cover international airfare: awardees must pay for their own flights to and from China',
+      'Obtaining a Pre-Admission Letter from your target Chinese university is highly recommended to secure placement',
+      'Age limits are strict: Bachelors under 25, Masters under 35, PhD under 40',
+    ],
+    bestFor: 'Outstanding students of all degree levels looking for full tuition and housing coverage in China, willing to self-fund their travel costs',
+  },
+];
+
+const cgsStrategyTips: string[] = [
+  'Input the correct Agency Number: 3602 for the Bilateral Program (Type A) via the Chinese Embassy in Jakarta. Entering a wrong number will lead to automatic disqualification.',
+  'Getting a Pre-Admission Letter from your target Chinese university beforehand is highly recommended. It guarantees you will be placed in that university; without it, you may get placed randomly or rejected.',
+  'For Chinese-taught programs: you must submit HSK certificates (minimum HSK 3 for Bachelors, HSK 4 for Masters/PhD). If your level is low but you are accepted, you must take a 1-year preparatory Chinese course.',
+  'For English-taught programs: submit IELTS/TOEFL scores according to your target university\'s specific requirements. No HSK is required.',
+  'Be prepared to buy your own flights: CGS Bilateral Program does not cover international airfare to/from China.',
+  'The selection interview by the Embassy panel (3-5 members) lasts 15-30 minutes. Be ready to explain your Study Plan/Research Proposal in detail in English or Chinese.',
+];
+
+const cgsDifferentiators = [
+  {
+    label: 'Pre-Admission Letter Priority',
+    description: 'While technically optional, securing a Pre-Admission Letter from your target Chinese university beforehand is critical to guarantee your placement.',
+  },
+  {
+    label: 'No Flight Coverage (Bilateral)',
+    description: 'Unlike MEXT or AAS, CGS Bilateral Program (Type A) does not cover international airfare. Awardees must fund their own flights to/from China.',
+  },
+  {
+    label: '1-Year Preparatory Mandarin Course',
+    description: 'Admitted students with low HSK scores for Chinese-taught programs receive 1 year of fully-funded Mandarin preparation before starting their main major.',
+  },
+];
+
+// ── US Fulbright Scholarship Shared Data ─────────────────────────────────────────────
+
+const fulbrightSocialLinks: SocialLink[] = [
+  { label: 'Official Website (AMINEF)', platform: 'website', handle: 'aminef.or.id', url: 'https://www.aminef.or.id' },
+  { label: 'AMINEF Indonesia (Instagram)', platform: 'instagram', handle: '@aminef.indonesia', url: 'https://www.instagram.com/aminef.indonesia/' },
+  { label: 'PERMIAS Nasional (US Students)', platform: 'instagram', handle: '@permias.nasional', url: 'https://www.instagram.com/permias.nasional/' },
+  { label: 'PERMIAS Official Site', platform: 'website', handle: 'permias.org', url: 'https://www.permias.org/' },
+  { label: 'IIE Fulbright US Placement Support', platform: 'website', handle: 'foreign.fulbrightonline.org', url: 'https://foreign.fulbrightonline.org/' },
+];
+
+const fulbrightTrackComparison: TrackInfo[] = [
+  {
+    name: 'Fulbright Master\'s Degree Scholarship',
+    quota: 'Highly popular with competitive selection',
+    pros: [
+      'Allows initial application with paper-based TOEFL ITP (minimum 550) - no expensive IELTS needed upfront',
+      'No university offer (LoA) needed: AMINEF & IIE handle all university applications on your behalf',
+      'Fully funded: tuition fees, monthly living allowance, international airfare, and visa sponsorship',
+      'AMINEF covers all costs for post-selection tests (TOEFL iBT, GRE/GMAT vouchers)',
+    ],
+    cons: [
+      'Requires a minimum GPA of 3.0 / 4.0',
+      'Strict two-year home residency requirement (Visa J-1 rule): must return and stay in Indonesia for 2 years post-study',
+      'Course length is capped at a maximum of 2 years (standard US Master duration)',
+    ],
+    bestFor: 'S1 graduates or professionals in Indonesia with a GPA of 3.0+ who want full placement support and a fully-funded Master degree in the US',
+  },
+  {
+    name: 'Fulbright Doctoral (PhD) Scholarship',
+    quota: 'Limited seats for academic researchers',
+    pros: [
+      'Allows initial application with TOEFL ITP (minimum 575) instead of IELTS/TOEFL iBT',
+      'AMINEF & IIE manage all US university admissions, securing tuition waivers and sponsorships',
+      '3 full years of funding for doctoral research in the US',
+      'Fully paid test vouchers for TOEFL iBT, GRE, or GMAT for shortlisted candidates',
+    ],
+    cons: [
+      'Very high academic standards (outstanding research proposal and Master academic transcripts)',
+      'Requires a minimum GPA of 3.0 / 4.0 from your Master degree',
+      'Strict J-1 visa rule: must return to Indonesia immediately and live there for at least 2 years',
+    ],
+    bestFor: 'Lecturers, researchers, and PhD candidates in Indonesia who want to access world-class research facilities in the United States',
+  },
+];
+
+const fulbrightStrategyTips: string[] = [
+  'You can apply using a TOEFL ITP score (minimum 550 for Masters, 575 for PhD). This is a huge money-saver since you do not need TOEFL iBT or IELTS for the initial application.',
+  'Your essays (Study Objective and Personal Statement) are the primary screening materials. Ensure your Study Objective explains your research/study goals in the US clearly, and your Personal Statement tells your authentic life story.',
+  'You do NOT need to apply to US universities beforehand. AMINEF and the Institute of International Education (IIE) in the US handle all university submissions for you after you are selected.',
+  'If you are selected as a finalist (Principal Candidate), AMINEF will fully fund and organize your official TOEFL iBT, GRE, or GMAT test vouchers.',
+  'Prepare for the 4-panel interview (AMINEF staff, alumni, and academic experts). Be ready to explain why your study MUST be done in the US, and how it will contribute to Indonesia.',
+  'Fulbright uses J-1 Exchange Visitor visas, which carry a strict "two-year home country residency" rule. You must return to Indonesia and reside there for at least 2 years before you can change status to work/immigrate in the US.',
+];
+
+const fulbrightDifferentiators = [
+  {
+    label: 'Initial TOEFL ITP Allowed',
+    description: 'Fulbright is one of the few top-tier scholarships that accepts the low-cost paper-based TOEFL ITP for initial screening, saving applicants test fees.',
+  },
+  {
+    label: 'Done-For-You Placement (IIE)',
+    description: 'Awardees do not need to apply to US universities themselves. AMINEF and IIE submit applications and negotiate funding with 4-5 US universities on your behalf.',
+  },
+  {
+    label: 'Two-Year Visa J-1 Home Rule',
+    description: 'Under US J-1 visa regulations, awardees are legally obligated to return to Indonesia and live/work there for 2 years before being eligible for US work/immigrant visas.',
+  },
+];
+
 // ── UK Chevening Scholarship Shared Data ─────────────────────────────────────────────
 
 const cheveningSocialLinks: SocialLink[] = [
@@ -1130,5 +1252,35 @@ export const enrichmentData: Record<string, EnrichmentData> = {
     socialLinks: cheveningSocialLinks,
     strategyTips: cheveningStrategyTips,
     differentiators: cheveningDifferentiators,
+  },
+
+  // ── Fulbright Master's Degree Scholarship ──
+  'fulbright-masters-degree-scholarship': {
+    slug: 'fulbright-masters-degree-scholarship',
+    tracks: fulbrightTrackComparison,
+    trackSectionTitle: 'Scholarship Track',
+    socialLinks: fulbrightSocialLinks,
+    strategyTips: fulbrightStrategyTips,
+    differentiators: fulbrightDifferentiators,
+  },
+
+  // ── Fulbright Doctoral (PhD) Scholarship ──
+  'fulbright-doctoral-degree-phd-scholarship': {
+    slug: 'fulbright-doctoral-degree-phd-scholarship',
+    tracks: fulbrightTrackComparison,
+    trackSectionTitle: 'Scholarship Track',
+    socialLinks: fulbrightSocialLinks,
+    strategyTips: fulbrightStrategyTips,
+    differentiators: fulbrightDifferentiators,
+  },
+
+  // ── Chinese Government Scholarship ──
+  'chinese-government-scholarship-cgs-bilateral-program': {
+    slug: 'chinese-government-scholarship-cgs-bilateral-program',
+    tracks: cgsTrackComparison,
+    trackSectionTitle: 'Scholarship Track',
+    socialLinks: cgsSocialLinks,
+    strategyTips: cgsStrategyTips,
+    differentiators: cgsDifferentiators,
   },
 };
