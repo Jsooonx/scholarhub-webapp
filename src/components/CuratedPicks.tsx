@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { CheckCircle2, Lightbulb, Sparkles, ArrowLeft, ArrowRight } from 'lucide-react';
+import { CheckCircle2, Lightbulb, ArrowLeft, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { allScholarships, getScholarshipImage, providerGroup, providerMeta } from '@/lib/scholarships';
 import { curatedPicks, CuratedPick } from '@/data/curated';
@@ -218,11 +218,7 @@ export default function CuratedPicks() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                       
-                      {/* Custom Highlight Tag Overlay */}
-                      <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-bold bg-brand-accent text-white shadow-sm z-10">
-                        <Sparkles className="h-3 w-3" />
-                        {pick.badge}
-                      </span>
+
 
                       {/* Level & Flag Overlay */}
                       <span className="absolute bottom-4 left-4 inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-white/95 backdrop-blur-sm text-brand-dark border border-brand-border shadow-sm z-10">

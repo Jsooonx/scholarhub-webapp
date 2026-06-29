@@ -174,5 +174,34 @@ export const curatedPicks: CuratedPick[] = [
     badge: 'Full Research Cover',
     editorReason: 'Top-tier research funding for PhD candidates in Saudi Arabia, with access to leading faculty and high-tech lab equipment.',
     insiderTip: 'For technical and scientific fields, apply to research-heavy universities like KAUST. Emphasize your previous publications and research projects in your statement of purpose.'
+  },
+  // KAUST Fellowship
+  {
+    slug: 'king-abdullah-university-of-science-technology-kaust-fellowship',
+    badge: 'Highest Stipend',
+    editorReason: 'King Abdullah University of Science and Technology (KAUST) offers a fully funded fellowship with an incredibly high annual stipend ($30,000 - $35,000 USD, tax-free), free furnished housing, full health cover, and annual flights.',
+    insiderTip: 'Since the scholarship is bond-free and extremely generous, selection panels focus heavily on your research background. Align your research statement directly with a KAUST faculty member\'s active projects before applying.'
+  },
+  // Gates Cambridge
+  {
+    slug: 'gates-cambridge-scholarship',
+    badge: 'Gates Foundation',
+    editorReason: 'One of the most prestigious postgraduate awards globally, providing full funding at the University of Cambridge for students showing exceptional academic ability and leadership potential.',
+    insiderTip: 'Gates Cambridge requires a dedicated reference letter evaluating your fit for the scholarship. Choose a referee who can explicitly speak about your commitment to improving the lives of others, not just your academic marks.'
+  },
+  // Clarendon Fund
+  {
+    slug: 'clarendon-fund-scholarship-university-of-oxford',
+    badge: 'Oxford Premier',
+    editorReason: 'Oxford\'s flagship graduate scholarship scheme, offering full tuition waivers and generous living cost grants for outstanding graduate applicants from all over the world.',
+    insiderTip: 'There is no separate application form for Clarendon. All graduate applicants to the University of Oxford who apply before the December/January deadline are automatically considered.'
+  },
+  // Rhodes Scholarship
+  {
+    slug: 'rhodes-scholarship-university-of-oxford',
+    badge: 'Oldest Global Award',
+    editorReason: 'The oldest and arguably most famous international scholarship, supporting exceptional postgraduate students at the University of Oxford with a focus on character, leadership, and service.',
+    insiderTip: 'Rhodes selection is extremely intense, focusing heavily on character and leadership. Your personal statement should tell a compelling story of your values, driving purpose, and how you plan to stand up for the world.'
   }
 ];
+

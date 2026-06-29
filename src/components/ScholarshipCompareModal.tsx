@@ -197,17 +197,20 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
   if (typeof window === 'undefined') return null;
 
   return createPortal(
-    <motion.div 
-      variants={backdropVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      transition={{ duration: 0.22, ease: 'easeInOut' }}
+    <div 
       data-lenis-prevent
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 bg-brand-dark/60"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
     >
-      {/* Background click to close */}
-      <div className="absolute inset-0" onClick={onClose} />
+      {/* Backdrop */}
+      <motion.div 
+        variants={backdropVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ duration: 0.22, ease: 'easeInOut' }}
+        onClick={onClose}
+        className="absolute inset-0 bg-brand-dark/40 backdrop-blur-sm transform-gpu will-change-[opacity,backdrop-filter]"
+      />
 
       <motion.div
         ref={modalRef}
@@ -468,7 +471,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
           </div>
         </div>
       </motion.div>
-    </motion.div>,
+    </div>,
     document.body
   );
 }

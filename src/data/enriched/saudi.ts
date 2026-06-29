@@ -52,6 +52,53 @@ const saudiDifferentiators = [
   },
 ];
 
+// ── KAUST Fellowship Shared Data ───────────────────────────────────────────────────
+
+const kaustSocialLinks: SocialLink[] = [
+  { label: 'Official Website (KAUST)', platform: 'website', handle: 'kaust.edu.sa', url: 'https://www.kaust.edu.sa/en' },
+  { label: 'Admissions Portal', platform: 'website', handle: 'admissions.kaust.edu.sa', url: 'https://admissions.kaust.edu.sa/' },
+  { label: 'KAUST Official (Instagram)', platform: 'instagram', handle: '@kaustofficial', url: 'https://www.instagram.com/kaustofficial/' },
+  { label: 'PPMI Arab Saudi (Instagram)', platform: 'instagram', handle: '@ppmisaudi', url: 'https://www.instagram.com/ppmisaudi/' },
+];
+
+const kaustTrackComparison: TrackInfo[] = [
+  {
+    name: 'KAUST MS/PhD Fellowship',
+    quota: 'Awarded automatically to all admitted graduate students',
+    pros: [
+      'Full tuition waiver and free on-campus townhouse/apartments housing (fully furnished, utilitas gratis)',
+      'Highly competitive monthly stipend: ~$20,000/year for MS, and $25,000–$30,000/year for PhD (tax-free)',
+      'Premium medical and dental insurance coverage with zero co-pay',
+      'Covers relocation allowance, visa fees, and annual return flights to home country',
+    ],
+    cons: [
+      'Limited strictly to STEM (Science, Technology, Engineering, Mathematics) majors only',
+      'Rigorous academic requirements and highly competitive global selection',
+      'Requires candidate matching with a faculty advisor (Professor) for admission',
+    ],
+    bestFor: 'Outstanding STEM students seeking world-class research facilities and top-tier financial coverage',
+  },
+];
+
+const kaustStrategyTips: string[] = [
+  'Identify and contact a potential advisor (Professor) early. Send a professional email with your CV and a well-structured research proposal that aligns with their lab\'s active projects.',
+  'Verify your academic transcripts and convert your GPA to the standard US scale (4.0) if possible. High GPA and previous research publications strongly boost your profile.',
+  'Prepare for a two-stage interview: a highly technical interview with the faculty member/professor, followed by a soft-skills/cultural fit interview with the KAUST Admissions Office.',
+  'Submit a strong Quantitative GRE score (minimum 85th percentile recommended) if applying to competitive computer science, electrical, or physical engineering programs.',
+  'Obtain a minimum score of TOEFL iBT 81 or IELTS 6.5. This is a strict English language requirement for KAUST admissions.',
+];
+
+const kaustDifferentiators = [
+  {
+    label: 'Highest Tax-Free Stipend',
+    description: 'KAUST Fellowship offers one of the most generous tax-free graduate stipends worldwide ($20,000–$30,000 USD/year) alongside free residential townhouse housing.',
+  },
+  {
+    label: 'Resort-Style Red Sea Campus',
+    description: 'Located in Thuwal along the coast of the Red Sea, the private self-contained campus offers advanced laboratory facilities, sports centers, and recreational marinas.',
+  },
+];
+
 
 export const saudiEnrichment: Record<string, EnrichmentData> = {
   // ── Saudi Government Scholarship (Bachelor's) ──
@@ -82,5 +129,15 @@ export const saudiEnrichment: Record<string, EnrichmentData> = {
     socialLinks: saudiSocialLinks,
     strategyTips: saudiStrategyTips,
     differentiators: saudiDifferentiators,
+  },
+
+  // ── KAUST Fellowship ──
+  'king-abdullah-university-of-science-technology-kaust-fellowship': {
+    slug: 'king-abdullah-university-of-science-technology-kaust-fellowship',
+    tracks: kaustTrackComparison,
+    trackSectionTitle: 'Fellowship Pathway',
+    socialLinks: kaustSocialLinks,
+    strategyTips: kaustStrategyTips,
+    differentiators: kaustDifferentiators,
   },
 };

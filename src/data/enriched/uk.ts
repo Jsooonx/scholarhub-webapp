@@ -54,6 +54,136 @@ const cheveningDifferentiators = [
   },
 ];
 
+// ── Gates Cambridge Shared Data ────────────────────────────────────────────────────
+
+const gatesSocialLinks: SocialLink[] = [
+  { label: 'Official Website (Gates Cambridge)', platform: 'website', handle: 'gatescambridge.org', url: 'https://www.gatescambridge.org/' },
+  { label: 'Gates Cambridge (Instagram)', platform: 'instagram', handle: '@gatescambridge', url: 'https://www.instagram.com/gatescambridge/' },
+  { label: 'PPI United Kingdom (Instagram)', platform: 'instagram', handle: '@ppiunitedkingdom', url: 'https://www.instagram.com/ppiunitedkingdom/' },
+];
+
+const gatesTrackComparison: TrackInfo[] = [
+  {
+    name: 'Gates Cambridge Scholarship',
+    quota: 'Around 80 scholarships awarded globally each year',
+    pros: [
+      'Full cost of studying at Cambridge: covers university composition fee, maintenance allowance (~£20,000/year)',
+      'Provides airfare, inbound visa costs, and NHS health surcharge covered in full',
+      'Generous family/child allowance for scholars with dependent children',
+      'Access to a highly prestigious global network of scholars and leaders',
+    ],
+    cons: [
+      'Extremely competitive worldwide selection',
+      'Requires departmental nomination from the University of Cambridge first',
+      'Does not fund undergraduate, MBA, or part-time degrees (except specific PhD pilots)',
+    ],
+    bestFor: 'Outstanding international postgraduate students showing deep commitment to improving the lives of others',
+  },
+];
+
+const gatesStrategyTips: string[] = [
+  'Focus heavily on the 500-word Gates essay explaining your commitment to improving the lives of others. Emphasize social impact rather than repeating academic achievements.',
+  'Choose your third referee strategically. They must write the Gates reference evaluating your leadership, character, and alignment with the scholarship\'s goals.',
+  'Apply early! Your course application to Cambridge serves as the scholarship application, and you must meet the specific departmental funding deadlines (December/January).',
+  'Prepare for a highly structured 20-25 minute panel interview. Practice explaining complex research projects to academics who are outside your specific discipline.',
+];
+
+const gatesDifferentiators = [
+  {
+    label: 'Gates Foundation Network',
+    description: 'Fully funded by the Bill & Melinda Gates Foundation, offering unparalleled leadership development programs and global alumni connections.',
+  },
+  {
+    label: 'Scholars with Families Support',
+    description: 'One of the few top-tier awards offering comprehensive family allowances, funding up to £10,120 for the first child and £4,320 for the second.',
+  },
+];
+
+// ── Clarendon Fund Shared Data ──────────────────────────────────────────────────────
+
+const clarendonSocialLinks: SocialLink[] = [
+  { label: 'Official Website (Clarendon)', platform: 'website', handle: 'ox.ac.uk/clarendon', url: 'https://www.ox.ac.uk/clarendon' },
+  { label: 'Clarendon Oxford (Instagram)', platform: 'instagram', handle: '@clarendonoxford', url: 'https://www.instagram.com/clarendonoxford/' },
+  { label: 'PPI United Kingdom (Instagram)', platform: 'instagram', handle: '@ppiunitedkingdom', url: 'https://www.instagram.com/ppiunitedkingdom/' },
+];
+
+const clarendonTrackComparison: TrackInfo[] = [
+  {
+    name: 'Clarendon Fund Scholarship',
+    quota: 'Around 150-160 new scholarships awarded annually',
+    pros: [
+      'Covers full tuition and college fees at the University of Oxford',
+      'Generous annual grant for living expenses (~£18,622/year for full-time students)',
+      'No separate scholarship application form or fee is required',
+      'Includes automatic membership in the exclusive Clarendon Scholar Association',
+    ],
+    cons: [
+      'Extremely competitive: awarded strictly based on academic excellence and research potential',
+      'Only available for graduate studies (Master\'s or DPhil/PhD) at Oxford',
+    ],
+    bestFor: 'Top-tier graduate applicants with outstanding academic records accepted at the University of Oxford',
+  },
+];
+
+const clarendonStrategyTips: string[] = [
+  'Apply for your graduate course at Oxford before the December or January deadline. Late applications are completely excluded from scholarship consideration.',
+  'Ensure your research proposal and academic statement are of exceptional quality, as selection is based entirely on academic records and research potential.',
+  'Secure strong academic references who can speak in detail about your research capabilities and intellectual independence.',
+];
+
+const clarendonDifferentiators = [
+  {
+    label: 'Automatic Consideration',
+    description: 'Every applicant who submits their Oxford graduate course application before the January deadline is automatically evaluated for Clarendon.',
+  },
+  {
+    label: 'Clarendon Scholar Association',
+    description: 'Includes lifetime membership to a vibrant, scholar-led community organizing academic symposia, social events, and networking initiatives.',
+  },
+];
+
+// ── Rhodes Scholarship Shared Data ──────────────────────────────────────────────────
+
+const rhodesSocialLinks: SocialLink[] = [
+  { label: 'Official Website (Rhodes Trust)', platform: 'website', handle: 'rhodeshouse.ox.ac.uk', url: 'https://www.rhodeshouse.ox.ac.uk/' },
+  { label: 'Rhodes Trust (Instagram)', platform: 'instagram', handle: '@rhodes_trust', url: 'https://www.instagram.com/rhodes_trust/' },
+  { label: 'PPI United Kingdom (Instagram)', platform: 'instagram', handle: '@ppiunitedkingdom', url: 'https://www.instagram.com/ppiunitedkingdom/' },
+];
+
+const rhodesTrackComparison: TrackInfo[] = [
+  {
+    name: 'Rhodes Scholarship',
+    quota: 'Very limited quota per constituency (usually 1-2 per country/constituency)',
+    pros: [
+      'Covers all university and college fees at Oxford, plus a generous stipend (~£19,000/year)',
+      'Covers student visa fees, NHS health surcharge, and two economy-class flights (to and from Oxford)',
+      'Access to Rhodes House and an elite lifelong global network of alumni',
+    ],
+    cons: [
+      'One of the most competitive scholarships in the world; requires outstanding character and leadership',
+      'Requires a highly intensive multi-stage selection process and final panel interview',
+    ],
+    bestFor: 'Exceptional young leaders showing outstanding academic achievement, character, and commitment to service',
+  },
+];
+
+const rhodesStrategyTips: string[] = [
+  'Start early and draft your personal statement carefully. It must reflect your values, life path, and commitment to standing up for the world.',
+  'Secure 5 to 6 referees who can speak comprehensively about your academic ability, leadership, character, and extra-curricular achievements.',
+  'Prepare extensively for the rigorous final panel interview, which tests your ethical reasoning, leadership vision, and critical thinking on global issues.',
+];
+
+const rhodesDifferentiators = [
+  {
+    label: 'Oldest Global Postgraduate Award',
+    description: 'First awarded in 1902, the Rhodes Scholarship stands as the most famous global fellowship, with alumni including world leaders and scientists.',
+  },
+  {
+    label: 'Rhodes House Community',
+    description: 'Scholars gain access to dedicated leadership retreats, forums, and workspace amenities at the historic Rhodes House in Oxford.',
+  },
+];
+
 
 export const ukEnrichment: Record<string, EnrichmentData> = {
   // ── UK Chevening Scholarship ──
@@ -66,4 +196,33 @@ export const ukEnrichment: Record<string, EnrichmentData> = {
     differentiators: cheveningDifferentiators,
   },
 
+  // ── Gates Cambridge Scholarship ──
+  'gates-cambridge-scholarship': {
+    slug: 'gates-cambridge-scholarship',
+    tracks: gatesTrackComparison,
+    trackSectionTitle: 'Scholarship Pathway',
+    socialLinks: gatesSocialLinks,
+    strategyTips: gatesStrategyTips,
+    differentiators: gatesDifferentiators,
+  },
+
+  // ── Clarendon Fund Scholarship ──
+  'clarendon-fund-scholarship-university-of-oxford': {
+    slug: 'clarendon-fund-scholarship-university-of-oxford',
+    tracks: clarendonTrackComparison,
+    trackSectionTitle: 'Scholarship Pathway',
+    socialLinks: clarendonSocialLinks,
+    strategyTips: clarendonStrategyTips,
+    differentiators: clarendonDifferentiators,
+  },
+
+  // ── Rhodes Scholarship ──
+  'rhodes-scholarship-university-of-oxford': {
+    slug: 'rhodes-scholarship-university-of-oxford',
+    tracks: rhodesTrackComparison,
+    trackSectionTitle: 'Scholarship Pathway',
+    socialLinks: rhodesSocialLinks,
+    strategyTips: rhodesStrategyTips,
+    differentiators: rhodesDifferentiators,
+  },
 };
