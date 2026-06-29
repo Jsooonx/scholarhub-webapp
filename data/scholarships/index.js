@@ -15,6 +15,7 @@ const canada = require('./canada');
 const astarNew = require('./astarNew');
 const jasso = require('./jasso');
 const koica = require('./koica');
+const kaist = require('./kaist');
 const cpra = require('./cpra');
 const studienstiftung = require('./studienstiftung');
 const netherlands = require('./netherlands');
@@ -57,7 +58,7 @@ const COUNTRY_PROGRAMS = {
   turkey: { arrays: [turkiye], programs: ['Türkiye Burslari'] },
   'united-kingdom': { arrays: [chevening, gatesCambridge, clarendon, rhodes, commonwealth], programs: ['Chevening', 'Gates Cambridge', 'Clarendon', 'Rhodes', 'Commonwealth'] },
   'australia': { arrays: [australiaAwards, australiaUniversityScholarships], programs: ['Australia Awards', 'Melbourne', 'Sydney', 'ANU', 'Monash', 'UQ', 'UNSW', 'Flinders', 'Griffith'] },
-  'south-korea': { arrays: [gks, koica], programs: ['GKS', 'KOICA'] },
+  'south-korea': { arrays: [gks, koica, kaist], programs: ['GKS', 'KOICA', 'KAIST'] },
   singapore: { arrays: [singapore, astarNew], programs: ['SINGA', 'NUS', 'NTU', 'A*STAR'] },
   france: { arrays: [eiffel], programs: ['Eiffel', 'Paris-Saclay', 'Sciences Po', 'ENS Lyon'] },
   canada: { arrays: [canada, cpra], programs: ['CGRS-D', 'Impact+', 'Pearson', 'CPRA'] },
@@ -117,7 +118,7 @@ function normalizeProvider(p) {
   return out;
 }
 
-const scholarships = [...daad, ...mext, ...turkiye, ...chevening, ...australiaAwards, ...australiaUniversityScholarships, ...gks, ...singapore, ...eiffel, ...canada, ...astarNew, ...jasso, ...koica, ...cpra, ...studienstiftung, ...netherlands, ...gatesCambridge, ...clarendon, ...rhodes, ...fulbright, ...belgiumVlir, ...belgiumOther, ...erasmusMundus, ...chinaCsc, ...sweden, ...italy, ...hungary, ...taiwan, ...switzerland, ...austria, ...finland, ...newZealand, ...ireland, ...poland, ...spain, ...denmark, ...norway, ...hongKong, ...malaysia, ...commonwealth, ...knightHennessy, ...japanGlobal, ...daadLeadership, ...romaniaMfa, ...romaniaUni, ...russia, ...saudiMoe, ...qatar].map((s) => ({
+const scholarships = [...daad, ...mext, ...turkiye, ...chevening, ...australiaAwards, ...australiaUniversityScholarships, ...gks, ...singapore, ...eiffel, ...canada, ...astarNew, ...jasso, ...koica, ...kaist, ...cpra, ...studienstiftung, ...netherlands, ...gatesCambridge, ...clarendon, ...rhodes, ...fulbright, ...belgiumVlir, ...belgiumOther, ...erasmusMundus, ...chinaCsc, ...sweden, ...italy, ...hungary, ...taiwan, ...switzerland, ...austria, ...finland, ...newZealand, ...ireland, ...poland, ...spain, ...denmark, ...norway, ...hongKong, ...malaysia, ...commonwealth, ...knightHennessy, ...japanGlobal, ...daadLeadership, ...romaniaMfa, ...romaniaUni, ...russia, ...saudiMoe, ...qatar].map((s) => ({
   ...s,
   provider: normalizeProvider(s.provider),
   degree_levels: normalizeDegreeLevels(s.degree_levels),

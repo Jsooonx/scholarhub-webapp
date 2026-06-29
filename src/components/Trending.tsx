@@ -165,7 +165,7 @@ export default function Trending() {
         {/* Section header */}
         <div className="flex items-center justify-between mb-8">
           <h2 className="font-serif text-3xl font-bold tracking-tight text-brand-dark">
-            By provider
+            By country
           </h2>
 
           {/* Desktop: pagination controls */}
@@ -277,7 +277,7 @@ export default function Trending() {
               href="/scholarships"
               className="inline-flex items-center justify-center px-6 py-2.5 border border-brand-border rounded-full text-xs font-semibold text-brand-dark hover:bg-brand-cream transition-colors"
             >
-              View all providers →
+              View all countries →
             </Link>
           </div>
         </div>

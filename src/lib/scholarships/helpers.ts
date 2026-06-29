@@ -26,7 +26,7 @@ export function providerGroup(provider: string): string {
   // Australia
   if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp') || p.includes('university of melbourne') || p.includes('university of sydney') || p.includes('australian national university') || p.includes('monash university') || p.includes('university of queensland') || p.includes('unsw') || p.includes('flinders university') || p.includes('griffith university')) return 'australia';
   // South Korea
-  if (p.includes('niied') || p.includes('korean government') || p.includes('gks') || p.includes('koica') || p.includes('korea international cooperation')) return 'south-korea';
+  if (p.includes('niied') || p.includes('korean government') || p.includes('gks') || p.includes('koica') || p.includes('korea international cooperation') || p.includes('kaist') || p.includes('korea advanced institute')) return 'south-korea';
   // Singapore
   if (p.includes('a*star') || p.includes('astar') || p.includes('nus') || p.includes('ntu') || p.includes('singa') || p.includes('nanyang') || p.includes('national university of singapore')) return 'singapore';
   // France
@@ -444,9 +444,11 @@ function getScholarshipImageRaw(s: Scholarship): string {
   if (nameTrimmed === "MEXT Scholarship - Research Students (Master/PhD) 2027") return '/images/universities/JP_KyotoU.png';
 
   // United Kingdom
-  if (nameTrimmed === "Chevening Scholarship (Indonesia)") return '/images/universities/UK_Oxford.png';
+  if (nameTrimmed === "Chevening Scholarship (Indonesia)") return '/images/universities/UK_Edinburgh.png';
   if (nameTrimmed === "Chevening ASEAN Scholarship") return '/images/universities/UK_Cambridge.png';
   if (nameTrimmed === "Chevening Fellowships") return '/images/universities/UK_ImperialCollegeLondon.png';
+  if (nameTrimmed === "Clarendon Fund Scholarship - University of Oxford") return '/images/universities/UK_Oxford_2.png';
+  if (nameTrimmed === "Rhodes Scholarship - University of Oxford") return '/images/universities/UK_Oxford.png';
 
   // Australia
   if (nameTrimmed === "Australia Awards Scholarships - PhD & Masters (Indonesia)") return '/images/universities/AUS_Sydney.png';
@@ -1697,6 +1699,9 @@ export function getDeadlineStatus(s: Scholarship): DeadlineStatus {
 
   // ── GKS Graduate: Feb–Mar; Undergraduate: Sep–Oct ────────────────────────
   if (group === 'south-korea') {
+    if (s.provider.toLowerCase().includes('kaist') || s.name.toLowerCase().includes('kaist')) {
+      return { type: 'rolling', label: 'Multiple intake tracks' };
+    }
     const degLower = s.degree_levels.map(d => d.toLowerCase()).join(' ');
     const isGrad = degLower.includes('master') || degLower.includes('phd') || degLower.includes('doctoral');
     const now4 = new Date();

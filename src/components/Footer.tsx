@@ -9,6 +9,7 @@ export default function Footer() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const countryImages = [
     '/images/universities/GE_HeidelbergU.png',
@@ -24,7 +25,12 @@ export default function Footer() {
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (scrollResetTimerRef.current) {
+        clearTimeout(scrollResetTimerRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -105,7 +111,24 @@ export default function Footer() {
             <h4 className="text-xs font-bold text-brand-dark uppercase tracking-wider mb-4">
               Countries
             </h4>
-            <div className="relative group" ref={dropdownRef}>
+            <div 
+              className="relative group" 
+              ref={dropdownRef}
+              onMouseEnter={() => {
+                if (scrollResetTimerRef.current) {
+                  clearTimeout(scrollResetTimerRef.current);
+                  scrollResetTimerRef.current = null;
+                }
+              }}
+              onMouseLeave={() => {
+                setIsDropdownOpen(false);
+                scrollResetTimerRef.current = setTimeout(() => {
+                  if (scrollRef.current) {
+                    scrollRef.current.scrollTop = 0;
+                  }
+                }, 250);
+              }}
+            >
               <button
                 onClick={(e) => {
                   e.preventDefault();

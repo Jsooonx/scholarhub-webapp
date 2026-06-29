@@ -62,6 +62,7 @@ export default function Navbar() {
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
   const [mounted, setMounted] = useState(false);
   const providerLeaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const navbarScrollRef = useRef<HTMLDivElement>(null);
 
   const handleProviderEnter = () => {
     if (providerLeaveTimer.current) {
@@ -80,7 +81,7 @@ export default function Navbar() {
   const handleProviderLeave = () => {
     providerLeaveTimer.current = setTimeout(() => {
       setIsProviderHovered(false);
-    }, 100);
+    }, 50);
   };
 
   useEffect(() => {
@@ -89,6 +90,17 @@ export default function Navbar() {
       if (providerLeaveTimer.current) clearTimeout(providerLeaveTimer.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isProviderHovered) {
+      const timer = setTimeout(() => {
+        if (navbarScrollRef.current) {
+          navbarScrollRef.current.scrollTop = 0;
+        }
+      }, 200);
+      return () => clearTimeout(timer);
+    }
+  }, [isProviderHovered]);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -267,7 +279,7 @@ export default function Navbar() {
                   onMouseLeave={handleProviderLeave}
                 >
                   <button ref={providerButtonRef} className="flex items-center text-xs font-semibold text-white/80 hover:text-white transition-colors focus:outline-none cursor-pointer">
-                    Providers <ChevronDown className="ml-0.5 h-3 w-3" />
+                    Countries <ChevronDown className="ml-0.5 h-3 w-3" />
                   </button>
                   {mounted && createPortal(
                     <div
@@ -284,6 +296,7 @@ export default function Navbar() {
                       onMouseLeave={handleProviderLeave}
                     >
                       <div
+                        ref={navbarScrollRef}
                         data-lenis-prevent
                         className="flex flex-col gap-1 max-h-44 overflow-y-auto navbar-dropdown-scroll"
                         style={{ overscrollBehavior: 'contain', scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.15) transparent' }}
@@ -395,7 +408,7 @@ export default function Navbar() {
                 <p className="mt-3 text-[11px] text-white/35 text-center">
                   Press Enter to search ·{' '}
                   <button onClick={() => openMode('menu')} className="underline underline-offset-2 hover:text-white/60 transition-colors cursor-pointer">
-                    Browse all providers →
+                    Browse all countries →
                   </button>
                 </p>
               </motion.div>

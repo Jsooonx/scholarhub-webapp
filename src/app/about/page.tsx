@@ -232,7 +232,7 @@ export default function AboutPage() {
 
           {/* Providers */}
           <section className="border-t border-brand-border pt-16">
-            <h2 className="font-serif text-3xl font-bold text-brand-dark mb-8 text-center">Scholarship providers</h2>
+            <h2 className="font-serif text-3xl font-bold text-brand-dark mb-8 text-center">Scholarships by country</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {providers.map((p) => (
                 <Link key={p.name} href={`/providers/${Object.keys(providerMeta).find(k => providerMeta[k] === p) ?? ''}`}
