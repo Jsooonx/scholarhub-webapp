@@ -114,12 +114,10 @@ The following curated scholarships have been fully researched and enriched:
 *   **China (CGS):** Bilateral Program
 *   **Russia (Open Doors):** Master's & PhD
 *   **Russia (Government Quota):** Bachelor's, Master's, & PhD
+*   **Saudi Arabia (Study in Saudi):** Bachelor's, Master's, & PhD
 
 ### Missing Enrichments (Future Backlog)
-The remaining curated picks in `src/data/curated.ts` that still need enrichment are:
-1.  `saudi-government-scholarship-bachelors-study-in-saudi-arabia` (Saudi Arabia S1)
-2.  `saudi-government-scholarship-masters-study-in-saudi-arabia` (Saudi Arabia S2)
-3.  `saudi-government-scholarship-phd-study-in-saudi-arabia` (Saudi Arabia S3)
+All curated picks in `src/data/curated.ts` have been fully enriched. No pending backlog items remain.
 
 ---
 
