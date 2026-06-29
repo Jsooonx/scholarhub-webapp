@@ -573,6 +573,60 @@ const turkeyDifferentiators: { label: string; description: string }[] = [
   },
 ];
 
+// ── Russian Government Scholarship (Quota) Shared Data ────────────────────────────────
+
+const russiaQuotaSocialLinks: SocialLink[] = [
+  { label: 'Official Website (Education in Russia)', platform: 'website', handle: 'education-in-russia.com', url: 'https://education-in-russia.com' },
+  { label: 'Rumah Rusia Jakarta (Instagram)', platform: 'instagram', handle: '@russianhouse_jakarta', url: 'https://www.instagram.com/russianhouse_jakarta/' },
+  { label: 'Rumah Rusia Jakarta (Telegram)', platform: 'telegram', handle: '@rusdomindo', url: 'https://t.me/rusdomindo' },
+  { label: 'PERMIRA Rusia (Indonesian Students)', platform: 'instagram', handle: '@ppirusia', url: 'https://www.instagram.com/ppirusia/' },
+  { label: 'PERMIRA Official Site', platform: 'website', handle: 'ppirusia.org', url: 'https://ppirusia.org/' },
+];
+
+const russiaQuotaTrackComparison: TrackInfo[] = [
+  {
+    name: 'Russian Government Quota Program',
+    quota: 'Around 160 - 250 spots annually for Indonesian students',
+    pros: [
+      'Absolutely no age limit for any degree level - very unique compared to MEXT/GKS',
+      'No IELTS/TOEFL certificates required for Russian-taught programs',
+      '100% free tuition for the entire duration + 1-year preparatory Russian language course (Podfak)',
+      'Highly subsidized on-campus dormitory accommodation',
+    ],
+    cons: [
+      'Does NOT cover international airfare: awardees must pay for flights to and from Russia',
+      'All documents (transcripts, paspor, MCU, akta lahir) must be translated into Russian by a sworn translator',
+      'Does NOT cover medical insurance (~5,000 - 10,000 RUB/year) which is legally mandatory',
+      'Monthly living stipend is basic (approx. 2,000 - 4,000 RUB/month), requiring additional personal funds',
+    ],
+    bestFor: 'High school graduates (S1), S1 graduates (S2), and S2 graduates (S3) of any age willing to learn Russian and self-fund their travel/insurance costs',
+  },
+];
+
+const russiaQuotaStrategyTips: string[] = [
+  'Prepare your translation budget early. All documents uploaded (academic transcript, ijazah, passport, health check) MUST be translated into Russian by a certified sworn translator.',
+  'Make sure your high school average grade is at least 85/100 (for S1) or your GPA is at least 3.5/4.0 (for S2/S3) as PKR Jakarta uses these minimum thresholds to shortlist candidates.',
+  'Choose your 6 target universities strategically. You can select a maximum of 2 universities in Moscow and a maximum of 2 in St. Petersburg; the remaining 2 must be in other Russian regions.',
+  'Your medical check-up (MCU) certificate must explicitly state that you are free from HIV/AIDS, Tuberculosis (TBC), and Hepatitis B/C, signed and stamped by a doctor.',
+  'Prepare for the local interview in Jakarta (online/offline). Be ready to explain your motivation to study in Russia, your adaptation plan for extreme winter, and your career goals.',
+  'Since the monthly stipend is very basic (2,000 - 4,000 RUB), make sure to prepare personal savings for extra monthly living expenses and mandatory annual health insurance.',
+];
+
+const russiaQuotaDifferentiators = [
+  {
+    label: 'No Age Limits',
+    description: 'Unlike almost all other government scholarships, there is absolutely no age restriction for S1, S2, or S3 applicants.',
+  },
+  {
+    label: 'Mandatory Sworn Russian Translation',
+    description: 'Every single document submitted must be professionally translated into Russian by a certified sworn translator to pass administrative screening.',
+  },
+  {
+    label: '1-Year Free Preparatory Podfak',
+    description: 'Admitted students spend their first year learning academic Russian and basic subjects for free at their host university preparatory department.',
+  },
+];
+
 // ── Open Doors Russian Scholarship Shared Data ───────────────────────────────────────
 
 const openDoorsSocialLinks: SocialLink[] = [
@@ -1360,5 +1414,15 @@ export const enrichmentData: Record<string, EnrichmentData> = {
     socialLinks: openDoorsSocialLinks,
     strategyTips: openDoorsStrategyTips,
     differentiators: openDoorsDifferentiators,
+  },
+
+  // ── Russian Government Scholarship (Quota) ──
+  'russian-government-scholarship-quota-via-rossotrudnichestvo': {
+    slug: 'russian-government-scholarship-quota-via-rossotrudnichestvo',
+    tracks: russiaQuotaTrackComparison,
+    trackSectionTitle: 'Scholarship Pathway',
+    socialLinks: russiaQuotaSocialLinks,
+    strategyTips: russiaQuotaStrategyTips,
+    differentiators: russiaQuotaDifferentiators,
   },
 };
