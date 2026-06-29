@@ -151,7 +151,18 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
   const modalRef = useRef<HTMLDivElement>(null);
   
   // Calculate transform origin dynamically using the shared hook
-  const transformOrigin = useMacOsAppZoom(modalRef, buttonCenter);
+  useMacOsAppZoom(modalRef, buttonCenter);
+
+  const initialOrigin = useMemo(() => {
+    if (typeof window === 'undefined' || !buttonCenter) return '50% 50%';
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const w = Math.min(1152, vw - 64);
+    const h = vh * 0.9;
+    const left = (vw - w) / 2;
+    const top = (vh - h) / 2;
+    return `${buttonCenter.x - left}px ${buttonCenter.y - top}px`;
+  }, [buttonCenter]);
 
   // Lock body/html scroll when open
   useBodyScrollLock(true);
@@ -193,7 +204,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
       exit="exit"
       transition={{ duration: 0.22, ease: 'easeInOut' }}
       data-lenis-prevent
-      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 bg-brand-dark/40 backdrop-blur-sm"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6 bg-brand-dark/60"
     >
       {/* Background click to close */}
       <div className="absolute inset-0" onClick={onClose} />
@@ -205,7 +216,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
         animate="animate"
         exit="exit"
         transition={macOSZoomTransition}
-        style={{ transformOrigin }}
+        style={{ transformOrigin: initialOrigin }}
         className="relative bg-white rounded-3xl border border-brand-border w-full max-w-6xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden z-10"
       >
         {/* Header */}
