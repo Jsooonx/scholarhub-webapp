@@ -112,10 +112,11 @@ The following curated scholarships have been fully researched and enriched:
 *   **United Kingdom (Chevening):** Master's
 *   **United States (Fulbright):** Master's & PhD
 *   **China (CGS):** Bilateral Program
+*   **Russia (Open Doors):** Master's & PhD
 
 ### Missing Enrichments (Future Backlog)
 The remaining curated picks in `src/data/curated.ts` that still need enrichment are:
-1.  `open-doors-russian-scholarship-project` (Russia)
+1.  `russian-government-scholarship-quota-via-rossotrudnichestvo` (Russia Government Quota S1-S3)
 2.  `saudi-government-scholarship-bachelors-study-in-saudi-arabia` (Saudi Arabia S1)
 3.  `saudi-government-scholarship-masters-study-in-saudi-arabia` (Saudi Arabia S2)
 4.  `saudi-government-scholarship-phd-study-in-saudi-arabia` (Saudi Arabia S3)

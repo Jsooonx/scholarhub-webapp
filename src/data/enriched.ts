@@ -573,6 +573,74 @@ const turkeyDifferentiators: { label: string; description: string }[] = [
   },
 ];
 
+// ── Open Doors Russian Scholarship Shared Data ───────────────────────────────────────
+
+const openDoorsSocialLinks: SocialLink[] = [
+  { label: 'Official Website (Olympiad)', platform: 'website', handle: 'od.globaluni.ru/en', url: 'https://od.globaluni.ru/en/' },
+  { label: 'Olympiad Application Portal', platform: 'website', handle: 'od.globaluni.ru/register', url: 'https://od.globaluni.ru/en/register.php' },
+  { label: 'PERMIRA Rusia (Indonesian Students)', platform: 'instagram', handle: '@ppirusia', url: 'https://www.instagram.com/ppirusia/' },
+  { label: 'PERMIRA Official Site', platform: 'website', handle: 'ppirusia.org', url: 'https://ppirusia.org/' },
+  { label: 'Global Universities Association Russia', platform: 'website', handle: 'globaluni.ru', url: 'http://globaluni.ru/' },
+];
+
+const openDoorsTrackComparison: TrackInfo[] = [
+  {
+    name: 'Master\'s Scholarship Track',
+    quota: 'Competitive online Olympiad format',
+    pros: [
+      'Allows initial application and testing in English or Russian - no language test certificates (IELTS/TOEFL) required',
+      'Free tuition at any of the 24 leading Russian universities',
+      'Evaluation is entirely online: Round 1 (Portfolio) and Round 2 (Proctored Online Exam)',
+      'Free or highly subsidized student dormitory accommodation',
+    ],
+    cons: [
+      'Does NOT cover international airfare to and from Russia',
+      'Very low monthly living stipend (average 2,000 - 5,000 RUB/month, top-ups vary by university)',
+      'Exam tasks in Round 2 are extremely difficult, testing advanced logic, math, and analytical skills',
+    ],
+    bestFor: 'Academically driven S1 graduates or final-year students with high GPA, research interests, or competition certificates looking for free S2 tuition in Russia',
+  },
+  {
+    name: 'Doctoral (PhD) Scholarship Track',
+    quota: 'Highly competitive research allocation',
+    pros: [
+      'Initial application and interviews can be done in English or Russian with no mandatory language certificate',
+      'Access to top-tier laboratories and research supervisors across 24 leading Russian universities',
+      'Includes a fully-funded 1-year preparatory Russian language course if required',
+    ],
+    cons: [
+      'Three-stage selection: requires passing Portfolio (Round 1), Online Exam (Round 2), and Wawancara (Round 3)',
+      'Requires securing and matching with a doctoral supervisor during the final interview stage',
+      'Living stipend is basic; candidates must be prepared to self-fund extra living costs or seek top-ups',
+    ],
+    bestFor: 'Master\'s graduates, researchers, or lecturers in Indonesia who want to pursue fully-funded doctoral research in Russia and excel in online exams and supervisor interviews',
+  },
+];
+
+const openDoorsStrategyTips: string[] = [
+  'Upload a comprehensive portfolio in Round 1. Every patent, scientific publication, academic award, conference certificate, and work experience adds quantitative points to your profile.',
+  'Your Motivation Letter is key. Clearly outline your academic goals, research achievements, rationale for choosing Russia, and how your topic fits the targeted university.',
+  'Prepare thoroughly for the Round 2 Online Exam. It is proctored strictly via webcam/screen share. Practice using past Olympiad exam papers available on the official website.',
+  'No IELTS or TOEFL is required to register. However, you must be fully fluent in your chosen language of instruction (English or Russian) for the exams and interviews.',
+  'For PhD applicants: Round 3 consists of a 30-minute online interview. Be ready to defend your research proposal, explain your methodology, and answer core theoretical questions in your field.',
+  'Be ready to fund your own flights. Open Doors does not cover international airfare, and the monthly stipend is basic, so plan your personal finances beforehand.',
+];
+
+const openDoorsDifferentiators = [
+  {
+    label: 'Online Olympiad Competition',
+    description: 'Unlike standard application reviews, selection is structured as a competitive online Olympiad consisting of portfolio evaluation and proctored subject exams.',
+  },
+  {
+    label: 'No Mandatory IELTS/TOEFL',
+    description: 'Applicants are not required to submit official language certificates, provided they demonstrate fluency during the online exams and interviews.',
+  },
+  {
+    label: 'PhD Supervisor Matching Round',
+    description: 'Final-stage PhD selection relies on a dedicated interview round where candidates present their research proposals to match with university supervisors.',
+  },
+];
+
 // ── Chinese Government Scholarship (CGS) Shared Data ─────────────────────────────────
 
 const cgsSocialLinks: SocialLink[] = [
@@ -1282,5 +1350,15 @@ export const enrichmentData: Record<string, EnrichmentData> = {
     socialLinks: cgsSocialLinks,
     strategyTips: cgsStrategyTips,
     differentiators: cgsDifferentiators,
+  },
+
+  // ── Open Doors Russian Scholarship Project ──
+  'open-doors-russian-scholarship-project': {
+    slug: 'open-doors-russian-scholarship-project',
+    tracks: openDoorsTrackComparison,
+    trackSectionTitle: 'Scholarship Track',
+    socialLinks: openDoorsSocialLinks,
+    strategyTips: openDoorsStrategyTips,
+    differentiators: openDoorsDifferentiators,
   },
 };

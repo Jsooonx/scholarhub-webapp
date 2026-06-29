@@ -148,6 +148,14 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'The portfolio evaluation phase (Stage 1) carries high weight. Upload all scientific publications, conference certificates, and academic awards to maximize your portfolio score.'
   },
 
+  // Russia (Government Quota)
+  {
+    slug: 'russian-government-scholarship-quota-via-rossotrudnichestvo',
+    badge: 'Fully Funded',
+    editorReason: 'Provides fully funded education for S1, S2, and S3 degrees at over 1,700 Russian universities, including a free 1-year Russian language preparatory course.',
+    insiderTip: 'Applications are submitted through the official portal. Having a clean academic transcript and translated documents is vital as Rossotrudnichestvo evaluates candidates carefully.'
+  },
+
   // Saudi Arabia
   {
     slug: 'saudi-government-scholarship-bachelors-study-in-saudi-arabia',
