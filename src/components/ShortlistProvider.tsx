@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { addToShortlist, getShortlistSlugs, removeFromShortlist } from '@/app/actions/shortlist';
 import { signOutAction } from '@/app/actions/auth';
 
@@ -20,18 +20,18 @@ const ShortlistContext = createContext<ShortlistContextValue | null>(null);
 
 export function ShortlistProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [ready, setReady] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [email, setEmail] = useState<string | null>(null);
   const [slugs, setSlugs] = useState<Set<string>>(new Set());
   const [isPending, setIsPending] = useState(false);
+  const [currentPath, setCurrentPath] = useState('');
 
-  const currentPath = useMemo(() => {
-    const query = searchParams.toString();
-    return `${pathname}${query ? `?${query}` : ''}`;
-  }, [pathname, searchParams]);
+  // Read the current path client-side only — avoids useSearchParams() at root
+  // layout which forces the entire page tree into CSR (breaks Google indexing).
+  useEffect(() => {
+    setCurrentPath(window.location.pathname + window.location.search);
+  }, []);
 
   const refresh = useCallback(async () => {
     try {
