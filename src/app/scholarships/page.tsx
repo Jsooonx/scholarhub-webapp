@@ -29,8 +29,11 @@ interface PageProps {
     level?: string;
     country?: string;
     view?: string;
+    page?: string;
   }>;
 }
+
+const RESULTS_PER_PAGE = 24;
 
 export default async function ScholarshipsPage({ searchParams }: PageProps) {
   const params = await searchParams;
@@ -44,7 +47,12 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
     country: params.country,
   });
 
-  const results = allResults;
+  const requestedPage = Number.parseInt(params.page ?? '1', 10);
+  const totalPages = Math.max(1, Math.ceil(allResults.length / RESULTS_PER_PAGE));
+  const currentPage = Number.isFinite(requestedPage)
+    ? Math.min(Math.max(requestedPage, 1), totalPages)
+    : 1;
+  const results = allResults.slice((currentPage - 1) * RESULTS_PER_PAGE, currentPage * RESULTS_PER_PAGE);
 
   // Build a URL with updated view param, keeping all other params
   function viewUrl(v: string) {
@@ -54,7 +62,21 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
     if (params.funding) sp.set('funding', params.funding);
     if (params.level) sp.set('level', params.level);
     if (params.country) sp.set('country', params.country);
+    if (currentPage > 1) sp.set('page', String(currentPage));
     if (v !== 'grid') sp.set('view', v);
+    const qs = sp.toString();
+    return `/scholarships${qs ? `?${qs}` : ''}`;
+  }
+
+  function pageUrl(page: number) {
+    const sp = new URLSearchParams();
+    if (params.q) sp.set('q', params.q);
+    if (params.provider) sp.set('provider', params.provider);
+    if (params.funding) sp.set('funding', params.funding);
+    if (params.level) sp.set('level', params.level);
+    if (params.country) sp.set('country', params.country);
+    if (view !== 'grid') sp.set('view', view);
+    if (page > 1) sp.set('page', String(page));
     const qs = sp.toString();
     return `/scholarships${qs ? `?${qs}` : ''}`;
   }
@@ -166,10 +188,32 @@ export default async function ScholarshipsPage({ searchParams }: PageProps) {
                 </div>
               )}
 
-              {/* Total count footer */}
-              <p className="text-center text-xs text-brand-muted mt-12">
-                Showing all {allResults.length} scholarships
-              </p>
+              <div className="mt-10 flex flex-col items-center gap-4">
+                <p className="text-center text-xs text-brand-muted">
+                  Showing {(currentPage - 1) * RESULTS_PER_PAGE + 1}–{Math.min(currentPage * RESULTS_PER_PAGE, allResults.length)} of {allResults.length} scholarships
+                </p>
+                {totalPages > 1 && (
+                  <nav aria-label="Scholarship pages" className="flex items-center gap-2">
+                    {currentPage > 1 && (
+                      <Link
+                        href={pageUrl(currentPage - 1)}
+                        className="inline-flex min-h-11 items-center rounded-full border border-brand-border bg-white px-4 text-xs font-semibold text-brand-dark transition-colors hover:bg-brand-cream active:scale-[0.98]"
+                      >
+                        Previous
+                      </Link>
+                    )}
+                    <span className="px-2 text-xs text-brand-muted">Page {currentPage} of {totalPages}</span>
+                    {currentPage < totalPages && (
+                      <Link
+                        href={pageUrl(currentPage + 1)}
+                        className="inline-flex min-h-11 items-center rounded-full bg-brand-dark px-4 text-xs font-semibold text-white transition-colors hover:bg-brand-dark/90 active:scale-[0.98]"
+                      >
+                        Next
+                      </Link>
+                    )}
+                  </nav>
+                )}
+              </div>
             </>
           )}
         </div>

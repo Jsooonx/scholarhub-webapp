@@ -51,7 +51,7 @@ export default function DeadlineStatus({ status, size = 'md' }: Props) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border font-medium
+      className={`inline-flex max-w-full items-center gap-1.5 px-3 py-1 rounded-full border font-medium leading-snug
         ${cfg.bg} ${cfg.border} ${cfg.text}
         ${isSmall ? 'text-[10px]' : 'text-xs'}`}
     >
@@ -64,7 +64,7 @@ export default function DeadlineStatus({ status, size = 'md' }: Props) {
       ) : (
         <Icon className={`flex-shrink-0 ${isSmall ? 'h-3 w-3' : 'h-3.5 w-3.5'}`} />
       )}
-      {status.label}
+      <span className="min-w-0 break-words">{status.label}</span>
       {(status.type === 'open' || status.type === 'closing') && status.daysLeft <= 30 && (
         <span className={`ml-0.5 font-bold ${isSmall ? 'text-[9px]' : 'text-[10px]'}`}>
           ({status.daysLeft}d left)

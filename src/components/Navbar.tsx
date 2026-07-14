@@ -364,7 +364,7 @@ export default function Navbar() {
               {/* Slot A: search (compact/menu) ↔ menu (search) */}
               <button
                 onClick={() => openMode(expandMode === 'search' ? 'menu' : 'search')}
-                className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center hover:bg-white/10 rounded-full transition-colors text-white/85 hover:text-white cursor-pointer"
+                className="grid h-11 w-11 sm:h-9 sm:w-9 place-items-center rounded-full text-white/85 transition-colors cursor-pointer active:scale-95 sm:hover:bg-white/10 sm:hover:text-white"
                 aria-label={expandMode === 'search' ? 'Open menu' : 'Search'}
               >
                 {expandMode === 'search' ? <Menu className="h-4 w-4" /> : <Search className="h-4 w-4" />}
@@ -373,7 +373,7 @@ export default function Navbar() {
               {/* Slot B: menu (compact) ↔ close (expanded) */}
               <button
                 onClick={() => (isExpanded ? close() : openMode('menu'))}
-                className="grid h-8 w-8 sm:h-9 sm:w-9 place-items-center hover:bg-white/10 rounded-full transition-colors text-white/85 hover:text-white cursor-pointer"
+                className="grid h-11 w-11 sm:h-9 sm:w-9 place-items-center rounded-full text-white/85 transition-colors cursor-pointer active:scale-95 sm:hover:bg-white/10 sm:hover:text-white"
                 aria-label={isExpanded ? 'Close' : 'Open menu'}
               >
                 {isExpanded ? <X className="h-5 w-5" /> : <Menu className="h-4 w-4" />}

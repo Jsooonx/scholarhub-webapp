@@ -88,16 +88,21 @@ export default function Hero() {
             <span className="text-xs font-semibold uppercase tracking-widest text-brand-muted mb-3 block">
               Scholarship Directory
             </span>
-            <h1 className="font-serif text-5xl sm:text-7xl font-bold tracking-tight text-brand-dark leading-[1.05] max-w-2xl">
-              <TrueFocus
-                sentence="Your path to studying abroad"
-                manualMode={false}
-                blurAmount={3}
-                borderColor="#3730A3"
-                glowColor="rgba(55, 48, 163, 0.25)"
-                animationDuration={0.6}
-                pauseBetweenAnimations={1.2}
-              />
+            <h1 className="font-serif text-[2.75rem] sm:text-7xl font-bold tracking-tight text-brand-dark leading-[1.05] max-w-2xl">
+              {/* The moving focus treatment is decorative; keep the primary message
+                  perfectly legible on touch-sized screens. */}
+              <span className="sm:hidden">Your path to studying abroad</span>
+              <span className="hidden sm:block">
+                <TrueFocus
+                  sentence="Your path to studying abroad"
+                  manualMode={false}
+                  blurAmount={3}
+                  borderColor="#3730A3"
+                  glowColor="rgba(55, 48, 163, 0.25)"
+                  animationDuration={0.6}
+                  pauseBetweenAnimations={1.2}
+                />
+              </span>
             </h1>
 
             {/* ScholarMatch CTA */}

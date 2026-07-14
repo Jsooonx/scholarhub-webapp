@@ -69,7 +69,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
   };
 
   return (
-    <div className={`space-y-6 sm:space-y-8 ${className}`}>
+    <div className={`space-y-6 sm:space-y-8 mobile-safe-wrap ${className}`}>
       {/* Section Header */}
       <div className="flex items-center gap-2.5 pb-2.5 border-b border-brand-border">
         <Lightbulb className="w-4.5 h-4.5 text-brand-dark" />
@@ -85,18 +85,18 @@ export default function InsiderGuide({ data, className = '' }: Props) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {tracks.map((track) => (
-              <div key={track.name} className="bg-white border border-brand-border rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between">
+              <div key={track.name} className="min-w-0 bg-white border border-brand-border rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <h4 className="text-sm font-bold text-brand-dark leading-snug">{track.name}</h4>
+                  <div className="flex flex-col items-start gap-2 mb-3 sm:flex-row sm:justify-between">
+                    <h4 className="min-w-0 text-sm font-bold text-brand-dark leading-snug">{track.name}</h4>
                     {track.acceptanceRate && (
-                      <span className="text-[10px] font-bold text-brand-dark bg-brand-cream border border-brand-border/60 px-2.5 py-0.5 rounded-full shrink-0">
+                      <span className="max-w-full break-words rounded-xl border border-brand-border/60 bg-brand-cream px-2.5 py-1 text-left text-[10px] font-bold leading-snug text-brand-dark sm:max-w-[60%]">
                         {track.acceptanceRate}
                       </span>
                     )}
                   </div>
                   {track.quota && (
-                    <p className="text-[11px] text-brand-muted mb-2 font-medium">
+                    <p className="text-[11px] text-brand-muted mb-2 font-medium break-words">
                       Quota: <span className="text-brand-dark">{track.quota}</span>
                     </p>
                   )}
@@ -112,7 +112,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
                         {track.pros.map((p, i) => (
                           <li key={i} className="text-xs text-brand-muted flex items-start gap-2 leading-relaxed">
                             <Check className="w-3.5 h-3.5 text-emerald-600 bg-emerald-50 rounded-full p-0.5 shrink-0 mt-0.5" />
-                            <span>{p}</span>
+                            <span className="min-w-0 break-words">{p}</span>
                           </li>
                         ))}
                       </ul>
@@ -125,7 +125,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
                         {track.cons.map((c, i) => (
                           <li key={i} className="text-xs text-brand-muted flex items-start gap-2 leading-relaxed">
                             <X className="w-3.5 h-3.5 text-rose-500 bg-rose-50 rounded-full p-0.5 shrink-0 mt-0.5" />
-                            <span>{c}</span>
+                            <span className="min-w-0 break-words">{c}</span>
                           </li>
                         ))}
                       </ul>
@@ -166,7 +166,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
                       {exam.tips.map((tip, i) => (
                         <li key={i} className="text-xs text-brand-muted flex items-start gap-2 leading-relaxed">
                           <Lightbulb className="w-3.5 h-3.5 text-brand-dark shrink-0 mt-0.5" />
-                          <span>{tip}</span>
+                          <span className="min-w-0 break-words">{tip}</span>
                         </li>
                       ))}
                     </ul>
@@ -202,7 +202,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
                   <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-dark text-white text-[10px] font-bold shrink-0 mt-0.5">
                     {i + 1}
                   </span>
-                  <span>{tip}</span>
+                  <span className="min-w-0 break-words">{tip}</span>
                 </li>
               ))}
             </ul>
@@ -222,10 +222,10 @@ export default function InsiderGuide({ data, className = '' }: Props) {
               const { icon, color } = getPlatformDetails(link.platform);
               return (
                 <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer"
-                   className={`inline-flex items-center gap-2 bg-white border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-dark transition-all shadow-sm hover:shadow ${color}`}>
+                   className={`inline-flex max-w-full items-center gap-2 bg-white border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-dark transition-all shadow-sm hover:shadow ${color}`}>
                   <span className="shrink-0">{icon}</span>
-                  <span className="font-medium">{link.label}: {link.handle}</span>
-                  <ExternalLink className="w-3 h-3 text-brand-muted" />
+                  <span className="min-w-0 break-words font-medium">{link.label}: {link.handle}</span>
+                  <ExternalLink className="w-3 h-3 shrink-0 text-brand-muted" />
                 </a>
               );
             })}

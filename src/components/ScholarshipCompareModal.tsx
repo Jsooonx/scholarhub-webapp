@@ -223,7 +223,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
         className="relative bg-white rounded-3xl border border-brand-border w-full max-w-6xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden z-10"
       >
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-brand-border/60 px-6 py-4.5 bg-brand-cream/40">
+        <div className="flex items-center justify-between border-b border-brand-border/60 px-4 py-4 sm:px-6 sm:py-4.5 bg-brand-cream/40">
           <div className="flex items-center gap-2">
             <Compass className="h-5 w-5 text-brand-dark" />
             <h2 className="font-serif text-lg font-bold text-brand-dark">Compare Scholarships</h2>
@@ -238,13 +238,14 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
         </div>
 
         {/* Scrollable Content */}
-        <div className="overflow-y-auto p-6 md:p-8 flex-1 bg-brand-bg/10">
+        <div className="overflow-y-auto p-4 sm:p-6 md:p-8 flex-1 bg-brand-bg/10">
+          <p className="mb-2 text-[10px] text-brand-muted sm:hidden">Geser tabel ke samping untuk membandingkan semua kolom.</p>
           <div className="overflow-x-auto border border-brand-border/60 rounded-2xl bg-white shadow-sm">
-            <table className="w-full table-fixed min-w-[760px] border-collapse">
+            <table className="w-full table-fixed min-w-[640px] sm:min-w-[760px] border-collapse">
               <thead>
                 <tr className="border-b border-brand-border/60 bg-brand-cream/20">
                   {/* Label Column Header */}
-                  <th className="w-[180px] p-4 text-xs font-bold text-brand-muted uppercase tracking-wider sticky left-0 bg-brand-cream/70 border-r border-brand-border/60 z-10 shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
+                  <th className="w-[132px] p-3 sm:w-[180px] sm:p-4 text-xs font-bold text-brand-muted uppercase tracking-wider sticky left-0 bg-brand-cream/70 border-r border-brand-border/60 z-10 shadow-[2px_0_5px_rgba(0,0,0,0.02)]">
                     Criteria
                   </th>
                   

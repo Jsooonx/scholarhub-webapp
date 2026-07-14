@@ -88,6 +88,17 @@ body {
   overflow-x: hidden;
 }
 
+/* Long provider names, URLs, and editorial metadata must stay inside narrow cards. */
+@media (max-width: 639px) {
+  .mobile-safe-wrap {
+    min-width: 0;
+  }
+
+  .mobile-safe-wrap :where(p, h1, h2, h3, h4, h5, h6, li, span, a) {
+    overflow-wrap: anywhere;
+  }
+}
+
 /* Custom styles for editorial layout */
 .border-grid-h {
   border-top: 1px solid var(--color-brand-border);

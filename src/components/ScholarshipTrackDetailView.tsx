@@ -109,16 +109,24 @@ export default function ScholarshipTrackDetailView({
       {/* ── Hero band ─────────────────────────────────────────────────── */}
       <div className="border-b border-brand-border bg-brand-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-1.5 text-xs text-brand-muted mb-6">
+          {/* Keep the full hierarchy on desktop, but avoid turning the hero into
+              a second title block when a provider name is long on mobile. */}
+          <nav className="hidden sm:flex items-center gap-1.5 text-xs text-brand-muted mb-6 min-w-0">
             <Link href="/" className="hover:text-brand-dark transition-colors">Home</Link>
             <span>·</span>
             <Link href="/scholarships" className="hover:text-brand-dark transition-colors">Scholarships</Link>
             <span>·</span>
-            <Link href={`/providers/${group}`} className="hover:text-brand-dark transition-colors">{s.provider}</Link>
+            <Link href={`/providers/${group}`} className="hover:text-brand-dark transition-colors truncate max-w-48">{s.provider}</Link>
             <span>·</span>
-            <span className="text-brand-dark font-medium line-clamp-1">{s.name}</span>
+            <span className="text-brand-dark font-medium truncate">{s.name}</span>
           </nav>
+          <Link
+            href="/scholarships"
+            className="sm:hidden inline-flex min-h-11 items-center gap-2 -ml-2 px-2 text-xs font-semibold text-brand-muted transition-colors active:text-brand-dark mb-5"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            All scholarships
+          </Link>
 
           {/* Title block & Quick Apply Card */}
           <div className="flex flex-col lg:flex-row gap-8 lg:items-start">
