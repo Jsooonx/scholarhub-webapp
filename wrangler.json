@@ -7,11 +7,11 @@
     "nodejs_compat"
   ],
   "assets": {
-    "directory": ".next",
+    "directory": "dist",
     "binding": "ASSETS"
   },
   "vars": {
-    "NODE_VERSION": "22",
+    "NODE_VERSION": "20",
     "NEXT_PUBLIC_SITE_URL": "https://scholarhub.jsooonx.my.id",
     "RESEND_AUDIENCE_ID": "2228abdb-1e75-46d6-97cd-3a276d155327",
     "NOTIFY_SECRET": "bb130abb9d91102ca18d21d32bef8d66dafad637d8d61b89d564ad482fe4cfc8"
