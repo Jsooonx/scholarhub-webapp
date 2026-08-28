@@ -236,14 +236,17 @@ export default function Navbar() {
           width: mounted ? width : 'calc(100% - 32px)',
           maxWidth: mounted ? undefined : 880,
           height: height.get() === -1 ? 'auto' : height,
-          borderRadius: 28,
-          // Collapsed: clip content so absolutley-positioned expanded menu
+          borderRadius: isExpanded ? 32 : 28,
+          transform: 'translateZ(0)',
+          isolation: 'isolate',
+          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+          // Collapsed: clip content so absolutely-positioned expanded menu
           // doesn't bleed through as ghost text/flags below the island.
           // Expanded: hidden (or auto if scrollable) to contain the panel.
           overflow: isExpanded ? (scrollable ? 'auto' : 'hidden') : 'hidden',
           overscrollBehavior: 'contain',
         }}
-        className={`relative pointer-events-auto bg-black text-white shadow-[0_8px_40px_rgba(0,0,0,0.35)] ${
+        className={`relative pointer-events-auto bg-black text-white rounded-[28px] sm:rounded-[32px] border border-white/15 shadow-[0_8px_40px_rgba(0,0,0,0.35)] ${
           isExpanded ? 'navbar-dropdown-scroll' : ''
         }`}
       >
@@ -251,7 +254,7 @@ export default function Navbar() {
             height never constrains it - `contentRef` always reports the true
             natural height for the spring to chase. It's w-full so the header
             reflows continuously while `width` springs, making children slide. */}
-        <motion.div ref={contentRef} style={{ width: mounted ? width : '100%' }} className="absolute top-0 left-0">
+        <motion.div ref={contentRef} style={{ width: mounted ? width : '100%' }} className="absolute top-0 left-0 rounded-[28px] sm:rounded-[32px]">
           <div className={isExpanded ? 'w-full p-6 sm:p-8' : 'w-full px-4 sm:px-6 py-2 sm:py-3'}>
           {/* ── HEADER ROW (persistent, slides into place) ── */}
           <div className="flex items-center justify-between w-full">
