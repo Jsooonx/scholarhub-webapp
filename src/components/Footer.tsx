@@ -12,10 +12,10 @@ export default function Footer() {
   const scrollResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const countryImages = [
-    '/images/universities/GE_HeidelbergU.png',
-    '/images/universities/JP_UofTokyo.png',
-    '/images/universities/TU_METU.png',
-    '/images/editorial/stem.jpg',
+    '/images-optimized/universities/GE_HeidelbergU.webp',
+    '/images-optimized/universities/JP_UofTokyo.webp',
+    '/images-optimized/universities/TU_METU.webp',
+    '/images-optimized/editorial/stem.webp',
   ];
 
   useEffect(() => {
