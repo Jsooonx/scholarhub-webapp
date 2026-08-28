@@ -25,15 +25,28 @@ function copyRecursiveSync(src, dest) {
       copyRecursiveSync(path.join(src, child), path.join(dest, child));
     });
   } else {
+    // Skip files larger than 24 MiB (Cloudflare limit is 25 MiB)
+    if (stats.size > 24 * 1024 * 1024) {
+      console.log(`⚠ Skipping oversized file (${(stats.size / 1024 / 1024).toFixed(1)} MiB): ${src}`);
+      return;
+    }
     fs.mkdirSync(path.dirname(dest), { recursive: true });
     fs.copyFileSync(src, dest);
   }
 }
 
-// 2. Copy public directory to dist root
+// 2. Copy public directory to dist root, EXCLUDING the raw /images/ folder (277 MB of unoptimized PNGs)
 if (fs.existsSync(publicDir)) {
-  copyRecursiveSync(publicDir, distDir);
-  console.log('✓ Copied public assets');
+  const publicEntries = fs.readdirSync(publicDir);
+  for (const entry of publicEntries) {
+    // Skip the raw images folder — we only use /images-optimized/ in the codebase
+    if (entry === 'images') continue;
+
+    const srcPath = path.join(publicDir, entry);
+    const destPath = path.join(distDir, entry);
+    copyRecursiveSync(srcPath, destPath);
+  }
+  console.log('✓ Copied public assets (excluding raw /images/ folder)');
 }
 
 // 3. Copy .next/static to dist/_next/static
@@ -77,9 +90,9 @@ function copyHtmlFiles(dir, relativeBase = '') {
           fs.mkdirSync(path.dirname(destIndex), { recursive: true });
           fs.copyFileSync(fullPath, destIndex);
         }
-      } else if (entry.name === 'robots.txt.body' || (entry.name === 'robots.txt' && !entry.name.endsWith('.meta'))) {
+      } else if (entry.name === 'robots.txt.body') {
         fs.copyFileSync(fullPath, path.join(distDir, 'robots.txt'));
-      } else if (entry.name === 'sitemap.xml.body' || (entry.name === 'sitemap.xml' && !entry.name.endsWith('.meta'))) {
+      } else if (entry.name === 'sitemap.xml.body') {
         fs.copyFileSync(fullPath, path.join(distDir, 'sitemap.xml'));
       }
     }
@@ -91,4 +104,20 @@ if (fs.existsSync(serverAppDir)) {
   console.log('✓ Extracted and formatted Next.js HTML pages');
 }
 
-console.log('✨ All assets prepared successfully in ./dist');
+// 5. Print total dist size
+let totalSize = 0;
+let fileCount = 0;
+function countSize(dir) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      countSize(fullPath);
+    } else {
+      totalSize += fs.statSync(fullPath).size;
+      fileCount++;
+    }
+  }
+}
+countSize(distDir);
+console.log(`✨ All assets prepared: ${fileCount} files, ${(totalSize / 1024 / 1024).toFixed(1)} MiB total in ./dist`);
