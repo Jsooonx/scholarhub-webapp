@@ -5,7 +5,9 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
-  "pages_build_output_dir": ".next",
+  "assets": {
+    "directory": ".next"
+  },
   "d1_databases": [
     {
       "binding": "DB",

@@ -13,10 +13,18 @@
 # testing
 /coverage
 
-# next.js
+# next.js & cloudflare builds
 /.next/
 /out/
 /dist/
+/.open-next/
+/.wrangler/
+
+# local databases
+*.sqlite
+*.sqlite-journal
+*.db
+/data/*.sqlite
 
 # production
 /build
