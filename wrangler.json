@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "scholarhub",
+  "compatibility_date": "2026-08-28",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "pages_build_output_dir": ".next",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "scholarhub-db",
+      "database_id": "cc30337a-7773-463a-9a6e-5b38cccb558e"
+    }
+  ]
+}

@@ -1,7 +1,8 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { createClient } from '@/lib/supabase/server';
+import { getDb } from '@/lib/db';
+import { getCurrentUser } from '@/lib/auth';
 import { getScholarshipBySlug, type Scholarship } from '@/lib/scholarships';
 
 type ShortlistResult =
@@ -30,53 +31,29 @@ export interface ScholarshipApplication {
   scholarship: Scholarship | null;
 }
 
-function isSupabaseConfigured() {
-  return Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-  );
-}
-
 export async function getShortlistSlugs(): Promise<{
   authenticated: boolean;
   slugs: string[];
   email?: string;
   error?: string;
 }> {
-  if (!isSupabaseConfigured()) {
-    return {
-      authenticated: false,
-      slugs: [],
-      error: 'Supabase is not configured.',
-    };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user, email } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { authenticated: false, slugs: [] };
     }
 
-    const { data, error } = await supabase
-      .from('scholarship_applications')
-      .select('scholarship_slug')
-      .order('created_at', { ascending: false });
-
-    if (error) {
-      return {
-        authenticated: true,
-        slugs: [],
-        email: user.email ?? undefined,
-        error: error.message,
-      };
-    }
+    const db = getDb();
+    const rows = await db
+      .prepare('SELECT scholarship_slug FROM scholarship_applications WHERE user_id = ? ORDER BY created_at DESC')
+      .bind(user.id)
+      .all<{ scholarship_slug: string }>();
 
     return {
       authenticated: true,
-      slugs: (data ?? []).map((row) => row.scholarship_slug),
-      email: user.email ?? undefined,
+      slugs: (rows.results || []).map((r) => r.scholarship_slug),
+      email,
     };
   } catch (error) {
     return {
@@ -92,28 +69,27 @@ export async function addToShortlist(slug: string): Promise<ShortlistResult> {
     return { ok: false, status: 404, error: 'Scholarship not found.' };
   }
 
-  if (!isSupabaseConfigured()) {
-    return { ok: false, status: 500, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { ok: false, status: 401, error: 'Sign in to save scholarships.' };
     }
 
-    const { error } = await supabase
-      .from('scholarship_applications')
-      .upsert(
-        { user_id: user.id, scholarship_slug: slug, status: 'shortlisted' },
-        { onConflict: 'user_id,scholarship_slug' }
-      );
+    const db = getDb();
+    const id = crypto.randomUUID();
+    const nowIso = new Date().toISOString();
 
-    if (error) {
-      return { ok: false, status: 500, error: error.message };
-    }
+    await db
+      .prepare(`
+        INSERT INTO scholarship_applications (id, user_id, scholarship_slug, status, created_at, updated_at)
+        VALUES (?, ?, ?, 'shortlisted', ?, ?)
+        ON CONFLICT(user_id, scholarship_slug) DO UPDATE SET
+          status = 'shortlisted',
+          updated_at = excluded.updated_at
+      `)
+      .bind(id, user.id, slug, nowIso, nowIso)
+      .run();
 
     revalidatePath('/shortlist');
     return { ok: true };
@@ -127,27 +103,18 @@ export async function addToShortlist(slug: string): Promise<ShortlistResult> {
 }
 
 export async function removeFromShortlist(slug: string): Promise<ShortlistResult> {
-  if (!isSupabaseConfigured()) {
-    return { ok: false, status: 500, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { ok: false, status: 401, error: 'Sign in to manage your shortlist.' };
     }
 
-    const { error } = await supabase
-      .from('scholarship_applications')
-      .delete()
-      .eq('user_id', user.id)
-      .eq('scholarship_slug', slug);
-
-    if (error) {
-      return { ok: false, status: 500, error: error.message };
-    }
+    const db = getDb();
+    await db
+      .prepare('DELETE FROM scholarship_applications WHERE user_id = ? AND scholarship_slug = ?')
+      .bind(user.id, slug)
+      .run();
 
     revalidatePath('/shortlist');
     return { ok: true };
@@ -169,27 +136,20 @@ export async function updateApplicationStatus(
     return { ok: false, status: 500, error: 'Invalid application status.' };
   }
 
-  if (!isSupabaseConfigured()) {
-    return { ok: false, status: 500, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { ok: false, status: 401, error: 'Sign in to update application status.' };
     }
 
-    const { error } = await supabase
-      .from('scholarship_applications')
-      .update({ status, updated_at: new Date().toISOString() })
-      .eq('user_id', user.id)
-      .eq('scholarship_slug', slug);
+    const db = getDb();
+    const nowIso = new Date().toISOString();
 
-    if (error) {
-      return { ok: false, status: 500, error: error.message };
-    }
+    await db
+      .prepare('UPDATE scholarship_applications SET status = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+      .bind(status, nowIso, user.id, slug)
+      .run();
 
     revalidatePath('/shortlist');
     return { ok: true };
@@ -206,27 +166,20 @@ export async function updateApplicationNotes(
   slug: string,
   notes: string | null
 ): Promise<ShortlistResult> {
-  if (!isSupabaseConfigured()) {
-    return { ok: false, status: 500, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { ok: false, status: 401, error: 'Sign in to update notes.' };
     }
 
-    const { error } = await supabase
-      .from('scholarship_applications')
-      .update({ notes: notes || null, updated_at: new Date().toISOString() })
-      .eq('user_id', user.id)
-      .eq('scholarship_slug', slug);
+    const db = getDb();
+    const nowIso = new Date().toISOString();
 
-    if (error) {
-      return { ok: false, status: 500, error: error.message };
-    }
+    await db
+      .prepare('UPDATE scholarship_applications SET notes = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+      .bind(notes || null, nowIso, user.id, slug)
+      .run();
 
     revalidatePath('/shortlist');
     return { ok: true };
@@ -245,56 +198,53 @@ export async function getApplicationsWithDetails(): Promise<{
   email?: string;
   error?: string;
 }> {
-  if (!isSupabaseConfigured()) {
-    return {
-      authenticated: false,
-      applications: [],
-      error: 'Supabase is not configured.',
-    };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user, email } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { authenticated: false, applications: [] };
     }
 
-    const { data, error } = await supabase
-      .from('scholarship_applications')
-      .select('*')
-      .order('updated_at', { ascending: false });
+    const db = getDb();
+    const res = await db
+      .prepare('SELECT * FROM scholarship_applications WHERE user_id = ? ORDER BY updated_at DESC')
+      .bind(user.id)
+      .all<any>();
 
-    if (error) {
+    const rows = res.results || [];
+    const applications: ScholarshipApplication[] = rows.map((row) => {
+      let parsedChecklist: ChecklistItem[] | null = null;
+      if (typeof row.checklist === 'string') {
+        try {
+          parsedChecklist = JSON.parse(row.checklist);
+        } catch {
+          parsedChecklist = null;
+        }
+      } else if (Array.isArray(row.checklist)) {
+        parsedChecklist = row.checklist;
+      }
+
       return {
-        authenticated: true,
-        applications: [],
-        email: user.email ?? undefined,
-        error: error.message,
+        id: row.id,
+        user_id: row.user_id,
+        scholarship_slug: row.scholarship_slug,
+        status: row.status,
+        notes: row.notes,
+        checklist: parsedChecklist,
+        target_deadline: row.target_deadline,
+        is_deadline_verified: Boolean(row.is_deadline_verified),
+        announcement_date: row.announcement_date,
+        is_announcement_verified: Boolean(row.is_announcement_verified),
+        created_at: row.created_at,
+        updated_at: row.updated_at,
+        scholarship: getScholarshipBySlug(row.scholarship_slug) || null,
       };
-    }
-
-    const applications: ScholarshipApplication[] = (data ?? []).map((row: any) => ({
-      id: row.id,
-      user_id: row.user_id,
-      scholarship_slug: row.scholarship_slug,
-      status: row.status,
-      notes: row.notes,
-      checklist: row.checklist ?? null,
-      target_deadline: row.target_deadline,
-      is_deadline_verified: row.is_deadline_verified ?? false,
-      announcement_date: row.announcement_date,
-      is_announcement_verified: row.is_announcement_verified ?? false,
-      created_at: row.created_at,
-      updated_at: row.updated_at,
-      scholarship: getScholarshipBySlug(row.scholarship_slug) || null,
-    }));
+    });
 
     return {
       authenticated: true,
       applications,
-      email: user.email ?? undefined,
+      email,
     };
   } catch (error) {
     return {
@@ -309,27 +259,21 @@ export async function updateApplicationChecklist(
   slug: string,
   checklist: ChecklistItem[]
 ): Promise<ShortlistResult> {
-  if (!isSupabaseConfigured()) {
-    return { ok: false, status: 500, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { ok: false, status: 401, error: 'Sign in to update checklist.' };
     }
 
-    const { error } = await supabase
-      .from('scholarship_applications')
-      .update({ checklist, updated_at: new Date().toISOString() })
-      .eq('user_id', user.id)
-      .eq('scholarship_slug', slug);
+    const db = getDb();
+    const nowIso = new Date().toISOString();
+    const jsonStr = JSON.stringify(checklist);
 
-    if (error) {
-      return { ok: false, status: 500, error: error.message };
-    }
+    await db
+      .prepare('UPDATE scholarship_applications SET checklist = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+      .bind(jsonStr, nowIso, user.id, slug)
+      .run();
 
     revalidatePath('/shortlist');
     return { ok: true };
@@ -347,31 +291,20 @@ export async function updateApplicationDeadline(
   targetDeadline: string | null,
   isVerified: boolean
 ): Promise<ShortlistResult> {
-  if (!isSupabaseConfigured()) {
-    return { ok: false, status: 500, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { ok: false, status: 401, error: 'Sign in to update deadline.' };
     }
 
-    const { error } = await supabase
-      .from('scholarship_applications')
-      .update({
-        target_deadline: targetDeadline || null,
-        is_deadline_verified: isVerified,
-        updated_at: new Date().toISOString()
-      })
-      .eq('user_id', user.id)
-      .eq('scholarship_slug', slug);
+    const db = getDb();
+    const nowIso = new Date().toISOString();
 
-    if (error) {
-      return { ok: false, status: 500, error: error.message };
-    }
+    await db
+      .prepare('UPDATE scholarship_applications SET target_deadline = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+      .bind(targetDeadline || null, nowIso, user.id, slug)
+      .run();
 
     revalidatePath('/shortlist');
     return { ok: true };
@@ -389,31 +322,20 @@ export async function updateApplicationAnnouncement(
   announcementDate: string | null,
   isVerified: boolean
 ): Promise<ShortlistResult> {
-  if (!isSupabaseConfigured()) {
-    return { ok: false, status: 500, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { ok: false, status: 401, error: 'Sign in to update announcement date.' };
     }
 
-    const { error } = await supabase
-      .from('scholarship_applications')
-      .update({
-        announcement_date: announcementDate || null,
-        is_announcement_verified: isVerified,
-        updated_at: new Date().toISOString()
-      })
-      .eq('user_id', user.id)
-      .eq('scholarship_slug', slug);
+    const db = getDb();
+    const nowIso = new Date().toISOString();
 
-    if (error) {
-      return { ok: false, status: 500, error: error.message };
-    }
+    await db
+      .prepare('UPDATE scholarship_applications SET announcement_date = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+      .bind(announcementDate || null, nowIso, user.id, slug)
+      .run();
 
     revalidatePath('/shortlist');
     return { ok: true };

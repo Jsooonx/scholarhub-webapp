@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { createClient } from '@/lib/supabase/server';
+import { verifyMagicLink } from '@/lib/auth';
 
 function safeNext(value: string | null): string {
   if (!value || !value.startsWith('/') || value.startsWith('//')) return '/shortlist';
@@ -8,17 +8,19 @@ function safeNext(value: string | null): string {
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
-  const code = requestUrl.searchParams.get('code');
+  const token = requestUrl.searchParams.get('token');
   const next = safeNext(requestUrl.searchParams.get('next'));
 
-  if (code) {
-    const supabase = await createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+  if (token) {
+    const result = await verifyMagicLink(token);
 
-    if (!error) {
-      return NextResponse.redirect(new URL(next, requestUrl.origin));
+    if (result.success) {
+      const destination = result.nextPath || next;
+      return NextResponse.redirect(new URL(destination, requestUrl.origin));
     }
   }
 
-  return NextResponse.redirect(new URL(`/login?next=${encodeURIComponent(next)}&error=callback`, requestUrl.origin));
+  return NextResponse.redirect(
+    new URL(`/login?next=${encodeURIComponent(next)}&error=callback`, requestUrl.origin)
+  );
 }

@@ -180,7 +180,7 @@ export default function AboutPage() {
                       <span className="text-brand-accent font-bold">✓</span> <strong>Personal Notes:</strong> Keep documentation links, essay drafts, or status reminders.
                     </li>
                     <li className="flex items-center gap-1.5">
-                      <span className="text-brand-accent font-bold">✓</span> <strong>Supabase Syncing:</strong> Save your dashboard permanently across multiple devices.
+                      <span className="text-brand-accent font-bold">✓</span> <strong>Cloud Syncing:</strong> Save your dashboard permanently across multiple devices.
                     </li>
                   </ul>
                 </div>

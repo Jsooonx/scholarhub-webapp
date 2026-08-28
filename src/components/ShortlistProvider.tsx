@@ -27,18 +27,17 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
   const [isPending, setIsPending] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
 
-  // Read the current path client-side only — avoids useSearchParams() at root
-  // layout which forces the entire page tree into CSR (breaks Google indexing).
+  // Read current path client-side only
   useEffect(() => {
     setCurrentPath(window.location.pathname + window.location.search);
   }, []);
 
   const refresh = useCallback(async () => {
     try {
-      // Client-side optimization: check if Supabase session cookies exist.
-      // If not, the user is definitely a guest, so we can skip the server call.
-      const hasAuthCookie = typeof document !== 'undefined' &&
-        document.cookie.split(';').some((item) => item.trim().startsWith('sb-'));
+      // Client-side optimization: check if session cookie exists
+      const hasAuthCookie =
+        typeof document !== 'undefined' &&
+        document.cookie.split(';').some((item) => item.trim().startsWith('scholarhub_session='));
 
       if (!hasAuthCookie) {
         setAuthenticated(false);
@@ -66,42 +65,43 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
     void refresh();
   }, [refresh]);
 
-  const toggle = useCallback(async (slug: string) => {
-    if (!authenticated) {
-      router.push(`/login?next=${encodeURIComponent(currentPath)}`);
-      return;
-    }
-
-    setIsPending(true);
-    const wasSaved = slugs.has(slug);
-    const nextSlugs = new Set(slugs);
-    if (wasSaved) {
-      nextSlugs.delete(slug);
-    } else {
-      nextSlugs.add(slug);
-    }
-    setSlugs(nextSlugs);
-
-    try {
-      const result = wasSaved
-        ? await removeFromShortlist(slug)
-        : await addToShortlist(slug);
-
-      if (!result.ok) {
-        setSlugs(slugs);
-        if (result.status === 401) {
-          setAuthenticated(false);
-          router.push(`/login?next=${encodeURIComponent(currentPath)}`);
-        }
-      } else {
-        router.refresh();
+  const toggle = useCallback(
+    async (slug: string) => {
+      if (!authenticated) {
+        router.push(`/login?next=${encodeURIComponent(currentPath)}`);
+        return;
       }
-    } catch {
-      setSlugs(slugs);
-    } finally {
-      setIsPending(false);
-    }
-  }, [authenticated, currentPath, router, slugs]);
+
+      setIsPending(true);
+      const wasSaved = slugs.has(slug);
+      const nextSlugs = new Set(slugs);
+      if (wasSaved) {
+        nextSlugs.delete(slug);
+      } else {
+        nextSlugs.add(slug);
+      }
+      setSlugs(nextSlugs);
+
+      try {
+        const result = wasSaved ? await removeFromShortlist(slug) : await addToShortlist(slug);
+
+        if (!result.ok) {
+          setSlugs(slugs);
+          if (result.status === 401) {
+            setAuthenticated(false);
+            router.push(`/login?next=${encodeURIComponent(currentPath)}`);
+          }
+        } else {
+          router.refresh();
+        }
+      } catch {
+        setSlugs(slugs);
+      } finally {
+        setIsPending(false);
+      }
+    },
+    [authenticated, currentPath, router, slugs]
+  );
 
   const signOut = useCallback(async () => {
     const result = await signOutAction();
@@ -113,22 +113,21 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
     }
   }, [router]);
 
-  const value = useMemo<ShortlistContextValue>(() => ({
-    authenticated,
-    ready,
-    email,
-    slugs,
-    isPending,
-    refresh,
-    toggle,
-    signOut,
-  }), [authenticated, email, isPending, ready, refresh, signOut, slugs, toggle]);
-
-  return (
-    <ShortlistContext.Provider value={value}>
-      {children}
-    </ShortlistContext.Provider>
+  const value = useMemo<ShortlistContextValue>(
+    () => ({
+      authenticated,
+      ready,
+      email,
+      slugs,
+      isPending,
+      refresh,
+      toggle,
+      signOut,
+    }),
+    [authenticated, email, isPending, ready, refresh, signOut, slugs, toggle]
   );
+
+  return <ShortlistContext.Provider value={value}>{children}</ShortlistContext.Provider>;
 }
 
 export function useShortlist() {

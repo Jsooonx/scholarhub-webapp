@@ -2,7 +2,8 @@
 
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createClient } from '@/lib/supabase/server';
+import { getDb } from '@/lib/db';
+import { getCurrentUser } from '@/lib/auth';
 
 export interface Profile {
   user_id: string;
@@ -15,13 +16,6 @@ export interface Profile {
   quiz_answers: any | null;
   created_at: string;
   updated_at: string;
-}
-
-function isSupabaseConfigured() {
-  return Boolean(
-    process.env.NEXT_PUBLIC_SUPABASE_URL &&
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-  );
 }
 
 function cleanOptional(value: FormDataEntryValue | null, maxLength: number) {
@@ -59,37 +53,55 @@ export async function getCurrentProfile(): Promise<{
   profile?: Profile | null;
   error?: string;
 }> {
-  if (!isSupabaseConfigured()) {
-    return { authenticated: false, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user, email } = await getCurrentUser();
 
-    if (userError || !user) {
-      return { authenticated: false };
+    if (!authenticated || !user) {
+      return { authenticated: false, profile: null };
     }
 
-    const { data, error } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('user_id', user.id)
-      .maybeSingle();
+    const db = getDb();
+    const row = await db
+      .prepare('SELECT * FROM profiles WHERE user_id = ? LIMIT 1')
+      .bind(user.id)
+      .first<any>();
 
-    if (error) {
+    if (!row) {
       return {
         authenticated: true,
-        email: user.email ?? undefined,
+        email,
         profile: null,
-        error: error.message,
       };
     }
 
+    let parsedQuizAnswers = null;
+    if (typeof row.quiz_answers === 'string') {
+      try {
+        parsedQuizAnswers = JSON.parse(row.quiz_answers);
+      } catch {
+        parsedQuizAnswers = null;
+      }
+    } else if (row.quiz_answers) {
+      parsedQuizAnswers = row.quiz_answers;
+    }
+
+    const profile: Profile = {
+      user_id: row.user_id,
+      display_name: row.display_name,
+      username: row.username,
+      bio: row.bio,
+      location: row.location,
+      website_url: row.website_url,
+      avatar_url: row.avatar_url,
+      quiz_answers: parsedQuizAnswers,
+      created_at: row.created_at,
+      updated_at: row.updated_at,
+    };
+
     return {
       authenticated: true,
-      email: user.email ?? undefined,
-      profile: data,
+      email,
+      profile,
     };
   } catch (error) {
     return {
@@ -100,10 +112,6 @@ export async function getCurrentProfile(): Promise<{
 }
 
 export async function updateProfileAction(formData: FormData) {
-  if (!isSupabaseConfigured()) {
-    redirect('/profile?error=config');
-  }
-
   let payload: {
     display_name: string | null;
     username: string | null;
@@ -128,28 +136,54 @@ export async function updateProfileAction(formData: FormData) {
     redirect(`/profile?error=${encodeURIComponent(error instanceof Error ? error.message : 'Invalid profile data.')}`);
   }
 
-  const supabase = await createClient();
-  const { data: { user }, error: userError } = await supabase.auth.getUser();
-
-  if (userError || !user) {
+  const { authenticated, user } = await getCurrentUser();
+  if (!authenticated || !user) {
     redirect('/login?next=/profile');
   }
 
-  const { error } = await supabase
-    .from('profiles')
-    .upsert(
-      {
-        user_id: user.id,
-        ...payload,
-      },
-      { onConflict: 'user_id' }
-    );
+  const db = getDb();
+  try {
+    // Check if username is taken by another user
+    if (payload.username) {
+      const existing = await db
+        .prepare('SELECT user_id FROM profiles WHERE username = ? AND user_id != ?')
+        .bind(payload.username, user.id)
+        .first();
 
-  if (error) {
-    const message = error.code === '23505'
-      ? 'That username is already taken.'
-      : error.message;
-    redirect(`/profile?error=${encodeURIComponent(message)}`);
+      if (existing) {
+        redirect('/profile?error=' + encodeURIComponent('That username is already taken.'));
+      }
+    }
+
+    await db
+      .prepare(`
+        INSERT INTO profiles (user_id, display_name, username, bio, location, website_url, avatar_url, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(user_id) DO UPDATE SET
+          display_name = excluded.display_name,
+          username = excluded.username,
+          bio = excluded.bio,
+          location = excluded.location,
+          website_url = excluded.website_url,
+          avatar_url = excluded.avatar_url,
+          updated_at = excluded.updated_at
+      `)
+      .bind(
+        user.id,
+        payload.display_name,
+        payload.username,
+        payload.bio,
+        payload.location,
+        payload.website_url,
+        payload.avatar_url,
+        payload.updated_at
+      )
+      .run();
+  } catch (err: any) {
+    if (err.message && err.message.includes('UNIQUE')) {
+      redirect('/profile?error=' + encodeURIComponent('That username is already taken.'));
+    }
+    throw err;
   }
 
   revalidatePath('/profile');
@@ -157,32 +191,27 @@ export async function updateProfileAction(formData: FormData) {
 }
 
 export async function updateProfileQuizAnswers(answers: any): Promise<{ success: boolean; error?: string }> {
-  if (!isSupabaseConfigured()) {
-    return { success: false, error: 'Supabase is not configured.' };
-  }
-
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    const { authenticated, user } = await getCurrentUser();
 
-    if (userError || !user) {
+    if (!authenticated || !user) {
       return { success: false, error: 'Unauthorized.' };
     }
 
-    const { error } = await supabase
-      .from('profiles')
-      .upsert(
-        {
-          user_id: user.id,
-          quiz_answers: answers,
-          updated_at: new Date().toISOString(),
-        },
-        { onConflict: 'user_id' }
-      );
+    const db = getDb();
+    const nowIso = new Date().toISOString();
+    const jsonStr = JSON.stringify(answers);
 
-    if (error) {
-      return { success: false, error: error.message };
-    }
+    await db
+      .prepare(`
+        INSERT INTO profiles (user_id, quiz_answers, updated_at)
+        VALUES (?, ?, ?)
+        ON CONFLICT(user_id) DO UPDATE SET
+          quiz_answers = excluded.quiz_answers,
+          updated_at = excluded.updated_at
+      `)
+      .bind(user.id, jsonStr, nowIso)
+      .run();
 
     revalidatePath('/');
     revalidatePath('/profile');
