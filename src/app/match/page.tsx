@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import ScholarMatchQuiz from '@/components/ScholarMatchQuiz';
-import { getCurrentProfile } from '@/app/actions/profile';
+import ScholarMatchQuizClient from './ScholarMatchQuizClient';
 import { BASE_URL } from '@/lib/scholarships';
 
 export const metadata: Metadata = {
@@ -11,17 +10,6 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = 'force-dynamic';
-
-export default async function MatchPage() {
-  const res = await getCurrentProfile();
-  const initialAnswers = res.profile?.quiz_answers ?? null;
-  const isAuthenticated = res.authenticated;
-
-  return (
-    <ScholarMatchQuiz
-      initialAnswers={initialAnswers}
-      isAuthenticated={isAuthenticated}
-    />
-  );
+export default function MatchPage() {
+  return <ScholarMatchQuizClient />;
 }
