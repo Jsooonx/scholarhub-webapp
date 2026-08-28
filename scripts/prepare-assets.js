@@ -14,7 +14,7 @@ if (fs.existsSync(distDir)) {
 }
 fs.mkdirSync(distDir, { recursive: true });
 
-function copyRecursiveSync(src, dest) {
+function copyRecursiveSync(src, dest, skipDirs = []) {
   if (!fs.existsSync(src)) return;
   const stats = fs.statSync(src);
   if (stats.isDirectory()) {
@@ -22,12 +22,16 @@ function copyRecursiveSync(src, dest) {
       fs.mkdirSync(dest, { recursive: true });
     }
     fs.readdirSync(src).forEach((child) => {
-      copyRecursiveSync(path.join(src, child), path.join(dest, child));
+      if (skipDirs.includes(child)) {
+        console.log(`  ⏭ Skipping directory: ${path.join(src, child)}`);
+        return;
+      }
+      copyRecursiveSync(path.join(src, child), path.join(dest, child), []);
     });
   } else {
     // Skip files larger than 24 MiB (Cloudflare limit is 25 MiB)
     if (stats.size > 24 * 1024 * 1024) {
-      console.log(`⚠ Skipping oversized file (${(stats.size / 1024 / 1024).toFixed(1)} MiB): ${src}`);
+      console.log(`  ⚠ Skipping oversized file (${(stats.size / 1024 / 1024).toFixed(1)} MiB): ${path.basename(src)}`);
       return;
     }
     fs.mkdirSync(path.dirname(dest), { recursive: true });
@@ -35,18 +39,23 @@ function copyRecursiveSync(src, dest) {
   }
 }
 
-// 2. Copy public directory to dist root, EXCLUDING the raw /images/ folder (277 MB of unoptimized PNGs)
+// 2. Copy public directory to dist root
+//    - Include everything EXCEPT /images/universities/ (244 MB of raw PNGs)
+//    - The optimized WebP versions are already in /images-optimized/universities/
 if (fs.existsSync(publicDir)) {
   const publicEntries = fs.readdirSync(publicDir);
   for (const entry of publicEntries) {
-    // Skip the raw images folder — we only use /images-optimized/ in the codebase
-    if (entry === 'images') continue;
-
     const srcPath = path.join(publicDir, entry);
     const destPath = path.join(distDir, entry);
-    copyRecursiveSync(srcPath, destPath);
+
+    if (entry === 'images') {
+      // Copy /images/ but skip the huge /images/universities/ subfolder
+      copyRecursiveSync(srcPath, destPath, ['universities']);
+    } else {
+      copyRecursiveSync(srcPath, destPath);
+    }
   }
-  console.log('✓ Copied public assets (excluding raw /images/ folder)');
+  console.log('✓ Copied public assets (skipped /images/universities/ raw PNGs)');
 }
 
 // 3. Copy .next/static to dist/_next/static
@@ -66,11 +75,10 @@ function copyHtmlFiles(dir, relativeBase = '') {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
-    const relPath = path.join(relativeBase, entry.name);
 
     if (entry.isDirectory()) {
       if (entry.name !== '_global-error' && !entry.name.endsWith('.segments')) {
-        copyHtmlFiles(fullPath, relPath);
+        copyHtmlFiles(fullPath, path.join(relativeBase, entry.name));
       }
     } else if (entry.isFile()) {
       if (entry.name.endsWith('.html')) {
@@ -79,7 +87,6 @@ function copyHtmlFiles(dir, relativeBase = '') {
         } else if (entry.name === '_not-found.html') {
           fs.copyFileSync(fullPath, path.join(distDir, '404.html'));
         } else {
-          // e.g. about.html -> dist/about.html AND dist/about/index.html
           const baseName = entry.name.replace(/\.html$/, '');
           const destHtml = path.join(distDir, relativeBase, `${baseName}.html`);
           const destIndex = path.join(distDir, relativeBase, baseName, 'index.html');
