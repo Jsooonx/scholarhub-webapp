@@ -198,6 +198,7 @@ export async function sendMagicLink(
 export async function verifyMagicLink(token: string): Promise<{
   success: boolean;
   nextPath: string;
+  sessionToken?: string;
   error?: string;
 }> {
   const db = getDb();
@@ -238,7 +239,7 @@ export async function verifyMagicLink(token: string): Promise<{
   }
 
   // 2. Create session
-  await createSession(user.id);
+  const sessionToken = await createSession(user.id);
 
   // 3. Delete used magic link
   await db.prepare('DELETE FROM magic_links WHERE token = ?').bind(token).run();
@@ -246,5 +247,6 @@ export async function verifyMagicLink(token: string): Promise<{
   return {
     success: true,
     nextPath: safeInternalPath(magicLink.next_path),
+    sessionToken,
   };
 }

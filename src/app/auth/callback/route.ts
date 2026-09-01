@@ -12,7 +12,19 @@ export async function GET(request: Request) {
 
     if (result.success) {
       const destination = safeInternalPath(result.nextPath, next);
-      return NextResponse.redirect(new URL(destination, requestUrl.origin));
+      const response = NextResponse.redirect(new URL(destination, requestUrl.origin));
+      if (result.sessionToken) {
+        response.cookies.set({
+          name: 'scholarhub_session',
+          value: result.sessionToken,
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          path: '/',
+          maxAge: 30 * 24 * 60 * 60,
+        });
+      }
+      return response;
     }
   }
 
