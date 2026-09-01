@@ -49,12 +49,18 @@ export default function SplitText({
   }, [onLetterAnimationComplete]);
 
   useEffect(() => {
-    if (document.fonts.status === 'loaded') {
+    if (typeof document !== 'undefined' && document?.fonts?.status === 'loaded') {
       setFontsLoaded(true);
+    } else if (typeof document !== 'undefined' && document?.fonts?.ready) {
+      document.fonts.ready
+        .then(() => {
+          setFontsLoaded(true);
+        })
+        .catch(() => {
+          setFontsLoaded(true);
+        });
     } else {
-      document.fonts.ready.then(() => {
-        setFontsLoaded(true);
-      });
+      setFontsLoaded(true);
     }
   }, []);
 

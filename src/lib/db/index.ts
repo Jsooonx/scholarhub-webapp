@@ -20,7 +20,7 @@ interface LocalDataStore {
   users: Array<{ id: string; email: string; created_at: string }>;
   sessions: Array<{ id: string; user_id: string; expires_at: string; created_at: string }>;
   magic_links: Array<{ token: string; email: string; next_path: string; expires_at: string; created_at: string }>;
-  profiles: Array<{ user_id: string; display_name?: string; username?: string; bio?: string; location?: string; website_url?: string; avatar_url?: string; quiz_answers?: string; created_at?: string; updated_at?: string }>;
+  profiles: Array<{ user_id: string; display_name?: string | null; username?: string | null; bio?: string | null; location?: string | null; website_url?: string | null; avatar_url?: string | null; quiz_answers?: string | null; created_at?: string; updated_at?: string }>;
   shortlists: Array<{ id: string; user_id: string; scholarship_slug: string; created_at: string }>;
   scholarship_applications: Array<{ id: string; user_id: string; scholarship_slug: string; status: string; notes?: string; checklist?: string; target_deadline?: string; announcement_date?: string; created_at: string; updated_at: string }>;
 }
@@ -171,18 +171,54 @@ function executeMutation(query: string, params: any[]): { changes: number } {
     return { changes: 1 };
   }
 
-  // 4. INSERT profile
+  // 4. INSERT / UPDATE profile
   if (query.includes('INSERT INTO profiles')) {
-    const [user_id, display_name] = params;
     store.profiles = store.profiles || [];
-    const exists = store.profiles.find((p) => p.user_id === user_id);
-    if (!exists) {
-      store.profiles.push({
+    if (query.includes('quiz_answers')) {
+      const [user_id, jsonStr, nowIso] = params;
+      const idx = store.profiles.findIndex((p) => p.user_id === user_id);
+      if (idx >= 0) {
+        store.profiles[idx].quiz_answers = jsonStr;
+        store.profiles[idx].updated_at = nowIso;
+      } else {
+        store.profiles.push({
+          user_id,
+          quiz_answers: jsonStr,
+          created_at: nowIso,
+          updated_at: nowIso,
+        });
+      }
+    } else if (params.length >= 8) {
+      const [user_id, display_name, username, bio, location, website_url, avatar_url, updated_at] = params;
+      const idx = store.profiles.findIndex((p) => p.user_id === user_id);
+      const item = {
         user_id,
-        display_name: display_name || 'Scholar',
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-      });
+        display_name,
+        username,
+        bio,
+        location,
+        website_url,
+        avatar_url,
+        updated_at,
+        created_at: idx >= 0 ? (store.profiles[idx].created_at || new Date().toISOString()) : new Date().toISOString(),
+        quiz_answers: idx >= 0 ? (store.profiles[idx].quiz_answers || null) : null,
+      };
+      if (idx >= 0) {
+        store.profiles[idx] = item;
+      } else {
+        store.profiles.push(item);
+      }
+    } else {
+      const [user_id, display_name] = params;
+      const exists = store.profiles.find((p) => p.user_id === user_id);
+      if (!exists) {
+        store.profiles.push({
+          user_id,
+          display_name: display_name || 'Scholar',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        });
+      }
     }
     saveStore(store);
     return { changes: 1 };

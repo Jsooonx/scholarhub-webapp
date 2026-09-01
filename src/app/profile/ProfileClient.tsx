@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import SplitText from '@/components/SplitText';
 import ProfileForm from '@/components/ProfileForm';
 import { getCurrentProfile, type Profile } from '@/app/actions/profile';
 
@@ -54,15 +53,9 @@ export default function ProfileClient() {
             <span className="mx-2">·</span>
             <span className="font-medium text-brand-dark">Profile</span>
           </nav>
-          <SplitText
-            text="Profile"
-            className="font-serif text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl"
-            tag="h1"
-            delay={30}
-            duration={0.6}
-            ease="power2.out"
-            threshold={0.1}
-          />
+          <h1 className="font-serif text-4xl font-bold tracking-tight text-brand-dark sm:text-5xl">
+            Profile
+          </h1>
           <p className="mt-2 max-w-xl text-sm text-brand-muted">
             Set up your public ScholarHub identity before community features arrive.
           </p>
