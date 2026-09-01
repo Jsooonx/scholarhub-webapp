@@ -34,19 +34,6 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
 
   const refresh = useCallback(async () => {
     try {
-      // Client-side optimization: check if session cookie exists
-      const hasAuthCookie =
-        typeof document !== 'undefined' &&
-        document.cookie.split(';').some((item) => item.trim().startsWith('scholarhub_session='));
-
-      if (!hasAuthCookie) {
-        setAuthenticated(false);
-        setEmail(null);
-        setSlugs(new Set());
-        setReady(true);
-        return;
-      }
-
       const result = await getShortlistSlugs();
       setAuthenticated(result.authenticated);
       setEmail(result.email ?? null);
