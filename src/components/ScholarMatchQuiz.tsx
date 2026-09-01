@@ -152,33 +152,17 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
     <div 
       className={
         isResultsStep
-          ? "w-full bg-brand-bg py-8 md:py-12 flex flex-col items-center justify-start min-h-[calc(100dvh-4rem)] sm:min-h-[calc(100dvh-4.5rem)]"
-          : "h-[calc(100dvh-4rem)] sm:h-[calc(100dvh-4.5rem)] bg-brand-bg flex items-center justify-center overflow-hidden w-full py-4"
+          ? "w-full bg-brand-bg py-8 md:py-12 flex flex-col items-center justify-start min-h-[calc(100dvh-4rem)]"
+          : "w-full bg-brand-bg py-8 sm:py-12 flex items-center justify-center min-h-[calc(100dvh-4rem)]"
       }
     >
       <div 
         className={
           isResultsStep
             ? "w-full max-w-7xl mx-auto px-4 select-none flex flex-col justify-start"
-            : "w-full max-w-4xl mx-auto px-4 select-none flex flex-col justify-center h-full max-h-full overflow-hidden"
+            : "w-full max-w-3xl mx-auto px-4 select-none flex flex-col justify-center"
         }
       >
-        {/* Quiz Header Navigation */}
-        <div className="flex items-center justify-between border-b border-brand-border pb-4 mb-4 flex-shrink-0">
-          <Link href="/" className="flex items-center gap-2 font-serif text-xl font-bold tracking-tight text-brand-dark">
-            <img src="/images/logos/Scholarhub_logo.png" alt="ScholarHub Logo" className="h-7 w-7 rounded-md object-cover" />
-            <span>Scholar<span className="text-brand-accent">Hub</span></span>
-          </Link>
-          
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-muted hover:text-brand-dark transition-colors cursor-pointer"
-          >
-            <Home className="h-4 w-4" />
-            <span>Back to Home</span>
-          </Link>
-        </div>
-
         <motion.div
           animate={{ height: isResultsStep ? 'auto' : contentHeight }}
           transition={
