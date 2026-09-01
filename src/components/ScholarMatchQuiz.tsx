@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   GraduationCap, Award, BookOpen, Briefcase, 
   Cpu, TrendingUp, Palette, Users, HeartPulse, Compass,
-  CheckCircle2, XCircle, DollarSign, Globe, ArrowRight, Loader2, Undo2, Home
+  CheckCircle2, XCircle, DollarSign, Globe, ArrowRight, Loader2, Undo2, Home, Check
 } from 'lucide-react';
 import Link from 'next/link';
 import { type Scholarship } from '@/lib/scholarships';
@@ -242,34 +242,42 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'master', label: 'Master', desc: 'Postgraduate study (S2)', icon: Award },
                       { val: 'phd', label: 'PhD / Doctoral', desc: 'Advanced research (S3)', icon: BookOpen },
                       { val: 'non-degree', label: 'Short Course', desc: 'Certificates & exchange programs', icon: Briefcase }
-                    ].map(item => (
-                      <Button
-                        key={item.val}
-                        onClick={() => {
-                          setAnswers({ ...answers, degree: item.val as any });
-                          setTimeout(nextStep, 180);
-                        }}
-                        variant={answers.degree === item.val ? 'primary' : 'secondary'}
-                        size="lg"
-                        shape="control"
-                        aria-pressed={answers.degree === item.val}
-                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
-                          answers.degree === item.val
-                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
-                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
-                        }`}
-                      >
-                        <div className={`p-2 rounded-xl border ${
-                          answers.degree === item.val ? 'bg-brand-dark text-white' : 'bg-brand-cream/50 border-brand-border text-brand-dark'
-                        }`}>
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-sm font-bold text-brand-dark">{item.label}</p>
-                          <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
-                        </div>
-                      </Button>
-                    ))}
+                    ].map(item => {
+                      const isSelected = answers.degree === item.val;
+                      return (
+                        <button
+                          type="button"
+                          key={item.val}
+                          onClick={() => {
+                            setAnswers({ ...answers, degree: item.val as any });
+                            setTimeout(nextStep, 180);
+                          }}
+                          aria-pressed={isSelected}
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                            isSelected
+                              ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
+                              : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
+                          }`}
+                        >
+                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                            isSelected
+                              ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
+                              : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
+                          }`}>
+                            <item.icon className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-bold text-brand-dark">{item.label}</p>
+                            <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
+                          </div>
+                          {isSelected && (
+                            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent text-white flex-shrink-0">
+                              <Check className="h-3 w-3 stroke-[2.5]" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
@@ -298,34 +306,42 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'social', label: 'Social & Humanities', desc: 'Law, Politics, Language, Sociology', icon: Users },
                       { val: 'medicine', label: 'Medicine & Health', desc: 'Medical, Nursing, Pharmacy', icon: HeartPulse },
                       { val: 'any', label: 'General / Any Field', desc: 'Applicable to all fields', icon: Compass }
-                    ].map(item => (
-                      <Button
-                        key={item.val}
-                        onClick={() => {
-                          setAnswers({ ...answers, field: item.val as any });
-                          setTimeout(nextStep, 180);
-                        }}
-                        variant={answers.field === item.val ? 'primary' : 'secondary'}
-                        size="lg"
-                        shape="control"
-                        aria-pressed={answers.field === item.val}
-                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
-                          answers.field === item.val
-                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
-                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
-                        }`}
-                      >
-                        <div className={`p-2 rounded-xl border ${
-                          answers.field === item.val ? 'bg-brand-dark text-white' : 'bg-brand-cream/50 border-brand-border text-brand-dark'
-                        }`}>
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-sm font-bold text-brand-dark">{item.label}</p>
-                          <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
-                        </div>
-                      </Button>
-                    ))}
+                    ].map(item => {
+                      const isSelected = answers.field === item.val;
+                      return (
+                        <button
+                          type="button"
+                          key={item.val}
+                          onClick={() => {
+                            setAnswers({ ...answers, field: item.val as any });
+                            setTimeout(nextStep, 180);
+                          }}
+                          aria-pressed={isSelected}
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                            isSelected
+                              ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
+                              : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
+                          }`}
+                        >
+                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                            isSelected
+                              ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
+                              : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
+                          }`}>
+                            <item.icon className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-bold text-brand-dark">{item.label}</p>
+                            <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
+                          </div>
+                          {isSelected && (
+                            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent text-white flex-shrink-0">
+                              <Check className="h-3 w-3 stroke-[2.5]" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
@@ -350,34 +366,42 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                     {[
                       { val: 'yes', label: 'Yes, I do', desc: 'Over 2 years of full-time professional experience', icon: CheckCircle2 },
                       { val: 'no', label: 'No / Fresh Graduate', desc: 'No work history or less than 2 years of experience', icon: XCircle }
-                    ].map(item => (
-                      <Button
-                        key={item.val}
-                        onClick={() => {
-                          setAnswers({ ...answers, experience: item.val as any });
-                          setTimeout(nextStep, 180);
-                        }}
-                        variant={answers.experience === item.val ? 'primary' : 'secondary'}
-                        size="lg"
-                        shape="control"
-                        aria-pressed={answers.experience === item.val}
-                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
-                          answers.experience === item.val
-                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
-                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
-                        }`}
-                      >
-                        <div className={`p-2 rounded-xl border ${
-                          answers.experience === item.val ? 'bg-brand-dark text-white' : 'bg-brand-cream/50 border-brand-border text-brand-dark'
-                        }`}>
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-sm font-bold text-brand-dark">{item.label}</p>
-                          <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
-                        </div>
-                      </Button>
-                    ))}
+                    ].map(item => {
+                      const isSelected = answers.experience === item.val;
+                      return (
+                        <button
+                          type="button"
+                          key={item.val}
+                          onClick={() => {
+                            setAnswers({ ...answers, experience: item.val as any });
+                            setTimeout(nextStep, 180);
+                          }}
+                          aria-pressed={isSelected}
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                            isSelected
+                              ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
+                              : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
+                          }`}
+                        >
+                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                            isSelected
+                              ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
+                              : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
+                          }`}>
+                            <item.icon className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-bold text-brand-dark">{item.label}</p>
+                            <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
+                          </div>
+                          {isSelected && (
+                            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent text-white flex-shrink-0">
+                              <Check className="h-3 w-3 stroke-[2.5]" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
@@ -402,34 +426,42 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                     {[
                       { val: 'fully', label: 'Strictly Fully Funded', desc: 'Only show grants that cover 100% tuition + living stipend', icon: DollarSign },
                       { val: 'any', label: 'Open to All', desc: 'Show fully funded, partial grants, and tuition discounts', icon: Compass }
-                    ].map(item => (
-                      <Button
-                        key={item.val}
-                        onClick={() => {
-                          setAnswers({ ...answers, funding: item.val as any });
-                          setTimeout(nextStep, 180);
-                        }}
-                        variant={answers.funding === item.val ? 'primary' : 'secondary'}
-                        size="lg"
-                        shape="control"
-                        aria-pressed={answers.funding === item.val}
-                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
-                          answers.funding === item.val
-                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
-                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
-                        }`}
-                      >
-                        <div className={`p-2 rounded-xl border ${
-                          answers.funding === item.val ? 'bg-brand-dark text-white' : 'bg-brand-cream/50 border-brand-border text-brand-dark'
-                        }`}>
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-sm font-bold text-brand-dark">{item.label}</p>
-                          <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
-                        </div>
-                      </Button>
-                    ))}
+                    ].map(item => {
+                      const isSelected = answers.funding === item.val;
+                      return (
+                        <button
+                          type="button"
+                          key={item.val}
+                          onClick={() => {
+                            setAnswers({ ...answers, funding: item.val as any });
+                            setTimeout(nextStep, 180);
+                          }}
+                          aria-pressed={isSelected}
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                            isSelected
+                              ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
+                              : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
+                          }`}
+                        >
+                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                            isSelected
+                              ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
+                              : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
+                          }`}>
+                            <item.icon className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-bold text-brand-dark">{item.label}</p>
+                            <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
+                          </div>
+                          {isSelected && (
+                            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent text-white flex-shrink-0">
+                              <Check className="h-3 w-3 stroke-[2.5]" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
@@ -457,35 +489,43 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'europe', label: 'Europe', desc: 'Germany, United Kingdom, France, Sweden, etc.', icon: Compass },
                       { val: 'americas', label: 'Americas', desc: 'United States, Canada', icon: Compass },
                       { val: 'oceania', label: 'Oceania', desc: 'Australia, New Zealand', icon: Compass }
-                    ].map(item => (
-                      <Button
-                        key={item.val}
-                        onClick={() => {
-                          const updated = { ...answers, region: item.val as any };
-                          setAnswers(updated);
-                          setTimeout(() => handleComplete(updated), 180);
-                        }}
-                        variant={answers.region === item.val ? 'primary' : 'secondary'}
-                        size="lg"
-                        shape="control"
-                        aria-pressed={answers.region === item.val}
-                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
-                          answers.region === item.val
-                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
-                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
-                        }`}
-                      >
-                        <div className={`p-2 rounded-xl border ${
-                          answers.region === item.val ? 'bg-brand-dark text-white' : 'bg-brand-cream/50 border-brand-border text-brand-dark'
-                        }`}>
-                          <item.icon className="h-5 w-5" />
-                        </div>
-                        <div className="min-w-0">
-                          <p className="text-sm font-bold text-brand-dark">{item.label}</p>
-                          <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
-                        </div>
-                      </Button>
-                    ))}
+                    ].map(item => {
+                      const isSelected = answers.region === item.val;
+                      return (
+                        <button
+                          type="button"
+                          key={item.val}
+                          onClick={() => {
+                            const updated = { ...answers, region: item.val as any };
+                            setAnswers(updated);
+                            setTimeout(() => handleComplete(updated), 180);
+                          }}
+                          aria-pressed={isSelected}
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                            isSelected
+                              ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
+                              : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
+                          }`}
+                        >
+                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                            isSelected
+                              ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
+                              : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
+                          }`}>
+                            <item.icon className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-bold text-brand-dark">{item.label}</p>
+                            <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
+                          </div>
+                          {isSelected && (
+                            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-accent text-white flex-shrink-0">
+                              <Check className="h-3 w-3 stroke-[2.5]" />
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
                   </div>
                 </motion.div>
               )}
@@ -728,27 +768,24 @@ export function FilterPill({
 }) {
   return (
     <div className="relative">
-      <Button
+      <button
         type="button"
         onClick={onClick}
-        variant={active ? 'primary' : 'secondary'}
-        size="sm"
-        shape="pill"
         aria-expanded={active}
-        className={`h-auto min-h-8 rounded-full px-3.5 py-1.5 text-xs select-none ${
+        className={`inline-flex items-center gap-1.5 min-h-8 rounded-full px-3.5 py-1.5 text-xs font-semibold select-none border transition-all cursor-pointer ${
           active
-            ? 'border-brand-dark'
-            : 'hover:border-brand-dark hover:bg-brand-dark hover:!text-white'
+            ? 'border-brand-dark bg-brand-dark text-white shadow-sm'
+            : 'border-brand-border bg-white text-brand-dark hover:border-brand-dark/40 hover:bg-brand-cream/60'
         }`}
       >
-        <span className="opacity-60 font-normal">
+        <span className={active ? 'text-white/70 font-normal' : 'text-brand-muted font-normal'}>
           {label}:
         </span>
         <span className="capitalize">{value}</span>
-        <span className="text-[10px] ml-0.5 opacity-70">
+        <span className={`text-[10px] ml-0.5 transition-transform duration-200 ${active ? 'rotate-180 text-white/80' : 'text-brand-muted'}`}>
           ▼
         </span>
-      </Button>
+      </button>
 
       {active && (
         <div className="absolute left-1/2 -translate-x-1/2 mt-1.5 z-40 min-w-[150px] bg-white border border-brand-border rounded-xl shadow-xl py-1 overflow-hidden animate-fade-in">
