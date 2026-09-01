@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Camera, Globe, MapPin, UserRound } from 'lucide-react';
 import { updateProfileAction, type Profile } from '@/app/actions/profile';
 import { Button } from '@/components/ui/button';
@@ -13,14 +13,13 @@ interface ProfileFormProps {
   errorParam: string | undefined;
 }
 
-function initials(name?: string | null, email?: string) {
-  const source = name || email || 'ScholarHub';
-  return source
-    .split(/[^\p{L}\p{N}]+/u)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join('') || 'SH';
+function initials(name?: string | null, email?: string): string {
+  const source = String(name || email || 'ScholarHub').trim();
+  const parts = source.split(/[\s@._-]+/).filter(Boolean);
+  if (parts.length >= 2 && parts[0] && parts[1]) {
+    return ((parts[0][0] || '') + (parts[1][0] || '')).toUpperCase();
+  }
+  return (source.slice(0, 2) || 'SH').toUpperCase();
 }
 
 export default function ProfileForm({
@@ -30,21 +29,38 @@ export default function ProfileForm({
   savedParam,
   errorParam,
 }: ProfileFormProps) {
-  // Local state for each input field to drive live preview
-  const [displayName, setDisplayName] = useState(profile?.display_name ?? '');
-  const [username, setUsername] = useState(profile?.username ?? '');
-  const [bio, setBio] = useState(profile?.bio ?? '');
-  const [location, setLocation] = useState(profile?.location ?? '');
-  const [websiteUrl, setWebsiteUrl] = useState(profile?.website_url ?? '');
-  const [avatarUrl, setAvatarUrl] = useState(profile?.avatar_url ?? '');
+  const [displayName, setDisplayName] = useState(profile?.display_name || '');
+  const [username, setUsername] = useState(profile?.username || '');
+  const [bio, setBio] = useState(profile?.bio || '');
+  const [location, setLocation] = useState(profile?.location || '');
+  const [websiteUrl, setWebsiteUrl] = useState(profile?.website_url || '');
+  const [avatarUrl, setAvatarUrl] = useState(profile?.avatar_url || '');
 
-  const previewDisplayName = displayName.trim() || email || 'ScholarHub member';
-  const previewUsername = username.trim() ? `@${username.trim().toLowerCase()}` : 'No username yet';
-  const previewInitials = initials(displayName.trim(), email);
+  useEffect(() => {
+    if (profile) {
+      setDisplayName(profile.display_name || '');
+      setUsername(profile.username || '');
+      setBio(profile.bio || '');
+      setLocation(profile.location || '');
+      setWebsiteUrl(profile.website_url || '');
+      setAvatarUrl(profile.avatar_url || '');
+    }
+  }, [profile]);
+
+  const safeDisplayName = String(displayName || '').trim();
+  const safeUsername = String(username || '').trim();
+  const safeBio = String(bio || '').trim();
+  const safeLocation = String(location || '').trim();
+  const safeWebsiteUrl = String(websiteUrl || '').trim();
+  const safeAvatarUrl = String(avatarUrl || '').trim();
+
+  const previewDisplayName = safeDisplayName || email || 'ScholarHub member';
+  const previewUsername = safeUsername ? `@${safeUsername.toLowerCase()}` : 'No username yet';
+  const previewInitials = initials(safeDisplayName, email);
 
   return (
     <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_360px] lg:px-8">
-      <section className="rounded-3xl border border-brand-border bg-white p-6 shadow-sm">
+      <section className="rounded-3xl border border-brand-border bg-white p-6 shadow-xs">
         <div className="mb-6">
           <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted">Basic profile</p>
           <h2 className="mt-1 font-serif text-2xl font-semibold text-brand-dark">Edit your details</h2>
@@ -64,7 +80,7 @@ export default function ProfileForm({
 
         {savedParam === '1' && (
           <div className="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
-            Profile saved.
+            Profile saved successfully.
           </div>
         )}
 
@@ -79,7 +95,7 @@ export default function ProfileForm({
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder="Your full name"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-dark/20"
+                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
             </label>
 
@@ -92,7 +108,7 @@ export default function ProfileForm({
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="username"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm lowercase text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-dark/20"
+                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm lowercase text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
               <span className="mt-1 block text-[11px] text-brand-muted">3-30 chars: lowercase letters, numbers, underscore.</span>
             </label>
@@ -103,11 +119,11 @@ export default function ProfileForm({
             <textarea
               name="bio"
               maxLength={280}
-              rows={5}
+              rows={4}
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Tell others what you study, where you want to go, or what scholarships you are targeting."
-              className="w-full resize-none rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-dark/20"
+              className="w-full resize-none rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
             />
           </label>
 
@@ -121,7 +137,7 @@ export default function ProfileForm({
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Indonesia"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-dark/20"
+                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
             </label>
 
@@ -133,7 +149,7 @@ export default function ProfileForm({
                 value={websiteUrl}
                 onChange={(e) => setWebsiteUrl(e.target.value)}
                 placeholder="https://example.com"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-dark/20"
+                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
             </label>
           </div>
@@ -146,10 +162,10 @@ export default function ProfileForm({
               value={avatarUrl}
               onChange={(e) => setAvatarUrl(e.target.value)}
               placeholder="https://example.com/avatar.jpg"
-              className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-dark/20"
+              className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
             />
             <span className="mt-1 block text-[11px] text-brand-muted">
-              For v1 this uses an image URL. Upload storage can be added later when community ships.
+              Optional image link for your avatar.
             </span>
           </label>
 
@@ -174,13 +190,12 @@ export default function ProfileForm({
         <div className="rounded-3xl border border-brand-border bg-brand-cream p-6">
           <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted">Preview</p>
           <div className="mt-5 flex items-start gap-4">
-            {avatarUrl.trim() ? (
+            {safeAvatarUrl ? (
               <img
-                src={avatarUrl.trim()}
+                src={safeAvatarUrl}
                 alt={previewDisplayName}
                 className="h-16 w-16 rounded-2xl border border-brand-border bg-white object-cover"
                 onError={(e) => {
-                  // Fallback to initials if the URL fails to load
                   (e.target as HTMLElement).style.display = 'none';
                   const parent = (e.target as HTMLElement).parentElement;
                   if (parent) {
@@ -191,10 +206,9 @@ export default function ProfileForm({
               />
             ) : null}
             
-            {/* Fallback avatar */}
             <div
               className="avatar-fallback grid h-16 w-16 place-items-center rounded-2xl border border-brand-border bg-white font-serif text-xl font-bold text-brand-dark"
-              style={avatarUrl.trim() ? { display: 'none' } : undefined}
+              style={safeAvatarUrl ? { display: 'none' } : undefined}
             >
               {previewInitials}
             </div>
@@ -205,20 +219,20 @@ export default function ProfileForm({
             </div>
           </div>
 
-          {bio.trim() && (
-            <p className="mt-5 text-sm leading-relaxed text-brand-dark">{bio}</p>
+          {safeBio && (
+            <p className="mt-5 text-sm leading-relaxed text-brand-dark">{safeBio}</p>
           )}
 
           <div className="mt-5 space-y-2 border-t border-brand-border pt-4">
-            {location.trim() && (
+            {safeLocation && (
               <p className="flex items-center gap-2 text-xs text-brand-muted">
                 <MapPin className="h-3.5 w-3.5" />
-                {location}
+                {safeLocation}
               </p>
             )}
-            {websiteUrl.trim() && (
+            {safeWebsiteUrl && (
               <a
-                href={websiteUrl}
+                href={safeWebsiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs font-medium text-brand-accent hover:underline"
@@ -227,7 +241,7 @@ export default function ProfileForm({
                 Website
               </a>
             )}
-            {!location.trim() && !websiteUrl.trim() && (
+            {!safeLocation && !safeWebsiteUrl && (
               <p className="flex items-center gap-2 text-xs text-brand-muted">
                 <UserRound className="h-3.5 w-3.5" />
                 Add details to complete your profile.
@@ -242,7 +256,7 @@ export default function ProfileForm({
             <p className="text-sm font-semibold text-brand-dark">Community-ready base</p>
           </div>
           <p className="text-xs leading-relaxed text-brand-muted">
-            This profile table is public-readable and owner-editable, so later community features can reuse the same identity layer for posts, comments, and member cards.
+            This profile is associated with your account and will be used across your shortlists, saved searches, and future community features.
           </p>
         </div>
       </aside>
