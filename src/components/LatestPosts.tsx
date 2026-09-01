@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { StaggerContainer, StaggerItem } from './StaggerContainer';
 import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
+import { LinkButton } from '@/components/ui/button';
 
 function cleanDescription(raw: string | null): string {
   if (!raw) return 'No description available.';
@@ -81,12 +82,13 @@ export default function LatestPosts() {
         </StaggerContainer>
 
         <div className="flex justify-center mt-12">
-          <Link
+          <LinkButton
             href="/scholarships"
-            className="inline-flex items-center justify-center px-6 py-3 border border-brand-border text-xs font-semibold rounded-full text-brand-dark hover:bg-brand-cream transition-colors duration-200"
+            variant="secondary"
+            size="lg"
           >
             Show all scholarships
-          </Link>
+          </LinkButton>
         </div>
 
       </div>

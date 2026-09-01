@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Search, X, ChevronDown, Filter } from 'lucide-react';
 
 import { allScholarships, providerMeta, providerGroup } from '@/lib/scholarships';
+import { Button } from '@/components/ui/button';
 
 // Extract unique programs grouped by country, sorted by country then program
 const uniquePrograms = Array.from(
@@ -104,14 +105,17 @@ function CustomSelect({ value, options, onChange, align = 'left', fullWidth = fa
 
   return (
     <div ref={containerRef} className={`relative text-left z-20 ${fullWidth ? 'block w-full' : 'inline-block'}`}>
-      <button
+      <Button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center justify-between gap-1.5 text-xs px-3 py-2 rounded-full border border-brand-border bg-white text-brand-dark hover:border-brand-dark/20 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-dark/20 cursor-pointer min-w-[125px] text-left ${fullWidth ? 'w-full min-h-11 px-4' : ''}`}
+        variant="secondary"
+        size={fullWidth ? 'default' : 'sm'}
+        shape="control"
+        className={`min-w-[125px] justify-between rounded-xl text-left ${fullWidth ? 'w-full' : ''}`}
       >
         <span className="truncate">{selectedOption?.label}</span>
         <ChevronDown className="h-3.5 w-3.5 flex-shrink-0 text-brand-muted" />
-      </button>
+      </Button>
 
       {isOpen && (
         <div 
@@ -123,19 +127,22 @@ function CustomSelect({ value, options, onChange, align = 'left', fullWidth = fa
             style={{ scrollbarWidth: 'thin', scrollbarColor: '#E8E8E6 transparent' }}
           >
             {options.map((option) => (
-              <button
+              <Button
                 key={option.value}
                 type="button"
                 onClick={() => {
                   onChange(option.value);
                   setIsOpen(false);
                 }}
-                className={`w-full text-left px-4 py-2 text-xs transition-colors hover:bg-brand-cream/80 flex items-center gap-2 ${
-                  option.value === value ? 'bg-brand-cream/60 font-semibold text-brand-dark' : 'text-brand-dark/80'
+                variant="ghost"
+                size="sm"
+                shape="control"
+                className={`h-auto min-h-9 w-full justify-start rounded-none px-4 py-2 text-xs ${
+                  option.value === value ? '!bg-brand-cream/60 font-semibold !text-brand-dark' : '!text-brand-dark/80'
                 }`}
               >
                 {option.label}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -245,13 +252,14 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
         />
 
         {hasFilters && (
-          <button
+          <Button
             onClick={clearAll}
-            className="inline-flex items-center gap-1.5 text-xs px-3 py-2 rounded-full border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 transition-colors"
+            variant="danger"
+            size="sm"
           >
             <X className="h-3 w-3" />
             Clear
-          </button>
+          </Button>
         )}
 
         <p className="ml-auto text-xs text-brand-muted hidden sm:block">
@@ -262,14 +270,16 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
       {/* Mobile keeps the persistent bar compact; the full controls open in a
           dedicated sheet rather than consuming most of the viewport. */}
       <div className="sm:hidden flex items-center justify-between gap-3">
-        <button
+        <Button
           type="button"
           onClick={() => setMobileFiltersOpen(true)}
-          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-brand-border bg-white px-4 text-xs font-semibold text-brand-dark transition-colors active:scale-[0.98]"
+          variant="secondary"
+          size="lg"
+          className="text-xs"
         >
           <Filter className="h-4 w-4" />
           Filters{activeFilterCount > 0 ? ` (${activeFilterCount})` : ''}
-        </button>
+        </Button>
         <p className="text-xs text-brand-muted">
           <span className="font-semibold text-brand-dark">{total}</span> result{total !== 1 ? 's' : ''}
         </p>
@@ -277,10 +287,13 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
 
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-[60] sm:hidden" role="dialog" aria-modal="true" aria-label="Filter scholarships">
-          <button
+          <Button
             type="button"
             aria-label="Close filters"
-            className="absolute inset-0 bg-brand-dark/25 backdrop-blur-[1px]"
+            variant="ghost"
+            size="default"
+            shape="control"
+            className="absolute inset-0 h-auto min-h-0 w-full rounded-none border-0 bg-brand-dark/25 p-0 hover:bg-brand-dark/25"
             onClick={() => setMobileFiltersOpen(false)}
           />
           <div data-lenis-prevent className="absolute inset-x-0 bottom-0 max-h-[80dvh] overflow-y-auto rounded-t-3xl bg-brand-bg p-5 shadow-2xl">
@@ -289,14 +302,16 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
                 <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted">Refine results</p>
                 <h2 className="font-serif text-2xl font-bold text-brand-dark">Filters</h2>
               </div>
-              <button
+              <Button
                 type="button"
                 onClick={() => setMobileFiltersOpen(false)}
-                className="grid h-11 w-11 place-items-center rounded-full border border-brand-border bg-white text-brand-dark active:scale-95"
+                variant="secondary"
+                size="icon-lg"
+                shape="circle"
                 aria-label="Close filters"
               >
                 <X className="h-4 w-4" />
-              </button>
+              </Button>
             </div>
             <div className="grid grid-cols-1 gap-3">
               <CustomSelect value={get('provider')} options={PROVIDERS} onChange={(val) => pushParams('provider', val)} fullWidth />
@@ -306,21 +321,25 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
             </div>
             <div className="mt-6 flex gap-3">
               {hasFilters && (
-                <button
+                <Button
                   type="button"
                   onClick={() => { clearAll(); setMobileFiltersOpen(false); }}
-                  className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-red-200 bg-red-50 px-4 text-xs font-bold text-red-600 active:scale-[0.98]"
+                  variant="danger"
+                  size="lg"
+                  className="flex-1 text-xs"
                 >
                   Clear all
-                </button>
+                </Button>
               )}
-              <button
+              <Button
                 type="button"
                 onClick={() => setMobileFiltersOpen(false)}
-                className="inline-flex min-h-11 flex-1 items-center justify-center rounded-full bg-brand-dark px-4 text-xs font-bold text-white active:scale-[0.98]"
+                variant="primary"
+                size="lg"
+                className="flex-1 text-xs"
               >
                 Show {total} results
-              </button>
+              </Button>
             </div>
           </div>
         </div>

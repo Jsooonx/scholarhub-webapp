@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { allScholarships, providerMeta } from '@/lib/scholarships';
 import SplitText from '@/components/SplitText';
 import BorderGlow from './BorderGlow/BorderGlow';
+import { LinkButton } from '@/components/ui/button';
 
 const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
   flag: meta.flag,
@@ -56,12 +57,14 @@ export default function AdBanner() {
               <p className="text-sm text-white/70 leading-relaxed mb-6">
                 From Germany and Japan to the United Kingdom, France, Australia, South Korea, and more - 25 countries with curated scholarships, structured and ready to browse.
               </p>
-              <Link
+              <LinkButton
                 href="/scholarships"
-                className="inline-flex items-center justify-center px-6 py-3 border border-brand-border text-xs font-semibold rounded-full text-brand-dark bg-white hover:bg-brand-cream cursor-pointer transition-colors interactive-press"
+                variant="secondary"
+                size="lg"
+                className="border-transparent shadow-none hover:border-transparent hover:bg-brand-cream"
               >
                 Browse all scholarships
-              </Link>
+              </LinkButton>
             </div>
 
             {/* Right: Provider Flags - 3 columns, wheel-scrollable */}

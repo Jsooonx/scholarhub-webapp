@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { allScholarships, providerMeta, BASE_URL } from '@/lib/scholarships';
 import { BookOpen, Globe, GraduationCap, Search, Mail, Compass, Kanban, Calendar, SlidersHorizontal } from 'lucide-react';
 import SplitText from '@/components/SplitText';
+import { LinkButton } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -280,13 +281,15 @@ export default function AboutPage() {
                     <p className="text-sm font-medium text-brand-dark mb-0.5">Found outdated info? Want to suggest a scholarship?</p>
                     <p className="text-xs text-brand-muted">Send us a message - we review all feedback and update data regularly.</p>
                   </div>
-                  <a
+                  <LinkButton
                     href="mailto:jsnxbusiness@gmail.com"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-2.5 border border-amber-300 bg-white text-sm font-semibold rounded-full text-amber-700 hover:bg-amber-50 transition-colors flex-shrink-0"
+                    variant="primary"
+                    size="lg"
+                    className="flex-shrink-0 border-amber-600 bg-amber-600 hover:border-amber-600 hover:bg-white hover:!text-amber-700"
                   >
                     <Mail className="h-4 w-4" />
                     Contact us
-                  </a>
+                  </LinkButton>
                 </div>
               </div>
             </div>

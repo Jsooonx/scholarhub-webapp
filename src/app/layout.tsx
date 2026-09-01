@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
+import { Inter, Lora, Geist } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ShortlistProvider } from "@/components/ShortlistProvider";
 import { BASE_URL } from "@/lib/scholarships";
 import Navbar from "@/components/Navbar";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const lora = Lora({
   variable: "--font-serif",
@@ -59,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${lora.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", lora.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full bg-brand-bg text-brand-dark font-sans flex flex-col selection:bg-brand-dark selection:text-white">
         <Suspense>

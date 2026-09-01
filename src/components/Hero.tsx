@@ -9,6 +9,7 @@ import TrueFocus from './TrueFocus';
 import BorderGlow from './BorderGlow/BorderGlow';
 import { useShortlist } from '@/components/ShortlistProvider';
 import { getCurrentProfile, type Profile } from '@/app/actions/profile';
+import { Button, LinkButton } from '@/components/ui/button';
 
 // Pull one per provider group for the hero row - prioritise the most complete providers
 function getFeaturedByGroup(group: string) {
@@ -24,13 +25,6 @@ const FEATURED_IMAGES: Record<string, string> = {
   'south-korea': 'https://images.unsplash.com/photo-1601621915196-2621bfb0cd6e?auto=format&fit=crop&w=1600&q=80',
 };
 
-const bottomRow = [
-  { s: getFeaturedByGroup('germany'), image: FEATURED_IMAGES.germany },
-  { s: getFeaturedByGroup('japan'), image: FEATURED_IMAGES.japan },
-  { s: getFeaturedByGroup('turkey'), image: FEATURED_IMAGES.turkey },
-];
-
-// Compute counts dynamically
 const countryCount = new Set(allScholarships.map(s => s.country).filter(Boolean)).size;
 const providerCount = Object.keys(providerMeta).length;
 
@@ -39,8 +33,6 @@ const stats = [
   { icon: Globe, value: `${countryCount}+`, label: 'Countries covered' },
   { icon: GraduationCap, value: `${providerCount}`, label: 'Top providers' },
 ];
-
-
 
 export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,8 +81,6 @@ export default function Hero() {
               Scholarship Directory
             </span>
             <h1 className="font-serif text-[2.75rem] sm:text-7xl font-bold tracking-tight text-brand-dark leading-[1.05] max-w-2xl">
-              {/* The moving focus treatment is decorative; keep the primary message
-                  perfectly legible on touch-sized screens. */}
               <span className="sm:hidden">Your path to studying abroad</span>
               <span className="hidden sm:block">
                 <TrueFocus
@@ -115,20 +105,23 @@ export default function Hero() {
                       {profile.quiz_answers.degree} · {profile.quiz_answers.field}
                     </span>
                   </span>
-                  <Link
+                  <LinkButton
                     href="/match"
-                    className="inline-flex items-center gap-1 text-xs font-bold text-brand-accent hover:underline cursor-pointer"
+                    variant="link"
+                    size="xs"
+                    className="h-auto min-h-0 rounded-none px-0 !text-brand-accent"
                   >
                     Retake Quiz
-                  </Link>
+                  </LinkButton>
                 </div>
               ) : (
-                <Link
+                <LinkButton
                   href="/match"
-                  className="inline-flex items-center justify-center rounded-full bg-brand-dark border border-brand-dark px-6 py-3 text-xs font-bold text-white hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
+                  variant="primary"
+                  size="lg"
                 >
                   Find Your Match (30s)
-                </Link>
+                </LinkButton>
               )}
             </div>
           </div>
@@ -219,54 +212,23 @@ export default function Hero() {
           {/* Slide Indicators */}
           <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 flex gap-2 z-30">
             {featuredList.map((_, idx) => (
-              <button
+              <Button
                 key={idx}
                 onClick={(e) => {
                   e.stopPropagation();
                   setCurrentIndex(idx);
                 }}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  idx === currentIndex ? 'bg-white w-6' : 'bg-white/40 hover:bg-white/60'
+                variant="ghost"
+                size="icon-xs"
+                shape="circle"
+                className={`!h-2 !min-h-2 !rounded-full !p-0 transition-all duration-300 ${
+                  idx === currentIndex ? '!w-8 !bg-white' : '!w-2 !bg-white/40 hover:!bg-white/70'
                 }`}
-                aria-label={`Go to slide ${idx + 1}`}
+                aria-label={`Slide ${idx + 1}`}
               />
             ))}
           </div>
         </motion.div>
-
-        {/* Bottom Horizontal Row: one per provider */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-brand-border">
-          {bottomRow.map(({ s, image }, i) => {
-            const group = providerGroup(s.provider);
-            return (
-              <Link
-                key={s.slug}
-                href={`/scholarships/${s.slug}`}
-                className={`flex gap-4 group cursor-pointer ${
-                  i === 1
-                    ? 'border-t md:border-t-0 md:border-x border-brand-border pt-4 md:pt-0 md:px-6'
-                    : i === 2
-                    ? 'border-t md:border-t-0 pt-4 md:pt-0'
-                    : ''
-                }`}
-              >
-                <div
-                  className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden bg-cover bg-center border border-brand-border"
-                  style={{ backgroundImage: `url('${image}')` }}
-                />
-                <div className="flex flex-col justify-center">
-                  <p className="text-[10px] uppercase font-bold tracking-wider text-brand-muted mb-1">
-                    {providerMeta[group]?.flag ?? '🌍'} {s.provider} · {s.degree_levels[0] ?? 'Various'}
-                  </p>
-                  <h3 className="text-sm font-semibold text-brand-dark line-clamp-2 leading-snug group-hover:opacity-85 transition-opacity">
-                    {s.name}
-                  </h3>
-                  <span className="mt-1 text-[10px] font-semibold text-brand-accent">{s.funding_type}</span>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
 
       </div>
     </section>

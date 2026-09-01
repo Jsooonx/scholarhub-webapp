@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import Footer from '@/components/Footer';
+import { LinkButton } from '@/components/ui/button';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import { getScholarshipsByProvider, providerMeta, BASE_URL } from '@/lib/scholarships';
 
@@ -134,14 +135,15 @@ export default async function ProviderPage({
                 <p className="text-2xl font-bold text-brand-dark">{sortedLevels.length}</p>
                 <p className="text-[10px] text-brand-muted uppercase tracking-wider">Levels</p>
               </div>
-              <a
+              <LinkButton
                 href={meta.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-border rounded-full text-sm font-medium text-brand-dark hover:bg-brand-cream transition-colors self-center"
+                external
+                variant="secondary"
+                size="lg"
+                className="self-center"
               >
                 Official website ↗
-              </a>
+              </LinkButton>
             </div>
           </div>
         </div>

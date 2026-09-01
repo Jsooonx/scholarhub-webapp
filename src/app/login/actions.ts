@@ -2,16 +2,11 @@
 
 import { redirect } from 'next/navigation';
 import { sendMagicLink } from '@/lib/auth';
-
-function safeNext(value: FormDataEntryValue | string | null): string {
-  const raw = typeof value === 'string' ? value : '';
-  if (!raw || !raw.startsWith('/') || raw.startsWith('//')) return '/shortlist';
-  return raw;
-}
+import { safeInternalPath } from '@/lib/security';
 
 export async function signInWithEmail(formData: FormData) {
   const email = String(formData.get('email') ?? '').trim().toLowerCase();
-  const next = safeNext(formData.get('next'));
+  const next = safeInternalPath(formData.get('next'));
 
   if (!email || !email.includes('@')) {
     redirect(`/login?next=${encodeURIComponent(next)}&error=email`);

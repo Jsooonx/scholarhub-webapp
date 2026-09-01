@@ -69,9 +69,9 @@ Create `.env`:
 NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="your-anon-key"
 SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"  # for admin operations
-RESEND_API_KEY="re_xxxxxxxxxxxx"
-RESEND_AUDIENCE_ID="xxxxxxxxxxxx"
-NOTIFY_SECRET="xxxxxxxxxxxx"
+RESEND_API_KEY=""
+RESEND_AUDIENCE_ID=""
+NOTIFY_SECRET=""
 SITE_URL="http://localhost:3000"
 ```
 

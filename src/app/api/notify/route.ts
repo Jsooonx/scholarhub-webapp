@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://scholarhub.jsooonx.my.id';
 
@@ -184,7 +184,7 @@ export async function POST(req: NextRequest) {
     subject = body.subject;
     updates = body.updates;
     note = body.note;
-    from = body.from ?? `ScholarHub <onboarding@resend.dev>`;
+    from = body.from ?? process.env.RESEND_FROM_EMAIL ?? `ScholarHub <onboarding@resend.dev>`;
 
     if (!subject || !Array.isArray(updates) || updates.length === 0) {
       return NextResponse.json(

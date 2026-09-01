@@ -1,0 +1,5 @@
+# Copy this file to .dev.vars for local Wrangler development and fill in values locally.
+RESEND_API_KEY=
+NOTIFY_SECRET=
+RESEND_AUDIENCE_ID=
+NEXT_PUBLIC_SITE_URL=http://localhost:3000

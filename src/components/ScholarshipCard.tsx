@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { providerGroup, getDeadlineStatus, getScholarshipLogo, providerMeta, type Scholarship } from '@/lib/scholarships';
 import DeadlineStatus from '@/components/DeadlineStatus';
 import SaveScholarshipButton from '@/components/SaveScholarshipButton';
 import { Clock, GraduationCap, MapPin, Check, X } from 'lucide-react';
 import { matchDegree, matchField, matchExperience, matchFunding, matchRegion, type QuizAnswers } from '@/lib/matching';
+import { Button } from '@/components/ui/button';
 
 const fundingColors: Record<string, string> = {
   'fully funded': 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -29,6 +30,7 @@ interface Props {
   scholarship: Scholarship;
   variant?: 'grid' | 'list';
   quizAnswers?: QuizAnswers;
+  className?: string;
 }
 
 function ChecklistItem({ label, matched, val }: { label: string; matched: boolean; val: string }) {
@@ -70,7 +72,7 @@ function MatchBadge({
 
   return (
     <div className="relative flex-shrink-0">
-      <button
+      <Button
         type="button"
         onClick={(e) => {
           e.preventDefault();
@@ -79,14 +81,17 @@ function MatchBadge({
         }}
         onMouseEnter={() => setShowPopover(true)}
         onMouseLeave={() => setShowPopover(false)}
-        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold border cursor-help select-none transition-colors ${
+        variant="ghost"
+        size="xs"
+        shape="pill"
+        className={`h-auto min-h-0 cursor-help rounded-full px-2 py-0.5 text-[10px] font-semibold select-none ${
           matchCount === 5
             ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100/50'
             : 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100/50'
         }`}
       >
         <span>{matchCount}/5 Matches</span>
-      </button>
+      </Button>
 
       {showPopover && (
         <div className="absolute right-0 bottom-full mb-2 z-30 w-52 rounded-2xl border border-brand-border bg-white p-3.5 shadow-xl animate-fade-in text-left">
@@ -107,7 +112,7 @@ function MatchBadge({
   );
 }
 
-export default function ScholarshipCard({ scholarship: s, variant = 'grid', quizAnswers }: Props) {
+export default function ScholarshipCard({ scholarship: s, variant = 'grid', quizAnswers, className = '' }: Props) {
   const group = providerGroup(s.provider);
   const flag = providerMeta[group]?.flag ?? '🌍';
   const logoUrl = getScholarshipLogo(s);
@@ -141,7 +146,7 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
 
   if (variant === 'list') {
     return (
-      <div className="relative rounded-2xl border border-brand-border transition-all duration-200 hover:border-brand-dark/20 hover:bg-brand-cream/50">
+      <div className={`relative rounded-2xl border border-brand-border transition-all duration-200 hover:border-brand-dark/20 hover:bg-brand-cream/50 ${className}`}>
         <SaveScholarshipButton slug={s.slug} className="absolute right-3 top-3 z-10" />
         <Link
           href={`/scholarships/${s.slug}`}
@@ -201,13 +206,13 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
   }
 
   return (
-    <div className="relative rounded-2xl border border-brand-border bg-white transition-all duration-200 hover:border-brand-dark/20 hover:shadow-sm">
+    <div className={`relative overflow-hidden rounded-2xl border border-brand-border bg-white transition-all duration-200 hover:border-brand-dark/20 hover:shadow-sm ${className}`}>
       <SaveScholarshipButton slug={s.slug} className="absolute right-3 top-4 z-10" />
       <Link
         href={`/scholarships/${s.slug}`}
-        className="group flex flex-col rounded-2xl"
+        className="group flex flex-col"
       >
-        <div className="h-1.5 w-full bg-gradient-to-r from-brand-accent/60 to-brand-accent/20 rounded-t-2xl" />
+        <div className="h-1 w-full bg-gradient-to-r from-brand-accent/70 via-brand-accent/30 to-transparent" />
 
         <div className="p-5 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-3 mb-3 pr-10">

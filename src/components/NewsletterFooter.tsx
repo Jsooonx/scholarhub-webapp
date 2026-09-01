@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Loader2 } from 'lucide-react';
 import SplitText from '@/components/SplitText';
+import { Button } from '@/components/ui/button';
 
 type Status = 'idle' | 'loading' | 'success' | 'error';
 
@@ -124,17 +125,20 @@ export default function NewsletterFooter() {
                   disabled={status === 'loading'}
                   className="flex-1 min-w-0 px-4 py-2.5 text-xs rounded-full border border-brand-border bg-white focus:outline-none focus:ring-2 focus:ring-brand-dark/20 disabled:opacity-50"
                 />
-                <button
+                <Button
                   type="submit"
                   disabled={status === 'loading' || !consent}
-                  className="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 border border-brand-dark text-xs font-semibold rounded-full text-white bg-brand-dark hover:bg-white hover:text-brand-dark cursor-pointer interactive-press disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none"
+                  variant="primary"
+                  size="sm"
+                  loading={status === 'loading'}
+                  className="shrink-0"
                 >
                   {status === 'loading' ? (
                     <Loader2 className="h-3.5 w-3.5 animate-spin" />
                   ) : (
                     'Notify me'
                   )}
-                </button>
+                </Button>
               </div>
 
               {/* Error message */}

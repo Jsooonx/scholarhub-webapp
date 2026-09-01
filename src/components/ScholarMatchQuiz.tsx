@@ -12,6 +12,7 @@ import { type Scholarship } from '@/lib/scholarships';
 import { updateProfileQuizAnswers } from '@/app/actions/profile';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import { type QuizAnswers, filterScholarships } from '@/lib/matching';
+import { Button, LinkButton } from '@/components/ui/button';
 
 interface Props {
   initialAnswers: QuizAnswers | null;
@@ -242,16 +243,20 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'phd', label: 'PhD / Doctoral', desc: 'Advanced research (S3)', icon: BookOpen },
                       { val: 'non-degree', label: 'Short Course', desc: 'Certificates & exchange programs', icon: Briefcase }
                     ].map(item => (
-                      <button
+                      <Button
                         key={item.val}
                         onClick={() => {
                           setAnswers({ ...answers, degree: item.val as any });
                           setTimeout(nextStep, 180);
                         }}
-                        className={`flex items-start gap-4 p-4 rounded-2xl border text-left cursor-pointer transition-all duration-200 interactive-press ${
+                        variant={answers.degree === item.val ? 'primary' : 'secondary'}
+                        size="lg"
+                        shape="control"
+                        aria-pressed={answers.degree === item.val}
+                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
                           answers.degree === item.val
-                            ? 'bg-brand-cream border-brand-dark/40 shadow-sm ring-1 ring-brand-dark/10'
-                            : 'bg-white border-brand-border hover:border-brand-dark/10 hover:bg-brand-cream/30'
+                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
+                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
                         }`}
                       >
                         <div className={`p-2 rounded-xl border ${
@@ -263,7 +268,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                           <p className="text-sm font-bold text-brand-dark">{item.label}</p>
                           <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
                         </div>
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </motion.div>
@@ -294,16 +299,20 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'medicine', label: 'Medicine & Health', desc: 'Medical, Nursing, Pharmacy', icon: HeartPulse },
                       { val: 'any', label: 'General / Any Field', desc: 'Applicable to all fields', icon: Compass }
                     ].map(item => (
-                      <button
+                      <Button
                         key={item.val}
                         onClick={() => {
                           setAnswers({ ...answers, field: item.val as any });
                           setTimeout(nextStep, 180);
                         }}
-                        className={`flex items-start gap-4 p-4 rounded-2xl border text-left cursor-pointer transition-all duration-200 interactive-press ${
+                        variant={answers.field === item.val ? 'primary' : 'secondary'}
+                        size="lg"
+                        shape="control"
+                        aria-pressed={answers.field === item.val}
+                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
                           answers.field === item.val
-                            ? 'bg-brand-cream border-brand-dark/40 shadow-sm ring-1 ring-brand-dark/10'
-                            : 'bg-white border-brand-border hover:border-brand-dark/10 hover:bg-brand-cream/30'
+                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
+                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
                         }`}
                       >
                         <div className={`p-2 rounded-xl border ${
@@ -315,7 +324,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                           <p className="text-sm font-bold text-brand-dark">{item.label}</p>
                           <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
                         </div>
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </motion.div>
@@ -342,16 +351,20 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'yes', label: 'Yes, I do', desc: 'Over 2 years of full-time professional experience', icon: CheckCircle2 },
                       { val: 'no', label: 'No / Fresh Graduate', desc: 'No work history or less than 2 years of experience', icon: XCircle }
                     ].map(item => (
-                      <button
+                      <Button
                         key={item.val}
                         onClick={() => {
                           setAnswers({ ...answers, experience: item.val as any });
                           setTimeout(nextStep, 180);
                         }}
-                        className={`flex items-start gap-4 p-4 rounded-2xl border text-left cursor-pointer transition-all duration-200 interactive-press ${
+                        variant={answers.experience === item.val ? 'primary' : 'secondary'}
+                        size="lg"
+                        shape="control"
+                        aria-pressed={answers.experience === item.val}
+                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
                           answers.experience === item.val
-                            ? 'bg-brand-cream border-brand-dark/40 shadow-sm ring-1 ring-brand-dark/10'
-                            : 'bg-white border-brand-border hover:border-brand-dark/10 hover:bg-brand-cream/30'
+                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
+                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
                         }`}
                       >
                         <div className={`p-2 rounded-xl border ${
@@ -363,7 +376,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                           <p className="text-sm font-bold text-brand-dark">{item.label}</p>
                           <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
                         </div>
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </motion.div>
@@ -390,16 +403,20 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'fully', label: 'Strictly Fully Funded', desc: 'Only show grants that cover 100% tuition + living stipend', icon: DollarSign },
                       { val: 'any', label: 'Open to All', desc: 'Show fully funded, partial grants, and tuition discounts', icon: Compass }
                     ].map(item => (
-                      <button
+                      <Button
                         key={item.val}
                         onClick={() => {
                           setAnswers({ ...answers, funding: item.val as any });
                           setTimeout(nextStep, 180);
                         }}
-                        className={`flex items-start gap-4 p-4 rounded-2xl border text-left cursor-pointer transition-all duration-200 interactive-press ${
+                        variant={answers.funding === item.val ? 'primary' : 'secondary'}
+                        size="lg"
+                        shape="control"
+                        aria-pressed={answers.funding === item.val}
+                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
                           answers.funding === item.val
-                            ? 'bg-brand-cream border-brand-dark/40 shadow-sm ring-1 ring-brand-dark/10'
-                            : 'bg-white border-brand-border hover:border-brand-dark/10 hover:bg-brand-cream/30'
+                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
+                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
                         }`}
                       >
                         <div className={`p-2 rounded-xl border ${
@@ -411,7 +428,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                           <p className="text-sm font-bold text-brand-dark">{item.label}</p>
                           <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
                         </div>
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </motion.div>
@@ -441,17 +458,21 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                       { val: 'americas', label: 'Americas', desc: 'United States, Canada', icon: Compass },
                       { val: 'oceania', label: 'Oceania', desc: 'Australia, New Zealand', icon: Compass }
                     ].map(item => (
-                      <button
+                      <Button
                         key={item.val}
                         onClick={() => {
                           const updated = { ...answers, region: item.val as any };
                           setAnswers(updated);
                           setTimeout(() => handleComplete(updated), 180);
                         }}
-                        className={`flex items-start gap-4 p-4 rounded-2xl border text-left cursor-pointer transition-all duration-200 interactive-press ${
+                        variant={answers.region === item.val ? 'primary' : 'secondary'}
+                        size="lg"
+                        shape="control"
+                        aria-pressed={answers.region === item.val}
+                        className={`h-auto min-h-20 w-full justify-start rounded-2xl p-4 text-left ${
                           answers.region === item.val
-                            ? 'bg-brand-cream border-brand-dark/40 shadow-sm ring-1 ring-brand-dark/10'
-                            : 'bg-white border-brand-border hover:border-brand-dark/10 hover:bg-brand-cream/30'
+                            ? 'border-brand-dark/40 bg-brand-cream !text-brand-dark ring-1 ring-brand-dark/10'
+                            : 'hover:border-brand-dark/10 hover:bg-brand-cream/30'
                         }`}
                       >
                         <div className={`p-2 rounded-xl border ${
@@ -463,7 +484,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                           <p className="text-sm font-bold text-brand-dark">{item.label}</p>
                           <p className="text-[11px] text-brand-muted mt-0.5 leading-snug">{item.desc}</p>
                         </div>
-                      </button>
+                      </Button>
                     ))}
                   </div>
                 </motion.div>
@@ -478,13 +499,16 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
 
             {/* Back button */}
             <div className="mt-8 flex justify-start flex-shrink-0">
-              <button
+              <Button
                 onClick={prevStep}
                 disabled={step === 0}
-                className="flex items-center gap-1 text-xs font-semibold text-brand-muted hover:text-brand-dark transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                variant="ghost"
+                size="sm"
+                shape="control"
+                className="px-0 !text-brand-muted hover:!bg-transparent hover:!text-brand-dark"
               >
                 <Undo2 className="h-3.5 w-3.5" /> Back
-              </button>
+              </Button>
             </div>
           </div>
         ) : (
@@ -635,12 +659,13 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                 <p className="text-[11px] text-brand-muted mb-4">
                   Create a free account or sign in to save your academic profile, sync bookmarks, and track deadlines.
                 </p>
-                <Link
+                <LinkButton
                   href="/login?next=/match"
-                  className="inline-flex items-center justify-center rounded-full bg-brand-dark border border-brand-dark px-5 py-2.5 text-xs font-bold text-white hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
+                  variant="primary"
+                  size="sm"
                 >
                   Sign up / Sign in
-                </Link>
+                </LinkButton>
               </div>
             )}
 
@@ -661,19 +686,21 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
 
             {/* Footer buttons */}
             <div className="flex justify-center gap-4 pt-6 border-t border-brand-border/40">
-              <button
+              <Button
                 onClick={() => setStep(0)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-brand-border text-xs font-semibold rounded-full text-brand-dark bg-white hover:bg-brand-cream cursor-pointer transition-colors"
+                variant="secondary"
+                size="sm"
               >
                 <Undo2 className="h-4 w-4 transition-transform duration-300 group-hover:-rotate-45" />
                 Retake Quiz
-              </button>
-              <Link
+              </Button>
+              <LinkButton
                 href="/"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-brand-dark border border-brand-dark text-xs font-semibold rounded-full text-white hover:bg-white hover:text-brand-dark cursor-pointer text-center interactive-press"
+                variant="primary"
+                size="sm"
               >
                 Return Home
-              </Link>
+              </LinkButton>
             </div>
           </div>
         )}
@@ -701,13 +728,17 @@ export function FilterPill({
 }) {
   return (
     <div className="relative">
-      <button
+      <Button
         type="button"
         onClick={onClick}
-        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs font-semibold transition-colors cursor-pointer select-none ${
+        variant={active ? 'primary' : 'secondary'}
+        size="sm"
+        shape="pill"
+        aria-expanded={active}
+        className={`h-auto min-h-8 rounded-full px-3.5 py-1.5 text-xs select-none ${
           active
-            ? 'bg-brand-dark text-white border-brand-dark'
-            : 'bg-white text-brand-dark border-brand-border hover:bg-brand-cream'
+            ? 'border-brand-dark'
+            : 'hover:border-brand-dark hover:bg-brand-dark hover:!text-white'
         }`}
       >
         <span className="opacity-60 font-normal">
@@ -717,12 +748,12 @@ export function FilterPill({
         <span className="text-[10px] ml-0.5 opacity-70">
           ▼
         </span>
-      </button>
+      </Button>
 
       {active && (
         <div className="absolute left-1/2 -translate-x-1/2 mt-1.5 z-40 min-w-[150px] bg-white border border-brand-border rounded-xl shadow-xl py-1 overflow-hidden animate-fade-in">
           {options.map((opt) => (
-            <button
+            <Button
               key={opt.val}
               type="button"
               onClick={(e) => {
@@ -730,10 +761,13 @@ export function FilterPill({
                 e.stopPropagation();
                 onChange(opt.val);
               }}
-              className="w-full text-left px-3 py-2 text-xs font-semibold text-brand-dark hover:bg-brand-cream cursor-pointer transition-colors block"
+              variant="ghost"
+              size="sm"
+              shape="control"
+              className="h-auto min-h-9 w-full justify-start rounded-none px-3 py-2 text-left text-xs font-semibold !text-brand-dark hover:!bg-brand-cream"
             >
               {opt.label}
-            </button>
+            </Button>
           ))}
         </div>
       )}

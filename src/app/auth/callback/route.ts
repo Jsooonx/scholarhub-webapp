@@ -1,21 +1,17 @@
 import { NextResponse } from 'next/server';
 import { verifyMagicLink } from '@/lib/auth';
-
-function safeNext(value: string | null): string {
-  if (!value || !value.startsWith('/') || value.startsWith('//')) return '/shortlist';
-  return value;
-}
+import { safeInternalPath } from '@/lib/security';
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const token = requestUrl.searchParams.get('token');
-  const next = safeNext(requestUrl.searchParams.get('next'));
+  const next = safeInternalPath(requestUrl.searchParams.get('next'));
 
   if (token) {
     const result = await verifyMagicLink(token);
 
     if (result.success) {
-      const destination = result.nextPath || next;
+      const destination = safeInternalPath(result.nextPath, next);
       return NextResponse.redirect(new URL(destination, requestUrl.origin));
     }
   }

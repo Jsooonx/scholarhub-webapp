@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   value: string | null; // Format: YYYY-MM-DD
@@ -157,14 +158,17 @@ export default function DatePicker({ value, onChange, className = '', placeholde
   return (
     <div className={`relative inline-block text-left ${className}`}>
       {/* Trigger Button */}
-      <button
+      <Button
         type="button"
         onClick={handleOpen}
-        className="inline-flex items-center justify-between gap-2 rounded-xl border border-brand-border bg-white px-3 py-2 text-xs font-semibold text-brand-dark hover:bg-brand-cream/35 transition select-none cursor-pointer focus:outline-none min-w-[125px] w-full"
+        variant="secondary"
+        size="sm"
+        shape="control"
+        className="min-w-[125px] w-full justify-between rounded-xl"
       >
         <span className="truncate">{formattedLabel}</span>
         <Calendar className="h-3.5 w-3.5 text-brand-muted flex-shrink-0" />
-      </button>
+      </Button>
 
       {/* Popover via Portal */}
       {isOpen && typeof document !== 'undefined' && createPortal(
@@ -195,20 +199,28 @@ export default function DatePicker({ value, onChange, className = '', placeholde
                 {MONTH_NAMES[month]} {year}
               </span>
               <div className="flex gap-0.5">
-                <button
+                <Button
                   type="button"
                   onClick={handlePrevMonth}
-                  className="p-1 rounded-lg hover:bg-brand-cream text-brand-dark transition"
+                  variant="ghost"
+                  size="icon-xs"
+                  shape="square"
+                  className="rounded-lg"
+                  aria-label="Previous month"
                 >
                   <ChevronLeft className="h-3.5 w-3.5" />
-                </button>
-                <button
+                </Button>
+                <Button
                   type="button"
                   onClick={handleNextMonth}
-                  className="p-1 rounded-lg hover:bg-brand-cream text-brand-dark transition"
+                  variant="ghost"
+                  size="icon-xs"
+                  shape="square"
+                  className="rounded-lg"
+                  aria-label="Next month"
                 >
                   <ChevronRight className="h-3.5 w-3.5" />
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -228,22 +240,25 @@ export default function DatePicker({ value, onChange, className = '', placeholde
                 const today = isToday(cell.day, cell.month, cell.year);
 
                 return (
-                  <button
+                  <Button
                     key={idx}
                     type="button"
                     onClick={(e) => handleSelectDay(cell, e)}
-                    className={`h-7 w-7 text-[10px] font-semibold flex items-center justify-center rounded-full transition-all focus:outline-none ${
+                    variant={selected ? 'primary' : 'ghost'}
+                    size="icon-xs"
+                    shape="circle"
+                    className={`!h-7 !min-h-7 !w-7 rounded-full text-[10px] font-semibold transition-all ${
                       selected
-                        ? 'bg-brand-dark text-white'
+                        ? ''
                         : today
-                        ? 'bg-brand-cream text-brand-accent border border-brand-accent/50'
+                        ? '!border-brand-accent/50 !bg-brand-cream !text-brand-accent'
                         : cell.isCurrentMonth
-                        ? 'text-brand-dark hover:bg-brand-cream'
-                        : 'text-brand-muted/30 hover:bg-brand-cream/50'
+                        ? '!text-brand-dark hover:!bg-brand-cream'
+                        : '!text-brand-muted/30 hover:!bg-brand-cream/50'
                     }`}
                   >
                     {cell.day}
-                  </button>
+                  </Button>
                 );
               })}
             </div>

@@ -1,6 +1,5 @@
-import Link from 'next/link';
-
 import Footer from '@/components/Footer';
+import { LinkButton } from '@/components/ui/button';
 
 export default function NotFound() {
   return (
@@ -14,18 +13,20 @@ export default function NotFound() {
             The page you are looking for doesn&apos;t exist or has been moved.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
+            <LinkButton
               href="/"
-              className="inline-flex items-center justify-center px-6 py-3 border border-brand-dark text-sm font-semibold rounded-full text-white bg-brand-dark hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
+              variant="primary"
+              size="lg"
             >
               Back to home
-            </Link>
-            <Link
+            </LinkButton>
+            <LinkButton
               href="/scholarships"
-              className="inline-flex items-center justify-center px-6 py-3 border border-brand-border bg-white text-sm font-semibold rounded-full text-brand-dark hover:bg-brand-cream cursor-pointer transition-colors"
+              variant="secondary"
+              size="lg"
             >
               Browse scholarships
-            </Link>
+            </LinkButton>
           </div>
         </div>
       </main>

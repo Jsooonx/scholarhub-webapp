@@ -6,6 +6,7 @@ import ScholarshipsFilter from '@/components/ScholarshipsFilter';
 import { filterScholarships } from '@/lib/scholarships';
 import { LayoutGrid, List } from 'lucide-react';
 import Link from 'next/link';
+import { LinkButton } from '@/components/ui/button';
 
 const RESULTS_PER_PAGE = 24;
 
@@ -74,26 +75,24 @@ export default function ScholarshipsClient() {
           </p>
 
           <div className="flex items-center gap-1 rounded-full border border-brand-border bg-white p-1">
-            <Link
+            <LinkButton
               href={viewUrl('grid')}
-              scroll={false}
               aria-label="Grid view"
-              className={`rounded-full p-1.5 transition-colors ${
-                view === 'grid' ? 'bg-brand-dark text-white' : 'text-brand-muted hover:text-brand-dark'
-              }`}
+              variant={view === 'grid' ? 'primary' : 'ghost'}
+              size="icon-sm"
+              shape="circle"
             >
               <LayoutGrid className="h-4 w-4" />
-            </Link>
-            <Link
+            </LinkButton>
+            <LinkButton
               href={viewUrl('list')}
-              scroll={false}
               aria-label="List view"
-              className={`rounded-full p-1.5 transition-colors ${
-                view === 'list' ? 'bg-brand-dark text-white' : 'text-brand-muted hover:text-brand-dark'
-              }`}
+              variant={view === 'list' ? 'primary' : 'ghost'}
+              size="icon-sm"
+              shape="circle"
             >
               <List className="h-4 w-4" />
-            </Link>
+            </LinkButton>
           </div>
         </div>
 
@@ -103,12 +102,14 @@ export default function ScholarshipsClient() {
             <p className="mt-2 text-sm text-brand-muted">
               Try adjusting your filters or search terms.
             </p>
-            <Link
+            <LinkButton
               href="/scholarships"
-              className="mt-6 inline-flex rounded-full bg-brand-dark px-6 py-2.5 text-xs font-semibold text-white hover:bg-brand-cream hover:text-brand-dark transition-colors"
+              variant="primary"
+              size="lg"
+              className="mt-6"
             >
               Clear all filters
-            </Link>
+            </LinkButton>
           </div>
         ) : view === 'grid' ? (
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -127,12 +128,13 @@ export default function ScholarshipsClient() {
         {totalPages > 1 && (
           <div className="mt-12 flex items-center justify-center gap-2">
             {currentPage > 1 && (
-              <Link
+              <LinkButton
                 href={pageUrl(currentPage - 1)}
-                className="rounded-full border border-brand-border bg-white px-4 py-2 text-xs font-semibold text-brand-dark hover:border-brand-dark transition-colors"
+                variant="secondary"
+                size="sm"
               >
                 ← Previous
-              </Link>
+              </LinkButton>
             )}
 
             <div className="flex items-center gap-1">
@@ -144,28 +146,27 @@ export default function ScholarshipsClient() {
                   return (
                     <span key={p} className="flex items-center">
                       {hasGap && <span className="px-2 text-xs text-brand-muted">…</span>}
-                      <Link
+                      <LinkButton
                         href={pageUrl(p)}
-                        className={`h-8 w-8 rounded-full flex items-center justify-center text-xs font-semibold transition-colors ${
-                          p === currentPage
-                            ? 'bg-brand-dark text-white'
-                            : 'bg-white border border-brand-border text-brand-muted hover:border-brand-dark hover:text-brand-dark'
-                        }`}
+                        variant={p === currentPage ? 'primary' : 'secondary'}
+                        size="icon-sm"
+                        shape="circle"
                       >
                         {p}
-                      </Link>
+                      </LinkButton>
                     </span>
                   );
                 })}
             </div>
 
             {currentPage < totalPages && (
-              <Link
+              <LinkButton
                 href={pageUrl(currentPage + 1)}
-                className="rounded-full border border-brand-border bg-white px-4 py-2 text-xs font-semibold text-brand-dark hover:border-brand-dark transition-colors"
+                variant="secondary"
+                size="sm"
               >
                 Next →
-              </Link>
+              </LinkButton>
             )}
           </div>
         )}

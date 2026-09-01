@@ -8,6 +8,7 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { allScholarships, getScholarshipImage, providerGroup, providerMeta } from '@/lib/scholarships';
 import { curatedPicks, CuratedPick } from '@/data/curated';
 import { isPopNavigation } from '@/components/SmoothScroll';
+import { Button, LinkButton } from '@/components/ui/button';
 
 const CARDS_PER_PAGE = 6;
 
@@ -162,26 +163,28 @@ export default function CuratedPicks() {
             {/* Slider Navigation Arrows */}
             {totalPages > 1 && (
               <div className="flex space-x-2">
-                <button
+                <Button
                   onClick={handlePrev}
                   disabled={mounted ? currentPage === 0 : undefined}
-                  className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
-                    mounted && currentPage === 0 ? 'opacity-30 pointer-events-none' : ''
-                  }`}
+                  variant="secondary"
+                  size="icon-sm"
+                  shape="circle"
+                  className={mounted && currentPage === 0 ? 'opacity-30' : ''}
                   aria-label="Previous Page"
                 >
                   <ArrowLeft className="h-4 w-4" />
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={handleNext}
                   disabled={mounted ? currentPage === totalPages - 1 : undefined}
-                  className={`p-2.5 rounded-full border border-brand-border bg-white hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer shadow-sm ${
-                    mounted && currentPage === totalPages - 1 ? 'opacity-30 pointer-events-none' : ''
-                  }`}
+                  variant="secondary"
+                  size="icon-sm"
+                  shape="circle"
+                  className={mounted && currentPage === totalPages - 1 ? 'opacity-30' : ''}
                   aria-label="Next Page"
                 >
                   <ArrowRight className="h-4 w-4" />
-                </button>
+                </Button>
               </div>
             )}
           </div>
@@ -260,12 +263,14 @@ export default function CuratedPicks() {
                       <div className="mt-auto h-3 md:h-4 flex-shrink-0" />
 
                       {/* Action Link */}
-                      <Link 
+                      <LinkButton
                         href={`/scholarships/${scholarship.slug}`}
-                        className="inline-flex min-h-11 items-center justify-center w-full px-4 py-2.5 bg-brand-dark border border-brand-dark text-white rounded-full font-bold text-xs transition-colors duration-200 active:scale-[0.98] md:hover:bg-white md:hover:text-brand-dark cursor-pointer shadow-sm"
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
                       >
                         View Application Guide
-                      </Link>
+                      </LinkButton>
                     </div>
                   </div>
                 );
@@ -278,11 +283,14 @@ export default function CuratedPicks() {
         {totalPages > 1 && (
           <div className="flex justify-center gap-2 mt-8">
             {Array.from({ length: totalPages }).map((_, idx) => (
-              <button
+              <Button
                 key={idx}
                 onClick={() => handlePageChange(idx)}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  mounted && idx === currentPage ? 'bg-brand-dark w-5' : 'bg-brand-border hover:bg-brand-dark/30 w-2'
+                variant={mounted && idx === currentPage ? 'primary' : 'secondary'}
+                size="icon-xs"
+                shape="circle"
+                className={`!h-2 !min-h-2 !rounded-full !p-0 transition-all duration-300 ${
+                  mounted && idx === currentPage ? '!w-5' : '!w-2'
                 }`}
                 aria-label={`Go to page ${idx + 1}`}
                 disabled={mounted ? false : undefined}

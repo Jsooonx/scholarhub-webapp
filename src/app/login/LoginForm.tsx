@@ -4,11 +4,8 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Mail, ArrowRight, Sparkles } from 'lucide-react';
 import { signInWithEmail } from './actions';
-
-function safeNext(next?: string | null) {
-  if (!next || !next.startsWith('/') || next.startsWith('//')) return '/shortlist';
-  return next;
-}
+import { safeInternalPath } from '@/lib/security';
+import { Button } from '@/components/ui/button';
 
 const errorCopy: Record<string, string> = {
   email: 'Please enter a valid email address.',
@@ -18,7 +15,7 @@ const errorCopy: Record<string, string> = {
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
-  const next = safeNext(searchParams.get('next'));
+  const next = safeInternalPath(searchParams.get('next'));
   const errorParam = searchParams.get('error');
   const sent = searchParams.get('sent');
   const email = searchParams.get('email');
@@ -69,13 +66,15 @@ export default function LoginForm() {
           </div>
         </label>
 
-        <button
+        <Button
           type="submit"
-          className="group flex w-full items-center justify-center gap-2 rounded-full border border-brand-dark bg-brand-dark px-5 py-3 text-sm font-semibold text-white hover:bg-brand-cream hover:text-brand-dark hover:border-brand-dark cursor-pointer transition-all duration-200 interactive-press shadow-sm"
+          variant="primary"
+          size="lg"
+          icon={<ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />}
+          className="group w-full [&>span.relative]:flex-row-reverse"
         >
-          <span>Send magic sign-in link</span>
-          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-        </button>
+          Send magic sign-in link
+        </Button>
       </form>
 
       <p className="mt-6 text-center text-[11px] leading-relaxed text-brand-muted">

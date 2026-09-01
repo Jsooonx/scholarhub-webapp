@@ -14,6 +14,7 @@ import { filterScholarships, type QuizAnswers } from '@/lib/matching';
 import { useShortlist } from '@/components/ShortlistProvider';
 import { updateProfileQuizAnswers } from '@/app/actions/profile';
 import { FilterPill } from '@/components/ScholarMatchQuiz';
+import { Button, LinkButton } from '@/components/ui/button';
 
 interface Props {
   initialApplications: ScholarshipApplication[];
@@ -92,12 +93,16 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
               )}
               
               <div className="relative inline-flex rounded-full border border-brand-border bg-brand-cream p-1 shadow-sm">
-                <button
+                <Button
                   onClick={() => setView('board')}
-                  className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
+                  variant="ghost"
+                  size="sm"
+                  shape="pill"
+                  aria-pressed={view === 'board'}
+                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
                     view === 'board'
-                      ? 'text-white'
-                      : 'text-brand-muted hover:text-brand-dark'
+                      ? '!text-white'
+                      : '!text-brand-muted hover:!text-brand-dark'
                   }`}
                 >
                   <Kanban className="h-3.5 w-3.5" />
@@ -109,13 +114,17 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => setView('calendar')}
-                  className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
+                  variant="ghost"
+                  size="sm"
+                  shape="pill"
+                  aria-pressed={view === 'calendar'}
+                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
                     view === 'calendar'
-                      ? 'text-white'
-                      : 'text-brand-muted hover:text-brand-dark'
+                      ? '!text-white'
+                      : '!text-brand-muted hover:!text-brand-dark'
                   }`}
                 >
                   <Calendar className="h-3.5 w-3.5" />
@@ -127,13 +136,17 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => setView('list')}
-                  className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
+                  variant="ghost"
+                  size="sm"
+                  shape="pill"
+                  aria-pressed={view === 'list'}
+                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
                     view === 'list'
-                      ? 'text-white'
-                      : 'text-brand-muted hover:text-brand-dark'
+                      ? '!text-white'
+                      : '!text-brand-muted hover:!text-brand-dark'
                   }`}
                 >
                   <LayoutGrid className="h-3.5 w-3.5" />
@@ -145,13 +158,17 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() => setView('match')}
-                  className={`relative z-10 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition-colors duration-200 ${
+                  variant="ghost"
+                  size="sm"
+                  shape="pill"
+                  aria-pressed={view === 'match'}
+                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
                     view === 'match'
-                      ? 'text-white'
-                      : 'text-brand-muted hover:text-brand-dark'
+                      ? '!text-white'
+                      : '!text-brand-muted hover:!text-brand-dark'
                   }`}
                 >
                   <Compass className="h-3.5 w-3.5" />
@@ -163,7 +180,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -191,12 +208,14 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                       Here are matching scholarships based on your quiz profile. Adjust your options below:
                     </p>
                   </div>
-                  <Link
+                  <LinkButton
                     href="/match"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 border border-brand-border text-xs font-semibold rounded-full bg-white hover:bg-brand-cream text-brand-dark cursor-pointer transition-colors shadow-sm self-start sm:self-auto"
+                    variant="secondary"
+                    size="sm"
+                    className="self-start sm:self-auto"
                   >
                     <Undo2 className="h-3.5 w-3.5" /> Retake Quiz
-                  </Link>
+                  </LinkButton>
                 </div>
 
                 {/* Live Adjust Filters Panel */}
@@ -349,13 +368,15 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
               <p className="mx-auto mt-2 max-w-md text-sm text-brand-muted leading-relaxed">
                 Take our 30-second ScholarMatch quiz. We will analyze your degree level, study fields, work history, and funding expectations to show you personalized grants!
               </p>
-              <Link
+              <LinkButton
                 href="/match"
-                className="mt-6 inline-flex items-center justify-center gap-1.5 rounded-full bg-brand-dark border border-brand-dark px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-brand-dark cursor-pointer shadow-md hover:shadow-lg interactive-press"
+                variant="primary"
+                size="lg"
+                className="mt-6"
               >
                 Start ScholarMatch Quiz
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </Link>
+              </LinkButton>
             </div>
           )
         ) : initialApplications.length === 0 ? (
@@ -367,12 +388,14 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
             <p className="mx-auto mt-2 max-w-md text-sm text-brand-muted">
               Browse scholarships and tap the bookmark button to build your personal shortlist and track your application progress.
             </p>
-            <Link
+            <LinkButton
               href="/scholarships"
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-brand-dark border border-brand-dark px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-brand-dark cursor-pointer interactive-press"
+              variant="primary"
+              size="lg"
+              className="mt-6"
             >
               Browse scholarships
-            </Link>
+            </LinkButton>
           </div>
         ) : view === 'board' ? (
           <ApplicationTracker initialApplications={initialApplications} />

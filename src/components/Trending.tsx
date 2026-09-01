@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
 import { isPopNavigation } from '@/components/SmoothScroll';
+import { Button, LinkButton } from '@/components/ui/button';
 
 const ALL_PROVIDER_GROUPS = Object.keys(providerMeta);
 
@@ -176,28 +177,32 @@ export default function Trending() {
                   {page + 1} / {totalPages}
                 </span>
                 <div className="flex items-center gap-1">
-                  <button
+                  <Button
                     onClick={() => {
                       setSkipAnimation(false);
                       setPage((p) => Math.max(0, p - 1));
                     }}
                     disabled={page === 0}
                     aria-label="Previous page"
-                    className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                    variant="secondary"
+                    size="icon-sm"
+                    shape="circle"
                   >
                     <ChevronLeft className="h-4 w-4" />
-                  </button>
-                  <button
+                  </Button>
+                  <Button
                     onClick={() => {
                       setSkipAnimation(false);
                       setPage((p) => Math.min(totalPages - 1, p + 1));
                     }}
                     disabled={page === totalPages - 1}
                     aria-label="Next page"
-                    className="p-1.5 rounded-full border border-brand-border text-brand-muted hover:text-brand-dark hover:bg-brand-cream transition-colors disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                    variant="secondary"
+                    size="icon-sm"
+                    shape="circle"
                   >
                     <ChevronRight className="h-4 w-4" />
-                  </button>
+                  </Button>
                 </div>
               </>
             ) : (
@@ -234,17 +239,20 @@ export default function Trending() {
           {mounted && totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-10">
               {Array.from({ length: totalPages }).map((_, i) => (
-                <button
+                <Button
                   key={i}
                   onClick={() => {
                     setSkipAnimation(false);
                     setPage(i);
                   }}
                   aria-label={`Go to page ${i + 1}`}
-                  className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                  variant={i === page ? 'primary' : 'secondary'}
+                  size="icon-xs"
+                  shape="circle"
+                  className={`!h-1.5 !min-h-1.5 !rounded-full !p-0 transition-all ${
                     i === page
-                      ? 'w-6 bg-brand-dark'
-                      : 'w-1.5 bg-brand-border hover:bg-brand-muted'
+                      ? '!w-6'
+                      : '!w-1.5'
                   }`}
                 />
               ))}
@@ -273,12 +281,13 @@ export default function Trending() {
             </div>
           ))}
           <div className="pt-2 flex justify-center">
-            <Link
+            <LinkButton
               href="/scholarships"
-              className="inline-flex items-center justify-center px-6 py-2.5 border border-brand-border rounded-full text-xs font-semibold text-brand-dark hover:bg-brand-cream transition-colors"
+              variant="secondary"
+              size="sm"
             >
               View all countries →
-            </Link>
+            </LinkButton>
           </div>
         </div>
 

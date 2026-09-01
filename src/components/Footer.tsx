@@ -4,6 +4,8 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDown, Mail } from 'lucide-react';
 import { providerMeta } from '@/lib/scholarships';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 export default function Footer() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -129,16 +131,25 @@ export default function Footer() {
                 }, 250);
               }}
             >
-              <button
+              <Button
                 onClick={(e) => {
                   e.preventDefault();
                   setIsDropdownOpen(!isDropdownOpen);
                 }}
-                className="flex items-center text-[11px] font-medium text-brand-muted hover:text-brand-dark transition-colors focus:outline-none pb-2 cursor-pointer"
+                variant="ghost"
+                size="xs"
+                shape="control"
+                className="inline-flex items-center gap-1 h-auto min-h-0 rounded-none px-0 pb-2 text-[11px] font-medium !text-brand-muted hover:!bg-transparent hover:!text-brand-dark cursor-pointer"
               >
-                Select Country
-                <ChevronDown className="ml-1 h-3.5 w-3.5" />
-              </button>
+                <span>Select Country</span>
+                <ChevronDown
+                  className={cn(
+                    "h-3.5 w-3.5 shrink-0 transition-transform duration-300",
+                    isDropdownOpen ? "rotate-180" : "group-hover:rotate-180"
+                  )}
+                  aria-hidden="true"
+                />
+              </Button>
               
               {/* Dropdown Menu - opens downward, max 5 items, wheel-scrollable */}
               <div

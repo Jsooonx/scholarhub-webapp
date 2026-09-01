@@ -5,6 +5,7 @@ import { Compass } from 'lucide-react';
 import { AnimatePresence } from 'framer-motion';
 import type { Scholarship } from '@/lib/scholarships';
 import ScholarshipCompareModal from './ScholarshipCompareModal';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   currentScholarship: Scholarship;
@@ -29,15 +30,17 @@ export default function CompareCTA({ currentScholarship, className = '' }: Props
 
   return (
     <>
-      <button
+      <Button
         ref={buttonRef}
         type="button"
         onClick={handleOpen}
-        className={`inline-flex w-full items-center justify-center gap-2 rounded-full border border-brand-border bg-white px-4 py-3 text-sm font-semibold text-brand-dark hover:bg-brand-cream transition-colors cursor-pointer interactive-press ${className}`}
+        variant="secondary"
+        size="lg"
+        className={`w-full ${className}`}
       >
         <Compass className="h-4 w-4" />
         Compare this scholarship
-      </button>
+      </Button>
 
       <AnimatePresence>
         {isOpen && (

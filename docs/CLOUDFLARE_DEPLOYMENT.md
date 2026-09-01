@@ -63,19 +63,26 @@ npx wrangler d1 execute scholarhub-db --file=d1/schema.sql --remote
 
 ---
 
-## Langkah 5: Atur Environment Variables di Cloudflare Pages
+## Langkah 5: Atur Environment Variables dan Secrets di Cloudflare
 
-Di menu **Settings** $\rightarrow$ **Environment variables**, tambahkan variabel berikut untuk **Production** & **Preview**:
+Simpan konfigurasi publik sebagai environment variable. Jangan menyimpan API key atau token di `wrangler.json`, Git, atau dokumentasi.
 
 | Variable Name | Value / Contoh | Keterangan |
 |---|---|---|
 | `NODE_VERSION` | `20` | Wajib untuk Next.js 16 |
 | `NEXT_PUBLIC_SITE_URL` | `https://scholarhub.pages.dev` | Ganti dengan domain Cloudflare / domain kustom Anda |
-| `RESEND_API_KEY` | `re_75jfbbNL_...` | API Key Resend untuk pengiriman Magic Link & Newsletter |
-| `RESEND_AUDIENCE_ID` | `2228abdb-...` | Audience ID Resend |
-| `NOTIFY_SECRET` | `bb130abb9...` | Secret token notifikasi |
+| `RESEND_AUDIENCE_ID` | `your-resend-audience-id` | Audience ID Resend |
 
 Klik **Save and Deploy**.
+
+Atur secret secara terpisah menggunakan Wrangler untuk environment yang sesuai:
+
+```bash
+npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put NOTIFY_SECRET
+```
+
+Perintah tersebut meminta nilai secara interaktif dan menyimpannya di Cloudflare Secret Store. Ulangi untuk environment Production/Preview bila keduanya digunakan. Karena token notifikasi sebelumnya pernah berada di konfigurasi tracked, rotasi token tersebut sebelum deployment berikutnya.
 
 ---
 

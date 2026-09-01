@@ -17,6 +17,7 @@ import {
 import { getDeadlineStatus, getScholarshipLogo, providerMeta, providerGroup } from '@/lib/scholarships';
 import DeadlineStatusComponent from '@/components/DeadlineStatus';
 import DatePicker from '@/components/DatePicker';
+import { Button } from '@/components/ui/button';
 import {
   FileText,
   Trash2,
@@ -382,14 +383,16 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                               </span>
                               
                               {/* Trash / delete trigger */}
-                              <motion.button
-                                whileTap={{ scale: 0.92 }}
+                              <Button
                                 onClick={() => void handleRemove(s.slug)}
-                                className="text-brand-muted hover:text-red-600 transition-colors p-1"
+                                variant="ghost"
+                                size="icon-xs"
+                                shape="circle"
+                                className="text-brand-muted hover:!text-red-600"
                                 title="Remove application"
                               >
                                 <Trash2 className="h-3.5 w-3.5" />
-                              </motion.button>
+                              </Button>
                             </div>
 
                             {/* Title */}
@@ -424,8 +427,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                               {/* Row 1: Toggles */}
                               <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                                 {/* Notes toggle */}
-                                <motion.button
-                                  whileTap={{ scale: 0.97 }}
+                                <Button
                                   onClick={() => {
                                     if (isNotesExpanded) {
                                       setExpandedNotesSlug(null);
@@ -440,19 +442,21 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                       }));
                                     }
                                   }}
-                                  className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
+                                  variant="ghost"
+                                  size="sm"
+                                  shape="control"
+                                  className={`h-auto min-h-7 rounded-lg px-1 text-xs ${
                                     hasNotes || isNotesExpanded
-                                      ? 'text-brand-accent font-semibold'
-                                      : 'text-brand-muted hover:text-brand-dark'
+                                      ? '!text-brand-accent font-semibold'
+                                      : '!text-brand-muted hover:!text-brand-dark'
                                   }`}
                                 >
                                   <FileText className="h-3.5 w-3.5" />
                                   <span>Notes</span>
-                                </motion.button>
+                                </Button>
 
                                 {/* Deadline toggle */}
-                                <motion.button
-                                  whileTap={{ scale: 0.97 }}
+                                <Button
                                   onClick={() => {
                                     if (expandedDeadlineSlug === s.slug) {
                                       setExpandedDeadlineSlug(null);
@@ -463,19 +467,21 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                       setExpandedAnnouncementSlug(null);
                                     }
                                   }}
-                                  className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
+                                  variant="ghost"
+                                  size="sm"
+                                  shape="control"
+                                  className={`h-auto min-h-7 rounded-lg px-1 text-xs ${
                                     expandedDeadlineSlug === s.slug || hasDeadline
-                                      ? 'text-brand-accent font-semibold'
-                                      : 'text-brand-muted hover:text-brand-dark'
+                                      ? '!text-brand-accent font-semibold'
+                                      : '!text-brand-muted hover:!text-brand-dark'
                                   }`}
                                 >
                                   <Calendar className="h-3.5 w-3.5" />
                                   <span>{hasDeadline ? 'Deadline' : 'Set Deadline'}</span>
-                                </motion.button>
+                                </Button>
 
                                 {/* Announcement toggle */}
-                                <motion.button
-                                  whileTap={{ scale: 0.97 }}
+                                <Button
                                   onClick={() => {
                                     if (expandedAnnouncementSlug === s.slug) {
                                       setExpandedAnnouncementSlug(null);
@@ -486,19 +492,21 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                       setExpandedDeadlineSlug(null);
                                     }
                                   }}
-                                  className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
+                                  variant="ghost"
+                                  size="sm"
+                                  shape="control"
+                                  className={`h-auto min-h-7 rounded-lg px-1 text-xs ${
                                     expandedAnnouncementSlug === s.slug || hasAnnouncement
-                                      ? 'text-brand-accent font-semibold'
-                                      : 'text-brand-muted hover:text-brand-dark'
+                                      ? '!text-brand-accent font-semibold'
+                                      : '!text-brand-muted hover:!text-brand-dark'
                                   }`}
                                 >
                                   <Megaphone className="h-3.5 w-3.5" />
                                   <span>{hasAnnouncement ? 'Announcement' : 'Announcement'}</span>
-                                </motion.button>
+                                </Button>
 
                                 {/* Checklist toggle */}
-                                <motion.button
-                                  whileTap={{ scale: 0.97 }}
+                                <Button
                                   onClick={() => {
                                     if (expandedChecklistSlug === s.slug) {
                                       setExpandedChecklistSlug(null);
@@ -509,15 +517,18 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                       setExpandedAnnouncementSlug(null);
                                     }
                                   }}
-                                  className={`inline-flex items-center gap-1.5 text-xs transition-colors ${
+                                  variant="ghost"
+                                  size="sm"
+                                  shape="control"
+                                  className={`h-auto min-h-7 rounded-lg px-1 text-xs ${
                                     expandedChecklistSlug === s.slug
-                                      ? 'text-brand-accent font-semibold'
-                                      : 'text-brand-muted hover:text-brand-dark'
+                                      ? '!text-brand-accent font-semibold'
+                                      : '!text-brand-muted hover:!text-brand-dark'
                                   }`}
                                 >
                                   <ListTodo className="h-3.5 w-3.5" />
                                   <span>Checklist</span>
-                                </motion.button>
+                                </Button>
                               </div>
                             </div>
 
@@ -527,17 +538,19 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                               <div className="flex items-center gap-1 flex-grow justify-end">
                                 {/* Prev Stage arrow */}
                                 {COLUMNS.findIndex((c) => c.id === col.id) > 0 && (
-                                  <motion.button
-                                    whileTap={{ scale: 0.92 }}
+                                  <Button
                                     onClick={() => {
                                       const idx = COLUMNS.findIndex((c) => c.id === col.id);
                                       void moveApplication(s.slug, COLUMNS[idx - 1].id);
                                     }}
-                                    className="p-1 rounded bg-white border border-brand-border text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex-shrink-0"
+                                    variant="secondary"
+                                    size="icon-xs"
+                                    shape="square"
+                                    className="flex-shrink-0 rounded"
                                     title="Move left"
                                   >
                                     <ChevronLeft className="h-3 w-3" />
-                                  </motion.button>
+                                  </Button>
                                 )}
 
                                 {/* Mobile helper dropdown / select */}
@@ -555,17 +568,19 @@ export default function ApplicationTracker({ initialApplications }: Props) {
 
                                 {/* Next Stage arrow */}
                                 {COLUMNS.findIndex((c) => c.id === col.id) < COLUMNS.length - 1 && (
-                                  <motion.button
-                                    whileTap={{ scale: 0.92 }}
+                                  <Button
                                     onClick={() => {
                                       const idx = COLUMNS.findIndex((c) => c.id === col.id);
                                       void moveApplication(s.slug, COLUMNS[idx + 1].id);
                                     }}
-                                    className="p-1 rounded bg-white border border-brand-border text-brand-dark hover:bg-brand-dark hover:text-white transition-colors flex-shrink-0"
+                                    variant="secondary"
+                                    size="icon-xs"
+                                    shape="square"
+                                    className="flex-shrink-0 rounded"
                                     title="Move right"
                                   >
                                     <ChevronRight className="h-3 w-3" />
-                                  </motion.button>
+                                  </Button>
                                 )}
                               </div>
                             </div>
@@ -619,18 +634,19 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                     </label>
                                     
                                     <div className="flex justify-end gap-2">
-                                      <motion.button
-                                        whileTap={{ scale: 0.97 }}
+                                      <Button
                                         onClick={() => setExpandedNotesSlug(null)}
-                                        className="px-2.5 py-1 text-[10px] font-medium border border-brand-border rounded-full hover:bg-brand-cream transition"
+                                        variant="secondary"
+                                        size="xs"
+                                        shape="control"
                                       >
                                         Cancel
-                                      </motion.button>
-                                      <motion.button
-                                        whileTap={{ scale: 0.97 }}
+                                      </Button>
+                                      <Button
                                         onClick={() => void handleSaveNotes(s.slug)}
                                         disabled={savingNotesSlug === s.slug}
-                                        className="inline-flex items-center gap-1 px-3 py-1 text-[10px] font-semibold text-white bg-brand-dark rounded-full hover:opacity-90 disabled:opacity-50 transition"
+                                        variant="primary"
+                                        size="xs"
                                       >
                                         {savingNotesSlug === s.slug ? (
                                           <Loader2 className="h-3 w-3 animate-spin" />
@@ -638,7 +654,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                           <Save className="h-3 w-3" />
                                         )}
                                         Save
-                                      </motion.button>
+                                      </Button>
                                     </div>
                                   </div>
                                 </motion.div>
@@ -701,16 +717,21 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                           className="flex items-center justify-between group/item p-1.5 rounded-lg hover:bg-brand-cream/40 transition-colors"
                                         >
                                           <div className="flex items-center gap-2 flex-grow min-w-0">
-                                            <button
+                                            <Button
                                               onClick={() => void handleToggleChecklist(s.slug, item.id)}
-                                              className="text-brand-muted hover:text-brand-accent transition-colors flex-shrink-0"
+                                              variant="ghost"
+                                              size="icon-sm"
+                                              shape="square"
+                                              className="flex-shrink-0 rounded"
+                                              aria-label={`${item.completed ? 'Mark incomplete' : 'Mark complete'}: ${item.text}`}
+                                              aria-pressed={item.completed}
                                             >
                                               {item.completed ? (
                                                 <CheckSquare className="h-4 w-4 text-brand-accent" />
                                               ) : (
                                                 <Square className="h-4 w-4" />
                                               )}
-                                            </button>
+                                            </Button>
                                             <span
                                               className={`text-xs truncate ${
                                                 item.completed
@@ -722,13 +743,16 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                             </span>
                                           </div>
                                           
-                                          <button
+                                          <Button
                                             onClick={() => void handleRemoveChecklistItem(s.slug, item.id)}
-                                            className="text-brand-muted/40 hover:text-red-500 opacity-0 group-hover/item:opacity-100 transition-all p-0.5"
+                                            variant="ghost"
+                                            size="icon-xs"
+                                            shape="circle"
+                                            className="opacity-0 group-hover/item:opacity-100 text-brand-muted/40 hover:!text-red-500"
                                             title="Delete item"
                                           >
                                             <Trash2 className="h-3.5 w-3.5" />
-                                          </button>
+                                          </Button>
                                         </div>
                                       ))}
                                     </div>
@@ -755,13 +779,16 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                         placeholder="Add custom task..."
                                         className="flex-grow rounded-lg border border-brand-border bg-white px-2 py-1 text-xs text-brand-dark outline-none transition focus:ring-1 focus:ring-brand-accent/50 cursor-text"
                                       />
-                                      <motion.button
-                                        whileTap={{ scale: 0.95 }}
+                                      <Button
                                         onClick={() => void handleAddChecklistItem(s.slug)}
-                                        className="grid h-7 w-7 place-items-center rounded-lg bg-brand-dark text-white hover:opacity-90 transition-opacity"
+                                        variant="primary"
+                                        size="icon-xs"
+                                        shape="square"
+                                        className="rounded-lg"
+                                        aria-label="Add checklist item"
                                       >
                                         <Plus className="h-4 w-4" />
-                                      </motion.button>
+                                      </Button>
                                     </div>
                                   </div>
                                 </motion.div>

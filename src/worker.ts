@@ -1,3 +1,5 @@
+import { safeInternalPath } from './lib/security';
+
 interface Env {
   ASSETS: {
     fetch: (request: Request | string, init?: RequestInit) => Promise<Response>;
@@ -24,7 +26,7 @@ export default {
     // 1. /auth/callback - Magic Link validation & session creation
     if (pathname === '/auth/callback') {
       const token = url.searchParams.get('token');
-      const next = url.searchParams.get('next') || '/shortlist';
+      const next = safeInternalPath(url.searchParams.get('next'));
 
       if (!token || !env.DB) {
         return Response.redirect(new URL('/login?error=callback', url.origin), 302);
@@ -72,7 +74,7 @@ export default {
         // Delete used magic link
         await env.DB.prepare('DELETE FROM magic_links WHERE token = ?').bind(token).run();
 
-        const destPath = magicLink.next_path || next;
+        const destPath = safeInternalPath(magicLink.next_path, next);
         const redirectUrl = new URL(destPath, url.origin);
 
         const isSecure = url.protocol === 'https:';

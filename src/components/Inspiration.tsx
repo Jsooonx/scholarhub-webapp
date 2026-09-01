@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { allScholarships } from '@/lib/scholarships';
+import { Button } from '@/components/ui/button';
 
 export default function Inspiration() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -109,26 +110,28 @@ export default function Inspiration() {
             Browse by level
           </h2>
           <div className="flex space-x-2">
-            <button
+            <Button
               onClick={() => scroll('left')}
               disabled={!canScrollLeft}
-              className={`p-2 rounded-full border border-brand-border hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer ${
-                !canScrollLeft ? 'opacity-30 pointer-events-none' : ''
-              }`}
+              variant="secondary"
+              size="icon-sm"
+              shape="circle"
+              className={!canScrollLeft ? 'opacity-30' : ''}
               aria-label="Previous"
             >
               <ArrowLeft className="h-4 w-4" />
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scroll('right')}
               disabled={!canScrollRight}
-              className={`p-2 rounded-full border border-brand-border hover:bg-brand-cream text-brand-dark transition-all duration-200 cursor-pointer ${
-                !canScrollRight ? 'opacity-30 pointer-events-none' : ''
-              }`}
+              variant="secondary"
+              size="icon-sm"
+              shape="circle"
+              className={!canScrollRight ? 'opacity-30' : ''}
               aria-label="Next"
             >
               <ArrowRight className="h-4 w-4" />
-            </button>
+            </Button>
           </div>
         </div>
 

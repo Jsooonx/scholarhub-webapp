@@ -12,6 +12,7 @@ import {
   X 
 } from 'lucide-react';
 import type { EnrichmentData, SocialLink } from '@/data/enriched';
+import { LinkButton } from '@/components/ui/button';
 
 interface Props {
   data: EnrichmentData;
@@ -174,12 +175,11 @@ export default function InsiderGuide({ data, className = '' }: Props) {
                 )}
                 {exam.pastPapersUrl && (
                   <div className="pt-2">
-                    <a href={exam.pastPapersUrl} target="_blank" rel="noopener noreferrer"
-                       className="inline-flex items-center gap-1.5 px-4 py-2 bg-brand-dark text-white hover:bg-brand-cream hover:text-brand-dark border border-brand-dark rounded-full text-xs font-semibold transition-all cursor-pointer">
+                    <LinkButton href={exam.pastPapersUrl} external variant="primary" size="sm">
                       <BookOpen className="w-3.5 h-3.5" />
                       <span>Question Bank & Answer Sheets</span>
                       <ExternalLink className="w-3 h-3" />
-                    </a>
+                    </LinkButton>
                   </div>
                 )}
               </div>

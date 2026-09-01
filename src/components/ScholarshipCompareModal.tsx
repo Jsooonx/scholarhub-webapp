@@ -15,6 +15,7 @@ import {
   type Scholarship,
 } from '@/lib/scholarships';
 import { useShortlist } from '@/components/ShortlistProvider';
+import { Button, LinkButton } from '@/components/ui/button';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -88,15 +89,18 @@ function SlotSelector({
                 const group = providerGroup(s.provider);
                 const flag = providerMeta[group]?.flag ?? '🌍';
                 return (
-                  <button
+                  <Button
                     key={s.slug}
                     type="button"
                     onClick={() => onSelect(s.slug)}
-                    className="w-full text-left p-2 rounded-xl bg-white hover:bg-brand-cream text-xs border border-brand-border/40 hover:border-brand-border transition-all truncate flex items-center gap-1.5 cursor-pointer text-brand-dark"
+                    variant="secondary"
+                    size="sm"
+                    shape="control"
+                    className="h-auto min-h-9 w-full justify-start rounded-xl bg-white p-2 text-left text-xs truncate"
                   >
                     <span>{flag}</span>
                     <span className="truncate flex-1 font-medium">{s.name}</span>
-                  </button>
+                  </Button>
                 );
               })}
             </div>
@@ -113,15 +117,18 @@ function SlotSelector({
                 const group = providerGroup(s.provider);
                 const flag = providerMeta[group]?.flag ?? '🌍';
                 return (
-                  <button
+                  <Button
                     key={s.slug}
                     type="button"
                     onClick={() => onSelect(s.slug)}
-                    className="w-full text-left p-2 rounded-xl bg-white hover:bg-brand-cream text-xs border border-brand-border/40 hover:border-brand-border transition-all truncate flex items-center gap-1.5 cursor-pointer text-brand-dark"
+                    variant="secondary"
+                    size="sm"
+                    shape="control"
+                    className="h-auto min-h-9 w-full justify-start rounded-xl bg-white p-2 text-left text-xs truncate"
                   >
                     <span>{flag}</span>
                     <span className="truncate flex-1 font-medium">{s.name}</span>
-                  </button>
+                  </Button>
                 );
               })}
             </div>
@@ -228,13 +235,16 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
             <Compass className="h-5 w-5 text-brand-dark" />
             <h2 className="font-serif text-lg font-bold text-brand-dark">Compare Scholarships</h2>
           </div>
-          <button
+          <Button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-brand-cream/80 border border-brand-border/40 hover:border-brand-border transition-all cursor-pointer text-brand-dark"
+            variant="secondary"
+            size="icon-sm"
+            shape="circle"
+            aria-label="Close comparison"
           >
             <X className="h-4 w-4" />
-          </button>
+          </Button>
         </div>
 
         {/* Scrollable Content */}
@@ -264,14 +274,16 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
                                   Current
                                 </span>
                               ) : (
-                                <button
+                                <Button
                                   type="button"
                                   onClick={col.onRemove}
-                                  className="p-1 rounded-full hover:bg-brand-cream text-brand-muted hover:text-brand-dark transition-all cursor-pointer border border-brand-border/40"
+                                  variant="ghost"
+                                  size="icon-xs"
+                                  shape="circle"
                                   title="Remove from comparison"
                                 >
                                   <X className="h-3.5 w-3.5" />
-                                </button>
+                                </Button>
                               )}
                             </div>
                             
@@ -449,15 +461,15 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
                     <td key={col.key} className="p-4 text-xs border-r border-brand-border/60 last:border-r-0">
                       {col.scholarship ? (
                         col.scholarship.official_url ? (
-                          <a
+                          <LinkButton
                             href={col.scholarship.official_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 px-3 py-1.5 bg-brand-dark text-white rounded-full text-xs font-semibold hover:bg-white hover:text-brand-dark border border-brand-dark transition-all cursor-pointer"
+                            external
+                            variant="primary"
+                            size="sm"
                           >
                             <span>Official Site</span>
                             <ExternalLink className="h-3 w-3" />
-                          </a>
+                          </LinkButton>
                         ) : (
                           <span className="text-[10px] text-brand-muted italic">No link</span>
                         )

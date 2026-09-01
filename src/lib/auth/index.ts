@@ -1,5 +1,6 @@
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { getDb } from '@/lib/db';
+import { safeInternalPath } from '@/lib/security';
 
 export interface User {
   id: string;
@@ -11,7 +12,18 @@ export const SESSION_COOKIE_NAME = 'scholarhub_session';
 const SESSION_EXPIRY_DAYS = 30;
 const MAGIC_LINK_EXPIRY_MINUTES = 15;
 
-function getBaseUrl(): string {
+async function getBaseUrl(): Promise<string> {
+  try {
+    const headersList = await headers();
+    const host = headersList.get('x-forwarded-host') || headersList.get('host');
+    const proto = headersList.get('x-forwarded-proto') || (host?.includes('localhost') ? 'http' : 'https');
+    if (host) {
+      return `${proto}://${host}`;
+    }
+  } catch {
+    // fallback if outside request context
+  }
+
   if (process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
   }
@@ -119,6 +131,7 @@ export async function sendMagicLink(
   nextPath: string = '/shortlist'
 ): Promise<{ success: boolean; error?: string }> {
   const cleanEmail = email.trim().toLowerCase();
+  const safeNextPath = safeInternalPath(nextPath);
   if (!cleanEmail || !cleanEmail.includes('@')) {
     return { success: false, error: 'Please enter a valid email address.' };
   }
@@ -129,13 +142,15 @@ export async function sendMagicLink(
   const db = getDb();
   await db
     .prepare('INSERT INTO magic_links (token, email, next_path, expires_at) VALUES (?, ?, ?, ?)')
-    .bind(token, cleanEmail, nextPath, expiresAt)
+    .bind(token, cleanEmail, safeNextPath, expiresAt)
     .run();
 
-  const baseUrl = getBaseUrl();
-  const magicLinkUrl = `${baseUrl}/auth/callback?token=${token}&next=${encodeURIComponent(nextPath)}`;
+  const baseUrl = await getBaseUrl();
+  const magicLinkUrl = `${baseUrl}/auth/callback?token=${token}&next=${encodeURIComponent(safeNextPath)}`;
 
-  console.log(`[AUTH] Magic Link for ${cleanEmail}: ${magicLinkUrl}`);
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('\n🔗 [DEV MAGIC LINK]:', magicLinkUrl, '\n');
+  }
 
   const resendApiKey = process.env.RESEND_API_KEY;
   if (resendApiKey) {
@@ -149,6 +164,8 @@ export async function sendMagicLink(
         </div>
       `;
 
+      const fromEmail = process.env.RESEND_FROM_EMAIL || 'ScholarHub <onboarding@resend.dev>';
+
       const response = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
@@ -156,7 +173,7 @@ export async function sendMagicLink(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'ScholarHub <onboarding@resend.dev>',
+          from: fromEmail,
           to: [cleanEmail],
           subject: 'Sign in to ScholarHub',
           html: emailHtml,
@@ -228,6 +245,6 @@ export async function verifyMagicLink(token: string): Promise<{
 
   return {
     success: true,
-    nextPath: magicLink.next_path || '/shortlist',
+    nextPath: safeInternalPath(magicLink.next_path),
   };
 }

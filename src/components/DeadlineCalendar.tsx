@@ -2,7 +2,6 @@
 
 import { useState, useTransition, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar as CalendarIcon,
@@ -29,6 +28,7 @@ import {
 } from '@/app/actions/shortlist';
 import { getDeadlineStatus, providerMeta, providerGroup } from '@/lib/scholarships';
 import DatePicker from '@/components/DatePicker';
+import { Button, LinkButton } from '@/components/ui/button';
 
 interface Props {
   applications: ScholarshipApplication[];
@@ -479,27 +479,32 @@ export default function DeadlineCalendar({ applications }: Props) {
             {MONTH_NAMES[month]} {year}
           </h3>
           <div className="flex items-center gap-2">
-            <button
+            <Button
               onClick={handleToday}
-              className="rounded-full border border-brand-border bg-white px-3 py-1.5 text-xs font-semibold text-brand-dark hover:bg-brand-cream transition-colors"
+              variant="secondary"
+              size="sm"
             >
               Today
-            </button>
+            </Button>
             <div className="flex rounded-full border border-brand-border bg-brand-cream p-0.5">
-              <button
+              <Button
                 onClick={handlePrevMonth}
-                className="rounded-full p-1.5 text-brand-dark hover:bg-white transition-colors"
+                variant="ghost"
+                size="icon-sm"
+                shape="circle"
                 title="Previous Month"
               >
                 <ChevronLeft className="h-4 w-4" />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleNextMonth}
-                className="rounded-full p-1.5 text-brand-dark hover:bg-white transition-colors"
+                variant="ghost"
+                size="icon-sm"
+                shape="circle"
                 title="Next Month"
               >
                 <ChevronRight className="h-4 w-4" />
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -732,12 +737,16 @@ export default function DeadlineCalendar({ applications }: Props) {
                 className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-brand-border bg-brand-bg p-6 shadow-2xl z-10"
               >
                 {/* Close Button */}
-                <button
+                <Button
                   onClick={() => setSelectedAppSlug(null)}
-                  className="absolute top-4 right-4 rounded-full p-1.5 text-brand-muted hover:bg-brand-cream hover:text-brand-dark transition-colors"
+                  variant="ghost"
+                  size="icon-sm"
+                  shape="circle"
+                  className="absolute top-4 right-4"
+                  aria-label="Close application details"
                 >
                   <X className="h-5 w-5" />
-                </button>
+                </Button>
 
                 {/* Header info */}
                 <div className="mb-4 pr-6">
@@ -861,11 +870,11 @@ export default function DeadlineCalendar({ applications }: Props) {
                       className="w-full resize-none rounded-xl border border-brand-border bg-white p-3 text-xs text-brand-dark outline-none transition focus:ring-1 focus:ring-brand-accent/50 cursor-text leading-relaxed"
                     />
                     <div className="flex justify-end">
-                      <motion.button
-                        whileTap={{ scale: 0.97 }}
-                        onClick={handleSaveNotes}
-                        disabled={savingNotes || selectedApp.notes === noteText}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-brand-dark rounded-full hover:opacity-90 disabled:opacity-50 transition"
+                    <Button
+                      onClick={handleSaveNotes}
+                      disabled={savingNotes || selectedApp.notes === noteText}
+                      variant="primary"
+                      size="sm"
                       >
                         {savingNotes ? (
                           <Loader2 className="h-3 w-3 animate-spin" />
@@ -873,28 +882,31 @@ export default function DeadlineCalendar({ applications }: Props) {
                           <Save className="h-3 w-3" />
                         )}
                         Save Notes
-                      </motion.button>
+                    </Button>
                     </div>
                   </div>
                 </div>
 
                 {/* Footer buttons */}
                 <div className="mt-5 border-t border-brand-border/60 pt-4 flex items-center justify-between gap-3">
-                  <Link
+                  <LinkButton
                     href={`/scholarships/${s.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-accent hover:underline"
+                    variant="link"
+                    size="xs"
+                    className="h-auto min-h-0 rounded-none px-0 !text-brand-accent"
                     onClick={() => setSelectedAppSlug(null)}
                   >
                     <span>View Scholarship Page</span>
                     <ExternalLink className="h-3.5 w-3.5" />
-                  </Link>
+                  </LinkButton>
 
-                  <button
+                  <Button
                     onClick={() => setSelectedAppSlug(null)}
-                    className="px-4 py-2 text-xs font-bold border border-brand-border bg-white text-brand-dark rounded-full hover:bg-brand-cream transition-colors"
+                    variant="secondary"
+                    size="sm"
                   >
                     Close
-                  </button>
+                  </Button>
                 </div>
 
               </motion.div>

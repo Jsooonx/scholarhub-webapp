@@ -18,9 +18,9 @@ Complete guide for sending email notifications to all ScholarHub subscribers.
 Make sure the following environment variables are set in both `.env` (local) and Vercel dashboard (production):
 
 ```
-RESEND_API_KEY=re_xxxxxxxxxxxx
-RESEND_AUDIENCE_ID=xxxxxxxxxxxx
-NOTIFY_SECRET=xxxxxxxxxxxx
+RESEND_API_KEY=
+RESEND_AUDIENCE_ID=
+NOTIFY_SECRET=
 ```
 
 > Keep the secret out of version control. Never commit `.env` to the repo.

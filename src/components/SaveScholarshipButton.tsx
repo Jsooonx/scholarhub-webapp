@@ -2,6 +2,7 @@
 
 import { Bookmark, Loader2 } from 'lucide-react';
 import { useShortlist } from '@/components/ShortlistProvider';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   slug: string;
@@ -16,15 +17,13 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
 
   if (variant === 'wide') {
     return (
-      <button
+      <Button
         type="button"
         onClick={() => void toggle(slug)}
         disabled={!ready || isPending}
-        className={`inline-flex w-full items-center justify-center gap-2 rounded-full border px-4 py-3 text-sm font-semibold transition-colors disabled:cursor-wait disabled:opacity-60 ${
-          saved
-            ? 'border-brand-dark bg-brand-dark text-white'
-            : 'border-brand-border bg-white text-brand-dark hover:bg-brand-cream'
-        } ${className}`}
+        variant={saved ? 'primary' : 'secondary'}
+        size="lg"
+        className={`w-full ${className}`}
       >
         {isPending ? (
           <Loader2 className="h-4 w-4 animate-spin" />
@@ -32,12 +31,12 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
           <Bookmark className={`h-4 w-4 ${saved ? 'fill-current' : ''}`} />
         )}
         {label}
-      </button>
+      </Button>
     );
   }
 
   return (
-    <button
+    <Button
       type="button"
       onClick={(event) => {
         event.preventDefault();
@@ -48,17 +47,16 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
       aria-pressed={saved}
       aria-label={label}
       title={label}
-      className={`grid h-9 w-9 place-items-center rounded-full border shadow-sm transition-colors disabled:cursor-wait disabled:opacity-60 ${
-        saved
-          ? 'border-brand-dark bg-brand-dark text-white hover:bg-brand-dark'
-          : 'border-brand-border bg-white text-brand-dark hover:bg-brand-cream'
-      } ${className}`}
+      variant={saved ? 'primary' : 'secondary'}
+      size="icon-sm"
+      shape="circle"
+      className={className}
     >
       {isPending ? (
         <Loader2 className="h-4 w-4 animate-spin" />
       ) : (
         <Bookmark className={`h-4 w-4 ${saved ? 'fill-current' : ''}`} />
       )}
-    </button>
+    </Button>
   );
 }

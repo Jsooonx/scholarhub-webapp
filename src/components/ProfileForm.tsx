@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Camera, Globe, MapPin, UserRound } from 'lucide-react';
 import { updateProfileAction, type Profile } from '@/app/actions/profile';
+import { Button } from '@/components/ui/button';
 
 interface ProfileFormProps {
   profile: Profile | null | undefined;
@@ -158,12 +159,13 @@ export default function ProfileForm({
                 Account email: <span className="font-semibold text-brand-dark">{email}</span>
               </p>
             )}
-            <button
+            <Button
               type="submit"
-              className="inline-flex items-center justify-center rounded-full bg-brand-dark px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              variant="primary"
+              size="lg"
             >
               Save profile
-            </button>
+            </Button>
           </div>
         </form>
       </section>
