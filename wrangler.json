@@ -12,8 +12,9 @@
   },
   "vars": {
     "NODE_VERSION": "20",
-    "NEXT_PUBLIC_SITE_URL": "https://scholarhub.jsooonx.my.id",
-    "RESEND_AUDIENCE_ID": "2228abdb-1e75-46d6-97cd-3a276d155327"
+    "NEXT_PUBLIC_SITE_URL": "https://scholarhubs.my.id",
+    "RESEND_AUDIENCE_ID": "2228abdb-1e75-46d6-97cd-3a276d155327",
+    "RESEND_FROM_EMAIL": "ScholarHub <auth@scholarhubs.my.id>"
   },
   "d1_databases": [
     {

@@ -3,3 +3,4 @@ RESEND_API_KEY=
 NOTIFY_SECRET=
 RESEND_AUDIENCE_ID=
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+RESEND_FROM_EMAIL=ScholarHub <auth@scholarhubs.my.id>
