@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import {
@@ -79,10 +80,31 @@ export default function Navbar() {
   const [dialogSearchQuery, setDialogSearchQuery] = useState('');
   const [searchDialogOpen, setSearchDialogOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Close user dropdown on click outside or escape key
+  useEffect(() => {
+    if (!userMenuOpen) return;
+    const handleDocClick = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setUserMenuOpen(false);
+    };
+    document.addEventListener('mousedown', handleDocClick);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleDocClick);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [userMenuOpen]);
 
   // Filter scholarships for live dialog search
   const filteredScholarships = dialogSearchQuery.trim()
@@ -390,67 +412,81 @@ export default function Navbar() {
 
             {/* User Profile / Auth Section */}
             {ready && authenticated ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger
-                  className="relative flex items-center justify-center rounded-full focus:outline-none cursor-pointer"
+              <div className="relative" ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setUserMenuOpen((prev) => !prev)}
+                  className="relative flex items-center justify-center rounded-full focus:outline-none cursor-pointer transition-transform hover:scale-105 active:scale-95"
                   aria-label="User Account Menu"
+                  aria-expanded={userMenuOpen}
                 >
-                  <Avatar size="sm" className="border border-brand-accent/30 ring-2 ring-brand-cream">
-                    <AvatarFallback className="bg-brand-accent text-white text-xs font-bold">
-                      <User className="h-3.5 w-3.5" />
-                    </AvatarFallback>
-                  </Avatar>
-                </DropdownMenuTrigger>
+                  <div className="h-8 w-8 rounded-full border border-brand-accent/30 ring-2 ring-brand-cream bg-brand-accent text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                    <User className="h-4 w-4" />
+                  </div>
+                </button>
 
-                <DropdownMenuContent
-                  align="end"
-                  sideOffset={8}
-                  className="w-56 bg-brand-bg border border-brand-border rounded-2xl p-1.5 shadow-xl"
-                >
-                  <DropdownMenuLabel className="px-2.5 py-1.5">
-                    <p className="text-xs font-bold text-brand-dark">Account</p>
-                    <p className="text-[10px] text-brand-muted font-normal">Manage your preferences</p>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator className="bg-brand-border/60 my-1" />
-
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem
-                      onClick={() => router.push('/profile')}
-                      className="cursor-pointer rounded-xl px-2.5 py-1.5 text-xs text-brand-dark hover:bg-black/5 focus:bg-black/5"
+                <AnimatePresence>
+                  {userMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95, y: 6 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: 6 }}
+                      transition={{ duration: 0.15, ease: 'easeOut' }}
+                      className="absolute right-0 mt-2 w-56 rounded-2xl border border-brand-border bg-brand-bg/95 backdrop-blur-md p-1.5 shadow-xl z-50 overflow-hidden"
                     >
-                      <User className="mr-2 h-3.5 w-3.5 text-brand-accent" />
-                      Profile Settings
-                    </DropdownMenuItem>
+                      <div className="px-2.5 py-1.5">
+                        <p className="text-xs font-bold text-brand-dark">Account</p>
+                        <p className="text-[10px] text-brand-muted font-normal">Manage your preferences</p>
+                      </div>
+                      
+                      <div className="h-px bg-brand-border/60 my-1" />
 
-                    <DropdownMenuItem
-                      onClick={() => router.push('/shortlist')}
-                      className="cursor-pointer rounded-xl px-2.5 py-1.5 text-xs text-brand-dark hover:bg-black/5 focus:bg-black/5"
-                    >
-                      <Bookmark className="mr-2 h-3.5 w-3.5 text-brand-accent" />
-                      Shortlist Tracker ({slugs.size})
-                    </DropdownMenuItem>
+                      <div className="flex flex-col gap-0.5">
+                        <Link
+                          href="/profile"
+                          onClick={() => setUserMenuOpen(false)}
+                          className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
+                        >
+                          <User className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
+                          Profile Settings
+                        </Link>
 
-                    <DropdownMenuItem
-                      onClick={() => router.push('/match')}
-                      className="cursor-pointer rounded-xl px-2.5 py-1.5 text-xs text-brand-dark hover:bg-black/5 focus:bg-black/5"
-                    >
-                      <Sparkles className="mr-2 h-3.5 w-3.5 text-brand-accent" />
-                      ScholarMatch Quiz
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
+                        <Link
+                          href="/shortlist"
+                          onClick={() => setUserMenuOpen(false)}
+                          className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
+                        >
+                          <Bookmark className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
+                          Shortlist Tracker ({slugs.size})
+                        </Link>
 
-                  <DropdownMenuSeparator className="bg-brand-border/60 my-1" />
+                        <Link
+                          href="/match"
+                          onClick={() => setUserMenuOpen(false)}
+                          className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
+                        >
+                          <Sparkles className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
+                          ScholarMatch Quiz
+                        </Link>
+                      </div>
 
-                  <DropdownMenuItem
-                    variant="destructive"
-                    onClick={() => void signOut()}
-                    className="cursor-pointer rounded-xl px-2.5 py-1.5 text-xs text-red-600 hover:bg-red-50 focus:bg-red-50 focus:text-red-600"
-                  >
-                    <LogOut className="mr-2 h-3.5 w-3.5" />
-                    Sign out
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      <div className="h-px bg-brand-border/60 my-1" />
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          void signOut();
+                        }}
+                        className="flex items-center gap-2.5 w-full rounded-xl px-2.5 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors cursor-pointer text-left"
+                      >
+                        <LogOut className="h-3.5 w-3.5 flex-shrink-0" />
+                        Sign out
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ) : ready && !authenticated ? (
               <LinkButton
                 href={`/login?next=${encodeURIComponent(pathname)}`}
