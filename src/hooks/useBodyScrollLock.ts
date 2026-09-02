@@ -10,38 +10,42 @@ export function useBodyScrollLock(isLocked: boolean) {
   useEffect(() => {
     if (!isLocked) return;
 
-    // Save original styles
-    const originalBodyOverflow = document.body.style.overflow;
-    const originalHtmlOverflow = document.documentElement.style.overflow;
-    const originalBodyPaddingRight = document.body.style.paddingRight;
-
-    // Calculate scrollbar width
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-
-    // Apply scroll lock
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-
-    if (scrollbarWidth > 0) {
-      document.body.style.paddingRight = `${scrollbarWidth}px`;
-      
-      // Pad the sticky navbar to prevent it from shifting
-      const navbar = document.querySelector('.sticky.top-0') as HTMLElement;
-      if (navbar) {
-        navbar.style.paddingRight = `${scrollbarWidth}px`;
+    // Prevent wheel events on anything outside the modal scroll container
+    const handleWheel = (e: WheelEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest('[data-lenis-prevent], .overflow-y-auto, .overflow-x-auto, input, textarea, select')) {
+        return;
       }
-    }
+      e.preventDefault();
+    };
 
-    // Cleanup and unlock on unmount
+    // Prevent touchmove events on background on mobile/tablets
+    const handleTouchMove = (e: TouchEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (target && target.closest('[data-lenis-prevent], .overflow-y-auto, .overflow-x-auto, input, textarea, select')) {
+        return;
+      }
+      e.preventDefault();
+    };
+
+    // Prevent spacebar or arrow keys from scrolling the background
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
+        const target = e.target as HTMLElement | null;
+        if (!target || !target.closest('[data-lenis-prevent], .overflow-y-auto, .overflow-x-auto, input, textarea, select')) {
+          e.preventDefault();
+        }
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('keydown', handleKeyDown, { passive: false });
+
     return () => {
-      document.body.style.overflow = originalBodyOverflow || '';
-      document.documentElement.style.overflow = originalHtmlOverflow || '';
-      document.body.style.paddingRight = originalBodyPaddingRight || '';
-      
-      const navbar = document.querySelector('.sticky.top-0') as HTMLElement;
-      if (navbar) {
-        navbar.style.paddingRight = '';
-      }
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isLocked]);
 }
