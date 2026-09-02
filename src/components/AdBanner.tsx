@@ -4,7 +4,6 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { allScholarships, providerMeta } from '@/lib/scholarships';
 import SplitText from '@/components/SplitText';
-import BorderGlow from './BorderGlow/BorderGlow';
 import { LinkButton } from '@/components/ui/button';
 
 const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
@@ -21,19 +20,7 @@ export default function AdBanner() {
   return (
     <section className="py-6 bg-brand-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <BorderGlow
-          edgeSensitivity={30}
-          glowColor="243 54% 50%"
-          backgroundColor="#111827"
-          borderRadius={24}
-          glowRadius={40}
-          glowIntensity={1.0}
-          coneSpread={25}
-          animated={true}
-          looping={true}
-          colors={['#3730A3', '#831843', '#C27E3A']}
-          className="w-full border border-brand-border/20"
-        >
+        <div className="w-full rounded-3xl border border-white/10 bg-[#111827] shadow-xl relative overflow-hidden">
           <div className="w-full p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
 
             {/* Decorative backdrop gradients */}
@@ -98,7 +85,7 @@ export default function AdBanner() {
             </div>
 
           </div>
-        </BorderGlow>
+        </div>
       </div>
     </section>
   );

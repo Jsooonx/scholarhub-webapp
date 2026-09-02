@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Globe, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { allScholarships, providerGroup, providerMeta } from '@/lib/scholarships';
-import TrueFocus from './TrueFocus';
-import BorderGlow from './BorderGlow/BorderGlow';
 import { useShortlist } from '@/components/ShortlistProvider';
 import { getCurrentProfile, type Profile } from '@/app/actions/profile';
 import { Button, LinkButton } from '@/components/ui/button';
@@ -80,19 +78,8 @@ export default function Hero() {
             <span className="text-xs font-semibold uppercase tracking-widest text-brand-muted mb-3 block">
               Scholarship Directory
             </span>
-            <h1 className="font-serif text-[2.75rem] sm:text-7xl font-bold tracking-tight text-brand-dark leading-[1.05] max-w-2xl">
-              <span className="sm:hidden">Your path to studying abroad</span>
-              <span className="hidden sm:block">
-                <TrueFocus
-                  sentence="Your path to studying abroad"
-                  manualMode={false}
-                  blurAmount={3}
-                  borderColor="#3730A3"
-                  glowColor="rgba(55, 48, 163, 0.25)"
-                  animationDuration={0.6}
-                  pauseBetweenAnimations={1.2}
-                />
-              </span>
+            <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-brand-dark leading-[1.08] max-w-2xl">
+              Your path to studying abroad
             </h1>
 
             {/* ScholarMatch CTA */}
@@ -127,36 +114,22 @@ export default function Hero() {
           </div>
 
           {/* Stats Card */}
-          <BorderGlow
-            edgeSensitivity={30}
-            glowColor="243 54% 41%"
-            backgroundColor="#F3F1EC"
-            borderRadius={16}
-            glowRadius={30}
-            glowIntensity={0.8}
-            coneSpread={30}
-            animated={true}
-            looping={true}
-            colors={['#3730A3', '#831843', '#C27E3A']}
-            className="lg:max-w-sm w-full border border-brand-border/40"
-          >
-            <div className="p-6">
-              <p className="text-xs text-brand-muted leading-relaxed mb-4">
-                Browse curated scholarships from top providers worldwide - all requirements, benefits, and deadlines in one place.
-              </p>
-              <div className="flex flex-col gap-3">
-                {stats.map(({ icon: Icon, value, label }) => (
-                  <div key={label} className="flex items-center gap-3">
-                    <div className="p-1.5 rounded-lg bg-brand-dark/5 border border-brand-border">
-                      <Icon className="h-3.5 w-3.5 text-brand-dark" />
-                    </div>
-                    <span className="text-sm font-bold text-brand-dark">{value}</span>
-                    <span className="text-xs text-brand-muted">{label}</span>
+          <div className="lg:max-w-sm w-full rounded-2xl border border-brand-border bg-brand-cream/80 p-6 shadow-xs backdrop-blur-xs transition-all duration-200 hover:border-brand-dark/20 hover:shadow-sm">
+            <p className="text-xs text-brand-muted leading-relaxed mb-4">
+              Browse curated scholarships from top providers worldwide — all requirements, benefits, and deadlines in one place.
+            </p>
+            <div className="flex flex-col gap-3">
+              {stats.map(({ icon: Icon, value, label }) => (
+                <div key={label} className="flex items-center gap-3">
+                  <div className="p-1.5 rounded-lg bg-brand-dark/5 border border-brand-border">
+                    <Icon className="h-3.5 w-3.5 text-brand-dark" />
                   </div>
-                ))}
-              </div>
+                  <span className="text-sm font-bold text-brand-dark">{value}</span>
+                  <span className="text-xs text-brand-muted">{label}</span>
+                </div>
+              ))}
             </div>
-          </BorderGlow>
+          </div>
         </div>
 
         {/* Big Featured Card with Carousel Slideshow */}
