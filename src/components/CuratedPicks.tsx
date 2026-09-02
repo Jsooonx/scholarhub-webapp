@@ -9,6 +9,8 @@ import { allScholarships, getScholarshipImage, providerGroup, providerMeta } fro
 import { curatedPicks, CuratedPick } from '@/data/curated';
 import { isPopNavigation } from '@/components/SmoothScroll';
 import { Button, LinkButton } from '@/components/ui/button';
+import SaveScholarshipButton from '@/components/SaveScholarshipButton';
+import { cn } from '@/lib/utils';
 
 const CARDS_PER_PAGE = 6;
 
@@ -191,7 +193,7 @@ export default function CuratedPicks() {
         </div>
 
         {/* Curated Grid with Smooth Slide Transition */}
-        <div className="relative overflow-hidden min-h-[2920px] md:min-h-[1804px] lg:min-h-[1192px]">
+        <div className="relative overflow-hidden min-h-[3320px] md:min-h-[1800px] lg:min-h-[1190px]">
           <AnimatePresence initial={false} custom={{ direction, skipAnimation }} mode="wait">
             <motion.div
               key={currentPage}
@@ -211,66 +213,93 @@ export default function CuratedPicks() {
                 return (
                   <div 
                     key={scholarship.slug} 
-                    className="flex flex-col h-[460px] md:h-[580px] bg-white border border-brand-border rounded-2xl overflow-hidden shadow-sm transition-shadow duration-200 group md:hover:shadow-md"
+                    className="flex flex-col h-[520px] md:h-[570px] bg-white border border-brand-border/80 rounded-2xl overflow-hidden shadow-xs transition-all duration-300 group hover:shadow-md hover:border-brand-accent/30"
                   >
                     {/* Scholarship Thumbnail */}
-                    <div className="relative aspect-[16/9] overflow-hidden border-b border-brand-border">
+                    <div className="relative aspect-[16/9] overflow-hidden border-b border-brand-border/60 bg-brand-cream/20 flex-shrink-0">
                       <div
                         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                         style={{ backgroundImage: `url('${getScholarshipImage(scholarship)}')` }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                      
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
 
+                      {/* Top-Right Highlight Pill (Clean & Editorial) */}
+                      {pick.badge && (
+                        <span className="absolute top-3.5 right-3.5 z-10 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-brand-dark/90 backdrop-blur-md text-white border border-white/15 shadow-xs">
+                          {pick.badge}
+                        </span>
+                      )}
 
-                      {/* Level & Flag Overlay */}
-                      <span className="absolute bottom-4 left-4 inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-semibold bg-white/95 backdrop-blur-sm text-brand-dark border border-brand-border shadow-sm z-10">
-                        <span className="mr-1.5">{flag}</span>
-                        {scholarship.country ?? 'International'} · {levelLabel}
+                      {/* Bottom-Left Level & Flag Pill */}
+                      <span className="absolute bottom-3.5 left-3.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium bg-white/95 backdrop-blur-xs text-brand-dark border border-brand-border/80 shadow-xs z-10">
+                        <span className="select-none">{flag}</span>
+                        <span className="font-semibold text-brand-dark">{scholarship.country ?? 'International'}</span>
+                        <span className="text-brand-border">·</span>
+                        <span className="text-brand-muted">{levelLabel}</span>
                       </span>
                     </div>
 
                     {/* Card Info Content */}
-                    <div className="p-4 md:p-6 flex flex-col flex-grow">
+                    <div className="p-4 sm:p-5 flex flex-col flex-1 min-h-0">
+                      {/* Provider & Funding Row */}
+                      <div className="flex items-center justify-between gap-2 mb-1.5 flex-shrink-0">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-brand-muted truncate">
+                          {scholarship.provider}
+                        </span>
+                        {scholarship.funding_type && (
+                          <span className={cn(
+                            "text-[9px] px-2 py-0.5 rounded-full border flex-shrink-0 font-medium",
+                            scholarship.funding_type.toLowerCase().includes('full')
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                              : "bg-amber-50 text-amber-700 border-amber-200"
+                          )}>
+                            {scholarship.funding_type}
+                          </span>
+                        )}
+                      </div>
+
                       {/* Scholarship Name */}
-                      <Link href={`/scholarships/${scholarship.slug}`} className="cursor-pointer">
-                        <h3 className="font-serif text-base font-bold text-brand-dark leading-snug transition-colors md:group-hover:text-brand-accent line-clamp-2 min-h-[2.5rem] mb-3 md:mb-4">
+                      <Link href={`/scholarships/${scholarship.slug}`} className="cursor-pointer group/title block mb-3 flex-shrink-0">
+                        <h3 className="font-serif text-base md:text-lg font-bold text-brand-dark leading-snug transition-colors group-hover/title:text-brand-accent line-clamp-2">
                           {scholarship.name}
                         </h3>
                       </Link>
 
-                      {/* Editor's Curated Reason (Speech Bubble Style) */}
-                      <div className="bg-brand-cream/35 border border-brand-border/40 rounded-2xl p-3 md:p-4 relative mb-3 md:mb-4 flex-grow flex flex-col justify-center">
-                        <p className="text-[11px] text-brand-muted leading-relaxed italic line-clamp-4 md:line-clamp-none">
+                      {/* Editorial Narrative Quote (Clean single flow) */}
+                      <div className="relative pl-3 border-l-2 border-brand-border/90 mb-3 flex-shrink-0">
+                        <p className="text-[11px] md:text-xs text-brand-muted leading-relaxed italic line-clamp-3">
                           "{pick.editorReason}"
                         </p>
                       </div>
 
-                      {/* Insider Apply Tip Box */}
-                      <div className="bg-brand-accent/[0.02] border border-brand-accent/10 rounded-xl p-3 md:p-3.5 flex items-start gap-2.5">
+                      {/* Insider Strategy / Tip Callout */}
+                      <div className="bg-brand-bg/90 border border-brand-border/70 rounded-xl p-3 flex items-start gap-2.5 mb-3 flex-1 min-h-0 overflow-hidden">
                         <div className="p-1 bg-brand-accent/10 rounded-lg text-brand-accent flex-shrink-0 mt-0.5">
                           <Lightbulb className="h-3.5 w-3.5" />
                         </div>
-                        <div className="flex flex-col">
-                          <span className="text-[9px] uppercase font-bold tracking-wider text-brand-accent mb-0.5">Insider Apply Tip</span>
-                          <p className="text-[11px] font-medium text-brand-dark/95 leading-relaxed line-clamp-3 md:line-clamp-none">
+                        <div className="flex flex-col min-w-0 flex-1">
+                          <span className="text-[9px] uppercase font-bold tracking-wider text-brand-accent mb-0.5">
+                            Insider Tip
+                          </span>
+                          <p className="text-[11px] text-brand-dark/90 leading-relaxed line-clamp-3 font-medium">
                             {pick.insiderTip}
                           </p>
                         </div>
                       </div>
 
-                      {/* Spacer to push button down but guarantee 16px gap */}
-                      <div className="mt-auto h-3 md:h-4 flex-shrink-0" />
-
-                      {/* Action Link */}
-                      <LinkButton
-                        href={`/scholarships/${scholarship.slug}`}
-                        variant="primary"
-                        size="lg"
-                        className="w-full"
-                      >
-                        View Application Guide
-                      </LinkButton>
+                      {/* Action Footer */}
+                      <div className="mt-auto pt-3 border-t border-brand-border/60 flex items-center gap-2 flex-shrink-0">
+                        <LinkButton
+                          href={`/scholarships/${scholarship.slug}`}
+                          variant="primary"
+                          size="sm"
+                          className="flex-1 justify-between font-semibold text-xs group/btn"
+                        >
+                          <span>View Application Guide</span>
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
+                        </LinkButton>
+                        <SaveScholarshipButton slug={scholarship.slug} />
+                      </div>
                     </div>
                   </div>
                 );

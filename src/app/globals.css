@@ -100,7 +100,7 @@ a:focus-visible {
 
 body {
   background-color: var(--background);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Long provider names, URLs, and editorial metadata must stay inside narrow cards. */
