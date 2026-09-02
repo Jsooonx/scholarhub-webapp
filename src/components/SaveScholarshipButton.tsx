@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function SaveScholarshipButton({ slug, variant = 'icon', className = '' }: Props) {
-  const { authenticated, ready, slugs, isPending, toggle } = useShortlist();
+  const { authenticated, slugs, isPending, toggle } = useShortlist();
   const saved = slugs.has(slug);
   const label = saved ? 'Saved' : authenticated ? 'Save' : 'Sign in to save';
 
@@ -20,7 +20,7 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
       <Button
         type="button"
         onClick={() => void toggle(slug)}
-        disabled={!ready || isPending}
+        disabled={isPending}
         variant={saved ? 'primary' : 'secondary'}
         size="lg"
         className={`w-full ${className}`}
@@ -43,7 +43,7 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
         event.stopPropagation();
         void toggle(slug);
       }}
-      disabled={!ready || isPending}
+      disabled={isPending}
       aria-pressed={saved}
       aria-label={label}
       title={label}
