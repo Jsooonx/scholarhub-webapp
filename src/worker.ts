@@ -105,33 +105,71 @@ export default {
         const apiKey = env.RESEND_API_KEY || process.env.RESEND_API_KEY;
         const fromEmail = env.RESEND_FROM_EMAIL || 'ScholarHub <auth@scholarhubs.my.id>';
 
-        if (apiKey) {
-          try {
-            const emailHtml = `
-              <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 540px; margin: 0 auto; padding: 32px 24px; color: #1e293b; background: #faf9f6; border-radius: 24px; border: 1px solid #e2e8f0;">
-                <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #0f172a;">Sign in to ScholarHub</h1>
-                <p style="font-size: 14px; line-height: 1.6; color: #64748b; margin-bottom: 24px;">Click the button below to sign in to your ScholarHub account and access your shortlisted scholarships.</p>
-                <a href="${magicLinkUrl}" style="display: inline-block; padding: 12px 28px; background-color: #0f172a; color: #ffffff; text-decoration: none; border-radius: 9999px; font-size: 14px; font-weight: 600; text-align: center;">Sign In to ScholarHub</a>
-                <p style="font-size: 12px; color: #94a3b8; margin-top: 32px;">This link will expire in 15 minutes. If you did not request this link, you can safely ignore this email.</p>
-              </div>
-            `;
-
-            await fetch('https://api.resend.com/emails', {
-              method: 'POST',
-              headers: {
-                Authorization: `Bearer ${apiKey}`,
-                'Content-Type': 'application/json',
+        if (!apiKey) {
+          console.error('RESEND_API_KEY is not configured in Cloudflare environment');
+          if (isJson) {
+            return Response.json(
+              {
+                success: false,
+                error: 'Email service is not configured (RESEND_API_KEY missing in Cloudflare secrets).',
               },
-              body: JSON.stringify({
-                from: fromEmail,
-                to: [email],
-                subject: 'Sign in to ScholarHub',
-                html: emailHtml,
-              }),
-            });
-          } catch (emailErr) {
-            console.warn('Could not send email via Resend:', emailErr);
+              { status: 500 }
+            );
           }
+          return Response.redirect(new URL(`/login?next=${encodeURIComponent(safeNext)}&error=otp`, url.origin), 302);
+        }
+
+        const emailHtml = `
+          <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 540px; margin: 0 auto; padding: 32px 24px; color: #1e293b; background: #faf9f6; border-radius: 24px; border: 1px solid #e2e8f0;">
+            <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #0f172a;">Sign in to ScholarHub</h1>
+            <p style="font-size: 14px; line-height: 1.6; color: #64748b; margin-bottom: 24px;">Click the button below to sign in to your ScholarHub account and access your shortlisted scholarships.</p>
+            <a href="${magicLinkUrl}" style="display: inline-block; padding: 12px 28px; background-color: #0f172a; color: #ffffff; text-decoration: none; border-radius: 9999px; font-size: 14px; font-weight: 600; text-align: center;">Sign In to ScholarHub</a>
+            <p style="font-size: 12px; color: #94a3b8; margin-top: 32px;">This link will expire in 15 minutes. If you did not request this link, you can safely ignore this email.</p>
+          </div>
+        `;
+
+        let resendRes = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: fromEmail,
+            to: [email],
+            subject: 'Sign in to ScholarHub',
+            html: emailHtml,
+          }),
+        });
+
+        let resendData: any = await resendRes.json().catch(() => ({}));
+
+        // If custom domain is not verified in Resend, retry with onboarding@resend.dev
+        if (!resendRes.ok && fromEmail !== 'ScholarHub <onboarding@resend.dev>') {
+          console.warn('From email failed, retrying with onboarding@resend.dev:', resendData);
+          resendRes = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${apiKey}`,
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              from: 'ScholarHub <onboarding@resend.dev>',
+              to: [email],
+              subject: 'Sign in to ScholarHub',
+              html: emailHtml,
+            }),
+          });
+          resendData = await resendRes.json().catch(() => ({}));
+        }
+
+        if (!resendRes.ok) {
+          const errMsg = resendData?.message || resendData?.error || 'Failed to send email via Resend.';
+          console.error('Resend delivery error:', resendData);
+          if (isJson) {
+            return Response.json({ success: false, error: `Email delivery error: ${errMsg}` }, { status: 500 });
+          }
+          return Response.redirect(new URL(`/login?next=${encodeURIComponent(safeNext)}&error=otp`, url.origin), 302);
         }
 
         if (isJson) {
