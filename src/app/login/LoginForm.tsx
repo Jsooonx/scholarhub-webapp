@@ -1,9 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Mail, ArrowRight, Sparkles } from 'lucide-react';
-import { signInWithEmail } from './actions';
+import { Mail, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
 import { safeInternalPath } from '@/lib/security';
 import { Button } from '@/components/ui/button';
 
@@ -17,10 +17,46 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const next = safeInternalPath(searchParams.get('next'));
   const errorParam = searchParams.get('error');
-  const sent = searchParams.get('sent');
-  const email = searchParams.get('email');
+  const urlSent = searchParams.get('sent');
+  const urlEmail = searchParams.get('email');
 
-  const error = errorParam ? errorCopy[errorParam] || 'Something went wrong. Please try again.' : null;
+  const [inputEmail, setInputEmail] = useState(urlEmail || '');
+  const [loading, setLoading] = useState(false);
+  const [sentEmail, setSentEmail] = useState<string | null>(urlSent === '1' ? (urlEmail || 'your email') : null);
+  const [localError, setLocalError] = useState<string | null>(null);
+
+  const displayError = localError || (errorParam ? errorCopy[errorParam] || 'Something went wrong. Please try again.' : null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLocalError(null);
+
+    const cleanEmail = inputEmail.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes('@')) {
+      setLocalError('Please enter a valid email address.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch('/api/auth/send-magic-link', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: cleanEmail, next }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        setLocalError(data?.error || 'Magic link could not be sent. Please try again.');
+      } else {
+        setSentEmail(cleanEmail);
+      }
+    } catch (err: any) {
+      setLocalError('Network error. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="w-full max-w-md rounded-3xl border border-brand-border bg-white p-7 sm:p-9 shadow-sm">
@@ -38,19 +74,24 @@ export default function LoginForm() {
         Enter your email to receive a passwordless magic sign-in link. No password needed!
       </p>
 
-      {error && (
+      {displayError && (
         <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700 leading-relaxed">
-          {error}
+          {displayError}
         </div>
       )}
 
-      {sent === '1' && (
+      {sentEmail && (
         <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 leading-relaxed">
-          ✨ Magic link sent to <span className="font-semibold">{email || 'your email'}</span>. Check your inbox (and spam folder) to sign in!
+          ✨ Magic link sent to <span className="font-semibold">{sentEmail}</span>. Check your inbox (and spam folder) to sign in!
         </div>
       )}
 
-      <form action={signInWithEmail} className="mt-6 space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        action="/api/auth/send-magic-link"
+        method="POST"
+        className="mt-6 space-y-4"
+      >
         <input type="hidden" name="next" value={next} />
         <label className="block">
           <span className="mb-1.5 block text-xs font-semibold text-brand-dark">Email address</span>
@@ -59,6 +100,8 @@ export default function LoginForm() {
               name="email"
               type="email"
               required
+              value={inputEmail}
+              onChange={(e) => setInputEmail(e.target.value)}
               placeholder="you@example.com"
               className="w-full rounded-2xl border border-brand-border bg-brand-bg/40 px-4 py-3 pl-10 text-sm text-brand-dark outline-none transition focus:border-brand-dark focus:bg-white focus:ring-2 focus:ring-brand-dark/10"
             />
@@ -70,10 +113,11 @@ export default function LoginForm() {
           type="submit"
           variant="primary"
           size="lg"
-          icon={<ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />}
+          disabled={loading}
+          icon={loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />}
           className="group w-full [&>span.relative]:flex-row-reverse"
         >
-          Send magic sign-in link
+          {loading ? 'Sending magic link...' : 'Send magic sign-in link'}
         </Button>
       </form>
 
