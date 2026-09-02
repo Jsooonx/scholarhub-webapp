@@ -53,6 +53,46 @@ export async function getCurrentProfile(): Promise<{
   profile?: Profile | null;
   error?: string;
 }> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/user/profile');
+      if (res.ok) {
+        const data = await res.json();
+        let parsedQuizAnswers = null;
+        if (typeof data.profile?.quiz_answers === 'string') {
+          try {
+            parsedQuizAnswers = JSON.parse(data.profile.quiz_answers);
+          } catch {
+            parsedQuizAnswers = null;
+          }
+        } else if (data.profile?.quiz_answers) {
+          parsedQuizAnswers = data.profile.quiz_answers;
+        }
+
+        return {
+          authenticated: Boolean(data.authenticated),
+          email: data.email,
+          profile: data.profile
+            ? {
+                user_id: data.profile.user_id,
+                display_name: data.profile.display_name,
+                username: data.profile.username,
+                bio: data.profile.bio,
+                location: data.profile.location,
+                website_url: data.profile.website_url,
+                avatar_url: data.profile.avatar_url,
+                quiz_answers: parsedQuizAnswers,
+                created_at: data.profile.created_at,
+                updated_at: data.profile.updated_at,
+              }
+            : null,
+        };
+      }
+    } catch (err) {
+      console.error('Fetch profile error:', err);
+    }
+  }
+
   try {
     const { authenticated, user, email } = await getCurrentUser();
 
@@ -191,6 +231,21 @@ export async function updateProfileAction(formData: FormData) {
 }
 
 export async function updateProfileQuizAnswers(answers: any): Promise<{ success: boolean; error?: string }> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/user/quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answers }),
+      });
+      if (res.ok) return { success: true };
+      const data = await res.json().catch(() => ({}));
+      return { success: false, error: data.error || 'Failed to update quiz answers' };
+    } catch (err) {
+      return { success: false, error: 'Network error' };
+    }
+  }
+
   try {
     const { authenticated, user } = await getCurrentUser();
 

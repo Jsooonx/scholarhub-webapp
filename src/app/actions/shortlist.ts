@@ -37,6 +37,22 @@ export async function getShortlistSlugs(): Promise<{
   email?: string;
   error?: string;
 }> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist');
+      if (res.ok) {
+        const data = await res.json();
+        return {
+          authenticated: Boolean(data.authenticated),
+          slugs: data.slugs || [],
+          email: data.email,
+        };
+      }
+    } catch (err) {
+      console.error('Fetch shortlist slugs error:', err);
+    }
+  }
+
   try {
     const { authenticated, user, email } = await getCurrentUser();
 
@@ -67,6 +83,21 @@ export async function getShortlistSlugs(): Promise<{
 export async function addToShortlist(slug: string): Promise<ShortlistResult> {
   if (!getScholarshipBySlug(slug)) {
     return { ok: false, status: 404, error: 'Scholarship not found.' };
+  }
+
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+      });
+      if (res.ok) return { ok: true };
+      const data = await res.json().catch(() => ({}));
+      return { ok: false, status: res.status as any, error: data.error || 'Failed to add' };
+    } catch (err) {
+      return { ok: false, status: 500, error: 'Network error' };
+    }
   }
 
   try {
@@ -103,6 +134,21 @@ export async function addToShortlist(slug: string): Promise<ShortlistResult> {
 }
 
 export async function removeFromShortlist(slug: string): Promise<ShortlistResult> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+      });
+      if (res.ok) return { ok: true };
+      const data = await res.json().catch(() => ({}));
+      return { ok: false, status: res.status as any, error: data.error || 'Failed to remove' };
+    } catch (err) {
+      return { ok: false, status: 500, error: 'Network error' };
+    }
+  }
+
   try {
     const { authenticated, user } = await getCurrentUser();
 
@@ -136,6 +182,19 @@ export async function updateApplicationStatus(
     return { ok: false, status: 500, error: 'Invalid application status.' };
   }
 
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'status', slug, status }),
+      });
+      if (res.ok) return { ok: true };
+    } catch (err) {
+      console.error('Update status error:', err);
+    }
+  }
+
   try {
     const { authenticated, user } = await getCurrentUser();
 
@@ -166,6 +225,19 @@ export async function updateApplicationNotes(
   slug: string,
   notes: string | null
 ): Promise<ShortlistResult> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'notes', slug, notes }),
+      });
+      if (res.ok) return { ok: true };
+    } catch (err) {
+      console.error('Update notes error:', err);
+    }
+  }
+
   try {
     const { authenticated, user } = await getCurrentUser();
 
@@ -198,6 +270,52 @@ export async function getApplicationsWithDetails(): Promise<{
   email?: string;
   error?: string;
 }> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist');
+      if (res.ok) {
+        const data = await res.json();
+        const rows = data.applications || [];
+        const applications: ScholarshipApplication[] = rows.map((row: any) => {
+          let parsedChecklist: ChecklistItem[] | null = null;
+          if (typeof row.checklist === 'string') {
+            try {
+              parsedChecklist = JSON.parse(row.checklist);
+            } catch {
+              parsedChecklist = null;
+            }
+          } else if (Array.isArray(row.checklist)) {
+            parsedChecklist = row.checklist;
+          }
+
+          return {
+            id: row.id,
+            user_id: row.user_id,
+            scholarship_slug: row.scholarship_slug,
+            status: row.status,
+            notes: row.notes,
+            checklist: parsedChecklist,
+            target_deadline: row.target_deadline,
+            is_deadline_verified: Boolean(row.is_deadline_verified),
+            announcement_date: row.announcement_date,
+            is_announcement_verified: Boolean(row.is_announcement_verified),
+            created_at: row.created_at,
+            updated_at: row.updated_at,
+            scholarship: getScholarshipBySlug(row.scholarship_slug) || null,
+          };
+        });
+
+        return {
+          authenticated: Boolean(data.authenticated),
+          applications,
+          email: data.email,
+        };
+      }
+    } catch (err) {
+      console.error('Fetch applications error:', err);
+    }
+  }
+
   try {
     const { authenticated, user, email } = await getCurrentUser();
 
@@ -259,6 +377,19 @@ export async function updateApplicationChecklist(
   slug: string,
   checklist: ChecklistItem[]
 ): Promise<ShortlistResult> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'checklist', slug, checklist }),
+      });
+      if (res.ok) return { ok: true };
+    } catch (err) {
+      console.error('Update checklist error:', err);
+    }
+  }
+
   try {
     const { authenticated, user } = await getCurrentUser();
 
@@ -291,6 +422,19 @@ export async function updateApplicationDeadline(
   targetDeadline: string | null,
   isVerified: boolean
 ): Promise<ShortlistResult> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'deadline', slug, target_deadline: targetDeadline, is_verified: isVerified }),
+      });
+      if (res.ok) return { ok: true };
+    } catch (err) {
+      console.error('Update deadline error:', err);
+    }
+  }
+
   try {
     const { authenticated, user } = await getCurrentUser();
 
@@ -322,6 +466,19 @@ export async function updateApplicationAnnouncement(
   announcementDate: string | null,
   isVerified: boolean
 ): Promise<ShortlistResult> {
+  if (typeof window !== 'undefined') {
+    try {
+      const res = await fetch('/api/shortlist', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'announcement', slug, announcement_date: announcementDate, is_verified: isVerified }),
+      });
+      if (res.ok) return { ok: true };
+    } catch (err) {
+      console.error('Update announcement error:', err);
+    }
+  }
+
   try {
     const { authenticated, user } = await getCurrentUser();
 

@@ -20,7 +20,7 @@ export default function ProfileClient() {
     async function load() {
       try {
         const res = await getCurrentProfile();
-        if (!res.authenticated && !res.error) {
+        if (!res.authenticated) {
           window.location.href = '/login?next=/profile';
           return;
         }

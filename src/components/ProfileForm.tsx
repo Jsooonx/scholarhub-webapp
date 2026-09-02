@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Camera, Globe, MapPin, UserRound } from 'lucide-react';
+import { Camera, Globe, MapPin, UserRound, Loader2 } from 'lucide-react';
 import { updateProfileAction, type Profile } from '@/app/actions/profile';
 import { Button } from '@/components/ui/button';
 
@@ -58,6 +58,45 @@ export default function ProfileForm({
   const previewUsername = safeUsername ? `@${safeUsername.toLowerCase()}` : 'No username yet';
   const previewInitials = initials(safeDisplayName, email);
 
+  const [saving, setSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(savedParam === '1');
+  const [formError, setFormError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSaving(true);
+    setFormError(null);
+    setSaveSuccess(false);
+
+    try {
+      const res = await fetch('/api/user/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          display_name: safeDisplayName || null,
+          username: safeUsername || null,
+          bio: safeBio || null,
+          location: safeLocation || null,
+          website_url: safeWebsiteUrl || null,
+          avatar_url: safeAvatarUrl || null,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        setFormError(data.error || 'Failed to save profile.');
+      } else {
+        setSaveSuccess(true);
+      }
+    } catch (err) {
+      setFormError('Network error. Please try again.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const displayError = formError || (errorParam ? decodeURIComponent(errorParam) : null);
+
   return (
     <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_360px] lg:px-8">
       <section className="rounded-3xl border border-brand-border bg-white p-6 shadow-xs">
@@ -72,19 +111,19 @@ export default function ProfileForm({
           </div>
         )}
 
-        {errorParam && (
+        {displayError && (
           <div className="mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-            {decodeURIComponent(errorParam)}
+            {displayError}
           </div>
         )}
 
-        {savedParam === '1' && (
+        {saveSuccess && (
           <div className="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
             Profile saved successfully.
           </div>
         )}
 
-        <form action={updateProfileAction} className="space-y-5">
+        <form onSubmit={handleSubmit} action={updateProfileAction} className="space-y-5">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <label className="block">
               <span className="mb-1.5 block text-xs font-semibold text-brand-dark">Display name</span>
@@ -179,8 +218,10 @@ export default function ProfileForm({
               type="submit"
               variant="primary"
               size="lg"
+              disabled={saving}
+              icon={saving ? <Loader2 className="h-4 w-4 animate-spin" /> : undefined}
             >
-              Save profile
+              {saving ? 'Saving profile...' : 'Save profile'}
             </Button>
           </div>
         </form>

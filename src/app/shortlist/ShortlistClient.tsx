@@ -17,7 +17,7 @@ export default function ShortlistClient() {
     async function load() {
       try {
         const result = await getApplicationsWithDetails();
-        if (!result.authenticated && !result.error) {
+        if (!result.authenticated) {
           window.location.href = '/login?next=/shortlist';
           return;
         }

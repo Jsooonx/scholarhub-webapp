@@ -245,7 +245,199 @@ export default {
       return Response.json({ authenticated: true, user: authUser, email: authUser.email });
     }
 
-    // 5. /api/subscribe - Newsletter subscription via Resend
+    // 5. /api/shortlist - Get, Add, Remove, and Update Shortlist Applications
+    if (pathname === '/api/shortlist') {
+      const user = await getAuthUser(request, env);
+
+      if (request.method === 'GET') {
+        if (!user) {
+          return Response.json({ authenticated: false, slugs: [], applications: [] });
+        }
+        try {
+          const res = await env.DB
+            .prepare('SELECT * FROM scholarship_applications WHERE user_id = ? ORDER BY updated_at DESC')
+            .bind(user.id)
+            .all();
+          const rows = res.results || [];
+          return Response.json({
+            authenticated: true,
+            slugs: rows.map((r: any) => r.scholarship_slug),
+            applications: rows,
+            email: user.email,
+          });
+        } catch (err: any) {
+          return Response.json({ error: err.message || 'Database error' }, { status: 500 });
+        }
+      }
+
+      if (request.method === 'POST') {
+        if (!user) {
+          return Response.json({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
+        }
+        try {
+          const body: any = await request.json();
+          const slug = String(body?.slug ?? '').trim();
+          if (!slug) return Response.json({ ok: false, error: 'Slug required' }, { status: 400 });
+
+          const id = crypto.randomUUID();
+          const nowIso = new Date().toISOString();
+          await env.DB
+            .prepare(`
+              INSERT INTO scholarship_applications (id, user_id, scholarship_slug, status, created_at, updated_at)
+              VALUES (?, ?, ?, 'shortlisted', ?, ?)
+              ON CONFLICT(user_id, scholarship_slug) DO UPDATE SET
+                status = 'shortlisted',
+                updated_at = excluded.updated_at
+            `)
+            .bind(id, user.id, slug, nowIso, nowIso)
+            .run();
+          return Response.json({ ok: true });
+        } catch (err: any) {
+          return Response.json({ ok: false, error: err.message || 'Error saving' }, { status: 500 });
+        }
+      }
+
+      if (request.method === 'DELETE') {
+        if (!user) {
+          return Response.json({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
+        }
+        try {
+          let slug = url.searchParams.get('slug');
+          if (!slug) {
+            const body: any = await request.json().catch(() => ({}));
+            slug = body?.slug;
+          }
+          if (!slug) return Response.json({ ok: false, error: 'Slug required' }, { status: 400 });
+
+          await env.DB
+            .prepare('DELETE FROM scholarship_applications WHERE user_id = ? AND scholarship_slug = ?')
+            .bind(user.id, slug)
+            .run();
+          return Response.json({ ok: true });
+        } catch (err: any) {
+          return Response.json({ ok: false, error: err.message || 'Error removing' }, { status: 500 });
+        }
+      }
+
+      if (request.method === 'PATCH') {
+        if (!user) {
+          return Response.json({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
+        }
+        try {
+          const body: any = await request.json();
+          const { action, slug, status, notes, checklist, target_deadline, announcement_date, is_verified } = body;
+          const nowIso = new Date().toISOString();
+
+          if (action === 'status') {
+            await env.DB
+              .prepare('UPDATE scholarship_applications SET status = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+              .bind(status, nowIso, user.id, slug)
+              .run();
+          } else if (action === 'notes') {
+            await env.DB
+              .prepare('UPDATE scholarship_applications SET notes = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+              .bind(notes || null, nowIso, user.id, slug)
+              .run();
+          } else if (action === 'checklist') {
+            const jsonStr = JSON.stringify(checklist || []);
+            await env.DB
+              .prepare('UPDATE scholarship_applications SET checklist = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+              .bind(jsonStr, nowIso, user.id, slug)
+              .run();
+          } else if (action === 'deadline') {
+            await env.DB
+              .prepare('UPDATE scholarship_applications SET target_deadline = ?, is_deadline_verified = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+              .bind(target_deadline || null, is_verified ? 1 : 0, nowIso, user.id, slug)
+              .run();
+          } else if (action === 'announcement') {
+            await env.DB
+              .prepare('UPDATE scholarship_applications SET announcement_date = ?, is_announcement_verified = ?, updated_at = ? WHERE user_id = ? AND scholarship_slug = ?')
+              .bind(announcement_date || null, is_verified ? 1 : 0, nowIso, user.id, slug)
+              .run();
+          }
+
+          return Response.json({ ok: true });
+        } catch (err: any) {
+          return Response.json({ ok: false, error: err.message || 'Error updating' }, { status: 500 });
+        }
+      }
+    }
+
+    // 6. /api/user/profile - Get and Update User Profile
+    if (pathname === '/api/user/profile') {
+      const user = await getAuthUser(request, env);
+      if (!user) {
+        return Response.json({ authenticated: false, profile: null });
+      }
+
+      if (request.method === 'GET') {
+        try {
+          const profile = await env.DB
+            .prepare('SELECT * FROM profiles WHERE user_id = ? LIMIT 1')
+            .bind(user.id)
+            .first();
+          return Response.json({ authenticated: true, email: user.email, profile });
+        } catch (err: any) {
+          return Response.json({ error: err.message }, { status: 500 });
+        }
+      }
+
+      if (request.method === 'POST') {
+        try {
+          const body: any = await request.json();
+          const { display_name, username, bio, location, website_url, avatar_url } = body;
+          const nowIso = new Date().toISOString();
+
+          await env.DB
+            .prepare(`
+              INSERT INTO profiles (user_id, display_name, username, bio, location, website_url, avatar_url, updated_at)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+              ON CONFLICT(user_id) DO UPDATE SET
+                display_name = excluded.display_name,
+                username = excluded.username,
+                bio = excluded.bio,
+                location = excluded.location,
+                website_url = excluded.website_url,
+                avatar_url = excluded.avatar_url,
+                updated_at = excluded.updated_at
+            `)
+            .bind(user.id, display_name, username, bio, location, website_url, avatar_url, nowIso)
+            .run();
+          return Response.json({ ok: true });
+        } catch (err: any) {
+          return Response.json({ ok: false, error: err.message }, { status: 500 });
+        }
+      }
+    }
+
+    // 7. /api/user/quiz - Update Quiz Answers
+    if (pathname === '/api/user/quiz' && request.method === 'POST') {
+      const user = await getAuthUser(request, env);
+      if (!user) {
+        return Response.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+      }
+      try {
+        const body: any = await request.json();
+        const jsonStr = JSON.stringify(body?.answers ?? {});
+        const nowIso = new Date().toISOString();
+
+        await env.DB
+          .prepare(`
+            INSERT INTO profiles (user_id, quiz_answers, updated_at)
+            VALUES (?, ?, ?)
+            ON CONFLICT(user_id) DO UPDATE SET
+              quiz_answers = excluded.quiz_answers,
+              updated_at = excluded.updated_at
+          `)
+          .bind(user.id, jsonStr, nowIso)
+          .run();
+        return Response.json({ success: true });
+      } catch (err: any) {
+        return Response.json({ success: false, error: err.message }, { status: 500 });
+      }
+    }
+
+    // 8. /api/subscribe - Newsletter subscription via Resend
     if (pathname === '/api/subscribe' && request.method === 'POST') {
       try {
         const body: any = await request.json();
