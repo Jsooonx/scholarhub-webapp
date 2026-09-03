@@ -6,7 +6,8 @@ import { GraduationCap, Globe, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { allScholarships, providerGroup, providerMeta } from '@/lib/scholarships';
 import { useShortlist } from '@/components/ShortlistProvider';
-import { getCurrentProfile, type Profile } from '@/app/actions/profile';
+import { fetchProfile } from '@/lib/client-api';
+import type { Profile } from '@/app/actions/profile';
 import { Button, LinkButton } from '@/components/ui/button';
 
 // Pull one per provider group for the hero row - prioritise the most complete providers
@@ -39,8 +40,8 @@ export default function Hero() {
 
   useEffect(() => {
     if (authenticated) {
-      getCurrentProfile().then((res) => {
-        if (res.profile) setProfile(res.profile);
+      fetchProfile().then((res) => {
+        if (res.profile) setProfile(res.profile as any);
       });
     } else {
       setProfile(null);

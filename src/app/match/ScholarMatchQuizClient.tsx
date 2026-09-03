@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ScholarMatchQuiz from '@/components/ScholarMatchQuiz';
-import { getCurrentProfile } from '@/app/actions/profile';
+import { fetchProfile } from '@/lib/client-api';
 import { type QuizAnswers } from '@/lib/matching';
 
 export default function ScholarMatchQuizClient() {
@@ -12,7 +12,7 @@ export default function ScholarMatchQuizClient() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await getCurrentProfile();
+        const res = await fetchProfile();
         if (res.profile?.quiz_answers) {
           setInitialAnswers(res.profile.quiz_answers);
         }

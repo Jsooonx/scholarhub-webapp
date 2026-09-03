@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ProfileForm from '@/components/ProfileForm';
-import { getCurrentProfile, type Profile } from '@/app/actions/profile';
+import { fetchProfile } from '@/lib/client-api';
+import type { Profile } from '@/app/actions/profile';
 
 export default function ProfileClient() {
   const searchParams = useSearchParams();
@@ -19,7 +20,7 @@ export default function ProfileClient() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await getCurrentProfile();
+        const res = await fetchProfile();
         if (!res.authenticated) {
           window.location.href = '/login?next=/profile';
           return;

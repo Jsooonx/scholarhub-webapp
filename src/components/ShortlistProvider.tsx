@@ -2,8 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { addToShortlist, getShortlistSlugs, removeFromShortlist } from '@/app/actions/shortlist';
-import { signOutAction } from '@/app/actions/auth';
+import { addShortlistApi, fetchShortlist, removeShortlistApi, signOutApi } from '@/lib/client-api';
 
 interface ShortlistContextValue {
   authenticated: boolean;
@@ -34,7 +33,7 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
 
   const refresh = useCallback(async () => {
     try {
-      const result = await getShortlistSlugs();
+      const result = await fetchShortlist();
       setAuthenticated(result.authenticated);
       setEmail(result.email ?? null);
       setSlugs(new Set(result.slugs));
@@ -70,7 +69,7 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
       setSlugs(nextSlugs);
 
       try {
-        const result = wasSaved ? await removeFromShortlist(slug) : await addToShortlist(slug);
+        const result = wasSaved ? await removeShortlistApi(slug) : await addShortlistApi(slug);
 
         if (!result.ok) {
           setSlugs(slugs);
@@ -91,7 +90,7 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
   );
 
   const signOut = useCallback(async () => {
-    const result = await signOutAction();
+    const result = await signOutApi();
     if (result.ok) {
       setAuthenticated(false);
       setEmail(null);

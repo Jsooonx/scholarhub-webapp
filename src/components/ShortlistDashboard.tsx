@@ -12,7 +12,7 @@ import SplitText from '@/components/SplitText';
 import { Kanban, List, LayoutGrid, Heart, Calendar, Compass, Undo2, ArrowRight, GraduationCap } from 'lucide-react';
 import { filterScholarships, type QuizAnswers } from '@/lib/matching';
 import { useShortlist } from '@/components/ShortlistProvider';
-import { updateProfileQuizAnswers } from '@/app/actions/profile';
+import { saveProfileQuizApi as updateProfileQuizAnswers } from '@/lib/client-api';
 import { FilterPill } from '@/components/ScholarMatchQuiz';
 import { Button, LinkButton } from '@/components/ui/button';
 

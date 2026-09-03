@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ShortlistDashboard from '@/components/ShortlistDashboard';
-import { getApplicationsWithDetails, type ScholarshipApplication } from '@/app/actions/shortlist';
-import { getCurrentProfile } from '@/app/actions/profile';
+import { fetchShortlist, fetchProfile, type ScholarshipApplication } from '@/lib/client-api';
 import { type QuizAnswers } from '@/lib/matching';
 
 export default function ShortlistClient() {
@@ -16,7 +15,7 @@ export default function ShortlistClient() {
   useEffect(() => {
     async function load() {
       try {
-        const result = await getApplicationsWithDetails();
+        const result = await fetchShortlist();
         if (!result.authenticated) {
           window.location.href = '/login?next=/shortlist';
           return;
@@ -25,7 +24,7 @@ export default function ShortlistClient() {
         setEmail(result.email);
         setError(result.error);
 
-        const profileRes = await getCurrentProfile();
+        const profileRes = await fetchProfile();
         if (profileRes.profile?.quiz_answers) {
           setQuizAnswers(profileRes.profile.quiz_answers);
         }

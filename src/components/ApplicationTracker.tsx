@@ -7,13 +7,13 @@ import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import {
   type ScholarshipApplication,
   type ChecklistItem,
-  updateApplicationStatus,
-  updateApplicationNotes,
-  updateApplicationChecklist,
-  updateApplicationDeadline,
-  updateApplicationAnnouncement,
-  removeFromShortlist,
-} from '@/app/actions/shortlist';
+  updateApplicationStatusApi as updateApplicationStatus,
+  updateApplicationNotesApi as updateApplicationNotes,
+  updateApplicationChecklistApi as updateApplicationChecklist,
+  updateApplicationDeadlineApi as updateApplicationDeadline,
+  updateApplicationAnnouncementApi as updateApplicationAnnouncement,
+  removeShortlistApi as removeFromShortlist,
+} from '@/lib/client-api';
 import { getDeadlineStatus, getScholarshipLogo, providerMeta, providerGroup } from '@/lib/scholarships';
 import DeadlineStatusComponent from '@/components/DeadlineStatus';
 import DatePicker from '@/components/DatePicker';
