@@ -15,8 +15,18 @@ interface Env {
 
 const SESSION_COOKIE_NAME = 'scholarhub_session';
 
+function jsonResponse(data: any, init?: ResponseInit): Response {
+  const headers = new Headers(init?.headers);
+  headers.set('Content-Type', 'application/json; charset=utf-8');
+  headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  return new Response(JSON.stringify(data), {
+    ...init,
+    headers,
+  });
+}
+
 function getSessionToken(request: Request): string | null {
-  const cookieHeader = request.headers.get('Cookie') || '';
+  const cookieHeader = request.headers.get('Cookie') || request.headers.get('cookie') || '';
   const match = cookieHeader.match(/scholarhub_session=([^;]+)/);
   return match ? match[1].trim() : null;
 }
@@ -79,14 +89,14 @@ export default {
 
         if (!email || !email.includes('@')) {
           if (isJson) {
-            return Response.json({ error: 'Please enter a valid email address.' }, { status: 400 });
+            return jsonResponse({ error: 'Please enter a valid email address.' }, { status: 400 });
           }
           return Response.redirect(new URL(`/login?next=${encodeURIComponent(safeNext)}&error=email`, url.origin), 302);
         }
 
         if (!env.DB) {
           if (isJson) {
-            return Response.json({ error: 'Database not available.' }, { status: 500 });
+            return jsonResponse({ error: 'Database not available.' }, { status: 500 });
           }
           return Response.redirect(new URL(`/login?next=${encodeURIComponent(safeNext)}&error=otp`, url.origin), 302);
         }
@@ -99,8 +109,9 @@ export default {
           .bind(token, email, safeNext, expiresAt)
           .run();
 
-        const baseUrl = env.NEXT_PUBLIC_SITE_URL || url.origin;
-        const magicLinkUrl = `${baseUrl.replace(/\/$/, '')}/auth/callback?token=${token}&next=${encodeURIComponent(safeNext)}`;
+        // Always prioritize the actual request origin so the domain matches exactly
+        const origin = url.origin || env.NEXT_PUBLIC_SITE_URL || 'https://scholarhubs.my.id';
+        const magicLinkUrl = `${origin.replace(/\/$/, '')}/auth/callback?token=${token}&next=${encodeURIComponent(safeNext)}`;
 
         const apiKey = env.RESEND_API_KEY || process.env.RESEND_API_KEY;
         const fromEmail = env.RESEND_FROM_EMAIL || 'ScholarHub <auth@scholarhubs.my.id>';
@@ -108,7 +119,7 @@ export default {
         if (!apiKey) {
           console.error('RESEND_API_KEY is not configured in Cloudflare environment');
           if (isJson) {
-            return Response.json(
+            return jsonResponse(
               {
                 success: false,
                 error: 'Email service is not configured (RESEND_API_KEY missing in Cloudflare secrets).',
@@ -167,13 +178,13 @@ export default {
           const errMsg = resendData?.message || resendData?.error || 'Failed to send email via Resend.';
           console.error('Resend delivery error:', resendData);
           if (isJson) {
-            return Response.json({ success: false, error: `Email delivery error: ${errMsg}` }, { status: 500 });
+            return jsonResponse({ success: false, error: `Email delivery error: ${errMsg}` }, { status: 500 });
           }
           return Response.redirect(new URL(`/login?next=${encodeURIComponent(safeNext)}&error=otp`, url.origin), 302);
         }
 
         if (isJson) {
-          return Response.json({ success: true, email });
+          return jsonResponse({ success: true, email });
         }
         return Response.redirect(
           new URL(`/login?next=${encodeURIComponent(safeNext)}&sent=1&email=${encodeURIComponent(email)}`, url.origin),
@@ -181,7 +192,7 @@ export default {
         );
       } catch (err: any) {
         console.error('Magic link send error:', err);
-        return Response.json({ error: err.message || 'Error processing request' }, { status: 500 });
+        return jsonResponse({ error: err.message || 'Error processing request' }, { status: 500 });
       }
     }
 
@@ -215,12 +226,23 @@ export default {
         if (!userId) {
           userId = crypto.randomUUID();
           await env.DB
-            .prepare('INSERT INTO users (id, email) VALUES (?, ?)')
+            .prepare('INSERT OR IGNORE INTO users (id, email) VALUES (?, ?)')
             .bind(userId, magicLink.email)
             .run();
 
+          const existingUser = await env.DB
+            .prepare('SELECT id, email FROM users WHERE email = ?')
+            .bind(magicLink.email)
+            .first();
+          if (existingUser) {
+            userId = existingUser.id;
+          }
+
           await env.DB
-            .prepare('INSERT INTO profiles (user_id, display_name) VALUES (?, ?)')
+            .prepare(`
+              INSERT INTO profiles (user_id, display_name) VALUES (?, ?)
+              ON CONFLICT(user_id) DO NOTHING
+            `)
             .bind(userId, magicLink.email.split('@')[0])
             .run();
         }
@@ -233,21 +255,24 @@ export default {
           .bind(sessionToken, userId, expiresAt)
           .run();
 
-        // Delete used magic link
-        await env.DB.prepare('DELETE FROM magic_links WHERE token = ?').bind(token).run();
+        // Note: Do not immediately delete magic_links token to prevent email virus scanners or double clicks from breaking login
 
         const destPath = safeInternalPath(magicLink.next_path, next);
         const redirectUrl = new URL(destPath, url.origin);
 
         const isSecure = url.protocol === 'https:';
-        const cookieHeader = `${SESSION_COOKIE_NAME}=${sessionToken}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000${isSecure ? '; Secure' : ''}`;
+        const hostname = url.hostname;
+        const domainAttr = hostname.includes('scholarhubs.my.id') ? '; Domain=.scholarhubs.my.id' : '';
+        const cookieHeader = `${SESSION_COOKIE_NAME}=${sessionToken}; Path=/; HttpOnly; SameSite=Lax; Max-Age=2592000${isSecure ? '; Secure' : ''}${domainAttr}`;
+
+        const headers = new Headers();
+        headers.set('Location', redirectUrl.toString());
+        headers.append('Set-Cookie', cookieHeader);
+        headers.set('Cache-Control', 'no-store, no-cache, must-revalidate');
 
         return new Response(null, {
           status: 302,
-          headers: {
-            Location: redirectUrl.toString(),
-            'Set-Cookie': cookieHeader,
-          },
+          headers,
         });
       } catch (err) {
         console.error('Callback error:', err);
@@ -266,21 +291,27 @@ export default {
         }
       }
       const isSecure = url.protocol === 'https:';
-      return new Response(JSON.stringify({ ok: true }), {
-        headers: {
-          'Content-Type': 'application/json',
-          'Set-Cookie': `${SESSION_COOKIE_NAME}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0${isSecure ? '; Secure' : ''}`,
-        },
-      });
+      const hostname = url.hostname;
+      const domainAttr = hostname.includes('scholarhubs.my.id') ? '; Domain=.scholarhubs.my.id' : '';
+
+      const headers = new Headers();
+      headers.set('Content-Type', 'application/json');
+      headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+      headers.append(
+        'Set-Cookie',
+        `${SESSION_COOKIE_NAME}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0${isSecure ? '; Secure' : ''}${domainAttr}`
+      );
+
+      return new Response(JSON.stringify({ ok: true }), { headers });
     }
 
     // 4. /api/user/session or /api/auth/me - Check current user session
     if ((pathname === '/api/user/session' || pathname === '/api/auth/me') && request.method === 'GET') {
       const authUser = await getAuthUser(request, env);
       if (!authUser) {
-        return Response.json({ authenticated: false, user: null });
+        return jsonResponse({ authenticated: false, user: null });
       }
-      return Response.json({ authenticated: true, user: authUser, email: authUser.email });
+      return jsonResponse({ authenticated: true, user: authUser, email: authUser.email });
     }
 
     // 5. /api/shortlist - Get, Add, Remove, and Update Shortlist Applications
@@ -289,7 +320,7 @@ export default {
 
       if (request.method === 'GET') {
         if (!user) {
-          return Response.json({ authenticated: false, slugs: [], applications: [] });
+          return jsonResponse({ authenticated: false, slugs: [], applications: [] });
         }
         try {
           const res = await env.DB
@@ -297,25 +328,25 @@ export default {
             .bind(user.id)
             .all();
           const rows = res.results || [];
-          return Response.json({
+          return jsonResponse({
             authenticated: true,
             slugs: rows.map((r: any) => r.scholarship_slug),
             applications: rows,
             email: user.email,
           });
         } catch (err: any) {
-          return Response.json({ error: err.message || 'Database error' }, { status: 500 });
+          return jsonResponse({ error: err.message || 'Database error' }, { status: 500 });
         }
       }
 
       if (request.method === 'POST') {
         if (!user) {
-          return Response.json({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
+          return jsonResponse({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
         }
         try {
           const body: any = await request.json();
           const slug = String(body?.slug ?? '').trim();
-          if (!slug) return Response.json({ ok: false, error: 'Slug required' }, { status: 400 });
+          if (!slug) return jsonResponse({ ok: false, error: 'Slug required' }, { status: 400 });
 
           const id = crypto.randomUUID();
           const nowIso = new Date().toISOString();
@@ -329,15 +360,15 @@ export default {
             `)
             .bind(id, user.id, slug, nowIso, nowIso)
             .run();
-          return Response.json({ ok: true });
+          return jsonResponse({ ok: true });
         } catch (err: any) {
-          return Response.json({ ok: false, error: err.message || 'Error saving' }, { status: 500 });
+          return jsonResponse({ ok: false, error: err.message || 'Error saving' }, { status: 500 });
         }
       }
 
       if (request.method === 'DELETE') {
         if (!user) {
-          return Response.json({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
+          return jsonResponse({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
         }
         try {
           let slug = url.searchParams.get('slug');
@@ -345,21 +376,21 @@ export default {
             const body: any = await request.json().catch(() => ({}));
             slug = body?.slug;
           }
-          if (!slug) return Response.json({ ok: false, error: 'Slug required' }, { status: 400 });
+          if (!slug) return jsonResponse({ ok: false, error: 'Slug required' }, { status: 400 });
 
           await env.DB
             .prepare('DELETE FROM scholarship_applications WHERE user_id = ? AND scholarship_slug = ?')
             .bind(user.id, slug)
             .run();
-          return Response.json({ ok: true });
+          return jsonResponse({ ok: true });
         } catch (err: any) {
-          return Response.json({ ok: false, error: err.message || 'Error removing' }, { status: 500 });
+          return jsonResponse({ ok: false, error: err.message || 'Error removing' }, { status: 500 });
         }
       }
 
       if (request.method === 'PATCH') {
         if (!user) {
-          return Response.json({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
+          return jsonResponse({ ok: false, status: 401, error: 'Unauthorized' }, { status: 401 });
         }
         try {
           const body: any = await request.json();
@@ -394,9 +425,9 @@ export default {
               .run();
           }
 
-          return Response.json({ ok: true });
+          return jsonResponse({ ok: true });
         } catch (err: any) {
-          return Response.json({ ok: false, error: err.message || 'Error updating' }, { status: 500 });
+          return jsonResponse({ ok: false, error: err.message || 'Error updating' }, { status: 500 });
         }
       }
     }
@@ -405,7 +436,7 @@ export default {
     if (pathname === '/api/user/profile') {
       const user = await getAuthUser(request, env);
       if (!user) {
-        return Response.json({ authenticated: false, profile: null });
+        return jsonResponse({ authenticated: false, profile: null });
       }
 
       if (request.method === 'GET') {
@@ -414,9 +445,9 @@ export default {
             .prepare('SELECT * FROM profiles WHERE user_id = ? LIMIT 1')
             .bind(user.id)
             .first();
-          return Response.json({ authenticated: true, email: user.email, profile });
+          return jsonResponse({ authenticated: true, email: user.email, profile });
         } catch (err: any) {
-          return Response.json({ error: err.message }, { status: 500 });
+          return jsonResponse({ error: err.message }, { status: 500 });
         }
       }
 
@@ -441,9 +472,9 @@ export default {
             `)
             .bind(user.id, display_name, username, bio, location, website_url, avatar_url, nowIso)
             .run();
-          return Response.json({ ok: true });
+          return jsonResponse({ ok: true });
         } catch (err: any) {
-          return Response.json({ ok: false, error: err.message }, { status: 500 });
+          return jsonResponse({ ok: false, error: err.message }, { status: 500 });
         }
       }
     }
@@ -452,7 +483,7 @@ export default {
     if (pathname === '/api/user/quiz' && request.method === 'POST') {
       const user = await getAuthUser(request, env);
       if (!user) {
-        return Response.json({ success: false, error: 'Unauthorized' }, { status: 401 });
+        return jsonResponse({ success: false, error: 'Unauthorized' }, { status: 401 });
       }
       try {
         const body: any = await request.json();
@@ -469,9 +500,9 @@ export default {
           `)
           .bind(user.id, jsonStr, nowIso)
           .run();
-        return Response.json({ success: true });
+        return jsonResponse({ success: true });
       } catch (err: any) {
-        return Response.json({ success: false, error: err.message }, { status: 500 });
+        return jsonResponse({ success: false, error: err.message }, { status: 500 });
       }
     }
 
@@ -482,14 +513,14 @@ export default {
         const email = String(body?.email ?? '').trim().toLowerCase();
 
         if (!email || !email.includes('@')) {
-          return Response.json({ error: 'Invalid email address.' }, { status: 400 });
+          return jsonResponse({ error: 'Invalid email address.' }, { status: 400 });
         }
 
         const apiKey = env.RESEND_API_KEY || process.env.RESEND_API_KEY;
         const audienceId = env.RESEND_AUDIENCE_ID || process.env.RESEND_AUDIENCE_ID;
 
         if (!apiKey || !audienceId) {
-          return Response.json({ error: 'Resend API not configured.' }, { status: 500 });
+          return jsonResponse({ error: 'Resend API not configured.' }, { status: 500 });
         }
 
         const res = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
@@ -504,14 +535,14 @@ export default {
         const data: any = await res.json();
         if (!res.ok) {
           if (data?.name === 'validation_error' && data?.message?.includes('already exists')) {
-            return Response.json({ success: true, message: 'Already subscribed.' });
+            return jsonResponse({ success: true, message: 'Already subscribed.' });
           }
-          return Response.json({ error: 'Failed to subscribe.' }, { status: 500 });
+          return jsonResponse({ error: 'Failed to subscribe.' }, { status: 500 });
         }
 
-        return Response.json({ success: true });
+        return jsonResponse({ success: true });
       } catch (err: any) {
-        return Response.json({ error: err.message || 'Error subscribing' }, { status: 500 });
+        return jsonResponse({ error: err.message || 'Error subscribing' }, { status: 500 });
       }
     }
 

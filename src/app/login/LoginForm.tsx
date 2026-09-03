@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Mail, ArrowRight, Sparkles, Loader2 } from 'lucide-react';
@@ -26,6 +26,27 @@ export default function LoginForm() {
   const [localError, setLocalError] = useState<string | null>(null);
 
   const displayError = localError || (errorParam ? errorCopy[errorParam] || 'Something went wrong. Please try again.' : null);
+
+  // Poll session while waiting for magic link click so current tab automatically signs in
+  useEffect(() => {
+    if (!sentEmail) return;
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch('/api/user/session', {
+          cache: 'no-store',
+          credentials: 'include',
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.authenticated) {
+            clearInterval(interval);
+            window.location.href = next || '/shortlist';
+          }
+        }
+      } catch {}
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [sentEmail, next]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

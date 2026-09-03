@@ -39,7 +39,10 @@ export async function getShortlistSlugs(): Promise<{
 }> {
   if (typeof window !== 'undefined') {
     try {
-      const res = await fetch('/api/shortlist');
+      const res = await fetch('/api/shortlist', {
+        credentials: 'include',
+        cache: 'no-store',
+      });
       if (res.ok) {
         const data = await res.json();
         return {
@@ -272,7 +275,10 @@ export async function getApplicationsWithDetails(): Promise<{
 }> {
   if (typeof window !== 'undefined') {
     try {
-      const res = await fetch('/api/shortlist');
+      const res = await fetch('/api/shortlist', {
+        credentials: 'include',
+        cache: 'no-store',
+      });
       if (res.ok) {
         const data = await res.json();
         const rows = data.applications || [];

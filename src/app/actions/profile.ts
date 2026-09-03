@@ -55,7 +55,10 @@ export async function getCurrentProfile(): Promise<{
 }> {
   if (typeof window !== 'undefined') {
     try {
-      const res = await fetch('/api/user/profile');
+      const res = await fetch('/api/user/profile', {
+        credentials: 'include',
+        cache: 'no-store',
+      });
       if (res.ok) {
         const data = await res.json();
         let parsedQuizAnswers = null;
