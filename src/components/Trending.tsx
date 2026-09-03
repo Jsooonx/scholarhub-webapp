@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { allScholarships, providerGroup, getScholarshipImage, providerMeta } from '@/lib/scholarships';
-import { isPopNavigation } from '@/components/SmoothScroll';
 import { Button, LinkButton } from '@/components/ui/button';
 
 const ALL_PROVIDER_GROUPS = Object.keys(providerMeta);
@@ -135,9 +134,6 @@ export default function Trending() {
 
   // Restore page from sessionStorage on mount (back navigation)
   useEffect(() => {
-    if (isPopNavigation()) {
-      setSkipAnimation(true);
-    }
     try {
       const saved = sessionStorage.getItem('__trending_page');
       if (saved !== null) {

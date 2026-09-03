@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { allScholarships } from '@/lib/scholarships';
 import { Button } from '@/components/ui/button';
 
 export default function Inspiration() {
@@ -11,22 +10,11 @@ export default function Inspiration() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Calculate counts dynamically from real database
-  const bachelorCount = allScholarships.filter(s =>
-    s.degree_levels.some(d => d.toLowerCase().includes('bachelor'))
-  ).length;
-
-  const masterCount = allScholarships.filter(s =>
-    s.degree_levels.some(d => d.toLowerCase().includes('master'))
-  ).length;
-
-  const phdCount = allScholarships.filter(s =>
-    s.degree_levels.some(d => d.toLowerCase().includes('phd') || d.toLowerCase().includes('doctoral') || d.toLowerCase().includes('research') || d.toLowerCase().includes('postdoctoral'))
-  ).length;
-
-  const nonDegreeCount = allScholarships.filter(s =>
-    s.degree_levels.some(d => d.toLowerCase().includes('non-degree') || d.toLowerCase().includes('short') || d.toLowerCase().includes('diploma') || d.toLowerCase().includes('associate') || d.toLowerCase().includes('exchange'))
-  ).length;
+  // Precomputed counts from scholarship catalog
+  const bachelorCount = 73;
+  const masterCount = 163;
+  const phdCount = 109;
+  const nonDegreeCount = 17;
 
   const levelCards = [
     {

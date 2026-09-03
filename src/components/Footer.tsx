@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { ChevronDown, Mail } from 'lucide-react';
-import { providerMeta } from '@/lib/scholarships';
+import { providerMeta } from '@/lib/scholarships/providerMeta';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 

@@ -1,11 +1,11 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
 html {
   scrollbar-gutter: stable;
+  scroll-behavior: auto !important;
 }
 
 @theme {
@@ -139,26 +139,6 @@ body {
   background: #D1D5DB;
 }
 
-/* Lenis scroll styles */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
-}
 
 /* Navbar dropdown scrollbar (webkit) */
 .navbar-dropdown-scroll::-webkit-scrollbar {

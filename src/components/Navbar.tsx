@@ -12,13 +12,14 @@ import {
   Menu,
   Globe,
   GraduationCap,
-  Sparkles,
+  Compass,
   ArrowRight,
   BookOpen,
   X,
 } from 'lucide-react';
 
-import { allScholarships, providerMeta } from '@/lib/scholarships';
+import { providerMeta } from '@/lib/scholarships/providerMeta';
+import type { SearchItem } from '@/lib/scholarships/searchIndex';
 import { useShortlist } from '@/components/ShortlistProvider';
 import { cn } from '@/lib/utils';
 
@@ -61,7 +62,6 @@ import {
 import { Button, LinkButton, buttonVariants } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
   name: meta.name,
@@ -82,10 +82,20 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const [scholarshipsList, setScholarshipsList] = useState<SearchItem[]>([]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Lazy-load compact search index only when search dialog is opened
+  useEffect(() => {
+    if (searchDialogOpen && scholarshipsList.length === 0) {
+      import('@/lib/scholarships/searchIndex').then(({ loadSearchItems }) => {
+        loadSearchItems().then(setScholarshipsList);
+      });
+    }
+  }, [searchDialogOpen, scholarshipsList.length]);
 
   // Close user dropdown on click outside or escape key
   useEffect(() => {
@@ -108,14 +118,14 @@ export default function Navbar() {
 
   // Filter scholarships for live dialog search
   const filteredScholarships = dialogSearchQuery.trim()
-    ? allScholarships.filter(
+    ? scholarshipsList.filter(
         (s) =>
           s.name.toLowerCase().includes(dialogSearchQuery.toLowerCase()) ||
           s.provider.toLowerCase().includes(dialogSearchQuery.toLowerCase()) ||
           (s.country && s.country.toLowerCase().includes(dialogSearchQuery.toLowerCase())) ||
-          s.degree_levels.some((lvl) => lvl.toLowerCase().includes(dialogSearchQuery.toLowerCase()))
+          s.degree_levels?.some((lvl) => lvl.toLowerCase().includes(dialogSearchQuery.toLowerCase()))
       ).slice(0, 15)
-    : allScholarships.slice(0, 10);
+    : scholarshipsList.slice(0, 10);
 
   // Filter providers for live dialog search
   const filteredProviders = dialogSearchQuery.trim()
@@ -291,11 +301,10 @@ export default function Navbar() {
                           className="flex flex-col justify-between p-3.5 rounded-xl bg-gradient-to-br from-brand-accent/10 via-brand-cream to-white border border-brand-accent/30 hover:border-brand-accent/60 hover:shadow-md transition-all group/quiz"
                         >
                           <div>
-                            <div className="flex items-center justify-between mb-2">
-                              <Badge className="bg-brand-accent text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                AI Matcher
-                              </Badge>
-                              <Sparkles className="h-4 w-4 text-brand-accent group-hover/quiz:rotate-12 transition-transform" />
+                            <div className="flex items-center justify-between mb-2.5">
+                              <div className="w-7 h-7 rounded-lg bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent group-hover/quiz:bg-brand-accent group-hover/quiz:text-white transition-all">
+                                <Compass className="h-4 w-4 group-hover/quiz:rotate-45 transition-transform" />
+                              </div>
                             </div>
                             <h4 className="text-sm font-bold text-brand-dark group-hover/quiz:text-brand-accent transition-colors">
                               ScholarMatch Quiz
@@ -465,7 +474,7 @@ export default function Navbar() {
                           onClick={() => setUserMenuOpen(false)}
                           className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
                         >
-                          <Sparkles className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
+                          <Compass className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
                           ScholarMatch Quiz
                         </Link>
                       </div>
@@ -563,7 +572,7 @@ export default function Navbar() {
                       className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-brand-accent/15 to-brand-cream border border-brand-accent/30 text-xs font-bold text-brand-accent hover:opacity-90 transition-opacity"
                     >
                       <span className="flex items-center gap-2">
-                        <Sparkles className="h-4 w-4" />
+                        <Compass className="h-4 w-4" />
                         ScholarMatch Quiz
                       </span>
                       <ArrowRight className="h-3.5 w-3.5" />

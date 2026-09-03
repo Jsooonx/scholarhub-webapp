@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Lora, Geist } from "next/font/google";
+import { Lora, Geist } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
 import { ShortlistProvider } from "@/components/ShortlistProvider";
-import { BASE_URL } from "@/lib/scholarships";
+import { BASE_URL } from "@/lib/scholarships/helpers";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 
@@ -61,10 +60,8 @@ export default function RootLayout({
       <body className="min-h-full bg-brand-bg text-brand-dark font-sans flex flex-col selection:bg-brand-dark selection:text-white">
         <Suspense>
           <ShortlistProvider>
-            <SmoothScroll>
-              <Navbar />
-              {children}
-            </SmoothScroll>
+            <Navbar />
+            {children}
           </ShortlistProvider>
         </Suspense>
       </body>

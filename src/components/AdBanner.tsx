@@ -1,6 +1,3 @@
-'use client';
-
-import { useRef } from 'react';
 import Link from 'next/link';
 import { allScholarships, providerMeta } from '@/lib/scholarships';
 import SplitText from '@/components/SplitText';
@@ -15,7 +12,6 @@ const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
 
 export default function AdBanner() {
   const total = allScholarships.length;
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="py-6 bg-brand-bg">
@@ -57,8 +53,6 @@ export default function AdBanner() {
             {/* Right: Provider Flags - 3 columns, wheel-scrollable */}
             <div className="relative z-10 flex-1 w-full max-w-md lg:max-w-none flex items-center justify-center lg:justify-end">
               <div
-                ref={scrollRef}
-                data-lenis-prevent
                 className="w-full overflow-y-auto pr-0.5"
                 style={{
                   maxHeight: '11.5rem',

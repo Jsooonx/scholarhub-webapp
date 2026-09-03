@@ -7,7 +7,6 @@ import { CheckCircle2, Lightbulb, ArrowLeft, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { allScholarships, getScholarshipImage, providerGroup, providerMeta } from '@/lib/scholarships';
 import { curatedPicks, CuratedPick } from '@/data/curated';
-import { isPopNavigation } from '@/components/SmoothScroll';
 import { Button, LinkButton } from '@/components/ui/button';
 import SaveScholarshipButton from '@/components/SaveScholarshipButton';
 import { cn } from '@/lib/utils';
@@ -75,9 +74,6 @@ export default function CuratedPicks() {
 
   // Restore page from sessionStorage on mount (back navigation)
   useEffect(() => {
-    if (isPopNavigation()) {
-      setSkipAnimation(true);
-    }
     try {
       const saved = sessionStorage.getItem('__curated_picks_page');
       if (saved !== null) {
