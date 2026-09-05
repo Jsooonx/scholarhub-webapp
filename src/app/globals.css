@@ -51,14 +51,17 @@ html {
   }
 }
 
-/* Unified pill button click feedback — pure smooth bounce only */
+/* Unified pill button click feedback — pure smooth bounce only without corner distortion */
 .interactive-press {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
   transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .interactive-press:active {
-  transform: scale(0.96);
+  transform: scale(0.97) translateZ(0);
   transition: transform 0.08s ease-out;
 }
 

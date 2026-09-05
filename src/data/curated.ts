@@ -5,11 +5,56 @@ export interface CuratedPick {
   insiderTip: string;
 }
 
+export interface PersonallyCuratedMeta {
+  badge: string;
+  summary: string;
+  verifiedCycle?: string;
+}
+
+export const personallyCuratedMap: Record<string, PersonallyCuratedMeta> = {
+  'romanian-government-mfa-scholarship-non-eu-citizens': {
+    badge: 'Personally Curated',
+    summary: 'Thoroughly researched and verified from direct applicant experience, official Study in Romania portal workflow, real living cost breakdowns, and document requirements.',
+    verifiedCycle: 'Based on 2026/2027 Cycle',
+  },
+  'romanian-government-arice-scholarship': {
+    badge: 'Personally Curated',
+    summary: 'Thoroughly researched and verified from direct applicant experience, official KBRI Bucharest recommendation pathway, ARICE annex forms, and quota data.',
+    verifiedCycle: 'Based on 2026/2027 Cycle',
+  },
+};
+
+export function isPersonallyCurated(slug: string): boolean {
+  return Boolean(personallyCuratedMap[slug]);
+}
+
+export function getPersonallyCuratedMeta(slug: string): PersonallyCuratedMeta | null {
+  return personallyCuratedMap[slug] || null;
+}
+
 export const curatedPicks: CuratedPick[] = [
+
+  // ── ROMANIA GOVERNMENT (MFA vs ARICE Dual Route) ──────────────────────────
+
+  // 1. Romanian Government MFA Scholarship (MFA Route - Non-EU Citizens)
+  {
+    slug: 'romanian-government-mfa-scholarship-non-eu-citizens',
+    badge: 'MFA Portal · 500 Quota',
+    editorReason: 'Romania\'s flagship diplomatic track offering ~500 global seats across all fields (except Medicine). Administered via the Study in Romania portal, it covers full tuition, dorms, and a 1-year Romanian language preparatory year.',
+    insiderTip: 'Selection is 100% document-based with zero interview stages. Ensure diplomas have Hague Apostille verification. You can only choose 2 public universities (locked once submitted), with deadline strictly on March 31.'
+  },
+
+  // 2. Romanian Government ARICE Scholarship (ARICE Route)
+  {
+    slug: 'romanian-government-arice-scholarship',
+    badge: 'ARICE Email · 40 Quota',
+    editorReason: 'Administered by the Agency for Investments and Foreign Trade, this ultra-selective scheme awards only 40 seats worldwide, prioritizing Economics & Business, Agriculture, Engineering, and Oil & Gas.',
+    insiderTip: 'Khusus WNI: Wajib pantau IG @indonesiainbucharest. Kirim berkas lengkap ke KBRI Bucharest via email untuk terbitkan Surekom + Nota Verbal—pihak KBRI yang akan submit langsung ke ARICE!'
+  },
 
   // ── UNDERGRADUATE (Bachelor / S1) ─────────────────────────────────────────
 
-  // 1. MEXT Undergraduate - Gakubu (Japan)
+  // 3. MEXT Undergraduate - Gakubu (Japan)
   {
     slug: 'mext-scholarship-undergraduate-gakubu-2027',
     badge: 'Fully Funded S1',
@@ -17,7 +62,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'MEXT applications are split into Embassy and University tracks. For undergraduate applicants, written exams are the ultimate filter, whereas research applicants can strategically bypass these tests via direct professor nomination. Click to explore both tracks.'
   },
 
-  // 2. ASEAN Undergraduate Scholarship - NUS (Singapore)
+  // 4. ASEAN Undergraduate Scholarship - NUS (Singapore)
   {
     slug: 'asean-undergraduate-scholarship-nus',
     badge: 'Automatic Selection',
@@ -25,7 +70,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'There is no separate application form. Selection is made automatically during the NUS admissions process, so make sure your high school grades and Olympiad achievements are stellar.'
   },
 
-  // 3. ASEAN Undergraduate Scholarship - NTU (Singapore)
+  // 5. ASEAN Undergraduate Scholarship - NTU (Singapore)
   {
     slug: 'asean-undergraduate-scholarship-ntu',
     badge: 'Automatic Selection',
@@ -33,7 +78,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Like NUS, there is no separate application form. Admission to NTU automatically screens you for this scholarship, so aim for top grades and outstanding Co-Curricular Activities (CCA).'
   },
 
-  // 4. GKS Undergraduate Scholarship (South Korea)
+  // 6. GKS Undergraduate Scholarship (South Korea)
   {
     slug: 'gks-undergraduate-scholarship-global-korea-scholarship-bachelors',
     badge: 'No IELTS Required',
@@ -41,7 +86,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Success in GKS depends entirely on choosing the right gateway. You must strategically weigh the multi-choice Embassy Track against the direct, single-choice University Track which offers dedicated regional quotas. Click to unlock our full breakdown of both pathways.'
   },
 
-  // 5. KAIST Undergraduate Scholarship (South Korea)
+  // 7. KAIST Undergraduate Scholarship (South Korea)
   {
     slug: 'kaist-international-student-scholarship-undergraduate',
     badge: 'English-Taught STEM',
@@ -49,7 +94,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'High school grades in math and science are highly valued. Submitting standardized test scores (SAT/ACT/AP/IB) will greatly enhance your competitiveness.'
   },
 
-  // 6. Türkiye Bursları Bachelor's Scholarship (Turkey)
+  // 8. Türkiye Bursları Bachelor's Scholarship (Turkey)
   {
     slug: 'trkiye-burslari-bachelors-scholarship-program',
     badge: 'Free Turkish Course',
@@ -57,7 +102,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Turkish universities value academic consistency. Make sure your high school graduation scores are excellent, and prepare well for basic academic logic and math questions that might be asked in the interview.'
   },
 
-  // 7. Stipendium Hungaricum Bachelor's Scholarship (Hungary)
+  // 9. Stipendium Hungaricum Bachelor's Scholarship (Hungary)
   {
     slug: 'stipendium-hungaricum-bachelors-one-tier-masters-scholarship',
     badge: 'No Application Fee',
@@ -65,7 +110,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Apply for courses that align with your high school academic track. Since the selection is highly competitive, make sure your recommendation letters highlight your academic drive.'
   },
 
-  // 8. Saudi Government Bachelor's Scholarship (Saudi Arabia)
+  // 10. Saudi Government Bachelor's Scholarship (Saudi Arabia)
   {
     slug: 'saudi-government-scholarship-bachelors-study-in-saudi-arabia',
     badge: 'No Application Fee',
@@ -75,7 +120,7 @@ export const curatedPicks: CuratedPick[] = [
 
   // ── MASTER (S2) ────────────────────────────────────────────────────────────
 
-  // 9. KAUST Fellowship (Saudi Arabia) — Master / PhD
+  // 11. KAUST Fellowship (Saudi Arabia) — Master / PhD
   {
     slug: 'king-abdullah-university-of-science-technology-kaust-fellowship',
     badge: 'Highest Stipend',
@@ -83,7 +128,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Since the scholarship is bond-free and extremely generous, selection panels focus heavily on your research background. Align your research statement directly with a KAUST faculty member\'s active projects before applying.'
   },
 
-  // 10. Chevening Scholarship (UK)
+  // 12. Chevening Scholarship (UK)
   {
     slug: 'chevening-scholarship-indonesia',
     badge: 'Prestigious Network',
@@ -91,7 +136,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Chevening values strong networking and leadership potential. Craft four cohesive essays (Leadership, Networking, Study in UK, Career Plan) that link together with clear, real-life examples.'
   },
 
-  // 11. Fulbright Master's Scholarship (US)
+  // 13. Fulbright Master's Scholarship (US)
   {
     slug: 'fulbright-masters-degree-scholarship',
     badge: 'No TOEFL iBT Needed',
@@ -99,7 +144,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Fulbright accepts paper-based TOEFL ITP scores for the initial application stage, meaning you do not need to take expensive IELTS or TOEFL iBT tests beforehand.'
   },
 
-  // 12. Saudi Government Master's Scholarship (Saudi Arabia)
+  // 14. Saudi Government Master's Scholarship (Saudi Arabia)
   {
     slug: 'saudi-government-scholarship-masters-study-in-saudi-arabia',
     badge: 'High Living Stipend',
@@ -107,7 +152,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'KAUST offers state-of-the-art laboratory facilities and abundant research funding. The scholarship package provides one of the highest monthly stipends globally.'
   },
 
-  // 13. Türkiye Bursları Master's Scholarship (Turkey)
+  // 15. Türkiye Bursları Master's Scholarship (Turkey)
   {
     slug: 'trkiye-burslari-graduate-scholarship-program-masters',
     badge: 'Free Turkish Course',
@@ -115,7 +160,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'The online application form is highly detailed. Pay extra attention to the Letter of Intent section. Clearly describe why Turkey is your ideal academic destination.'
   },
 
-  // 14. Chinese Government Scholarship Bilateral (China)
+  // 16. Chinese Government Scholarship Bilateral (China)
   {
     slug: 'chinese-government-scholarship-cgs-bilateral-program',
     badge: 'Fully Funded',
@@ -123,7 +168,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Securing a Pre-admission Letter from your target Chinese university beforehand guarantees your placement and significantly boosts your final selection prospects.'
   },
 
-  // 15. Stipendium Hungaricum Master's Scholarship (Hungary)
+  // 17. Stipendium Hungaricum Master's Scholarship (Hungary)
   {
     slug: 'stipendium-hungaricum-masters-scholarship',
     badge: 'No Application Fee',
@@ -131,7 +176,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Since this program requires home-country endorsement, Indonesian applicants must carefully monitor the local Ministry of Education portal for preliminary document screening cycles.'
   },
 
-  // 16. Open Doors Russian Scholarship (Russia)
+  // 18. Open Doors Russian Scholarship (Russia)
   {
     slug: 'open-doors-russian-scholarship-project',
     badge: 'Online Olympiad',
@@ -141,7 +186,7 @@ export const curatedPicks: CuratedPick[] = [
 
   // ── PhD (S3) ───────────────────────────────────────────────────────────────
 
-  // 17. Rhodes Scholarship (UK)
+  // 19. Rhodes Scholarship (UK)
   {
     slug: 'rhodes-scholarship-university-of-oxford',
     badge: 'Oldest Global Award',
@@ -149,7 +194,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Rhodes selection is extremely intense, focusing heavily on character and leadership. Your personal statement should tell a compelling story of your values, driving purpose, and how you plan to stand up for the world.'
   },
 
-  // 18. Gates Cambridge Scholarship (UK)
+  // 20. Gates Cambridge Scholarship (UK)
   {
     slug: 'gates-cambridge-scholarship',
     badge: 'Gates Foundation',
@@ -157,7 +202,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Gates Cambridge requires a dedicated reference letter evaluating your fit for the scholarship. Choose a referee who can explicitly speak about your commitment to improving the lives of others, not just your academic marks.'
   },
 
-  // 19. Clarendon Fund (UK)
+  // 21. Clarendon Fund (UK)
   {
     slug: 'clarendon-fund-scholarship-university-of-oxford',
     badge: 'Oxford Premier',
@@ -165,7 +210,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'There is no separate application form for Clarendon. All graduate applicants to the University of Oxford who apply before the December/January deadline are automatically considered.'
   },
 
-  // 20. Australia Awards Scholarships (Australia)
+  // 22. Australia Awards Scholarships (Australia)
   {
     slug: 'australia-awards-scholarships-phd-masters-indonesia',
     badge: 'High Acceptance Rate',
@@ -173,7 +218,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: "Focus your essays heavily on the 'Development Impact' section. Explicitly connect your study program to priority development sectors in your home country."
   },
 
-  // 21. Fulbright PhD Scholarship (US)
+  // 23. Fulbright PhD Scholarship (US)
   {
     slug: 'fulbright-doctoral-degree-phd-scholarship',
     badge: '3 Years Funding',
@@ -181,7 +226,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Clearly outline how your doctoral research will contribute to academic development and capacity building in Indonesia upon your return. A strong academic letter of recommendation is crucial.'
   },
 
-  // 22. GKS Graduate Scholarship (South Korea)
+  // 24. GKS Graduate Scholarship (South Korea)
   {
     slug: 'gks-graduate-scholarship-global-korea-scholarship-masters-phd',
     badge: 'Fully Funded',
@@ -189,7 +234,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Applying via the Embassy Track allows you to choose up to three universities, significantly increasing your chances of getting accepted compared to the single-choice University Track.'
   },
 
-  // 23. MEXT Research Students (Japan)
+  // 25. MEXT Research Students (Japan)
   {
     slug: 'mext-scholarship-research-students-masterphd-2027',
     badge: 'No IELTS Required',
@@ -197,7 +242,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'MEXT applications are split into Embassy and University tracks. For undergraduate applicants, written exams are the ultimate filter, whereas research applicants can strategically bypass these tests via direct professor nomination. Click to explore both tracks.'
   },
 
-  // 24. KAIST Graduate Fellowship (South Korea)
+  // 26. KAIST Graduate Fellowship (South Korea)
   {
     slug: 'kaist-graduate-fellowship-masters-phd',
     badge: 'Extra Lab Stipend',
@@ -205,7 +250,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Contacting and matching with a potential faculty advisor (Professor) before submitting your application is highly critical for graduate admission.'
   },
 
-  // 25. Saudi Government PhD Scholarship (Saudi Arabia)
+  // 27. Saudi Government PhD Scholarship (Saudi Arabia)
   {
     slug: 'saudi-government-scholarship-phd-study-in-saudi-arabia',
     badge: 'Full Research Cover',
@@ -213,7 +258,7 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'For technical and scientific fields, apply to research-heavy universities like KAUST. Emphasize your previous publications and research projects in your statement of purpose.'
   },
 
-  // 26. Türkiye Bursları PhD Scholarship (Turkey)
+  // 28. Türkiye Bursları PhD Scholarship (Turkey)
   {
     slug: 'trkiye-burslari-graduate-scholarship-program-phd',
     badge: 'Research Grant Option',
@@ -221,28 +266,12 @@ export const curatedPicks: CuratedPick[] = [
     insiderTip: 'Make sure you have a highly detailed research proposal. Contacting a supervisor at your target Turkish university beforehand and attaching a letter of support will strongly boost your candidacy.'
   },
 
-  // 27. Stipendium Hungaricum PhD Scholarship (Hungary)
+  // 29. Stipendium Hungaricum PhD Scholarship (Hungary)
   {
     slug: 'stipendium-hungaricum-doctoral-phd-scholarship',
     badge: 'High PhD Allowance',
     editorReason: 'Full-ride doctoral funding for 4 years in Hungary, with higher monthly stipends than undergraduate levels, tuition coverage, and medical insurance.',
     insiderTip: 'You must secure a supervisor from a Hungarian doctoral school before applying. Having a detailed research proposal and an acceptance email from a Hungarian professor is mandatory.'
-  },
-
-  // 28. Romanian Government ARICE Scholarship (Romania)
-  {
-    slug: 'romanian-government-arice-scholarship',
-    badge: '40 Seats Annually',
-    editorReason: 'Administered by the Romanian Agency for Investments and Foreign Trade (ARICE), this highly competitive program awards full-ride scholarships across diverse fields of study.',
-    insiderTip: 'Due to the limited worldwide quota of 40 seats, your Motivation Letter should clearly outline how your chosen field of study will strengthen economic ties between your home country and Romania.'
-  },
-
-  // 29. Romanian Government MFA Scholarship (Romania)
-  {
-    slug: 'romanian-government-mfa-scholarship-non-eu-citizens',
-    badge: 'No Interview',
-    editorReason: 'The Romanian Government MFA Scholarship is an excellent gateway to Eastern Europe for students who want a fully-funded path without going through stressful interview panels.',
-    insiderTip: 'Selection is strictly document-based. Ensure all your academic transcripts and degrees are apostilled under the Hague Convention to achieve maximum evaluation scores.'
   },
 
   // 30. Russian Government Quota (Russia)

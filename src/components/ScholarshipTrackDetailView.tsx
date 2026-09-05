@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -26,6 +26,7 @@ import InsiderGuide from '@/components/InsiderGuide';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import { Button, LinkButton } from '@/components/ui/button';
 import { type EnrichmentData } from '@/data/enriched';
+import { getPersonallyCuratedMeta } from '@/data/curated';
 import {
   type Scholarship,
   type DeadlineStatus as DStatus,
@@ -82,6 +83,20 @@ export default function ScholarshipTrackDetailView({
 
   const group = providerGroup(s.provider);
   const flag = providerMeta[group]?.flag ?? '🌍';
+  const curatedMeta = getPersonallyCuratedMeta(s.slug);
+
+  // Sourced intake year cycle note
+  const cycleNote = useMemo(() => {
+    const allText = [
+      ...(s.important_dates ?? []),
+      ...(s.application_period ?? []),
+      s.deadline ?? '',
+      s.name ?? '',
+    ].join(' ');
+    if (allText.includes('2027') || allText.includes('2026')) return '2026/2027';
+    if (allText.includes('2025')) return '2025/2026';
+    return null;
+  }, [s]);
 
   // Resolve track-specific details
   const currentTrackData = tracks ? tracks[activeTrack] : null;
@@ -157,6 +172,11 @@ export default function ScholarshipTrackDetailView({
               </h1>
 
               <div className="flex flex-wrap gap-2 mb-4">
+                {curatedMeta && (
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-brand-dark text-white shadow-xs">
+                    {curatedMeta.badge}
+                  </span>
+                )}
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${fundingClass(s.funding_type)}`}>
                   {s.funding_type}
                 </span>
@@ -188,6 +208,27 @@ export default function ScholarshipTrackDetailView({
                   <DeadlineStatus status={status} />
                 )}
               </div>
+
+              {curatedMeta && (
+                <div className="mb-5 rounded-2xl border border-brand-border bg-gradient-to-r from-brand-cream/90 via-white to-brand-cream/50 p-4 sm:p-5 shadow-xs">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-dark text-white">
+                        {curatedMeta.badge}
+                      </span>
+                      <span className="text-xs font-bold text-brand-dark">Deep Research & Verified Selection Experience</span>
+                    </div>
+                    {curatedMeta.verifiedCycle && (
+                      <span className="text-[11px] font-medium text-brand-muted bg-brand-cream px-2.5 py-0.5 rounded-lg border border-brand-border/60">
+                        {curatedMeta.verifiedCycle}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-xs text-brand-muted leading-relaxed">
+                    {curatedMeta.summary}
+                  </p>
+                </div>
+              )}
 
               {s.description && (
                 <p className="text-sm text-brand-muted leading-relaxed max-w-3xl font-serif italic border-l-2 border-brand-accent/30 pl-4 py-1">
@@ -383,10 +424,17 @@ export default function ScholarshipTrackDetailView({
 
                   {/* Application window / Dates */}
                   <section>
-                    <h2 className="font-serif text-xl font-semibold text-brand-dark mb-4 flex items-center gap-2">
-                      <Calendar className="h-5 w-5 text-brand-muted" />
-                      Application window
-                    </h2>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
+                      <h2 className="font-serif text-xl font-semibold text-brand-dark flex items-center gap-2">
+                        <Calendar className="h-5 w-5 text-brand-muted" />
+                        Application window
+                      </h2>
+                      {cycleNote && (
+                        <span className="text-[11px] font-medium text-brand-muted bg-brand-cream/80 border border-brand-border/70 px-2.5 py-0.5 rounded-full w-fit">
+                          Based on {cycleNote} official intake
+                        </span>
+                      )}
+                    </div>
                     <div className="rounded-2xl border border-brand-border bg-white p-5 space-y-4">
                       {mounted ? (
                         <div className="h-10 flex items-center relative overflow-hidden">
@@ -414,26 +462,22 @@ export default function ScholarshipTrackDetailView({
                           <p><span className="font-medium">Estimated Intake Period: </span>{currentTrackData.deadlines}</p>
                         </div>
                       ) : (
-                        <>
-                          {group === 'japan' && (
-                            <div className="space-y-1">
-                              {status.type !== 'check' && s.deadline && (
-                                <p className="text-xs text-brand-dark">
-                                  <span className="font-medium">Deadline: </span>
-                                  {s.deadline.replace(/^\*\s*/, '')}
-                                </p>
-                              )}
-                              {s.application_period && s.application_period.length > 0 && (
-                                <p className="text-xs text-brand-dark">
-                                  <span className="font-medium">Registration period: </span>
-                                  {s.application_period[0].replace(/^\|\s*●\s*\|[^|]*\|\s*:\s*/, '').replace(/\s*\|.*$/, '').trim()}
-                                </p>
-                              )}
-                            </div>
+                        <div className="space-y-1.5">
+                          {status.type !== 'check' && s.deadline && (
+                            <p className="text-xs text-brand-dark">
+                              <span className="font-medium">Deadline: </span>
+                              {s.deadline.replace(/^\*\s*/, '')}
+                            </p>
+                          )}
+                          {s.application_period && s.application_period.length > 0 && (
+                            <p className="text-xs text-brand-dark">
+                              <span className="font-medium">Registration period: </span>
+                              {s.application_period[0].replace(/^\|\s*●\s*\|[^|]*\|\s*:\s*/, '').replace(/\s*\|.*$/, '').trim()}
+                            </p>
                           )}
 
                           {group === 'turkey' && (
-                            <div className="text-xs text-brand-dark space-y-1">
+                            <div className="text-xs text-brand-dark space-y-1 pt-1">
                               <p><span className="font-medium">General intake: </span>January 10 - February 20 (annual)</p>
                               <p><span className="font-medium">Results announced: </span>Early August</p>
                               <p><span className="font-medium">Start date: </span>September</p>
@@ -441,17 +485,19 @@ export default function ScholarshipTrackDetailView({
                           )}
 
                           {group === 'germany' && (
-                            <div className="text-xs text-brand-dark space-y-1">
+                            <div className="text-xs text-brand-dark space-y-1 pt-1">
                               <p>DAAD operates on an annual intake. Most program deadlines vary. Check the official site for current windows.</p>
                             </div>
                           )}
-                        </>
+                        </div>
                       )}
 
                       <div className="flex items-start gap-2 pt-3 border-t border-brand-border">
                         <Info className="h-3.5 w-3.5 text-brand-muted flex-shrink-0 mt-0.5" />
                         <p className="text-[11px] text-brand-muted leading-relaxed">
-                          Dates are based on data sourced from official providers. Deadlines may shift between intake years. Always verify on the official website before applying.
+                          {cycleNote
+                            ? `Dates and application windows reflect official ${cycleNote} data from provider announcements. Deadlines may shift slightly between intake cycles; always verify with the official portal before applying.`
+                            : 'Dates are based on data sourced from official providers. Deadlines may shift between intake years. Always verify on the official website before applying.'}
                         </p>
                       </div>
                     </div>
@@ -460,10 +506,17 @@ export default function ScholarshipTrackDetailView({
                   {/* Important dates */}
                   {!currentTrackData && s.important_dates && s.important_dates.length > 0 && (
                     <section>
-                      <h2 className="font-serif text-xl font-semibold text-brand-dark mb-4 flex items-center gap-2">
-                        <Clock className="h-5 w-5 text-brand-muted" />
-                        Important dates
-                      </h2>
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
+                        <h2 className="font-serif text-xl font-semibold text-brand-dark flex items-center gap-2">
+                          <Clock className="h-5 w-5 text-brand-muted" />
+                          Important dates
+                        </h2>
+                        {cycleNote && (
+                          <span className="text-[11px] font-medium text-brand-muted bg-brand-cream/80 border border-brand-border/70 px-2.5 py-0.5 rounded-full w-fit">
+                            Based on {cycleNote} official cycle
+                          </span>
+                        )}
+                      </div>
                       <div className="rounded-2xl border border-brand-border bg-white overflow-hidden">
                         {s.important_dates.map((d, i) => {
                           const clean = d.replace(/^●\s*\|\s*/, '').replace(/\s*\|/g, ' - ');
@@ -474,6 +527,9 @@ export default function ScholarshipTrackDetailView({
                           );
                         })}
                       </div>
+                      <p className="text-[11px] text-brand-muted italic mt-2 ml-1">
+                        * Timeline is derived from official {cycleNote ?? 'researched'} intake records. Subsequent application cycles generally follow a comparable annual schedule.
+                      </p>
                     </section>
                   )}
 
@@ -509,7 +565,14 @@ export default function ScholarshipTrackDetailView({
 
               <div className="space-y-3 mb-6">
                 <div className="pb-3 border-b border-brand-border">
-                  <p className="text-[10px] text-brand-muted mb-1.5 font-medium uppercase tracking-wider">Application status</p>
+                  <div className="flex items-center justify-between gap-1 mb-1.5">
+                    <p className="text-[10px] text-brand-muted font-medium uppercase tracking-wider">Application status</p>
+                    {cycleNote && (
+                      <span className="text-[9px] text-brand-muted font-medium bg-white/70 border border-brand-border/60 px-1.5 py-0.5 rounded">
+                        {cycleNote}
+                      </span>
+                    )}
+                  </div>
                   {mounted ? (
                     <div className="h-10 flex items-center relative overflow-hidden">
                       <AnimatePresence mode="popLayout">

@@ -8,6 +8,7 @@ import SaveScholarshipButton from '@/components/SaveScholarshipButton';
 import { Clock, GraduationCap, MapPin, Check, X } from 'lucide-react';
 import { matchDegree, matchField, matchExperience, matchFunding, matchRegion, type QuizAnswers } from '@/lib/matching';
 import { Button } from '@/components/ui/button';
+import { isPersonallyCurated } from '@/data/curated';
 
 const fundingColors: Record<string, string> = {
   'fully funded': 'bg-emerald-50 text-emerald-700 border-emerald-200',
@@ -118,6 +119,7 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
   const logoUrl = getScholarshipLogo(s);
   const dur = durationLabel(s.duration_months);
   const status = getDeadlineStatus(s);
+  const isCurated = isPersonallyCurated(s.slug);
 
   const checkDegree = quizAnswers ? matchDegree(s, quizAnswers.degree) : false;
   const checkField = quizAnswers ? matchField(s, quizAnswers.field) : false;
@@ -178,6 +180,11 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
             </h3>
 
             <div className="flex flex-wrap gap-2 items-center">
+              {isCurated && (
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-dark text-white shadow-xs">
+                  Personally Curated
+                </span>
+              )}
               <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border ${fundingClass(s.funding_type)}`}>
                 {s.funding_type}
               </span>
@@ -224,6 +231,11 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
               )}
             </div>
             <div className="flex flex-col items-end gap-1.5">
+              {isCurated && (
+                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold bg-brand-dark text-white tracking-wide shadow-xs">
+                  Personally Curated
+                </span>
+              )}
               <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${fundingClass(s.funding_type)}`}>
                 {s.funding_type}
               </span>

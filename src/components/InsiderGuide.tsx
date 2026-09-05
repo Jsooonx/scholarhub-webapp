@@ -9,7 +9,9 @@ import {
   Zap, 
   Globe, 
   Check, 
-  X 
+  X,
+  ShieldCheck,
+  AlertCircle
 } from 'lucide-react';
 import type { EnrichmentData, SocialLink } from '@/data/enriched';
 import { LinkButton } from '@/components/ui/button';
@@ -19,10 +21,24 @@ interface Props {
   className?: string;
 }
 
-export default function InsiderGuide({ data, className = '' }: Props) {
-  const { tracks, trackSectionTitle, exams, socialLinks, strategyTips, differentiators } = data;
+function renderFormattedText(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={index} className="font-semibold text-brand-dark">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
 
-  if (!tracks && !exams && !socialLinks && !strategyTips && !differentiators) return null;
+export default function InsiderGuide({ data, className = '' }: Props) {
+  const { tracks, trackSectionTitle, exams, socialLinks, strategyTips, differentiators, specialNotice } = data;
+
+  if (!tracks && !exams && !socialLinks && !strategyTips && !differentiators && !specialNotice) return null;
 
   const getPlatformDetails = (platform: SocialLink['platform']) => {
     switch (platform) {
@@ -76,6 +92,68 @@ export default function InsiderGuide({ data, className = '' }: Props) {
         <Lightbulb className="w-4.5 h-4.5 text-brand-dark" />
         <h2 className="text-sm font-serif font-bold text-brand-dark uppercase tracking-wider">Insider's Guide</h2>
       </div>
+
+      {/* Special Notice (e.g. Indonesian Applicant Embassy Submission Alert) */}
+      {specialNotice && (
+        <div className="relative overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-brand-cream/80 to-amber-500/[0.04] border border-amber-300/80 rounded-2xl p-4 sm:p-6 shadow-sm">
+          {/* Header & Badges */}
+          <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3.5">
+            <div className="flex items-center gap-2">
+              {specialNotice.badge && (
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide bg-amber-500/15 text-amber-950 border border-amber-500/30">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse" />
+                  {specialNotice.badge}
+                </span>
+              )}
+            </div>
+            {specialNotice.actionButton && (
+              <a
+                href={specialNotice.actionButton.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-white border border-amber-300/80 text-amber-950 hover:bg-amber-50 transition-colors shadow-xs"
+              >
+                <svg className="w-3.5 h-3.5 text-[#E1306C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                <span>{specialNotice.actionButton.label}</span>
+                <ExternalLink className="w-3 h-3 text-amber-800" />
+              </a>
+            )}
+          </div>
+
+          <h3 className="text-sm sm:text-base font-serif font-bold text-brand-dark mb-3 flex items-start gap-2.5 leading-snug">
+            <ShieldCheck className="w-5 h-5 text-amber-700 shrink-0 mt-0.5" />
+            <span>{specialNotice.title}</span>
+          </h3>
+
+          {/* Points list */}
+          <div className="space-y-3 mt-4">
+            {specialNotice.items.map((item, idx) => (
+              <div key={idx} className="flex items-start gap-3 text-xs leading-relaxed text-brand-dark/90">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-amber-600/15 text-amber-950 font-bold text-[10px] shrink-0 mt-0.5 border border-amber-600/30">
+                  {idx + 1}
+                </span>
+                <div className="min-w-0 flex-1 leading-relaxed">
+                  {renderFormattedText(item)}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Footer Warning / Note */}
+          {specialNotice.note && (
+            <div className="mt-4 pt-3 border-t border-amber-200/70 flex items-start gap-2.5 text-xs text-amber-950/90 leading-relaxed bg-amber-100/50 rounded-xl p-3 border border-amber-300/40">
+              <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
+              <div className="min-w-0 flex-1">
+                {renderFormattedText(specialNotice.note)}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Track Comparison */}
       {tracks && tracks.length > 0 && (

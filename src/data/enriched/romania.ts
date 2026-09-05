@@ -1,49 +1,6 @@
-import { TrackInfo, ExamDetail, SocialLink, EnrichmentData } from '../enriched';
+import { SocialLink, EnrichmentData, SpecialNotice } from '../enriched';
 
 // ── Romanian MFA + ARICE Shared Data ─────────────────────────────────────────────
-
-const romaniaTrackComparison: TrackInfo[] = [
-  {
-    name: 'Romanian MFA Scholarship (MFA Route)',
-    acceptanceRate: '500 awards/year globally for non-EU (highly competitive)',
-    quota: 'Limited per sending country; Indonesia eligible',
-    pros: [
-      'Apply online via the Study in Romania portal - straightforward workflow',
-      'All non-EU students eligible, no separate interview at the embassy stage',
-      'Choose 2 Romanian public universities in order of preference (locked after submit)',
-      'All education-related documents (only) need apostille during registration',
-      '1-year Romanian language preparatory year provided free for non-speakers',
-    ],
-    cons: [
-      'Stipend is very small: ~925 Lei/month (~€185 or ~$200). Enough for one month only if you get free dorm.',
-      'Dorm availability varies by university - free, partial, or paid depending on each campus',
-      'Romanian language is mandatory - no bypass even for English-taught programs',
-      'Application is locked after submit - cannot add or change anything',
-      'Results delayed historically (mid-July but can slip) - check your portal account, not just email',
-    ],
-    bestFor: 'Indonesians who want a fully-funded European degree and can self-fund living costs (stipend is symbolic)',
-  },
-  {
-    name: 'Romanian ARICE Scholarship (ARICE Route)',
-    acceptanceRate: 'Only 40 seats worldwide (extremely competitive)',
-    quota: '40 awards globally per year',
-    pros: [
-      'Send application by EMAIL (not portal) with 3 specific annexes (1, 2, 3) all signed',
-      'Priority fields: economics/business admin, agricultural sciences, technical sciences, oil & gas',
-      'Selection is strictly merit-based - academic transcripts + strong letters of recommendation',
-      'Coordinated with the Indonesian Embassy in Bucharest for documentation',
-      'Same benefits as MFA: tuition + dorm + medical + transport + monthly stipend',
-    ],
-    cons: [
-      'Only 40 seats worldwide - highly selective',
-      'Recommendation letter MUST be from specific entities: ARICE economic rep in your country, embassy/consulate in Romania, or ARICE-backed economic entities (not any professor)',
-      'Different deadline from MFA: usually May-June (vs MFA Feb-March)',
-      'Email-based application - incomplete or late submissions automatically disqualified',
-      'Same low stipend (~925 Lei/month) and dorm lottery',
-    ],
-    bestFor: 'Top-performing students in priority fields (economics, business, agriculture, engineering) with strong academic records and existing professional connections',
-  },
-];
 
 const romaniaSocialLinks: SocialLink[] = [
   { label: 'KBRI Bucharest (Indonesian Embassy)', platform: 'instagram', handle: '@indonesiainbucharest', url: 'https://www.instagram.com/indonesiainbucharest/' },
@@ -67,16 +24,30 @@ const romaniaMfaStrategyTips: string[] = [
   'Check your portal account for results, not just email. Results traditionally come mid-July but have been delayed in past cycles.',
 ];
 
+const romaniaAriceSpecialNotice: SpecialNotice = {
+  badge: '🇮🇩 PANDUAN KHUSUS PELAMAR INDONESIA',
+  title: 'Jalur Resmi Pengajuan Rekomendasi (Surekom) & Nota Verbal via KBRI Bucharest',
+  actionButton: {
+    label: 'Instagram KBRI Bucharest',
+    url: 'https://www.instagram.com/indonesiainbucharest/',
+  },
+  items: [
+    '**Wajib Pantau Instagram KBRI Bucharest (@indonesiainbucharest)**: KBRI Bucharest memfasilitasi penerbitan Surat Rekomendasi (*Surekom*) resmi dan Nota Verbal diplomatik yang menjadi berkas wajib seleksi ARICE. Pastikan memantau jadwal dan pengumuman pembukaan di akun Instagram resmi KBRI.',
+    '**Kirim Seluruh Berkas Lengkap via Email ke KBRI**: Pelamar Indonesia **tidak perlu mencari rekomendasi entitas ekonomi Rumania secara mandiri**. Cukup kumpulkan seluruh berkas persyaratan ARICE (Form Annex 1, 2, dan 3 yang telah diisi & ditandatangani, ijazah & transkrip terjemahan tersumpah/apostille, surat keterangan sehat, CV, paspor) lalu kirimkan via email langsung ke KBRI sebelum batas deadline internal yang ditentukan KBRI.',
+    '**KBRI Menangani Surekom, Nota Verbal, & Pengiriman ke ARICE**: Jika berkas memenuhi persyaratan, KBRI Bucharest akan menerbitkan Surat Rekomendasi + Nota Verbal diplomatik. Selanjutnya, **pihak KBRI yang akan mengirimkan langsung seluruh berkas pendaftaran Anda ke panitia ARICE pusat (burse2026@arice.gov.ro / tahun berjalan) dan men-CC email pribadi Anda**. Anda tidak perlu mengirim email terpisah ke pihak ARICE.',
+    '**Catatan Evaluasi / Kesempatan Revisi Berkas (Second Chance)**: Berdasarkan pengalaman seleksi pendaftar (intake 2026), jika terdapat berkas yang kurang atau keliru saat diverifikasi oleh KBRI, pelamar sempat diberikan kesempatan untuk memperbaiki dengan batas waktu khusus dari KBRI.',
+  ],
+  note: '⚠️ **Penting untuk Diingat**: Kebijakan kesempatan revisi berkas (*second chance*) di atas merupakan pengalaman seleksi tahun sebelumnya. Kebijakan ini dapat berubah sewaktu-waktu di masa mendatang (KBRI bisa saja menerapkan sistem gugur langsung tanpa toleransi revisi). Pastikan seluruh dokumen Anda sudah 100% lengkap, rapi, dan sesuai ketentuan sejak pertama kali dikirimkan ke KBRI!',
+};
+
 const romaniaAriceStrategyTips: string[] = [
-  'Apply via EMAIL to burse2026@arice.gov.ro (not via portal). Subject line: "ARICE Scholarship Application 2026 - [Your Full Name]"',
-  'All 3 specific annexes MUST be filled, signed, and scanned as PDFs: Annex 1 (ARICE form), Annex 2 (Ministry of Education form), Annex 3 (self-declaration)',
-  'Recommendation letter MUST come from specific entities: ARICE economic rep in your country, embassy/consulate in Romania, or ARICE-backed economic entities. NOT just any professor.',
-  'Application window: 11 May - 12 June 2026 (different from MFA which is Feb-March). Incomplete or late submissions are automatically disqualified.',
-  'Priority fields: economics/business admin, agricultural sciences, technical sciences, oil & gas. Other fields only if seats remain after priority placement.',
-  'Selection is strictly merit-based - academic transcripts and strong recommendations. No interviews at this stage.',
-  'ARICE has only 40 seats worldwide for all non-EU countries combined - including Indonesia. Highly competitive.',
-  'All documents must be in PDF. Translations accepted in Romanian, English, or French only.',
-  'Documents from Hague Convention countries need apostille. Non-Hague countries need superlegalization via Romanian embassy.',
+  'Jalur Pelamar Indonesia: Kirim berkas lengkap ke KBRI Bucharest (pantau IG @indonesiainbucharest) untuk penerbitan Surekom + Nota Verbal diplomatik. KBRI akan langsung submit ke ARICE & men-CC email Anda.',
+  'Batas Waktu Internal KBRI: Deadline pengumpulan berkas ke KBRI Bucharest biasanya ditutup lebih awal dari batas akhir resmi ARICE (12 Juni 2026). Selalu pantau timeline di Instagram KBRI.',
+  'Semua 3 formulir lampiran wajib diisi lengkap & ditandatangani (format PDF): Annex 1 (Formulir ARICE), Annex 2 (Formulir Kementerian Pendidikan Rumania), Annex 3 (Surat Pernyataan).',
+  'Dokumen pendidikan (Ijazah & Transkrip) wajib diterjemahkan tersumpah ke Bahasa Rumania, Inggris, atau Prancis, serta dilegalisir/Apostille Kemenkumham.',
+  'Bidang studi prioritas: Ekonomi & Bisnis, Ilmu Pertanian, Sains Terapan/Teknik, serta Minyak & Gas. Bidang di luar prioritas hanya diproses jika kuota masih tersisa.',
+  'ARICE hanya menyediakan 40 kuota untuk seluruh pelamar non-EU di dunia. Seleksi murni berbasis portofolio berkas dan nilai akademik tanpa tes tertulis/wawancara.',
+  'Pastikan dokumen lengkap & valid sejak pertama kali submit. Jangan bergantung pada toleransi perbaikan berkas susulan karena kebijakan evaluasi KBRI dapat diperketat sewaktu-waktu.',
 ];
 
 const romaniaDifferentiators: { label: string; description: string }[] = [
@@ -122,12 +93,10 @@ const romaniaDifferentiators: { label: string; description: string }[] = [
   },
 ];
 
-
 export const romaniaEnrichment: Record<string, EnrichmentData> = {
   // ── Romanian MFA Scholarship ──
   'romanian-government-mfa-scholarship-non-eu-citizens': {
     slug: 'romanian-government-mfa-scholarship-non-eu-citizens',
-    tracks: romaniaTrackComparison,
     socialLinks: romaniaSocialLinks,
     strategyTips: romaniaMfaStrategyTips,
     differentiators: romaniaDifferentiators,
@@ -136,10 +105,9 @@ export const romaniaEnrichment: Record<string, EnrichmentData> = {
   // ── Romanian ARICE Scholarship ──
   'romanian-government-arice-scholarship': {
     slug: 'romanian-government-arice-scholarship',
-    tracks: romaniaTrackComparison,
+    specialNotice: romaniaAriceSpecialNotice,
     socialLinks: romaniaSocialLinks,
     strategyTips: romaniaAriceStrategyTips,
     differentiators: romaniaDifferentiators,
   },
-
 };

@@ -124,11 +124,6 @@ export default function CuratedPicks() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-brand-accent bg-brand-accent/5 px-2.5 py-0.5 rounded-full border border-brand-accent/15">
-                Exclusive Curation
-              </span>
-            </div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-brand-dark">
               Handpicked by ScholarHub
             </h2>

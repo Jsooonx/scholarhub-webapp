@@ -111,7 +111,7 @@ function CustomSelect({ value, options, onChange, align = 'left', fullWidth = fa
         variant="secondary"
         size={fullWidth ? 'default' : 'sm'}
         shape="control"
-        className={`min-w-[125px] justify-between rounded-xl text-left ${fullWidth ? 'w-full' : ''}`}
+        className={`min-w-[125px] justify-between rounded-xl text-left border-brand-border active:border-brand-border ${fullWidth ? 'w-full' : ''}`}
       >
         <span className="truncate">{selectedOption?.label}</span>
         <ChevronDown className="h-3.5 w-3.5 flex-shrink-0 text-brand-muted" />

@@ -26,6 +26,17 @@ export interface SocialLink {
   url: string;
 }
 
+export interface SpecialNotice {
+  title: string;
+  badge?: string;
+  items: string[];
+  note?: string;
+  actionButton?: {
+    label: string;
+    url: string;
+  };
+}
+
 export interface EnrichmentData {
   slug: string;
   tracks?: TrackInfo[];
@@ -35,8 +46,8 @@ export interface EnrichmentData {
   communityNotes?: string;
   strategyTips?: string[];
   differentiators?: { label: string; description: string }[];
+  specialNotice?: SpecialNotice;
 }
-
 
 import { japanEnrichment } from './enriched/japan';
 import { koreaEnrichment } from './enriched/korea';
