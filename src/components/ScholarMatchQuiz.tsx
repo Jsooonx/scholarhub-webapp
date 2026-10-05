@@ -699,11 +699,9 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                 <p className="text-sm italic">No scholarships match your level and study field.</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-                {currentResult.matches.slice(0, 9).map(s => (
-                  <div key={s.slug} className="h-full flex flex-col">
-                    <ScholarshipCard scholarship={s} variant="grid" quizAnswers={answers} />
-                  </div>
+              <div className="mt-4 rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] shadow-xs">
+                {currentResult.matches.slice(0, 9).map((s) => (
+                  <ScholarshipCard key={s.slug} scholarship={s} variant="grid" quizAnswers={answers} connected />
                 ))}
               </div>
             )}

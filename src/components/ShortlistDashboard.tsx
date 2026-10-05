@@ -349,9 +349,9 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                         No matching scholarships found.
                       </div>
                     ) : (
-                      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                      <div className="mt-4 rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 gap-[1px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 shadow-xs">
                         {results.matches.slice(0, 8).map((s) => (
-                          <ScholarshipCard key={s.slug} scholarship={s} variant="grid" quizAnswers={currentQuizAnswers} />
+                          <ScholarshipCard key={s.slug} scholarship={s} variant="grid" quizAnswers={currentQuizAnswers} connected />
                         ))}
                       </div>
                     )}
@@ -409,9 +409,9 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                   <h2 className="font-serif text-2xl font-semibold text-brand-dark">Saved scholarships</h2>
                   <p className="text-xs text-brand-muted">{available.length} saved</p>
                 </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div className="rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 gap-[1px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 shadow-xs">
                   {available.map((app) => (
-                    <ScholarshipCard key={app.scholarship_slug} scholarship={app.scholarship!} />
+                    <ScholarshipCard key={app.scholarship_slug} scholarship={app.scholarship!} connected />
                   ))}
                 </div>
               </div>
