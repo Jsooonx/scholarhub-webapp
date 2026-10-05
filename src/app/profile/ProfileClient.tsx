@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ProfileForm from '@/components/ProfileForm';
+import ProfileSkeleton from './ProfileSkeleton';
 import { fetchProfile } from '@/lib/client-api';
 import type { Profile } from '@/app/actions/profile';
 
@@ -38,11 +39,7 @@ export default function ProfileClient() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="mx-auto max-w-7xl px-4 py-16 text-center text-sm text-brand-muted">
-        Loading profile...
-      </div>
-    );
+    return <ProfileSkeleton />;
   }
 
   return (

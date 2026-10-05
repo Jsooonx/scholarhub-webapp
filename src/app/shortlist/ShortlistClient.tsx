@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ShortlistDashboard from '@/components/ShortlistDashboard';
+import ShortlistSkeleton from './ShortlistSkeleton';
 import { fetchShortlist, fetchProfile, type ScholarshipApplication } from '@/lib/client-api';
 import { type QuizAnswers } from '@/lib/matching';
 
@@ -38,11 +39,7 @@ export default function ShortlistClient() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="mx-auto max-w-7xl px-4 py-16 text-center text-sm text-brand-muted">
-        Loading shortlist...
-      </div>
-    );
+    return <ShortlistSkeleton />;
   }
 
   return (

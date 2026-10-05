@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import ScholarshipsClient from './ScholarshipsClient';
+import ScholarshipsSkeleton from './ScholarshipsSkeleton';
 import Footer from '@/components/Footer';
 import { BASE_URL } from '@/lib/scholarships';
 
@@ -21,7 +22,7 @@ export default function ScholarshipsPage() {
   return (
     <div className="flex min-h-screen flex-col bg-brand-bg">
       <main className="flex-grow">
-        <Suspense fallback={<div className="min-h-screen animate-pulse bg-brand-bg" />}>
+        <Suspense fallback={<ScholarshipsSkeleton />}>
           <ScholarshipsClient />
         </Suspense>
       </main>
