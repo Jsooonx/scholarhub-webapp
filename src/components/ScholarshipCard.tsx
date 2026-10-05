@@ -30,6 +30,7 @@ function durationLabel(d: Scholarship['duration_months']) {
 interface Props {
   scholarship: Scholarship;
   variant?: 'grid' | 'list';
+  connected?: boolean;
   quizAnswers?: QuizAnswers;
   className?: string;
 }
@@ -95,7 +96,7 @@ function MatchBadge({
       </Button>
 
       {showPopover && (
-        <div className="absolute right-0 bottom-full mb-2 z-30 w-52 rounded-2xl border border-brand-border bg-white p-3.5 shadow-xl animate-fade-in text-left">
+        <div className="absolute right-0 bottom-full mb-2 z-30 w-52 rounded-xl border border-brand-border bg-white p-3.5 shadow-xl animate-fade-in text-left">
           <h4 className="text-[11px] font-bold text-brand-dark border-b border-brand-border/60 pb-1.5 mb-2 flex items-center justify-between">
             <span>Eligibility Checklist</span>
             <span className="text-[10px] text-brand-muted font-normal">{matchCount}/5 Met</span>
@@ -113,7 +114,7 @@ function MatchBadge({
   );
 }
 
-export default function ScholarshipCard({ scholarship: s, variant = 'grid', quizAnswers, className = '' }: Props) {
+export default function ScholarshipCard({ scholarship: s, variant = 'grid', connected = false, quizAnswers, className = '' }: Props) {
   const group = providerGroup(s.provider);
   const flag = providerMeta[group]?.flag ?? '🌍';
   const logoUrl = getScholarshipLogo(s);
@@ -148,7 +149,7 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
 
   if (variant === 'list') {
     return (
-      <div className={`relative rounded-2xl border border-brand-border transition-all duration-200 hover:border-brand-dark/20 hover:bg-brand-cream/50 ${className}`}>
+      <div className={`relative ${connected ? 'bg-white transition-colors duration-200 hover:bg-brand-cream/40' : 'rounded-xl border border-brand-border bg-white transition-all duration-200 hover:border-brand-dark/20 hover:bg-brand-cream/50'} ${className}`}>
         <SaveScholarshipButton slug={s.slug} className="absolute right-3 top-3 z-10" />
         <Link
           href={`/scholarships/${s.slug}`}
@@ -181,15 +182,15 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
 
             <div className="flex flex-wrap gap-2 items-center">
               {isCurated && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-dark text-white shadow-xs">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-brand-dark text-white shadow-xs">
                   Personally Curated
                 </span>
               )}
-              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold border ${fundingClass(s.funding_type)}`}>
+              <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold border ${fundingClass(s.funding_type)}`}>
                 {s.funding_type}
               </span>
               {s.degree_levels.slice(0, 2).map((level) => (
-                <span key={level} className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-brand-cream border border-brand-border text-brand-dark">
+                <span key={level} className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-medium bg-brand-cream border border-brand-border text-brand-dark">
                   {level}
                 </span>
               ))}
@@ -213,13 +214,19 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
   }
 
   return (
-    <div className={`relative overflow-hidden rounded-2xl border border-brand-border bg-white transition-all duration-200 hover:border-brand-dark/20 hover:shadow-sm ${className}`}>
-      <SaveScholarshipButton slug={s.slug} className="absolute right-3 top-4 z-10" />
+    <div className={`relative overflow-hidden ${
+      connected
+        ? 'bg-white transition-colors duration-200 hover:bg-brand-cream/35'
+        : 'rounded-xl border border-brand-border bg-white transition-all duration-200 hover:border-brand-dark/20 hover:shadow-sm'
+    } flex flex-col justify-between ${className}`}>
+      <SaveScholarshipButton slug={s.slug} className="absolute right-3 top-3.5 z-10" />
       <Link
         href={`/scholarships/${s.slug}`}
-        className="group flex flex-col"
+        className="group flex flex-col flex-1"
       >
-        <div className="h-1 w-full bg-gradient-to-r from-brand-accent/70 via-brand-accent/30 to-transparent" />
+        {!connected && (
+          <div className="h-0.5 w-full bg-brand-accent/50" />
+        )}
 
         <div className="p-5 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-3 mb-3 pr-10">
@@ -232,11 +239,11 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', quiz
             </div>
             <div className="flex flex-col items-end gap-1.5">
               {isCurated && (
-                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold bg-brand-dark text-white tracking-wide shadow-xs">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[9px] font-bold bg-brand-dark text-white tracking-wide shadow-xs">
                   Personally Curated
                 </span>
               )}
-              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${fundingClass(s.funding_type)}`}>
+              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-semibold border ${fundingClass(s.funding_type)}`}>
                 {s.funding_type}
               </span>
               {renderMatchBadge()}

@@ -44,10 +44,10 @@ export default function CountryScholarshipCard({ group }: { group: CountryGroup 
   const remainingCount = scholarships.length - displayScholarships.length;
 
   return (
-    <Card className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-brand-border/80 bg-white shadow-xs transition-all duration-200 hover:border-brand-accent/40 hover:shadow-md">
+    <Card className="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-brand-border/80 bg-white shadow-xs transition-all duration-200 hover:border-brand-accent/40 hover:shadow-md">
       
-      {/* Top Accent Gradient Header Line */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-brand-accent via-brand-accent/40 to-transparent" />
+      {/* Top Accent Header Line */}
+      <div className="h-1 w-full bg-brand-accent/60" />
 
       {/* ── Country Block Header ── */}
       <CardHeader className="p-5 pb-4 border-b border-brand-border/60 bg-brand-bg/50">

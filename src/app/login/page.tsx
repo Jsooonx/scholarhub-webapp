@@ -16,7 +16,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen flex-col bg-brand-bg">
       <main className="flex flex-grow items-center justify-center px-4 py-16">
-        <Suspense fallback={<div className="w-full max-w-md rounded-3xl border border-brand-border bg-white p-7 sm:p-9 shadow-sm animate-pulse min-h-[300px]" />}>
+        <Suspense fallback={<div className="w-full max-w-md rounded-xl border border-brand-border bg-white p-7 sm:p-9 shadow-sm animate-pulse min-h-[300px]" />}>
           <LoginForm />
         </Suspense>
       </main>

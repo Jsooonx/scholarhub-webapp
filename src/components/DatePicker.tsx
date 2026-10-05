@@ -191,7 +191,7 @@ export default function DatePicker({ value, onChange, className = '', placeholde
               width: '240px',
               zIndex: 9999,
             }}
-            className="rounded-2xl border border-brand-border bg-white p-3 shadow-xl animate-fade-in select-none"
+            className="rounded-xl border border-brand-border bg-white p-3 shadow-xl animate-fade-in select-none"
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-2">

@@ -445,9 +445,9 @@ export default function DeadlineCalendar({ applications }: Props) {
   return (
     <div className="flex flex-col gap-6 animate-page-enter">
       {/* Calendar Header / Quick Stats Panel */}
-      <div className="flex flex-col gap-4 rounded-3xl border border-brand-border bg-white p-5 shadow-sm md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-4 rounded-xl border border-brand-border bg-white p-5 shadow-xs md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-brand-cream text-brand-accent">
+          <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand-cream text-brand-accent">
             <CalendarDays className="h-5 w-5" />
           </div>
           <div>
@@ -459,7 +459,7 @@ export default function DeadlineCalendar({ applications }: Props) {
         </div>
 
         {stats.nearest && (
-          <div className="rounded-2xl bg-brand-cream/40 border border-brand-border px-4 py-2.5 text-xs text-brand-dark flex items-center gap-2 max-w-sm">
+          <div className="rounded-xl bg-brand-cream/40 border border-brand-border px-4 py-2.5 text-xs text-brand-dark flex items-center gap-2 max-w-sm">
             <Clock className="h-4 w-4 text-brand-accent flex-shrink-0" />
             <div className="min-w-0">
               <span className="font-bold block text-[10px] text-brand-muted uppercase tracking-wider">Next Deadline</span>
@@ -472,7 +472,7 @@ export default function DeadlineCalendar({ applications }: Props) {
       </div>
 
       {/* Monthly Grid (Desktop) */}
-      <div className="hidden md:block rounded-3xl border border-brand-border bg-white p-6 shadow-sm">
+      <div className="hidden md:block rounded-xl border border-brand-border bg-white p-6 shadow-xs">
         {/* Navigation Toolbar */}
         <div className="mb-6 flex items-center justify-between">
           <h3 className="font-serif text-2xl font-bold text-brand-dark">
@@ -519,7 +519,7 @@ export default function DeadlineCalendar({ applications }: Props) {
         </div>
 
         {/* Calendar Grid cells */}
-        <div className="grid grid-cols-7 gap-px bg-brand-border/60 border border-brand-border/60 rounded-2xl overflow-hidden">
+        <div className="grid grid-cols-7 gap-px bg-brand-border/60 border border-brand-border/60 rounded-xl overflow-hidden">
           {calendarCells.map((cell, idx) => {
             const isCellToday = isToday(cell.year, cell.month, cell.day);
             const events = getCellEvents(cell.year, cell.month, cell.day);
@@ -585,10 +585,10 @@ export default function DeadlineCalendar({ applications }: Props) {
       </div>
 
       {/* Mobile Agenda View (under 768px) */}
-      <div className="block md:hidden rounded-3xl border border-brand-border bg-white p-5 shadow-sm">
+      <div className="block md:hidden rounded-xl border border-brand-border bg-white p-5 shadow-xs">
         <div className="mb-4 flex items-center justify-between border-b border-brand-border/60 pb-3">
           <h3 className="font-serif text-lg font-bold text-brand-dark">Timeline Agenda</h3>
-          <span className="text-[10px] uppercase font-bold tracking-wider text-brand-muted bg-brand-cream px-2.5 py-1 rounded-full border border-brand-border">
+          <span className="text-[10px] uppercase font-bold tracking-wider text-brand-muted bg-brand-cream px-2.5 py-1 rounded-md border border-brand-border">
             {agendaList.length} key dates
           </span>
         </div>
@@ -620,7 +620,7 @@ export default function DeadlineCalendar({ applications }: Props) {
                 <div
                   key={`${app.scholarship_slug}-${type}`}
                   onClick={() => setSelectedAppSlug(app.scholarship_slug)}
-                  className={`flex items-start gap-3 rounded-2xl border bg-brand-cream/10 p-3 hover:bg-brand-cream/30 hover:border-brand-dark/20 transition-all cursor-pointer ${
+                  className={`flex items-start gap-3 rounded-xl border bg-brand-cream/10 p-3 hover:bg-brand-cream/30 hover:border-brand-dark/20 transition-all cursor-pointer ${
                     isClosed
                       ? 'border-brand-border opacity-70'
                       : type === 'announcement'
@@ -734,7 +734,7 @@ export default function DeadlineCalendar({ applications }: Props) {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
                 transition={{ type: 'spring', duration: 0.35, bounce: 0.05 }}
-                className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-brand-border bg-brand-bg p-6 shadow-2xl z-10"
+                className="relative w-full max-w-lg overflow-hidden rounded-xl border border-brand-border bg-brand-bg p-6 shadow-2xl z-10"
               >
                 {/* Close Button */}
                 <Button
@@ -772,7 +772,7 @@ export default function DeadlineCalendar({ applications }: Props) {
                     <select
                       value={selectedApp.status}
                       onChange={(e) => void handleUpdateStatus(s.slug, e.target.value as ScholarshipApplication['status'])}
-                      className="w-full text-xs bg-white border border-brand-border rounded-xl p-2.5 font-semibold text-brand-dark outline-none cursor-pointer hover:bg-brand-cream/30 transition-colors"
+                      className="w-full text-xs bg-white border border-brand-border rounded-lg p-2.5 font-semibold text-brand-dark outline-none cursor-pointer hover:bg-brand-cream/30 transition-colors"
                     >
                       {COLUMNS.map((c) => (
                         <option key={c.id} value={c.id}>
@@ -785,7 +785,7 @@ export default function DeadlineCalendar({ applications }: Props) {
                   {/* Two separate panels side-by-side or stacked */}
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {/* Target Deadline Date Card */}
-                    <div className="rounded-2xl border border-brand-border bg-white p-3 space-y-3 shadow-sm flex flex-col justify-between">
+                    <div className="rounded-xl border border-brand-border bg-white p-3 space-y-3 shadow-xs flex flex-col justify-between">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] font-bold text-brand-dark uppercase tracking-wider">
@@ -817,7 +817,7 @@ export default function DeadlineCalendar({ applications }: Props) {
                     </div>
 
                     {/* Result Announcement Date Card */}
-                    <div className="rounded-2xl border border-brand-border bg-white p-3 space-y-3 shadow-sm flex flex-col justify-between">
+                    <div className="rounded-xl border border-brand-border bg-white p-3 space-y-3 shadow-xs flex flex-col justify-between">
                       <div className="space-y-3">
                         <div className="flex items-center justify-between">
                           <span className="text-[10px] font-bold text-brand-dark uppercase tracking-wider flex items-center gap-1.5">

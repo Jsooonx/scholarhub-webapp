@@ -45,12 +45,12 @@ function ProviderCard({ group }: { group: string }) {
       {/* Featured card */}
       {featured ? (
         <Link href={`/scholarships/${featured.slug}`} className="group cursor-pointer">
-          <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-brand-border mb-3">
+          <div className="relative rounded-xl overflow-hidden aspect-[16/10] border border-brand-border mb-3">
             <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
               style={{ backgroundImage: `url('${getScholarshipImage(featured)}')` }}
             />
-            <span className="absolute top-3 left-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-brand-cream text-brand-dark border border-brand-border shadow-sm z-10">
+            <span className="absolute top-3 left-3 inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold bg-brand-cream text-brand-dark border border-brand-border shadow-xs z-10">
               {featured.degree_levels[0] ?? 'Various'}
             </span>
           </div>
@@ -61,7 +61,7 @@ function ProviderCard({ group }: { group: string }) {
         </Link>
       ) : (
         /* Empty state for providers with no scholarships yet */
-        <div className="rounded-2xl aspect-[16/10] border border-dashed border-brand-border bg-brand-cream/40 flex items-center justify-center">
+        <div className="rounded-xl aspect-[16/10] border border-dashed border-brand-border bg-brand-cream/40 flex items-center justify-center">
           <p className="text-[11px] text-brand-muted">Coming soon</p>
         </div>
       )}

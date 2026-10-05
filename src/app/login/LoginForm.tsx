@@ -80,7 +80,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-md rounded-3xl border border-brand-border bg-white p-7 sm:p-9 shadow-sm">
+    <div className="w-full max-w-md rounded-xl border border-brand-border bg-white p-7 sm:p-9 shadow-xs">
       <Link href="/" className="mb-6 inline-flex text-xs font-medium text-brand-muted hover:text-brand-dark transition-colors">
         ← Back to ScholarHub
       </Link>
@@ -96,13 +96,13 @@ export default function LoginForm() {
       </p>
 
       {displayError && (
-        <div className="mt-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700 leading-relaxed">
+        <div className="mt-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700 leading-relaxed">
           {displayError}
         </div>
       )}
 
       {sentEmail && (
-        <div className="mt-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 leading-relaxed">
+        <div className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 leading-relaxed">
           ✨ Magic link sent to <span className="font-semibold">{sentEmail}</span>. Check your inbox (and spam folder) to sign in!
         </div>
       )}
@@ -124,7 +124,7 @@ export default function LoginForm() {
               value={inputEmail}
               onChange={(e) => setInputEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full rounded-2xl border border-brand-border bg-brand-bg/40 px-4 py-3 pl-10 text-sm text-brand-dark outline-none transition focus:border-brand-dark focus:bg-white focus:ring-2 focus:ring-brand-dark/10"
+              className="w-full rounded-xl border border-brand-border bg-brand-bg/40 px-4 py-3 pl-10 text-sm text-brand-dark outline-none transition focus:border-brand-dark focus:bg-white focus:ring-2 focus:ring-brand-dark/10"
             />
             <Mail className="absolute left-3.5 top-3.5 h-4 w-4 text-brand-muted" />
           </div>

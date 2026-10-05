@@ -27,6 +27,7 @@ import ScholarshipCard from '@/components/ScholarshipCard';
 import { Button, LinkButton } from '@/components/ui/button';
 import { type EnrichmentData } from '@/data/enriched';
 import { getPersonallyCuratedMeta } from '@/data/curated';
+import { cn } from '@/lib/utils';
 import {
   type Scholarship,
   type DeadlineStatus as DStatus,
@@ -173,20 +174,20 @@ export default function ScholarshipTrackDetailView({
 
               <div className="flex flex-wrap gap-2 mb-4">
                 {curatedMeta && (
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-brand-dark text-white shadow-xs">
+                  <span className="inline-flex items-center px-3 py-1 rounded-md text-xs font-bold bg-brand-dark text-white shadow-xs">
                     {curatedMeta.badge}
                   </span>
                 )}
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${fundingClass(s.funding_type)}`}>
+                <span className={`inline-flex items-center px-3 py-1 rounded-md text-xs font-semibold border ${fundingClass(s.funding_type)}`}>
                   {s.funding_type}
                 </span>
                 {s.degree_levels.map((l) => (
-                  <span key={l} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brand-cream border border-brand-border text-brand-dark">
+                  <span key={l} className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-brand-cream border border-brand-border text-brand-dark">
                     {l}
                   </span>
                 ))}
                 {dur && (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-brand-cream border border-brand-border text-brand-muted">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-brand-cream border border-brand-border text-brand-muted">
                     <Clock className="h-3 w-3" />
                     {dur}
                   </span>
@@ -210,16 +211,16 @@ export default function ScholarshipTrackDetailView({
               </div>
 
               {curatedMeta && (
-                <div className="mb-5 rounded-2xl border border-brand-border bg-gradient-to-r from-brand-cream/90 via-white to-brand-cream/50 p-4 sm:p-5 shadow-xs">
+                <div className="mb-5 rounded-xl border border-brand-border bg-brand-cream p-4 sm:p-5 shadow-xs">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
                     <div className="flex items-center gap-2">
-                      <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-dark text-white">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-brand-dark text-white">
                         {curatedMeta.badge}
                       </span>
                       <span className="text-xs font-bold text-brand-dark">Deep Research & Verified Selection Experience</span>
                     </div>
                     {curatedMeta.verifiedCycle && (
-                      <span className="text-[11px] font-medium text-brand-muted bg-brand-cream px-2.5 py-0.5 rounded-lg border border-brand-border/60">
+                      <span className="text-[11px] font-medium text-brand-muted bg-white px-2.5 py-0.5 rounded-lg border border-brand-border/60">
                         {curatedMeta.verifiedCycle}
                       </span>
                     )}
@@ -253,7 +254,7 @@ export default function ScholarshipTrackDetailView({
                   </p>
                   <div className="flex flex-wrap gap-3">
                     {partnerLogos.map((univ) => (
-                      <div key={univ.name} className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-brand-border shadow-[0_2px_4px_rgba(0,0,0,0.02)]" title={univ.name}>
+                      <div key={univ.name} className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-xl border border-brand-border shadow-[0_2px_4px_rgba(0,0,0,0.02)]" title={univ.name}>
                         <img src={univ.logo} alt={univ.name} className="h-8 w-auto object-contain max-w-[120px]" />
                         <span className="text-xs font-bold text-brand-dark">{univ.name.split(' (')[0]}</span>
                       </div>
@@ -268,21 +269,21 @@ export default function ScholarshipTrackDetailView({
               {/* Tab Switcher (Only visible for multi-track GKS / MEXT) */}
               {tracks && (
                 <div className="flex justify-start sm:justify-center mb-10">
-                  <div className="relative inline-flex rounded-full border border-brand-border bg-brand-cream p-1 shadow-sm">
+                  <div className="relative inline-flex rounded-xl border border-brand-border bg-brand-cream p-1 shadow-sm">
                     <Button
                       onClick={() => setActiveTrack('embassy')}
                       variant="ghost"
                       size="sm"
-                      shape="pill"
+                      shape="base"
                       aria-pressed={activeTrack === 'embassy'}
-                      className={`relative z-10 rounded-full px-5 text-xs font-bold ${
+                      className={`relative z-10 rounded-lg px-5 text-xs font-bold ${
                         activeTrack === 'embassy' ? '!text-white' : '!text-brand-muted hover:!text-brand-dark'
                       }`}
                     >
                       {activeTrack === 'embassy' && (
                         <motion.div
                           layoutId="activeTrackTab"
-                          className="absolute inset-0 z-[-1] rounded-full bg-brand-dark"
+                          className="absolute inset-0 z-[-1] rounded-lg bg-brand-dark"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -292,16 +293,16 @@ export default function ScholarshipTrackDetailView({
                       onClick={() => setActiveTrack('university')}
                       variant="ghost"
                       size="sm"
-                      shape="pill"
+                      shape="base"
                       aria-pressed={activeTrack === 'university'}
-                      className={`relative z-10 rounded-full px-5 text-xs font-bold ${
+                      className={`relative z-10 rounded-lg px-5 text-xs font-bold ${
                         activeTrack === 'university' ? '!text-white' : '!text-brand-muted hover:!text-brand-dark'
                       }`}
                     >
                       {activeTrack === 'university' && (
                         <motion.div
                           layoutId="activeTrackTab"
-                          className="absolute inset-0 z-[-1] rounded-full bg-brand-dark"
+                          className="absolute inset-0 z-[-1] rounded-lg bg-brand-dark"
                           transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                         />
                       )}
@@ -322,7 +323,7 @@ export default function ScholarshipTrackDetailView({
                 >
                   {/* Track Description */}
                   {currentTrackData && (
-                    <section className="bg-brand-cream/35 border border-brand-border rounded-2xl p-6">
+                    <section className="bg-brand-cream/35 border border-brand-border rounded-xl p-6">
                       <h3 className="font-serif text-lg font-bold text-brand-dark mb-2">
                         About {currentTrackData.title}
                       </h3>
@@ -362,7 +363,7 @@ export default function ScholarshipTrackDetailView({
                       <CheckCircle2 className="h-5 w-5 text-brand-muted" />
                       Requirements & Eligibility
                     </h2>
-                    <div className="rounded-2xl border border-brand-border bg-white p-6 space-y-4">
+                    <div className="rounded-xl border border-brand-border bg-white p-6 space-y-4">
                       {/* Boolean flags */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-4 border-b border-brand-border">
                         <BooleanBadge value={s.requirements.first_degree_required} label="First degree / Bachelor" />
@@ -382,7 +383,7 @@ export default function ScholarshipTrackDetailView({
                           <p className="text-xs text-brand-muted mb-2">Eligible nationalities:</p>
                           <div className="flex flex-wrap gap-1.5">
                             {s.requirements.country_restrictions.map((c, i) => (
-                              <span key={i} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-cream border border-brand-border text-brand-dark">
+                              <span key={i} className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-brand-cream border border-brand-border text-brand-dark">
                                 {c}
                               </span>
                             ))}
@@ -399,7 +400,7 @@ export default function ScholarshipTrackDetailView({
                         <Users className="h-5 w-5 text-brand-muted" />
                         Who should apply
                       </h2>
-                      <div className="rounded-2xl border border-brand-border bg-brand-cream p-6">
+                      <div className="rounded-xl border border-brand-border bg-brand-cream p-6">
                         <p className="text-sm text-brand-dark leading-relaxed">{s.target_group}</p>
                       </div>
                     </section>
@@ -414,7 +415,7 @@ export default function ScholarshipTrackDetailView({
                       </h2>
                       <div className="flex flex-wrap gap-2">
                         {s.fields.map((f, i) => (
-                          <span key={i} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white border border-brand-border text-brand-dark">
+                          <span key={i} className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-white border border-brand-border text-brand-dark">
                             {f}
                           </span>
                         ))}
@@ -430,12 +431,12 @@ export default function ScholarshipTrackDetailView({
                         Application window
                       </h2>
                       {cycleNote && (
-                        <span className="text-[11px] font-medium text-brand-muted bg-brand-cream/80 border border-brand-border/70 px-2.5 py-0.5 rounded-full w-fit">
+                        <span className="text-[11px] font-medium text-brand-muted bg-brand-cream/80 border border-brand-border/70 px-2.5 py-0.5 rounded-md w-fit">
                           Based on {cycleNote} official intake
                         </span>
                       )}
                     </div>
-                    <div className="rounded-2xl border border-brand-border bg-white p-5 space-y-4">
+                    <div className="rounded-xl border border-brand-border bg-white p-5 space-y-4">
                       {mounted ? (
                         <div className="h-10 flex items-center relative overflow-hidden">
                           <AnimatePresence mode="popLayout">
@@ -512,12 +513,12 @@ export default function ScholarshipTrackDetailView({
                           Important dates
                         </h2>
                         {cycleNote && (
-                          <span className="text-[11px] font-medium text-brand-muted bg-brand-cream/80 border border-brand-border/70 px-2.5 py-0.5 rounded-full w-fit">
+                          <span className="text-[11px] font-medium text-brand-muted bg-brand-cream/80 border border-brand-border/70 px-2.5 py-0.5 rounded-md w-fit">
                             Based on {cycleNote} official cycle
                           </span>
                         )}
                       </div>
-                      <div className="rounded-2xl border border-brand-border bg-white overflow-hidden">
+                      <div className="rounded-xl border border-brand-border bg-white overflow-hidden">
                         {s.important_dates.map((d, i) => {
                           const clean = d.replace(/^●\s*\|\s*/, '').replace(/\s*\|/g, ' - ');
                           return (
@@ -560,7 +561,7 @@ export default function ScholarshipTrackDetailView({
           <aside className="lg:w-80 flex-shrink-0 w-full lg:sticky lg:top-20 lg:self-start space-y-6">
             
             {/* Quick Info Card */}
-            <div className="rounded-2xl border border-brand-border bg-brand-cream p-6 shadow-xs">
+            <div className="rounded-xl border border-brand-border bg-brand-cream p-6 shadow-xs">
               <p className="text-xs font-bold uppercase tracking-wider text-brand-muted mb-4">Quick info</p>
 
               <div className="space-y-3 mb-6">
@@ -663,7 +664,7 @@ export default function ScholarshipTrackDetailView({
             </div>
 
             {/* Provider info card in sidebar */}
-            <div className="rounded-2xl border border-brand-border bg-white p-5 shadow-xs">
+            <div className="rounded-xl border border-brand-border bg-white p-5 shadow-xs">
               <p className="text-[10px] font-bold uppercase tracking-wider text-brand-muted mb-3">Provider</p>
               <div className="flex items-center gap-3 mb-3">
                 <div className="relative w-10 h-10 rounded-xl border border-brand-border bg-brand-cream/50 flex items-center justify-center p-1.5 flex-shrink-0">
@@ -714,9 +715,23 @@ export default function ScholarshipTrackDetailView({
                 View all {s.provider.split('/')[0].trim()} scholarships →
               </Link>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {related.map((r) => (
-                <ScholarshipCard key={r.slug} scholarship={r} variant="grid" />
+            <div
+              className={cn(
+                "grid gap-[1px] bg-brand-border rounded-xl border border-brand-border overflow-hidden",
+                related.length === 1 && "grid-cols-1",
+                related.length === 2 && "grid-cols-1 sm:grid-cols-2",
+                related.length === 3 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+                related.length >= 4 && "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+              )}
+            >
+              {related.map((r, idx) => (
+                <ScholarshipCard
+                  key={r.slug}
+                  scholarship={r}
+                  variant="grid"
+                  connected
+                  className={related.length === 3 && idx === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}
+                />
               ))}
             </div>
           </section>

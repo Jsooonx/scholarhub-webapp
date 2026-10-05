@@ -95,12 +95,12 @@ export default function InsiderGuide({ data, className = '' }: Props) {
 
       {/* Special Notice (e.g. Indonesian Applicant Embassy Submission Alert) */}
       {specialNotice && (
-        <div className="relative overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-brand-cream/80 to-amber-500/[0.04] border border-amber-300/80 rounded-2xl p-4 sm:p-6 shadow-sm">
+        <div className="relative overflow-hidden bg-amber-500/[0.06] border border-amber-300/80 rounded-xl p-4 sm:p-6 shadow-xs">
           {/* Header & Badges */}
           <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3.5">
             <div className="flex items-center gap-2">
               {specialNotice.badge && (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wide bg-amber-500/15 text-amber-950 border border-amber-500/30">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wide bg-amber-500/15 text-amber-950 border border-amber-500/30">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse" />
                   {specialNotice.badge}
                 </span>
@@ -145,7 +145,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
 
           {/* Footer Warning / Note */}
           {specialNotice.note && (
-            <div className="mt-4 pt-3 border-t border-amber-200/70 flex items-start gap-2.5 text-xs text-amber-950/90 leading-relaxed bg-amber-100/50 rounded-xl p-3 border border-amber-300/40">
+            <div className="mt-4 pt-3 border-t border-amber-200/70 flex items-start gap-2.5 text-xs text-amber-950/90 leading-relaxed bg-amber-100/50 rounded-lg p-3 border border-amber-300/40">
               <AlertCircle className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
               <div className="min-w-0 flex-1">
                 {renderFormattedText(specialNotice.note)}
@@ -164,12 +164,12 @@ export default function InsiderGuide({ data, className = '' }: Props) {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {tracks.map((track) => (
-              <div key={track.name} className="min-w-0 bg-white border border-brand-border rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between">
+              <div key={track.name} className="min-w-0 bg-white border border-brand-border rounded-xl p-4 sm:p-5 shadow-xs flex flex-col justify-between">
                 <div>
                   <div className="flex flex-col items-start gap-2 mb-3 sm:flex-row sm:justify-between">
                     <h4 className="min-w-0 text-sm font-bold text-brand-dark leading-snug">{track.name}</h4>
                     {track.acceptanceRate && (
-                      <span className="max-w-full break-words rounded-xl border border-brand-border/60 bg-brand-cream px-2.5 py-1 text-left text-[10px] font-bold leading-snug text-brand-dark sm:max-w-[60%]">
+                      <span className="max-w-full break-words rounded-md border border-brand-border/60 bg-brand-cream px-2.5 py-1 text-left text-[10px] font-bold leading-snug text-brand-dark sm:max-w-[60%]">
                         {track.acceptanceRate}
                       </span>
                     )}
@@ -180,7 +180,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
                     </p>
                   )}
                   {track.bestFor && (
-                    <p className="text-xs text-brand-accent mb-3.5 bg-brand-accent/5 rounded-xl px-3 py-2 leading-relaxed font-serif italic">
+                    <p className="text-xs text-brand-accent mb-3.5 bg-brand-accent/5 rounded-lg px-3 py-2 leading-relaxed font-serif italic">
                       Best for: {track.bestFor}
                     </p>
                   )}
@@ -226,12 +226,12 @@ export default function InsiderGuide({ data, className = '' }: Props) {
           </div>
           <div className="space-y-4">
             {exams.map((exam) => (
-              <div key={exam.program} className="bg-white border border-brand-border rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
+              <div key={exam.program} className="bg-white border border-brand-border rounded-xl p-4 sm:p-5 shadow-xs space-y-4">
                 <div>
                   <h4 className="text-sm font-bold text-brand-dark mb-3">{exam.program}</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
                     {exam.subjects.map((sub) => (
-                      <div key={sub.name} className="bg-brand-cream/50 border border-brand-border/40 rounded-xl p-3 flex flex-col justify-between">
+                      <div key={sub.name} className="bg-brand-cream/50 border border-brand-border/40 rounded-lg p-3 flex flex-col justify-between">
                         <p className="text-xs font-bold text-brand-dark mb-1">{sub.name}</p>
                         {sub.notes && <p className="text-[11px] text-brand-muted leading-relaxed">{sub.notes}</p>}
                       </div>
@@ -273,7 +273,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
             <Zap className="w-4 h-4 text-brand-muted" />
             <h3 className="text-xs font-bold uppercase tracking-wider text-brand-muted">General Strategy Tips</h3>
           </div>
-          <div className="bg-brand-cream border border-brand-border rounded-2xl p-4 sm:p-5">
+          <div className="bg-brand-cream border border-brand-border rounded-xl p-4 sm:p-5">
             <ul className="space-y-3">
               {strategyTips.map((tip, i) => (
                 <li key={i} className="text-xs text-brand-muted flex items-start gap-2.5 leading-relaxed">
@@ -300,7 +300,7 @@ export default function InsiderGuide({ data, className = '' }: Props) {
               const { icon, color } = getPlatformDetails(link.platform);
               return (
                 <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer"
-                   className={`inline-flex max-w-full items-center gap-2 bg-white border border-brand-border rounded-xl px-3 py-2 text-xs text-brand-dark transition-all shadow-sm hover:shadow ${color}`}>
+                   className={`inline-flex max-w-full items-center gap-2 bg-white border border-brand-border rounded-lg px-3 py-2 text-xs text-brand-dark transition-all shadow-sm hover:shadow ${color}`}>
                   <span className="shrink-0">{icon}</span>
                   <span className="min-w-0 break-words font-medium">{link.label}: {link.handle}</span>
                   <ExternalLink className="w-3 h-3 shrink-0 text-brand-muted" />
@@ -318,13 +318,21 @@ export default function InsiderGuide({ data, className = '' }: Props) {
             <Zap className="w-4 h-4 text-brand-muted" />
             <h3 className="text-xs font-bold uppercase tracking-wider text-brand-muted">What Makes This Special</h3>
           </div>
-          <div className="space-y-3">
-            {differentiators.map((diff) => (
-              <div key={diff.label} className="bg-white border border-brand-border rounded-2xl p-4 sm:p-5 shadow-sm">
-                <h4 className="text-xs font-bold text-brand-dark mb-1.5">{diff.label}</h4>
-                <p className="text-xs text-brand-muted leading-relaxed">{diff.description}</p>
-              </div>
-            ))}
+          <div className="rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 sm:grid-cols-2 gap-[1px] shadow-xs">
+            {differentiators.map((diff, index) => {
+              const isLastOdd = differentiators.length % 2 !== 0 && index === differentiators.length - 1;
+              return (
+                <div
+                  key={diff.label}
+                  className={`bg-white p-4 sm:p-5 transition-colors duration-200 hover:bg-brand-cream/35 flex flex-col justify-start ${
+                    isLastOdd ? 'sm:col-span-2' : ''
+                  }`}
+                >
+                  <h4 className="text-xs font-bold text-brand-dark mb-1.5 leading-snug">{diff.label}</h4>
+                  <p className="text-xs text-brand-muted leading-relaxed">{diff.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

@@ -87,7 +87,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               {profile?.quiz_answers ? (
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-cream border border-brand-border text-brand-dark">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-brand-cream border border-brand-border text-brand-dark">
                     <span>Target: </span>
                     <span className="capitalize font-bold text-brand-accent">
                       {profile.quiz_answers.degree} · {profile.quiz_answers.field}
@@ -115,7 +115,7 @@ export default function Hero() {
           </div>
 
           {/* Stats Card */}
-          <div className="lg:max-w-sm w-full rounded-2xl border border-brand-border bg-brand-cream/80 p-6 shadow-xs backdrop-blur-xs transition-all duration-200 hover:border-brand-dark/20 hover:shadow-sm">
+          <div className="lg:max-w-sm w-full rounded-xl border border-brand-border bg-brand-cream/80 p-6 shadow-xs backdrop-blur-xs transition-all duration-200 hover:border-brand-dark/20 hover:shadow-sm">
             <p className="text-xs text-brand-muted leading-relaxed mb-4">
               Browse curated scholarships from top providers worldwide — all requirements, benefits, and deadlines in one place.
             </p>
@@ -138,7 +138,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative rounded-2xl sm:rounded-3xl overflow-hidden h-[350px] sm:h-auto sm:aspect-[16/9] lg:aspect-[21/9] mb-8 group border border-brand-border bg-black"
+          className="relative rounded-xl overflow-hidden h-[350px] sm:h-auto sm:aspect-[16/9] lg:aspect-[21/9] mb-8 group border border-brand-border bg-black"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -162,15 +162,15 @@ export default function Hero() {
 
               <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 md:p-12 z-10 select-none">
                 <div className="max-w-3xl">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/20 backdrop-blur-sm text-white mb-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-white/20 backdrop-blur-sm text-white mb-4">
                     {providerMeta[activeGroup]?.flag ?? '🌍'} {activeFeatured.country} · {activeFeatured.provider}
                   </span>
                   <div className="flex flex-wrap gap-2 mb-3">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-brand-accent/80 text-white">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-brand-accent/80 text-white">
                       {activeFeatured.funding_type}
                     </span>
                     {activeFeatured.degree_levels.slice(0, 2).map((l) => (
-                      <span key={l} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/15 text-white/90 border border-white/20">
+                      <span key={l} className="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-semibold bg-white/15 text-white/90 border border-white/20">
                         {l}
                       </span>
                     ))}

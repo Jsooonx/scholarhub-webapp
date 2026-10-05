@@ -313,7 +313,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                 key={col.id}
                 onDragOver={handleDragOver}
                 onDrop={(e) => handleDrop(e, col.id)}
-                className={`flex w-72 flex-shrink-0 flex-col rounded-3xl border p-4 transition-colors ${col.bg} ${col.border} ${
+                className={`flex w-72 flex-shrink-0 flex-col rounded-xl border p-4 transition-colors ${col.bg} ${col.border} ${
                   draggingSlug ? 'border-dashed border-brand-accent/40 bg-brand-cream/10' : ''
                 }`}
               >
@@ -339,7 +339,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="flex flex-grow items-center justify-center rounded-2xl border border-dashed border-brand-border/40 py-8 text-center"
+                        className="flex flex-grow items-center justify-center rounded-lg border border-dashed border-brand-border/40 py-8 text-center"
                       >
                         <p className="text-[11px] text-brand-muted italic">Drag cards here</p>
                       </motion.div>
@@ -368,7 +368,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                             transition={{ type: "spring", duration: 0.35, bounce: 0.05 }}
                             draggable={activeTextareaSlug !== s.slug && activeInputSlug !== s.slug}
                             onDragStart={(e: any) => handleDragStart(e, s.slug)}
-                            className={`group/card relative rounded-2xl border border-brand-border bg-white p-4 shadow-sm hover:border-brand-dark/20 hover:shadow-md cursor-grab active:cursor-grabbing ${
+                            className={`group/card relative rounded-xl border border-brand-border bg-white p-4 shadow-sm hover:border-brand-dark/20 hover:shadow-md cursor-grab active:cursor-grabbing ${
                               draggingSlug === s.slug ? 'opacity-40' : ''
                             } ${
                               (expandedNotesSlug === s.slug || expandedChecklistSlug === s.slug || expandedDeadlineSlug === s.slug || expandedAnnouncementSlug === s.slug)

@@ -154,13 +154,13 @@ export default async function ProviderPage({
             <section key={level}>
               <div className="flex items-center gap-3 mb-5">
                 <h2 className="font-serif text-2xl font-semibold text-brand-dark">{level}</h2>
-                <span className="text-xs text-brand-muted border border-brand-border rounded-full px-2.5 py-0.5">
+                <span className="text-xs text-brand-muted border border-brand-border rounded-md px-2.5 py-0.5">
                   {byLevel[level].length}
                 </span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              <div className="rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] shadow-xs">
                 {byLevel[level].map((s) => (
-                  <ScholarshipCard key={s.slug} scholarship={s} variant="grid" />
+                  <ScholarshipCard key={s.slug} scholarship={s} variant="grid" connected />
                 ))}
               </div>
             </section>

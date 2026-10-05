@@ -51,7 +51,7 @@ export default function DeadlineStatus({ status, size = 'md' }: Props) {
 
   return (
     <span
-      className={`inline-flex max-w-full items-center gap-1.5 px-3 py-1 rounded-full border font-medium leading-snug
+      className={`inline-flex max-w-full items-center gap-1.5 px-3 py-1 rounded-md border font-medium leading-snug
         ${cfg.bg} ${cfg.border} ${cfg.text}
         ${isSmall ? 'text-[10px]' : 'text-xs'}`}
     >

@@ -135,7 +135,7 @@ export default function Inspiration() {
               href={card.href}
               className="group cursor-pointer flex flex-col flex-shrink-0 w-[85vw] sm:w-[45vw] lg:w-[calc(33.333%-16px)] snap-start"
             >
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-brand-border">
+              <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-brand-border">
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                   style={{ backgroundImage: `url('${card.image}')` }}
@@ -143,7 +143,7 @@ export default function Inspiration() {
                 {/* Bottom Text Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
-                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/20 backdrop-blur-sm text-white mb-2 max-w-fit">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold bg-white/20 backdrop-blur-sm text-white mb-2 max-w-fit">
                     {card.badge}
                   </span>
                   <h3 className="font-serif text-lg sm:text-xl font-semibold text-white leading-snug group-hover:underline">

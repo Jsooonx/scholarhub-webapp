@@ -120,7 +120,7 @@ export default function AboutPage() {
             <h2 className="font-serif text-3xl font-bold text-brand-dark mb-8 text-center">How it works</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {steps.map(({ icon: Icon, title, description }, i) => (
-                <div key={i} className="rounded-2xl border border-brand-border bg-white p-6">
+                <div key={i} className="rounded-xl border border-brand-border bg-white p-6">
                   <div className="w-10 h-10 rounded-xl bg-brand-dark flex items-center justify-center mb-4">
                     <Icon className="h-5 w-5 text-white" />
                   </div>
@@ -140,7 +140,7 @@ export default function AboutPage() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Feature 1: ScholarMatch */}
-              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+              <div className="rounded-xl border border-brand-border bg-white p-6 flex gap-4">
                 <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
                   <Compass className="h-5 w-5" />
                 </div>
@@ -164,7 +164,7 @@ export default function AboutPage() {
               </div>
 
               {/* Feature 2: Application Tracker */}
-              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+              <div className="rounded-xl border border-brand-border bg-white p-6 flex gap-4">
                 <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
                   <Kanban className="h-5 w-5" />
                 </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
               </div>
 
               {/* Feature 3: Smart Calendar */}
-              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+              <div className="rounded-xl border border-brand-border bg-white p-6 flex gap-4">
                 <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
                   <Calendar className="h-5 w-5" />
                 </div>
@@ -209,7 +209,7 @@ export default function AboutPage() {
               </div>
 
               {/* Feature 4: Verified Directory */}
-              <div className="rounded-2xl border border-brand-border bg-white p-6 flex gap-4">
+              <div className="rounded-xl border border-brand-border bg-white p-6 flex gap-4">
                 <div className="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center flex-shrink-0">
                   <SlidersHorizontal className="h-5 w-5" />
                 </div>
@@ -237,7 +237,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {providers.map((p) => (
                 <Link key={p.name} href={`/providers/${Object.keys(providerMeta).find(k => providerMeta[k] === p) ?? ''}`}
-                  className="rounded-2xl border border-brand-border bg-brand-cream p-6 hover:border-brand-dark/20 hover:shadow-sm transition-all"
+                  className="rounded-xl border border-brand-border bg-brand-cream p-6 hover:border-brand-dark/20 hover:shadow-xs transition-all"
                 >
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-3xl">{p.flag}</span>
@@ -256,7 +256,7 @@ export default function AboutPage() {
           </section>
 
           {/* Disclaimer */}
-          <section className="rounded-2xl border border-amber-200 bg-amber-50 p-8">
+          <section className="rounded-xl border border-amber-200 bg-amber-50 p-8">
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-xl bg-amber-100 border border-amber-200 flex items-center justify-center flex-shrink-0">
                 <Globe className="h-5 w-5 text-amber-600" />

@@ -16,7 +16,7 @@ export default function AdBanner() {
   return (
     <section className="py-6 bg-brand-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full rounded-3xl border border-white/10 bg-[#111827] shadow-xl relative overflow-hidden">
+        <div className="w-full rounded-xl border border-white/10 bg-[#111827] shadow-xl relative overflow-hidden">
           <div className="w-full p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 relative overflow-hidden">
 
             {/* Decorative backdrop gradients */}
@@ -25,7 +25,7 @@ export default function AdBanner() {
 
             {/* Left Text Content */}
             <div className="relative z-10 max-w-xl text-center lg:text-left flex-1">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/80 border border-white/10 mb-4 uppercase tracking-widest">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-semibold bg-white/10 text-white/80 border border-white/10 mb-4 uppercase tracking-widest">
                 Don&apos;t miss out
               </span>
               <SplitText
@@ -65,7 +65,7 @@ export default function AdBanner() {
                     <Link
                       key={p.href}
                       href={p.href}
-                      className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2.5 hover:bg-white/15 transition-colors min-w-0"
+                      className="flex items-center gap-2.5 bg-white/10 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-2.5 hover:bg-white/15 transition-colors min-w-0"
                     >
                       <span className="text-xl flex-shrink-0" role="img" aria-label={p.country}>{p.flag}</span>
                       <div className="min-w-0">

@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Search, X, ChevronDown, Filter } from 'lucide-react';
+import { Search, X, ChevronDown, Filter, Check } from 'lucide-react';
 
 import { allScholarships, providerMeta, providerGroup } from '@/lib/scholarships';
 import { Button } from '@/components/ui/button';
@@ -111,39 +111,48 @@ function CustomSelect({ value, options, onChange, align = 'left', fullWidth = fa
         variant="secondary"
         size={fullWidth ? 'default' : 'sm'}
         shape="control"
-        className={`min-w-[125px] justify-between rounded-xl text-left border-brand-border active:border-brand-border ${fullWidth ? 'w-full' : ''}`}
+        className={`min-w-[125px] justify-between rounded-lg text-left border-brand-border active:border-brand-border ${fullWidth ? 'w-full' : ''}`}
       >
         <span className="truncate">{selectedOption?.label}</span>
-        <ChevronDown className="h-3.5 w-3.5 flex-shrink-0 text-brand-muted" />
+        <ChevronDown className={`h-3.5 w-3.5 flex-shrink-0 text-brand-muted transition-transform duration-150 ${isOpen ? 'rotate-180' : ''}`} />
       </Button>
 
       {isOpen && (
         <div 
-          className={`absolute ${align === 'right' ? 'right-0' : 'left-0'} mt-1.5 w-60 rounded-2xl border border-brand-border bg-white shadow-lg py-1.5 z-50 focus:outline-none`}
+          className={`absolute ${align === 'right' ? 'right-0' : 'left-0'} mt-1.5 ${
+            fullWidth
+              ? 'w-full'
+              : 'w-max min-w-[280px] sm:min-w-[340px] max-w-[calc(100vw-2rem)] sm:max-w-md'
+          } rounded-xl border border-brand-border bg-white shadow-xl p-1 z-50 focus:outline-none overflow-hidden animate-in fade-in-0 zoom-in-95 duration-100`}
         >
           <div
             data-lenis-prevent
-            className="max-h-[280px] overflow-y-auto"
+            className="max-h-[280px] overflow-y-auto space-y-0.5"
             style={{ scrollbarWidth: 'thin', scrollbarColor: '#E8E8E6 transparent' }}
           >
-            {options.map((option) => (
-              <Button
-                key={option.value}
-                type="button"
-                onClick={() => {
-                  onChange(option.value);
-                  setIsOpen(false);
-                }}
-                variant="ghost"
-                size="sm"
-                shape="control"
-                className={`h-auto min-h-9 w-full justify-start rounded-none px-4 py-2 text-xs ${
-                  option.value === value ? '!bg-brand-cream/60 font-semibold !text-brand-dark' : '!text-brand-dark/80'
-                }`}
-              >
-                {option.label}
-              </Button>
-            ))}
+            {options.map((option) => {
+              const isSelected = option.value === value;
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => {
+                    onChange(option.value);
+                    setIsOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between gap-3 px-3 py-2 text-xs rounded-lg text-left transition-colors cursor-pointer select-none ${
+                    isSelected
+                      ? 'bg-brand-cream/80 font-semibold text-brand-dark'
+                      : 'text-brand-dark/80 hover:bg-brand-cream/50 hover:text-brand-dark'
+                  }`}
+                >
+                  <span className="truncate">{option.label}</span>
+                  {isSelected && (
+                    <Check className="h-3.5 w-3.5 shrink-0 text-brand-dark" />
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
@@ -220,7 +229,7 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
           placeholder="Search scholarships, fields, providers…"
           value={searchValue}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 text-sm rounded-full border border-brand-border bg-white focus:outline-none focus:ring-2 focus:ring-brand-dark/20 placeholder:text-brand-muted/60"
+          className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-brand-border bg-white focus:outline-none focus:ring-2 focus:ring-brand-dark/20 placeholder:text-brand-muted/60"
         />
       </div>
 

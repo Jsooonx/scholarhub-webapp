@@ -66,7 +66,7 @@ function SlotSelector({
   }, [search, excludeSlugs]);
 
   return (
-    <div className="flex flex-col h-full justify-center p-4 border border-dashed border-brand-border rounded-2xl bg-brand-bg/30 min-h-[250px] shadow-inner">
+    <div className="flex flex-col h-full justify-center p-4 border border-dashed border-brand-border rounded-xl bg-brand-bg/30 min-h-[250px] shadow-inner">
       <p className="text-xs font-serif font-bold text-brand-dark mb-3 text-center">Add Scholarship to Compare</p>
       
       <div className="relative mb-3">
@@ -227,7 +227,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
         exit="exit"
         transition={macOSZoomTransition}
         style={{ transformOrigin: initialOrigin }}
-        className="relative bg-white rounded-3xl border border-brand-border w-full max-w-6xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden z-10"
+        className="relative bg-white rounded-xl border border-brand-border w-full max-w-6xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden z-10"
       >
         {/* Header */}
         <div className="flex items-center justify-between border-b border-brand-border/60 px-4 py-4 sm:px-6 sm:py-4.5 bg-brand-cream/40">
@@ -250,7 +250,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
         {/* Scrollable Content */}
         <div className="overflow-y-auto p-4 sm:p-6 md:p-8 flex-1 bg-brand-bg/10">
           <p className="mb-2 text-[10px] text-brand-muted sm:hidden">Geser tabel ke samping untuk membandingkan semua kolom.</p>
-          <div className="overflow-x-auto border border-brand-border/60 rounded-2xl bg-white shadow-sm">
+          <div className="overflow-x-auto border border-brand-border/60 rounded-xl bg-white shadow-sm">
             <table className="w-full table-fixed min-w-[640px] sm:min-w-[760px] border-collapse">
               <thead>
                 <tr className="border-b border-brand-border/60 bg-brand-cream/20">

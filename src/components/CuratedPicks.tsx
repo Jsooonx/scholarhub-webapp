@@ -135,7 +135,7 @@ export default function CuratedPicks() {
           {/* Controls & Curator Signature */}
           <div className="flex items-center justify-between md:justify-end gap-6 mt-6 md:mt-0">
             {/* Curator Signature Badge */}
-            <div className="flex items-center gap-3 p-2.5 bg-white border border-brand-border rounded-2xl shadow-sm max-w-fit">
+            <div className="flex items-center gap-3 p-2.5 bg-white border border-brand-border rounded-xl shadow-xs max-w-fit">
               <div className="relative w-8 h-8 rounded-lg overflow-hidden bg-brand-cream border border-brand-border flex items-center justify-center p-1 flex-shrink-0">
                 <Image
                   src="/images/logos/Scholarhub_logo.png"
@@ -184,7 +184,7 @@ export default function CuratedPicks() {
         </div>
 
         {/* Curated Grid with Smooth Slide Transition */}
-        <div className="relative overflow-hidden min-h-[3320px] md:min-h-[1800px] lg:min-h-[1190px]">
+        <div className="relative overflow-hidden min-h-[3130px] md:min-h-[1720px] lg:min-h-[1145px]">
           <AnimatePresence initial={false} custom={{ direction, skipAnimation }} mode="wait">
             <motion.div
               key={currentPage}
@@ -194,7 +194,7 @@ export default function CuratedPicks() {
               animate="animate"
               exit="exit"
               style={{ backfaceVisibility: 'hidden', willChange: 'transform, opacity', transformStyle: 'preserve-3d' }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 absolute inset-x-0 top-0"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-brand-border rounded-xl border border-brand-border overflow-hidden shadow-xs absolute inset-x-0 top-0"
             >
               {currentPagePicks.map(({ pick, scholarship }) => {
                 const group = providerGroup(scholarship.provider);
@@ -204,7 +204,7 @@ export default function CuratedPicks() {
                 return (
                   <div 
                     key={scholarship.slug} 
-                    className="flex flex-col h-[520px] md:h-[570px] bg-white border border-brand-border/80 rounded-2xl overflow-hidden shadow-xs transition-all duration-300 group hover:shadow-md hover:border-brand-accent/30"
+                    className="flex flex-col h-[520px] md:h-[570px] bg-white transition-colors duration-200 group hover:bg-brand-cream/35"
                   >
                     {/* Scholarship Thumbnail */}
                     <div className="relative aspect-[16/9] overflow-hidden border-b border-brand-border/60 bg-brand-cream/20 flex-shrink-0">
@@ -216,13 +216,13 @@ export default function CuratedPicks() {
 
                       {/* Top-Right Highlight Pill (Clean & Editorial) */}
                       {pick.badge && (
-                        <span className="absolute top-3.5 right-3.5 z-10 inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wide bg-brand-dark/90 backdrop-blur-md text-white border border-white/15 shadow-xs">
+                        <span className="absolute top-3.5 right-3.5 z-10 inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold tracking-wide bg-brand-dark/90 backdrop-blur-md text-white border border-white/15 shadow-xs">
                           {pick.badge}
                         </span>
                       )}
 
                       {/* Bottom-Left Level & Flag Pill */}
-                      <span className="absolute bottom-3.5 left-3.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium bg-white/95 backdrop-blur-xs text-brand-dark border border-brand-border/80 shadow-xs z-10">
+                      <span className="absolute bottom-3.5 left-3.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-medium bg-white/95 backdrop-blur-xs text-brand-dark border border-brand-border/80 shadow-xs z-10">
                         <span className="select-none">{flag}</span>
                         <span className="font-semibold text-brand-dark">{scholarship.country ?? 'International'}</span>
                         <span className="text-brand-border">·</span>
@@ -239,7 +239,7 @@ export default function CuratedPicks() {
                         </span>
                         {scholarship.funding_type && (
                           <span className={cn(
-                            "text-[9px] px-2 py-0.5 rounded-full border flex-shrink-0 font-medium",
+                            "text-[9px] px-2 py-0.5 rounded-md border flex-shrink-0 font-medium",
                             scholarship.funding_type.toLowerCase().includes('full')
                               ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                               : "bg-amber-50 text-amber-700 border-amber-200"
@@ -264,7 +264,7 @@ export default function CuratedPicks() {
                       </div>
 
                       {/* Insider Strategy / Tip Callout */}
-                      <div className="bg-brand-bg/90 border border-brand-border/70 rounded-xl p-3 flex items-start gap-2.5 mb-3 flex-1 min-h-0 overflow-hidden">
+                      <div className="bg-brand-bg/90 border border-brand-border/70 rounded-lg p-3 flex items-start gap-2.5 mb-3 flex-1 min-h-0 overflow-hidden">
                         <div className="p-1 bg-brand-accent/10 rounded-lg text-brand-accent flex-shrink-0 mt-0.5">
                           <Lightbulb className="h-3.5 w-3.5" />
                         </div>

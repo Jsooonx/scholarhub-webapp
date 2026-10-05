@@ -170,7 +170,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
               ? { type: 'tween', duration: 0.35, ease: 'easeInOut' }
               : { type: 'spring', stiffness: 300, damping: 30 }
           }
-          className="bg-white border border-brand-border rounded-3xl shadow-sm overflow-hidden"
+          className="bg-white border border-brand-border rounded-xl shadow-xs overflow-hidden"
         >
           <div 
             ref={containerRef} 
@@ -237,13 +237,13 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                             setTimeout(nextStep, 180);
                           }}
                           aria-pressed={isSelected}
-                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer select-none ${
                             isSelected
                               ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
                               : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
                           }`}
                         >
-                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                          <div className={`p-2.5 rounded-lg border flex items-center justify-center flex-shrink-0 transition-colors ${
                             isSelected
                               ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
                               : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
@@ -301,13 +301,13 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                             setTimeout(nextStep, 180);
                           }}
                           aria-pressed={isSelected}
-                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer select-none ${
                             isSelected
                               ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
                               : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
                           }`}
                         >
-                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                          <div className={`p-2.5 rounded-lg border flex items-center justify-center flex-shrink-0 transition-colors ${
                             isSelected
                               ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
                               : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
@@ -361,13 +361,13 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                             setTimeout(nextStep, 180);
                           }}
                           aria-pressed={isSelected}
-                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer select-none ${
                             isSelected
                               ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
                               : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
                           }`}
                         >
-                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                          <div className={`p-2.5 rounded-lg border flex items-center justify-center flex-shrink-0 transition-colors ${
                             isSelected
                               ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
                               : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
@@ -421,13 +421,13 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                             setTimeout(nextStep, 180);
                           }}
                           aria-pressed={isSelected}
-                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer select-none ${
                             isSelected
                               ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
                               : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
                           }`}
                         >
-                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                          <div className={`p-2.5 rounded-lg border flex items-center justify-center flex-shrink-0 transition-colors ${
                             isSelected
                               ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
                               : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
@@ -485,13 +485,13 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                             setTimeout(() => handleComplete(updated), 180);
                           }}
                           aria-pressed={isSelected}
-                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer select-none ${
+                          className={`group relative flex items-center gap-3.5 w-full min-h-20 p-4 rounded-xl border text-left transition-all duration-200 cursor-pointer select-none ${
                             isSelected
                               ? 'border-brand-accent bg-brand-cream ring-2 ring-brand-accent/20 shadow-xs'
                               : 'border-brand-border/80 bg-white hover:border-brand-accent/40 hover:bg-brand-cream/40 hover:shadow-xs'
                           }`}
                         >
-                          <div className={`p-2.5 rounded-xl border flex items-center justify-center flex-shrink-0 transition-colors ${
+                          <div className={`p-2.5 rounded-lg border flex items-center justify-center flex-shrink-0 transition-colors ${
                             isSelected
                               ? 'bg-brand-accent text-white border-brand-accent shadow-xs'
                               : 'bg-brand-cream/60 border-brand-border/60 text-brand-dark group-hover:border-brand-accent/30 group-hover:text-brand-accent'
@@ -678,7 +678,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
             </div>
 
             {!isAuthenticated && (
-              <div className="max-w-xl mx-auto p-5 rounded-2xl bg-brand-cream border border-brand-border/60 text-center shadow-sm">
+              <div className="max-w-xl mx-auto p-5 rounded-xl bg-brand-cream border border-brand-border/60 text-center shadow-xs">
                 <h4 className="font-serif text-sm font-bold text-brand-dark mb-1">Want to save these results permanently?</h4>
                 <p className="text-[11px] text-brand-muted mb-4">
                   Create a free account or sign in to save your academic profile, sync bookmarks, and track deadlines.

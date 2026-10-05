@@ -99,26 +99,26 @@ export default function ProfileForm({
 
   return (
     <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[1fr_360px] lg:px-8">
-      <section className="rounded-3xl border border-brand-border bg-white p-6 shadow-xs">
+      <section className="rounded-xl border border-brand-border bg-white p-6 shadow-xs">
         <div className="mb-6">
           <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted">Basic profile</p>
           <h2 className="mt-1 font-serif text-2xl font-semibold text-brand-dark">Edit your details</h2>
         </div>
 
         {errorMsg && (
-          <div className="mb-5 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <div className="mb-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
             {errorMsg}
           </div>
         )}
 
         {displayError && (
-          <div className="mb-5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div className="mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
             {displayError}
           </div>
         )}
 
         {saveSuccess && (
-          <div className="mb-5 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+          <div className="mb-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
             Profile saved successfully.
           </div>
         )}
@@ -134,7 +134,7 @@ export default function ProfileForm({
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder="Your full name"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
+                className="w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
             </label>
 
@@ -147,7 +147,7 @@ export default function ProfileForm({
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="username"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm lowercase text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
+                className="w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm lowercase text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
               <span className="mt-1 block text-[11px] text-brand-muted">3-30 chars: lowercase letters, numbers, underscore.</span>
             </label>
@@ -162,7 +162,7 @@ export default function ProfileForm({
               value={bio}
               onChange={(e) => setBio(e.target.value)}
               placeholder="Tell others what you study, where you want to go, or what scholarships you are targeting."
-              className="w-full resize-none rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
+              className="w-full resize-none rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
             />
           </label>
 
@@ -176,7 +176,7 @@ export default function ProfileForm({
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="Indonesia"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
+                className="w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
             </label>
 
@@ -188,7 +188,7 @@ export default function ProfileForm({
                 value={websiteUrl}
                 onChange={(e) => setWebsiteUrl(e.target.value)}
                 placeholder="https://example.com"
-                className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
+                className="w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
               />
             </label>
           </div>
@@ -201,7 +201,7 @@ export default function ProfileForm({
               value={avatarUrl}
               onChange={(e) => setAvatarUrl(e.target.value)}
               placeholder="https://example.com/avatar.jpg"
-              className="w-full rounded-2xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
+              className="w-full rounded-xl border border-brand-border bg-white px-4 py-3 text-sm text-brand-dark outline-none transition focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent"
             />
             <span className="mt-1 block text-[11px] text-brand-muted">
               Optional image link for your avatar.
@@ -228,14 +228,14 @@ export default function ProfileForm({
       </section>
 
       <aside className="space-y-5">
-        <div className="rounded-3xl border border-brand-border bg-brand-cream p-6">
+        <div className="rounded-xl border border-brand-border bg-brand-cream p-6">
           <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted">Preview</p>
           <div className="mt-5 flex items-start gap-4">
             {safeAvatarUrl ? (
               <img
                 src={safeAvatarUrl}
                 alt={previewDisplayName}
-                className="h-16 w-16 rounded-2xl border border-brand-border bg-white object-cover"
+                className="h-16 w-16 rounded-xl border border-brand-border bg-white object-cover"
                 onError={(e) => {
                   (e.target as HTMLElement).style.display = 'none';
                   const parent = (e.target as HTMLElement).parentElement;
@@ -248,7 +248,7 @@ export default function ProfileForm({
             ) : null}
             
             <div
-              className="avatar-fallback grid h-16 w-16 place-items-center rounded-2xl border border-brand-border bg-white font-serif text-xl font-bold text-brand-dark"
+              className="avatar-fallback grid h-16 w-16 place-items-center rounded-xl border border-brand-border bg-white font-serif text-xl font-bold text-brand-dark"
               style={safeAvatarUrl ? { display: 'none' } : undefined}
             >
               {previewInitials}
@@ -291,7 +291,7 @@ export default function ProfileForm({
           </div>
         </div>
 
-        <div className="rounded-3xl border border-brand-border bg-white p-6">
+        <div className="rounded-xl border border-brand-border bg-white p-6">
           <div className="mb-3 flex items-center gap-2">
             <Camera className="h-4 w-4 text-brand-muted" />
             <p className="text-sm font-semibold text-brand-dark">Community-ready base</p>

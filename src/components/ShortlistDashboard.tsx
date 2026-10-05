@@ -190,7 +190,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
       {/* Main Content Area */}
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         {error && (
-          <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
             {error}
           </div>
         )}
@@ -198,7 +198,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
         {view === 'match' ? (
           currentQuizAnswers ? (
             <div className="space-y-8 animate-fade-in">
-              <div className="p-6 sm:p-8 rounded-3xl bg-brand-cream border border-brand-border/60 flex flex-col gap-5 shadow-sm">
+              <div className="p-6 sm:p-8 rounded-xl bg-brand-cream border border-brand-border/60 flex flex-col gap-5 shadow-xs">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
                     <h2 className="font-serif text-xl font-bold text-brand-dark flex items-center gap-1.5">
@@ -360,7 +360,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
               })()}
             </div>
           ) : (
-            <div className="rounded-3xl border border-brand-border bg-white px-6 py-16 text-center shadow-sm max-w-2xl mx-auto">
+            <div className="rounded-xl border border-brand-border bg-white px-6 py-16 text-center shadow-xs max-w-2xl mx-auto">
               <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-brand-cream text-brand-dark">
                 <GraduationCap className="h-6 w-6" />
               </div>
@@ -380,7 +380,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
             </div>
           )
         ) : initialApplications.length === 0 ? (
-          <div className="rounded-3xl border border-brand-border bg-white px-6 py-16 text-center shadow-sm">
+          <div className="rounded-xl border border-brand-border bg-white px-6 py-16 text-center shadow-xs">
             <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-brand-cream text-brand-accent">
               <Heart className="h-6 w-6" />
             </div>
@@ -422,7 +422,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                 <h2 className="mb-4 font-serif text-2xl font-semibold text-brand-dark">Unavailable</h2>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {unavailable.map((app) => (
-                    <div key={app.scholarship_slug} className="rounded-2xl border border-brand-border bg-white p-5">
+                    <div key={app.scholarship_slug} className="rounded-xl border border-brand-border bg-white p-5">
                       <p className="text-[10px] font-bold uppercase tracking-wider text-brand-muted">Saved item</p>
                       <h3 className="mt-2 font-serif text-lg font-semibold text-brand-dark">Unavailable scholarship</h3>
                       <p className="mt-2 text-xs leading-relaxed text-brand-muted">

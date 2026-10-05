@@ -298,11 +298,11 @@ export default function Navbar() {
                         {/* ScholarMatch Quiz Card */}
                         <Link
                           href="/match"
-                          className="flex flex-col justify-between p-3.5 rounded-xl bg-gradient-to-br from-brand-accent/10 via-brand-cream to-white border border-brand-accent/30 hover:border-brand-accent/60 hover:shadow-md transition-all group/quiz"
+                          className="flex flex-col justify-between p-3.5 rounded-xl bg-brand-cream border border-brand-border hover:border-brand-dark/20 hover:bg-white transition-all group/quiz"
                         >
                           <div>
                             <div className="flex items-center justify-between mb-2.5">
-                              <div className="w-7 h-7 rounded-lg bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent group-hover/quiz:bg-brand-accent group-hover/quiz:text-white transition-all">
+                              <div className="w-7 h-7 rounded-lg bg-white border border-brand-border flex items-center justify-center text-brand-dark group-hover/quiz:bg-brand-dark group-hover/quiz:text-white transition-all">
                                 <Compass className="h-4 w-4 group-hover/quiz:rotate-45 transition-transform" />
                               </div>
                             </div>
@@ -441,7 +441,7 @@ export default function Navbar() {
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95, y: 6 }}
                       transition={{ duration: 0.15, ease: 'easeOut' }}
-                      className="absolute right-0 mt-2 w-56 rounded-2xl border border-brand-border bg-brand-bg/95 backdrop-blur-md p-1.5 shadow-xl z-50 overflow-hidden"
+                      className="absolute right-0 mt-2 w-56 rounded-xl border border-brand-border bg-brand-bg/95 backdrop-blur-md p-1.5 shadow-xl z-50 overflow-hidden"
                     >
                       <div className="px-2.5 py-1.5">
                         <p className="text-xs font-bold text-brand-dark">Account</p>
@@ -454,7 +454,7 @@ export default function Navbar() {
                         <Link
                           href="/profile"
                           onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
+                          className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
                         >
                           <User className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
                           Profile Settings
@@ -463,7 +463,7 @@ export default function Navbar() {
                         <Link
                           href="/shortlist"
                           onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
+                          className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
                         >
                           <Bookmark className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
                           Shortlist Tracker ({slugs.size})
@@ -472,7 +472,7 @@ export default function Navbar() {
                         <Link
                           href="/match"
                           onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 rounded-xl px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
+                          className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
                         >
                           <Compass className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
                           ScholarMatch Quiz
@@ -487,7 +487,7 @@ export default function Navbar() {
                           setUserMenuOpen(false);
                           void signOut();
                         }}
-                        className="flex items-center gap-2.5 w-full rounded-xl px-2.5 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors cursor-pointer text-left"
+                        className="flex items-center gap-2.5 w-full rounded-lg px-2.5 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors cursor-pointer text-left"
                       >
                         <LogOut className="h-3.5 w-3.5 flex-shrink-0" />
                         Sign out
@@ -569,13 +569,13 @@ export default function Navbar() {
                     <Link
                       href="/match"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-brand-accent/15 to-brand-cream border border-brand-accent/30 text-xs font-bold text-brand-accent hover:opacity-90 transition-opacity"
+                      className="flex items-center justify-between p-3 rounded-xl bg-brand-cream border border-brand-border text-xs font-bold text-brand-dark hover:bg-white transition-colors"
                     >
                       <span className="flex items-center gap-2">
-                        <Compass className="h-4 w-4" />
+                        <Compass className="h-4 w-4 text-brand-dark" />
                         ScholarMatch Quiz
                       </span>
-                      <ArrowRight className="h-3.5 w-3.5" />
+                      <ArrowRight className="h-3.5 w-3.5 text-brand-muted" />
                     </Link>
 
                     <Link
@@ -699,7 +699,7 @@ export default function Navbar() {
 
       {/* ── MOBILE SEARCH MODAL DIALOG ── */}
       <Dialog open={searchDialogOpen} onOpenChange={setSearchDialogOpen}>
-        <DialogContent className="max-w-lg bg-brand-bg border border-brand-border rounded-2xl p-0 overflow-hidden shadow-2xl">
+        <DialogContent className="max-w-lg bg-brand-bg border border-brand-border rounded-xl p-0 overflow-hidden shadow-2xl">
           <DialogHeader className="p-4 pb-2 border-b border-brand-border/60">
             <DialogTitle className="text-sm font-bold text-brand-dark flex items-center gap-2">
               <Search className="h-4 w-4 text-brand-accent" />

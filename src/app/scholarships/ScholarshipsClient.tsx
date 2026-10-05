@@ -97,7 +97,7 @@ export default function ScholarshipsClient() {
         </div>
 
         {results.length === 0 ? (
-          <div className="mt-12 rounded-3xl border border-dashed border-brand-border bg-white p-12 text-center">
+          <div className="mt-12 rounded-xl border border-dashed border-brand-border bg-white p-12 text-center">
             <p className="font-serif text-2xl font-bold text-brand-dark">No scholarships found</p>
             <p className="mt-2 text-sm text-brand-muted">
               Try adjusting your filters or search terms.
@@ -112,15 +112,15 @@ export default function ScholarshipsClient() {
             </LinkButton>
           </div>
         ) : view === 'grid' ? (
-          <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-6 rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 gap-[1px] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 shadow-xs">
             {results.map((scholarship) => (
-              <ScholarshipCard key={scholarship.slug} scholarship={scholarship} />
+              <ScholarshipCard key={scholarship.slug} scholarship={scholarship} connected />
             ))}
           </div>
         ) : (
-          <div className="mt-6 space-y-3">
+          <div className="mt-6 rounded-xl border border-brand-border bg-brand-border overflow-hidden flex flex-col gap-[1px] shadow-xs">
             {results.map((scholarship) => (
-              <ScholarshipCard key={scholarship.slug} scholarship={scholarship} variant="list" />
+              <ScholarshipCard key={scholarship.slug} scholarship={scholarship} variant="list" connected />
             ))}
           </div>
         )}

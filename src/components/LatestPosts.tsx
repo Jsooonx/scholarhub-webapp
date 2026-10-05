@@ -46,7 +46,7 @@ export default function LatestPosts() {
                   className="flex flex-col md:flex-row gap-6 md:items-center group cursor-pointer pb-8 border-b border-brand-border last:border-b-0 last:pb-0"
                 >
                   <div className="md:w-1/3 flex-shrink-0">
-                    <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-brand-border">
+                    <div className="relative rounded-xl overflow-hidden aspect-[16/10] border border-brand-border">
                       <div
                         className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                         style={{ backgroundImage: `url('${getScholarshipImage(s)}')` }}

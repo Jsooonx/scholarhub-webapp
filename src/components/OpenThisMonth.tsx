@@ -83,17 +83,17 @@ export default function OpenThisMonth() {
 
           {/* Left: Main Featured */}
           <Link href={`/scholarships/${mainScholarship.slug}`} className="lg:col-span-5 flex flex-col group cursor-pointer">
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] border border-brand-border mb-4">
+            <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-brand-border mb-4">
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                 style={{ backgroundImage: `url('${getScholarshipImage(mainScholarship)}')` }}
               />
-              <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark text-white shadow-sm z-10">
+              <span className="absolute top-4 left-4 inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-brand-dark text-white shadow-xs z-10">
                 {providerMeta[mainGroup]?.flag ?? '🌍'} {mainScholarship.provider.split('/')[0].trim()}
               </span>
               {/* Deadline badge */}
               {(mainStatus.type === 'closing' || mainStatus.type === 'open') && (
-                <span className={`absolute top-4 right-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold shadow-sm z-10 ${
+                <span className={`absolute top-4 right-4 inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold shadow-xs z-10 ${
                   mainStatus.type === 'closing'
                     ? 'bg-red-500 text-white'
                     : 'bg-brand-accent text-white'
@@ -102,7 +102,7 @@ export default function OpenThisMonth() {
                 </span>
               )}
               {mainStatus.type !== 'closing' && mainStatus.type !== 'open' && (
-                <span className="absolute top-4 right-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-accent text-white shadow-sm z-10">
+                <span className="absolute top-4 right-4 inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-brand-accent text-white shadow-xs z-10">
                   {mainScholarship.funding_type}
                 </span>
               )}
@@ -160,7 +160,7 @@ export default function OpenThisMonth() {
 
           {/* Right: How it works + browse by type */}
           <div className="lg:col-span-3 flex flex-col gap-8">
-            <div className="bg-brand-cream border border-brand-border rounded-2xl p-6">
+            <div className="bg-brand-cream border border-brand-border rounded-xl p-6">
               <div className="flex items-center gap-2 mb-3">
                 <div className="p-1.5 bg-brand-dark/5 rounded-lg border border-brand-border text-brand-dark">
                   <Bookmark className="h-4 w-4" />
