@@ -205,7 +205,6 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
 
   return createPortal(
     <div 
-      data-lenis-prevent
       className="fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6"
     >
       {/* Backdrop */}
@@ -216,7 +215,7 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
         exit="exit"
         transition={{ duration: 0.22, ease: 'easeInOut' }}
         onClick={onClose}
-        className="absolute inset-0 bg-brand-dark/40 backdrop-blur-sm transform-gpu will-change-[opacity,backdrop-filter]"
+        className="absolute inset-0 bg-brand-dark/40 backdrop-blur-sm"
       />
 
       <motion.div
@@ -248,9 +247,9 @@ export default function ScholarshipCompareModal({ currentScholarship, buttonCent
         </div>
 
         {/* Scrollable Content */}
-        <div className="overflow-y-auto p-4 sm:p-6 md:p-8 flex-1 bg-brand-bg/10">
+        <div className="overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-8 flex-1 bg-brand-bg/10">
           <p className="mb-2 text-[10px] text-brand-muted sm:hidden">Geser tabel ke samping untuk membandingkan semua kolom.</p>
-          <div className="overflow-x-auto border border-brand-border/60 rounded-xl bg-white shadow-sm">
+          <div className="overflow-x-auto overscroll-contain border border-brand-border/60 rounded-xl bg-white shadow-sm">
             <table className="w-full table-fixed min-w-[640px] sm:min-w-[760px] border-collapse">
               <thead>
                 <tr className="border-b border-brand-border/60 bg-brand-cream/20">

@@ -1,19 +1,34 @@
 import { useEffect } from 'react';
 
+let activeLocks = 0;
+let originalBodyOverflow = '';
+let originalBodyOverscroll = '';
+
 /**
- * Reusable hook to lock scroll on `body` and `html` elements.
- * Ideal for modals, drawer slide-outs, and fullscreen overlays.
+ * Reusable hook to lock scroll on `body`.
+ * Prevents background scrolling without causing layout shifts or viewport flickering.
  *
  * @param isLocked Whether the body scroll should be locked.
  */
 export function useBodyScrollLock(isLocked: boolean) {
   useEffect(() => {
-    if (!isLocked) return;
+    if (!isLocked || typeof window === 'undefined') return;
 
-    // Prevent wheel events on anything outside the modal scroll container
+    if (activeLocks === 0) {
+      originalBodyOverflow = document.body.style.overflow;
+      originalBodyOverscroll = document.body.style.overscrollBehavior;
+
+      document.body.style.overflow = 'hidden';
+      document.body.style.overscrollBehavior = 'none';
+    }
+    activeLocks++;
+
+    // Prevent wheel events on anything outside actual scrollable containers
     const handleWheel = (e: WheelEvent) => {
       const target = e.target as HTMLElement | null;
-      if (target && target.closest('[data-lenis-prevent], .overflow-y-auto, .overflow-x-auto, input, textarea, select')) {
+      // Allow scrolling inside elements that have overflow-y-auto or overflow-x-auto
+      const scrollable = target?.closest('.overflow-y-auto, .overflow-x-auto, textarea, select');
+      if (scrollable) {
         return;
       }
       e.preventDefault();
@@ -22,7 +37,8 @@ export function useBodyScrollLock(isLocked: boolean) {
     // Prevent touchmove events on background on mobile/tablets
     const handleTouchMove = (e: TouchEvent) => {
       const target = e.target as HTMLElement | null;
-      if (target && target.closest('[data-lenis-prevent], .overflow-y-auto, .overflow-x-auto, input, textarea, select')) {
+      const scrollable = target?.closest('.overflow-y-auto, .overflow-x-auto, textarea, select');
+      if (scrollable) {
         return;
       }
       e.preventDefault();
@@ -32,7 +48,7 @@ export function useBodyScrollLock(isLocked: boolean) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(e.key)) {
         const target = e.target as HTMLElement | null;
-        if (!target || !target.closest('[data-lenis-prevent], .overflow-y-auto, .overflow-x-auto, input, textarea, select')) {
+        if (!target || !target.closest('.overflow-y-auto, .overflow-x-auto, textarea, select, input')) {
           e.preventDefault();
         }
       }
@@ -46,6 +62,12 @@ export function useBodyScrollLock(isLocked: boolean) {
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('keydown', handleKeyDown);
+
+      activeLocks = Math.max(0, activeLocks - 1);
+      if (activeLocks === 0) {
+        document.body.style.overflow = originalBodyOverflow;
+        document.body.style.overscrollBehavior = originalBodyOverscroll;
+      }
     };
   }, [isLocked]);
 }

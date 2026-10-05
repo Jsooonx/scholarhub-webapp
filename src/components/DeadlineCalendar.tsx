@@ -29,6 +29,7 @@ import {
 import { getDeadlineStatus, providerMeta, providerGroup } from '@/lib/scholarships';
 import DatePicker from '@/components/DatePicker';
 import { Button, LinkButton } from '@/components/ui/button';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
 interface Props {
   applications: ScholarshipApplication[];
@@ -90,6 +91,7 @@ export default function DeadlineCalendar({ applications }: Props) {
   const [year, setYear] = useState(() => new Date().getFullYear());
   const [month, setMonth] = useState(() => new Date().getMonth());
   const [selectedAppSlug, setSelectedAppSlug] = useState<string | null>(null);
+  useBodyScrollLock(Boolean(selectedAppSlug));
   
   // Note editing local state
   const [noteText, setNoteText] = useState('');
@@ -761,7 +763,7 @@ export default function DeadlineCalendar({ applications }: Props) {
                 {/* Editor Content Area */}
                 <div 
                   data-lenis-prevent
-                  className="space-y-4 border-t border-brand-border/60 pt-4 max-h-[60vh] overflow-y-auto pr-1 scrollbar-thin"
+                  className="space-y-4 border-t border-brand-border/60 pt-4 max-h-[60vh] overflow-y-auto overscroll-contain pr-1 scrollbar-thin"
                 >
                   
                   {/* Stage Select */}

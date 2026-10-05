@@ -6,6 +6,7 @@ import { Search, X, ChevronDown, Filter, Check } from 'lucide-react';
 
 import { allScholarships, providerMeta, providerGroup } from '@/lib/scholarships';
 import { Button } from '@/components/ui/button';
+import { useBodyScrollLock } from '@/hooks/useBodyScrollLock';
 
 // Extract unique programs grouped by country, sorted by country then program
 const uniquePrograms = Array.from(
@@ -172,6 +173,7 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
   const [searchValue, setSearchValue] = useState(queryParam);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  useBodyScrollLock(mobileFiltersOpen);
 
   // Sync if URL changes externally (e.g. clear button)
   useEffect(() => {
@@ -305,7 +307,7 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
             className="absolute inset-0 h-auto min-h-0 w-full rounded-none border-0 bg-brand-dark/25 p-0 hover:bg-brand-dark/25"
             onClick={() => setMobileFiltersOpen(false)}
           />
-          <div data-lenis-prevent className="absolute inset-x-0 bottom-0 max-h-[80dvh] overflow-y-auto rounded-t-3xl bg-brand-bg p-5 shadow-2xl">
+          <div data-lenis-prevent className="absolute inset-x-0 bottom-0 max-h-[80dvh] overflow-y-auto overscroll-contain rounded-t-3xl bg-brand-bg p-5 shadow-2xl">
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted">Refine results</p>
