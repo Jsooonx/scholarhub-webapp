@@ -21,11 +21,11 @@ import {
 } from 'lucide-react';
 import {
   type ScholarshipApplication,
-  updateApplicationDeadline,
-  updateApplicationNotes,
-  updateApplicationStatus,
-  updateApplicationAnnouncement,
-} from '@/app/actions/shortlist';
+  updateApplicationDeadlineApi as updateApplicationDeadline,
+  updateApplicationNotesApi as updateApplicationNotes,
+  updateApplicationStatusApi as updateApplicationStatus,
+  updateApplicationAnnouncementApi as updateApplicationAnnouncement,
+} from '@/lib/client-api';
 import { getDeadlineStatus, providerMeta, providerGroup } from '@/lib/scholarships';
 import DatePicker from '@/components/DatePicker';
 import { Button, LinkButton } from '@/components/ui/button';

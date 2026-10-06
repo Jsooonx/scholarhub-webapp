@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { type Scholarship } from '@/lib/scholarships';
-import { updateProfileQuizAnswers } from '@/app/actions/profile';
+import { saveProfileQuizApi } from '@/lib/client-api';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import { type QuizAnswers, filterScholarships } from '@/lib/matching';
 import { Button, LinkButton } from '@/components/ui/button';
@@ -127,21 +127,26 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
 
   const handleComplete = async (finalAnswers?: QuizAnswers) => {
     const answersToSave = finalAnswers || answers;
-    if (!isAuthenticated) {
-      setStep(stepsCount); // Show result page
-      return;
-    }
-
     setSaving(true);
     setSaveError(null);
 
-    const res = await updateProfileQuizAnswers(answersToSave);
-    setSaving(false);
-
-    if (res.success) {
+    try {
+      if (isAuthenticated) {
+        // Save to user profile in background via Cloudflare Worker API
+        // Promise.race ensures that even on slow or flaky networks, it won't hang
+        await Promise.race([
+          saveProfileQuizApi(answersToSave),
+          new Promise((resolve) => setTimeout(resolve, 1500)),
+        ]);
+      } else {
+        // Brief smooth feedback delay for unauthenticated users
+        await new Promise((resolve) => setTimeout(resolve, 350));
+      }
+    } catch (err) {
+      console.warn('Background quiz sync error:', err);
+    } finally {
+      setSaving(false);
       setStep(stepsCount);
-    } else {
-      setSaveError(res.error || 'Failed to save quiz results.');
     }
   };
 
