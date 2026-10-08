@@ -26,6 +26,7 @@
 *.db
 /data/*.sqlite
 /data/local_db.json
+/data/local_db*.json
 
 # production
 /build
