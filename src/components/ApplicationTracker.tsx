@@ -12,8 +12,8 @@ import {
   updateApplicationChecklistApi as updateApplicationChecklist,
   updateApplicationDeadlineApi as updateApplicationDeadline,
   updateApplicationAnnouncementApi as updateApplicationAnnouncement,
-  removeShortlistApi as removeFromShortlist,
 } from '@/lib/client-api';
+import { useShortlist } from '@/components/ShortlistProvider';
 import { getDeadlineStatus, getScholarshipLogo, providerMeta, providerGroup } from '@/lib/scholarships';
 import DeadlineStatusComponent from '@/components/DeadlineStatus';
 import DatePicker from '@/components/DatePicker';
@@ -61,6 +61,7 @@ type ColumnId = typeof COLUMNS[number]['id'];
 
 export default function ApplicationTracker({ initialApplications }: Props) {
   const router = useRouter();
+  const { remove: removeFromShortlist } = useShortlist();
   const [apps, setApps] = useState<ScholarshipApplication[]>(initialApplications);
 
   // Sync state with parent props updates
@@ -95,8 +96,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
         // Rollback on failure
         setApps(previousApps);
         alert(result.error || 'Failed to update application stage.');
-      } else {
-        router.refresh();
       }
     });
   };
@@ -135,7 +134,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
         current.map((app) => (app.scholarship_slug === slug ? { ...app, notes: noteText } : app))
       );
       setExpandedNotesSlug(null);
-      router.refresh();
     } else {
       alert(result.error || 'Failed to save notes.');
     }
@@ -160,8 +158,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     if (!result.ok) {
       setApps(previousApps);
       alert(result.error || 'Failed to update checklist.');
-    } else {
-      router.refresh();
     }
   };
 
@@ -190,8 +186,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     if (!result.ok) {
       setApps(previousApps);
       alert(result.error || 'Failed to add checklist item.');
-    } else {
-      router.refresh();
     }
   };
 
@@ -211,8 +205,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     if (!result.ok) {
       setApps(previousApps);
       alert(result.error || 'Failed to remove checklist item.');
-    } else {
-      router.refresh();
     }
   };
 
@@ -229,8 +221,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     if (!result.ok) {
       setApps(previousApps);
       alert(result.error || 'Failed to update target deadline date.');
-    } else {
-      router.refresh();
     }
   };
 
@@ -247,8 +237,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     if (!result.ok) {
       setApps(previousApps);
       alert(result.error || 'Failed to update verification status.');
-    } else {
-      router.refresh();
     }
   };
 
@@ -265,8 +253,6 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     if (!result.ok) {
       setApps(previousApps);
       alert(result.error || 'Failed to update target announcement date.');
-    } else {
-      router.refresh();
     }
   };
 
@@ -283,19 +269,16 @@ export default function ApplicationTracker({ initialApplications }: Props) {
     if (!result.ok) {
       setApps(previousApps);
       alert(result.error || 'Failed to update announcement verification status.');
-    } else {
-      router.refresh();
     }
   };
 
   const handleRemove = async (slug: string) => {
     if (confirm('Are you sure you want to remove this scholarship from your tracker?')) {
-      const result = await removeFromShortlist(slug);
-      if (result.ok) {
+      const ok = await removeFromShortlist(slug);
+      if (ok) {
         setApps((current) => current.filter((app) => app.scholarship_slug !== slug));
-        router.refresh();
       } else {
-        alert(result.error || 'Failed to remove scholarship.');
+        alert('Failed to remove scholarship.');
       }
     }
   };

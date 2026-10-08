@@ -5,12 +5,12 @@ import { useShortlist } from '@/components/ShortlistProvider';
 import { Button } from '@/components/ui/button';
 
 export default function RemoveShortlistButton({ slug }: { slug: string }) {
-  const { toggle, isPending } = useShortlist();
+  const { remove, isPending } = useShortlist();
 
   return (
     <Button
       type="button"
-      onClick={() => void toggle(slug)}
+      onClick={() => void remove(slug)}
       disabled={isPending}
       variant="danger"
       size="sm"

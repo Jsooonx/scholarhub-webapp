@@ -79,11 +79,14 @@ export async function fetchShortlist(): Promise<ShortlistApiResult> {
           parsedChecklist = row.checklist;
         }
 
+        const validStatuses = ['shortlisted', 'preparing', 'applied', 'interviewing', 'accepted', 'rejected'];
+        const appStatus = validStatuses.includes(row.status) ? row.status : 'shortlisted';
+
         return {
           id: row.id,
           user_id: row.user_id,
           scholarship_slug: row.scholarship_slug,
-          status: row.status,
+          status: appStatus as ScholarshipApplication['status'],
           notes: row.notes,
           checklist: parsedChecklist,
           target_deadline: row.target_deadline,

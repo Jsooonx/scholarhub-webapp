@@ -121,7 +121,11 @@ function executeQuery(query: string, params: any[]): any[] {
     if (query.includes('scholarship_slug = ?') && slug) {
       apps = apps.filter((a) => a.scholarship_slug === slug);
     }
-    return apps;
+    const validStatuses = ['shortlisted', 'preparing', 'applied', 'interviewing', 'accepted', 'rejected'];
+    return apps.map((app) => ({
+      ...app,
+      status: validStatuses.includes(app.status) ? app.status : 'shortlisted',
+    }));
   }
 
   // 8. Shortlists lookup
@@ -246,7 +250,18 @@ function executeMutation(query: string, params: any[]): { changes: number } {
     query.includes('INSERT INTO scholarship_applications') ||
     query.includes('INSERT OR REPLACE INTO scholarship_applications')
   ) {
-    const [id, user_id, scholarship_slug, status] = params;
+    const id = params[0] || crypto.randomUUID();
+    const user_id = params[1];
+    const scholarship_slug = params[2];
+    
+    // Check if status is a literal in query, or passed in params
+    let status = 'shortlisted';
+    if (query.includes("'shortlisted'")) {
+      status = 'shortlisted';
+    } else if (params[3] && typeof params[3] === 'string' && !params[3].includes('T') && !params[3].includes('-')) {
+      status = params[3];
+    }
+
     store.scholarship_applications = store.scholarship_applications || [];
     const idx = store.scholarship_applications.findIndex(
       (a) => a.user_id === user_id && a.scholarship_slug === scholarship_slug

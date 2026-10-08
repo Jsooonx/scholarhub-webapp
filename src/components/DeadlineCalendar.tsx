@@ -246,8 +246,6 @@ export default function DeadlineCalendar({ applications }: Props) {
       if (!result.ok) {
         setLocalApps(previousApps);
         alert(result.error || 'Failed to update target deadline date.');
-      } else {
-        router.refresh();
       }
     });
   };
@@ -266,8 +264,6 @@ export default function DeadlineCalendar({ applications }: Props) {
       if (!result.ok) {
         setLocalApps(previousApps);
         alert(result.error || 'Failed to update verification status.');
-      } else {
-        router.refresh();
       }
     });
   };
@@ -286,8 +282,6 @@ export default function DeadlineCalendar({ applications }: Props) {
       if (!result.ok) {
         setLocalApps(previousApps);
         alert(result.error || 'Failed to update target announcement date.');
-      } else {
-        router.refresh();
       }
     });
   };
@@ -306,8 +300,6 @@ export default function DeadlineCalendar({ applications }: Props) {
       if (!result.ok) {
         setLocalApps(previousApps);
         alert(result.error || 'Failed to update verification status.');
-      } else {
-        router.refresh();
       }
     });
   };
@@ -323,8 +315,6 @@ export default function DeadlineCalendar({ applications }: Props) {
       if (!result.ok) {
         setLocalApps(previousApps);
         alert(result.error || 'Failed to update application status.');
-      } else {
-        router.refresh();
       }
     });
   };
@@ -340,7 +330,6 @@ export default function DeadlineCalendar({ applications }: Props) {
       setLocalApps((current) =>
         current.map((app) => (app.scholarship_slug === selectedAppSlug ? { ...app, notes: noteText } : app))
       );
-      router.refresh();
     } else {
       alert(result.error || 'Failed to save notes.');
     }

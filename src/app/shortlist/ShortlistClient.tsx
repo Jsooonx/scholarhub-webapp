@@ -5,8 +5,10 @@ import ShortlistDashboard from '@/components/ShortlistDashboard';
 import ShortlistSkeleton from './ShortlistSkeleton';
 import { fetchShortlist, fetchProfile, type ScholarshipApplication } from '@/lib/client-api';
 import { type QuizAnswers } from '@/lib/matching';
+import { useShortlist } from '@/components/ShortlistProvider';
 
 export default function ShortlistClient() {
+  const { refresh: refreshShortlist } = useShortlist();
   const [applications, setApplications] = useState<ScholarshipApplication[]>([]);
   const [email, setEmail] = useState<string | undefined>(undefined);
   const [error, setError] = useState<string | undefined>(undefined);
@@ -24,6 +26,7 @@ export default function ShortlistClient() {
         setApplications(result.applications || []);
         setEmail(result.email);
         setError(result.error);
+        void refreshShortlist();
 
         const profileRes = await fetchProfile();
         if (profileRes.profile?.quiz_answers) {

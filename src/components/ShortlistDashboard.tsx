@@ -25,12 +25,23 @@ interface Props {
 
 export default function ShortlistDashboard({ initialApplications, email, error, quizAnswers }: Props) {
   const [view, setView] = useState<'board' | 'list' | 'calendar' | 'match'>('board');
-  const { authenticated } = useShortlist();
+  const { authenticated, slugs } = useShortlist();
+  const [apps, setApps] = useState<ScholarshipApplication[]>(initialApplications);
   
   const [currentQuizAnswers, setCurrentQuizAnswers] = useState<QuizAnswers | null>(quizAnswers ?? null);
   const [activeDropdown, setActiveDropdown] = useState<'degree' | 'field' | 'experience' | 'funding' | 'region' | null>(null);
 
   // Sync state if prop changes
+  useEffect(() => {
+    setApps(initialApplications);
+  }, [initialApplications]);
+
+  // Keep apps reactive if items are removed from shortlist context
+  useEffect(() => {
+    setApps((current) => current.filter((app) => slugs.has(app.scholarship_slug)));
+  }, [slugs]);
+
+  // Sync quiz answers if prop changes
   useEffect(() => {
     setCurrentQuizAnswers(quizAnswers ?? null);
   }, [quizAnswers]);
@@ -53,8 +64,8 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
     }
   };
 
-  const available = initialApplications.filter((app) => app.scholarship);
-  const unavailable = initialApplications.filter((app) => !app.scholarship);
+  const available = apps.filter((app) => app.scholarship);
+  const unavailable = apps.filter((app) => !app.scholarship);
 
   return (
     <main className="flex-grow">
@@ -379,7 +390,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
               </LinkButton>
             </div>
           )
-        ) : initialApplications.length === 0 ? (
+        ) : apps.length === 0 ? (
           <div className="rounded-xl border border-brand-border bg-white px-6 py-16 text-center shadow-xs">
             <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-brand-cream text-brand-accent">
               <Heart className="h-6 w-6" />
@@ -398,9 +409,9 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
             </LinkButton>
           </div>
         ) : view === 'board' ? (
-          <ApplicationTracker initialApplications={initialApplications} />
+          <ApplicationTracker initialApplications={apps} />
         ) : view === 'calendar' ? (
-          <DeadlineCalendar applications={initialApplications} />
+          <DeadlineCalendar applications={apps} />
         ) : (
           <div className="space-y-8 animate-fade-in">
             {available.length > 0 && (

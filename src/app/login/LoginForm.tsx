@@ -23,6 +23,7 @@ export default function LoginForm() {
   const [inputEmail, setInputEmail] = useState(urlEmail || '');
   const [loading, setLoading] = useState(false);
   const [sentEmail, setSentEmail] = useState<string | null>(urlSent === '1' ? (urlEmail || 'your email') : null);
+  const [devLink, setDevLink] = useState<string | null>(null);
   const [localError, setLocalError] = useState<string | null>(null);
 
   const displayError = localError || (errorParam ? errorCopy[errorParam] || 'Something went wrong. Please try again.' : null);
@@ -71,8 +72,11 @@ export default function LoginForm() {
         setLocalError(data?.error || 'Magic link could not be sent. Please try again.');
       } else {
         setSentEmail(cleanEmail);
+        if (data.devMagicLink) {
+          setDevLink(data.devMagicLink);
+        }
       }
-    } catch (err: any) {
+    } catch {
       setLocalError('Network error. Please try again.');
     } finally {
       setLoading(false);
@@ -102,8 +106,24 @@ export default function LoginForm() {
       )}
 
       {sentEmail && (
-        <div className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 leading-relaxed">
-          ✨ Magic link sent to <span className="font-semibold">{sentEmail}</span>. Check your inbox (and spam folder) to sign in!
+        <div className="mt-5 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 leading-relaxed space-y-2">
+          <p>
+            ✨ Magic link sent to <span className="font-semibold">{sentEmail}</span>. Check your inbox (and spam folder) to sign in!
+          </p>
+          {devLink && (
+            <div className="pt-2 border-t border-emerald-200/60">
+              <p className="text-[11px] font-medium text-emerald-900 mb-1.5">
+                🧪 Localhost detected: Klik link di bawah untuk login langsung tanpa buka email:
+              </p>
+              <a
+                href={devLink}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-emerald-800 transition-colors"
+              >
+                <span>Masuk Sekarang (Dev Link)</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          )}
         </div>
       )}
 
@@ -141,6 +161,24 @@ export default function LoginForm() {
           {loading ? 'Sending magic link...' : 'Send magic sign-in link'}
         </Button>
       </form>
+
+      {process.env.NODE_ENV !== 'production' && (
+        <div className="mt-5 rounded-xl border border-dashed border-amber-300 bg-amber-50/60 p-3.5 text-xs text-amber-900">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="font-bold text-[11px] uppercase tracking-wider text-amber-800">🧪 Testing di Localhost</span>
+            <span className="text-[10px] bg-amber-200/80 text-amber-900 px-1.5 py-0.5 rounded font-mono">dev mode</span>
+          </div>
+          <p className="text-[11px] text-amber-800 mb-2.5">
+            Bisa langsung login 1-klik tanpa kirim email asli:
+          </p>
+          <a
+            href={`/api/auth/dev-login?next=${encodeURIComponent(next || '/shortlist')}`}
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-amber-900 text-white px-3 py-2 text-xs font-semibold hover:bg-amber-800 transition-colors"
+          >
+            <span>⚡ Instant Sign-in (Test User: john@test.com)</span>
+          </a>
+        </div>
+      )}
 
       <p className="mt-6 text-center text-[11px] leading-relaxed text-brand-muted">
         We only use your account to sync your saved shortlist and application milestones across devices.

@@ -1,6 +1,6 @@
 'use client';
 
-import { Bookmark, Loader2 } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
 import { useShortlist } from '@/components/ShortlistProvider';
 import { Button } from '@/components/ui/button';
 
@@ -11,8 +11,9 @@ interface Props {
 }
 
 export default function SaveScholarshipButton({ slug, variant = 'icon', className = '' }: Props) {
-  const { authenticated, slugs, isPending, toggle } = useShortlist();
+  const { authenticated, slugs, isSlugPending, isPending, toggle } = useShortlist();
   const saved = slugs.has(slug);
+  const itemPending = isSlugPending ? isSlugPending(slug) : isPending;
   const label = saved ? 'Saved' : authenticated ? 'Save' : 'Sign in to save';
 
   if (variant === 'wide') {
@@ -20,17 +21,17 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
       <Button
         type="button"
         onClick={() => void toggle(slug)}
-        disabled={isPending}
+        disabled={itemPending}
         variant={saved ? 'primary' : 'secondary'}
         size="lg"
-        className={`w-full ${className}`}
+        className={`w-full transition-all duration-200 active:scale-[0.98] ${itemPending ? 'opacity-90 cursor-wait' : ''} ${className}`}
       >
-        {isPending ? (
-          <Loader2 className="h-4 w-4 animate-spin" />
-        ) : (
-          <Bookmark className={`h-4 w-4 ${saved ? 'fill-current' : ''}`} />
-        )}
-        {label}
+        <Bookmark
+          className={`h-4 w-4 transition-all duration-200 ${
+            saved ? 'fill-current scale-105' : 'scale-100'
+          }`}
+        />
+        <span>{label}</span>
       </Button>
     );
   }
@@ -43,20 +44,21 @@ export default function SaveScholarshipButton({ slug, variant = 'icon', classNam
         event.stopPropagation();
         void toggle(slug);
       }}
-      disabled={isPending}
+      disabled={itemPending}
       aria-pressed={saved}
       aria-label={label}
       title={label}
       variant={saved ? 'primary' : 'secondary'}
       size="icon-sm"
       shape="circle"
-      className={className}
+      className={`transition-all duration-200 active:scale-90 ${itemPending ? 'opacity-85' : ''} ${className}`}
     >
-      {isPending ? (
-        <Loader2 className="h-4 w-4 animate-spin" />
-      ) : (
-        <Bookmark className={`h-4 w-4 ${saved ? 'fill-current' : ''}`} />
-      )}
+      <Bookmark
+        className={`h-4 w-4 transition-all duration-200 ${
+          saved ? 'fill-current scale-110' : 'scale-100'
+        }`}
+      />
     </Button>
   );
 }
+

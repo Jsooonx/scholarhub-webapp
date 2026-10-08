@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { addShortlistApi, fetchShortlist, removeShortlistApi, signOutApi } from '@/lib/client-api';
 
 interface ShortlistContextValue {
@@ -10,8 +10,11 @@ interface ShortlistContextValue {
   email: string | null;
   slugs: Set<string>;
   isPending: boolean;
+  pendingSlugs: Set<string>;
+  isSlugPending: (slug: string) => boolean;
   refresh: () => Promise<void>;
   toggle: (slug: string) => Promise<void>;
+  remove: (slug: string) => Promise<boolean>;
   signOut: () => Promise<void>;
 }
 
@@ -19,17 +22,18 @@ const ShortlistContext = createContext<ShortlistContextValue | null>(null);
 
 export function ShortlistProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [ready, setReady] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [email, setEmail] = useState<string | null>(null);
   const [slugs, setSlugs] = useState<Set<string>>(new Set());
-  const [isPending, setIsPending] = useState(false);
+  const [pendingSlugs, setPendingSlugs] = useState<Set<string>>(new Set());
   const [currentPath, setCurrentPath] = useState('');
 
-  // Read current path client-side only
+  // Keep current path updated on navigation
   useEffect(() => {
     setCurrentPath(window.location.pathname + window.location.search);
-  }, []);
+  }, [pathname]);
 
   const refresh = useCallback(async () => {
     try {
@@ -58,7 +62,7 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      setIsPending(true);
+      setPendingSlugs((prev) => new Set(prev).add(slug));
       const wasSaved = slugs.has(slug);
       const nextSlugs = new Set(slugs);
       if (wasSaved) {
@@ -66,27 +70,72 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
       } else {
         nextSlugs.add(slug);
       }
+      // Instant optimistic UI update (0ms perceived latency)
       setSlugs(nextSlugs);
 
       try {
         const result = wasSaved ? await removeShortlistApi(slug) : await addShortlistApi(slug);
 
         if (!result.ok) {
+          // Revert optimistic update on failure
           setSlugs(slugs);
           if (result.status === 401) {
             setAuthenticated(false);
             router.push(`/login?next=${encodeURIComponent(currentPath)}`);
           }
-        } else {
-          router.refresh();
         }
       } catch {
+        // Revert optimistic update on network error
         setSlugs(slugs);
       } finally {
-        setIsPending(false);
+        setPendingSlugs((prev) => {
+          const next = new Set(prev);
+          next.delete(slug);
+          return next;
+        });
       }
     },
     [authenticated, currentPath, router, slugs]
+  );
+
+  const remove = useCallback(
+    async (slug: string): Promise<boolean> => {
+      if (!slug) return false;
+      const wasSaved = slugs.has(slug);
+      const nextSlugs = new Set(slugs);
+      nextSlugs.delete(slug);
+      // Optimistically remove from state (0ms latency)
+      setSlugs(nextSlugs);
+      setPendingSlugs((prev) => new Set(prev).add(slug));
+
+      try {
+        const result = await removeShortlistApi(slug);
+        if (!result.ok) {
+          if (wasSaved) {
+            setSlugs((prev) => new Set(prev).add(slug));
+          }
+          return false;
+        }
+        return true;
+      } catch {
+        if (wasSaved) {
+          setSlugs((prev) => new Set(prev).add(slug));
+        }
+        return false;
+      } finally {
+        setPendingSlugs((prev) => {
+          const next = new Set(prev);
+          next.delete(slug);
+          return next;
+        });
+      }
+    },
+    [slugs]
+  );
+
+  const isSlugPending = useCallback(
+    (slug: string) => pendingSlugs.has(slug),
+    [pendingSlugs]
   );
 
   const signOut = useCallback(async () => {
@@ -99,6 +148,8 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
     }
   }, [router]);
 
+  const isPending = pendingSlugs.size > 0;
+
   const value = useMemo<ShortlistContextValue>(
     () => ({
       authenticated,
@@ -106,11 +157,14 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
       email,
       slugs,
       isPending,
+      pendingSlugs,
+      isSlugPending,
       refresh,
       toggle,
+      remove,
       signOut,
     }),
-    [authenticated, email, isPending, ready, refresh, signOut, slugs, toggle]
+    [authenticated, email, isPending, pendingSlugs, isSlugPending, ready, refresh, remove, signOut, slugs, toggle]
   );
 
   return <ShortlistContext.Provider value={value}>{children}</ShortlistContext.Provider>;
