@@ -6,7 +6,7 @@ import { GraduationCap, Globe, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { allScholarships, providerGroup, providerMeta } from '@/lib/scholarships';
 import { useShortlist } from '@/components/ShortlistProvider';
-import { fetchProfile } from '@/lib/client-api';
+import { fetchProfile, getCachedProfile } from '@/lib/client-api';
 import type { Profile } from '@/app/actions/profile';
 import { Button, LinkButton } from '@/components/ui/button';
 
@@ -37,16 +37,48 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { authenticated } = useShortlist();
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (authenticated) {
-      fetchProfile().then((res) => {
-        if (res.profile) setProfile(res.profile as any);
-      });
-    } else {
-      setProfile(null);
+    // 1. Instantly restore cached profile on client mount (0ms latency, eliminates wrong button flash & delay)
+    const cached = getCachedProfile();
+    if (cached?.profile) {
+      setProfile(cached.profile);
     }
-  }, [authenticated]);
+    setReady(true);
+
+    // 2. Fresh background revalidation
+    fetchProfile()
+      .then((res) => {
+        if (res.profile) setProfile(res.profile);
+        setReady(true);
+      })
+      .catch(() => {
+        setReady(true);
+      });
+
+    // 3. Real-time profile synchronization across components & tabs
+    const handleProfileUpdate = () => {
+      const updated = getCachedProfile();
+      setProfile(updated?.profile || null);
+    };
+
+    window.addEventListener('scholarhub_profile_updated', handleProfileUpdate);
+    window.addEventListener('storage', handleProfileUpdate);
+    return () => {
+      window.removeEventListener('scholarhub_profile_updated', handleProfileUpdate);
+      window.removeEventListener('storage', handleProfileUpdate);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!authenticated && ready) {
+      const cached = getCachedProfile();
+      if (!cached?.profile?.quiz_answers) {
+        setProfile(null);
+      }
+    }
+  }, [authenticated, ready]);
 
   const cycleGroups = ['germany', 'japan', 'turkey', 'united-kingdom', 'australia', 'south-korea'];
   const featuredList = cycleGroups.map(group => ({
@@ -83,11 +115,14 @@ export default function Hero() {
               Your path to studying abroad
             </h1>
 
-            {/* ScholarMatch CTA */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              {profile?.quiz_answers ? (
+            {/* ScholarMatch CTA Slot with fixed height to completely eliminate layout shifts */}
+            <div className="mt-8 min-h-[44px] flex items-center">
+              {!ready ? (
+                // Subtle skeleton placeholder with identical height to eliminate position blinking and wrong button flash
+                <div className="h-9 w-44 rounded-lg bg-brand-dark/5 animate-pulse" />
+              ) : profile?.quiz_answers ? (
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-brand-cream border border-brand-border text-brand-dark">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-semibold bg-brand-cream border border-brand-border text-brand-dark shadow-2xs">
                     <span>Target: </span>
                     <span className="capitalize font-bold text-brand-accent">
                       {profile.quiz_answers.degree} · {profile.quiz_answers.field}
@@ -97,7 +132,7 @@ export default function Hero() {
                     href="/match"
                     variant="link"
                     size="xs"
-                    className="h-auto min-h-0 rounded-none px-0 !text-brand-accent"
+                    className="h-auto min-h-0 rounded-none px-0 !text-brand-accent hover:underline font-medium text-xs"
                   >
                     Retake Quiz
                   </LinkButton>

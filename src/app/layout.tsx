@@ -58,12 +58,12 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", lora.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full bg-brand-bg text-brand-dark font-sans flex flex-col selection:bg-brand-dark selection:text-white">
-        <Suspense>
-          <ShortlistProvider>
-            <Navbar />
+        <ShortlistProvider>
+          <Navbar />
+          <Suspense fallback={null}>
             {children}
-          </ShortlistProvider>
-        </Suspense>
+          </Suspense>
+        </ShortlistProvider>
       </body>
     </html>
   );

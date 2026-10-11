@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ScholarMatchQuiz from '@/components/ScholarMatchQuiz';
-import { fetchProfile } from '@/lib/client-api';
+import { fetchProfile, getCachedProfile } from '@/lib/client-api';
 import { type QuizAnswers } from '@/lib/matching';
 
 export default function ScholarMatchQuizClient() {
@@ -10,6 +10,15 @@ export default function ScholarMatchQuizClient() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    // Immediately restore cached answers on client mount (0ms latency, zero hydration mismatch)
+    const cached = getCachedProfile();
+    if (cached?.profile?.quiz_answers) {
+      setInitialAnswers(cached.profile.quiz_answers);
+    }
+    if (cached) {
+      setIsAuthenticated(Boolean(cached.authenticated));
+    }
+
     async function load() {
       try {
         const res = await fetchProfile();

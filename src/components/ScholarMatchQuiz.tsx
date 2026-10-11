@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { type Scholarship } from '@/lib/scholarships';
-import { saveProfileQuizApi } from '@/lib/client-api';
+import { saveProfileQuizApi, getCachedProfile, setCachedProfile } from '@/lib/client-api';
 import ScholarshipCard from '@/components/ScholarshipCard';
 import { type QuizAnswers, filterScholarships } from '@/lib/matching';
 import { Button, LinkButton } from '@/components/ui/button';
@@ -139,6 +139,25 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
           new Promise((resolve) => setTimeout(resolve, 1500)),
         ]);
       } else {
+        // Also save to client cache for guest users so Home page can display target
+        const cached = getCachedProfile() || { authenticated: false, profile: null };
+        if (cached.profile) {
+          cached.profile.quiz_answers = answersToSave;
+        } else {
+          cached.profile = {
+            user_id: 'guest',
+            display_name: null,
+            username: null,
+            bio: null,
+            location: null,
+            website_url: null,
+            avatar_url: null,
+            quiz_answers: answersToSave,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          };
+        }
+        setCachedProfile(cached);
         // Brief smooth feedback delay for unauthenticated users
         await new Promise((resolve) => setTimeout(resolve, 350));
       }

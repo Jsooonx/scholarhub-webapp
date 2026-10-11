@@ -205,7 +205,7 @@ export default function Navbar() {
 
                   {/* 1. All Scholarships Link */}
                   <NavigationMenuItem>
-                    <NavigationMenuLink
+                    <Link
                       href="/scholarships"
                       className={cn(
                         navigationMenuTriggerStyle(),
@@ -214,7 +214,7 @@ export default function Navbar() {
                       )}
                     >
                       Scholarships
-                    </NavigationMenuLink>
+                    </Link>
                   </NavigationMenuItem>
 
                   {/* 2. Destinations / Countries (Scrollable Mega Dropdown with ALL Countries) */}
@@ -356,7 +356,7 @@ export default function Navbar() {
 
                   {/* 4. About Link */}
                   <NavigationMenuItem>
-                    <NavigationMenuLink
+                    <Link
                       href="/about"
                       className={cn(
                         navigationMenuTriggerStyle(),
@@ -365,7 +365,7 @@ export default function Navbar() {
                       )}
                     >
                       About
-                    </NavigationMenuLink>
+                    </Link>
                   </NavigationMenuItem>
 
                 </NavigationMenuList>

@@ -1,14 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import ProfileForm from '@/components/ProfileForm';
 import ProfileSkeleton from './ProfileSkeleton';
-import { fetchProfile } from '@/lib/client-api';
+import { fetchProfile, getCachedProfile } from '@/lib/client-api';
 import type { Profile } from '@/app/actions/profile';
 
 export default function ProfileClient() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const savedParam = searchParams.get('saved') ?? undefined;
   const errorParam = searchParams.get('error') ?? undefined;
@@ -19,11 +20,23 @@ export default function ProfileClient() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isCancelled = false;
+
+    // Immediately restore from cache on client mount (0ms latency, zero hydration mismatch)
+    const cached = getCachedProfile();
+    if (cached) {
+      if (cached.profile) setProfile(cached.profile);
+      if (cached.email) setEmail(cached.email);
+      setLoading(false);
+    }
+
     async function load() {
       try {
         const res = await fetchProfile();
+        if (isCancelled) return;
+
         if (!res.authenticated) {
-          window.location.href = '/login?next=/profile';
+          router.replace('/login?next=/profile');
           return;
         }
         setProfile(res.profile ?? null);
@@ -32,11 +45,17 @@ export default function ProfileClient() {
       } catch (err) {
         console.error('Error loading profile:', err);
       } finally {
-        setLoading(false);
+        if (!isCancelled) {
+          setLoading(false);
+        }
       }
     }
-    load();
-  }, []);
+
+    void load();
+    return () => {
+      isCancelled = true;
+    };
+  }, [router]);
 
   if (loading) {
     return <ProfileSkeleton />;

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Bookmark } from 'lucide-react';
 import { useShortlist } from '@/components/ShortlistProvider';
 import { Button } from '@/components/ui/button';
@@ -11,10 +12,16 @@ interface Props {
 }
 
 export default function SaveScholarshipButton({ slug, variant = 'icon', className = '' }: Props) {
-  const { authenticated, slugs, isSlugPending, isPending, toggle } = useShortlist();
-  const saved = slugs.has(slug);
+  const { slugs, isSlugPending, isPending, toggle } = useShortlist();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const saved = mounted && slugs.has(slug);
   const itemPending = isSlugPending ? isSlugPending(slug) : isPending;
-  const label = saved ? 'Saved' : authenticated ? 'Save' : 'Sign in to save';
+  const label = saved ? 'Saved' : 'Save';
 
   if (variant === 'wide') {
     return (

@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { addShortlistApi, fetchShortlist, removeShortlistApi, signOutApi } from '@/lib/client-api';
+import { addShortlistApi, fetchShortlist, getCachedShortlist, removeShortlistApi, signOutApi } from '@/lib/client-api';
 
 interface ShortlistContextValue {
   authenticated: boolean;
@@ -43,15 +43,25 @@ export function ShortlistProvider({ children }: { children: React.ReactNode }) {
       setSlugs(new Set(result.slugs));
     } catch (error) {
       console.error('Failed to load shortlist slugs:', error);
-      setAuthenticated(false);
-      setEmail(null);
-      setSlugs(new Set());
+      if (!getCachedShortlist()?.authenticated) {
+        setAuthenticated(false);
+        setEmail(null);
+        setSlugs(new Set());
+      }
     } finally {
       setReady(true);
     }
   }, []);
 
+  // Instantly restore cached session on mount (0ms latency, eliminates profile avatar blink)
   useEffect(() => {
+    const cached = getCachedShortlist();
+    if (cached) {
+      setAuthenticated(cached.authenticated);
+      setEmail(cached.email ?? null);
+      setSlugs(new Set(cached.slugs || []));
+      setReady(true);
+    }
     void refresh();
   }, [refresh]);
 
