@@ -52,13 +52,8 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-
+import MorphSearch from '@/components/MorphSearch';
+import UserMenu from '@/components/UserMenu';
 import { Button, LinkButton, buttonVariants } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -73,126 +68,90 @@ const providers = Object.entries(providerMeta).map(([slug, meta]) => ({
 export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
-  const { authenticated, ready, slugs, signOut } = useShortlist();
+  const { authenticated, ready, slugs, signOut, email } = useShortlist();
 
   const [mounted, setMounted] = useState(false);
-  const [navSearchQuery, setNavSearchQuery] = useState('');
-  const [dialogSearchQuery, setDialogSearchQuery] = useState('');
-  const [searchDialogOpen, setSearchDialogOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const userMenuRef = useRef<HTMLDivElement>(null);
-  const [scholarshipsList, setScholarshipsList] = useState<SearchItem[]>([]);
+
+  const userDisplayName = email
+    ? email
+        .split('@')[0]
+        .replace(/[._-]/g, ' ')
+        .replace(/\b\w/g, (c) => c.toUpperCase())
+    : 'Scholar';
 
   useEffect(() => {
     setMounted(true);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Lazy-load compact search index only when search dialog is opened
+  // Sync scroll state immediately when navigating to another page
   useEffect(() => {
-    if (searchDialogOpen && scholarshipsList.length === 0) {
-      import('@/lib/scholarships/searchIndex').then(({ loadSearchItems }) => {
-        loadSearchItems().then(setScholarshipsList);
-      });
-    }
-  }, [searchDialogOpen, scholarshipsList.length]);
+    setScrolled(window.scrollY > 24);
+  }, [pathname]);
 
-  // Close user dropdown on click outside or escape key
-  useEffect(() => {
-    if (!userMenuOpen) return;
-    const handleDocClick = (e: MouseEvent) => {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
-        setUserMenuOpen(false);
-      }
-    };
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setUserMenuOpen(false);
-    };
-    document.addEventListener('mousedown', handleDocClick);
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('mousedown', handleDocClick);
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [userMenuOpen]);
-
-  // Filter scholarships for live dialog search
-  const filteredScholarships = dialogSearchQuery.trim()
-    ? scholarshipsList.filter(
-        (s) =>
-          s.name.toLowerCase().includes(dialogSearchQuery.toLowerCase()) ||
-          s.provider.toLowerCase().includes(dialogSearchQuery.toLowerCase()) ||
-          (s.country && s.country.toLowerCase().includes(dialogSearchQuery.toLowerCase())) ||
-          s.degree_levels?.some((lvl) => lvl.toLowerCase().includes(dialogSearchQuery.toLowerCase()))
-      ).slice(0, 15)
-    : scholarshipsList.slice(0, 10);
-
-  // Filter providers for live dialog search
-  const filteredProviders = dialogSearchQuery.trim()
-    ? providers.filter(
-        (p) =>
-          p.name.toLowerCase().includes(dialogSearchQuery.toLowerCase()) ||
-          p.country.toLowerCase().includes(dialogSearchQuery.toLowerCase())
-      )
-    : providers.slice(0, 12);
-
-  const handleNavSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (navSearchQuery.trim()) {
-      router.push(`/scholarships?q=${encodeURIComponent(navSearchQuery.trim())}`);
-      setNavSearchQuery('');
-    }
-  };
-
-  const handleDialogSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (dialogSearchQuery.trim()) {
-      setSearchDialogOpen(false);
-      router.push(`/scholarships?q=${encodeURIComponent(dialogSearchQuery.trim())}`);
-      setDialogSearchQuery('');
-    }
-  };
-
-  const handleSelectScholarship = useCallback(
-    (slug: string) => {
-      setSearchDialogOpen(false);
-      setMobileOpen(false);
-      router.push(`/scholarships/${slug}`);
-    },
-    [router]
-  );
-
-  const handleSelectProvider = useCallback(
-    (slug: string) => {
-      setSearchDialogOpen(false);
-      setMobileOpen(false);
-      router.push(`/providers/${slug}`);
-    },
-    [router]
-  );
+  const isMac = typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent);
 
   return (
     <>
-      {/* ── STICKY TOP NAVBAR ── */}
-      <header className="sticky top-0 z-40 w-full border-b border-brand-border/60 bg-brand-bg/90 backdrop-blur-md transition-all duration-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3">
+      {/* ── STICKY TOP NAVBAR (Morphs on scroll) ── */}
+      <header
+        className={cn(
+          "sticky top-0 z-40 w-full h-16 transition-all duration-300 ease-out flex items-center",
+          scrolled
+            ? "px-3 sm:px-6 pointer-events-none"
+            : "px-0 pointer-events-auto"
+        )}
+      >
+        {/* Full-width unscrolled background & bottom border layer (fades seamlessly without position jump or leftover border artifacts) */}
+        <div
+          className={cn(
+            "absolute inset-0 border-b border-brand-border/60 bg-brand-bg/90 backdrop-blur-md transition-opacity duration-300 ease-out pointer-events-none",
+            scrolled ? "opacity-0" : "opacity-100"
+          )}
+        />
+
+        {/* Morphing floating pill container */}
+        <div
+          className={cn(
+            "relative z-10 mx-auto w-full flex items-center justify-between gap-3 transition-all duration-300 ease-out pointer-events-auto",
+            scrolled
+              ? "max-w-6xl px-4 sm:px-6 h-12.5 sm:h-13 rounded-full border border-brand-border/80 bg-brand-bg/95 backdrop-blur-xl shadow-lg shadow-brand-dark/5"
+              : "max-w-7xl px-4 sm:px-6 lg:px-8 h-16 rounded-none border border-transparent bg-transparent shadow-none"
+          )}
+        >
 
           {/* ── LEFT: BRAND LOGO ── */}
-          <div className="flex items-center gap-4 lg:gap-6">
+          <div className="flex items-center gap-3 lg:gap-5">
             <Link
               href="/"
-              className="flex items-center gap-2.5 group transition-opacity hover:opacity-90 flex-shrink-0"
+              className="flex items-center gap-2 group transition-all hover:opacity-90 flex-shrink-0"
             >
               <img
                 src="/images/logos/Scholarhub_logo.png"
                 alt="ScholarHub Logo"
-                className="h-8 w-8 rounded-lg object-cover shadow-xs border border-brand-border/40 transition-transform group-hover:scale-105"
+                className={cn(
+                  "rounded-lg object-cover shadow-xs border border-brand-border/40 transition-all group-hover:scale-105",
+                  scrolled ? "h-7 w-7" : "h-8 w-8"
+                )}
               />
-              <div className="flex flex-col">
-                <span className="font-serif text-lg font-bold tracking-tight text-brand-dark leading-none">
+              <div className="flex flex-col overflow-hidden">
+                <span className={cn(
+                  "font-serif font-bold tracking-tight text-brand-dark leading-none transition-all",
+                  scrolled ? "text-base" : "text-lg"
+                )}>
                   Scholar<span className="text-brand-accent">Hub</span>
                 </span>
-                <span className="text-[10px] text-brand-muted uppercase tracking-widest font-medium">
+                <span className={cn(
+                  "text-[10px] text-brand-muted uppercase tracking-widest font-medium transition-all overflow-hidden",
+                  scrolled ? "max-h-0 opacity-0" : "max-h-4 opacity-100"
+                )}>
                   Directory
                 </span>
               </div>
@@ -373,34 +332,11 @@ export default function Navbar() {
             </nav>
           </div>
 
-          {/* ── RIGHT: SEARCH BAR, SHORTLIST, USER PROFILE, MOBILE MENU ── */}
+          {/* ── RIGHT: MORPH SEARCH, SHORTLIST, USER PROFILE, MOBILE MENU ── */}
           <div className="flex items-center gap-2 sm:gap-2.5">
 
-            {/* Desktop Inline Search Bar (without ⌘K badge) */}
-            <form
-              onSubmit={handleNavSearchSubmit}
-              className="relative hidden sm:flex items-center"
-            >
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-brand-muted pointer-events-none" />
-              <Input
-                type="text"
-                placeholder="Search scholarships..."
-                value={navSearchQuery}
-                onChange={(e) => setNavSearchQuery(e.target.value)}
-                className="h-9 w-44 md:w-52 lg:w-60 pl-8.5 pr-3 rounded-full border-brand-border/80 bg-white/80 text-xs text-brand-dark placeholder:text-brand-muted/70 focus:bg-white focus:w-64 transition-all shadow-2xs"
-              />
-            </form>
-
-            {/* Mobile Search Button Trigger (Opens Search Dialog) */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setSearchDialogOpen(true)}
-              className="sm:hidden h-9 w-9 rounded-full text-brand-dark hover:bg-black/5 cursor-pointer"
-              aria-label="Search scholarships"
-            >
-              <Search className="h-4 w-4" />
-            </Button>
+            {/* Continuous Surface Morphing Search Bar */}
+            <MorphSearch />
 
             {/* Shortlist Button (with dynamic count badge) */}
             <Link
@@ -421,81 +357,41 @@ export default function Navbar() {
 
             {/* User Profile / Auth Section */}
             {ready && authenticated ? (
-              <div className="relative" ref={userMenuRef}>
-                <button
-                  type="button"
-                  onClick={() => setUserMenuOpen((prev) => !prev)}
-                  className="relative flex items-center justify-center rounded-full focus:outline-none cursor-pointer transition-transform hover:scale-105 active:scale-95"
-                  aria-label="User Account Menu"
-                  aria-expanded={userMenuOpen}
-                >
-                  <div className="h-8 w-8 rounded-full border border-brand-accent/30 ring-2 ring-brand-cream bg-brand-accent text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                    <User className="h-4 w-4" />
-                  </div>
-                </button>
-
-                <AnimatePresence>
-                  {userMenuOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95, y: 6 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.95, y: 6 }}
-                      transition={{ duration: 0.15, ease: 'easeOut' }}
-                      className="absolute right-0 mt-2 w-56 rounded-xl border border-brand-border bg-brand-bg/95 backdrop-blur-md p-1.5 shadow-xl z-50 overflow-hidden"
-                    >
-                      <div className="px-2.5 py-1.5">
-                        <p className="text-xs font-bold text-brand-dark">Account</p>
-                        <p className="text-[10px] text-brand-muted font-normal">Manage your preferences</p>
-                      </div>
-                      
-                      <div className="h-px bg-brand-border/60 my-1" />
-
-                      <div className="flex flex-col gap-0.5">
-                        <Link
-                          href="/profile"
-                          onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
-                        >
-                          <User className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
-                          Profile Settings
-                        </Link>
-
-                        <Link
-                          href="/shortlist"
-                          onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
-                        >
-                          <Bookmark className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
-                          Shortlist Tracker ({slugs.size})
-                        </Link>
-
-                        <Link
-                          href="/match"
-                          onClick={() => setUserMenuOpen(false)}
-                          className="flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium text-brand-dark hover:bg-black/5 transition-colors cursor-pointer"
-                        >
-                          <Compass className="h-3.5 w-3.5 text-brand-accent flex-shrink-0" />
-                          ScholarMatch Quiz
-                        </Link>
-                      </div>
-
-                      <div className="h-px bg-brand-border/60 my-1" />
-
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setUserMenuOpen(false);
-                          void signOut();
-                        }}
-                        className="flex items-center gap-2.5 w-full rounded-lg px-2.5 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors cursor-pointer text-left"
-                      >
-                        <LogOut className="h-3.5 w-3.5 flex-shrink-0" />
-                        Sign out
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              <UserMenu
+                user={{
+                  name: userDisplayName,
+                  email: email || 'scholar@scholarhub.id',
+                  plan: 'Scholar',
+                }}
+                showName
+                items={[
+                  {
+                    label: 'Profile Settings',
+                    icon: <User className="h-4 w-4" />,
+                    onSelect: () => router.push('/profile'),
+                  },
+                  {
+                    label: 'Shortlist Tracker',
+                    icon: <Bookmark className="h-4 w-4" />,
+                    badge:
+                      slugs.size > 0 ? (
+                        <Badge className="ml-auto h-4 px-1 rounded-full text-[10px] bg-brand-accent text-white border-none flex items-center justify-center font-bold">
+                          {slugs.size}
+                        </Badge>
+                      ) : undefined,
+                    onSelect: () => router.push('/shortlist'),
+                  },
+                  {
+                    label: 'ScholarMatch Quiz',
+                    icon: <Compass className="h-4 w-4" />,
+                    onSelect: () => router.push('/match'),
+                  },
+                ]}
+                onSignOut={async () => {
+                  await signOut();
+                  router.push('/');
+                }}
+              />
             ) : ready && !authenticated ? (
               <LinkButton
                 href={`/login?next=${encodeURIComponent(pathname)}`}
@@ -544,23 +440,18 @@ export default function Navbar() {
                     </div>
                   </SheetHeader>
 
-                  {/* Mobile Search Form */}
-                  <form
-                    onSubmit={(e) => {
-                      handleNavSearchSubmit(e);
+                  {/* Mobile Search Input Trigger */}
+                  <button
+                    type="button"
+                    onClick={() => {
                       setMobileOpen(false);
+                      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }));
                     }}
-                    className="relative mb-6"
+                    className="relative mb-6 flex h-10 w-full items-center rounded-xl border border-brand-border bg-white pl-9 pr-3 text-xs text-brand-muted shadow-2xs text-left group"
                   >
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-brand-muted pointer-events-none" />
-                    <Input
-                      type="text"
-                      placeholder="Search scholarships..."
-                      value={navSearchQuery}
-                      onChange={(e) => setNavSearchQuery(e.target.value)}
-                      className="h-10 w-full pl-9 pr-3 rounded-xl border-brand-border bg-white text-xs text-brand-dark placeholder:text-brand-muted shadow-2xs"
-                    />
-                  </form>
+                    <span className="text-brand-muted">Search scholarships...</span>
+                  </button>
 
                   {/* Mobile Navigation Links */}
                   <div className="flex flex-col gap-1.5">
@@ -697,106 +588,7 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* ── MOBILE SEARCH MODAL DIALOG ── */}
-      <Dialog open={searchDialogOpen} onOpenChange={setSearchDialogOpen}>
-        <DialogContent className="max-w-lg bg-brand-bg border border-brand-border rounded-xl p-0 overflow-hidden shadow-2xl">
-          <DialogHeader className="p-4 pb-2 border-b border-brand-border/60">
-            <DialogTitle className="text-sm font-bold text-brand-dark flex items-center gap-2">
-              <Search className="h-4 w-4 text-brand-accent" />
-              Search Scholarships &amp; Destinations
-            </DialogTitle>
-          </DialogHeader>
-
-          <div className="p-4 space-y-4">
-            <form onSubmit={handleDialogSearchSubmit} className="relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-muted pointer-events-none" />
-              <Input
-                type="text"
-                autoFocus
-                placeholder="Search by scholarship title, country, degree level..."
-                value={dialogSearchQuery}
-                onChange={(e) => setDialogSearchQuery(e.target.value)}
-                className="h-11 pl-10 pr-20 rounded-xl border-brand-border bg-white text-sm text-brand-dark placeholder:text-brand-muted shadow-2xs"
-              />
-              <Button
-                type="submit"
-                size="sm"
-                variant="primary"
-                shape="control"
-                className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 min-h-0 px-3 text-xs"
-              >
-                Search
-              </Button>
-            </form>
-
-            {/* Results container */}
-            <div className="max-h-[300px] overflow-y-auto space-y-3 pr-1 navbar-dropdown-scroll">
-              {/* Destinations Section */}
-              {filteredProviders.length > 0 && (
-                <div>
-                  <p className="text-[10px] uppercase tracking-wider font-bold text-brand-muted mb-1.5 px-1">
-                    Destinations
-                  </p>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-                    {filteredProviders.slice(0, 6).map((p) => (
-                      <Button
-                        key={p.slug}
-                        type="button"
-                        onClick={() => handleSelectProvider(p.slug)}
-                        variant="secondary"
-                        size="sm"
-                        shape="control"
-                        className="h-auto min-h-9 w-full justify-start rounded-lg bg-white/50 p-2 text-left text-xs font-medium truncate"
-                      >
-                        <span>{p.flag}</span>
-                        <span className="truncate">{p.name}</span>
-                      </Button>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Scholarships Section */}
-              <div>
-                <p className="text-[10px] uppercase tracking-wider font-bold text-brand-muted mb-1.5 px-1">
-                  Scholarships ({filteredScholarships.length})
-                </p>
-                <div className="space-y-1.5">
-                  {filteredScholarships.length === 0 ? (
-                    <p className="text-xs text-brand-muted py-4 text-center">
-                      No matching scholarships found. Press &quot;Search&quot; to browse all filters.
-                    </p>
-                  ) : (
-                    filteredScholarships.map((s) => (
-                      <Button
-                        key={s.slug}
-                        type="button"
-                        onClick={() => handleSelectScholarship(s.slug)}
-                        variant="secondary"
-                        size="sm"
-                        shape="control"
-                        className="h-auto min-h-10 w-full justify-between rounded-xl bg-white/50 p-2.5 text-left group/item"
-                      >
-                        <div className="min-w-0 pr-2">
-                          <p className="text-xs font-bold text-brand-dark group-hover/item:text-brand-accent transition-colors truncate">
-                            {s.name}
-                          </p>
-                          <p className="text-[10px] text-brand-muted truncate">
-                            {s.provider} {s.country ? `· ${s.country}` : ''} · {s.funding_type}
-                          </p>
-                        </div>
-                        <Badge variant="outline" className="text-[9px] px-1.5 py-0 h-4 border-brand-border flex-shrink-0">
-                          {s.degree_levels?.[0] || 'Degree'}
-                        </Badge>
-                      </Button>
-                    ))
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {/* ── END OF NAVBAR ── */}
     </>
   );
 }

@@ -71,7 +71,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
     <main className="flex-grow">
       {/* Header and Toggle Area */}
       <div className="border-b border-brand-border bg-brand-bg">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:py-10 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
           <nav className="mb-2 text-xs text-brand-muted">
             <Link href="/" className="hover:text-brand-dark transition-colors">Home</Link>
@@ -96,102 +96,108 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
             </div>
 
             {/* Premium Toggle Button */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               {email && (
-                <p className="text-xs text-brand-muted md:text-right">
+                <p className="text-xs text-brand-muted sm:text-right">
                   Signed in as <span className="font-semibold text-brand-dark">{email}</span>
                 </p>
               )}
               
-              <div className="relative inline-flex rounded-full border border-brand-border bg-brand-cream p-1 shadow-sm">
-                <Button
-                  onClick={() => setView('board')}
-                  variant="ghost"
-                  size="sm"
-                  shape="pill"
-                  aria-pressed={view === 'board'}
-                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
-                    view === 'board'
-                      ? '!text-white'
-                      : '!text-brand-muted hover:!text-brand-dark'
-                  }`}
-                >
-                  <Kanban className="h-3.5 w-3.5" />
-                  Board Tracker
-                  {view === 'board' && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Button>
-                <Button
-                  onClick={() => setView('calendar')}
-                  variant="ghost"
-                  size="sm"
-                  shape="pill"
-                  aria-pressed={view === 'calendar'}
-                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
-                    view === 'calendar'
-                      ? '!text-white'
-                      : '!text-brand-muted hover:!text-brand-dark'
-                  }`}
-                >
-                  <Calendar className="h-3.5 w-3.5" />
-                  Deadline Calendar
-                  {view === 'calendar' && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Button>
-                <Button
-                  onClick={() => setView('list')}
-                  variant="ghost"
-                  size="sm"
-                  shape="pill"
-                  aria-pressed={view === 'list'}
-                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
-                    view === 'list'
-                      ? '!text-white'
-                      : '!text-brand-muted hover:!text-brand-dark'
-                  }`}
-                >
-                  <LayoutGrid className="h-3.5 w-3.5" />
-                  List view
-                  {view === 'list' && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Button>
-                <Button
-                  onClick={() => setView('match')}
-                  variant="ghost"
-                  size="sm"
-                  shape="pill"
-                  aria-pressed={view === 'match'}
-                  className={`relative z-10 rounded-full px-4 text-xs font-semibold ${
-                    view === 'match'
-                      ? '!text-white'
-                      : '!text-brand-muted hover:!text-brand-dark'
-                  }`}
-                >
-                  <Compass className="h-3.5 w-3.5" />
-                  ScholarMatch
-                  {view === 'match' && (
-                    <motion.div
-                      layoutId="activeTab"
-                      className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Button>
+              <div className="w-full sm:w-auto overflow-x-auto no-scrollbar">
+                <div className="relative flex w-full sm:w-auto items-center justify-between sm:justify-start rounded-full border border-brand-border bg-brand-cream p-1 shadow-sm">
+                  <Button
+                    onClick={() => setView('board')}
+                    variant="ghost"
+                    size="sm"
+                    shape="pill"
+                    aria-pressed={view === 'board'}
+                    className={`relative z-10 flex-1 sm:flex-initial justify-center rounded-full px-2 sm:px-4 py-1.5 text-xs font-semibold ${
+                      view === 'board'
+                        ? '!text-white'
+                        : '!text-brand-muted hover:!text-brand-dark'
+                    }`}
+                  >
+                    <Kanban className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span className="hidden sm:inline">Board Tracker</span>
+                    <span className="sm:hidden text-[11px]">Board</span>
+                    {view === 'board' && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Button>
+                  <Button
+                    onClick={() => setView('calendar')}
+                    variant="ghost"
+                    size="sm"
+                    shape="pill"
+                    aria-pressed={view === 'calendar'}
+                    className={`relative z-10 flex-1 sm:flex-initial justify-center rounded-full px-2 sm:px-4 py-1.5 text-xs font-semibold ${
+                      view === 'calendar'
+                        ? '!text-white'
+                        : '!text-brand-muted hover:!text-brand-dark'
+                    }`}
+                  >
+                    <Calendar className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span className="hidden sm:inline">Deadline Calendar</span>
+                    <span className="sm:hidden text-[11px]">Calendar</span>
+                    {view === 'calendar' && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Button>
+                  <Button
+                    onClick={() => setView('list')}
+                    variant="ghost"
+                    size="sm"
+                    shape="pill"
+                    aria-pressed={view === 'list'}
+                    className={`relative z-10 flex-1 sm:flex-initial justify-center rounded-full px-2 sm:px-4 py-1.5 text-xs font-semibold ${
+                      view === 'list'
+                        ? '!text-white'
+                        : '!text-brand-muted hover:!text-brand-dark'
+                    }`}
+                  >
+                    <LayoutGrid className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span className="hidden sm:inline">List view</span>
+                    <span className="sm:hidden text-[11px]">List</span>
+                    {view === 'list' && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Button>
+                  <Button
+                    onClick={() => setView('match')}
+                    variant="ghost"
+                    size="sm"
+                    shape="pill"
+                    aria-pressed={view === 'match'}
+                    className={`relative z-10 flex-1 sm:flex-initial justify-center rounded-full px-2 sm:px-4 py-1.5 text-xs font-semibold ${
+                      view === 'match'
+                        ? '!text-white'
+                        : '!text-brand-muted hover:!text-brand-dark'
+                    }`}
+                  >
+                    <Compass className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span className="hidden sm:inline">ScholarMatch</span>
+                    <span className="sm:hidden text-[11px]">Match</span>
+                    {view === 'match' && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 -z-10 rounded-full bg-brand-dark shadow-sm"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -199,7 +205,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
       </div>
 
       {/* Main Content Area */}
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:py-10 sm:px-6 lg:px-8">
         {error && (
           <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
             {error}
@@ -391,7 +397,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
             </div>
           )
         ) : apps.length === 0 ? (
-          <div className="rounded-xl border border-brand-border bg-white px-6 py-16 text-center shadow-xs">
+          <div className="rounded-xl border border-brand-border bg-white px-4 py-10 sm:px-6 sm:py-16 text-center shadow-xs">
             <div className="mx-auto mb-4 grid h-12 w-12 place-items-center rounded-full bg-brand-cream text-brand-accent">
               <Heart className="h-6 w-6" />
             </div>

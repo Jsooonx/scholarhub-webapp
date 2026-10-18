@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build && node scripts/prepare-assets.js",
     "start": "next start",
-    "lint": "eslint src proxy.ts next.config.ts"
+    "lint": "eslint src next.config.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
