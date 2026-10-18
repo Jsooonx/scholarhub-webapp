@@ -7,22 +7,42 @@ import ProfileForm from '@/components/ProfileForm';
 import ProfileSkeleton from './ProfileSkeleton';
 import { fetchProfile, getCachedProfile } from '@/lib/client-api';
 import type { Profile } from '@/app/actions/profile';
+import { useIsHydrated } from '@/lib/hydration';
 
 export default function ProfileClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const savedParam = searchParams.get('saved') ?? undefined;
   const errorParam = searchParams.get('error') ?? undefined;
+  const isHydrated = useIsHydrated();
 
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [email, setEmail] = useState<string | undefined>(undefined);
+  const [initialData] = useState(() => {
+    if (typeof window !== 'undefined' && isHydrated) {
+      const cached = getCachedProfile();
+      if (cached) {
+        return {
+          profile: cached.profile ?? null,
+          email: cached.email,
+          hasCache: true,
+        };
+      }
+    }
+    return {
+      profile: null,
+      email: undefined,
+      hasCache: false,
+    };
+  });
+
+  const [profile, setProfile] = useState<Profile | null>(initialData.profile);
+  const [email, setEmail] = useState<string | undefined>(initialData.email);
   const [errorMsg, setErrorMsg] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialData.hasCache);
 
   useEffect(() => {
     let isCancelled = false;
 
-    // Immediately restore from cache on client mount (0ms latency, zero hydration mismatch)
+    // Immediately restore from cache on client mount if not already initialized
     const cached = getCachedProfile();
     if (cached) {
       if (cached.profile) setProfile(cached.profile);
@@ -57,7 +77,7 @@ export default function ProfileClient() {
     };
   }, [router]);
 
-  if (loading) {
+  if (!isHydrated || loading) {
     return <ProfileSkeleton />;
   }
 

@@ -11,16 +11,32 @@ import Link from 'next/link';
 import { type Scholarship } from '@/lib/scholarships';
 import { saveProfileQuizApi, getCachedProfile, setCachedProfile } from '@/lib/client-api';
 import ScholarshipCard from '@/components/ScholarshipCard';
-import { type QuizAnswers, filterScholarships } from '@/lib/matching';
+import { type QuizAnswers, filterScholarships, formatDegree, formatField } from '@/lib/matching';
 import { Button, LinkButton } from '@/components/ui/button';
 
 interface Props {
   initialAnswers: QuizAnswers | null;
   isAuthenticated: boolean;
+  authChecked?: boolean;
 }
 
-export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Props) {
-  const [step, setStep] = useState<number>(0);
+const stepsCount = 5;
+
+export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated, authChecked = true }: Props) {
+  const [step, setStep] = useState<number>(() => {
+    if (initialAnswers) return stepsCount;
+    if (typeof window !== 'undefined') {
+      const savedCompleted = sessionStorage.getItem('scholarMatchCompleted') === 'true';
+      const savedStep = sessionStorage.getItem('scholarMatchStep');
+      if (savedStep) {
+        const parsed = parseInt(savedStep, 10);
+        if (!isNaN(parsed) && parsed >= 0 && parsed <= stepsCount) return parsed;
+      }
+      if (savedCompleted) return stepsCount;
+    }
+    return 0;
+  });
+
   const [saving, setSaving] = useState<boolean>(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [contentHeight, setContentHeight] = useState<number | 'auto'>('auto');
@@ -48,12 +64,25 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
     lastStepRef.current = step;
   }, [step]);
   
-  const [answers, setAnswers] = useState<QuizAnswers>({
-    degree: 'master',
-    field: 'any',
-    experience: 'no',
-    funding: 'fully',
-    region: 'any'
+  const [answers, setAnswers] = useState<QuizAnswers>(() => {
+    if (initialAnswers) return initialAnswers;
+    if (typeof window !== 'undefined') {
+      const savedAnswers = sessionStorage.getItem('scholarMatchAnswers');
+      if (savedAnswers) {
+        try {
+          return JSON.parse(savedAnswers);
+        } catch (e) {
+          console.error('Failed to parse saved answers:', e);
+        }
+      }
+    }
+    return {
+      degree: 'master',
+      field: 'any',
+      experience: 'no',
+      funding: 'fully',
+      region: 'any'
+    };
   });
 
   const [activeDropdown, setActiveDropdown] = useState<'degree' | 'field' | 'experience' | 'funding' | 'region' | null>(null);
@@ -67,34 +96,12 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
     return () => document.removeEventListener('click', handleOutsideClick);
   }, [activeDropdown]);
 
-  const stepsCount = 5;
-
-  // Load from sessionStorage on mount (or initialAnswers)
+  // Update answers & step if initialAnswers changes after mount (e.g. from async profile fetch)
+  const prevInitialAnswersRef = useRef(initialAnswers);
   useEffect(() => {
-    if (initialAnswers) {
+    if (initialAnswers && initialAnswers !== prevInitialAnswersRef.current) {
+      prevInitialAnswersRef.current = initialAnswers;
       setAnswers(initialAnswers);
-      setStep(stepsCount); // Skip to results
-      return;
-    }
-
-    const savedCompleted = sessionStorage.getItem('scholarMatchCompleted') === 'true';
-    const savedAnswers = sessionStorage.getItem('scholarMatchAnswers');
-    const savedStep = sessionStorage.getItem('scholarMatchStep');
-
-    if (savedAnswers) {
-      try {
-        setAnswers(JSON.parse(savedAnswers));
-      } catch (e) {
-        console.error('Failed to parse saved answers:', e);
-      }
-    }
-
-    if (savedStep) {
-      const parsedStep = parseInt(savedStep, 10);
-      if (!isNaN(parsedStep) && parsedStep >= 0 && parsedStep <= stepsCount) {
-        setStep(parsedStep);
-      }
-    } else if (savedCompleted) {
       setStep(stepsCount);
     }
   }, [initialAnswers]);
@@ -125,19 +132,25 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
     if (step > 0) setStep(step - 1);
   };
 
-  const handleComplete = async (finalAnswers?: QuizAnswers) => {
+  const handleComplete = async (finalAnswers?: QuizAnswers, isSilent = false) => {
     const answersToSave = finalAnswers || answers;
-    setSaving(true);
+    if (!isSilent) {
+      setSaving(true);
+    }
     setSaveError(null);
 
     try {
       if (isAuthenticated) {
         // Save to user profile in background via Cloudflare Worker API
-        // Promise.race ensures that even on slow or flaky networks, it won't hang
-        await Promise.race([
-          saveProfileQuizApi(answersToSave),
-          new Promise((resolve) => setTimeout(resolve, 1500)),
-        ]);
+        if (isSilent) {
+          void saveProfileQuizApi(answersToSave);
+        } else {
+          // Promise.race ensures that even on slow or flaky networks, it won't hang
+          await Promise.race([
+            saveProfileQuizApi(answersToSave),
+            new Promise((resolve) => setTimeout(resolve, 1500)),
+          ]);
+        }
       } else {
         // Also save to client cache for guest users so Home page can display target
         const cached = getCachedProfile() || { authenticated: false, profile: null };
@@ -158,13 +171,17 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
           };
         }
         setCachedProfile(cached);
-        // Brief smooth feedback delay for unauthenticated users
-        await new Promise((resolve) => setTimeout(resolve, 350));
+        if (!isSilent) {
+          // Brief smooth feedback delay for unauthenticated users
+          await new Promise((resolve) => setTimeout(resolve, 350));
+        }
       }
     } catch (err) {
       console.warn('Background quiz sync error:', err);
     } finally {
-      setSaving(false);
+      if (!isSilent) {
+        setSaving(false);
+      }
       setStep(stepsCount);
     }
   };
@@ -188,7 +205,8 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
         }
       >
         <motion.div
-          animate={{ height: isResultsStep ? 'auto' : contentHeight }}
+          initial={false}
+          animate={isResultsStep ? undefined : { height: contentHeight }}
           transition={
             transitionType === 'tween'
               ? { type: 'tween', duration: 0.35, ease: 'easeInOut' }
@@ -579,7 +597,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                 {/* Degree Pill */}
                 <FilterPill
                   label="Degree"
-                  value={answers.degree === 'non-degree' ? 'Short Course' : answers.degree}
+                  value={formatDegree(answers.degree)}
                   active={activeDropdown === 'degree'}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -594,7 +612,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                   onChange={(val) => {
                     const updated = { ...answers, degree: val as any };
                     setAnswers(updated);
-                    void handleComplete(updated);
+                    void handleComplete(updated, true);
                     setActiveDropdown(null);
                   }}
                 />
@@ -602,7 +620,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                 {/* Field Pill */}
                 <FilterPill
                   label="Field"
-                  value={answers.field === 'any' ? 'General' : answers.field}
+                  value={formatField(answers.field)}
                   active={activeDropdown === 'field'}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -619,7 +637,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                   onChange={(val) => {
                     const updated = { ...answers, field: val as any };
                     setAnswers(updated);
-                    void handleComplete(updated);
+                    void handleComplete(updated, true);
                     setActiveDropdown(null);
                   }}
                 />
@@ -640,7 +658,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                   onChange={(val) => {
                     const updated = { ...answers, experience: val as any };
                     setAnswers(updated);
-                    void handleComplete(updated);
+                    void handleComplete(updated, true);
                     setActiveDropdown(null);
                   }}
                 />
@@ -661,7 +679,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                   onChange={(val) => {
                     const updated = { ...answers, funding: val as any };
                     setAnswers(updated);
-                    void handleComplete(updated);
+                    void handleComplete(updated, true);
                     setActiveDropdown(null);
                   }}
                 />
@@ -685,7 +703,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
                   onChange={(val) => {
                     const updated = { ...answers, region: val as any };
                     setAnswers(updated);
-                    void handleComplete(updated);
+                    void handleComplete(updated, true);
                     setActiveDropdown(null);
                   }}
                 />
@@ -701,7 +719,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated }: Pr
               )}
             </div>
 
-            {!isAuthenticated && (
+            {!isAuthenticated && authChecked && (
               <div className="max-w-xl mx-auto p-5 rounded-xl bg-brand-cream border border-brand-border/60 text-center shadow-xs">
                 <h4 className="font-serif text-sm font-bold text-brand-dark mb-1">Want to save these results permanently?</h4>
                 <p className="text-[11px] text-brand-muted mb-4">
@@ -787,7 +805,7 @@ export function FilterPill({
         <span className={active ? 'text-white/70 font-normal' : 'text-brand-muted font-normal'}>
           {label}:
         </span>
-        <span className="capitalize">{value}</span>
+        <span>{value}</span>
         <span className={`text-[10px] ml-0.5 transition-transform duration-200 ${active ? 'rotate-180 text-white/80' : 'text-brand-muted'}`}>
           ▼
         </span>

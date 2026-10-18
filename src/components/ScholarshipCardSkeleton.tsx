@@ -47,19 +47,19 @@ export default function ScholarshipCardSkeleton({
     >
       <div className="flex flex-col flex-1">
         {/* Top Header: Logo + Badges */}
-        <div className="flex items-start justify-between gap-3 mb-4">
+        <div className="flex items-start justify-between gap-3 mb-3 pr-10">
           <Skeleton className="w-10 h-10 rounded-xl flex-shrink-0" />
-          <div className="flex flex-col items-end gap-1.5">
+          <div className="flex flex-col items-end gap-1.5 min-h-[46px]">
             <Skeleton className="h-5 w-20 rounded-md" />
             <Skeleton className="h-4 w-16 rounded-full" />
           </div>
         </div>
 
         {/* Provider */}
-        <Skeleton className="h-2.5 w-24 rounded-full mb-2" />
+        <Skeleton className="h-2.5 w-24 rounded-full mb-1" />
 
         {/* Title */}
-        <SkeletonLine lines={2} className="mb-4" />
+        <SkeletonLine lines={2} className="mb-3" />
 
         {/* Details Footer */}
         <div className="mt-auto pt-3 border-t border-brand-border/60 space-y-2">

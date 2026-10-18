@@ -6,7 +6,7 @@ import { providerGroup, getDeadlineStatus, getScholarshipLogo, providerMeta, typ
 import DeadlineStatus from '@/components/DeadlineStatus';
 import SaveScholarshipButton from '@/components/SaveScholarshipButton';
 import { Clock, GraduationCap, MapPin, Check, X } from 'lucide-react';
-import { matchDegree, matchField, matchExperience, matchFunding, matchRegion, type QuizAnswers } from '@/lib/matching';
+import { matchDegree, matchField, matchExperience, matchFunding, matchRegion, type QuizAnswers, formatDegree, formatField, formatRegion } from '@/lib/matching';
 import { Button } from '@/components/ui/button';
 import { isPersonallyCurated } from '@/data/curated';
 
@@ -40,8 +40,8 @@ function ChecklistItem({ label, matched, val }: { label: string; matched: boolea
     <div className="flex items-center justify-between text-[10px] leading-relaxed">
       <span className="text-brand-muted font-medium">{label}</span>
       <div className="flex items-center gap-1 font-semibold">
-        <span className="capitalize text-brand-dark/80 max-w-[70px] truncate" title={val}>
-          {val === 'any' ? 'General' : val}
+        <span className="text-brand-dark/80 max-w-[70px] truncate" title={val}>
+          {val}
         </span>
         {matched ? (
           <Check className="h-3 w-3 text-emerald-600 flex-shrink-0" />
@@ -102,11 +102,11 @@ function MatchBadge({
             <span className="text-[10px] text-brand-muted font-normal">{matchCount}/5 Met</span>
           </h4>
           <div className="space-y-1.5">
-            <ChecklistItem label="Academic Level" matched={checkDegree} val={quizAnswers.degree} />
-            <ChecklistItem label="Field of Study" matched={checkField} val={quizAnswers.field} />
+            <ChecklistItem label="Academic Level" matched={checkDegree} val={formatDegree(quizAnswers.degree)} />
+            <ChecklistItem label="Field of Study" matched={checkField} val={formatField(quizAnswers.field)} />
             <ChecklistItem label="Work Experience" matched={checkExperience} val={quizAnswers.experience === 'yes' ? 'Required' : 'None'} />
             <ChecklistItem label="Funding Type" matched={checkFunding} val={quizAnswers.funding === 'fully' ? 'Fully' : 'Any'} />
-            <ChecklistItem label="Destination Region" matched={checkRegion} val={quizAnswers.region} />
+            <ChecklistItem label="Destination Region" matched={checkRegion} val={formatRegion(quizAnswers.region)} />
           </div>
         </div>
       )}
@@ -237,7 +237,7 @@ export default function ScholarshipCard({ scholarship: s, variant = 'grid', conn
                 <span className="text-lg">{flag}</span>
               )}
             </div>
-            <div className="flex flex-col items-end gap-1.5">
+            <div className="flex flex-col items-end gap-1.5 min-h-[46px]">
               {isCurated && (
                 <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[9px] font-bold bg-brand-dark text-white tracking-wide shadow-xs">
                   Personally Curated

@@ -23,6 +23,7 @@ const ShortlistContext = createContext<ShortlistContextValue | null>(null);
 export function ShortlistProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
+
   const [ready, setReady] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [email, setEmail] = useState<string | null>(null);

@@ -110,3 +110,67 @@ export function filterScholarships(answers: QuizAnswers): { matches: Scholarship
 
   return { matches, isFuzzy: true, fuzzyLevels };
 }
+
+export const DEGREE_LABELS: Record<QuizAnswers['degree'], string> = {
+  bachelor: 'Bachelor',
+  master: 'Master',
+  phd: 'PhD',
+  'non-degree': 'Short Course',
+};
+
+export const FIELD_LABELS: Record<QuizAnswers['field'], string> = {
+  stem: 'STEM',
+  business: 'Business',
+  arts: 'Arts',
+  social: 'Social',
+  medicine: 'Medicine',
+  any: 'General',
+};
+
+export const EXPERIENCE_LABELS: Record<QuizAnswers['experience'], string> = {
+  yes: '2+ Yrs',
+  no: 'None / Fresh',
+};
+
+export const FUNDING_LABELS: Record<QuizAnswers['funding'], string> = {
+  fully: 'Strictly Fully',
+  any: 'Open to All',
+};
+
+export const REGION_LABELS: Record<QuizAnswers['region'], string> = {
+  any: 'Any Region',
+  asia: 'Asia',
+  europe: 'Europe',
+  americas: 'Americas',
+  oceania: 'Oceania',
+};
+
+export function formatDegree(degree?: string | null): string {
+  if (!degree) return '';
+  const key = degree.toLowerCase() as QuizAnswers['degree'];
+  return DEGREE_LABELS[key] || degree.charAt(0).toUpperCase() + degree.slice(1);
+}
+
+export function formatField(field?: string | null): string {
+  if (!field) return '';
+  const key = field.toLowerCase() as QuizAnswers['field'];
+  return FIELD_LABELS[key] || (field.toLowerCase() === 'stem' ? 'STEM' : field.charAt(0).toUpperCase() + field.slice(1));
+}
+
+export function formatExperience(exp?: string | null): string {
+  if (!exp) return '';
+  const key = exp.toLowerCase() as QuizAnswers['experience'];
+  return EXPERIENCE_LABELS[key] || exp;
+}
+
+export function formatFunding(funding?: string | null): string {
+  if (!funding) return '';
+  const key = funding.toLowerCase() as QuizAnswers['funding'];
+  return FUNDING_LABELS[key] || funding;
+}
+
+export function formatRegion(region?: string | null): string {
+  if (!region) return '';
+  const key = region.toLowerCase() as QuizAnswers['region'];
+  return REGION_LABELS[key] || (region.charAt(0).toUpperCase() + region.slice(1));
+}

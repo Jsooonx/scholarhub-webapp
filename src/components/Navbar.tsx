@@ -401,7 +401,9 @@ export default function Navbar() {
               >
                 Sign in
               </LinkButton>
-            ) : null}
+            ) : (
+              <div className="w-8 h-8 rounded-full flex-none opacity-0" />
+            )}
 
             {/* Mobile Menu Drawer Trigger (shadcn Sheet) */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>

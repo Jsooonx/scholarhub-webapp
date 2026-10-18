@@ -10,7 +10,7 @@ import ApplicationTracker from '@/components/ApplicationTracker';
 import DeadlineCalendar from '@/components/DeadlineCalendar';
 import SplitText from '@/components/SplitText';
 import { Kanban, List, LayoutGrid, Heart, Calendar, Compass, Undo2, ArrowRight, GraduationCap } from 'lucide-react';
-import { filterScholarships, type QuizAnswers } from '@/lib/matching';
+import { filterScholarships, type QuizAnswers, formatDegree, formatField } from '@/lib/matching';
 import { useShortlist } from '@/components/ShortlistProvider';
 import { saveProfileQuizApi as updateProfileQuizAnswers } from '@/lib/client-api';
 import { FilterPill } from '@/components/ScholarMatchQuiz';
@@ -240,7 +240,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                   {/* Degree Pill */}
                   <FilterPill
                     label="Degree"
-                    value={currentQuizAnswers.degree === 'non-degree' ? 'Short Course' : currentQuizAnswers.degree}
+                    value={formatDegree(currentQuizAnswers.degree)}
                     active={activeDropdown === 'degree'}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -262,7 +262,7 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
                   {/* Field Pill */}
                   <FilterPill
                     label="Field"
-                    value={currentQuizAnswers.field === 'any' ? 'General' : currentQuizAnswers.field}
+                    value={formatField(currentQuizAnswers.field)}
                     active={activeDropdown === 'field'}
                     onClick={(e) => {
                       e.stopPropagation();

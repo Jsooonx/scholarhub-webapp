@@ -6,20 +6,43 @@ import ShortlistDashboard from '@/components/ShortlistDashboard';
 import ShortlistSkeleton from './ShortlistSkeleton';
 import { fetchShortlist, fetchProfile, getCachedShortlist, getCachedProfile, type ScholarshipApplication } from '@/lib/client-api';
 import { type QuizAnswers } from '@/lib/matching';
+import { useIsHydrated } from '@/lib/hydration';
 
 export default function ShortlistClient() {
   const router = useRouter();
+  const isHydrated = useIsHydrated();
 
-  const [applications, setApplications] = useState<ScholarshipApplication[]>([]);
-  const [email, setEmail] = useState<string | undefined>(undefined);
+  const [initialData] = useState(() => {
+    if (typeof window !== 'undefined' && isHydrated) {
+      const cachedShortlist = getCachedShortlist();
+      const cachedProfile = getCachedProfile();
+      if (cachedShortlist) {
+        return {
+          applications: cachedShortlist.applications || [],
+          email: cachedShortlist.email,
+          quizAnswers: cachedProfile?.profile?.quiz_answers || null,
+          hasCache: true,
+        };
+      }
+    }
+    return {
+      applications: [],
+      email: undefined,
+      quizAnswers: null,
+      hasCache: false,
+    };
+  });
+
+  const [applications, setApplications] = useState<ScholarshipApplication[]>(initialData.applications);
+  const [email, setEmail] = useState<string | undefined>(initialData.email);
   const [error, setError] = useState<string | undefined>(undefined);
-  const [quizAnswers, setQuizAnswers] = useState<QuizAnswers | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [quizAnswers, setQuizAnswers] = useState<QuizAnswers | null>(initialData.quizAnswers);
+  const [loading, setLoading] = useState(!initialData.hasCache);
 
   useEffect(() => {
     let isCancelled = false;
 
-    // Immediately restore from cache on client mount (0ms latency, zero hydration mismatch)
+    // Immediately restore from cache on client mount if not already initialized
     const cachedShortlist = getCachedShortlist();
     const cachedProfile = getCachedProfile();
     if (cachedShortlist) {
@@ -65,7 +88,7 @@ export default function ShortlistClient() {
     };
   }, [router]);
 
-  if (loading) {
+  if (!isHydrated || loading) {
     return <ShortlistSkeleton />;
   }
 
