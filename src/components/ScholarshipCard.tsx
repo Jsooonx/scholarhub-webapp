@@ -21,8 +21,8 @@ function fundingClass(type: string) {
 
 function durationLabel(d: Scholarship['duration_months']) {
   if (!d.min && !d.max) return null;
-  if (d.min === d.max) return `${d.min} months`;
-  if (!d.min) return `Up to ${d.max} months`;
+  if (d.min === d.max) return `${d.min} ${d.min === 1 ? 'month' : 'months'}`;
+  if (!d.min) return `Up to ${d.max} ${d.max === 1 ? 'month' : 'months'}`;
   if (!d.max) return `${d.min}+ months`;
   return `${d.min}-${d.max} months`;
 }

@@ -73,7 +73,7 @@ export function providerGroup(provider: string): string {
   // Hong Kong
   if (p.includes('hong kong') || p.includes('hkpf') || p.includes('research grants council') || p.includes('ugc.edu.hk') || p.includes('hku') || p.includes('cuhk') || p.includes('hkust') || p.includes('polyu')) return 'hong-kong';
   // Malaysia
-  if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship')) || p.includes('university of malaya') || p.includes('universiti sains malaysia') || p.includes('universiti putra malaysia') || p.includes('universiti teknologi malaysia') || p.includes('monash malaysia') || p.includes('nottingham malaysia') || p.includes('curtin malaysia') || p.includes('taylor')) return 'malaysia';
+  if (p.includes('malaysia international') || p.includes('mohe') || (p.includes('malaysian government') && p.includes('scholarship')) || p.includes('university of malaya') || p.includes('universiti sains malaysia') || p.includes('universiti putra malaysia') || p.includes('universiti teknologi malaysia') || p.includes('monash malaysia') || p.includes('nottingham malaysia') || (p.includes('curtin') && p.includes('malaysia')) || p.includes('taylor')) return 'malaysia';
   // Short abbreviations with word boundaries
   if (/\b(usm|upm|utm)\b/i.test(p)) return 'malaysia';
   // Romania

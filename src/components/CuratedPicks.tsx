@@ -158,22 +158,22 @@ export default function CuratedPicks() {
               <div className="flex space-x-2">
                 <Button
                   onClick={handlePrev}
-                  disabled={mounted ? currentPage === 0 : undefined}
+                  disabled={currentPage === 0}
                   variant="secondary"
                   size="icon-sm"
                   shape="circle"
-                  className={mounted && currentPage === 0 ? 'opacity-30' : ''}
+                  className={currentPage === 0 ? 'opacity-30' : ''}
                   aria-label="Previous Page"
                 >
                   <ArrowLeft className="h-4 w-4" />
                 </Button>
                 <Button
                   onClick={handleNext}
-                  disabled={mounted ? currentPage === totalPages - 1 : undefined}
+                  disabled={currentPage === totalPages - 1}
                   variant="secondary"
                   size="icon-sm"
                   shape="circle"
-                  className={mounted && currentPage === totalPages - 1 ? 'opacity-30' : ''}
+                  className={currentPage === totalPages - 1 ? 'opacity-30' : ''}
                   aria-label="Next Page"
                 >
                   <ArrowRight className="h-4 w-4" />
@@ -306,14 +306,13 @@ export default function CuratedPicks() {
               <Button
                 key={idx}
                 onClick={() => handlePageChange(idx)}
-                variant={mounted && idx === currentPage ? 'primary' : 'secondary'}
+                variant={idx === currentPage ? 'primary' : 'secondary'}
                 size="icon-xs"
                 shape="circle"
                 className={`!h-2 !min-h-2 !rounded-full !p-0 transition-all duration-300 ${
-                  mounted && idx === currentPage ? '!w-5' : '!w-2'
+                  idx === currentPage ? '!w-5' : '!w-2'
                 }`}
                 aria-label={`Go to page ${idx + 1}`}
-                disabled={mounted ? false : undefined}
               />
             ))}
           </div>

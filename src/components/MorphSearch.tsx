@@ -73,7 +73,7 @@ export default function MorphSearch({ className }: MorphSearchProps) {
 
   const isMac = mounted && typeof navigator !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.userAgent);
 
-  // Global shortcut: ⌘K / Ctrl+K
+  // Global shortcut: ⌘K / Ctrl+K & Custom event trigger
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) {
@@ -84,8 +84,14 @@ export default function MorphSearch({ className }: MorphSearchProps) {
         setIsOpen(false);
       }
     };
+    const handleOpenEvent = () => setIsOpen(true);
+
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('scholarhub:open-search', handleOpenEvent);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('scholarhub:open-search', handleOpenEvent);
+    };
   }, [isOpen]);
 
   // Auto-focus input when opened
@@ -249,7 +255,7 @@ export default function MorphSearch({ className }: MorphSearchProps) {
                     <button
                       type="button"
                       onClick={() => setQuery('')}
-                      className="mr-1 sm:mr-2 p-1 rounded-md text-brand-muted hover:text-brand-dark hover:bg-black/5 transition-colors cursor-pointer flex-shrink-0"
+                      className="mr-1 sm:mr-2 p-1 rounded-md text-brand-muted hover:text-brand-dark hover:bg-black/5 active:scale-90 transition-transform duration-150 cursor-pointer flex-shrink-0"
                       aria-label="Clear search"
                     >
                       <X className="h-3.5 w-3.5" />
@@ -258,7 +264,7 @@ export default function MorphSearch({ className }: MorphSearchProps) {
                   {/* Desktop ESC shortcut hint */}
                   <kbd
                     onClick={() => setIsOpen(false)}
-                    className="hidden sm:inline-flex rounded border border-brand-border bg-brand-cream/80 px-1.5 py-0.5 font-mono text-[10px] text-brand-muted font-medium hover:border-brand-dark/30 hover:text-brand-dark transition-colors cursor-pointer shadow-2xs flex-shrink-0"
+                    className="hidden sm:inline-flex rounded border border-brand-border bg-brand-cream/80 px-1.5 py-0.5 font-mono text-[10px] text-brand-muted font-medium hover:border-brand-dark/30 hover:text-brand-dark active:scale-95 transition-all duration-150 cursor-pointer shadow-2xs flex-shrink-0"
                   >
                     esc
                   </kbd>
@@ -266,7 +272,7 @@ export default function MorphSearch({ className }: MorphSearchProps) {
                   <button
                     type="button"
                     onClick={() => setIsOpen(false)}
-                    className="sm:hidden p-1 -mr-1 rounded-lg text-brand-muted hover:text-brand-dark hover:bg-black/5 transition-colors cursor-pointer flex-shrink-0"
+                    className="sm:hidden p-1 -mr-1 rounded-lg text-brand-muted hover:text-brand-dark hover:bg-black/5 active:scale-90 transition-transform duration-150 cursor-pointer flex-shrink-0"
                     aria-label="Close search"
                   >
                     <X className="h-4 w-4" />
@@ -281,7 +287,7 @@ export default function MorphSearch({ className }: MorphSearchProps) {
                       type="button"
                       onClick={() => setActiveTab(tab.id)}
                       className={cn(
-                        'px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all cursor-pointer whitespace-nowrap',
+                        'px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-all duration-150 cursor-pointer whitespace-nowrap active:scale-[0.96]',
                         activeTab === tab.id
                           ? 'bg-brand-dark text-white shadow-xs'
                           : 'text-brand-muted hover:text-brand-dark hover:bg-black/5'

@@ -9,10 +9,10 @@ import RemoveShortlistButton from '@/components/RemoveShortlistButton';
 import ApplicationTracker from '@/components/ApplicationTracker';
 import DeadlineCalendar from '@/components/DeadlineCalendar';
 import SplitText from '@/components/SplitText';
-import { Kanban, List, LayoutGrid, Heart, Calendar, Compass, Undo2, ArrowRight, GraduationCap } from 'lucide-react';
+import { Kanban, LayoutGrid, Heart, Calendar, Compass, Undo2, ArrowRight, GraduationCap } from 'lucide-react';
 import { filterScholarships, type QuizAnswers, formatDegree, formatField } from '@/lib/matching';
 import { useShortlist } from '@/components/ShortlistProvider';
-import { saveProfileQuizApi as updateProfileQuizAnswers } from '@/lib/client-api';
+import { saveProfileQuizApi as updateProfileQuizAnswers, fetchShortlist } from '@/lib/client-api';
 import { FilterPill } from '@/components/ScholarMatchQuiz';
 import { Button, LinkButton } from '@/components/ui/button';
 
@@ -36,9 +36,23 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
     setApps(initialApplications);
   }, [initialApplications]);
 
-  // Keep apps reactive if items are removed from shortlist context
+  // Keep apps reactive if items are removed or added to shortlist context
   useEffect(() => {
-    setApps((current) => current.filter((app) => slugs.has(app.scholarship_slug)));
+    setApps((current) => {
+      const filtered = current.filter((app) => slugs.has(app.scholarship_slug));
+      return filtered.length === current.length ? current : filtered;
+    });
+
+    // Check and sync if new slugs were added
+    void fetchShortlist().then((res) => {
+      if (res.applications && res.applications.length > 0) {
+        setApps((current) => {
+          const currentSlugs = new Set(current.map((a) => a.scholarship_slug));
+          const hasNew = res.applications.some((a) => !currentSlugs.has(a.scholarship_slug));
+          return hasNew ? res.applications : current;
+        });
+      }
+    });
   }, [slugs]);
 
   // Sync quiz answers if prop changes
@@ -405,14 +419,22 @@ export default function ShortlistDashboard({ initialApplications, email, error, 
             <p className="mx-auto mt-2 max-w-md text-sm text-brand-muted">
               Browse scholarships and tap the bookmark button to build your personal shortlist and track your application progress.
             </p>
-            <LinkButton
-              href="/scholarships"
-              variant="primary"
-              size="lg"
-              className="mt-6"
-            >
-              Browse scholarships
-            </LinkButton>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <LinkButton
+                href="/scholarships"
+                variant="primary"
+                size="lg"
+              >
+                Browse scholarships
+              </LinkButton>
+              <LinkButton
+                href="/match"
+                variant="secondary"
+                size="lg"
+              >
+                Take ScholarMatch Quiz
+              </LinkButton>
+            </div>
           </div>
         ) : view === 'board' ? (
           <ApplicationTracker initialApplications={apps} />

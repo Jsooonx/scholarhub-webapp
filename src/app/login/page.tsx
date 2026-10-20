@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${BASE_URL}/login`,
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 function LoginSkeleton() {

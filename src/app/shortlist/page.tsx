@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${BASE_URL}/shortlist`,
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function ShortlistPage() {

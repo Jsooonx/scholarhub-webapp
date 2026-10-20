@@ -60,10 +60,15 @@ export function filterScholarships(params: FilterParams): Scholarship[] {
   }
 
   if (params.level && params.level !== 'all') {
+    const lvl = params.level.toLowerCase();
     list = list.filter((s) =>
-      s.degree_levels.some((d) =>
-        d.toLowerCase().includes(params.level!.toLowerCase())
-      )
+      s.degree_levels.some((d) => {
+        const lower = d.toLowerCase();
+        if (lvl === 'non-degree') {
+          return lower.includes('non-degree') || lower.includes('short') || lower.includes('diploma') || lower.includes('certificate');
+        }
+        return lower.includes(lvl);
+      })
     );
   }
 

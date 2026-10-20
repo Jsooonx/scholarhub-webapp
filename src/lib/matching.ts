@@ -34,6 +34,7 @@ export const matchDegree = (s: Scholarship, degree: string) => {
 
 export const matchField = (s: Scholarship, field: string) => {
   if (field === 'any') return true;
+  if (!s.fields || s.fields.length === 0) return true;
   const sFields = s.fields.map(f => f.toLowerCase());
   const keywords = FIELD_KEYWORDS[field] || [];
   return sFields.some(sf => 

@@ -68,33 +68,35 @@ export default function ScholarshipsClient() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <ScholarshipsFilter total={allResults.length} />
 
-        <div className="mt-8 flex items-center justify-between">
-          <p className="text-xs text-brand-muted font-medium">
-            Showing <span className="font-bold text-brand-dark">{allResults.length === 0 ? 0 : (currentPage - 1) * RESULTS_PER_PAGE + 1}–{Math.min(currentPage * RESULTS_PER_PAGE, allResults.length)}</span> of{' '}
-            <span className="font-bold text-brand-dark">{allResults.length}</span> scholarships
-          </p>
+        {allResults.length > 0 && (
+          <div className="mt-8 flex items-center justify-between">
+            <p className="text-xs text-brand-muted font-medium">
+              Showing <span className="font-bold text-brand-dark">{(currentPage - 1) * RESULTS_PER_PAGE + 1}–{Math.min(currentPage * RESULTS_PER_PAGE, allResults.length)}</span> of{' '}
+              <span className="font-bold text-brand-dark">{allResults.length}</span> scholarships
+            </p>
 
-          <div className="flex items-center gap-1 rounded-full border border-brand-border bg-white p-1">
-            <LinkButton
-              href={viewUrl('grid')}
-              aria-label="Grid view"
-              variant={view === 'grid' ? 'primary' : 'ghost'}
-              size="icon-sm"
-              shape="circle"
-            >
-              <LayoutGrid className="h-4 w-4" />
-            </LinkButton>
-            <LinkButton
-              href={viewUrl('list')}
-              aria-label="List view"
-              variant={view === 'list' ? 'primary' : 'ghost'}
-              size="icon-sm"
-              shape="circle"
-            >
-              <List className="h-4 w-4" />
-            </LinkButton>
+            <div className="flex items-center gap-1 rounded-full border border-brand-border bg-white p-1">
+              <LinkButton
+                href={viewUrl('grid')}
+                aria-label="Grid view"
+                variant={view === 'grid' ? 'primary' : 'ghost'}
+                size="icon-sm"
+                shape="circle"
+              >
+                <LayoutGrid className="h-4 w-4" />
+              </LinkButton>
+              <LinkButton
+                href={viewUrl('list')}
+                aria-label="List view"
+                variant={view === 'list' ? 'primary' : 'ghost'}
+                size="icon-sm"
+                shape="circle"
+              >
+                <List className="h-4 w-4" />
+              </LinkButton>
+            </div>
           </div>
-        </div>
+        )}
 
         {results.length === 0 ? (
           <div className="mt-12 rounded-xl border border-dashed border-brand-border bg-white p-12 text-center">

@@ -103,7 +103,7 @@ export default function Navbar() {
       {/* ── STICKY TOP NAVBAR (Morphs on scroll) ── */}
       <header
         className={cn(
-          "sticky top-0 z-40 w-full h-16 transition-all duration-300 ease-out flex items-center",
+          "sticky top-0 z-40 w-full h-16 transition-[padding] duration-300 ease-out flex items-center",
           scrolled
             ? "px-3 sm:px-6 pointer-events-none"
             : "px-0 pointer-events-auto"
@@ -120,7 +120,7 @@ export default function Navbar() {
         {/* Morphing floating pill container */}
         <div
           className={cn(
-            "relative z-10 mx-auto w-full flex items-center justify-between gap-3 transition-all duration-300 ease-out pointer-events-auto",
+            "relative z-10 mx-auto w-full flex items-center justify-between gap-3 transition-[max-width,padding,height,border-radius,background-color,border-color,box-shadow] duration-300 ease-out pointer-events-auto",
             scrolled
               ? "max-w-6xl px-4 sm:px-6 h-12.5 sm:h-13 rounded-full border border-brand-border/80 bg-brand-bg/95 backdrop-blur-xl shadow-lg shadow-brand-dark/5"
               : "max-w-7xl px-4 sm:px-6 lg:px-8 h-16 rounded-none border border-transparent bg-transparent shadow-none"
@@ -131,25 +131,25 @@ export default function Navbar() {
           <div className="flex items-center gap-3 lg:gap-5">
             <Link
               href="/"
-              className="flex items-center gap-2 group transition-all hover:opacity-90 flex-shrink-0"
+              className="flex items-center gap-2 group transition-transform duration-150 hover:opacity-90 active:scale-[0.98] flex-shrink-0"
             >
               <img
                 src="/images/logos/Scholarhub_logo.png"
                 alt="ScholarHub Logo"
                 className={cn(
-                  "rounded-lg object-cover shadow-xs border border-brand-border/40 transition-all group-hover:scale-105",
+                  "rounded-lg object-cover shadow-xs border border-brand-border/40 transition-[width,height,transform] duration-200 ease-out group-hover:scale-105 group-active:scale-[0.96]",
                   scrolled ? "h-7 w-7" : "h-8 w-8"
                 )}
               />
               <div className="flex flex-col overflow-hidden">
                 <span className={cn(
-                  "font-serif font-bold tracking-tight text-brand-dark leading-none transition-all",
+                  "font-serif font-bold tracking-tight text-brand-dark leading-none transition-[font-size] duration-200",
                   scrolled ? "text-base" : "text-lg"
                 )}>
                   Scholar<span className="text-brand-accent">Hub</span>
                 </span>
                 <span className={cn(
-                  "text-[10px] text-brand-muted uppercase tracking-widest font-medium transition-all overflow-hidden",
+                  "text-[10px] text-brand-muted uppercase tracking-widest font-medium transition-[max-height,opacity] duration-200 overflow-hidden",
                   scrolled ? "max-h-0 opacity-0" : "max-h-4 opacity-100"
                 )}>
                   Directory
@@ -344,7 +344,7 @@ export default function Navbar() {
               title="Saved Shortlist"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "sm" }),
-                "relative h-9 px-2.5 rounded-full hover:bg-black/5 text-brand-dark cursor-pointer flex items-center"
+                "relative h-9 px-2.5 rounded-full hover:bg-black/5 active:scale-95 transition-transform duration-150 ease-out text-brand-dark cursor-pointer flex items-center"
               )}
             >
               <Bookmark className="h-4 w-4" />
@@ -410,7 +410,7 @@ export default function Navbar() {
               <SheetTrigger
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "md:hidden h-9 w-9 rounded-full text-brand-dark hover:bg-black/5 cursor-pointer"
+                  "md:hidden h-9 w-9 rounded-full text-brand-dark hover:bg-black/5 active:scale-90 transition-transform duration-150 ease-out cursor-pointer"
                 )}
                 aria-label="Open mobile menu"
               >
@@ -447,12 +447,12 @@ export default function Navbar() {
                     type="button"
                     onClick={() => {
                       setMobileOpen(false);
-                      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }));
+                      window.dispatchEvent(new CustomEvent('scholarhub:open-search'));
                     }}
-                    className="relative mb-6 flex h-10 w-full items-center rounded-xl border border-brand-border bg-white pl-9 pr-3 text-xs text-brand-muted shadow-2xs text-left group"
+                    className="relative mb-6 flex h-10 w-full items-center rounded-xl border border-brand-border bg-white pl-9 pr-3 text-xs text-brand-muted shadow-2xs text-left group active:scale-[0.98] transition-all duration-150 cursor-pointer hover:border-brand-accent/40"
                   >
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-brand-muted pointer-events-none" />
-                    <span className="text-brand-muted">Search scholarships...</span>
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-brand-muted group-hover:text-brand-accent transition-colors pointer-events-none" />
+                    <span className="text-brand-muted group-hover:text-brand-dark transition-colors">Search scholarships...</span>
                   </button>
 
                   {/* Mobile Navigation Links */}
@@ -462,7 +462,7 @@ export default function Navbar() {
                     <Link
                       href="/match"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between p-3 rounded-xl bg-brand-cream border border-brand-border text-xs font-bold text-brand-dark hover:bg-white transition-colors"
+                      className="flex items-center justify-between p-3 rounded-xl bg-brand-cream border border-brand-border text-xs font-bold text-brand-dark hover:bg-white active:scale-[0.98] transition-all duration-150"
                     >
                       <span className="flex items-center gap-2">
                         <Compass className="h-4 w-4 text-brand-dark" />
@@ -474,7 +474,7 @@ export default function Navbar() {
                     <Link
                       href="/scholarships"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 text-xs font-semibold text-brand-dark transition-colors"
+                      className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 active:scale-[0.98] text-xs font-semibold text-brand-dark transition-all duration-150"
                     >
                       <span className="flex items-center gap-2.5">
                         <GraduationCap className="h-4 w-4 text-brand-muted" />
@@ -486,7 +486,7 @@ export default function Navbar() {
                     <Link
                       href="/shortlist"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 text-xs font-semibold text-brand-dark transition-colors"
+                      className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 active:scale-[0.98] text-xs font-semibold text-brand-dark transition-all duration-150"
                     >
                       <span className="flex items-center gap-2.5">
                         <Bookmark className="h-4 w-4 text-brand-muted" />
@@ -502,7 +502,7 @@ export default function Navbar() {
                     <Link
                       href="/about"
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 text-xs font-semibold text-brand-dark transition-colors"
+                      className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 active:scale-[0.98] text-xs font-semibold text-brand-dark transition-all duration-150"
                     >
                       <span className="flex items-center gap-2.5">
                         <BookOpen className="h-4 w-4 text-brand-muted" />
@@ -515,7 +515,7 @@ export default function Navbar() {
                       <Link
                         href="/profile"
                         onClick={() => setMobileOpen(false)}
-                        className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 text-xs font-semibold text-brand-dark transition-colors"
+                        className="flex items-center justify-between p-3 rounded-xl hover:bg-black/5 active:scale-[0.98] text-xs font-semibold text-brand-dark transition-all duration-150"
                       >
                         <span className="flex items-center gap-2.5">
                           <User className="h-4 w-4 text-brand-muted" />

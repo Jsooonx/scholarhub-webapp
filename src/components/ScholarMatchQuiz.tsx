@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { type Scholarship } from '@/lib/scholarships';
 import { saveProfileQuizApi, getCachedProfile, setCachedProfile } from '@/lib/client-api';
 import ScholarshipCard from '@/components/ScholarshipCard';
-import { type QuizAnswers, filterScholarships, formatDegree, formatField } from '@/lib/matching';
+import { type QuizAnswers, filterScholarships, formatDegree, formatField, formatExperience, formatFunding, formatRegion } from '@/lib/matching';
 import { Button, LinkButton } from '@/components/ui/button';
 
 interface Props {
@@ -85,6 +85,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated, auth
     };
   });
 
+  const [showAllMatches, setShowAllMatches] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<'degree' | 'field' | 'experience' | 'funding' | 'region' | null>(null);
 
   useEffect(() => {
@@ -583,7 +584,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated, auth
             {/* Result header */}
             <div className="max-w-3xl mx-auto text-center border-b border-brand-border pb-6">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-dark text-white mb-3">
-                Matches Found
+                {currentResult.matches.length} {currentResult.matches.length === 1 ? 'Match' : 'Matches'} Found
               </span>
               <h3 className="font-serif text-3xl font-bold text-brand-dark">
                 Your Personalized Recommendations
@@ -645,7 +646,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated, auth
                 {/* Experience Pill */}
                 <FilterPill
                   label="Work Exp"
-                  value={answers.experience === 'yes' ? '2+ Yrs' : 'None / Fresh'}
+                  value={formatExperience(answers.experience)}
                   active={activeDropdown === 'experience'}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -666,7 +667,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated, auth
                 {/* Funding Pill */}
                 <FilterPill
                   label="Funding"
-                  value={answers.funding === 'fully' ? 'Strictly Fully' : 'All/Partial'}
+                  value={formatFunding(answers.funding)}
                   active={activeDropdown === 'funding'}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -687,7 +688,7 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated, auth
                 {/* Region Pill */}
                 <FilterPill
                   label="Region"
-                  value={answers.region === 'any' ? 'Any Region' : answers.region}
+                  value={formatRegion(answers.region)}
                   active={activeDropdown === 'region'}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -741,11 +742,29 @@ export default function ScholarMatchQuiz({ initialAnswers, isAuthenticated, auth
                 <p className="text-sm italic">No scholarships match your level and study field.</p>
               </div>
             ) : (
-              <div className="mt-4 rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] shadow-xs">
-                {currentResult.matches.slice(0, 9).map((s) => (
-                  <ScholarshipCard key={s.slug} scholarship={s} variant="grid" quizAnswers={answers} connected />
-                ))}
-              </div>
+              <>
+                <div className="mt-4 rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1px] shadow-xs">
+                  {(showAllMatches ? currentResult.matches : currentResult.matches.slice(0, 9)).map((s) => (
+                    <ScholarshipCard key={s.slug} scholarship={s} variant="grid" quizAnswers={answers} connected />
+                  ))}
+                </div>
+
+                {currentResult.matches.length > 9 && (
+                  <div className="flex justify-center pt-3">
+                    <Button
+                      onClick={() => setShowAllMatches(!showAllMatches)}
+                      variant="secondary"
+                      size="sm"
+                      shape="control"
+                      className="rounded-full px-5 text-xs font-semibold shadow-xs"
+                    >
+                      {showAllMatches
+                        ? 'Show Top 9 Only'
+                        : `Show All (${currentResult.matches.length}) Matching Scholarships`}
+                    </Button>
+                  </div>
+                )}
+              </>
             )}
 
             {/* Footer buttons */}
@@ -812,7 +831,7 @@ export function FilterPill({
       </button>
 
       {active && (
-        <div className="absolute left-1/2 -translate-x-1/2 mt-1.5 z-40 min-w-[150px] bg-white border border-brand-border rounded-xl shadow-xl py-1 overflow-hidden animate-fade-in">
+        <div className="absolute left-1/2 -translate-x-1/2 mt-1.5 z-40 min-w-[150px] max-w-[calc(100vw-2.5rem)] bg-white border border-brand-border rounded-xl shadow-xl py-1 overflow-hidden animate-fade-in">
           {options.map((opt) => (
             <Button
               key={opt.val}

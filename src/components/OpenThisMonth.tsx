@@ -5,12 +5,12 @@ import { Bookmark } from 'lucide-react';
 import { allScholarships, providerGroup, getScholarshipImage, getDeadlineStatus, providerMeta } from '@/lib/scholarships';
 
 const FILTER_LINKS = [
-  { name: 'Fully Funded', image: '/images/editorial/fully_funded.jpg', href: '/scholarships?funding=fully' },
-  { name: 'Partial', image: '/images/editorial/partial.jpg', href: '/scholarships?funding=partial' },
-  { name: 'Bachelor', image: '/images/editorial/bachelor.jpg', href: '/scholarships?level=bachelor' },
-  { name: 'Master / PhD', image: '/images/editorial/master_phd.jpg', href: '/scholarships?level=master' },
-  { name: 'STEM', image: '/images/editorial/stem.jpg', href: '/scholarships?q=stem' },
-  { name: 'Arts', image: '/images/editorial/arts.jpg', href: '/scholarships?q=arts' },
+  { name: 'Fully Funded', image: '/images-optimized/editorial/fully_funded.webp', href: '/scholarships?funding=fully' },
+  { name: 'Partial', image: '/images-optimized/editorial/partial.webp', href: '/scholarships?funding=partial' },
+  { name: 'Bachelor', image: '/images-optimized/editorial/bachelor.webp', href: '/scholarships?level=bachelor' },
+  { name: 'Master / PhD', image: '/images-optimized/editorial/master_phd.webp', href: '/scholarships?level=master' },
+  { name: 'STEM', image: '/images-optimized/editorial/stem.webp', href: '/scholarships?q=stem' },
+  { name: 'Arts', image: '/images-optimized/editorial/arts.webp', href: '/scholarships?q=arts' },
 ];
 
 function cleanDescription(raw: string | null): string {

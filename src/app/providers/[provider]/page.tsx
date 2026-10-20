@@ -158,13 +158,31 @@ export default async function ProviderPage({
                   {byLevel[level].length}
                 </span>
               </div>
-              <div className="rounded-xl border border-brand-border bg-brand-border overflow-hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] shadow-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {byLevel[level].map((s) => (
-                  <ScholarshipCard key={s.slug} scholarship={s} variant="grid" connected />
+                  <ScholarshipCard key={s.slug} scholarship={s} variant="grid" />
                 ))}
               </div>
             </section>
           ))}
+
+          {/* Bottom Discovery Banner */}
+          <section className="rounded-2xl border border-brand-border bg-brand-cream/60 p-8 sm:p-10 text-center">
+            <h3 className="font-serif text-2xl font-bold text-brand-dark mb-2">
+              Looking for more opportunities outside {meta.name}?
+            </h3>
+            <p className="text-sm text-brand-muted max-w-xl mx-auto mb-6">
+              Compare global funding options with our smart matching wizard or filter through 240+ international scholarship programs.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <LinkButton href="/match" variant="primary" size="lg">
+                Take ScholarMatch Quiz
+              </LinkButton>
+              <LinkButton href="/scholarships" variant="secondary" size="lg">
+                Explore all scholarships
+              </LinkButton>
+            </div>
+          </section>
         </div>
       </main>
 

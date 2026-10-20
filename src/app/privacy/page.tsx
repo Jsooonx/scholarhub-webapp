@@ -84,9 +84,12 @@ export default function PrivacyPage() {
                 <p>
                   We collect very limited personal data:
                 </p>
-                <ul className="list-disc pl-5 space-y-1">
+                <ul className="list-disc pl-5 space-y-1.5">
                   <li>
-                    <strong>Email Address:</strong> If you voluntarily subscribe to our newsletter for scholarship alerts, we collect your email address.
+                    <strong>Email Address:</strong> If you voluntarily subscribe to our newsletter for scholarship alerts, or if you request a passwordless magic sign-in link to save your scholarship shortlist and application tracker data.
+                  </li>
+                  <li>
+                    <strong>Shortlist & Application Tracker Data:</strong> When signed in, your bookmarked scholarships, pipeline milestones (Shortlisted, Applying, Outcome), custom target deadlines, and personal application notes are synchronized to your account so you can access them across multiple devices.
                   </li>
                   <li>
                     <strong>Usage Data:</strong> We do not track you across the web, nor do we run invasive tracking cookies. We may use privacy-friendly analytics tools to check general traffic numbers (like page views) without identifying individual visitors.
@@ -98,21 +101,29 @@ export default function PrivacyPage() {
             <section className="space-y-3">
               <h2 className="font-serif text-xl font-bold text-brand-dark">3. How We Use Your Data</h2>
               <p className="text-xs">
-                Your email address is used solely to send you notifications about new scholarship additions or major updates to ScholarHub. We do not use your email for marketing unrelated products, and we never sell, lease, or share your email with third parties.
+                Your email address is used solely to dispatch passwordless sign-in links and, if you opted in, periodic scholarship alerts. We do not use your personal information for third-party advertising, and we never sell, lease, or rent your data.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="font-serif text-xl font-bold text-brand-dark">4. Third-Party Service Providers</h2>
-              <p className="text-xs">
-                We use <strong>Resend</strong> as our third-party email delivery service to store and manage our subscriber list and send out notification emails. Resend is configured to keep your data secure. You can review Resend's Privacy Policy on their official website.
-              </p>
+              <div className="space-y-2 text-xs">
+                <p>We work with trusted infrastructure providers to power ScholarHub:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>
+                    <strong>Resend:</strong> Used as our transactional email delivery service to securely send passwordless magic login links and email newsletters.
+                  </li>
+                  <li>
+                    <strong>Supabase:</strong> Used as our managed database service (PostgreSQL) to store user authentication sessions, profiles, and encrypted shortlist records.
+                  </li>
+                </ul>
+              </div>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-serif text-xl font-bold text-brand-dark">5. Unsubscribing</h2>
+              <h2 className="font-serif text-xl font-bold text-brand-dark">5. Managing or Deleting Your Data</h2>
               <p className="text-xs">
-                You can opt-out of receiving updates from us at any time. Every email we send includes an "Unsubscribe" link at the bottom, or you can contact us directly at <a href="mailto:jsnxbusiness@gmail.com" className="text-brand-dark hover:underline font-medium">jsnxbusiness@gmail.com</a> to have your email removed immediately.
+                You can opt out of receiving newsletter updates at any time via the "Unsubscribe" link in any alert email. To request deletion of your account and saved shortlist data, contact us directly at <a href="mailto:jsnxbusiness@gmail.com" className="text-brand-dark hover:underline font-medium">jsnxbusiness@gmail.com</a> and we will remove your records promptly.
               </p>
             </section>
 

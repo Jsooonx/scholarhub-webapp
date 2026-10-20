@@ -94,7 +94,12 @@ export default function ScholarMatchQuizClient() {
         return;
       }
 
-      // 3. Otherwise, fetch server profile before revealing
+      // 3. Otherwise, reveal quiz immediately and check profile in background
+      if (!isCancelled) {
+        setAuthChecked(true);
+        setReady(true);
+      }
+
       try {
         const res = await fetchProfile();
         if (!isCancelled) {
@@ -105,11 +110,6 @@ export default function ScholarMatchQuizClient() {
         }
       } catch {
         // Guest mode default
-      } finally {
-        if (!isCancelled) {
-          setAuthChecked(true);
-          setReady(true);
-        }
       }
     }
 

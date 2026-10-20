@@ -64,9 +64,17 @@ export default function ApplicationTracker({ initialApplications }: Props) {
   const { remove: removeFromShortlist } = useShortlist();
   const [apps, setApps] = useState<ScholarshipApplication[]>(initialApplications);
 
-  // Sync state with parent props updates
+  // Sync state with parent props updates safely
   useEffect(() => {
-    setApps(initialApplications);
+    setApps((current) => {
+      if (
+        current.length === initialApplications.length &&
+        current.every((app, i) => app.scholarship_slug === initialApplications[i]?.scholarship_slug && app.status === initialApplications[i]?.status && app.target_deadline === initialApplications[i]?.target_deadline)
+      ) {
+        return current;
+      }
+      return initialApplications;
+    });
   }, [initialApplications]);
 
   const [draggingSlug, setDraggingSlug] = useState<string | null>(null);
@@ -485,7 +493,7 @@ export default function ApplicationTracker({ initialApplications }: Props) {
                                   }`}
                                 >
                                   <Megaphone className="h-3.5 w-3.5" />
-                                  <span>{hasAnnouncement ? 'Announcement' : 'Announcement'}</span>
+                                  <span>{hasAnnouncement ? 'Announcement' : 'Set Result'}</span>
                                 </Button>
 
                                 {/* Checklist toggle */}

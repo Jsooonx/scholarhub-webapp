@@ -107,7 +107,7 @@ export default function Hero() {
 
   return (
     <section className="relative bg-brand-bg py-8 sm:py-12 lg:py-14 select-text overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Arc-Style Luminous Floating Showcase Canvas */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -138,9 +138,7 @@ export default function Hero() {
 
             {/* Kumo UI Buttons */}
             <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-3">
-              {!isHydrated || !ready ? (
-                <div className="h-10 w-44 rounded-xl bg-black/5 animate-pulse" />
-              ) : profile?.quiz_answers ? (
+              {profile?.quiz_answers ? (
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <LinkButton
                     href="/match"

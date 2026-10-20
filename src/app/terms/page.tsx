@@ -93,21 +93,28 @@ export default function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-serif text-xl font-bold text-brand-dark">4. Outbound Links</h2>
+              <h2 className="font-serif text-xl font-bold text-brand-dark">4. User Accounts & Data Synchronization</h2>
+              <p className="text-xs">
+                ScholarHub provides passwordless magic-link sign-in to allow users to bookmark scholarships, customize application stages on the Kanban tracker, record notes, and track deadlines. You are responsible for maintaining the confidentiality and security of your email account. ScholarHub is not liable for unauthorized access resulting from compromised email accounts. You may clear your local shortlist or request account deletion at any time.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="font-serif text-xl font-bold text-brand-dark">5. Outbound Links</h2>
               <p className="text-xs">
                 ScholarHub contains links to external official websites of scholarship providers. We have no control over, and assume no responsibility for, the content, privacy policies, practices, or availability of any third-party websites or services.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-serif text-xl font-bold text-brand-dark">5. Limitation of Liability</h2>
+              <h2 className="font-serif text-xl font-bold text-brand-dark">6. Limitation of Liability</h2>
               <p className="text-xs">
                 In no event shall ScholarHub or its creator (Jsooonx) be liable for any direct, indirect, incidental, special, or consequential damages arising out of or in connection with your use of the website or reliance on any information provided herein.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="font-serif text-xl font-bold text-brand-dark">6. Changes to Terms</h2>
+              <h2 className="font-serif text-xl font-bold text-brand-dark">7. Changes to Terms</h2>
               <p className="text-xs">
                 We reserve the right to modify or replace these Terms of Service at any time. Your continued use of the website after any changes constitute acceptance of the new terms.
               </p>

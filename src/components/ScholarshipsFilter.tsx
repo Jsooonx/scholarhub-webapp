@@ -105,7 +105,7 @@ function CustomSelect({ value, options, onChange, align = 'left', fullWidth = fa
   }, []);
 
   return (
-    <div ref={containerRef} className={`relative text-left z-20 ${fullWidth ? 'block w-full' : 'inline-block'}`}>
+    <div ref={containerRef} className={`relative text-left ${isOpen ? 'z-40' : 'z-10'} ${fullWidth ? 'block w-full' : 'inline-block'}`}>
       <Button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -123,7 +123,7 @@ function CustomSelect({ value, options, onChange, align = 'left', fullWidth = fa
           className={`absolute ${align === 'right' ? 'right-0' : 'left-0'} mt-1.5 ${
             fullWidth
               ? 'w-full'
-              : 'w-max min-w-[280px] sm:min-w-[340px] max-w-[calc(100vw-2rem)] sm:max-w-md'
+              : 'w-max min-w-[200px] sm:min-w-[240px] max-w-[calc(100vw-2rem)] sm:max-w-md'
           } rounded-xl border border-brand-border bg-white shadow-xl p-1 z-50 focus:outline-none overflow-hidden animate-in fade-in-0 zoom-in-95 duration-100`}
         >
           <div
@@ -231,6 +231,13 @@ export default function ScholarshipsFilter({ total }: { total: number }) {
           placeholder="Search scholarships, fields, providers…"
           value={searchValue}
           onChange={(e) => handleSearchChange(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault();
+              if (debounceRef.current) clearTimeout(debounceRef.current);
+              pushParams('q', searchValue);
+            }
+          }}
           className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-brand-border bg-white focus:outline-none focus:ring-2 focus:ring-brand-dark/20 placeholder:text-brand-muted/60"
         />
       </div>

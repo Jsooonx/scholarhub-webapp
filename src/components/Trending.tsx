@@ -24,8 +24,9 @@ const totalPages = Math.ceil(ALL_PROVIDER_GROUPS.length / DESKTOP_PER_PAGE);
 
 function ProviderCard({ group }: { group: string }) {
   const list = byGroup[group] ?? [];
-  const flag = providerMeta[group]?.flag ?? '🌍';
-  const label = providerMeta[group] ? `${providerMeta[group].name} - ${providerMeta[group].country}` : group;
+  const meta = providerMeta[group];
+  const flag = meta?.flag ?? '🌍';
+  const label = meta ? (meta.name.toLowerCase() === meta.country.toLowerCase() ? meta.name : `${meta.name} · ${meta.country}`) : group;
   const featured = list[0];
   const rest = list.slice(1, 3);
 
@@ -167,43 +168,37 @@ export default function Trending() {
 
           {/* Desktop: pagination controls */}
           <div className="hidden md:flex items-center gap-3">
-            {mounted ? (
-              <>
-                <span className="text-xs text-brand-muted tabular-nums">
-                  {page + 1} / {totalPages}
-                </span>
-                <div className="flex items-center gap-1">
-                  <Button
-                    onClick={() => {
-                      setSkipAnimation(false);
-                      setPage((p) => Math.max(0, p - 1));
-                    }}
-                    disabled={page === 0}
-                    aria-label="Previous page"
-                    variant="secondary"
-                    size="icon-sm"
-                    shape="circle"
-                  >
-                    <ChevronLeft className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setSkipAnimation(false);
-                      setPage((p) => Math.min(totalPages - 1, p + 1));
-                    }}
-                    disabled={page === totalPages - 1}
-                    aria-label="Next page"
-                    variant="secondary"
-                    size="icon-sm"
-                    shape="circle"
-                  >
-                    <ChevronRight className="h-4 w-4" />
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <div className="w-20 h-4" />
-            )}
+            <span className="text-xs text-brand-muted tabular-nums">
+              {page + 1} / {totalPages}
+            </span>
+            <div className="flex items-center gap-1">
+              <Button
+                onClick={() => {
+                  setSkipAnimation(false);
+                  setPage((p) => Math.max(0, p - 1));
+                }}
+                disabled={page === 0}
+                aria-label="Previous page"
+                variant="secondary"
+                size="icon-sm"
+                shape="circle"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                onClick={() => {
+                  setSkipAnimation(false);
+                  setPage((p) => Math.min(totalPages - 1, p + 1));
+                }}
+                disabled={page === totalPages - 1}
+                aria-label="Next page"
+                variant="secondary"
+                size="icon-sm"
+                shape="circle"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
             <Link
               href="/scholarships"
               className="text-xs font-medium text-brand-muted hover:text-brand-dark transition-colors"
@@ -232,7 +227,7 @@ export default function Trending() {
           </div>
 
           {/* Page dots */}
-          {mounted && totalPages > 1 && (
+          {totalPages > 1 && (
             <div className="flex justify-center gap-2 mt-10">
               {Array.from({ length: totalPages }).map((_, i) => (
                 <Button

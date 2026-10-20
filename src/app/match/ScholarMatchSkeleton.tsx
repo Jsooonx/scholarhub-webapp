@@ -19,15 +19,13 @@ export default function ScholarMatchSkeleton() {
                   Here are scholarships matching your profile. Adjust your options below to filter in real-time:
                 </p>
 
-                {/* Live Adjust Filters Panel Skeleton matching real 2-row layout */}
+                {/* Live Adjust Filters Panel Skeleton matching real layout */}
                 <div className="mt-5 flex flex-wrap justify-center gap-2 max-w-3xl mx-auto z-20 relative">
                   <div className="h-8 w-32 rounded-full bg-brand-cream/80 border border-brand-border/60 animate-pulse" />
                   <div className="h-8 w-28 rounded-full bg-brand-cream/80 border border-brand-border/60 animate-pulse" />
                   <div className="h-8 w-40 rounded-full bg-brand-cream/80 border border-brand-border/60 animate-pulse" />
                   <div className="h-8 w-36 rounded-full bg-brand-cream/80 border border-brand-border/60 animate-pulse" />
-                  <div className="w-full flex justify-center">
-                    <div className="h-8 w-36 rounded-full bg-brand-cream/80 border border-brand-border/60 animate-pulse" />
-                  </div>
+                  <div className="h-8 w-36 rounded-full bg-brand-cream/80 border border-brand-border/60 animate-pulse" />
                 </div>
               </div>
 

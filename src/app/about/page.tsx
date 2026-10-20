@@ -89,7 +89,7 @@ export default function AboutPage() {
               threshold={0.1}
             />
             <p className="text-base text-brand-muted leading-relaxed max-w-2xl mx-auto">
-              ScholarHub is a free, independent scholarship directory built to make finding international scholarships simpler - no accounts, no spam, just clean information.
+              ScholarHub is a free, independent scholarship directory built to make finding international scholarships simpler - passwordless access, zero spam, just clean verified information.
             </p>
           </div>
         </div>
@@ -235,20 +235,24 @@ export default function AboutPage() {
           <section className="border-t border-brand-border pt-16">
             <h2 className="font-serif text-3xl font-bold text-brand-dark mb-8 text-center">Scholarships by country</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {providers.map((p) => (
-                <Link key={p.name} href={`/providers/${Object.keys(providerMeta).find(k => providerMeta[k] === p) ?? ''}`}
-                  className="rounded-xl border border-brand-border bg-brand-cream p-6 hover:border-brand-dark/20 hover:shadow-xs transition-all"
+              {Object.entries(providerMeta).map(([slug, p]) => (
+                <Link
+                  key={slug}
+                  href={`/providers/${slug}`}
+                  className="group rounded-xl border border-brand-border bg-brand-cream p-6 hover:border-brand-dark/25 hover:shadow-sm transition-all flex flex-col justify-between"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-3xl">{p.flag}</span>
-                    <div>
-                      <p className="font-semibold text-brand-dark text-sm">{p.name}</p>
-                      <p className="text-[10px] text-brand-muted">{p.country}</p>
+                  <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-3xl">{p.flag}</span>
+                      <div>
+                        <p className="font-semibold text-brand-dark text-sm group-hover:text-brand-accent transition-colors">{p.name}</p>
+                        <p className="text-[10px] text-brand-muted">{p.country}</p>
+                      </div>
                     </div>
+                    <p className="text-xs text-brand-muted leading-relaxed mb-4">{p.description}</p>
                   </div>
-                  <p className="text-xs text-brand-muted leading-relaxed mb-4">{p.description}</p>
-                  <span className="text-xs font-medium text-brand-accent">
-                    {p.website.replace('https://', '')} ↗
+                  <span className="text-xs font-semibold text-brand-accent inline-flex items-center gap-1 group-hover:underline">
+                    Explore {p.country} scholarships →
                   </span>
                 </Link>
               ))}

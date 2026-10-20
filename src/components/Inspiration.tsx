@@ -14,7 +14,7 @@ export default function Inspiration() {
   const bachelorCount = 73;
   const masterCount = 163;
   const phdCount = 109;
-  const nonDegreeCount = 17;
+  const nonDegreeCount = 14;
 
   const levelCards = [
     {

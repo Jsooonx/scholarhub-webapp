@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -76,15 +76,13 @@ export default function ScholarshipTrackDetailView({
   related,
 }: Props) {
   const [activeTrack, setActiveTrack] = useState<'embassy' | 'university'>('embassy');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const group = providerGroup(s.provider);
   const flag = providerMeta[group]?.flag ?? '🌍';
   const curatedMeta = getPersonallyCuratedMeta(s.slug);
+  const providerUrl = providerMeta[group]
+    ? `/providers/${group}`
+    : `/scholarships?q=${encodeURIComponent(s.provider)}`;
 
   // Sourced intake year cycle note
   const cycleNote = useMemo(() => {
@@ -123,7 +121,7 @@ export default function ScholarshipTrackDetailView({
 
   return (
     <main className="flex-grow">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-24 lg:pb-10">
         
         {/* Breadcrumb nav */}
         <nav className="hidden sm:flex items-center gap-1.5 text-xs text-brand-muted mb-6 min-w-0">
@@ -131,7 +129,7 @@ export default function ScholarshipTrackDetailView({
           <span>·</span>
           <Link href="/scholarships" className="hover:text-brand-dark transition-colors">Scholarships</Link>
           <span>·</span>
-          <Link href={`/providers/${group}`} className="hover:text-brand-dark transition-colors truncate max-w-48">{s.provider}</Link>
+          <Link href={providerUrl} className="hover:text-brand-dark transition-colors truncate max-w-48">{s.provider}</Link>
           <span>·</span>
           <span className="text-brand-dark font-medium truncate">{s.name}</span>
         </nav>
@@ -192,22 +190,7 @@ export default function ScholarshipTrackDetailView({
                     {dur}
                   </span>
                 )}
-                {mounted ? (
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={status.label}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.12 }}
-                      className="inline-block"
-                    >
-                      <DeadlineStatus status={status} />
-                    </motion.div>
-                  </AnimatePresence>
-                ) : (
-                  <DeadlineStatus status={status} />
-                )}
+                <DeadlineStatus status={status} />
               </div>
 
               {curatedMeta && (
@@ -312,7 +295,7 @@ export default function ScholarshipTrackDetailView({
                 </div>
               )}
 
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={activeTrack}
                   initial={{ opacity: 0, y: 15 }}
@@ -390,6 +373,23 @@ export default function ScholarshipTrackDetailView({
                           </div>
                         </div>
                       )}
+
+                      {/* Track-specific requirements checklist */}
+                      {currentTrackData?.requirements && currentTrackData.requirements.length > 0 && (
+                        <div className="pt-4 border-t border-brand-border/60">
+                          <p className="text-xs font-bold uppercase tracking-wider text-brand-dark mb-3 flex items-center gap-1.5">
+                            <span>{currentTrackData.title} Criteria & Rules</span>
+                          </p>
+                          <ul className="space-y-2.5">
+                            {currentTrackData.requirements.map((req, idx) => (
+                              <li key={idx} className="flex items-start gap-2.5 text-xs text-brand-dark leading-relaxed">
+                                <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                                <span>{req}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </section>
 
@@ -437,30 +437,15 @@ export default function ScholarshipTrackDetailView({
                       )}
                     </div>
                     <div className="rounded-xl border border-brand-border bg-white p-5 space-y-4">
-                      {mounted ? (
-                        <div className="h-10 flex items-center relative overflow-hidden">
-                          <AnimatePresence mode="popLayout">
-                            <motion.div
-                              key={status.label}
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              exit={{ opacity: 0, y: -5 }}
-                              transition={{ duration: 0.18 }}
-                              className="absolute inset-x-0 top-1/2 -translate-y-1/2"
-                            >
-                              <DeadlineStatus status={status} />
-                            </motion.div>
-                          </AnimatePresence>
-                        </div>
-                      ) : (
-                        <div className="h-10 flex items-center">
-                          <DeadlineStatus status={status} />
-                        </div>
-                      )}
+                      <div className="h-10 flex items-center">
+                        <DeadlineStatus status={status} />
+                      </div>
 
                       {currentTrackData ? (
                         <div className="text-xs text-brand-dark space-y-1">
-                          <p><span className="font-medium">Estimated Intake Period: </span>{currentTrackData.deadlines}</p>
+                          <p className="text-brand-muted leading-relaxed">
+                            <span className="font-semibold text-brand-dark">{currentTrackData.title}</span> operates on an annual intake timeline. Please submit all official dossiers according to this schedule.
+                          </p>
                         </div>
                       ) : (
                         <div className="space-y-1.5">
@@ -574,26 +559,9 @@ export default function ScholarshipTrackDetailView({
                       </span>
                     )}
                   </div>
-                  {mounted ? (
-                    <div className="h-10 flex items-center relative overflow-hidden">
-                      <AnimatePresence mode="popLayout">
-                        <motion.div
-                          key={status.label}
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -5 }}
-                          transition={{ duration: 0.18 }}
-                          className="absolute inset-x-0 top-1/2 -translate-y-1/2"
-                        >
-                          <DeadlineStatus status={status} size="sm" />
-                        </motion.div>
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    <div className="h-10 flex items-center">
-                      <DeadlineStatus status={status} size="sm" />
-                    </div>
-                  )}
+                  <div className="h-10 flex items-center">
+                    <DeadlineStatus status={status} size="sm" />
+                  </div>
                 </div>
                 {s.country && (
                   <div className="flex items-center gap-2.5 text-xs text-brand-dark">
@@ -680,7 +648,7 @@ export default function ScholarshipTrackDetailView({
                 </div>
               </div>
               <Link
-                href={`/providers/${group}`}
+                href={providerUrl}
                 className="text-xs font-medium text-brand-accent hover:underline inline-flex items-center gap-1"
               >
                 View all {s.provider.split('/')[0].trim()} scholarships →
@@ -709,7 +677,7 @@ export default function ScholarshipTrackDetailView({
                 </h2>
               </div>
               <Link
-                href={`/providers/${group}`}
+                href={providerUrl}
                 className="text-xs font-semibold text-brand-accent hover:underline inline-flex items-center gap-1"
               >
                 View all {s.provider.split('/')[0].trim()} scholarships →
@@ -737,6 +705,26 @@ export default function ScholarshipTrackDetailView({
           </section>
         )}
 
+      </div>
+
+      {/* Mobile Sticky Action Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-brand-border p-3 px-4 shadow-[0_-4px_16px_rgba(0,0,0,0.08)] flex items-center gap-2.5">
+        {officialUrl ? (
+          <LinkButton
+            href={officialUrl}
+            external
+            variant="primary"
+            size="default"
+            className="flex-1 justify-center shadow-xs"
+          >
+            <span>Apply Official</span>
+            <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" />
+          </LinkButton>
+        ) : (
+          <span className="flex-1 text-center text-xs text-brand-muted italic">Check official site</span>
+        )}
+        <SaveScholarshipButton slug={s.slug} variant="icon" />
+        <CompareCTA currentScholarship={s} compact />
       </div>
     </main>
   );

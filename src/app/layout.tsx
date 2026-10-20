@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Lora, Geist } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
@@ -16,6 +16,11 @@ const lora = Lora({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: '#FAF9F5',
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

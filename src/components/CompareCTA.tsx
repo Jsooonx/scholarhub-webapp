@@ -10,9 +10,11 @@ import { Button } from '@/components/ui/button';
 interface Props {
   currentScholarship: Scholarship;
   className?: string;
+  compact?: boolean;
+  size?: 'default' | 'sm' | 'lg' | 'icon' | 'icon-sm';
 }
 
-export default function CompareCTA({ currentScholarship, className = '' }: Props) {
+export default function CompareCTA({ currentScholarship, className = '', compact = false, size }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [buttonCenter, setButtonCenter] = useState<{ x: number; y: number } | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -30,17 +32,33 @@ export default function CompareCTA({ currentScholarship, className = '' }: Props
 
   return (
     <>
-      <Button
-        ref={buttonRef}
-        type="button"
-        onClick={handleOpen}
-        variant="secondary"
-        size="lg"
-        className={`w-full ${className}`}
-      >
-        <Compass className="h-4 w-4" />
-        Compare this scholarship
-      </Button>
+      {compact ? (
+        <Button
+          ref={buttonRef}
+          type="button"
+          onClick={handleOpen}
+          variant="secondary"
+          size={size ?? 'icon-sm'}
+          shape="circle"
+          aria-label="Compare this scholarship"
+          title="Compare this scholarship"
+          className={className}
+        >
+          <Compass className="h-4 w-4" />
+        </Button>
+      ) : (
+        <Button
+          ref={buttonRef}
+          type="button"
+          onClick={handleOpen}
+          variant="secondary"
+          size={size ?? 'lg'}
+          className={`w-full ${className}`}
+        >
+          <Compass className="h-4 w-4" />
+          Compare this scholarship
+        </Button>
+      )}
 
       <AnimatePresence>
         {isOpen && (

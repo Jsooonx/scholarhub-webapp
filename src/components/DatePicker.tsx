@@ -44,6 +44,7 @@ export default function DatePicker({ value, onChange, className = '', placeholde
       if (left + 240 > windowWidth) {
         left = Math.max(16, windowWidth - 240 - 16);
       }
+      left = Math.max(16, left);
       
       if (fitsBelow) {
         setCoords({
@@ -56,6 +57,17 @@ export default function DatePicker({ value, onChange, className = '', placeholde
           left
         });
       }
+
+      // Synchronize month view with the active date
+      if (value && value.includes('-')) {
+        const [y, m] = value.split('-').map(Number);
+        if (!isNaN(y) && !isNaN(m)) {
+          setNavDate(new Date(y, m - 1, 1));
+        }
+      } else {
+        setNavDate(new Date());
+      }
+
       setIsOpen(true);
     }
   };
