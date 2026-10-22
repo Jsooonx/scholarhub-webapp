@@ -163,7 +163,7 @@ const logoFilePaths = [
 function providerGroupHeuristic(p) {
   p = p.toLowerCase();
   if (p.includes('daad') || p.includes('dlr') || p.includes('studienstiftung') || p.includes('german academic')) return 'germany';
-  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services') || p.includes('government of japan') || p.includes('adb') || p.includes('world bank')) return 'japan';
+  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services') || p.includes('government of japan') || p.includes('asian development bank') || /\badb\b/i.test(p) || p.includes('world bank')) return 'japan';
   if (p.includes('turkiye') || p.includes('ytb') || p.includes('burslari')) return 'turkey';
   if (p.includes('chevening') || p.includes('gates cambridge') || p.includes('clarendon') || p.includes('oxford university press') || p.includes('rhodes') || p.includes('commonwealth scholarship')) return 'united-kingdom';
   if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp') || p.includes('university of melbourne') || p.includes('university of sydney') || p.includes('australian national') || p.includes('monash') || p.includes('university of queensland') || p.includes('unsw') || p.includes('flinders') || p.includes('griffith')) return 'australia';
@@ -284,7 +284,7 @@ function checkLogo(x) {
   // Group fallback
   const p = x.provider.toLowerCase();
   if (p.includes('daad') || p.includes('dlr') || p.includes('studienstiftung') || p.includes('german academic scholarship')) return 'daad.svg';
-  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services') || p.includes('government of japan') || p.includes('adb') || p.includes('world bank')) return 'mext.svg';
+  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services') || p.includes('government of japan') || p.includes('asian development bank') || /\badb\b/i.test(p) || p.includes('world bank')) return 'mext.svg';
   if (p.includes('turkiye') || p.includes('ytb') || p.includes('burslari')) return 'turkiye.png';
   if (p.includes('fulbright') || p.includes('aminef') || p.includes('knight-hennessy') || p.includes('stanford')) return 'Harvard.png';
   if (p.includes('vlir') || p.includes('vliruos') || p.includes('belgian') || p.includes('science@leuven') || p.includes('ku leuven') || p.includes('ares')) return 'vliruos.png';

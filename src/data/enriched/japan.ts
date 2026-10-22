@@ -95,7 +95,7 @@ const mextGakubuExams: ExamDetail[] = [
     ],
     tips: [
       'For Social Sciences, English and Japanese are the decisive subjects',
-      'IPS applicants with JLPT N3 or EJU 240+ can apply even with report card grades below 85',
+      'IPS applicants with JLPT N3 or EJU 240+ can apply even with report card grades below 84',
     ],
     pastPapersUrl: 'https://www.studyinjapan.go.jp/en/planning/scholarship/application/examination/index.html',
   },
@@ -118,14 +118,14 @@ const mextResearchExams: ExamDetail[] = [
   {
     program: 'Research Student (Master/PhD)',
     subjects: [
-      { name: 'English', notes: 'TOEFL ITP equivalent level. Reading + grammar + vocabulary' },
-      { name: 'Japanese', notes: 'Basic to intermediate. For Japanese-medium programs, this score matters more' },
+      { name: 'English', notes: 'Academic English: advanced reading comprehension, grammar, and vocabulary' },
+      { name: 'Japanese', notes: 'Basic to advanced. Mandatory to sit for all applicants, even for English-track degree candidates' },
     ],
     tips: [
-      'No subject-specific exams - only languages! Focus 100% on English + Japanese',
-      'IELTS 5.5 or TOEFL ITP 543 can replace the English exam (check current year requirements)',
-      'Have a professor LoA before the exam? You can bypass the written test entirely via University Recommendation',
-      'Your research proposal will be discussed during the interview - not in the written exam',
+      'No subject-specific written exams - only English and Japanese languages are tested!',
+      'CRITICAL: TOEFL ITP, Prediction tests, and Duolingo are STRICTLY NOT ACCEPTED by the Embassy of Japan. You must submit TOEFL iBT 72+, IELTS 5.5+, TOEIC L&R 785+, TOEIC S&W 310+, or JLPT N2+.',
+      'Japanese language exam score: While not the sole determinant for English programs, sitting for the exam is mandatory (attendance required even if score is minimal).',
+      'Your Field of Study and Research Plan (3-5 pages) is your most vital asset - the interview panel probes methodology and feasibility heavily.',
     ],
     pastPapersUrl: 'https://www.studyinjapan.go.jp/en/planning/scholarship/application/examination/index.html',
   },
@@ -140,30 +140,30 @@ const mextSocialLinks: SocialLink[] = [
 ];
 
 const mextStrategyTips: string[] = [
-  'Choose your track wisely - Embassy Track for first-timers, University Recommendation for those with professor connections',
-  'Fill in every answer on the written exam - no penalty for wrong answers. Never leave blanks!',
-  'Maximize your English score - it carries the most weight across all programs',
-  'Prepare documents well in advance. The embassy does not accept files via ride-hailing couriers - use official document delivery services',
-  'Write the program code on the top right of your envelope (e.g., "Gakubu 2027_[exam number]") - code errors can cause your application to be rejected',
-  'For Research Students: secure a Letter of Acceptance from a Japanese professor to bypass the written exam',
+  'Choose your track wisely: Embassy Track (E-to-E) for open multi-campus options; University Track (U-to-U) if you have strong direct professor ties.',
+  'Fill in every answer on the written exam: There is no negative marking or penalty for wrong answers. Never leave blanks!',
+  'The 2-University Rule for LoA: After passing Primary Screening, you may only contact a maximum of 2 Japanese universities/professors concurrently. Shotgun mass-emailing is strictly prohibited and can cause immediate disqualification.',
+  'Strict Physical Submission: Berkas fisik wajib dikirim via pos/kurir resmi (POS/JNE/TIKI/SiCepat). Ojol / kurir instan / antar langsung ke gerbang Kedubes Jakarta DITOLAK.',
+  'Envelope Labeling: Tulis kode program dan nomor registrasi di pojok kanan atas amplop (contoh: "RESEARCH 2027_[Nomor Ujian]" atau "GAKUBU 2027_[Nomor Ujian]").',
+  '5 Exam Cities in Indonesia: Ujian tulis serentak di 5 kota (Jakarta, Surabaya, Medan, Denpasar, Makassar). Pilih kota ujian saat registrasi online pertama kali karena tidak dapat diubah.',
 ];
 
 const mextDifferentiators: { label: string; description: string }[] = [
   {
     label: 'No Bond / Service Obligation',
-    description: 'After graduation, you are free - no obligation to return to Indonesia. You can work in Japan or continue studies.',
+    description: 'After graduation, you are completely free - no obligation to return to Indonesia. You can work in Japan or continue studies globally.',
   },
   {
     label: '1 Year Free Language Training',
-    description: 'All MEXT recipients (except Japanese Studies & Teacher Training) receive 1 year of intensive Japanese language training at their host university before starting their degree.',
+    description: 'All degree-track MEXT recipients receive 1 year (or 6 months for research) of intensive Japanese language training at their host institution before starting academic degrees.',
   },
   {
     label: 'Choose Any National University',
-    description: 'You can enroll at any Japanese national university, including University of Tokyo, Kyoto University, Osaka University, and more.',
+    description: 'You can enroll at prestigious Japanese national universities (e.g. University of Tokyo, Kyoto University, Osaka University, Tokyo Tech / Institute of Science Tokyo).',
   },
   {
-    label: 'IELTS Alternatives: STEP, EJU, TOEFL ITP',
-    description: 'No IELTS? Use STEP 85+, TOEFL ITP 543, or EJU scores. For Arabic/Sharia programs, English testing may be waived entirely.',
+    label: 'Strict Language Test Standards',
+    description: 'Embassy of Japan accepts official TOEFL iBT (min 72), IELTS (min 5.5), TOEIC L&R (min 785) / S&W (min 310), or JLPT (min N2). Note: TOEFL ITP is strictly not accepted.',
   },
 ];
 
@@ -229,9 +229,9 @@ export const japanEnrichment: Record<string, EnrichmentData> = {
     socialLinks: mextSocialLinks,
     strategyTips: [
       ...mextStrategyTips,
-      'For Research: secure a Letter of Acceptance from a Japanese professor BEFORE the exam - this is a game-changer',
-      'Your research proposal is your main weapon - the interview will ask about your proposal, not formulas to memorize',
-      'IELTS 5.5 or TOEFL ITP 543 can replace the English exam (check current year requirements)',
+      'Research Proposal Architecture: Prepare a 3–5 page proposal clearly identifying research questions, methodology, and why it requires Japanese academic laboratory facilities.',
+      'Language Test Reality: Ensure your score is from official tests (TOEFL iBT, IELTS, TOEIC L&R/S&W, or JLPT). TOEFL ITP or prediction tests lead to instant document rejection.',
+      'LoA Outreach Timing: Contact professors only AFTER you hold the Primary Screening Certificate from the Embassy. Never solicit LoAs beforehand if applying via Embassy Track.',
     ],
     differentiators: mextDifferentiators,
   },

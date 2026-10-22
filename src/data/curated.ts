@@ -22,6 +22,31 @@ export const personallyCuratedMap: Record<string, PersonallyCuratedMeta> = {
     summary: 'Thoroughly researched and verified from direct applicant experience, official KBRI Bucharest recommendation pathway, ARICE annex forms, and quota data.',
     verifiedCycle: 'Based on 2026/2027 Cycle',
   },
+  'mext-scholarship-research-students-masterphd-2027': {
+    badge: 'Personally Curated',
+    summary: 'Thoroughly researched and verified from official Embassy of Japan in Jakarta guidelines, strict TOEFL iBT / IELTS requirements (TOEFL ITP disqualified), the 2-university LoA limit rule, and postal courier requirements.',
+    verifiedCycle: 'Based on 2026/2027 Cycle',
+  },
+  'mext-scholarship-undergraduate-gakubu-2027': {
+    badge: 'Personally Curated',
+    summary: 'Thoroughly researched and verified from official Embassy of Japan in Jakarta criteria, including the 84 report card threshold, IPS JLPT N3 exception pathway, and 5 national exam test cities.',
+    verifiedCycle: 'Based on 2026/2027 Cycle',
+  },
+  'asean-undergraduate-scholarship-nus': {
+    badge: 'Personally Curated',
+    summary: 'Thoroughly researched and verified for Indonesian high school (Kurikulum Merdeka / K-13) applicants. Covers the discontinuation of UEE, realistic SAT/AP/OSN benchmarks, 100% automatic screening workflow, S$3,000 accommodation allowance budgeting, and the mandatory 3-year MOE Tuition Grant work bond.',
+    verifiedCycle: 'Based on 2026/2027 Cycle',
+  },
+  'asean-undergraduate-scholarship-ntu': {
+    badge: 'Personally Curated',
+    summary: 'Thoroughly researched and verified for Indonesian applicants. Unpacks the critical 20 January early deadline, the separate online scholarship portal requirement, the 300-word essay and teacher appraisal workflow, Group Discussion (GD) selection tactics, and MOE Tuition Grant bond conditions.',
+    verifiedCycle: 'Based on 2026/2027 Cycle',
+  },
+  'dr-goh-keng-swee-gks-scholarship': {
+    badge: 'Personally Curated',
+    summary: 'Singapore\'s pinnacle private-sector undergraduate scholarship administered by the Association of Banks in Singapore (ABS) exclusively via NUS. Features an ultra-exclusive quota of only 3–4 recipients across all 15 Asia Pacific economies, return airfare coverage, and a unique 3-year work bond that can be fulfilled at approved Singapore-based firms in Indonesia.',
+    verifiedCycle: 'Based on 2026/2027 Cycle',
+  },
 };
 
 export function isPersonallyCurated(slug: string): boolean {
@@ -65,20 +90,28 @@ export const curatedPicks: CuratedPick[] = [
   // 4. ASEAN Undergraduate Scholarship - NUS (Singapore)
   {
     slug: 'asean-undergraduate-scholarship-nus',
-    badge: 'Automatic Selection',
-    editorReason: 'A highly prestigious, bond-free undergraduate scholarship offered by the National University of Singapore (NUS) for outstanding students from ASEAN member countries.',
-    insiderTip: 'There is no separate application form. Selection is made automatically during the NUS admissions process, so make sure your high school grades and Olympiad achievements are stellar.'
+    badge: 'Automatic Selection · 3-Yr Bond',
+    editorReason: 'A world-class undergraduate award at Asia\'s top university. It covers 100% of subsidised tuition plus annual living (S$5,800), accommodation (S$3,000), and computer allowances (S$1,750), with automatic screening during NUS admission.',
+    insiderTip: 'UEE has been discontinued. For Indonesian SMA (Kurikulum Merdeka/K-13) applicants, Rapor alone is rarely enough to beat IB/A-Level competitors — historical awardees hold OSN medals or SAT 1500+ / 3+ APs (score 5). Note: requires a mandatory 3-year MOE Tuition Grant work bond in Singapore and flights are self-funded.'
   },
 
   // 5. ASEAN Undergraduate Scholarship - NTU (Singapore)
   {
     slug: 'asean-undergraduate-scholarship-ntu',
-    badge: 'Automatic Selection',
-    editorReason: 'Offered by Nanyang Technological University (NTU), this bond-free scholarship covers full tuition and provides allowance for outstanding ASEAN students.',
-    insiderTip: 'Like NUS, there is no separate application form. Admission to NTU automatically screens you for this scholarship, so aim for top grades and outstanding Co-Curricular Activities (CCA).'
+    badge: 'Top Tier SG · Essay Required',
+    editorReason: 'NTU\'s flagship regional scholarship covering full subsidised tuition and providing annual living and accommodation allowances. Requires an active scholarship application submission via the applicant portal.',
+    insiderTip: 'CRITICAL: Unlike NUS, NTU is NOT 100% automatic! You MUST submit a separate scholarship application in the NTU portal, write a 250–300 word personal essay, and ensure your teacher submits the online referee appraisal within 7–14 days. Indonesian SMA deadline closes early on 20 January.'
   },
 
-  // 6. GKS Undergraduate Scholarship (South Korea)
+  // 6. Dr Goh Keng Swee (GKS) Scholarship - NUS / ABS (Singapore)
+  {
+    slug: 'dr-goh-keng-swee-gks-scholarship',
+    badge: 'Top Elite · Airfare Included',
+    editorReason: 'Singapore\'s most prestigious private-sector undergraduate scholarship, funded by the Association of Banks in Singapore (ABS) and tenable exclusively at NUS from 2026. Covers full tuition, living (S$6,500/yr), hostel, computer, and return airfare.',
+    insiderTip: 'Only 3–4 scholarships are awarded annually across 15 Asia-Pacific economies! You do not need to study banking (open to computing, engineering, business, sciences). The 3-year service bond is uniquely flexible: work in Singapore OR at an approved Singapore-based company in Indonesia (e.g. DBS Indonesia, OCBC NISP, Grab, Shopee). Apply via NUS admissions by mid-February.'
+  },
+
+  // 7. GKS Undergraduate Scholarship (South Korea)
   {
     slug: 'gks-undergraduate-scholarship-global-korea-scholarship-bachelors',
     badge: 'No IELTS Required',
@@ -119,6 +152,14 @@ export const curatedPicks: CuratedPick[] = [
   },
 
   // ── MASTER (S2) ────────────────────────────────────────────────────────────
+
+  // MEXT Research Students (Master / PhD) - Japan
+  {
+    slug: 'mext-scholarship-research-students-masterphd-2027',
+    badge: 'No Bond · Top Stipend',
+    editorReason: 'The premier Japanese government scholarship for Master\'s and PhD studies. It offers 100% tuition coverage, a generous monthly stipend (¥143,000–¥145,000), return airfare, and zero return-service obligation, allowing graduates to launch careers in Japan or globally.',
+    insiderTip: 'Indonesian applicants must note: Kedubes Jepang strictly rejects TOEFL ITP (only TOEFL iBT 72+, IELTS 5.5+, TOEIC 785+, or JLPT N2 accepted). After passing Primary Screening, you can only contact max 2 universities concurrently for LoAs. Click to explore Embassy vs University tracks.'
+  },
 
   // 11. KAUST Fellowship (Saudi Arabia) — Master / PhD
   {

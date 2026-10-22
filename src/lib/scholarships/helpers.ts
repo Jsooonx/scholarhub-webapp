@@ -18,7 +18,7 @@ export function providerGroup(provider: string): string {
   // Germany
   if (p.includes('daad') || p.includes('dlr') || p.includes('studienstiftung') || p.includes('german academic scholarship foundation')) return 'germany';
   // Japan
-  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services') || p.includes('government of japan') || p.includes('adb') || p.includes('world bank')) return 'japan';
+  if (p.includes('mext') || p.includes('monbukagakusho') || p.includes('jasso') || p.includes('japan student services') || p.includes('government of japan') || p.includes('asian development bank') || /\badb\b/i.test(p) || p.includes('world bank')) return 'japan';
   // Turkey
   if (p.includes('turkiye') || p.includes('ytb') || p.includes('burslari')) return 'turkey';
   // United Kingdom
@@ -27,8 +27,8 @@ export function providerGroup(provider: string): string {
   if (p.includes('australia awards') || p.includes('dfat') || p.includes('lpdp') || p.includes('university of melbourne') || p.includes('university of sydney') || p.includes('australian national university') || p.includes('monash university') || p.includes('university of queensland') || p.includes('unsw') || p.includes('flinders university') || p.includes('griffith university')) return 'australia';
   // South Korea
   if (p.includes('niied') || p.includes('korean government') || p.includes('gks') || p.includes('koica') || p.includes('korea international cooperation') || p.includes('kaist') || p.includes('korea advanced institute')) return 'south-korea';
-  // Singapore
-  if (p.includes('a*star') || p.includes('astar') || p.includes('nus') || p.includes('ntu') || p.includes('singa') || p.includes('nanyang') || p.includes('national university of singapore')) return 'singapore';
+  // Singapore (word boundaries for NUS and NTU to avoid NUST / Taiwan collisions)
+  if (p.includes('a*star') || p.includes('astar') || /\bnus\b/i.test(p) || (/\bntu\b/i.test(p) && !p.includes('taiwan')) || p.includes('singa') || p.includes('nanyang') || p.includes('national university of singapore')) return 'singapore';
   // France
   if (p.includes('eiffel') || p.includes('campus france') || p.includes('french ministry') || p.includes('paris-saclay') || p.includes('paris saclay') || p.includes('sciences po') || p.includes('ens de lyon') || p.includes('ens lyon')) return 'france';
   // Canada (cpra must come before generic canada)

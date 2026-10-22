@@ -112,43 +112,44 @@ export const scholarshipTracks: Record<string, ScholarshipTracks> = {
   'mext-scholarship-research-students-masterphd-2027': {
     embassy: {
       title: 'Embassy Recommendation (G-to-G)',
-      description: 'Apply through the Embassy of Japan in Jakarta. This is the most popular track for Indonesians. It features a standardized national screening process consisting of documents, written exams, and embassy interviews.',
+      description: 'Apply through the Embassy of Japan in Jakarta. This is the flagship and most popular track for Indonesians seeking Master\'s or PhD degrees in Japan. It features a standardized national screening process consisting of documents, written exams in 5 cities, and embassy interviews.',
       requirements: [
         'Must be an Indonesian citizen under 35 years of age on April 1 of the departure year (born on or after April 2, 1992).',
         'Must hold a D4, S1, or S2 degree with a minimum final cumulative GPA of 3.20/4.00.',
-        'Must hold a valid international language certificate: TOEFL iBT 72+, IELTS 5.5+, TOEIC 785+ or JLPT N2+.',
-        'Must submit a detailed, academic Research Proposal in the same field as your previous studies.',
-        'Must be willing to learn Japanese and adapt to Japanese culture.'
+        'Must hold an official international language certificate: TOEFL iBT min. 72, IELTS min. 5.5, TOEIC L&R min. 785, TOEIC S&W min. 310, or JLPT min. N2. (CRITICAL: TOEFL ITP, prediction tests, and Duolingo are STRICTLY DISQUALIFIED by the Embassy).',
+        'Must apply for an academic field of study in the same or closely related discipline as previous degree.',
+        'Must submit a rigorous, academic Field of Study and Research Plan (3–5 pages) with clear methodology and rationale for conducting research in Japan.',
+        'Must be in good physical and mental health.'
       ],
       process: [
-        'Step 1: Register online on the Embassy of Japan\'s registration portal (opens in April).',
-        'Step 2: Compile application forms, transcripts, recommendation letters, and your detailed Research Plan.',
-        'Step 3: Submit the physical application package to the Embassy of Japan in Jakarta before the deadline.',
-        'Step 4: Pass document screening. Attend written exams (English & Japanese) and the interview panel in Jakarta (Primary Screening).',
-        'Step 5: Obtain your Primary Screening Certificate. Contact prospective supervisors at Japanese universities to secure a Letter of Acceptance (LoA).',
-        'Step 6: Submit your LoA to the Embassy. The files are sent to MEXT Tokyo for Secondary Screening.',
-        'Step 7: MEXT Tokyo releases final placement decisions by March (the following year).'
+        'Step 1: Register online on the Embassy of Japan registration portal (daftar.beasiswamext.com) and select 1 of 5 exam cities (Jakarta, Surabaya, Medan, Denpasar, Makassar).',
+        'Step 2: Compile application forms, Field of Study and Research Plan, official transcripts, graduation certificates, and recommendation letters.',
+        'Step 3: Ship the physical application package to the Embassy of Japan in Jakarta via registered postal courier (POS/JNE/TIKI/SiCepat) with code "RESEARCH 2027_[No. Ujian]" on the top-right envelope corner. Hand-delivery at Embassy gates and motorcycle couriers (ojol) are strictly refused.',
+        'Step 4: Pass document screening. Attend written exams (English & Japanese) in your chosen test city and the interview panel in Jakarta (Primary Screening). Sitting for both exams is mandatory.',
+        'Step 5: Obtain your Primary Screening Certificate. Contact prospective supervisors at Japanese universities to secure a Letter of Acceptance (LoA). STRICT 2-UNIVERSITY RULE: You may only contact a maximum of TWO universities/professors simultaneously. Shotgun mass-emailing is strictly prohibited by MEXT.',
+        'Step 6: Submit your LoA(s) and placement preference form to the Embassy by late September. Dossiers are transmitted to MEXT Tokyo for Secondary Screening.',
+        'Step 7: MEXT Tokyo releases final placement approvals between February and March.'
       ],
       deadlines: '1 April – 22 April annually.',
       url: 'https://www.id.emb-japan.go.jp/itpr_id/sch_rs.html'
     },
     university: {
       title: 'University Recommendation (U-to-U)',
-      description: 'Apply directly to a Japanese university that holds a MEXT nomination allocation quota. This track is highly decentralized and allows you to bypass the national written exam and interviews at the Japanese Embassy.',
+      description: 'Apply directly to a Japanese university holding a MEXT nomination quota (Daigaku Suisen). This track is highly decentralized and allows candidates to bypass the national written examination and embassy interview rounds in Indonesia.',
       requirements: [
         'Must be an Indonesian citizen under 35 years of age on April 1 of the departure year.',
-        'Must hold an outstanding academic record that meets the specific target university\'s GPA requirement (often equivalent to 2.30/3.00 on the MEXT scale).',
-        'Must secure a prospective supervisor at your target Japanese university who formally agrees to sponsor and recommend you.',
-        'Must meet the target university\'s specific English (e.g. IELTS 6.0+) or Japanese (e.g. JLPT N2+) language requirements.'
+        'Must hold an outstanding academic record meeting the specific target university\'s GPA threshold (typically equivalent to 2.30/3.00 on the MEXT scale).',
+        'Must secure a prospective supervisor at your target Japanese university who formally agrees to sponsor and nominate you for their internal MEXT quota.',
+        'Must meet the target university\'s specific English (e.g. IELTS 6.5+ or TOEFL iBT 80+) or Japanese (e.g. JLPT N2/N1) language benchmarks.'
       ],
       process: [
-        'Step 1: Locate Japanese universities and find professors matching your academic research interest.',
-        'Step 2: Contact the professor via email, attaching your CV, academic transcripts, and your detailed Research Proposal to ask for supervision consent.',
-        'Step 3: Once supervisor consent is secured, submit the MEXT application dossier directly to the university\'s international student division (typically between October and January).',
-        'Step 4: Pass the university\'s internal evaluation and interview panels (Primary Screening).',
-        'Step 5: The university nominates successful applicants to MEXT in Tokyo for final approval (Secondary Screening).',
-        'Step 6: MEXT Tokyo confirms funding and university placement.',
-        'Step 7: Final results are released in June/July.'
+        'Step 1: Research Japanese universities and identify laboratories and professors matching your exact research focus.',
+        'Step 2: Contact prospective professors between September and November with your CV, academic transcripts, and detailed Research Proposal requesting supervision.',
+        'Step 3: Once professor sponsorship is secured, submit the university\'s formal MEXT application dossier (typically between October and January).',
+        'Step 4: Pass the graduate school\'s internal document screening and oral defense / video interview panel (Primary Screening).',
+        'Step 5: The university officially nominates successful applicants to MEXT in Tokyo for final funding confirmation (Secondary Screening).',
+        'Step 6: MEXT Tokyo confirms national funding and scholarship placement.',
+        'Step 7: Final results are officially released in June/July for October intake.'
       ],
       deadlines: 'October to January annually (varies by university).',
       url: 'https://www.mext.go.jp'
@@ -159,28 +160,29 @@ export const scholarshipTracks: Record<string, ScholarshipTracks> = {
   'mext-scholarship-undergraduate-gakubu-2027': {
     embassy: {
       title: 'Embassy Recommendation (G-to-G)',
-      description: 'Apply through the Embassy of Japan in Jakarta. High school graduates undergo challenging national written exams in major Indonesian cities (Jakarta, Surabaya, Medan, etc.) before final selection. The entire process from application to departure takes approximately 1 full year. Ensure all documents are translated into English or Japanese by an official translator.',
+      description: 'Apply through the Embassy of Japan in Jakarta. High school graduates undergo challenging national written exams in 5 major Indonesian cities (Jakarta, Surabaya, Medan, Denpasar, Makassar) before final selection. Includes 1 full year of intensive Japanese language and foundation studies in Japan before starting university.',
       requirements: [
-        'Must be an Indonesian citizen.',
-        'Must be a high school graduate (or hold an equivalent qualification) by the departure date.',
-        'Must have a minimum average score of 84/100 on your high school transcript/final exams.',
+        'Must be an Indonesian citizen under 25 years of age on April 1 of the departure year (born on or after April 2, 2002).',
+        'Must be a high school graduate (SMA/SMK or equivalent) by the departure date.',
+        'Minimum average grade of 84 in Mathematics and English (Grade 11 Semesters 1 & 2 / Semester 4 & 5). For IPA tracks: Chemistry + Physics or Biology also evaluated.',
+        'IPS exception: Applicants with average grades below 84 may apply if holding JLPT min. N3, J-Test D-E (500 pts), NAT-Test Level 3, or EJU Japanese min. 240 pts. (No language waiver for IPA).',
         'Must be willing to learn Japanese and undergo 1 year of preparatory foundation studies in Japan.'
       ],
       process: [
-        'Step 1: Check the Gakubu scholarship announcement on the Japanese Embassy website in early April.',
-        'Step 2: Register online and submit your high school transcripts, graduation certificate, and recommendation letter to the Japanese Embassy.',
-        'Step 3: Attend written examinations covering Mathematics, English, and Chemistry, Physics, or Japanese depending on your chosen major.',
-        'Step 4: Shortlisted candidates attend the interview round at the Japanese Embassy.',
-        'Step 5: Pass the Primary Screening. The Embassy then nominates successful candidates to MEXT in Tokyo for the final round.',
-        'Step 6: MEXT Tokyo conducts the Secondary Screening to officially approve the scholarship winners.',
-        'Step 7: Final results and university preparatory school placements are officially announced between January and February.'
+        'Step 1: Check the Gakubu announcement on the Japanese Embassy website in early April and register online at daftar.beasiswamext.com.',
+        'Step 2: Select 1 of 5 examination cities (Jakarta, Surabaya, Medan, Denpasar, Makassar).',
+        'Step 3: Send physical documents via registered postal courier (POS/JNE/TIKI/SiCepat) with code "GAKUBU 2027_[No. Ujian]" on the top-right envelope corner.',
+        'Step 4: Attend written examinations covering Mathematics, English, Japanese, and Sciences (Physics/Chemistry/Biology) or Social Studies depending on track.',
+        'Step 5: Shortlisted candidates attend the interview round at the Japanese Embassy in Jakarta.',
+        'Step 6: Candidates passing Primary Screening are nominated to MEXT Tokyo for Secondary Screening.',
+        'Step 7: Final results and university preparatory school placements are officially announced in February.'
       ],
-      deadlines: 'April to May annually.',
-      url: 'https://www.id.emb-japan.go.jp/itpr_id/sch_ug.html'
+      deadlines: '1 April – 19 April annually.',
+      url: 'https://www.id.emb-japan.go.jp/itpr_id/sch_gakubu.html'
     },
     university: {
       title: 'University Recommendation (U-to-U)',
-      description: 'Direct university recommendation for S1 is extremely rare and typically limited to specific collaborative agreements between Japanese universities and designated foreign high schools or international schools. Timeline varies significantly depending on the host university agreement. Deadlines are typically much earlier than the embassy track.',
+      description: 'Direct university recommendation for S1 is extremely rare and typically limited to specific collaborative agreements between Japanese universities and designated foreign partner high schools or international schools.',
       requirements: [
         'Must be an Indonesian citizen.',
         'Must be nominated by a partner high school that holds a direct nomination agreement with a Japanese university.',
@@ -193,6 +195,86 @@ export const scholarshipTracks: Record<string, ScholarshipTracks> = {
         'Step 4: The university nominates successful students directly to MEXT for final funding approval.'
       ],
       deadlines: 'Varies by institution agreement.',
+      url: 'https://www.mext.go.jp'
+    }
+  },
+
+  // MEXT College of Technology (KOSEN)
+  'mext-scholarship-college-of-technology-kosen-2027': {
+    embassy: {
+      title: 'Embassy Recommendation (KOSEN D3)',
+      description: 'Apply through the Embassy of Japan in Jakarta for a 4-year engineering and technology scholarship (1 year Japanese language + 3 years specialized associate degree) at National Institutes of Technology (KOSEN). Graduates have a direct pathway to transfer into the 3rd year of Japanese National Universities for a full Bachelor\'s degree.',
+      requirements: [
+        'Must be an Indonesian citizen under 25 years of age on April 1 of departure year (born on or after April 2, 2002).',
+        'Senior high school graduate (SMA/SMK IPA/science track or equivalent).',
+        'Minimum grade of 80 in Mathematics and English on report cards (Grade 11 Semesters 1 & 2).',
+        'STRICT REQUIREMENT: Cannot apply if either subject grade is below 80 (no language certificate waiver allowed for KOSEN).',
+        'Good physical and mental health.'
+      ],
+      process: [
+        'Step 1: Register online at daftar.beasiswamext.com and select examination city (Jakarta, Surabaya, Medan, Denpasar, Makassar).',
+        'Step 2: Ship physical documents via registered postal courier (POS/JNE/TIKI/SiCepat) with code "KOSEN 2027_[No. Ujian]" on the envelope.',
+        'Step 3: Attend written exams in designated test city (Mathematics, Physics or Chemistry, English, Japanese).',
+        'Step 4: Shortlisted candidates attend the interview panel at the Embassy of Japan in Jakarta.',
+        'Step 5: Pass Primary Screening; Embassy nominates candidates to MEXT Tokyo for Secondary Screening.',
+        'Step 6: Final results announced in February; departure to Japan in early April.'
+      ],
+      deadlines: '20 April – 10 May annually.',
+      url: 'https://www.id.emb-japan.go.jp/itpr_id/sch_kosen.html'
+    },
+    university: {
+      title: 'Institutional Route',
+      description: 'Special institutional exchange or technical partnership pathways between designated Indonesian vocational polytechnics and Japanese KOSEN institutes.',
+      requirements: [
+        'Must be nominated by a partnering Indonesian vocational institution.',
+        'Must have strong foundational mathematics and physics/chemistry scores.'
+      ],
+      process: [
+        'Step 1: Contact home institution international relations division for active KOSEN bilateral agreements.',
+        'Step 2: Complete institutional screening and document verification.',
+        'Step 3: Interview with KOSEN representatives.'
+      ],
+      deadlines: 'Varies by institutional partner.',
+      url: 'https://www.kosen-k.go.jp/english/'
+    }
+  },
+
+  // MEXT Specialized Training College (SENSHU)
+  'mext-scholarship-specialized-training-college-senshu-2027': {
+    embassy: {
+      title: 'Embassy Recommendation (SENSHU D2)',
+      description: 'Apply through the Embassy of Japan in Jakarta for a 3-year vocational diploma program (1 year Japanese + 2 years vocational training) at Japanese Specialized Training Colleges (Senshu Gakko). Focuses on practical industry-ready skills such as Animation, Manga, Game Development, Culinary, Hotel Management, Fashion, Design, and Business.',
+      requirements: [
+        'Must be an Indonesian citizen under 25 years of age on April 1 of departure year (born on or after April 2, 2002).',
+        'Senior high school graduate (SMA/SMK all tracks).',
+        'Minimum grade of 80 in Mathematics and English on report cards (Grade 11 Semesters 1 & 2).',
+        'Exception: If grade is below 80, applicants may still apply if holding JLPT min. N4, J-Test D-E (350 pts), NAT-Test Level 4, or EJU Japanese min. 240 pts.',
+        'Passion for practical craft, vocational specialization, or working in Japan.'
+      ],
+      process: [
+        'Step 1: Register online at daftar.beasiswamext.com and select examination city (Jakarta, Surabaya, Medan, Denpasar, Makassar).',
+        'Step 2: Ship physical application files via registered postal courier with code "SENSHU 2027_[No. Ujian]" on the envelope.',
+        'Step 3: Attend written exams in designated test city (Mathematics, English, Japanese).',
+        'Step 4: Shortlisted candidates attend the interview panel at the Embassy of Japan in Jakarta.',
+        'Step 5: Pass Primary Screening; Embassy nominates candidates to MEXT Tokyo for Secondary Screening.',
+        'Step 6: Final results announced in February; departure to Japan in early April.'
+      ],
+      deadlines: '20 April – 10 May annually.',
+      url: 'https://www.id.emb-japan.go.jp/itpr_id/sch_senshu.html'
+    },
+    university: {
+      title: 'Direct Vocational Pathway',
+      description: 'Direct institutional recommendation for specialized vocational tracks through designated Japanese educational consortia.',
+      requirements: [
+        'Must be nominated by a partnering educational foundation.',
+        'Must demonstrate demonstrated talent/portfolio in chosen vocational discipline.'
+      ],
+      process: [
+        'Step 1: Submit creative portfolio and academic records.',
+        'Step 2: Practical skills evaluation and Japanese interview.',
+        'Step 3: Direct nomination to MEXT Tokyo.'
+      ],
+      deadlines: 'Varies by vocational consortium.',
       url: 'https://www.mext.go.jp'
     }
   }
